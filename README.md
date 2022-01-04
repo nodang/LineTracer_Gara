@@ -2,7 +2,7 @@
 
 단국대학교 MAZE 로봇연구회 소속의 스텝-라인트레이서
 
-Line-follower with Stepper-Motor, which belongs  Robot-Research-Society of MAZE from Dankook-Univ.
+Line-follower with Stepper-Motor, which belongs Robot-Research-Society of MAZE from Dankook-Univ.
 
 # 로봇 설명
 
