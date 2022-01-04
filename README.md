@@ -1,6 +1,7 @@
-# 라인트레이서 <가라>
+# 라인트레이서 <가라> / Line-follower GARA
 
-단국대학교 MAZE 소속 스텝-라인트레이서(used Step Motor)
+단국대학교 MAZE 로봇연구회 소속의 스텝-라인트레이서
+Line-follower with Stepper-Motor belong to Robot-Research-Society of MAZE from Dankook-Univ.
 
 # 로봇 설명
 
