@@ -1,0 +1,12 @@
+---- HanPID.Kp_IQ17 Matches (11 in 5 files) ----
+DSP280x_Sci.asm (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):;*** 114	-----------------------    HanPID.Kp_IQ17 += 13107L;
+DSP280x_Sci.asm (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):;*** 117	-----------------------    HanPID.Kp_IQ17 -= 13107L;
+DSP280x_Sci.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):		HanPID.Kp_IQ17 += _IQ17(0.1);
+DSP280x_Sci.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):		HanPID.Kp_IQ17 -= _IQ17(0.1);
+Menu.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):		TxPrintf("H: %lf  |  P: %.4lf  |  D: %.5lf\n", _IQ17toF(HanPID.Pos_PID_IQ17), _IQ17toF(HanPID.Kp_IQ17), _IQ17toF(HanPID.Kd_IQ17));
+Menu.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):		//TxPrintf("%lf,%.4lf,%.5lf\n", _IQ17toF(HanPID.Pos_PID_IQ17), _IQ17toF(HanPID.Kp_IQ17), _IQ17toF(HanPID.Kd_IQ17));
+Rom.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):	pid_rom[ i++ ] = ( (Uint16)(HanPID.Kp_IQ17 >> 17) >> 0 ) & 0xff;
+Rom.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):	pid_rom[ i++ ] = ( (Uint16)(HanPID.Kp_IQ17 >> 17) >> 8 ) & 0xff;
+Rom.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):	HanPID.Kp_IQ17 = _IQ17( ( pid_rom[ i++ ] & 0xff ) << 0 );
+Rom.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):	HanPID.Kp_IQ17 |= _IQ17( ( pid_rom[ i++ ] & 0xff ) << 8 );
+Sensor.c (c:\users\노호진\desktop\2809_steptracer\2809_가라\main):	HanPID.Pos_P_IQ17 = _IQ10mpyIQX(/*_IQ17(3.0)*/HanPID.Kp_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
