@@ -224,16 +224,19 @@ typedef volatile struct
 	_iq17	NextVelocity_IQ17;		//	NEXT_VELOCITY
 	_iq17	HandleVelo_IQ17;
 	_iq17	DecelVelocity_IQ17;
+	_iq17	AccelVelocity_IQ17;
 
 	_iq17 	TurnMarkCheckDistance_IQ17;
 	_iq15	GoneDistance_IQ15;
 	_iq15	CrossCheckDistance_IQ15;
-	
+
+	_iq17	KeepingDistance_IQ17;
 	_iq17	DecelDistance_IQ17;
 	_iq17	ErrorDistance_IQ17;
 	_iq17	UserDistance_IQ17;
 	
 	Uint16	DecelFlag_U16;
+	Uint16	AccelFlag_U16;
 //------------------------------------------------------------------------------------//
 	_iq7	PrdNext_IQ7;
 	_iq17	PrdNextTranSecon_IQ17;

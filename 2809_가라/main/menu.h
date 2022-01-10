@@ -22,8 +22,4 @@
 extern Uint16 MENU_SW();
 extern Uint16 botMENU_SW();
 extern void MENU_PA();
-/*extern void MENU_TOP();
-extern void MENU_SENSOR();
-extern void MENU_MOTOR();
-extern void MENU_RUN();
-*/
+

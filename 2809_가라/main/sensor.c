@@ -407,7 +407,7 @@ inline void HANDLE()
 	HanPID.Pos_Err_IQ10[1] = SenAdc.PositionTemporary_IQ10;
 	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[2] - HanPID.Pos_Err_IQ10[1];
 /*
-	HanPID.Pos_Err_IQ10[0] = (	(HanPID.Pos_Err_IQ10[4] << 2) 
+	HanPID.Pos_Err_IQ10[1] = (	(HanPID.Pos_Err_IQ10[4] << 2) 
 								+ (HanPID.Pos_Err_IQ10[3] << 2) 
 								+ (HanPID.Pos_Err_IQ10[2] << 1) 
 								+ (HanPID.Pos_Err_IQ10[1] << 1) 

@@ -36,14 +36,14 @@ void RUN_SECOND()
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
 	
-	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+	MOVE_TO_START(((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
 	//MOTOR_MUXset;
 	
 	while(1)
 	{
 		//TxPrintf("%2u, %.4lf, %5ld, %5ld, %5ld, %5ld\n", LMotor.AccHold_U16, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextAccel_IQ16 >> 16, 0, LMotor.NextVelocity_IQ17 >> 17, LMotor.ErrorVelocity_IQ17 >> 17);
-		//TxPrintf("%5ld %5ld %lf %5ld  %4ld %4ld %4ld %4ld %u\n", LMotor.TargetVel_IQ17 >> 17, RMotor.NextVelocity_IQ17 >> 17, _IQ17toF(LMotor.RolEachStep_IQ17), RMotor.ErrorDistance_IQ17 >> 17, LMotor.ErrorDistance_IQ17 >> 17, RMotor.DecelDistance_IQ17 >> 17, LMotor.DecelDistance_IQ17 >> 17, RMotor.UserDistance_IQ17 >> 17, RMotor.DecelFlag_U16);
+		//TxPrintf("%5ld %5ld %lf  %4ld %4ld %4ld %u %u\n", LMotor.TargetVel_IQ17 >> 17, LMotor.NextVelocity_IQ17 >> 17, _IQ17toF(LMotor.RolEachStep_IQ17), LMotor.ErrorDistance_IQ17 >> 17, LMotor.DecelDistance_IQ17 >> 17, LMotor.UserDistance_IQ17 >> 17, LMotor.DecelFlag_U16, LMotor.AccelFlag_U16);
 			
 		//TxPrintf("%5ld %5ld %5ld %5ld %4ld %4ld %4ld %4ld %u %u\n", LMotor.TargetAcc_IQ15 >> 15, RMotor.TargetAcc_IQ15 >> 15, LMotor.PrdNext_IQ14 >> 14, RMotor.PrdNext_IQ14 >> 14, LMotor.Velocity_IQ18 >> 18, RMotor.Velocity_IQ18 >> 18, LMotor.NextVelocity_IQ18 >> 18, RMotor.NextVelocity_IQ18 >> 18, EPwm1Regs.TBCTL.bit.CLKDIV, EPwm2Regs.TBCTL.bit.CLKDIV);
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
@@ -100,7 +100,7 @@ Uint16 TURN_DIVISION_FUNC()
 		LINE_DIVISION(&Search[cnt], cnt);
 
 		if(Flag.TxFlag_U16)		
-			TxPrintf("CNT: %3u  DIR: %2c   VEL_IN: %4ld    VEL: %4ld    VEL_OUT: %4ld    DIST: %4lu    DECEL_DIST: %4ld    MOTOR_DIST: %4ld\n", cnt, Search[cnt].TurnDir_U32 & STRAIGHT ? 'S' : (Search[cnt].TurnDir_U32 & RIGHT_TURN ? 'R' : 'L'), Search[cnt].VeloIn_IQ17 >> 17, Search[cnt].Velo_IQ17 >> 17, Search[cnt].VeloOut_IQ17 >> 17, Search[cnt].Distance_U32, Search[cnt].DecelDistance_IQ17 >> 17, Search[cnt].MotorDistance_IQ17 >> 17);
+			TxPrintf("CNT: %3u  DIR: %2c   VEL_IN: %4ld    VEL: %4ld    VEL_OUT: %4ld    DIST: %4lu    DECEL_DIST: %4ld    MOTOR_DIST: %4ld\n", cnt, Search[cnt].TurnDir_U32 & STRAIGHT ? 'S' : (Search[cnt].TurnDir_U32 & RIGHT_TURN ? 'R' : 'L'), Search[cnt].VeloIn_IQ17 >> 17, Search[cnt].Velo_IQ17 >> 17, Search[cnt].VeloOut_IQ17 >> 17, Search[cnt].Distance_U32 + HEIGHT_ME, Search[cnt].DecelDistance_IQ17 >> 17, Search[cnt].MotorDistance_IQ17 >> 17);
 		else;
 	}
 	return 0;
