@@ -133,7 +133,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 
 #define	TEN_THOUSAND		10000.0
 
-//#define	weight			1197.0
+//#define	weight			1127.0
 
 //#define	STEP_D_IQ17			_IQ17(0.418225)
 //#define	STEP_D_IQ15			_IQ15(0.418225)
@@ -150,8 +150,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define	STEP_10000D_IQ17	_IQ17(7853.981639)
 //#define	STEP_10000D_IQ15	_IQ15(7853.981639)
 
-#define	HEIGHT_ME			292.7		//300.0		// ¾à 255mm
-#define HEIGHT_SEEN			274.1		//200.0		// sensor between motor weight center
+#define	HEIGHT_ME			208.0	//292.7		//300.0		// ¾à 255mm
+#define HEIGHT_SEEN			200.0	//274.1		//200.0		// sensor between motor weight center
 #define	HEIGHT_REARdiv2		63.5		//			104.0
 
 #define MOTOR_A_R		0x00000001	//(GpioDataRegs.GPADAT.bit.GPIO0)			//	0000 0000 0000 0000  0000 0000 0000 0001

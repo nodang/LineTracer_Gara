@@ -92,6 +92,7 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM)
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// Step Motor Period Compute	
+/*
 	if(pM->HandleVelo_IQ17 < pM->TargetHandle_IQ17)
 	{
 		pM->HandleVelo_IQ17 += _IQ17mpy(_IQ15div(((long)HANDLE_ACCEL_U32) << 15, _IQ15(TEN_THOUSAND)) << 2, CPUTIMER_2_PRDdiv10000_IQ17);
@@ -104,8 +105,8 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM)
 		//pM->HandleVelo_IQ17 -= _IQ17mpy(_IQ17div(MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->FinalVelo_IQ17), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
 		if(pM->HandleVelo_IQ17 <= pM->TargetHandle_IQ17)		pM->HandleVelo_IQ17 = pM->TargetHandle_IQ17;
 	}
-
-	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->HandleVelo_IQ17;		//pM->HandleVelo_IQ17;
+*/
+	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->TargetHandle_IQ17;		//pM->HandleVelo_IQ17;
 	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17) 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10000);
 	else										pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
 	
@@ -139,19 +140,20 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 	//StopCpuTimer0();
 	StopCpuTimer2();
 	StopCpuTimer1();
-	
-	RMotor.AccelVelocity_IQ17 = LMotor.AccelVelocity_IQ17 = target_velocity;
+
+	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
+	//RMotor.AccelVelocity_IQ17 = LMotor.AccelVelocity_IQ17 = target_velocity;
 	RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = decel_velocity;
 	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = decel_distance;
 	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
-	RMotor.KeepingDistance_IQ17 = LMotor.KeepingDistance_IQ17 = distance - _IQ17(HEIGHT_ME);
+	//RMotor.KeepingDistance_IQ17 = LMotor.KeepingDistance_IQ17 = distance - _IQ17(HEIGHT_ME);
 	//RMotor.NextAccel_IQ16 = LMotor.NextAccel_IQ16 = _IQ16(0.0);		
 
 	RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(jerk, _IQ16(TEN_THOUSAND));
 	
-	//RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
+	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
-	RMotor.AccelFlag_U16 = LMotor.AccelFlag_U16 = ON;
+	//RMotor.AccelFlag_U16 = LMotor.AccelFlag_U16 = ON;
 
 	//StartCpuTimer0();
 	StartCpuTimer2();
@@ -361,6 +363,7 @@ inline void SECOND_DECEL_VALUE(MOTORCTRL *pRM, MOTORCTRL *pLM)
 			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
 		}
 	}
+/*
 	else if(pRM->AccelFlag_U16 || pLM->AccelFlag_U16)
 	{
 		if(pRM->KeepingDistance_IQ17 > pRM->ErrorDistance_IQ17)
@@ -380,6 +383,7 @@ inline void SECOND_DECEL_VALUE(MOTORCTRL *pRM, MOTORCTRL *pLM)
 			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = ON;
 		}
 	}
+*/
 }
 
 void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _iq16 jerk, volatile _iq17 *decel_dist)
