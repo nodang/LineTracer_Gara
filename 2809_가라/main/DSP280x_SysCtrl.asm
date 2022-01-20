@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Thu Jan 20 22:42:24 2022                 *
+;* Date/Time created: Fri Jan 21 03:20:54 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -10,15 +10,15 @@ DW$CU	.dwtag  DW_TAG_compile_unit
 	.dwattr DW$CU, DW_AT_stmt_list(0x00)
 	.dwattr DW$CU, DW_AT_TI_VERSION(0x01)
 DW$1	.dwtag  DW_TAG_variable, DW_AT_name("FlashRegs"), DW_AT_symbol_name("_FlashRegs")
-	.dwattr DW$1, DW_AT_type(*DW$T$85)
+	.dwattr DW$1, DW_AT_type(*DW$T$87)
 	.dwattr DW$1, DW_AT_declaration(0x01)
 	.dwattr DW$1, DW_AT_external(0x01)
 DW$2	.dwtag  DW_TAG_variable, DW_AT_name("SysCtrlRegs"), DW_AT_symbol_name("_SysCtrlRegs")
-	.dwattr DW$2, DW_AT_type(*DW$T$73)
+	.dwattr DW$2, DW_AT_type(*DW$T$75)
 	.dwattr DW$2, DW_AT_declaration(0x01)
 	.dwattr DW$2, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI82810 C:\Users\노호진\AppData\Local\Temp\TI8284 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI8282 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI8286 --object_file DSP280x_SysCtrl.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI91210 C:\Users\노호진\AppData\Local\Temp\TI9124 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI9122 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI9126 --object_file DSP280x_SysCtrl.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_ServiceDog
 
@@ -167,7 +167,7 @@ DW$6	.dwtag  DW_TAG_formal_parameter, DW_AT_name("val"), DW_AT_symbol_name("_val
 	.dwattr DW$6, DW_AT_location[DW_OP_reg0]
 ;* AR4   assigned to C$1
 DW$7	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$7, DW_AT_type(*DW$T$72)
+	.dwattr DW$7, DW_AT_type(*DW$T$74)
 	.dwattr DW$7, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _val
 DW$8	.dwtag  DW_TAG_variable, DW_AT_name("val"), DW_AT_symbol_name("_val")
@@ -251,7 +251,7 @@ L4:
         ; return occurs
 
 DW$9	.dwtag  DW_TAG_loop
-	.dwattr DW$9, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\DSP280x_SysCtrl.asm:L3:1:1642686144")
+	.dwattr DW$9, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\DSP280x_SysCtrl.asm:L3:1:1642702854")
 	.dwattr DW$9, DW_AT_begin_file("DSP280x_SysCtrl.c")
 	.dwattr DW$9, DW_AT_begin_line(0xb5)
 	.dwattr DW$9, DW_AT_end_line(0xb9)
@@ -305,16 +305,18 @@ _InitPeripheralClocks:
 ;*** 244	-----------------------    *((volatile struct _PCLKCR0_BITS *)C$1+12L) |= 0x8u;
 ;*** 245	-----------------------    *(&SysCtrlRegs+12L) |= 0x400u;
 ;*** 246	-----------------------    *(&SysCtrlRegs+12L) |= 0x100u;
+;*** 271	-----------------------    *((volatile struct _PCLKCR1_BITS *)C$1+13L) |= 1u;
+;*** 273	-----------------------    *(&SysCtrlRegs+13L) |= 4u;
 ;*** 276	-----------------------    *(&SysCtrlRegs+12L) |= 4u;
 ;*** 278	-----------------------    asm(" EDIS");
 ;*** 278	-----------------------    return;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
-;* AR4   assigned to C$1
+;* AR5   assigned to C$1
 DW$12	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
 	.dwattr DW$12, DW_AT_type(*DW$T$61)
-	.dwattr DW$12, DW_AT_location[DW_OP_reg12]
+	.dwattr DW$12, DW_AT_location[DW_OP_reg14]
 	.dwpsn	"DSP280x_SysCtrl.c",206,4
  EALLOW
 	.dwpsn	"DSP280x_SysCtrl.c",209,4
@@ -323,23 +325,30 @@ DW$12	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
 	.dwpsn	"DSP280x_SysCtrl.c",210,4
         MOV       @_SysCtrlRegs+11,#2   ; |210| 
 	.dwpsn	"DSP280x_SysCtrl.c",213,4
-        MOVL      XAR4,#_SysCtrlRegs    ; |213| 
-        AND       AL,*+XAR4[0],#0xfffe  ; |213| 
+        MOVL      XAR5,#_SysCtrlRegs    ; |213| 
+        AND       AL,*+XAR5[0],#0xfffe  ; |213| 
         ORB       AL,#0x02              ; |213| 
-        MOV       *+XAR4[0],AL          ; |213| 
+        MOV       *+XAR5[0],AL          ; |213| 
 	.dwpsn	"DSP280x_SysCtrl.c",222,2
         MOV       @_SysCtrlRegs+12,#0   ; |222| 
 	.dwpsn	"DSP280x_SysCtrl.c",223,2
         MOV       @_SysCtrlRegs+13,#0   ; |223| 
 	.dwpsn	"DSP280x_SysCtrl.c",244,2
         MOVB      ACC,#12
-        ADDL      ACC,XAR4
+        ADDL      ACC,XAR5
         MOVL      XAR4,ACC              ; |244| 
         OR        *+XAR4[0],#0x0008     ; |244| 
 	.dwpsn	"DSP280x_SysCtrl.c",245,2
         OR        @_SysCtrlRegs+12,#0x0400 ; |245| 
 	.dwpsn	"DSP280x_SysCtrl.c",246,2
         OR        @_SysCtrlRegs+12,#0x0100 ; |246| 
+	.dwpsn	"DSP280x_SysCtrl.c",271,2
+        MOVB      ACC,#13
+        ADDL      ACC,XAR5
+        MOVL      XAR4,ACC              ; |271| 
+        OR        *+XAR4[0],#0x0001     ; |271| 
+	.dwpsn	"DSP280x_SysCtrl.c",273,2
+        OR        @_SysCtrlRegs+13,#0x0004 ; |273| 
 	.dwpsn	"DSP280x_SysCtrl.c",276,2
         OR        @_SysCtrlRegs+12,#0x0004 ; |276| 
 	.dwpsn	"DSP280x_SysCtrl.c",278,5
@@ -521,16 +530,16 @@ DW$T$59	.dwtag  DW_TAG_const_type
 	.dwattr DW$T$59, DW_AT_type(*DW$17)
 DW$T$61	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$60)
 	.dwattr DW$T$61, DW_AT_address_class(0x16)
-DW$T$72	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$71)
-	.dwattr DW$T$72, DW_AT_address_class(0x16)
+DW$T$74	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$73)
+	.dwattr DW$T$74, DW_AT_address_class(0x16)
 DW$18	.dwtag  DW_TAG_far_type
 	.dwattr DW$18, DW_AT_type(*DW$T$39)
-DW$T$73	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$73, DW_AT_type(*DW$18)
+DW$T$75	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$75, DW_AT_type(*DW$18)
 DW$19	.dwtag  DW_TAG_far_type
 	.dwattr DW$19, DW_AT_type(*DW$T$54)
-DW$T$85	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$85, DW_AT_type(*DW$19)
+DW$T$87	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$87, DW_AT_type(*DW$19)
 DW$T$11	.dwtag  DW_TAG_base_type, DW_AT_name("unsigned int")
 	.dwattr DW$T$11, DW_AT_encoding(DW_ATE_unsigned)
 	.dwattr DW$T$11, DW_AT_byte_size(0x01)
@@ -540,8 +549,8 @@ DW$T$60	.dwtag  DW_TAG_volatile_type
 	.dwattr DW$T$60, DW_AT_type(*DW$20)
 DW$21	.dwtag  DW_TAG_far_type
 	.dwattr DW$21, DW_AT_type(*DW$T$34)
-DW$T$71	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$71, DW_AT_type(*DW$21)
+DW$T$73	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$73, DW_AT_type(*DW$21)
 
 DW$T$39	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$39, DW_AT_name("SYS_CTRL_REGS")

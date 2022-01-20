@@ -22,7 +22,7 @@ void RUN_THIRD()
 	
 	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
-	//MOTOR_MUXset;
+	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 	
 	while(1)
 	{
@@ -54,7 +54,6 @@ void LINE_THIRD(TRACKINFO *LINE)
 	if(THIRD_MARK_U16_CNT > MARK_U16_CNT)		ERROR_U16_FLAG = ON;
 	else										THIRD_MARK_U16_CNT++;
 
-	//LMotor.DistanceSum_IQ17 = RMotor.DistanceSum_IQ17 = _IQ17(0.0);
 	LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
 	CROSS_PLUS_U32 = 0;
 }

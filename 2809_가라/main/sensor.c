@@ -186,8 +186,8 @@ interrupt void ADC_ISR()
 	else															SENSOR_STATE_U16 &= ARROW_PASSIVE_U16[SENSOR_COUNT + 8];
 
 	// SENSOR CHANGE
-	if(SENSOR_COUNT < 7)		SENSOR_COUNT++;
-	else					{	SENSOR_COUNT = 0;	StopCpuTimer0();	}
+	if(SENSOR_COUNT < 7)	SENSOR_COUNT++;
+	else					SENSOR_COUNT = 0;
 }
 
 void SENSOR_MAXMIN()
@@ -359,7 +359,7 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 			}
 		}
 */
-		pS->PositionTemporary_IQ10 = pS->Position_IQ10;	//(pS->PositionTemporary_IQ10 + pS->Position_IQ10) >> 1;
+		pS->PositionTemporary_IQ10 = (pS->PositionTemporary_IQ10 + pS->Position_IQ10) >> 1;
 		
 		cur_position_i32	= pS->PositionTemporary_IQ10 >> 10;
 		

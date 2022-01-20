@@ -125,7 +125,6 @@ void Init_ISR(void)
 
 
  	PieVectTable.TINT0	=	&SENSOR_ISR;	// sensor interrupt
- 	PieVectTable.XINT13 = 	&MOTOR_PULSE_ISR; // R_motor interrupt
  	PieVectTable.TINT2	=	&MOTOR_ISR;	// motor interrupt
 	PieVectTable.ADCINT =	&ADC_ISR;		// ADC interrupt
 
@@ -133,7 +132,7 @@ void Init_ISR(void)
 
 	EDIS;    // This is needed to disable write to EALLOW protected registers
 
-	IER |= ( M_INT1 | M_INT13 | M_INT14 );			//TINT0, TINT2 Enable
+	IER |= ( M_INT1 | M_INT14 );			//TINT0, TINT2 Enable
 
 	IER |= M_INT9;	//SCI Enable
 
@@ -144,7 +143,6 @@ void Init_ISR(void)
 	
 
 	ConfigCpuTimer( &CpuTimer0 , 100.0 , 25.0 );	// sensor interrupt 25us
-	ConfigCpuTimer( &CpuTimer1 , 100.0 , 25.0 ); // 
 	ConfigCpuTimer( &CpuTimer2 , 100.0 , 500.0 );	// motor interrupt 500us
 
 	EINT;

@@ -31,15 +31,9 @@ void System_Init(void)
 	InitAdc();
 
 	Init_ISR();
-/*
-	InitEPWM_A( &EPwm1Regs );
-	InitEPWM_B( &EPwm2Regs );
-	InitEPWM_A( &EPwm3Regs );
-	InitEPWM_B( &EPwm4Regs );
-*/	
-	//InitEQep( &LeftQepRegs );
-	//InitEQep( &RightQepRegs );
-	
+
+	InitEPWM( &EPwm1Regs );
+	InitEPWM( &EPwm3Regs );
 }
 
 void Variable_Init( void )
@@ -83,26 +77,12 @@ void main(void)
 	Variable_Init();
 
 	StopCpuTimer0();
-	StopCpuTimer1();
 	StopCpuTimer2();
 
 	Init_SENSOR();
 	Init_MOTOR();
-/*
-	while(1)
-	{
-		GpioDataRegs.GPADAT.all = (MOTOR_R_STOP | MOTOR_R_2[0]);
-		DELAY_US(1000);
-		GpioDataRegs.GPADAT.all = (MOTOR_R_STOP | MOTOR_R_2[1]);
-		DELAY_US(1000);
-		GpioDataRegs.GPADAT.all = (MOTOR_R_STOP | MOTOR_R_2[2]);
-		DELAY_US(1000);
-		GpioDataRegs.GPADAT.all = (MOTOR_R_STOP | MOTOR_R_2[3]);
-		DELAY_US(1000);
-	}
-*/
+
 	MENU_PA();
-	//MENU_TOP();
 }
 
 void Delay(Uint32 Cnt)

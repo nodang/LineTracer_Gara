@@ -154,51 +154,12 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define HEIGHT_SEEN			208.0	//274.1		//200.0		// sensor between motor weight center
 #define	HEIGHT_REARdiv2		63.5		//			104.0
 
-#define MOTOR_A_R		0x00000001	//(GpioDataRegs.GPADAT.bit.GPIO0)			//	0000 0000 0000 0000  0000 0000 0000 0001
-#define MOTOR_A__R		0x00000002	//(GpioDataRegs.GPADAT.bit.GPIO1)	// A^	//	0000 0000 0000 0000  0000 0000 0000 0010
-#define MOTOR_B_R		0x00000004	//(GpioDataRegs.GPADAT.bit.GPIO2)			//	0000 0000 0000 0000  0000 0000 0000 0100
-#define MOTOR_B__R		0x00000008	//(GpioDataRegs.GPADAT.bit.GPIO3)	// B^	//	0000 0000 0000 0000  0000 0000 0000 1000
-																		
-#define MOTOR_A_L		0x00000010	//(GpioDataRegs.GPADAT.bit.GPIO4)			//	0000 0000 0000 0000  0000 0000 0001 0000
-#define MOTOR_A__L		0x00000020	//(GpioDataRegs.GPADAT.bit.GPIO5)	// A^	//	0000 0000 0000 0000  0000 0000 0010 0000
-#define MOTOR_B_L		0x00000040	//(GpioDataRegs.GPADAT.bit.GPIO6)			//	0000 0000 0000 0000  0000 0000 0100 0000
-#define MOTOR_B__L		0x00000080	//(GpioDataRegs.GPADAT.bit.GPIO7)	// B^	//	0000 0000 0000 0000  0000 0000 1000 0000
-									
-#define MOTOR_R_STOP	(GpioDataRegs.GPADAT.all & 0xfffffff0)					//	1111 1111 1111 1111  1111 1111 1111 0000
-#define MOTOR_L_STOP	(GpioDataRegs.GPADAT.all & 0xffffff0f)					//	1111 1111 1111 1111  1111 1111 0000 1111
-#define MOTOR_STOP		(GpioDataRegs.GPADAT.all & 0xffffff00)					//	1111 1111 1111 1111  1111 1111 0000 0000
-#define MOTOR_HOLD		0x000000ff												//	0000 0000 0000 0000  0000 0000 1111 1111
-									// A B A^B^
-#define MOTOR_0_R		0x00000001	// 1 0 0 0
-#define MOTOR_1_R		0x00000005	// 1 1 0 0
-#define MOTOR_2_R		0x00000004	// 0 1 0 0
-#define MOTOR_3_R		0x00000006	// 0 1 1 0
-#define MOTOR_4_R		0x00000002	// 0 0 1 0
-#define MOTOR_5_R		0x0000000A	// 0 0 1 1
-#define MOTOR_6_R		0x00000008	// 0 0 0 1
-#define MOTOR_7_R		0x00000009	// 1 0 0 1
-
-									// A B A^B^
-#define MOTOR_0_L		0x00000010	// 1 0 0 0
-#define MOTOR_1_L		0x00000050	// 1 1 0 0
-#define MOTOR_2_L		0x00000040	// 0 1 0 0
-#define MOTOR_3_L		0x00000060	// 0 1 1 0
-#define MOTOR_4_L		0x00000020	// 0 0 1 0
-#define MOTOR_5_L		0x000000A0	// 0 0 1 1
-#define MOTOR_6_L		0x00000080	// 0 0 0 1
-#define MOTOR_7_L		0x00000090	// 1 0 0 1
-
-/*
 #define	MOTOR_PERIOD_MAXIMUM		16383.0		// clk = 7 -> vel = 9.7 mm/s
 #define	MOTOR_PERIOD_MAXIMUMdiv2	8191.0		// clk = 7 -> vel = 19.9 mm/s
 #define	MOTOR_PERIOD_MAXIMUMdiv10	1.6383		// System minium clock is 10 ns
 #define	MOTOR_PERIOD_MINIMUM		4095.0		// clk = 0 -> vel = 5105 mm/s
-*/
-#define	MOTOR_PERIOD_MAXIMUM			4166666.7 //9293888.9	// ns | vel = 9 mm/s
-#define	MOTOR_PERIOD_MAXIMUMdiv1000		4166.6667 //9293.889	// System minium clock is 10 ns
-#define	MOTOR_PERIOD_MAXIMUMdiv10000	416.66667 //929.38889	
-//#define	MOTOR_PERIOD_MINIMUM			16.7290		// vel = 5105 mm/s
-//#define	MOTOR_PERIOD_MINIMUMdiv10000	16.7290		// vel = 5105 mm/s
+
+#define MOTOR_ResetEnable	0x00000021		/*GPIO0,5 	0000 0000 0000 0000  0000 0000 0010 0001  */ 
 
 #define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all
@@ -207,9 +168,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define CPUTIMER_2_PRDdiv10000_IQ17		(CPUTIMER_2_PRDdiv10000_IQ15 << 2)
 
 #define STOP_TIMING_IQ16(A)		_IQ16div(_IQ16div(_IQ16(HEIGHT_SEEN), _IQ16(1.2)), A)
-//_IQ16div(_IQ16mpy(_IQ16div(_IQ16(5.0), _IQ16(6.0)), _IQ16(HEIGHT_SEEN)), A)
 #define STOP_JERK_IQ16(B)		_IQ16div(_IQ16div(_IQ16div(_IQ16div(_IQ16(HEIGHT_ME), _IQ16(TEN_THOUSAND)), B), B), B)
-//_IQ16div(_IQ16div(_IQ16div(_IQ16div(_IQ16(HEIGHT_ME), _IQ16(TEN_THOUSAND)), STOP_TIMING_IQ16(B)), STOP_TIMING_IQ16(B)), STOP_TIMING_IQ16(B))
 
 #define	HANDLE_ACC_IQ17			_IQ17(1.0) + _IQ17mpy(_IQ17div(_IQ17(1.0), ACC_DEC_POINT_COEF_I32 << 17), ACCEL_COEF_I32 << 17)
 #define	HANDLE_DEC_IQ17			_IQ17mpy(_IQ17div(_IQ17(1.0), ACC_DEC_POINT_COEF_I32 << 17), DECEL_COEF_I32 << 17)
@@ -224,21 +183,18 @@ typedef volatile struct
 	_iq17	NextVelocity_IQ17;		//	NEXT_VELOCITY
 	_iq17	HandleVelo_IQ17;
 	_iq17	DecelVelocity_IQ17;
-	_iq17	AccelVelocity_IQ17;
 
 	_iq17 	TurnMarkCheckDistance_IQ17;
 	_iq15	GoneDistance_IQ15;
 	_iq15	CrossCheckDistance_IQ15;
 
-	_iq17	KeepingDistance_IQ17;
 	_iq17	DecelDistance_IQ17;
 	_iq17	ErrorDistance_IQ17;
 	_iq17	UserDistance_IQ17;
 	
 	Uint16	DecelFlag_U16;
-	Uint16	AccelFlag_U16;
 //------------------------------------------------------------------------------------//
-	_iq7	PrdNext_IQ7;
+	_iq7	PrdNext_IQ14;
 	_iq17	PrdNextTranSecon_IQ17;
 	
 	_iq17	RolEachStep_IQ17;
@@ -250,12 +206,6 @@ typedef volatile struct
 
 	_iq17	TargetHandle_IQ17;
 	_iq17	FinalVelo_IQ17;
-
-//------------------------------------------------------------------------------------//
-//pulse isr
-	Uint32	Period_U32_CNT;
-	Uint32	Period_U32;
-	Uint16	Index_U16;
 }MOTORCTRL;
 
 __VARIABLE_EXT__ MOTORCTRL	RMotor, LMotor;
@@ -351,10 +301,6 @@ __VARIABLE_EXT__ _iq15	CROSS_DISTANCE_IQ15;
 #define	TURN_90_DIST	400
 #define	TURN_180_DIST	700
 #define	TURN_270_DIST	1000
-/*
-#define TURN_VALUE_RADIAN_IQ15(A, B)	_IQ15div(_IQ16(HEIGHT_REARdiv2),(_IQ15div(A << 15, B << 15) - _IQ15(1.0)))
-#define TURN_VALUE_THETA_IQ15(C, D)		_IQ15mpy(_IQ15div(_IQ15div(D << 15,TURN_VALUE_RADIAN_IQ15(C, D)), _IQ15(PI)), _IQ15(180.0))
-*/
 
 #define TURN_VALUE_THETA_IQ15(A, B)		 _IQ15mpy(_IQ15div(((long)(A - B)) << 15, _IQ16(HEIGHT_REARdiv2)),  _IQ15div(_IQ15(180.0), _IQ15(PI)))
 

@@ -20,12 +20,6 @@
 #include "Main.h"
 #include "Motor.h"
 
-Uint32 MOTOR_R[8] = { MOTOR_0_R, MOTOR_1_R, MOTOR_2_R, MOTOR_3_R, MOTOR_4_R, MOTOR_5_R, MOTOR_6_R, MOTOR_7_R };
-Uint32 MOTOR_L[8] = { MOTOR_7_L, MOTOR_6_L, MOTOR_5_L, MOTOR_4_L, MOTOR_3_L, MOTOR_2_L, MOTOR_1_L, MOTOR_0_L };
-
-Uint32 MOTOR_R_2[4] = { MOTOR_1_R, MOTOR_3_R, MOTOR_5_R, MOTOR_7_R };
-Uint32 MOTOR_L_2[4] = { MOTOR_7_L, MOTOR_5_L, MOTOR_3_L, MOTOR_1_L };
-
 void Init_MOTOR()
 {	
 	memset((void *)&Flag,0x00,sizeof(BITFLAG));
@@ -43,11 +37,10 @@ void Init_MOTOR()
 
 void Init_MotorCtrl(MOTORCTRL *pM)
 {
-	pM->PrdNext_IQ7 	= _IQ7(MOTOR_PERIOD_MAXIMUM);
-	pM->Period_U32		= (Uint32)MOTOR_PERIOD_MAXIMUMdiv1000;
+	pM->PrdNext_IQ14 	= _IQ14(MOTOR_PERIOD_MAXIMUM);
 }
 
-inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM)
+inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 {
 	// Normal Velocity Compute
 	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17)
@@ -92,27 +85,23 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM)
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// Step Motor Period Compute	
-/*
-	if(pM->HandleVelo_IQ17 < pM->TargetHandle_IQ17)
-	{
-		pM->HandleVelo_IQ17 += _IQ17mpy(_IQ15div(((long)HANDLE_ACCEL_U32) << 15, _IQ15(TEN_THOUSAND)) << 2, CPUTIMER_2_PRDdiv10000_IQ17);
-		//pM->HandleVelo_IQ17 += _IQ17mpy(_IQ17div(MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->FinalVelo_IQ17), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
-		if(pM->HandleVelo_IQ17 >= pM->TargetHandle_IQ17)		pM->HandleVelo_IQ17 = pM->TargetHandle_IQ17;
-	}
-	else if(pM->HandleVelo_IQ17 > pM->TargetHandle_IQ17)
-	{
-		pM->HandleVelo_IQ17 -= _IQ17mpy(_IQ15div(((long)HANDLE_ACCEL_U32) << 15, _IQ15(TEN_THOUSAND)) << 2, CPUTIMER_2_PRDdiv10000_IQ17);
-		//pM->HandleVelo_IQ17 -= _IQ17mpy(_IQ17div(MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->FinalVelo_IQ17), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
-		if(pM->HandleVelo_IQ17 <= pM->TargetHandle_IQ17)		pM->HandleVelo_IQ17 = pM->TargetHandle_IQ17;
-	}
-*/
 	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->TargetHandle_IQ17;		//pM->HandleVelo_IQ17;
-	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17) 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10000);
+	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17) 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
 	else										pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
 	
-	pM->PrdNext_IQ7 = _IQ7mpyIQX(_IQ13(TEN_THOUSAND), 13, pM->PrdNextTranSecon_IQ17, 17);
+	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNextTranSecon_IQ17, 17);
+	if(pM->PrdNext_IQ14 < _IQ14(MOTOR_PERIOD_MINIMUM)) 	
+	{
+		pM->PrdNext_IQ14	= _IQ14(MOTOR_PERIOD_MINIMUM);
+		if(clk > 0) 	{	clk--;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;	}
+	}
+	else if(pM->PrdNext_IQ14 > _IQ14(MOTOR_PERIOD_MAXIMUM))		
+	{
+		pM->PrdNext_IQ14	= _IQ14(MOTOR_PERIOD_MAXIMUM);
+		if(clk < 7) 	{	clk++;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;	}
+	}
 
-	pM->RolEachStep_IQ17	= _IQ17mpyIQX(STEP_D_IQ17, 17, _IQ7div(((long)CPUTIMER_2_RPD) << 7, pM->PrdNext_IQ7), 7);
+	pM->RolEachStep_IQ17	= _IQ17mpyIQX(STEP_D_IQ17, 17, _IQ14div(((long)CPUTIMER_2_RPD) << 14, pM->PrdNext_IQ14) >> clk, 14);
 
 	pM->TurnMarkCheckDistance_IQ17 	+= pM->TurnMarkCheckDistance_IQ17 > _IQ17(16380.0) ? _IQ17(0.0) : pM->RolEachStep_IQ17;
 	pM->CrossCheckDistance_IQ15		+= pM->CrossCheckDistance_IQ15 > _IQ15(32760.0) ? _IQ15(0.0) : pM->RolEachStep_IQ17 >> 2;
@@ -120,45 +109,37 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM)
 
 	pM->ErrorDistance_IQ17 = pM->UserDistance_IQ17 - (pM->GoneDistance_IQ15 << 2);
 	pM->ErrorDistance_IQ17 = pM->ErrorDistance_IQ17 < _IQ17(0.0) ? _IQ17(0.0) : pM->ErrorDistance_IQ17;
+
+	return clk;
 }
 
 
 void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq16 jerk)
 {	
-	//StopCpuTimer0();
+	StopCpuTimer0();
 	StopCpuTimer2();
-	StopCpuTimer1();
 
 	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
-	//RMotor.AccelVelocity_IQ17 = LMotor.AccelVelocity_IQ17 = target_velocity;
 	RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = decel_velocity;
 	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = decel_distance;
-	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
-	//RMotor.KeepingDistance_IQ17 = LMotor.KeepingDistance_IQ17 = distance - _IQ17(HEIGHT_ME);
-	//RMotor.NextAccel_IQ16 = LMotor.NextAccel_IQ16 = _IQ16(0.0);		
+	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;	
 
 	RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(jerk, _IQ16(TEN_THOUSAND));
 	
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
-	//RMotor.AccelFlag_U16 = LMotor.AccelFlag_U16 = ON;
-
-	//StartCpuTimer0();
 	StartCpuTimer2();
-	StartCpuTimer1();
 }
 
 void MOVE_TO_END(_iq17 distance)
 {
-	//StopCpuTimer0();
+	StopCpuTimer0();
 	StopCpuTimer2();
-	StopCpuTimer1();
 	
 	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = _IQ17(0.0);
 	RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = _IQ17(0.0);
 	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = distance;
-	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
-	//RMotor.NextAccel_IQ16 = LMotor.NextAccel_IQ16 = _IQ16(0.0);		
+	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;		
 
 	RMotor.Jerk_IQ16 = STOP_TIMING_IQ16(RMotor.NextVelocity_IQ17 >> 1);
 	LMotor.Jerk_IQ16 = STOP_TIMING_IQ16(LMotor.NextVelocity_IQ17 >> 1);
@@ -168,60 +149,32 @@ void MOVE_TO_END(_iq17 distance)
  
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 	
-	//StartCpuTimer0();
 	StartCpuTimer2();
-	StartCpuTimer1();
 }
 
 interrupt void MOTOR_ISR()
 {	
-	/*Uint16 clk1, clk2;
-	
-	IER &= MINT14;	// 우선순위 설정 
-	EINT;			// 전역 스위치 ON
-*/
+	Uint16 clk1, clk2;
+		
 	// MOTOR CONTROL
 	if(Flag.Motor_U16)
-	{
-		MOTOR_MOTION_VALUE(&RMotor);
-		MOTOR_MOTION_VALUE(&LMotor);
+	{	
+		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
+		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm3Regs.TBCTL.bit.CLKDIV);
 		
-		if(Flag.Fast_U16 | Flag.Extrem_U16)		SECOND_DECEL_VALUE(&RMotor, &LMotor);
-		if(Flag.MoveState_U16)		TIME_INDEX_U32++;
-		if(Flag.STOP)				STOP_TIME_INDEX_U32++;
+		EPwm1Regs.TBCTL.bit.CLKDIV = clk1;		EPwm3Regs.TBCTL.bit.CLKDIV = clk2;
+
+		EPwm1Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
+		EPwm1Regs.CMPB =			((EPwm1Regs.TBPRD) >> 1);
+		
+		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
+		EPwm3Regs.CMPA.half.CMPA =	((EPwm3Regs.TBPRD) >> 1);
+		
+		if(Flag.Fast_U16 | Flag.Extrem_U16) 	SECOND_DECEL_VALUE(&RMotor, &LMotor);
+		if(Flag.MoveState_U16)	TIME_INDEX_U32++;
+		if(Flag.STOP)		STOP_TIME_INDEX_U32++;
 	}
-	
 	StartCpuTimer0();
-}
-
-interrupt void MOTOR_PULSE_ISR()
-{
-/*
-	IER &= MINT13;	// 우선순위 설정 
-	EINT;			// 전역 스위치 ON
-
-*/
-	// MOTOR CONTROL
-	if(Flag.Motor_U16 == ON)
-	{
-		if( ++RMotor.Period_U32_CNT >= RMotor.Period_U32)
-		{	
-			RMotor.Period_U32 = (Uint32)(_IQ7div(RMotor.PrdNext_IQ7, _IQ7(2500.0)) >> 7);
-			GpioDataRegs.GPADAT.all = (MOTOR_R_STOP | MOTOR_R_2[RMotor.Index_U16]);
-			RMotor.Period_U32_CNT	= 0;
-			if(RMotor.Index_U16 < 3)	RMotor.Index_U16++;	
-			else 						RMotor.Index_U16 = 0;
-		}
-		if( ++LMotor.Period_U32_CNT >= LMotor.Period_U32)
-		{
-			LMotor.Period_U32 = (Uint32)(_IQ7div(LMotor.PrdNext_IQ7, _IQ7(2500.0)) >> 7);
-			GpioDataRegs.GPADAT.all = (MOTOR_L_STOP | MOTOR_L_2[LMotor.Index_U16]);
-			LMotor.Period_U32_CNT	= 0;
-			if(LMotor.Index_U16 < 3)	LMotor.Index_U16++;	
-			else 						LMotor.Index_U16 = 0;
-		}	
-	}
-	else;
 }
 
 Uint16 END_STOP()
@@ -316,16 +269,16 @@ void SHUTDOWN()
 			STOP_TIME_INDEX_U32 = 0;
 			
 			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < (400)))		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
-			
+
 			Flag.STOP = OFF;
 			Flag.Sensor_U16 = OFF;
 			GpioDataRegs.GPACLEAR.all = SENall;
 			StopCpuTimer0();
 			StopCpuTimer2();
 			Flag.Motor_U16 = OFF;
-			GpioDataRegs.GPASET.all = MOTOR_HOLD;
-			DELAY_US(100000);
-			GpioDataRegs.GPADAT.all = (MOTOR_STOP | MOTOR_HOLD);
+			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
+			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
+			
 			LED_R_OFF;		LED_L_OFF;		
 
 			return ;
