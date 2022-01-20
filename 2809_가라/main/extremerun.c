@@ -20,7 +20,7 @@ void RUN_THIRD()
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
 	
-	MOVE_TO_START(((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
 	//MOTOR_MUXset;
 	

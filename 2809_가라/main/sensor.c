@@ -312,26 +312,25 @@ void SENSOR_MAXMIN()
 	DELAY_US(300000);
 }
 
-void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, Uint16 *state, Uint16 *enable)
+void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile Uint16 *enable)
 {		
-	int32	cur_position_i32	= 0;
-	Uint16	sum_127div_u16		= 0;
-	_iq8	sum_mpy_wd_iq8		= _IQ8(0.0);
+	volatile int32	cur_position_i32	= 0;
+	volatile Uint16	sum_127div_u16		= 0;
+	volatile _iq8	sum_mpy_wd_iq8		= _IQ8(0.0);
 
 	// SUM OF DIV127 FROM 4 SENSORS. FIRST 6TH ~ 9TH
-	sum_127div_u16 += pS->Div127_U16[pS->Position_U16_CNT];
+	sum_127div_u16 = pS->Div127_U16[pS->Position_U16_CNT];
 	sum_127div_u16 += pS->Div127_U16[pS->Position_U16_CNT + 1];
 	sum_127div_u16 += pS->Div127_U16[pS->Position_U16_CNT + 2];
 	sum_127div_u16 += pS->Div127_U16[pS->Position_U16_CNT + 3];
 
-	if(sum_127div_u16)
+	if(sum_127div_u16 != 0)
 	{	
 		if(LINE_OUT_U16 != LINE_OUT)		LINE_OUT_U16 = 0;
-		else;
 
 		CROSS_CHECK();
 		
-		sum_mpy_wd_iq8 += _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT]) << 8); 
+		sum_mpy_wd_iq8 = _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT]) << 8); 
 		sum_mpy_wd_iq8 += _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT + 1))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT + 1]) << 8);
 		sum_mpy_wd_iq8 += _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT + 2))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT + 2]) << 8);
 		sum_mpy_wd_iq8 += _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT + 3))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT + 3]) << 8);	
@@ -342,7 +341,6 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, Uint16 *state, Uint16 *enable)
 		
 		if(pS->Position_IQ10 > _IQ10(MAX_POSITION))			pS->Position_IQ10 = _IQ10(MAX_POSITION);
 		else if(pS->Position_IQ10 < _IQ10(-MAX_POSITION))	pS->Position_IQ10 = _IQ10(-MAX_POSITION);
-		else;		
 /*
 		if(Flag.Cross)
 		{
@@ -358,11 +356,8 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, Uint16 *state, Uint16 *enable)
 					pS->Position_IQ10 =	(pS->Position_IQ10 > _IQ10(MAX_STRAIGHT)) ? _IQ10(MAX_STRAIGHT) :
 											(pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
 				}
-				else;
 			}
-			else;
 		}
-		else;
 */
 		pS->PositionTemporary_IQ10 = pS->Position_IQ10;	//(pS->PositionTemporary_IQ10 + pS->Position_IQ10) >> 1;
 		
@@ -424,16 +419,20 @@ inline void HANDLE()
 	{
 		//RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
 		//LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
-		RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(RMotor.TargetVel_IQ17, HANDLE_DEC_IQ17));
-		LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(LMotor.TargetVel_IQ17, HANDLE_ACC_IQ17));
+		//RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(RMotor.TargetVel_IQ17, HANDLE_DEC_IQ17));
+		//LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(LMotor.TargetVel_IQ17, HANDLE_ACC_IQ17));
+		RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
+		LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
 	}
 	
 	else if(HanPID.Pos_PID_IQ17 < _IQ10(0.0))		// left curve
 	{
 		//RMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(-MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
 		//LMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(-MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
-		RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(RMotor.TargetVel_IQ17, HANDLE_ACC_IQ17));
-		LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(LMotor.TargetVel_IQ17, HANDLE_DEC_IQ17));
+		//RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(RMotor.TargetVel_IQ17, HANDLE_ACC_IQ17));
+		//LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(LMotor.TargetVel_IQ17, HANDLE_DEC_IQ17));
+		RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
+		LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
 	}
 	else													// Straight
 	{

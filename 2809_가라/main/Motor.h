@@ -24,7 +24,6 @@ extern void Init_MotorCtrl(MOTORCTRL *pM);
 extern inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM);
 extern interrupt void MOTOR_ISR();
 extern interrupt void MOTOR_PULSE_ISR();
-extern void MOVE_TO_START(_iq17 target_velocity, _iq16 jerk);
 extern void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq16 jerk);
 extern void MOVE_TO_END(_iq17 distance);
 extern Uint16 END_STOP();

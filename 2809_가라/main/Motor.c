@@ -44,7 +44,7 @@ void Init_MOTOR()
 void Init_MotorCtrl(MOTORCTRL *pM)
 {
 	pM->PrdNext_IQ7 	= _IQ7(MOTOR_PERIOD_MAXIMUM);
-	pM->Period_U32		= MOTOR_PERIOD_MAXIMUMdiv1000;
+	pM->Period_U32		= (Uint32)MOTOR_PERIOD_MAXIMUMdiv1000;
 }
 
 inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM)
@@ -122,18 +122,6 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM)
 	pM->ErrorDistance_IQ17 = pM->ErrorDistance_IQ17 < _IQ17(0.0) ? _IQ17(0.0) : pM->ErrorDistance_IQ17;
 }
 
-void MOVE_TO_START(_iq17 target_velocity, _iq16 jerk)
-{
-	StopCpuTimer2();
-	StopCpuTimer1();
-	
-	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
-	RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(jerk, _IQ16(TEN_THOUSAND));
-
-	StartCpuTimer2();
-	StartCpuTimer1();
-}
-
 
 void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq16 jerk)
 {	
@@ -208,15 +196,17 @@ interrupt void MOTOR_ISR()
 
 interrupt void MOTOR_PULSE_ISR()
 {
-	//IER &= MINT13;	// 우선순위 설정 
-	//EINT;			// 전역 스위치 ON
+/*
+	IER &= MINT13;	// 우선순위 설정 
+	EINT;			// 전역 스위치 ON
 
+*/
 	// MOTOR CONTROL
 	if(Flag.Motor_U16 == ON)
 	{
 		if( ++RMotor.Period_U32_CNT >= RMotor.Period_U32)
 		{	
-			RMotor.Period_U32 = (_IQ7div(RMotor.PrdNext_IQ7, _IQ7(1000.0)) >> 7);
+			RMotor.Period_U32 = (Uint32)(_IQ7div(RMotor.PrdNext_IQ7, _IQ7(2500.0)) >> 7);
 			GpioDataRegs.GPADAT.all = (MOTOR_R_STOP | MOTOR_R_2[RMotor.Index_U16]);
 			RMotor.Period_U32_CNT	= 0;
 			if(RMotor.Index_U16 < 3)	RMotor.Index_U16++;	
@@ -224,7 +214,7 @@ interrupt void MOTOR_PULSE_ISR()
 		}
 		if( ++LMotor.Period_U32_CNT >= LMotor.Period_U32)
 		{
-			LMotor.Period_U32 = (_IQ7div(LMotor.PrdNext_IQ7, _IQ7(1000.0)) >> 7);
+			LMotor.Period_U32 = (Uint32)(_IQ7div(LMotor.PrdNext_IQ7, _IQ7(2500.0)) >> 7);
 			GpioDataRegs.GPADAT.all = (MOTOR_L_STOP | MOTOR_L_2[LMotor.Index_U16]);
 			LMotor.Period_U32_CNT	= 0;
 			if(LMotor.Index_U16 < 3)	LMotor.Index_U16++;	
@@ -281,7 +271,7 @@ Uint16 END_STOP()
 Uint16 LINE_OUT_STOP()
 {
 	//TxPrintf("LINEout : %u\n", LINE_OUT_U16);
-	if(LINE_OUT_U16 < 500)		return 0;
+	if(LINE_OUT_U16 < 300)		return 0;
 
 	LINE_OUT_U16 = LINE_OUT;			// 300보다 큰 숫자를 넣음으로서 라인 아웃 처리됨을 알림
 	Flag.MoveState_U16 = OFF;
@@ -363,27 +353,6 @@ inline void SECOND_DECEL_VALUE(MOTORCTRL *pRM, MOTORCTRL *pLM)
 			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
 		}
 	}
-/*
-	else if(pRM->AccelFlag_U16 || pLM->AccelFlag_U16)
-	{
-		if(pRM->KeepingDistance_IQ17 > pRM->ErrorDistance_IQ17)
-		{			
-			pRM->TargetVel_IQ17 = pRM->AccelVelocity_IQ17;
-			pLM->TargetVel_IQ17 = pLM->AccelVelocity_IQ17;
-
-			pRM->AccelFlag_U16 = pLM->AccelFlag_U16 = OFF;
-			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = ON;
-		}
-		else if(pRM->KeepingDistance_IQ17 > pRM->ErrorDistance_IQ17)
-		{			
-			pRM->TargetVel_IQ17 = pRM->AccelVelocity_IQ17;
-			pLM->TargetVel_IQ17 = pLM->AccelVelocity_IQ17;
-
-			pRM->AccelFlag_U16 = pLM->AccelFlag_U16 = OFF;
-			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = ON;
-		}
-	}
-*/
 }
 
 void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _iq16 jerk, volatile _iq17 *decel_dist)
@@ -540,23 +509,23 @@ void TURN_COMPUTE(TRACKINFO *LINE, Uint16 cnt)
 			
 			if(turn_theta_R <= TURN_45T)		{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_45);
-				turn_radian_R = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_R_U32), _IQ15(TURN_45T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_45T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else if(turn_theta_R <= TURN_90T)	{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_90);
-				turn_radian_R = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_R_U32), _IQ15(TURN_90T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_90T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else if(turn_theta_R <= TURN_180T)	{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_180);
-				turn_radian_R = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_R_U32), _IQ15(TURN_180T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_180T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else if(turn_theta_R <= TURN_270T)	{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_270);
-				turn_radian_R = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_R_U32), _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else								{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | LARGE_TURN);
-				turn_radian_R = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_R_U32), _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 
 			if(turn_radian_R <= TURN_25R)		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_25);
@@ -571,23 +540,23 @@ void TURN_COMPUTE(TRACKINFO *LINE, Uint16 cnt)
 
 			if(turn_theta_L <= TURN_45T)		{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_45);
-				turn_radian_L = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_L_U32), _IQ15(TURN_45T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_45T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else if(turn_theta_L <= TURN_90T)	{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_90);
-				turn_radian_L = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_L_U32), _IQ15(TURN_90T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_90T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else if(turn_theta_L <= TURN_180T)	{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_180);
-				turn_radian_L = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_L_U32), _IQ15(TURN_180T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_180T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else if(turn_theta_L <= TURN_270T)	{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_270);
-				turn_radian_L = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_L_U32), _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 			else								{
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | LARGE_TURN);
-				turn_radian_L = _IQ15mpy(_IQ15div(_IQ15(LINE->Distance_L_U32), _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 
 			if(turn_radian_L <= TURN_25R)		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_25);

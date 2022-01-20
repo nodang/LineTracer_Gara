@@ -23,7 +23,7 @@ extern void Init_SENSOR();
 extern interrupt void SENSOR_ISR();
 extern interrupt void ADC_ISR();
 extern void SENSOR_MAXMIN();
-extern void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, Uint16 *state, Uint16 *enable);
+extern void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile Uint16 *enable);
 extern inline void HANDLE();
 extern void MARK_ENABLE_SHIFT(TURNMARK *left, TURNMARK *right);
 extern void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark);

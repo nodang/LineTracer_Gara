@@ -127,7 +127,7 @@ void RUN()
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
 	
-	MOVE_TO_START(((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
 	//EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 2;
 	//EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
@@ -231,7 +231,7 @@ void LINE_PRINTF()
 			case LEFT_TURN:
 			case START_LINE:
 			case END_LINE:
-				VFDPrintf("%3u:%4lu",map_U16_cnt, Search[map_U16_cnt].Distance_U32 + HEIGHT_ME);
+				VFDPrintf("%3u:%4lu",map_U16_cnt, Search[map_U16_cnt].Distance_U32);
 				break;
 			default:
 				VFDPrintf("%3u: err",map_U16_cnt);

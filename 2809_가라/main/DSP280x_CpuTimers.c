@@ -144,7 +144,7 @@ void Init_ISR(void)
 	
 
 	ConfigCpuTimer( &CpuTimer0 , 100.0 , 25.0 );	// sensor interrupt 25us
-	ConfigCpuTimer( &CpuTimer1 , 100.0 , 10.0 ); // 
+	ConfigCpuTimer( &CpuTimer1 , 100.0 , 25.0 ); // 
 	ConfigCpuTimer( &CpuTimer2 , 100.0 , 500.0 );	// motor interrupt 500us
 
 	EINT;

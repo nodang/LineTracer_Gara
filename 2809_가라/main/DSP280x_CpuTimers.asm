@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Fri Jan 14 15:39:40 2022                 *
+;* Date/Time created: Thu Jan 20 22:42:22 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -67,8 +67,8 @@ DW$13	.dwtag  DW_TAG_variable, DW_AT_name("PieVectTable"), DW_AT_symbol_name("_P
 	.dwattr DW$13, DW_AT_type(*DW$T$47)
 	.dwattr DW$13, DW_AT_declaration(0x01)
 	.dwattr DW$13, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI85210 C:\Users\노호진\AppData\Local\Temp\TI8524 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI8522 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI8526 --object_file DSP280x_CpuTimers.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI70010 C:\Users\노호진\AppData\Local\Temp\TI7004 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI7002 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI7006 --object_file DSP280x_CpuTimers.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_ConfigCpuTimer
 
@@ -237,7 +237,7 @@ _Init_ISR:
 ;*** 141	-----------------------    *(&PieCtrlRegs+2L) |= 0x20u;
 ;*** 143	-----------------------    ((volatile unsigned *)C$1)[18] |= 1u;
 ;*** 146	-----------------------    ConfigCpuTimer(&CpuTimer0, 100.0F, 25.0F);
-;*** 147	-----------------------    ConfigCpuTimer(&CpuTimer1, 100.0F, 10.0F);
+;*** 147	-----------------------    ConfigCpuTimer(&CpuTimer1, 100.0F, 25.0F);
 ;*** 148	-----------------------    ConfigCpuTimer(&CpuTimer2, 100.0F, 500.0F);
 ;*** 150	-----------------------    asm(" clrc INTM");
 ;*** 151	-----------------------    asm(" clrc DBGM");
@@ -302,7 +302,7 @@ DW$22	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
         ; call occurs [#_ConfigCpuTimer] ; |146| 
 	.dwpsn	"DSP280x_CpuTimers.c",147,2
         MOV       AL,#0
-        MOV       AH,#16672
+        MOV       AH,#16840
         MOVL      *-SP[2],ACC           ; |147| 
         MOVL      XAR4,#_CpuTimer1      ; |147| 
         MOV       AH,#17096

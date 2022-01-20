@@ -84,26 +84,26 @@ __VARIABLE_EXT__ Uint16 MENU_U16_CNT;
 #define LINE_OUT	777
 
 typedef	struct {
-	Uint16	Position_U16_CNT;
+	volatile Uint16	Position_U16_CNT;
 	volatile	Uint16	Adc_U16[16];
 	Uint16	Max_U16[16];							// Don't Reset, it loaded
 	Uint16	Min_U16[16];							// Don't Reset, it loaded
 	volatile	Uint16	Div127_U16[16];
 
-	_iq10	Position_IQ10,
-			PositionTemporary_IQ10;
+	volatile _iq10	Position_IQ10,
+					PositionTemporary_IQ10;
 	
 	volatile	Uint16	AdcValue_U16[16];
-	_iq17	MaxminusMin_IQ17[16];
+	volatile	_iq17	MaxminusMin_IQ17[16];
 }SENSORADC;
 
 __VARIABLE_EXT__ SENSORADC	SenAdc;
 
 __VARIABLE_EXT__ volatile	Uint16	SENSOR_COUNT;
-__VARIABLE_EXT__ Uint16		LINE_OUT_U16,
-							SENSOR_ENABLE,
-							SENSOR_STATE_U16,
-							SENSOR_STATE_U16_CNT;
+__VARIABLE_EXT__ volatile	Uint16		LINE_OUT_U16,
+										SENSOR_ENABLE,
+										SENSOR_STATE_U16,
+										SENSOR_STATE_U16_CNT;
 
 __VARIABLE_EXT__ Uint16	ARROW_ACTIVE_U16[16];
 __VARIABLE_EXT__ Uint16	ARROW_PASSIVE_U16[16];
@@ -150,8 +150,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define	STEP_10000D_IQ17	_IQ17(7853.981639)
 //#define	STEP_10000D_IQ15	_IQ15(7853.981639)
 
-#define	HEIGHT_ME			208.0	//292.7		//300.0		// ¾à 255mm
-#define HEIGHT_SEEN			200.0	//274.1		//200.0		// sensor between motor weight center
+#define	HEIGHT_ME			300.0//		208.0	//292.7		//300.0		// ¾à 255mm
+#define HEIGHT_SEEN			208.0	//274.1		//200.0		// sensor between motor weight center
 #define	HEIGHT_REARdiv2		63.5		//			104.0
 
 #define MOTOR_A_R		0x00000001	//(GpioDataRegs.GPADAT.bit.GPIO0)			//	0000 0000 0000 0000  0000 0000 0000 0001
@@ -194,11 +194,11 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	MOTOR_PERIOD_MAXIMUMdiv10	1.6383		// System minium clock is 10 ns
 #define	MOTOR_PERIOD_MINIMUM		4095.0		// clk = 0 -> vel = 5105 mm/s
 */
-#define	MOTOR_PERIOD_MAXIMUM			9293888.9	// ns | vel = 9 mm/s
-#define	MOTOR_PERIOD_MAXIMUMdiv1000		9293.889	// System minium clock is 10 ns
-#define	MOTOR_PERIOD_MAXIMUMdiv10000	929.38889	
-#define	MOTOR_PERIOD_MINIMUM			16.7290		// vel = 5105 mm/s
-#define	MOTOR_PERIOD_MINIMUMdiv10000	16.7290		// vel = 5105 mm/s
+#define	MOTOR_PERIOD_MAXIMUM			4166666.7 //9293888.9	// ns | vel = 9 mm/s
+#define	MOTOR_PERIOD_MAXIMUMdiv1000		4166.6667 //9293.889	// System minium clock is 10 ns
+#define	MOTOR_PERIOD_MAXIMUMdiv10000	416.66667 //929.38889	
+//#define	MOTOR_PERIOD_MINIMUM			16.7290		// vel = 5105 mm/s
+//#define	MOTOR_PERIOD_MINIMUMdiv10000	16.7290		// vel = 5105 mm/s
 
 #define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all
@@ -339,10 +339,10 @@ __VARIABLE_EXT__ _iq15	CROSS_DISTANCE_IQ15;
 #define	TURN_180T	180
 #define	TURN_270T	270
 
-#define	TURN_25R	(250 - HEIGHT_REARdiv2)
-#define	TURN_35R	(350 - HEIGHT_REARdiv2)
-#define	TURN_45R	(450 - HEIGHT_REARdiv2)
-#define	TURN_55R	(550 - HEIGHT_REARdiv2)
+#define	TURN_25R	250
+#define	TURN_35R	350
+#define	TURN_45R	450
+#define	TURN_55R	550
 
 #define	SHORT_DIST		500
 #define	MID_DIST		1000
@@ -351,9 +351,12 @@ __VARIABLE_EXT__ _iq15	CROSS_DISTANCE_IQ15;
 #define	TURN_90_DIST	400
 #define	TURN_180_DIST	700
 #define	TURN_270_DIST	1000
-
+/*
 #define TURN_VALUE_RADIAN_IQ15(A, B)	_IQ15div(_IQ16(HEIGHT_REARdiv2),(_IQ15div(A << 15, B << 15) - _IQ15(1.0)))
 #define TURN_VALUE_THETA_IQ15(C, D)		_IQ15mpy(_IQ15div(_IQ15div(D << 15,TURN_VALUE_RADIAN_IQ15(C, D)), _IQ15(PI)), _IQ15(180.0))
+*/
+
+#define TURN_VALUE_THETA_IQ15(A, B)		 _IQ15mpy(_IQ15div(((long)(A - B)) << 15, _IQ16(HEIGHT_REARdiv2)),  _IQ15div(_IQ15(180.0), _IQ15(PI)))
 
 typedef struct
 {
