@@ -85,25 +85,25 @@ __VARIABLE_EXT__ Uint16 MENU_U16_CNT;
 
 typedef	struct {
 	volatile Uint16	Position_U16_CNT;
-	volatile	Uint16	Adc_U16[16];
-	Uint16	Max_U16[16];							// Don't Reset, it loaded
-	Uint16	Min_U16[16];							// Don't Reset, it loaded
-	volatile	Uint16	Div127_U16[16];
+	volatile Uint16	Adc_U16[16];
+	volatile Uint16	Max_U16[16];							// Don't Reset, it loaded
+	volatile Uint16	Min_U16[16];							// Don't Reset, it loaded
+	volatile Uint16	Div127_U16[16];
 
 	volatile _iq10	Position_IQ10,
 					PositionTemporary_IQ10;
 	
-	volatile	Uint16	AdcValue_U16[16];
-	volatile	_iq17	MaxminusMin_IQ17[16];
+	volatile Uint16	AdcValue_U16[16];
+	volatile _iq17	MaxminusMin_IQ17[16];
 }SENSORADC;
 
 __VARIABLE_EXT__ SENSORADC	SenAdc;
 
 __VARIABLE_EXT__ volatile	Uint16	SENSOR_COUNT;
-__VARIABLE_EXT__ volatile	Uint16		LINE_OUT_U16,
-										SENSOR_ENABLE,
-										SENSOR_STATE_U16,
-										SENSOR_STATE_U16_CNT;
+__VARIABLE_EXT__ volatile	Uint16	LINE_OUT_U16,
+									SENSOR_ENABLE,
+									SENSOR_STATE_U16,
+									SENSOR_STATE_U16_CNT;
 
 __VARIABLE_EXT__ Uint16	ARROW_ACTIVE_U16[16];
 __VARIABLE_EXT__ Uint16	ARROW_PASSIVE_U16[16];

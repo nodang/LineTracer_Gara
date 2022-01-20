@@ -85,7 +85,21 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// Step Motor Period Compute	
-	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->TargetHandle_IQ17;		//pM->HandleVelo_IQ17;
+	
+	if(pM->HandleVelo_IQ17 < pM->TargetHandle_IQ17)
+	{
+		pM->HandleVelo_IQ17 += _IQ17mpy(_IQ17div(_IQ17(HANDLE_ACCEL_U32), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
+		//pM->HandleVelo_IQ17 += _IQ17mpy(_IQ17div(MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->FinalVelo_IQ17), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
+		if(pM->HandleVelo_IQ17 >= pM->TargetHandle_IQ17)		pM->HandleVelo_IQ17 = pM->TargetHandle_IQ17;
+	}
+	else if(pM->HandleVelo_IQ17 > pM->TargetHandle_IQ17)
+	{
+		pM->HandleVelo_IQ17 -= _IQ17mpy(_IQ17div(_IQ17(HANDLE_ACCEL_U32), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
+		//pM->HandleVelo_IQ17 -= _IQ17mpy(_IQ17div(MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->FinalVelo_IQ17), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
+		if(pM->HandleVelo_IQ17 <= pM->TargetHandle_IQ17)		pM->HandleVelo_IQ17 = pM->TargetHandle_IQ17;
+	}
+
+	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->HandleVelo_IQ17;		//pM->HandleVelo_IQ17;
 	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17) 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
 	else										pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
 	
@@ -171,8 +185,8 @@ interrupt void MOTOR_ISR()
 		EPwm3Regs.CMPA.half.CMPA =	((EPwm3Regs.TBPRD) >> 1);
 		
 		if(Flag.Fast_U16 | Flag.Extrem_U16) 	SECOND_DECEL_VALUE(&RMotor, &LMotor);
-		if(Flag.MoveState_U16)	TIME_INDEX_U32++;
-		if(Flag.STOP)		STOP_TIME_INDEX_U32++;
+		if(Flag.MoveState_U16)					TIME_INDEX_U32++;
+		if(Flag.STOP)							STOP_TIME_INDEX_U32++;
 	}
 	StartCpuTimer0();
 }
@@ -224,7 +238,7 @@ Uint16 END_STOP()
 Uint16 LINE_OUT_STOP()
 {
 	//TxPrintf("LINEout : %u\n", LINE_OUT_U16);
-	if(LINE_OUT_U16 < 300)		return 0;
+	if(LINE_OUT_U16 < 500)		return 0;
 
 	LINE_OUT_U16 = LINE_OUT;			// 300보다 큰 숫자를 넣음으로서 라인 아웃 처리됨을 알림
 	Flag.MoveState_U16 = OFF;

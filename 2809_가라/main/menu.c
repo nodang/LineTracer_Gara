@@ -49,6 +49,9 @@ static void WhatMAXMIN()
 	
 	TxPrintf("\nMIN |");
 	for(count = 0; count < 16; count++) TxPrintf("% 4u |", SenAdc.Min_U16[count]);
+
+	TxPrintf("\nMaxMinusMin |");
+	for(count = 0; count < 16; count++) TxPrintf("% 4ld |", SenAdc.MaxminusMin_IQ17[count] >> 17);
 	
 	TxPrintf("\n");
 }
@@ -74,8 +77,8 @@ static void POS()
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 		TURN_DECIDE(&RMark, &LMark);
 		TURN_DECIDE(&LMark, &RMark);
-		TxPrintf("P : %ld | H : %ld | C : %u | L:%u R:%u C:%u | LO : %u\n", (int32)(SenAdc.Position_IQ10 >> 10), (int32)(HanPID.Pos_PID_IQ17 >> 17), SenAdc.Position_U16_CNT, LMark.TurnFlag_U16, RMark.TurnFlag_U16, Flag.Cross, LINE_OUT_U16);
-		VFDPrintf("%-2u%+6ld", SenAdc.Position_U16_CNT, (int32)(SenAdc.Position_IQ10 >> 10));
+		TxPrintf("P : %ld | H : %ld | C : %u | L:%u R:%u C:%u | LO : %u\n", (int32)(SenAdc.PositionTemporary_IQ10 >> 10), (int32)(HanPID.Pos_PID_IQ17 >> 17), SenAdc.Position_U16_CNT, LMark.TurnFlag_U16, RMark.TurnFlag_U16, Flag.Cross, LINE_OUT_U16);
+		VFDPrintf("%-2u%+6ld", SenAdc.Position_U16_CNT, (int32)(SenAdc.PositionTemporary_IQ10 >> 10));
 	}
 	Flag.Sensor_U16 = OFF;
 	GpioDataRegs.GPACLEAR.all = SENall;
