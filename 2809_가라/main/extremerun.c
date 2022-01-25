@@ -37,7 +37,7 @@ void RUN_THIRD()
 		TURN_DECIDE(&RMark, &LMark);
 		TURN_DECIDE(&LMark, &RMark);
 
-		if(LINE_OUT_STOP() || END_STOP())		return;
+		if(END_STOP() || LINE_OUT_STOP())		return;
 		else;
 		if(ERROR_U16_FLAG)	{	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 								Flag.Extrem_U16 = OFF;

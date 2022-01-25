@@ -47,13 +47,13 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	{
 		pM->NextVelocity_IQ17 += _IQ16mpy(_IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 		if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)		pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;
-		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
+		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17));
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{		
 		pM->NextVelocity_IQ17 += _IQ16mpy(_IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)		pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
-		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
+		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17));
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// Normal Accel Compute
@@ -61,12 +61,12 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	{
 		if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
 			if(pM->NextAccel_IQ16 < _IQ16(0.0))			pM->NextAccel_IQ16 = _IQ16(0.0);
 		}
 		else if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
 			if(pM->NextAccel_IQ16 > _IQ16(0.0))			pM->NextAccel_IQ16 = _IQ16(0.0);
 		}
 	}
@@ -169,21 +169,42 @@ void MOVE_TO_END(_iq17 distance)
 interrupt void MOTOR_ISR()
 {	
 	Uint16 clk1, clk2;
+	
+	IER &= MINT14;
+	EINT;
 		
 	// MOTOR CONTROL
 	if(Flag.Motor_U16)
 	{	
+		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
+		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm2Regs.TBCTL.bit.CLKDIV);
+	
+		EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = clk1;	
+		EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = clk2;
+
+		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 13);
+		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 2);
+		EPwm2Regs.CMPA.half.CMPA = (EPwm2Regs.TBPRD >> 2);
+		EPwm1Regs.CMPB = (EPwm1Regs.TBPRD >> 2) + (EPwm1Regs.TBPRD >> 1);
+		EPwm2Regs.CMPB = (EPwm2Regs.TBPRD >> 2) + (EPwm2Regs.TBPRD >> 1);
+		
+		EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 13);
+		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 2);
+		EPwm4Regs.CMPA.half.CMPA = (EPwm4Regs.TBPRD >> 2);
+		EPwm3Regs.CMPB = (EPwm3Regs.TBPRD >> 2) + (EPwm3Regs.TBPRD >> 1);
+		EPwm4Regs.CMPB = (EPwm4Regs.TBPRD >> 2) + (EPwm4Regs.TBPRD >> 1);
+	/*
 		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
 		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm3Regs.TBCTL.bit.CLKDIV);
 		
 		EPwm1Regs.TBCTL.bit.CLKDIV = clk1;		EPwm3Regs.TBCTL.bit.CLKDIV = clk2;
 
 		EPwm1Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		EPwm1Regs.CMPB =			((EPwm1Regs.TBPRD) >> 1);
+		EPwm1Regs.CMPB = ((EPwm1Regs.TBPRD) >> 1) + ((EPwm1Regs.TBPRD) >> 2) + ((EPwm1Regs.TBPRD) >> 3);
 		
 		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
-		EPwm3Regs.CMPA.half.CMPA =	((EPwm3Regs.TBPRD) >> 1);
-		
+		EPwm3Regs.CMPA.half.CMPA = ((EPwm3Regs.TBPRD) >> 1) + ((EPwm3Regs.TBPRD) >> 2) + ((EPwm3Regs.TBPRD) >> 3);
+		*/
 		if(Flag.Fast_U16 | Flag.Extrem_U16) 	SECOND_DECEL_VALUE(&RMotor, &LMotor);
 		if(Flag.MoveState_U16)					TIME_INDEX_U32++;
 		if(Flag.STOP)							STOP_TIME_INDEX_U32++;
@@ -290,7 +311,15 @@ void SHUTDOWN()
 			StopCpuTimer0();
 			StopCpuTimer2();
 			Flag.Motor_U16 = OFF;
-			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
+
+			EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 3;
+			EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
+			EPwm1Regs.AQCTLA.all = EPwm3Regs.AQCTLA.all = 0x0001;
+			EPwm1Regs.AQCTLB.all = EPwm3Regs.AQCTLB.all = 0x0001;
+			EPwm2Regs.AQCTLA.all = EPwm4Regs.AQCTLA.all = 0x0001;
+			EPwm2Regs.AQCTLB.all = EPwm4Regs.AQCTLB.all = 0x0001;
+			TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
+			//EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
 			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
 			LED_R_OFF;		LED_L_OFF;		
