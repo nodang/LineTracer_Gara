@@ -61,28 +61,28 @@ void Init_RUN()
 	CROSS_PLUS_U32 = 0;
 
 	EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = 7;
-	EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = ((Uint16)MOTOR_PERIOD_MAXIMUM) << 1;
-/*
-	EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 2);		EPwm1Regs.CMPB = EPwm2Regs.CMPB = (EPwm2Regs.TBPRD >> 2) + (EPwm2Regs.TBPRD >> 1);
-	EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 2);		EPwm3Regs.CMPB = EPwm4Regs.CMPB = (EPwm4Regs.TBPRD >> 2) + (EPwm4Regs.TBPRD >> 1);	
-*/
+	EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = ((Uint16)MOTOR_PERIOD_MAXIMUM);
+
 	EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 1);
 	EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1);
-	
+
 	EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 3;
 	EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
-
 /*
-	EPwm1Regs.AQCTLA.all = EPwm4Regs.AQCTLB.all = 0x0810;
-	EPwm1Regs.AQCTLB.all = EPwm4Regs.AQCTLA.all = 0x0420;
-	EPwm2Regs.AQCTLA.all = EPwm3Regs.AQCTLB.all = 0x0180;
-	EPwm2Regs.AQCTLB.all = EPwm3Regs.AQCTLA.all = 0x0240;
+	CTRMODE
+	00 : Up-count mode
+	01 : Down-count mode
+	10 : Up-down0count mode
+	11 : Stop-freeze counter operation ( default on reset )
+
+	TBCTR : Reading these bits gives the current time-base counter value but isn't Read-Only. so, you can write value to these bits.
 */
+
 	EPwm1Regs.AQCTLA.all = EPwm4Regs.AQCTLB.all = 0x0090;
 	EPwm1Regs.AQCTLB.all = EPwm4Regs.AQCTLA.all = 0x0060;
 	EPwm2Regs.AQCTLA.all = EPwm3Regs.AQCTLB.all = 0x0006;
 	EPwm2Regs.AQCTLB.all = EPwm3Regs.AQCTLA.all = 0x0009;
-	/*
+/*
 	//rsvd | CBD CBU CAD CAU PRD ZRO
 	//A    | 00  00  10  01  00  00		0x0090
 	//A^   | 00  00  01  10  00  00		0x0060
@@ -112,8 +112,7 @@ void Init_RUN()
 	// 01 : clear
 	// 10 : set
 	// 11 : toggle
-	*/
-	//EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 2;
+*/
 /*
 	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 	GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;

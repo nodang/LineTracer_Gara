@@ -61,12 +61,12 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	{
 		if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
+			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 			if(pM->NextAccel_IQ16 < _IQ16(0.0))			pM->NextAccel_IQ16 = _IQ16(0.0);
 		}
 		else if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
+			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 			if(pM->NextAccel_IQ16 > _IQ16(0.0))			pM->NextAccel_IQ16 = _IQ16(0.0);
 		}
 	}
@@ -74,12 +74,12 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	{
 		if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
+			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 			if(pM->NextAccel_IQ16 > pM->AccelLimit_IQ16)			pM->NextAccel_IQ16 = pM->AccelLimit_IQ16;
 		}
 		else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
+			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 			if(pM->NextAccel_IQ16 < -pM->AccelLimit_IQ16)			pM->NextAccel_IQ16 = -pM->AccelLimit_IQ16;
 		}
 	}
@@ -115,7 +115,7 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 		if(clk < 7) 	{	clk++;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;	}
 	}
 
-	pM->RolEachStep_IQ17	= _IQ17mpyIQX(STEP_D_IQ17, 17, _IQ14div(((long)CPUTIMER_2_RPD) << 14, pM->PrdNext_IQ14) >> clk, 14);
+	pM->RolEachStep_IQ17	= _IQ17mpyIQX(STEP_D_IQ17, 17, _IQ13div(((long)CPUTIMER_2_RPD) << 13, pM->PrdNext_IQ14 >> 1) >> clk, 13);
 
 	pM->TurnMarkCheckDistance_IQ17 	+= pM->TurnMarkCheckDistance_IQ17 > _IQ17(16380.0) ? _IQ17(0.0) : pM->RolEachStep_IQ17;
 	pM->CrossCheckDistance_IQ15		+= pM->CrossCheckDistance_IQ15 > _IQ15(32760.0) ? _IQ15(0.0) : pM->RolEachStep_IQ17 >> 2;
@@ -126,7 +126,6 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 	return clk;
 }
-
 
 void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq16 jerk)
 {	
@@ -203,11 +202,11 @@ interrupt void MOTOR_ISR()
 		EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = clk1;	
 		EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = clk2;
 
-		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 13);
+		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
 		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 1);
 		EPwm2Regs.CMPA.half.CMPA = (EPwm2Regs.TBPRD >> 1);
 				
-		EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 13);
+		EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
 		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1);
 		EPwm4Regs.CMPA.half.CMPA = (EPwm4Regs.TBPRD >> 1);
 
