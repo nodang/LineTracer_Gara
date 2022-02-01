@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Tue Jan 25 22:57:05 2022                 *
+;* Date/Time created: Wed Jan 26 18:31:01 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -208,8 +208,8 @@ DW$59	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$59, DW_AT_type(*DW$T$156)
 	.dwattr DW$59, DW_AT_declaration(0x01)
 	.dwattr DW$59, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI65610 C:\Users\노호진\AppData\Local\Temp\TI6564 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI6562 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI6566 --object_file search.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI51210 C:\Users\노호진\AppData\Local\Temp\TI5124 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI5122 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI5126 --object_file search.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_Init_RUN
 
@@ -255,25 +255,23 @@ _Init_RUN:
 ;*** 63	-----------------------    *&EPwm3Regs = *&EPwm3Regs|0x1c00u;
 ;*** 63	-----------------------    *&EPwm2Regs = *&EPwm2Regs|0x1c00u;
 ;*** 63	-----------------------    *&EPwm1Regs = *&EPwm1Regs|0x1c00u;
-;*** 64	-----------------------    EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = 32766u;
-;*** 65	-----------------------    EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD>>2;
-;*** 65	-----------------------    EPwm1Regs.CMPB = EPwm2Regs.CMPB = (EPwm2Regs.TBPRD>>2)+(EPwm2Regs.TBPRD>>1);
-;*** 66	-----------------------    EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD>>2;
-;*** 66	-----------------------    EPwm3Regs.CMPB = EPwm4Regs.CMPB = (EPwm4Regs.TBPRD>>2)+(EPwm4Regs.TBPRD>>1);
-;*** 68	-----------------------    *&EPwm4Regs;
-;*** 68	-----------------------    *&EPwm4Regs = *&EPwm4Regs|3u;
-;*** 68	-----------------------    *&EPwm3Regs = *&EPwm3Regs|3u;
-;*** 68	-----------------------    *&EPwm2Regs = *&EPwm2Regs|3u;
-;*** 68	-----------------------    *&EPwm1Regs = *&EPwm1Regs|3u;
-;*** 69	-----------------------    EPwm4Regs.TBCTR = 0u;
-;*** 69	-----------------------    EPwm3Regs.TBCTR = 0u;
-;*** 69	-----------------------    EPwm2Regs.TBCTR = 0u;
-;*** 69	-----------------------    EPwm1Regs.TBCTR = 0u;
-;*** 77	-----------------------    EPwm1Regs.AQCTLA.all = EPwm3Regs.AQCTLA.all = 2064u;
-;*** 78	-----------------------    EPwm1Regs.AQCTLB.all = EPwm3Regs.AQCTLB.all = 1056u;
-;*** 79	-----------------------    EPwm2Regs.AQCTLA.all = EPwm4Regs.AQCTLA.all = 384u;
-;*** 80	-----------------------    EPwm2Regs.AQCTLB.all = EPwm4Regs.AQCTLB.all = 576u;
-;*** 80	-----------------------    return;
+;*** 64	-----------------------    EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = 0xfffeu;
+;*** 69	-----------------------    EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD>>1;
+;*** 70	-----------------------    EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD>>1;
+;*** 72	-----------------------    *&EPwm4Regs;
+;*** 72	-----------------------    *&EPwm4Regs = *&EPwm4Regs|3u;
+;*** 72	-----------------------    *&EPwm3Regs = *&EPwm3Regs|3u;
+;*** 72	-----------------------    *&EPwm2Regs = *&EPwm2Regs|3u;
+;*** 72	-----------------------    *&EPwm1Regs = *&EPwm1Regs|3u;
+;*** 73	-----------------------    EPwm4Regs.TBCTR = 0u;
+;*** 73	-----------------------    EPwm3Regs.TBCTR = 0u;
+;*** 73	-----------------------    EPwm2Regs.TBCTR = 0u;
+;*** 73	-----------------------    EPwm1Regs.TBCTR = 0u;
+;*** 81	-----------------------    EPwm1Regs.AQCTLA.all = EPwm4Regs.AQCTLB.all = 144u;
+;*** 82	-----------------------    EPwm1Regs.AQCTLB.all = EPwm4Regs.AQCTLA.all = 96u;
+;*** 83	-----------------------    EPwm2Regs.AQCTLA.all = EPwm3Regs.AQCTLB.all = 6u;
+;*** 84	-----------------------    EPwm2Regs.AQCTLB.all = EPwm3Regs.AQCTLA.all = 9u;
+;*** 84	-----------------------    return;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -327,7 +325,7 @@ _Init_RUN:
         OR        @_EPwm1Regs,#0x1c00   ; |63| 
 	.dwpsn	"search.c",64,2
         MOVW      DP,#_EPwm4Regs+5
-        MOV       AL,#32766             ; |64| 
+        MOV       AL,#65534             ; |64| 
         MOV       @_EPwm4Regs+5,AL      ; |64| 
         MOVW      DP,#_EPwm3Regs+5
         MOV       @_EPwm3Regs+5,AL      ; |64| 
@@ -335,89 +333,69 @@ _Init_RUN:
         MOV       @_EPwm2Regs+5,AL      ; |64| 
         MOVW      DP,#_EPwm1Regs+5
         MOV       @_EPwm1Regs+5,AL      ; |64| 
-	.dwpsn	"search.c",65,2
-        MOV       AL,@_EPwm1Regs+5      ; |65| 
-        LSR       AL,2                  ; |65| 
-        MOVW      DP,#_EPwm2Regs+9
-        MOV       @_EPwm2Regs+9,AL      ; |65| 
-        MOVW      DP,#_EPwm1Regs+9
-        MOV       @_EPwm1Regs+9,AL      ; |65| 
-	.dwpsn	"search.c",65,81
-        MOVW      DP,#_EPwm2Regs+5
-        MOV       AH,@_EPwm2Regs+5      ; |65| 
-        MOV       AL,@_EPwm2Regs+5      ; |65| 
-        LSR       AH,2                  ; |65| 
-        LSR       AL,1                  ; |65| 
-        ADD       AL,AH                 ; |65| 
-        MOV       @_EPwm2Regs+10,AL     ; |65| 
-        MOVW      DP,#_EPwm1Regs+10
-        MOV       @_EPwm1Regs+10,AL     ; |65| 
-	.dwpsn	"search.c",66,2
-        MOVW      DP,#_EPwm3Regs+5
-        MOV       AL,@_EPwm3Regs+5      ; |66| 
-        MOVW      DP,#_EPwm4Regs+9
-        LSR       AL,2                  ; |66| 
-        MOV       @_EPwm4Regs+9,AL      ; |66| 
-        MOVW      DP,#_EPwm3Regs+9
-        MOV       @_EPwm3Regs+9,AL      ; |66| 
-	.dwpsn	"search.c",66,81
-        MOVW      DP,#_EPwm4Regs+5
-        MOV       AH,@_EPwm4Regs+5      ; |66| 
-        MOV       AL,@_EPwm4Regs+5      ; |66| 
-        LSR       AH,2                  ; |66| 
-        LSR       AL,1                  ; |66| 
-        ADD       AL,AH                 ; |66| 
-        MOV       @_EPwm4Regs+10,AL     ; |66| 
-        MOVW      DP,#_EPwm3Regs+10
-        MOV       @_EPwm3Regs+10,AL     ; |66| 
-	.dwpsn	"search.c",68,2
-        MOVW      DP,#_EPwm4Regs
-        MOV       AL,@_EPwm4Regs        ; |68| 
-        OR        @_EPwm4Regs,#0x0003   ; |68| 
-        MOVW      DP,#_EPwm3Regs
-        OR        @_EPwm3Regs,#0x0003   ; |68| 
-        MOVW      DP,#_EPwm2Regs
-        OR        @_EPwm2Regs,#0x0003   ; |68| 
-        MOVW      DP,#_EPwm1Regs
-        OR        @_EPwm1Regs,#0x0003   ; |68| 
 	.dwpsn	"search.c",69,2
+        MOV       AL,@_EPwm1Regs+5      ; |69| 
+        LSR       AL,1                  ; |69| 
+        MOVW      DP,#_EPwm2Regs+9
+        MOV       @_EPwm2Regs+9,AL      ; |69| 
+        MOVW      DP,#_EPwm1Regs+9
+        MOV       @_EPwm1Regs+9,AL      ; |69| 
+	.dwpsn	"search.c",70,2
+        MOVW      DP,#_EPwm3Regs+5
+        MOV       AL,@_EPwm3Regs+5      ; |70| 
+        MOVW      DP,#_EPwm4Regs+9
+        LSR       AL,1                  ; |70| 
+        MOV       @_EPwm4Regs+9,AL      ; |70| 
+        MOVW      DP,#_EPwm3Regs+9
+        MOV       @_EPwm3Regs+9,AL      ; |70| 
+	.dwpsn	"search.c",72,2
+        MOVW      DP,#_EPwm4Regs
+        MOV       AL,@_EPwm4Regs        ; |72| 
+        OR        @_EPwm4Regs,#0x0003   ; |72| 
+        MOVW      DP,#_EPwm3Regs
+        OR        @_EPwm3Regs,#0x0003   ; |72| 
+        MOVW      DP,#_EPwm2Regs
+        OR        @_EPwm2Regs,#0x0003   ; |72| 
+        MOVW      DP,#_EPwm1Regs
+        OR        @_EPwm1Regs,#0x0003   ; |72| 
+	.dwpsn	"search.c",73,2
         MOVW      DP,#_EPwm4Regs+4
-        MOV       @_EPwm4Regs+4,#0      ; |69| 
+        MOV       @_EPwm4Regs+4,#0      ; |73| 
         MOVW      DP,#_EPwm3Regs+4
-        MOV       @_EPwm3Regs+4,#0      ; |69| 
+        MOV       @_EPwm3Regs+4,#0      ; |73| 
         MOVW      DP,#_EPwm2Regs+4
-        MOV       @_EPwm2Regs+4,#0      ; |69| 
+        MOV       @_EPwm2Regs+4,#0      ; |73| 
         MOVW      DP,#_EPwm1Regs+4
-        MOV       @_EPwm1Regs+4,#0      ; |69| 
-	.dwpsn	"search.c",77,2
-        MOVW      DP,#_EPwm3Regs+11
-        MOV       AL,#2064              ; |77| 
-        MOV       @_EPwm3Regs+11,AL     ; |77| 
-        MOVW      DP,#_EPwm1Regs+11
-        MOV       @_EPwm1Regs+11,AL     ; |77| 
-	.dwpsn	"search.c",78,2
-        MOVW      DP,#_EPwm3Regs+12
-        MOV       AL,#1056              ; |78| 
-        MOV       @_EPwm3Regs+12,AL     ; |78| 
-        MOVW      DP,#_EPwm1Regs+12
-        MOV       @_EPwm1Regs+12,AL     ; |78| 
-	.dwpsn	"search.c",79,2
-        MOVW      DP,#_EPwm4Regs+11
-        MOV       AL,#384               ; |79| 
-        MOV       @_EPwm4Regs+11,AL     ; |79| 
-        MOVW      DP,#_EPwm2Regs+11
-        MOV       @_EPwm2Regs+11,AL     ; |79| 
-	.dwpsn	"search.c",80,2
-        MOV       AL,#576               ; |80| 
+        MOV       @_EPwm1Regs+4,#0      ; |73| 
+	.dwpsn	"search.c",81,2
         MOVW      DP,#_EPwm4Regs+12
-        MOV       @_EPwm4Regs+12,AL     ; |80| 
+        MOVB      AL,#144               ; |81| 
+        MOV       @_EPwm4Regs+12,AL     ; |81| 
+        MOVW      DP,#_EPwm1Regs+11
+        MOV       @_EPwm1Regs+11,AL     ; |81| 
+	.dwpsn	"search.c",82,2
+        MOVW      DP,#_EPwm4Regs+11
+        MOVB      AL,#96                ; |82| 
+        MOV       @_EPwm4Regs+11,AL     ; |82| 
+        MOVW      DP,#_EPwm1Regs+12
+        MOV       @_EPwm1Regs+12,AL     ; |82| 
+	.dwpsn	"search.c",83,2
+        MOVW      DP,#_EPwm3Regs+12
+        MOVB      AL,#6                 ; |83| 
+        MOV       @_EPwm3Regs+12,AL     ; |83| 
+        MOVW      DP,#_EPwm2Regs+11
+        MOV       @_EPwm2Regs+11,AL     ; |83| 
+	.dwpsn	"search.c",84,2
+        MOVB      AL,#9                 ; |84| 
+        MOVW      DP,#_EPwm3Regs+11
+        MOV       @_EPwm3Regs+11,AL     ; |84| 
         MOVW      DP,#_EPwm2Regs+12
-        MOV       @_EPwm2Regs+12,AL     ; |80| 
-	.dwpsn	"search.c",123,1
+        MOV       @_EPwm2Regs+12,AL     ; |84| 
+	.dwpsn	"search.c",127,1
         LRETR
         ; return occurs
 	.dwattr DW$60, DW_AT_end_file("search.c")
-	.dwattr DW$60, DW_AT_end_line(0x7b)
+	.dwattr DW$60, DW_AT_end_line(0x7f)
 	.dwattr DW$60, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$60
@@ -429,9 +407,9 @@ DW$61	.dwtag  DW_TAG_subprogram, DW_AT_name("RUN"), DW_AT_symbol_name("_RUN")
 	.dwattr DW$61, DW_AT_low_pc(_RUN)
 	.dwattr DW$61, DW_AT_high_pc(0x00)
 	.dwattr DW$61, DW_AT_begin_file("search.c")
-	.dwattr DW$61, DW_AT_begin_line(0x7d)
+	.dwattr DW$61, DW_AT_begin_line(0x81)
 	.dwattr DW$61, DW_AT_begin_column(0x06)
-	.dwpsn	"search.c",126,1
+	.dwpsn	"search.c",130,1
 
 	.dwfde DW$CIE
 
@@ -451,23 +429,23 @@ DW$61	.dwtag  DW_TAG_subprogram, DW_AT_name("RUN"), DW_AT_symbol_name("_RUN")
 ;*                                                             *
 ;***************************************************************
 _RUN:
-;*** 127	-----------------------    Init_RUN();
-;*** 129	-----------------------    VFDPrintf("1stREADY");
-;*** 130	-----------------------    DSP28x_usDelay(0x1312cfeuL);
-;*** 131	-----------------------    VFDPrintf("        ");
-;*** 133	-----------------------    *&Flag |= 0x40u;
-;*** 134	-----------------------    *&Flag |= 4u;
-;*** 135	-----------------------    *&Flag |= 2u;
-;*** 137	-----------------------    C$3 = MOTOR_SPEED_U32<<17;
-;*** 137	-----------------------    MOVE_TO_MOVE(65536000L, 0L, C$3, C$3, JERK_U32<<16);
-;*** 141	-----------------------    *&EPwm4Regs = *&EPwm4Regs&0xfffeu|2u;
-;*** 141	-----------------------    *&EPwm3Regs = *&EPwm3Regs&0xfffeu|2u;
-;*** 141	-----------------------    *&EPwm2Regs = *&EPwm2Regs&0xfffeu|2u;
-;*** 141	-----------------------    *&EPwm1Regs = *&EPwm1Regs&0xfffeu|2u;
-;*** 142	-----------------------    EPwm4Regs.TBCTR = 0u;
-;*** 142	-----------------------    EPwm3Regs.TBCTR = 0u;
-;*** 142	-----------------------    EPwm2Regs.TBCTR = 0u;
-;*** 142	-----------------------    EPwm1Regs.TBCTR = 0u;
+;*** 131	-----------------------    Init_RUN();
+;*** 133	-----------------------    VFDPrintf("1stREADY");
+;*** 134	-----------------------    DSP28x_usDelay(0x1312cfeuL);
+;*** 135	-----------------------    VFDPrintf("        ");
+;*** 137	-----------------------    *&Flag |= 0x40u;
+;*** 138	-----------------------    *&Flag |= 4u;
+;*** 139	-----------------------    *&Flag |= 2u;
+;*** 141	-----------------------    C$3 = MOTOR_SPEED_U32<<17;
+;*** 141	-----------------------    MOVE_TO_MOVE(65536000L, 0L, C$3, C$3, JERK_U32<<16);
+;*** 145	-----------------------    *&EPwm4Regs = *&EPwm4Regs&0xfffeu|2u;
+;*** 145	-----------------------    *&EPwm3Regs = *&EPwm3Regs&0xfffeu|2u;
+;*** 145	-----------------------    *&EPwm2Regs = *&EPwm2Regs&0xfffeu|2u;
+;*** 145	-----------------------    *&EPwm1Regs = *&EPwm1Regs&0xfffeu|2u;
+;*** 146	-----------------------    EPwm4Regs.TBCTR = 0u;
+;*** 146	-----------------------    EPwm3Regs.TBCTR = 0u;
+;*** 146	-----------------------    EPwm2Regs.TBCTR = 0u;
+;*** 146	-----------------------    EPwm1Regs.TBCTR = 0u;
 ;***  	-----------------------    #pragma LOOP_FLAGS(5376u)
 ;***  	-----------------------    K$25 = &SenAdc;
 ;***  	-----------------------    K$23 = &POSITION_WEIGHT_I32[0];
@@ -512,143 +490,143 @@ DW$67	.dwtag  DW_TAG_variable, DW_AT_name("K$21"), DW_AT_symbol_name("K$21")
 DW$68	.dwtag  DW_TAG_variable, DW_AT_name("K$20"), DW_AT_symbol_name("K$20")
 	.dwattr DW$68, DW_AT_type(*DW$T$102)
 	.dwattr DW$68, DW_AT_location[DW_OP_reg8]
-	.dwpsn	"search.c",127,2
-        LCR       #_Init_RUN            ; |127| 
-        ; call occurs [#_Init_RUN] ; |127| 
-	.dwpsn	"search.c",129,2
-        MOVL      XAR4,#FSL1            ; |129| 
-        MOVL      *-SP[2],XAR4          ; |129| 
-        LCR       #_VFDPrintf           ; |129| 
-        ; call occurs [#_VFDPrintf] ; |129| 
-	.dwpsn	"search.c",130,2
+	.dwpsn	"search.c",131,2
+        LCR       #_Init_RUN            ; |131| 
+        ; call occurs [#_Init_RUN] ; |131| 
+	.dwpsn	"search.c",133,2
+        MOVL      XAR4,#FSL1            ; |133| 
+        MOVL      *-SP[2],XAR4          ; |133| 
+        LCR       #_VFDPrintf           ; |133| 
+        ; call occurs [#_VFDPrintf] ; |133| 
+	.dwpsn	"search.c",134,2
         MOV       AL,#11518
         MOV       AH,#305
-        LCR       #_DSP28x_usDelay      ; |130| 
-        ; call occurs [#_DSP28x_usDelay] ; |130| 
-	.dwpsn	"search.c",131,2
-        MOVL      XAR4,#FSL2            ; |131| 
-        MOVL      *-SP[2],XAR4          ; |131| 
-        LCR       #_VFDPrintf           ; |131| 
-        ; call occurs [#_VFDPrintf] ; |131| 
-	.dwpsn	"search.c",133,2
-        MOVW      DP,#_Flag
-        OR        @_Flag,#0x0040        ; |133| 
-	.dwpsn	"search.c",134,3
-        OR        @_Flag,#0x0004        ; |134| 
+        LCR       #_DSP28x_usDelay      ; |134| 
+        ; call occurs [#_DSP28x_usDelay] ; |134| 
 	.dwpsn	"search.c",135,2
-        OR        @_Flag,#0x0002        ; |135| 
+        MOVL      XAR4,#FSL2            ; |135| 
+        MOVL      *-SP[2],XAR4          ; |135| 
+        LCR       #_VFDPrintf           ; |135| 
+        ; call occurs [#_VFDPrintf] ; |135| 
 	.dwpsn	"search.c",137,2
+        MOVW      DP,#_Flag
+        OR        @_Flag,#0x0040        ; |137| 
+	.dwpsn	"search.c",138,3
+        OR        @_Flag,#0x0004        ; |138| 
+	.dwpsn	"search.c",139,2
+        OR        @_Flag,#0x0002        ; |139| 
+	.dwpsn	"search.c",141,2
         MOVW      DP,#_MOTOR_SPEED_U32
         MOVB      XAR6,#0
-        MOV       T,#17                 ; |137| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |137| 
-        LSLL      ACC,T                 ; |137| 
-        MOVL      *-SP[2],XAR6          ; |137| 
-        MOVL      *-SP[4],ACC           ; |137| 
+        MOV       T,#17                 ; |141| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |141| 
+        LSLL      ACC,T                 ; |141| 
+        MOVL      *-SP[2],XAR6          ; |141| 
+        MOVL      *-SP[4],ACC           ; |141| 
         MOVW      DP,#_JERK_U32
-        MOVL      *-SP[6],ACC           ; |137| 
-        MOVL      ACC,@_JERK_U32        ; |137| 
-        LSL       ACC,16                ; |137| 
-        MOVL      *-SP[8],ACC           ; |137| 
+        MOVL      *-SP[6],ACC           ; |141| 
+        MOVL      ACC,@_JERK_U32        ; |141| 
+        LSL       ACC,16                ; |141| 
+        MOVL      *-SP[8],ACC           ; |141| 
         MOV       ACC,#2000 << 15
-        LCR       #_MOVE_TO_MOVE        ; |137| 
-        ; call occurs [#_MOVE_TO_MOVE] ; |137| 
-	.dwpsn	"search.c",141,2
+        LCR       #_MOVE_TO_MOVE        ; |141| 
+        ; call occurs [#_MOVE_TO_MOVE] ; |141| 
+	.dwpsn	"search.c",145,2
         MOVW      DP,#_EPwm4Regs
-        AND       AL,@_EPwm4Regs,#0xfffe ; |141| 
-        ORB       AL,#0x02              ; |141| 
-        MOV       @_EPwm4Regs,AL        ; |141| 
+        AND       AL,@_EPwm4Regs,#0xfffe ; |145| 
+        ORB       AL,#0x02              ; |145| 
+        MOV       @_EPwm4Regs,AL        ; |145| 
         MOVW      DP,#_EPwm3Regs
-        AND       AL,@_EPwm3Regs,#0xfffe ; |141| 
-        ORB       AL,#0x02              ; |141| 
-        MOV       @_EPwm3Regs,AL        ; |141| 
+        AND       AL,@_EPwm3Regs,#0xfffe ; |145| 
+        ORB       AL,#0x02              ; |145| 
+        MOV       @_EPwm3Regs,AL        ; |145| 
         MOVW      DP,#_EPwm2Regs
-        AND       AL,@_EPwm2Regs,#0xfffe ; |141| 
-        ORB       AL,#0x02              ; |141| 
-        MOV       @_EPwm2Regs,AL        ; |141| 
+        AND       AL,@_EPwm2Regs,#0xfffe ; |145| 
+        ORB       AL,#0x02              ; |145| 
+        MOV       @_EPwm2Regs,AL        ; |145| 
         MOVW      DP,#_EPwm1Regs
-        AND       AL,@_EPwm1Regs,#0xfffe ; |141| 
-        ORB       AL,#0x02              ; |141| 
-        MOV       @_EPwm1Regs,AL        ; |141| 
-	.dwpsn	"search.c",142,2
+        AND       AL,@_EPwm1Regs,#0xfffe ; |145| 
+        ORB       AL,#0x02              ; |145| 
+        MOV       @_EPwm1Regs,AL        ; |145| 
+	.dwpsn	"search.c",146,2
         MOVW      DP,#_EPwm4Regs+4
         MOVL      XAR4,#_SenAdc
-        MOV       @_EPwm4Regs+4,#0      ; |142| 
+        MOV       @_EPwm4Regs+4,#0      ; |146| 
         MOVL      *-SP[10],XAR4
         MOVW      DP,#_EPwm3Regs+4
         MOVL      XAR4,#_POSITION_WEIGHT_I32
-        MOV       @_EPwm3Regs+4,#0      ; |142| 
+        MOV       @_EPwm3Regs+4,#0      ; |146| 
         MOVL      *-SP[12],XAR4
         MOVW      DP,#_EPwm2Regs+4
         MOVL      XAR4,#_SENSOR_STATE_U16_CNT
-        MOV       @_EPwm2Regs+4,#0      ; |142| 
+        MOV       @_EPwm2Regs+4,#0      ; |146| 
         MOVL      *-SP[14],XAR4
         MOVW      DP,#_EPwm1Regs+4
-        MOVL      XAR3,#_LMark          ; |156| 
+        MOVL      XAR3,#_LMark          ; |160| 
         MOVL      XAR4,#_SENSOR_ENABLE
-        MOV       @_EPwm1Regs+4,#0      ; |142| 
+        MOV       @_EPwm1Regs+4,#0      ; |146| 
         MOVL      XAR2,XAR4
 L1:    
 DW$L$_RUN$2$B:
 ;***	-----------------------g2:
-;*** 154	-----------------------    POSITION_COMPUTE(K$25, K$23, K$21, K$20);
-;*** 156	-----------------------    K$30 = &LMark;
-;*** 156	-----------------------    K$29 = &RMark;
-;*** 156	-----------------------    (*K$30).TurnmarkDistance_IQ17 = (*K$29).TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17>>1)+(LMotor.TurnMarkCheckDistance_IQ17>>1);
-;*** 158	-----------------------    TURN_DECIDE(K$29, K$30);
-;*** 159	-----------------------    TURN_DECIDE(K$30, K$29);
-;*** 160	-----------------------    if ( END_STOP() ) goto g4;
-	.dwpsn	"search.c",154,3
-        MOVL      ACC,*-SP[14]
-        MOVL      *-SP[2],ACC           ; |154| 
-        MOVL      *-SP[4],XAR2          ; |154| 
-        MOVL      XAR4,*-SP[10]         ; |154| 
-        MOVL      XAR5,*-SP[12]         ; |154| 
-        LCR       #_POSITION_COMPUTE    ; |154| 
-        ; call occurs [#_POSITION_COMPUTE] ; |154| 
-	.dwpsn	"search.c",156,3
-        MOVW      DP,#_RMotor+8
-        MOVL      P,@_RMotor+8          ; |156| 
-        MOVW      DP,#_LMotor+8
-        MOVL      XAR4,#_RMark          ; |156| 
-        SETC      SXM
-        MOVL      ACC,@_LMotor+8        ; |156| 
-        MOVL      XAR1,XAR4             ; |156| 
-        SPM       #-1
-        SFR       ACC,1                 ; |156| 
-        ADDL      ACC,P << PM           ; |156| 
-        MOVL      *+XAR1[0],ACC         ; |156| 
-        MOVL      *+XAR3[0],ACC         ; |156| 
+;*** 158	-----------------------    POSITION_COMPUTE(K$25, K$23, K$21, K$20);
+;*** 160	-----------------------    K$30 = &LMark;
+;*** 160	-----------------------    K$29 = &RMark;
+;*** 160	-----------------------    (*K$30).TurnmarkDistance_IQ17 = (*K$29).TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17>>1)+(LMotor.TurnMarkCheckDistance_IQ17>>1);
+;*** 162	-----------------------    TURN_DECIDE(K$29, K$30);
+;*** 163	-----------------------    TURN_DECIDE(K$30, K$29);
+;*** 164	-----------------------    if ( END_STOP() ) goto g4;
 	.dwpsn	"search.c",158,3
-        MOVL      XAR5,XAR3             ; |158| 
+        MOVL      ACC,*-SP[14]
+        MOVL      *-SP[2],ACC           ; |158| 
+        MOVL      *-SP[4],XAR2          ; |158| 
+        MOVL      XAR4,*-SP[10]         ; |158| 
+        MOVL      XAR5,*-SP[12]         ; |158| 
+        LCR       #_POSITION_COMPUTE    ; |158| 
+        ; call occurs [#_POSITION_COMPUTE] ; |158| 
+	.dwpsn	"search.c",160,3
+        MOVW      DP,#_RMotor+8
+        MOVL      P,@_RMotor+8          ; |160| 
+        MOVW      DP,#_LMotor+8
+        MOVL      XAR4,#_RMark          ; |160| 
+        SETC      SXM
+        MOVL      ACC,@_LMotor+8        ; |160| 
+        MOVL      XAR1,XAR4             ; |160| 
+        SPM       #-1
+        SFR       ACC,1                 ; |160| 
+        ADDL      ACC,P << PM           ; |160| 
+        MOVL      *+XAR1[0],ACC         ; |160| 
+        MOVL      *+XAR3[0],ACC         ; |160| 
+	.dwpsn	"search.c",162,3
+        MOVL      XAR5,XAR3             ; |162| 
         MOVL      XAR4,XAR1
         SPM       #0
-        LCR       #_TURN_DECIDE         ; |158| 
-        ; call occurs [#_TURN_DECIDE] ; |158| 
-	.dwpsn	"search.c",159,3
-        MOVL      XAR4,XAR3             ; |159| 
-        MOVL      XAR5,XAR1             ; |159| 
-        LCR       #_TURN_DECIDE         ; |159| 
-        ; call occurs [#_TURN_DECIDE] ; |159| 
-	.dwpsn	"search.c",160,3
-        LCR       #_END_STOP            ; |160| 
-        ; call occurs [#_END_STOP] ; |160| 
-        CMPB      AL,#0                 ; |160| 
-        BF        L2,NEQ                ; |160| 
-        ; branchcc occurs ; |160| 
+        LCR       #_TURN_DECIDE         ; |162| 
+        ; call occurs [#_TURN_DECIDE] ; |162| 
+	.dwpsn	"search.c",163,3
+        MOVL      XAR4,XAR3             ; |163| 
+        MOVL      XAR5,XAR1             ; |163| 
+        LCR       #_TURN_DECIDE         ; |163| 
+        ; call occurs [#_TURN_DECIDE] ; |163| 
+	.dwpsn	"search.c",164,3
+        LCR       #_END_STOP            ; |164| 
+        ; call occurs [#_END_STOP] ; |164| 
+        CMPB      AL,#0                 ; |164| 
+        BF        L2,NEQ                ; |164| 
+        ; branchcc occurs ; |164| 
 DW$L$_RUN$2$E:
 DW$L$_RUN$3$B:
-;*** 160	-----------------------    if ( !LINE_OUT_STOP() ) goto g2;
+;*** 164	-----------------------    if ( !LINE_OUT_STOP() ) goto g2;
 ;***	-----------------------g4:
 ;***  	-----------------------    return;
-        LCR       #_LINE_OUT_STOP       ; |160| 
-        ; call occurs [#_LINE_OUT_STOP] ; |160| 
-        CMPB      AL,#0                 ; |160| 
-        BF        L1,EQ                 ; |160| 
-        ; branchcc occurs ; |160| 
+        LCR       #_LINE_OUT_STOP       ; |164| 
+        ; call occurs [#_LINE_OUT_STOP] ; |164| 
+        CMPB      AL,#0                 ; |164| 
+        BF        L1,EQ                 ; |164| 
+        ; branchcc occurs ; |164| 
 DW$L$_RUN$3$E:
 L2:    
-	.dwpsn	"search.c",163,1
+	.dwpsn	"search.c",167,1
         SUBB      SP,#14
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -664,10 +642,10 @@ L2:
         ; return occurs
 
 DW$69	.dwtag  DW_TAG_loop
-	.dwattr DW$69, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L1:1:1643119025")
+	.dwattr DW$69, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L1:1:1643189461")
 	.dwattr DW$69, DW_AT_begin_file("search.c")
-	.dwattr DW$69, DW_AT_begin_line(0x90)
-	.dwattr DW$69, DW_AT_end_line(0xa2)
+	.dwattr DW$69, DW_AT_begin_line(0x94)
+	.dwattr DW$69, DW_AT_end_line(0xa6)
 DW$70	.dwtag  DW_TAG_loop_range
 	.dwattr DW$70, DW_AT_low_pc(DW$L$_RUN$2$B)
 	.dwattr DW$70, DW_AT_high_pc(DW$L$_RUN$2$E)
@@ -677,7 +655,7 @@ DW$71	.dwtag  DW_TAG_loop_range
 	.dwendtag DW$69
 
 	.dwattr DW$61, DW_AT_end_file("search.c")
-	.dwattr DW$61, DW_AT_end_line(0xa3)
+	.dwattr DW$61, DW_AT_end_line(0xa7)
 	.dwattr DW$61, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$61
@@ -689,9 +667,9 @@ DW$72	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_PRINTF"), DW_AT_symbol_name("_
 	.dwattr DW$72, DW_AT_low_pc(_LINE_PRINTF)
 	.dwattr DW$72, DW_AT_high_pc(0x00)
 	.dwattr DW$72, DW_AT_begin_file("search.c")
-	.dwattr DW$72, DW_AT_begin_line(0xba)
+	.dwattr DW$72, DW_AT_begin_line(0xbe)
 	.dwattr DW$72, DW_AT_begin_column(0x06)
-	.dwpsn	"search.c",187,1
+	.dwpsn	"search.c",191,1
 
 	.dwfde DW$CIE
 
@@ -711,14 +689,14 @@ DW$72	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_PRINTF"), DW_AT_symbol_name("_
 ;*                                                             *
 ;***************************************************************
 _LINE_PRINTF:
-;*** 188	-----------------------    map_U16_cnt = 0u;
-;*** 190	-----------------------    shutdown_U16 = 1u;
-;*** 192	-----------------------    Init_RUN();
-;*** 193	-----------------------    load_line_info_rom();
-;*** 195	-----------------------    VFDPrintf("<-2  3->");
+;*** 192	-----------------------    map_U16_cnt = 0u;
+;*** 194	-----------------------    shutdown_U16 = 1u;
+;*** 196	-----------------------    Init_RUN();
+;*** 197	-----------------------    load_line_info_rom();
+;*** 199	-----------------------    VFDPrintf("<-2  3->");
 ;***  	-----------------------    #pragma LOOP_FLAGS(5376u)
-;*** 189	-----------------------    menu_U16_cnt = 0u;
-;*** 196	-----------------------    goto g6;
+;*** 193	-----------------------    menu_U16_cnt = 0u;
+;*** 200	-----------------------    goto g6;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -749,470 +727,470 @@ DW$77	.dwtag  DW_TAG_variable, DW_AT_name("U$16"), DW_AT_symbol_name("U$16")
 DW$78	.dwtag  DW_TAG_variable, DW_AT_name("shutdown_U16"), DW_AT_symbol_name("_shutdown_U16")
 	.dwattr DW$78, DW_AT_type(*DW$T$20)
 	.dwattr DW$78, DW_AT_location[DW_OP_breg20 -8]
-	.dwpsn	"search.c",188,9
-        MOV       *-SP[7],#0            ; |188| 
-	.dwpsn	"search.c",190,18
-        MOV       *-SP[8],#1            ; |190| 
-	.dwpsn	"search.c",192,2
-        LCR       #_Init_RUN            ; |192| 
-        ; call occurs [#_Init_RUN] ; |192| 
-	.dwpsn	"search.c",193,2
-        LCR       #_load_line_info_rom  ; |193| 
-        ; call occurs [#_load_line_info_rom] ; |193| 
-	.dwpsn	"search.c",195,2
-        MOVL      XAR4,#FSL3            ; |195| 
-        MOVL      *-SP[2],XAR4          ; |195| 
-        LCR       #_VFDPrintf           ; |195| 
-        ; call occurs [#_VFDPrintf] ; |195| 
-	.dwpsn	"search.c",189,9
-        MOVB      XAR1,#0
+	.dwpsn	"search.c",192,9
+        MOV       *-SP[7],#0            ; |192| 
+	.dwpsn	"search.c",194,18
+        MOV       *-SP[8],#1            ; |194| 
 	.dwpsn	"search.c",196,2
-        BF        L5,UNC                ; |196| 
-        ; branch occurs ; |196| 
+        LCR       #_Init_RUN            ; |196| 
+        ; call occurs [#_Init_RUN] ; |196| 
+	.dwpsn	"search.c",197,2
+        LCR       #_load_line_info_rom  ; |197| 
+        ; call occurs [#_load_line_info_rom] ; |197| 
+	.dwpsn	"search.c",199,2
+        MOVL      XAR4,#FSL3            ; |199| 
+        MOVL      *-SP[2],XAR4          ; |199| 
+        LCR       #_VFDPrintf           ; |199| 
+        ; call occurs [#_VFDPrintf] ; |199| 
+	.dwpsn	"search.c",193,9
+        MOVB      XAR1,#0
+	.dwpsn	"search.c",200,2
+        BF        L5,UNC                ; |200| 
+        ; branch occurs ; |200| 
 L3:    
 DW$L$_LINE_PRINTF$2$B:
 ;***	-----------------------g2:
-;*** 198	-----------------------    if ( !(*(&GpioDataRegs+1)&0x4000u) ) goto g5;
-	.dwpsn	"search.c",198,3
+;*** 202	-----------------------    if ( !(*(&GpioDataRegs+1)&0x4000u) ) goto g5;
+	.dwpsn	"search.c",202,3
         MOVW      DP,#_GpioDataRegs+1
-        TBIT      @_GpioDataRegs+1,#14  ; |198| 
-        BF        L4,NTC                ; |198| 
-        ; branchcc occurs ; |198| 
+        TBIT      @_GpioDataRegs+1,#14  ; |202| 
+        BF        L4,NTC                ; |202| 
+        ; branchcc occurs ; |202| 
 DW$L$_LINE_PRINTF$2$E:
 DW$L$_LINE_PRINTF$3$B:
-;*** 199	-----------------------    if ( *&GpioDataRegs&0x4000u ) goto g6;
-	.dwpsn	"search.c",199,8
-        TBIT      @_GpioDataRegs,#14    ; |199| 
-        BF        L5,TC                 ; |199| 
-        ; branchcc occurs ; |199| 
+;*** 203	-----------------------    if ( *&GpioDataRegs&0x4000u ) goto g6;
+	.dwpsn	"search.c",203,8
+        TBIT      @_GpioDataRegs,#14    ; |203| 
+        BF        L5,TC                 ; |203| 
+        ; branchcc occurs ; |203| 
 DW$L$_LINE_PRINTF$3$E:
 DW$L$_LINE_PRINTF$4$B:
-;*** 199	-----------------------    *&Flag &= 0xff7fu;
-;*** 199	-----------------------    *&Flag |= 0x100u;
-;*** 199	-----------------------    TxPrintf("\n\nTHIRD_LINE_INFO\n\n");
-;*** 199	-----------------------    goto g6;
-	.dwpsn	"search.c",199,20
+;*** 203	-----------------------    *&Flag &= 0xff7fu;
+;*** 203	-----------------------    *&Flag |= 0x100u;
+;*** 203	-----------------------    TxPrintf("\n\nTHIRD_LINE_INFO\n\n");
+;*** 203	-----------------------    goto g6;
+	.dwpsn	"search.c",203,20
         MOVW      DP,#_Flag
-        AND       @_Flag,#0xff7f        ; |199| 
-	.dwpsn	"search.c",199,41
-        OR        @_Flag,#0x0100        ; |199| 
-	.dwpsn	"search.c",199,63
-        MOVL      XAR4,#FSL4            ; |199| 
-        MOVL      *-SP[2],XAR4          ; |199| 
-        LCR       #_TxPrintf            ; |199| 
-        ; call occurs [#_TxPrintf] ; |199| 
-        BF        L5,UNC                ; |199| 
-        ; branch occurs ; |199| 
+        AND       @_Flag,#0xff7f        ; |203| 
+	.dwpsn	"search.c",203,41
+        OR        @_Flag,#0x0100        ; |203| 
+	.dwpsn	"search.c",203,63
+        MOVL      XAR4,#FSL4            ; |203| 
+        MOVL      *-SP[2],XAR4          ; |203| 
+        LCR       #_TxPrintf            ; |203| 
+        ; call occurs [#_TxPrintf] ; |203| 
+        BF        L5,UNC                ; |203| 
+        ; branch occurs ; |203| 
 DW$L$_LINE_PRINTF$4$E:
 L4:    
 DW$L$_LINE_PRINTF$5$B:
 ;***	-----------------------g5:
-;*** 198	-----------------------    *&Flag |= 0x80u;
-;*** 198	-----------------------    *&Flag &= 0xfeffu;
-;*** 198	-----------------------    TxPrintf("\n\nSECOND_LINE_INFO\n\n");
-	.dwpsn	"search.c",198,16
+;*** 202	-----------------------    *&Flag |= 0x80u;
+;*** 202	-----------------------    *&Flag &= 0xfeffu;
+;*** 202	-----------------------    TxPrintf("\n\nSECOND_LINE_INFO\n\n");
+	.dwpsn	"search.c",202,16
         MOVW      DP,#_Flag
-        OR        @_Flag,#0x0080        ; |198| 
-	.dwpsn	"search.c",198,37
-        AND       @_Flag,#0xfeff        ; |198| 
-	.dwpsn	"search.c",198,60
-        MOVL      XAR4,#FSL5            ; |198| 
-        MOVL      *-SP[2],XAR4          ; |198| 
-        LCR       #_TxPrintf            ; |198| 
-        ; call occurs [#_TxPrintf] ; |198| 
+        OR        @_Flag,#0x0080        ; |202| 
+	.dwpsn	"search.c",202,37
+        AND       @_Flag,#0xfeff        ; |202| 
+	.dwpsn	"search.c",202,60
+        MOVL      XAR4,#FSL5            ; |202| 
+        MOVL      *-SP[2],XAR4          ; |202| 
+        LCR       #_TxPrintf            ; |202| 
+        ; call occurs [#_TxPrintf] ; |202| 
 DW$L$_LINE_PRINTF$5$E:
 L5:    
 DW$L$_LINE_PRINTF$6$B:
 ;***	-----------------------g6:
-;*** 200	-----------------------    C$1 = &GpioDataRegs;
-;*** 200	-----------------------    if ( C$1[1]>>14&1u&(*C$1>>14&1u) ) goto g2;
-	.dwpsn	"search.c",200,2
-        MOVL      XAR4,#_GpioDataRegs   ; |200| 
-        MOV       AH,*+XAR4[1]          ; |200| 
-        MOV       AL,*+XAR4[0]          ; |200| 
-        LSR       AH,14                 ; |200| 
-        LSR       AL,14                 ; |200| 
-        AND       AL,AH                 ; |200| 
-        ANDB      AL,#0x01              ; |200| 
-        BF        L3,NEQ                ; |200| 
-        ; branchcc occurs ; |200| 
+;*** 204	-----------------------    C$1 = &GpioDataRegs;
+;*** 204	-----------------------    if ( C$1[1]>>14&1u&(*C$1>>14&1u) ) goto g2;
+	.dwpsn	"search.c",204,2
+        MOVL      XAR4,#_GpioDataRegs   ; |204| 
+        MOV       AH,*+XAR4[1]          ; |204| 
+        MOV       AL,*+XAR4[0]          ; |204| 
+        LSR       AH,14                 ; |204| 
+        LSR       AL,14                 ; |204| 
+        AND       AL,AH                 ; |204| 
+        ANDB      AL,#0x01              ; |204| 
+        BF        L3,NEQ                ; |204| 
+        ; branchcc occurs ; |204| 
 DW$L$_LINE_PRINTF$6$E:
-;*** 201	-----------------------    DSP28x_usDelay(2499998uL);
-;*** 203	-----------------------    *&Flag |= 0x200u;
-;*** 205	-----------------------    TURN_COMPUTE_FUNC();
-;*** 206	-----------------------    TURN_DIVISION_FUNC();
-;*** 208	-----------------------    if ( !shutdown_U16 ) goto g26;
+;*** 205	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 207	-----------------------    *&Flag |= 0x200u;
+;*** 209	-----------------------    TURN_COMPUTE_FUNC();
+;*** 210	-----------------------    TURN_DIVISION_FUNC();
+;*** 212	-----------------------    if ( !shutdown_U16 ) goto g26;
 ;***  	-----------------------    #pragma LOOP_FLAGS(5120u)
-	.dwpsn	"search.c",201,2
+	.dwpsn	"search.c",205,2
         MOV       AL,#9630
         MOV       AH,#38
-        LCR       #_DSP28x_usDelay      ; |201| 
-        ; call occurs [#_DSP28x_usDelay] ; |201| 
-	.dwpsn	"search.c",203,2
+        LCR       #_DSP28x_usDelay      ; |205| 
+        ; call occurs [#_DSP28x_usDelay] ; |205| 
+	.dwpsn	"search.c",207,2
         MOVW      DP,#_Flag
-        OR        @_Flag,#0x0200        ; |203| 
-	.dwpsn	"search.c",205,2
-        LCR       #_TURN_COMPUTE_FUNC   ; |205| 
-        ; call occurs [#_TURN_COMPUTE_FUNC] ; |205| 
-	.dwpsn	"search.c",206,2
-        LCR       #_TURN_DIVISION_FUNC  ; |206| 
-        ; call occurs [#_TURN_DIVISION_FUNC] ; |206| 
-	.dwpsn	"search.c",208,2
-        MOV       AL,*-SP[8]            ; |208| 
-        BF        L22,EQ                ; |208| 
-        ; branchcc occurs ; |208| 
+        OR        @_Flag,#0x0200        ; |207| 
+	.dwpsn	"search.c",209,2
+        LCR       #_TURN_COMPUTE_FUNC   ; |209| 
+        ; call occurs [#_TURN_COMPUTE_FUNC] ; |209| 
+	.dwpsn	"search.c",210,2
+        LCR       #_TURN_DIVISION_FUNC  ; |210| 
+        ; call occurs [#_TURN_DIVISION_FUNC] ; |210| 
+	.dwpsn	"search.c",212,2
+        MOV       AL,*-SP[8]            ; |212| 
+        BF        L22,EQ                ; |212| 
+        ; branchcc occurs ; |212| 
 L6:    
 DW$L$_LINE_PRINTF$8$B:
 ;***	-----------------------g9:
-;*** 210	-----------------------    switch ( menu_U16_cnt ) {case 0u: goto g14;, case 1u: goto g12;, case 2u: goto g10;, DEFAULT goto g21};
-	.dwpsn	"search.c",210,3
-        MOV       AL,AR1                ; |210| 
-        BF        L10,EQ                ; |210| 
-        ; branchcc occurs ; |210| 
+;*** 214	-----------------------    switch ( menu_U16_cnt ) {case 0u: goto g14;, case 1u: goto g12;, case 2u: goto g10;, DEFAULT goto g21};
+	.dwpsn	"search.c",214,3
+        MOV       AL,AR1                ; |214| 
+        BF        L10,EQ                ; |214| 
+        ; branchcc occurs ; |214| 
 DW$L$_LINE_PRINTF$8$E:
 DW$L$_LINE_PRINTF$9$B:
-        CMPB      AL,#1                 ; |210| 
-        BF        L8,EQ                 ; |210| 
-        ; branchcc occurs ; |210| 
+        CMPB      AL,#1                 ; |214| 
+        BF        L8,EQ                 ; |214| 
+        ; branchcc occurs ; |214| 
 DW$L$_LINE_PRINTF$9$E:
 DW$L$_LINE_PRINTF$10$B:
-        CMPB      AL,#2                 ; |210| 
-        BF        L18,NEQ               ; |210| 
-        ; branchcc occurs ; |210| 
+        CMPB      AL,#2                 ; |214| 
+        BF        L18,NEQ               ; |214| 
+        ; branchcc occurs ; |214| 
 DW$L$_LINE_PRINTF$10$E:
 DW$L$_LINE_PRINTF$11$B:
 ;***	-----------------------g10:
-;*** 251	-----------------------    U$16 = &Search[(long)map_U16_cnt];
-;*** 251	-----------------------    switch ( (*U$16).TurnWay_U32 ) {case 1uL: goto g11;, case 2uL: goto g11;, case 4uL: goto g11;, case 4096uL: goto g11;, case 8192uL: goto g11;, DEFAULT goto g15};
-	.dwpsn	"search.c",251,4
-        MOV       T,#24                 ; |251| 
-        MOVL      XAR5,#_Search         ; |251| 
-        MPYXU     ACC,T,*-SP[7]         ; |251| 
+;*** 255	-----------------------    U$16 = &Search[(long)map_U16_cnt];
+;*** 255	-----------------------    switch ( (*U$16).TurnWay_U32 ) {case 1uL: goto g11;, case 2uL: goto g11;, case 4uL: goto g11;, case 4096uL: goto g11;, case 8192uL: goto g11;, DEFAULT goto g15};
+	.dwpsn	"search.c",255,4
+        MOV       T,#24                 ; |255| 
+        MOVL      XAR5,#_Search         ; |255| 
+        MPYXU     ACC,T,*-SP[7]         ; |255| 
         ADDL      XAR5,ACC
-        MOVL      XAR6,*+XAR5[6]        ; |251| 
+        MOVL      XAR6,*+XAR5[6]        ; |255| 
         MOVB      XAR7,#1
-        MOVL      ACC,XAR6              ; |251| 
-        SUBB      ACC,#1                ; |251| 
-        CMPL      ACC,XAR7              ; |251| 
-        BF        L7,LOS                ; |251| 
-        ; branchcc occurs ; |251| 
+        MOVL      ACC,XAR6              ; |255| 
+        SUBB      ACC,#1                ; |255| 
+        CMPL      ACC,XAR7              ; |255| 
+        BF        L7,LOS                ; |255| 
+        ; branchcc occurs ; |255| 
 DW$L$_LINE_PRINTF$11$E:
 DW$L$_LINE_PRINTF$12$B:
         MOVB      ACC,#4
-        CMPL      ACC,XAR6              ; |251| 
-        BF        L7,EQ                 ; |251| 
-        ; branchcc occurs ; |251| 
+        CMPL      ACC,XAR6              ; |255| 
+        BF        L7,EQ                 ; |255| 
+        ; branchcc occurs ; |255| 
 DW$L$_LINE_PRINTF$12$E:
 DW$L$_LINE_PRINTF$13$B:
-        MOV       ACC,#4096             ; |251| 
-        CMPL      ACC,XAR6              ; |251| 
-        BF        L7,EQ                 ; |251| 
-        ; branchcc occurs ; |251| 
+        MOV       ACC,#4096             ; |255| 
+        CMPL      ACC,XAR6              ; |255| 
+        BF        L7,EQ                 ; |255| 
+        ; branchcc occurs ; |255| 
 DW$L$_LINE_PRINTF$13$E:
 DW$L$_LINE_PRINTF$14$B:
-        MOV       ACC,#8192             ; |251| 
-        CMPL      ACC,XAR6              ; |251| 
-        BF        L12,NEQ               ; |251| 
-        ; branchcc occurs ; |251| 
+        MOV       ACC,#8192             ; |255| 
+        CMPL      ACC,XAR6              ; |255| 
+        BF        L12,NEQ               ; |255| 
+        ; branchcc occurs ; |255| 
 DW$L$_LINE_PRINTF$14$E:
 L7:    
 DW$L$_LINE_PRINTF$15$B:
 ;***	-----------------------g11:
-;*** 258	-----------------------    VFDPrintf("%3u:%4lu", map_U16_cnt, (*U$16).TurnDir_U32);
-;*** 259	-----------------------    goto g21;
-	.dwpsn	"search.c",258,5
-        MOVL      XAR4,#FSL6            ; |258| 
-        MOVB      XAR0,#8               ; |258| 
-        MOVL      *-SP[2],XAR4          ; |258| 
-        MOV       AL,*-SP[7]            ; |258| 
-        MOV       *-SP[3],AL            ; |258| 
-        MOVL      ACC,*+XAR5[AR0]       ; |258| 
-        MOVL      *-SP[6],ACC           ; |258| 
-        LCR       #_VFDPrintf           ; |258| 
-        ; call occurs [#_VFDPrintf] ; |258| 
-	.dwpsn	"search.c",259,10
-        BF        L18,UNC               ; |259| 
-        ; branch occurs ; |259| 
+;*** 262	-----------------------    VFDPrintf("%3u:%4lu", map_U16_cnt, (*U$16).TurnDir_U32);
+;*** 263	-----------------------    goto g21;
+	.dwpsn	"search.c",262,5
+        MOVL      XAR4,#FSL6            ; |262| 
+        MOVB      XAR0,#8               ; |262| 
+        MOVL      *-SP[2],XAR4          ; |262| 
+        MOV       AL,*-SP[7]            ; |262| 
+        MOV       *-SP[3],AL            ; |262| 
+        MOVL      ACC,*+XAR5[AR0]       ; |262| 
+        MOVL      *-SP[6],ACC           ; |262| 
+        LCR       #_VFDPrintf           ; |262| 
+        ; call occurs [#_VFDPrintf] ; |262| 
+	.dwpsn	"search.c",263,10
+        BF        L18,UNC               ; |263| 
+        ; branch occurs ; |263| 
 DW$L$_LINE_PRINTF$15$E:
 L8:    
 DW$L$_LINE_PRINTF$16$B:
 ;***	-----------------------g12:
-;*** 236	-----------------------    U$16 = &Search[(long)map_U16_cnt];
-;*** 236	-----------------------    switch ( (*U$16).TurnWay_U32 ) {case 1uL: goto g13;, case 2uL: goto g13;, case 4uL: goto g13;, case 4096uL: goto g13;, case 8192uL: goto g13;, DEFAULT goto g15};
-	.dwpsn	"search.c",236,4
-        MOV       T,#24                 ; |236| 
-        MOVL      XAR4,#_Search         ; |236| 
-        MPYXU     ACC,T,*-SP[7]         ; |236| 
+;*** 240	-----------------------    U$16 = &Search[(long)map_U16_cnt];
+;*** 240	-----------------------    switch ( (*U$16).TurnWay_U32 ) {case 1uL: goto g13;, case 2uL: goto g13;, case 4uL: goto g13;, case 4096uL: goto g13;, case 8192uL: goto g13;, DEFAULT goto g15};
+	.dwpsn	"search.c",240,4
+        MOV       T,#24                 ; |240| 
+        MOVL      XAR4,#_Search         ; |240| 
+        MPYXU     ACC,T,*-SP[7]         ; |240| 
         ADDL      XAR4,ACC
-        MOVL      XAR6,*+XAR4[6]        ; |236| 
+        MOVL      XAR6,*+XAR4[6]        ; |240| 
         MOVB      XAR7,#1
-        MOVL      ACC,XAR6              ; |236| 
-        SUBB      ACC,#1                ; |236| 
-        CMPL      ACC,XAR7              ; |236| 
-        BF        L9,LOS                ; |236| 
-        ; branchcc occurs ; |236| 
+        MOVL      ACC,XAR6              ; |240| 
+        SUBB      ACC,#1                ; |240| 
+        CMPL      ACC,XAR7              ; |240| 
+        BF        L9,LOS                ; |240| 
+        ; branchcc occurs ; |240| 
 DW$L$_LINE_PRINTF$16$E:
 DW$L$_LINE_PRINTF$17$B:
         MOVB      ACC,#4
-        CMPL      ACC,XAR6              ; |236| 
-        BF        L9,EQ                 ; |236| 
-        ; branchcc occurs ; |236| 
+        CMPL      ACC,XAR6              ; |240| 
+        BF        L9,EQ                 ; |240| 
+        ; branchcc occurs ; |240| 
 DW$L$_LINE_PRINTF$17$E:
 DW$L$_LINE_PRINTF$18$B:
-        MOV       ACC,#4096             ; |236| 
-        CMPL      ACC,XAR6              ; |236| 
-        BF        L9,EQ                 ; |236| 
-        ; branchcc occurs ; |236| 
+        MOV       ACC,#4096             ; |240| 
+        CMPL      ACC,XAR6              ; |240| 
+        BF        L9,EQ                 ; |240| 
+        ; branchcc occurs ; |240| 
 DW$L$_LINE_PRINTF$18$E:
 DW$L$_LINE_PRINTF$19$B:
-        MOV       ACC,#8192             ; |236| 
-        CMPL      ACC,XAR6              ; |236| 
-        BF        L12,NEQ               ; |236| 
-        ; branchcc occurs ; |236| 
+        MOV       ACC,#8192             ; |240| 
+        CMPL      ACC,XAR6              ; |240| 
+        BF        L12,NEQ               ; |240| 
+        ; branchcc occurs ; |240| 
 DW$L$_LINE_PRINTF$19$E:
 L9:    
 DW$L$_LINE_PRINTF$20$B:
 ;***	-----------------------g13:
-;*** 243	-----------------------    VFDPrintf("%3u:%4lu", map_U16_cnt, (*U$16).Distance_U32);
-;*** 244	-----------------------    goto g21;
-	.dwpsn	"search.c",243,5
-        MOVL      XAR5,#FSL6            ; |243| 
-        MOVL      *-SP[2],XAR5          ; |243| 
-        MOV       AL,*-SP[7]            ; |243| 
-        MOV       *-SP[3],AL            ; |243| 
-        MOVL      ACC,*+XAR4[4]         ; |243| 
-        MOVL      *-SP[6],ACC           ; |243| 
-        LCR       #_VFDPrintf           ; |243| 
-        ; call occurs [#_VFDPrintf] ; |243| 
-	.dwpsn	"search.c",244,10
-        BF        L18,UNC               ; |244| 
-        ; branch occurs ; |244| 
+;*** 247	-----------------------    VFDPrintf("%3u:%4lu", map_U16_cnt, (*U$16).Distance_U32);
+;*** 248	-----------------------    goto g21;
+	.dwpsn	"search.c",247,5
+        MOVL      XAR5,#FSL6            ; |247| 
+        MOVL      *-SP[2],XAR5          ; |247| 
+        MOV       AL,*-SP[7]            ; |247| 
+        MOV       *-SP[3],AL            ; |247| 
+        MOVL      ACC,*+XAR4[4]         ; |247| 
+        MOVL      *-SP[6],ACC           ; |247| 
+        LCR       #_VFDPrintf           ; |247| 
+        ; call occurs [#_VFDPrintf] ; |247| 
+	.dwpsn	"search.c",248,10
+        BF        L18,UNC               ; |248| 
+        ; branch occurs ; |248| 
 DW$L$_LINE_PRINTF$20$E:
 L10:    
 DW$L$_LINE_PRINTF$21$B:
 ;***	-----------------------g14:
-;*** 213	-----------------------    switch ( (Search[(long)map_U16_cnt]).TurnWay_U32 ) {case 1uL: goto g20;, case 2uL: goto g19;, case 4uL: goto g18;, case 4096uL: goto g17;, case 8192uL: goto g16;, DEFAULT goto g15};
-	.dwpsn	"search.c",213,4
-        MOV       T,#24                 ; |213| 
-        MOVL      XAR4,#_Search+6       ; |213| 
-        MPYXU     ACC,T,*-SP[7]         ; |213| 
+;*** 217	-----------------------    switch ( (Search[(long)map_U16_cnt]).TurnWay_U32 ) {case 1uL: goto g20;, case 2uL: goto g19;, case 4uL: goto g18;, case 4096uL: goto g17;, case 8192uL: goto g16;, DEFAULT goto g15};
+	.dwpsn	"search.c",217,4
+        MOV       T,#24                 ; |217| 
+        MOVL      XAR4,#_Search+6       ; |217| 
+        MPYXU     ACC,T,*-SP[7]         ; |217| 
         ADDL      XAR4,ACC
-        MOVL      XAR6,*+XAR4[0]        ; |213| 
+        MOVL      XAR6,*+XAR4[0]        ; |217| 
         MOVB      ACC,#4
-        CMPL      ACC,XAR6              ; |213| 
-        BF        L11,LT                ; |213| 
-        ; branchcc occurs ; |213| 
+        CMPL      ACC,XAR6              ; |217| 
+        BF        L11,LT                ; |217| 
+        ; branchcc occurs ; |217| 
 DW$L$_LINE_PRINTF$21$E:
 DW$L$_LINE_PRINTF$22$B:
-        CMPL      ACC,XAR6              ; |213| 
-        BF        L15,EQ                ; |213| 
-        ; branchcc occurs ; |213| 
+        CMPL      ACC,XAR6              ; |217| 
+        BF        L15,EQ                ; |217| 
+        ; branchcc occurs ; |217| 
 DW$L$_LINE_PRINTF$22$E:
 DW$L$_LINE_PRINTF$23$B:
         MOVB      ACC,#1
-        CMPL      ACC,XAR6              ; |213| 
-        BF        L17,EQ                ; |213| 
-        ; branchcc occurs ; |213| 
+        CMPL      ACC,XAR6              ; |217| 
+        BF        L17,EQ                ; |217| 
+        ; branchcc occurs ; |217| 
 DW$L$_LINE_PRINTF$23$E:
 DW$L$_LINE_PRINTF$24$B:
         MOVB      ACC,#2
-        CMPL      ACC,XAR6              ; |213| 
-        BF        L16,EQ                ; |213| 
-        ; branchcc occurs ; |213| 
+        CMPL      ACC,XAR6              ; |217| 
+        BF        L16,EQ                ; |217| 
+        ; branchcc occurs ; |217| 
 DW$L$_LINE_PRINTF$24$E:
 DW$L$_LINE_PRINTF$25$B:
-        BF        L12,UNC               ; |213| 
-        ; branch occurs ; |213| 
+        BF        L12,UNC               ; |217| 
+        ; branch occurs ; |217| 
 DW$L$_LINE_PRINTF$25$E:
 L11:    
 DW$L$_LINE_PRINTF$26$B:
-        MOV       ACC,#4096             ; |213| 
-        CMPL      ACC,XAR6              ; |213| 
-        BF        L14,EQ                ; |213| 
-        ; branchcc occurs ; |213| 
+        MOV       ACC,#4096             ; |217| 
+        CMPL      ACC,XAR6              ; |217| 
+        BF        L14,EQ                ; |217| 
+        ; branchcc occurs ; |217| 
 DW$L$_LINE_PRINTF$26$E:
 DW$L$_LINE_PRINTF$27$B:
-        MOV       ACC,#8192             ; |213| 
-        CMPL      ACC,XAR6              ; |213| 
-        BF        L13,EQ                ; |213| 
-        ; branchcc occurs ; |213| 
+        MOV       ACC,#8192             ; |217| 
+        CMPL      ACC,XAR6              ; |217| 
+        BF        L13,EQ                ; |217| 
+        ; branchcc occurs ; |217| 
 DW$L$_LINE_PRINTF$27$E:
 L12:    
 DW$L$_LINE_PRINTF$28$B:
 ;***	-----------------------g15:
-;*** 231	-----------------------    VFDPrintf("%3u: err", map_U16_cnt);
-;*** 232	-----------------------    goto g21;
-	.dwpsn	"search.c",231,5
-        MOVL      XAR4,#FSL7            ; |231| 
-        MOVL      *-SP[2],XAR4          ; |231| 
-        MOV       AL,*-SP[7]            ; |231| 
-        MOV       *-SP[3],AL            ; |231| 
-        LCR       #_VFDPrintf           ; |231| 
-        ; call occurs [#_VFDPrintf] ; |231| 
-	.dwpsn	"search.c",232,10
-        BF        L18,UNC               ; |232| 
-        ; branch occurs ; |232| 
+;*** 235	-----------------------    VFDPrintf("%3u: err", map_U16_cnt);
+;*** 236	-----------------------    goto g21;
+	.dwpsn	"search.c",235,5
+        MOVL      XAR4,#FSL7            ; |235| 
+        MOVL      *-SP[2],XAR4          ; |235| 
+        MOV       AL,*-SP[7]            ; |235| 
+        MOV       *-SP[3],AL            ; |235| 
+        LCR       #_VFDPrintf           ; |235| 
+        ; call occurs [#_VFDPrintf] ; |235| 
+	.dwpsn	"search.c",236,10
+        BF        L18,UNC               ; |236| 
+        ; branch occurs ; |236| 
 DW$L$_LINE_PRINTF$28$E:
 L13:    
 DW$L$_LINE_PRINTF$29$B:
 ;***	-----------------------g16:
-;*** 228	-----------------------    VFDPrintf("%3u:E-|-", map_U16_cnt);
-;*** 229	-----------------------    goto g21;
-	.dwpsn	"search.c",228,5
-        MOVL      XAR4,#FSL8            ; |228| 
-        MOVL      *-SP[2],XAR4          ; |228| 
-        MOV       AL,*-SP[7]            ; |228| 
-        MOV       *-SP[3],AL            ; |228| 
-        LCR       #_VFDPrintf           ; |228| 
-        ; call occurs [#_VFDPrintf] ; |228| 
-	.dwpsn	"search.c",229,10
-        BF        L18,UNC               ; |229| 
-        ; branch occurs ; |229| 
+;*** 232	-----------------------    VFDPrintf("%3u:E-|-", map_U16_cnt);
+;*** 233	-----------------------    goto g21;
+	.dwpsn	"search.c",232,5
+        MOVL      XAR4,#FSL8            ; |232| 
+        MOVL      *-SP[2],XAR4          ; |232| 
+        MOV       AL,*-SP[7]            ; |232| 
+        MOV       *-SP[3],AL            ; |232| 
+        LCR       #_VFDPrintf           ; |232| 
+        ; call occurs [#_VFDPrintf] ; |232| 
+	.dwpsn	"search.c",233,10
+        BF        L18,UNC               ; |233| 
+        ; branch occurs ; |233| 
 DW$L$_LINE_PRINTF$29$E:
 L14:    
 DW$L$_LINE_PRINTF$30$B:
 ;***	-----------------------g17:
-;*** 225	-----------------------    VFDPrintf("%3u:G-|-", map_U16_cnt);
-;*** 226	-----------------------    goto g21;
-	.dwpsn	"search.c",225,5
-        MOVL      XAR4,#FSL9            ; |225| 
-        MOVL      *-SP[2],XAR4          ; |225| 
-        MOV       AL,*-SP[7]            ; |225| 
-        MOV       *-SP[3],AL            ; |225| 
-        LCR       #_VFDPrintf           ; |225| 
-        ; call occurs [#_VFDPrintf] ; |225| 
-	.dwpsn	"search.c",226,10
-        BF        L18,UNC               ; |226| 
-        ; branch occurs ; |226| 
+;*** 229	-----------------------    VFDPrintf("%3u:G-|-", map_U16_cnt);
+;*** 230	-----------------------    goto g21;
+	.dwpsn	"search.c",229,5
+        MOVL      XAR4,#FSL9            ; |229| 
+        MOVL      *-SP[2],XAR4          ; |229| 
+        MOV       AL,*-SP[7]            ; |229| 
+        MOV       *-SP[3],AL            ; |229| 
+        LCR       #_VFDPrintf           ; |229| 
+        ; call occurs [#_VFDPrintf] ; |229| 
+	.dwpsn	"search.c",230,10
+        BF        L18,UNC               ; |230| 
+        ; branch occurs ; |230| 
 DW$L$_LINE_PRINTF$30$E:
 L15:    
 DW$L$_LINE_PRINTF$31$B:
 ;***	-----------------------g18:
-;*** 219	-----------------------    VFDPrintf("%3u:R |-", map_U16_cnt);
-;*** 220	-----------------------    goto g21;
-	.dwpsn	"search.c",219,5
-        MOVL      XAR4,#FSL10           ; |219| 
-        MOVL      *-SP[2],XAR4          ; |219| 
-        MOV       AL,*-SP[7]            ; |219| 
-        MOV       *-SP[3],AL            ; |219| 
-        LCR       #_VFDPrintf           ; |219| 
-        ; call occurs [#_VFDPrintf] ; |219| 
-	.dwpsn	"search.c",220,10
-        BF        L18,UNC               ; |220| 
-        ; branch occurs ; |220| 
+;*** 223	-----------------------    VFDPrintf("%3u:R |-", map_U16_cnt);
+;*** 224	-----------------------    goto g21;
+	.dwpsn	"search.c",223,5
+        MOVL      XAR4,#FSL10           ; |223| 
+        MOVL      *-SP[2],XAR4          ; |223| 
+        MOV       AL,*-SP[7]            ; |223| 
+        MOV       *-SP[3],AL            ; |223| 
+        LCR       #_VFDPrintf           ; |223| 
+        ; call occurs [#_VFDPrintf] ; |223| 
+	.dwpsn	"search.c",224,10
+        BF        L18,UNC               ; |224| 
+        ; branch occurs ; |224| 
 DW$L$_LINE_PRINTF$31$E:
 L16:    
 DW$L$_LINE_PRINTF$32$B:
 ;***	-----------------------g19:
-;*** 222	-----------------------    VFDPrintf("%3u:L-| ", map_U16_cnt);
-;*** 223	-----------------------    goto g21;
-	.dwpsn	"search.c",222,5
-        MOVL      XAR4,#FSL11           ; |222| 
-        MOVL      *-SP[2],XAR4          ; |222| 
-        MOV       AL,*-SP[7]            ; |222| 
-        MOV       *-SP[3],AL            ; |222| 
-        LCR       #_VFDPrintf           ; |222| 
-        ; call occurs [#_VFDPrintf] ; |222| 
-	.dwpsn	"search.c",223,10
-        BF        L18,UNC               ; |223| 
-        ; branch occurs ; |223| 
+;*** 226	-----------------------    VFDPrintf("%3u:L-| ", map_U16_cnt);
+;*** 227	-----------------------    goto g21;
+	.dwpsn	"search.c",226,5
+        MOVL      XAR4,#FSL11           ; |226| 
+        MOVL      *-SP[2],XAR4          ; |226| 
+        MOV       AL,*-SP[7]            ; |226| 
+        MOV       *-SP[3],AL            ; |226| 
+        LCR       #_VFDPrintf           ; |226| 
+        ; call occurs [#_VFDPrintf] ; |226| 
+	.dwpsn	"search.c",227,10
+        BF        L18,UNC               ; |227| 
+        ; branch occurs ; |227| 
 DW$L$_LINE_PRINTF$32$E:
 L17:    
 DW$L$_LINE_PRINTF$33$B:
 ;***	-----------------------g20:
-;*** 216	-----------------------    VFDPrintf("%3u:S | ", map_U16_cnt);
-	.dwpsn	"search.c",216,5
-        MOVL      XAR4,#FSL12           ; |216| 
-        MOVL      *-SP[2],XAR4          ; |216| 
-        MOV       AL,*-SP[7]            ; |216| 
-        MOV       *-SP[3],AL            ; |216| 
-        LCR       #_VFDPrintf           ; |216| 
-        ; call occurs [#_VFDPrintf] ; |216| 
+;*** 220	-----------------------    VFDPrintf("%3u:S | ", map_U16_cnt);
+	.dwpsn	"search.c",220,5
+        MOVL      XAR4,#FSL12           ; |220| 
+        MOVL      *-SP[2],XAR4          ; |220| 
+        MOV       AL,*-SP[7]            ; |220| 
+        MOV       *-SP[3],AL            ; |220| 
+        LCR       #_VFDPrintf           ; |220| 
+        ; call occurs [#_VFDPrintf] ; |220| 
 DW$L$_LINE_PRINTF$33$E:
 L18:    
 DW$L$_LINE_PRINTF$34$B:
 ;***	-----------------------g21:
-;*** 266	-----------------------    if ( !(*(&GpioDataRegs+1)&0x8000u) ) goto g24;
-	.dwpsn	"search.c",266,3
+;*** 270	-----------------------    if ( !(*(&GpioDataRegs+1)&0x8000u) ) goto g24;
+	.dwpsn	"search.c",270,3
         MOVW      DP,#_GpioDataRegs+1
-        TBIT      @_GpioDataRegs+1,#15  ; |266| 
-        BF        L20,NTC               ; |266| 
-        ; branchcc occurs ; |266| 
+        TBIT      @_GpioDataRegs+1,#15  ; |270| 
+        BF        L20,NTC               ; |270| 
+        ; branchcc occurs ; |270| 
 DW$L$_LINE_PRINTF$34$E:
 DW$L$_LINE_PRINTF$35$B:
-;*** 267	-----------------------    if ( *&GpioDataRegs&0x8000u ) goto g25;
-	.dwpsn	"search.c",267,8
-        TBIT      @_GpioDataRegs,#15    ; |267| 
-        BF        L21,TC                ; |267| 
-        ; branchcc occurs ; |267| 
+;*** 271	-----------------------    if ( *&GpioDataRegs&0x8000u ) goto g25;
+	.dwpsn	"search.c",271,8
+        TBIT      @_GpioDataRegs,#15    ; |271| 
+        BF        L21,TC                ; |271| 
+        ; branchcc occurs ; |271| 
 DW$L$_LINE_PRINTF$35$E:
 DW$L$_LINE_PRINTF$36$B:
-;*** 269	-----------------------    DSP28x_usDelay(2499998uL);
-;*** 270	-----------------------    (menu_U16_cnt < 2u) ? (menu_U16_cnt = menu_U16_cnt+1u) : (menu_U16_cnt = 0u);
-	.dwpsn	"search.c",269,4
+;*** 273	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 274	-----------------------    (menu_U16_cnt < 2u) ? (menu_U16_cnt = menu_U16_cnt+1u) : (menu_U16_cnt = 0u);
+	.dwpsn	"search.c",273,4
         MOV       AL,#9630
         MOV       AH,#38
-        LCR       #_DSP28x_usDelay      ; |269| 
-        ; call occurs [#_DSP28x_usDelay] ; |269| 
-	.dwpsn	"search.c",270,4
+        LCR       #_DSP28x_usDelay      ; |273| 
+        ; call occurs [#_DSP28x_usDelay] ; |273| 
+	.dwpsn	"search.c",274,4
         MOV       AL,AR1
-        CMPB      AL,#2                 ; |270| 
-        BF        L19,HIS               ; |270| 
-        ; branchcc occurs ; |270| 
+        CMPB      AL,#2                 ; |274| 
+        BF        L19,HIS               ; |274| 
+        ; branchcc occurs ; |274| 
 DW$L$_LINE_PRINTF$36$E:
 DW$L$_LINE_PRINTF$37$B:
-        ADDB      XAR1,#1               ; |270| 
-        BF        L21,UNC               ; |270| 
-        ; branch occurs ; |270| 
+        ADDB      XAR1,#1               ; |274| 
+        BF        L21,UNC               ; |274| 
+        ; branch occurs ; |274| 
 DW$L$_LINE_PRINTF$37$E:
 L19:    
 DW$L$_LINE_PRINTF$38$B:
-;*** 270	-----------------------    goto g25;
+;*** 274	-----------------------    goto g25;
         MOVB      XAR1,#0
-	.dwpsn	"search.c",270,25
-        BF        L21,UNC               ; |270| 
-        ; branch occurs ; |270| 
+	.dwpsn	"search.c",274,25
+        BF        L21,UNC               ; |274| 
+        ; branch occurs ; |274| 
 DW$L$_LINE_PRINTF$38$E:
 L20:    
 DW$L$_LINE_PRINTF$39$B:
 ;***	-----------------------g24:
-;*** 266	-----------------------    DSP28x_usDelay(2499998uL);
-;*** 266	-----------------------    shutdown_U16 = 0u;
-	.dwpsn	"search.c",266,16
+;*** 270	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 270	-----------------------    shutdown_U16 = 0u;
+	.dwpsn	"search.c",270,16
         MOV       AL,#9630
         MOV       AH,#38
-        LCR       #_DSP28x_usDelay      ; |266| 
-        ; call occurs [#_DSP28x_usDelay] ; |266| 
-	.dwpsn	"search.c",266,36
-        MOV       *-SP[8],#0            ; |266| 
+        LCR       #_DSP28x_usDelay      ; |270| 
+        ; call occurs [#_DSP28x_usDelay] ; |270| 
+	.dwpsn	"search.c",270,36
+        MOV       *-SP[8],#0            ; |270| 
 DW$L$_LINE_PRINTF$39$E:
 L21:    
 DW$L$_LINE_PRINTF$40$B:
 ;***	-----------------------g25:
-;*** 273	-----------------------    MENU_SW(&map_U16_cnt, MARK_U16_CNT);
-;*** 274	-----------------------    if ( shutdown_U16 ) goto g9;
-	.dwpsn	"search.c",273,3
-        MOVZ      AR4,SP                ; |273| 
+;*** 277	-----------------------    MENU_SW(&map_U16_cnt, MARK_U16_CNT);
+;*** 278	-----------------------    if ( shutdown_U16 ) goto g9;
+	.dwpsn	"search.c",277,3
+        MOVZ      AR4,SP                ; |277| 
         MOVW      DP,#_MARK_U16_CNT
-        MOV       AL,@_MARK_U16_CNT     ; |273| 
-        SUBB      XAR4,#7               ; |273| 
-        LCR       #_MENU_SW             ; |273| 
-        ; call occurs [#_MENU_SW] ; |273| 
-	.dwpsn	"search.c",274,2
-        MOV       AL,*-SP[8]            ; |274| 
-        BF        L6,NEQ                ; |274| 
-        ; branchcc occurs ; |274| 
+        MOV       AL,@_MARK_U16_CNT     ; |277| 
+        SUBB      XAR4,#7               ; |277| 
+        LCR       #_MENU_SW             ; |277| 
+        ; call occurs [#_MENU_SW] ; |277| 
+	.dwpsn	"search.c",278,2
+        MOV       AL,*-SP[8]            ; |278| 
+        BF        L6,NEQ                ; |278| 
+        ; branchcc occurs ; |278| 
 DW$L$_LINE_PRINTF$40$E:
 L22:    
 ;***	-----------------------g26:
-;*** 275	-----------------------    DSP28x_usDelay(2499998uL);
-;*** 275	-----------------------    return;
-	.dwpsn	"search.c",275,2
+;*** 279	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 279	-----------------------    return;
+	.dwpsn	"search.c",279,2
         MOV       AL,#9630
         MOV       AH,#38
-        LCR       #_DSP28x_usDelay      ; |275| 
-        ; call occurs [#_DSP28x_usDelay] ; |275| 
-	.dwpsn	"search.c",276,1
+        LCR       #_DSP28x_usDelay      ; |279| 
+        ; call occurs [#_DSP28x_usDelay] ; |279| 
+	.dwpsn	"search.c",280,1
         SUBB      SP,#8
 	.dwcfa	0x1d, -4
         MOVL      XAR1,*--SP
@@ -1222,10 +1200,10 @@ L22:
         ; return occurs
 
 DW$79	.dwtag  DW_TAG_loop
-	.dwattr DW$79, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L6:1:1643119025")
+	.dwattr DW$79, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L6:1:1643189461")
 	.dwattr DW$79, DW_AT_begin_file("search.c")
-	.dwattr DW$79, DW_AT_begin_line(0xd0)
-	.dwattr DW$79, DW_AT_end_line(0x112)
+	.dwattr DW$79, DW_AT_begin_line(0xd4)
+	.dwattr DW$79, DW_AT_end_line(0x116)
 DW$80	.dwtag  DW_TAG_loop_range
 	.dwattr DW$80, DW_AT_low_pc(DW$L$_LINE_PRINTF$8$B)
 	.dwattr DW$80, DW_AT_high_pc(DW$L$_LINE_PRINTF$8$E)
@@ -1329,10 +1307,10 @@ DW$112	.dwtag  DW_TAG_loop_range
 
 
 DW$113	.dwtag  DW_TAG_loop
-	.dwattr DW$113, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L5:1:1643119025")
+	.dwattr DW$113, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L5:1:1643189461")
 	.dwattr DW$113, DW_AT_begin_file("search.c")
-	.dwattr DW$113, DW_AT_begin_line(0xc4)
-	.dwattr DW$113, DW_AT_end_line(0xc8)
+	.dwattr DW$113, DW_AT_begin_line(0xc8)
+	.dwattr DW$113, DW_AT_end_line(0xcc)
 DW$114	.dwtag  DW_TAG_loop_range
 	.dwattr DW$114, DW_AT_low_pc(DW$L$_LINE_PRINTF$6$B)
 	.dwattr DW$114, DW_AT_high_pc(DW$L$_LINE_PRINTF$6$E)
@@ -1351,7 +1329,7 @@ DW$118	.dwtag  DW_TAG_loop_range
 	.dwendtag DW$113
 
 	.dwattr DW$72, DW_AT_end_file("search.c")
-	.dwattr DW$72, DW_AT_end_line(0x114)
+	.dwattr DW$72, DW_AT_end_line(0x118)
 	.dwattr DW$72, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$72
@@ -1363,9 +1341,9 @@ DW$119	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_INFO"), DW_AT_symbol_name("_L
 	.dwattr DW$119, DW_AT_low_pc(_LINE_INFO)
 	.dwattr DW$119, DW_AT_high_pc(0x00)
 	.dwattr DW$119, DW_AT_begin_file("search.c")
-	.dwattr DW$119, DW_AT_begin_line(0xa5)
+	.dwattr DW$119, DW_AT_begin_line(0xa9)
 	.dwattr DW$119, DW_AT_begin_column(0x06)
-	.dwpsn	"search.c",166,1
+	.dwpsn	"search.c",170,1
 
 	.dwfde DW$CIE
 
@@ -1385,16 +1363,16 @@ DW$119	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_INFO"), DW_AT_symbol_name("_L
 ;*                                                             *
 ;***************************************************************
 _LINE_INFO:
-;*** 167	-----------------------    K$8 = &Search[0];
-;*** 167	-----------------------    C$2 = &K$8[(long)MARK_U16_CNT];
-;*** 167	-----------------------    (*C$2).Distance_R_U32 = RMotor.GoneDistance_IQ15>>15;
-;*** 168	-----------------------    (*C$2).Distance_L_U32 = LMotor.GoneDistance_IQ15>>15;
-;*** 169	-----------------------    K$8 = K$8;
-;*** 169	-----------------------    U$9 = C$2;
-;*** 169	-----------------------    (*U$9).Distance_U32 = (*U$9).Distance_L_U32+(*U$9).Distance_R_U32>>1;
-;*** 170	-----------------------    RMotor.GoneDistance_IQ15 = 0L;
-;*** 170	-----------------------    LMotor.GoneDistance_IQ15 = 0L;
-;*** 172	-----------------------    if ( mark ) goto g5;
+;*** 171	-----------------------    K$8 = &Search[0];
+;*** 171	-----------------------    C$2 = &K$8[(long)MARK_U16_CNT];
+;*** 171	-----------------------    (*C$2).Distance_R_U32 = RMotor.GoneDistance_IQ15>>15;
+;*** 172	-----------------------    (*C$2).Distance_L_U32 = LMotor.GoneDistance_IQ15>>15;
+;*** 173	-----------------------    K$8 = K$8;
+;*** 173	-----------------------    U$9 = C$2;
+;*** 173	-----------------------    (*U$9).Distance_U32 = (*U$9).Distance_L_U32+(*U$9).Distance_R_U32>>1;
+;*** 174	-----------------------    RMotor.GoneDistance_IQ15 = 0L;
+;*** 174	-----------------------    LMotor.GoneDistance_IQ15 = 0L;
+;*** 176	-----------------------    if ( mark ) goto g5;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -1430,114 +1408,114 @@ DW$126	.dwtag  DW_TAG_variable, DW_AT_name("K$8"), DW_AT_symbol_name("K$8")
 DW$127	.dwtag  DW_TAG_variable, DW_AT_name("K$8"), DW_AT_symbol_name("K$8")
 	.dwattr DW$127, DW_AT_type(*DW$T$158)
 	.dwattr DW$127, DW_AT_location[DW_OP_reg14]
-	.dwpsn	"search.c",167,2
+	.dwpsn	"search.c",171,2
         MOVW      DP,#_MARK_U16_CNT
-        MOV       T,#24                 ; |167| 
-        MOVL      XAR5,#_Search         ; |167| 
-        MPYXU     P,T,@_MARK_U16_CNT    ; |167| 
-        MOVL      ACC,XAR5              ; |167| 
+        MOV       T,#24                 ; |171| 
+        MOVL      XAR5,#_Search         ; |171| 
+        MPYXU     P,T,@_MARK_U16_CNT    ; |171| 
+        MOVL      ACC,XAR5              ; |171| 
         ADDL      ACC,P
         MOVW      DP,#_RMotor+10
-        MOVL      XAR6,ACC              ; |167| 
+        MOVL      XAR6,ACC              ; |171| 
         SETC      SXM
-        MOVL      ACC,@_RMotor+10       ; |167| 
-        SFR       ACC,15                ; |167| 
-        MOVL      *+XAR6[0],ACC         ; |167| 
-	.dwpsn	"search.c",168,2
+        MOVL      ACC,@_RMotor+10       ; |171| 
+        SFR       ACC,15                ; |171| 
+        MOVL      *+XAR6[0],ACC         ; |171| 
+	.dwpsn	"search.c",172,2
         MOVW      DP,#_LMotor+10
-        MOVL      ACC,@_LMotor+10       ; |168| 
-        SFR       ACC,15                ; |168| 
-        MOVL      *+XAR6[2],ACC         ; |168| 
-	.dwpsn	"search.c",169,2
-        MOVL      ACC,*+XAR6[0]         ; |169| 
+        MOVL      ACC,@_LMotor+10       ; |172| 
+        SFR       ACC,15                ; |172| 
+        MOVL      *+XAR6[2],ACC         ; |172| 
+	.dwpsn	"search.c",173,2
+        MOVL      ACC,*+XAR6[0]         ; |173| 
         CLRC      SXM
-        ADDL      ACC,*+XAR6[2]         ; |169| 
-        SFR       ACC,1                 ; |169| 
-        MOVL      *+XAR6[4],ACC         ; |169| 
-	.dwpsn	"search.c",170,2
+        ADDL      ACC,*+XAR6[2]         ; |173| 
+        SFR       ACC,1                 ; |173| 
+        MOVL      *+XAR6[4],ACC         ; |173| 
+	.dwpsn	"search.c",174,2
         MOVW      DP,#_RMotor+10
         MOVB      ACC,#0
-        MOVL      @_RMotor+10,ACC       ; |170| 
+        MOVL      @_RMotor+10,ACC       ; |174| 
         MOVW      DP,#_LMotor+10
-        MOVL      @_LMotor+10,ACC       ; |170| 
-	.dwpsn	"search.c",172,2
+        MOVL      @_LMotor+10,ACC       ; |174| 
+	.dwpsn	"search.c",176,2
         MOVL      ACC,XAR4
-        BF        L24,NEQ               ; |172| 
-        ; branchcc occurs ; |172| 
-;*** 174	-----------------------    if ( *&Flag&0x20u ) goto g4;
-	.dwpsn	"search.c",174,3
+        BF        L24,NEQ               ; |176| 
+        ; branchcc occurs ; |176| 
+;*** 178	-----------------------    if ( *&Flag&0x20u ) goto g4;
+	.dwpsn	"search.c",178,3
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#5             ; |174| 
-        BF        L23,TC                ; |174| 
-        ; branchcc occurs ; |174| 
-;*** 175	-----------------------    (*U$9).TurnWay_U32 = 4096uL;
-;*** 175	-----------------------    goto g7;
-	.dwpsn	"search.c",175,10
-        MOVL      XAR4,#4096            ; |175| 
-        MOVL      *+XAR6[6],XAR4        ; |175| 
-        BF        L27,UNC               ; |175| 
-        ; branch occurs ; |175| 
+        TBIT      @_Flag,#5             ; |178| 
+        BF        L23,TC                ; |178| 
+        ; branchcc occurs ; |178| 
+;*** 179	-----------------------    (*U$9).TurnWay_U32 = 4096uL;
+;*** 179	-----------------------    goto g7;
+	.dwpsn	"search.c",179,10
+        MOVL      XAR4,#4096            ; |179| 
+        MOVL      *+XAR6[6],XAR4        ; |179| 
+        BF        L27,UNC               ; |179| 
+        ; branch occurs ; |179| 
 L23:    
 ;***	-----------------------g4:
-;*** 174	-----------------------    (*U$9).TurnWay_U32 = 8192uL;
-;*** 174	-----------------------    goto g7;
-	.dwpsn	"search.c",174,17
-        MOVL      XAR4,#8192            ; |174| 
-        MOVL      *+XAR6[6],XAR4        ; |174| 
-        BF        L27,UNC               ; |174| 
-        ; branch occurs ; |174| 
+;*** 178	-----------------------    (*U$9).TurnWay_U32 = 8192uL;
+;*** 178	-----------------------    goto g7;
+	.dwpsn	"search.c",178,17
+        MOVL      XAR4,#8192            ; |178| 
+        MOVL      *+XAR6[6],XAR4        ; |178| 
+        BF        L27,UNC               ; |178| 
+        ; branch occurs ; |178| 
 L24:    
 ;***	-----------------------g5:
-;*** 179	-----------------------    ++MARK_U16_CNT;
-;*** 181	-----------------------    (mark == &LMark) ? (S$1 = 2uL) : (S$1 = 4uL);
-	.dwpsn	"search.c",179,3
+;*** 183	-----------------------    ++MARK_U16_CNT;
+;*** 185	-----------------------    (mark == &LMark) ? (S$1 = 2uL) : (S$1 = 4uL);
+	.dwpsn	"search.c",183,3
         MOVW      DP,#_MARK_U16_CNT
-        INC       @_MARK_U16_CNT        ; |179| 
-	.dwpsn	"search.c",181,3
-        MOVL      XAR6,#_LMark          ; |181| 
-        MOVL      ACC,XAR6              ; |181| 
-        CMPL      ACC,XAR4              ; |181| 
-        BF        L25,NEQ               ; |181| 
-        ; branchcc occurs ; |181| 
+        INC       @_MARK_U16_CNT        ; |183| 
+	.dwpsn	"search.c",185,3
+        MOVL      XAR6,#_LMark          ; |185| 
+        MOVL      ACC,XAR6              ; |185| 
+        CMPL      ACC,XAR4              ; |185| 
+        BF        L25,NEQ               ; |185| 
+        ; branchcc occurs ; |185| 
         MOVB      XAR6,#2
-        BF        L26,UNC               ; |181| 
-        ; branch occurs ; |181| 
+        BF        L26,UNC               ; |185| 
+        ; branch occurs ; |185| 
 L25:    
         MOVB      XAR6,#4
 L26:    
-;*** 181	-----------------------    U$9 = &K$8[(long)MARK_U16_CNT];
-;*** 181	-----------------------    (*U$9).TurnWay_U32 = S$1;
-;*** 182	-----------------------    if ( MARK_U16_CNT == 0u || S$1 != (K$8[(long)(MARK_U16_CNT-1u)]).TurnWay_U32 ) goto g7;
-        MOV       T,#24                 ; |181| 
-        MPYXU     P,T,@_MARK_U16_CNT    ; |181| 
-        MOVL      ACC,XAR5              ; |181| 
+;*** 185	-----------------------    U$9 = &K$8[(long)MARK_U16_CNT];
+;*** 185	-----------------------    (*U$9).TurnWay_U32 = S$1;
+;*** 186	-----------------------    if ( MARK_U16_CNT == 0u || S$1 != (K$8[(long)(MARK_U16_CNT-1u)]).TurnWay_U32 ) goto g7;
+        MOV       T,#24                 ; |185| 
+        MPYXU     P,T,@_MARK_U16_CNT    ; |185| 
+        MOVL      ACC,XAR5              ; |185| 
         ADDL      ACC,P
-        MOVL      XAR4,ACC              ; |181| 
-        MOVL      *+XAR4[6],XAR6        ; |181| 
-	.dwpsn	"search.c",182,3
-        MOV       AL,@_MARK_U16_CNT     ; |182| 
-        BF        L27,EQ                ; |182| 
-        ; branchcc occurs ; |182| 
-        MOV       T,#24                 ; |182| 
+        MOVL      XAR4,ACC              ; |185| 
+        MOVL      *+XAR4[6],XAR6        ; |185| 
+	.dwpsn	"search.c",186,3
+        MOV       AL,@_MARK_U16_CNT     ; |186| 
+        BF        L27,EQ                ; |186| 
+        ; branchcc occurs ; |186| 
+        MOV       T,#24                 ; |186| 
         ADDB      AL,#-1
-        MPYXU     ACC,T,AL              ; |182| 
+        MPYXU     ACC,T,AL              ; |186| 
         ADDL      XAR5,ACC
-        MOVL      ACC,XAR6              ; |182| 
-        CMPL      ACC,*+XAR5[6]         ; |182| 
-        BF        L27,NEQ               ; |182| 
-        ; branchcc occurs ; |182| 
-;*** 182	-----------------------    (*U$9).TurnWay_U32 = 1uL;
+        MOVL      ACC,XAR6              ; |186| 
+        CMPL      ACC,*+XAR5[6]         ; |186| 
+        BF        L27,NEQ               ; |186| 
+        ; branchcc occurs ; |186| 
+;*** 186	-----------------------    (*U$9).TurnWay_U32 = 1uL;
 ;***	-----------------------g7:
 ;***  	-----------------------    return;
-	.dwpsn	"search.c",182,96
+	.dwpsn	"search.c",186,96
         MOVB      ACC,#1
-        MOVL      *+XAR4[6],ACC         ; |182| 
+        MOVL      *+XAR4[6],ACC         ; |186| 
 L27:    
-	.dwpsn	"search.c",184,1
+	.dwpsn	"search.c",188,1
         LRETR
         ; return occurs
 	.dwattr DW$119, DW_AT_end_file("search.c")
-	.dwattr DW$119, DW_AT_end_line(0xb8)
+	.dwattr DW$119, DW_AT_end_line(0xbc)
 	.dwattr DW$119, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$119

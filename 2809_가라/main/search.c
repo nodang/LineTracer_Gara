@@ -62,22 +62,26 @@ void Init_RUN()
 
 	EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = 7;
 	EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = ((Uint16)MOTOR_PERIOD_MAXIMUM) << 1;
+/*
 	EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 2);		EPwm1Regs.CMPB = EPwm2Regs.CMPB = (EPwm2Regs.TBPRD >> 2) + (EPwm2Regs.TBPRD >> 1);
-	EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 2);		EPwm3Regs.CMPB = EPwm4Regs.CMPB = (EPwm4Regs.TBPRD >> 2) + (EPwm4Regs.TBPRD >> 1);
+	EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 2);		EPwm3Regs.CMPB = EPwm4Regs.CMPB = (EPwm4Regs.TBPRD >> 2) + (EPwm4Regs.TBPRD >> 1);	
+*/
+	EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 1);
+	EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1);
 	
 	EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 3;
 	EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
 
-	/*
-	EPwm1Regs.AQCTLA.all = EPwm3Regs.AQCTLA.all = 0x0090;
-	EPwm1Regs.AQCTLB.all = EPwm3Regs.AQCTLB.all = 0x0060;
-	EPwm2Regs.AQCTLA.all = EPwm4Regs.AQCTLA.all = 0x0006;
-	EPwm2Regs.AQCTLB.all = EPwm4Regs.AQCTLB.all = 0x0009;
+/*
+	EPwm1Regs.AQCTLA.all = EPwm4Regs.AQCTLB.all = 0x0810;
+	EPwm1Regs.AQCTLB.all = EPwm4Regs.AQCTLA.all = 0x0420;
+	EPwm2Regs.AQCTLA.all = EPwm3Regs.AQCTLB.all = 0x0180;
+	EPwm2Regs.AQCTLB.all = EPwm3Regs.AQCTLA.all = 0x0240;
 */
-	EPwm1Regs.AQCTLA.all = EPwm3Regs.AQCTLA.all = 0x0810;
-	EPwm1Regs.AQCTLB.all = EPwm3Regs.AQCTLB.all = 0x0420;
-	EPwm2Regs.AQCTLA.all = EPwm4Regs.AQCTLA.all = 0x0180;
-	EPwm2Regs.AQCTLB.all = EPwm4Regs.AQCTLB.all = 0x0240;
+	EPwm1Regs.AQCTLA.all = EPwm4Regs.AQCTLB.all = 0x0090;
+	EPwm1Regs.AQCTLB.all = EPwm4Regs.AQCTLA.all = 0x0060;
+	EPwm2Regs.AQCTLA.all = EPwm3Regs.AQCTLB.all = 0x0006;
+	EPwm2Regs.AQCTLB.all = EPwm3Regs.AQCTLA.all = 0x0009;
 	/*
 	//rsvd | CBD CBU CAD CAU PRD ZRO
 	//A    | 00  00  10  01  00  00		0x0090
@@ -98,7 +102,7 @@ void Init_RUN()
 	pPWM->AQCTLB.bit.CAU = AQ_SET;
 	pPWM->AQCTLB.bit.CBD = AQ_CLEAR;
 
-	pPWM->AQCTLA.bit.CBU = AQ_CLEAR;
+	pPWM->AQCTLA.bit.CBU = AQ_CLEAR; 
 	pPWM->AQCTLA.bit.CAD = AQ_SET;
 	
 	pPWM->AQCTLB.bit.CBU = AQ_SET;
@@ -143,7 +147,7 @@ void RUN()
 
 	while(1)
 	{
-		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.PrdNext_IQ14 >> 14);
+		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld, %4u\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV);
 		//TxPrintf("%5ld %4u %2ld\n", (int32)(SenAdc.Position_IQ10 >> 10), LINE_OUT_U16, RMotor.RolEach_IQ26 >> 26);
 		//TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld %4ld %4ld %u %u\n", LMotor.MaxTargetAcc_IQ17 >> 17, LMotor.NextAccel_IQ17 >> 17, LMotor.AccActable_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, LMotor.HandleVelo_IQ17 >> 17, RMotor.HandleVelo_IQ17 >> 17, LMotor.FinalVelo_IQ17 >> 17, RMotor.FinalVelo_IQ17 >> 17, EPwm2Regs.TBCTL.bit.CLKDIV, EPwm1Regs.TBCTL.bit.CLKDIV);
 		//TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld %4ld %4ld %lu %lu\n", LMotor.PrdNext_IQ14 >> 7, RMotor.PrdNext_IQ14 >> 7, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17, LMotor.HandleVelo_IQ17 >> 17, RMotor.HandleVelo_IQ17 >> 17, LMotor.FinalVelo_IQ17 >> 17, RMotor.FinalVelo_IQ17 >> 17, RMotor.Period_U32, LMotor.Period_U32);
@@ -154,7 +158,7 @@ void RUN()
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
 		LMark.TurnmarkDistance_IQ17 = RMark.TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17 >> 1) + (LMotor.TurnMarkCheckDistance_IQ17 >> 1);
-			
+				
 		TURN_DECIDE(&RMark, &LMark);
 		TURN_DECIDE(&LMark, &RMark);
 		if(END_STOP() || LINE_OUT_STOP())		return;

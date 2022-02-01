@@ -15,11 +15,12 @@
 #ifndef __SEARCH_H__
 #define __SEARCH_H__
 
-#endif
-
 extern void Init_RUN();
 extern void RUN();
 extern void LINE_INFO(TURNMARK * mark);
 extern void LINE_PRINTF();
+
+#endif
+
 
 

@@ -166,6 +166,27 @@ void MOVE_TO_END(_iq17 distance)
 	StartCpuTimer2();
 }
 
+inline void SECOND_DECEL_VALUE(MOTORCTRL *pRM, MOTORCTRL *pLM)
+{
+	if(pRM->DecelFlag_U16 || pLM->DecelFlag_U16)
+	{
+		if(pRM->DecelDistance_IQ17 > pRM->ErrorDistance_IQ17)
+		{
+			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
+			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
+
+			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
+		}
+		else if(pLM->DecelDistance_IQ17 > pLM->ErrorDistance_IQ17)
+		{
+			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
+			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
+
+			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
+		}
+	}
+}
+
 interrupt void MOTOR_ISR()
 {	
 	Uint16 clk1, clk2;
@@ -177,11 +198,20 @@ interrupt void MOTOR_ISR()
 	if(Flag.Motor_U16)
 	{	
 		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
-		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm2Regs.TBCTL.bit.CLKDIV);
+		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm3Regs.TBCTL.bit.CLKDIV);
 	
 		EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = clk1;	
 		EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = clk2;
 
+		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 13);
+		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 1);
+		EPwm2Regs.CMPA.half.CMPA = (EPwm2Regs.TBPRD >> 1);
+				
+		EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 13);
+		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1);
+		EPwm4Regs.CMPA.half.CMPA = (EPwm4Regs.TBPRD >> 1);
+
+/*
 		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 13);
 		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 2);
 		EPwm2Regs.CMPA.half.CMPA = (EPwm2Regs.TBPRD >> 2);
@@ -193,7 +223,8 @@ interrupt void MOTOR_ISR()
 		EPwm4Regs.CMPA.half.CMPA = (EPwm4Regs.TBPRD >> 2);
 		EPwm3Regs.CMPB = (EPwm3Regs.TBPRD >> 2) + (EPwm3Regs.TBPRD >> 1);
 		EPwm4Regs.CMPB = (EPwm4Regs.TBPRD >> 2) + (EPwm4Regs.TBPRD >> 1);
-	/*
+*/
+/*
 		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
 		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm3Regs.TBCTL.bit.CLKDIV);
 		
@@ -204,7 +235,7 @@ interrupt void MOTOR_ISR()
 		
 		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
 		EPwm3Regs.CMPA.half.CMPA = ((EPwm3Regs.TBPRD) >> 1) + ((EPwm3Regs.TBPRD) >> 2) + ((EPwm3Regs.TBPRD) >> 3);
-		*/
+*/
 		if(Flag.Fast_U16 | Flag.Extrem_U16) 	SECOND_DECEL_VALUE(&RMotor, &LMotor);
 		if(Flag.MoveState_U16)					TIME_INDEX_U32++;
 		if(Flag.STOP)							STOP_TIME_INDEX_U32++;
@@ -259,7 +290,7 @@ Uint16 END_STOP()
 Uint16 LINE_OUT_STOP()
 {
 	//TxPrintf("LINEout : %u\n", LINE_OUT_U16);
-	if(LINE_OUT_U16 < 500)		return 0;
+	if(LINE_OUT_U16 < 300)		return 0;
 
 	LINE_OUT_U16 = LINE_OUT;			// 300보다 큰 숫자를 넣음으로서 라인 아웃 처리됨을 알림
 	Flag.MoveState_U16 = OFF;
@@ -318,9 +349,9 @@ void SHUTDOWN()
 			EPwm1Regs.AQCTLB.all = EPwm3Regs.AQCTLB.all = 0x0001;
 			EPwm2Regs.AQCTLA.all = EPwm4Regs.AQCTLA.all = 0x0001;
 			EPwm2Regs.AQCTLB.all = EPwm4Regs.AQCTLB.all = 0x0001;
-			TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
+			//TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
 			//EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
-			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
+			//GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
 			LED_R_OFF;		LED_L_OFF;		
 
@@ -329,28 +360,6 @@ void SHUTDOWN()
 		else	POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 	}
 }
-
-inline void SECOND_DECEL_VALUE(MOTORCTRL *pRM, MOTORCTRL *pLM)
-{
-	if(pRM->DecelFlag_U16 || pLM->DecelFlag_U16)
-	{
-		if(pRM->DecelDistance_IQ17 > pRM->ErrorDistance_IQ17)
-		{
-			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
-			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
-
-			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
-		}
-		else if(pLM->DecelDistance_IQ17 > pLM->ErrorDistance_IQ17)
-		{
-			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
-			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
-
-			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
-		}
-	}
-}
-
 void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _iq16 jerk, volatile _iq17 *decel_dist)
 {
 	curVEL	= _IQ17div(curVEL, _IQ17(1000.0));

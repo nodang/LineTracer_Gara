@@ -22,7 +22,10 @@ void RUN_THIRD()
 	
 	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
-	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+	//GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+
+	EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 2;
+	EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
 	
 	while(1)
 	{
@@ -33,12 +36,12 @@ void RUN_THIRD()
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
 		LMark.TurnmarkDistance_IQ17 = RMark.TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17 >> 1) + (LMotor.TurnMarkCheckDistance_IQ17 >> 1);
-			
+				
 		TURN_DECIDE(&RMark, &LMark);
 		TURN_DECIDE(&LMark, &RMark);
-
 		if(END_STOP() || LINE_OUT_STOP())		return;
-		else;
+
+
 		if(ERROR_U16_FLAG)	{	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 								Flag.Extrem_U16 = OFF;
 								ERROR_U16_FLAG = OFF;	

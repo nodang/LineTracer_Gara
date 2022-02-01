@@ -417,9 +417,6 @@ extern volatile struct EPWM_REGS EPwm6Regs;
 #define	AQ_SET			0x2
 #define	AQ_TOGGLE		0x3
 
-extern void InitEPWM_A(volatile struct EPWM_REGS *pPWM);
-extern void InitEPWM_B(volatile struct EPWM_REGS *pPWM);	
-
 #ifdef __cplusplus
 
 #endif /* extern "C" */

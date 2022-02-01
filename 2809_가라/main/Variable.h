@@ -152,12 +152,12 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 
 #define	HEIGHT_ME			300.0//		208.0	//292.7		//300.0		// ¾à 255mm
 #define HEIGHT_SEEN			208.0	//274.1		//200.0		// sensor between motor weight center
-#define	HEIGHT_REARdiv2		104.0
+#define	HEIGHT_REARdiv2		80.0//104.0
 
-#define	MOTOR_PERIOD_MAXIMUM		16383.0		// clk = 7 -> vel = 9.7 mm/s
-#define	MOTOR_PERIOD_MAXIMUMdiv2	8191.0		// clk = 7 -> vel = 19.9 mm/s
-#define	MOTOR_PERIOD_MAXIMUMdiv10	1.6383		// System minium clock is 10 ns
-#define	MOTOR_PERIOD_MINIMUM		4095.0		// clk = 0 -> vel = 5105 mm/s
+#define	MOTOR_PERIOD_MAXIMUM		32767.0		// clk = 7 -> vel = 9.7 mm/s
+#define	MOTOR_PERIOD_MAXIMUMdiv2	16384.0		// clk = 7 -> vel = 19.9 mm/s
+#define	MOTOR_PERIOD_MAXIMUMdiv10	3.2767		// System minium clock is 10 ns
+#define	MOTOR_PERIOD_MINIMUM		8192.0		// clk = 0 -> vel = 5105 mm/s
 
 /*
 #define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.7 mm/s
@@ -165,7 +165,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	MOTOR_PERIOD_MAXIMUMdiv10	6.5534		// System minium clock is 10 ns
 #define	MOTOR_PERIOD_MINIMUM		16384.0		// clk = 0 -> vel = 5105 mm/s
 */
-#define MOTOR_ResetEnable	0x00000021		/*GPIO0,5 	0000 0000 0000 0000  0000 0000 0010 0001  */ 
+//#define MOTOR_ResetEnable	0x00000021		/*GPIO0,5 	0000 0000 0000 0000  0000 0000 0010 0001  */ 
 
 #define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all

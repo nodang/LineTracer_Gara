@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Tue Jan 25 22:56:59 2022                 *
+;* Date/Time created: Wed Jan 26 18:30:54 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -9,8 +9,8 @@ DW$CU	.dwtag  DW_TAG_compile_unit
 	.dwattr DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v4.1.3 Copyright (c) 1996-2006 Texas Instruments Incorporated")
 	.dwattr DW$CU, DW_AT_stmt_list(0x00)
 	.dwattr DW$CU, DW_AT_TI_VERSION(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI55610 C:\Users\노호진\AppData\Local\Temp\TI5564 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI5562 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI5566 --object_file DSP280x_EPwm.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI70810 C:\Users\노호진\AppData\Local\Temp\TI7084 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI7082 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI7086 --object_file DSP280x_EPwm.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_InitEPWM_B
 
@@ -61,7 +61,7 @@ _InitEPWM_B:
 ;*** 153	-----------------------    (*pPWM).TZEINT.all = 0u;
 ;*** 154	-----------------------    (*pPWM).ETSEL.all = 0u;
 ;*** 155	-----------------------    (*pPWM).ETPS.all = 0u;
-;*** 157	-----------------------    (*pPWM).TBPRD = 32766u;
+;*** 157	-----------------------    (*pPWM).TBPRD = 0xfffeu;
 ;*** 159	-----------------------    (*pPWM).CMPA.half.CMPA = (*pPWM).TBPRD>>2;
 ;*** 160	-----------------------    (*pPWM).CMPB = ((*pPWM).TBPRD>>2)+((*pPWM).TBPRD>>1);
 ;*** 160	-----------------------    return;
@@ -135,7 +135,7 @@ DW$3	.dwtag  DW_TAG_variable, DW_AT_name("pPWM"), DW_AT_symbol_name("_pPWM")
         MOVB      XAR0,#26              ; |155| 
         MOV       *+XAR4[AR0],#0        ; |155| 
 	.dwpsn	"DSP280x_EPwm.c",157,2
-        MOV       *+XAR4[5],#32766      ; |157| 
+        MOV       *+XAR4[5],#65534      ; |157| 
 	.dwpsn	"DSP280x_EPwm.c",159,2
         MOV       AL,*+XAR4[5]          ; |159| 
         MOVB      XAR0,#9               ; |159| 
@@ -208,7 +208,7 @@ _InitEPWM_A:
 ;*** 105	-----------------------    (*pPWM).TZEINT.all = 0u;
 ;*** 106	-----------------------    (*pPWM).ETSEL.all = 0u;
 ;*** 107	-----------------------    (*pPWM).ETPS.all = 0u;
-;*** 109	-----------------------    (*pPWM).TBPRD = 32766u;
+;*** 109	-----------------------    (*pPWM).TBPRD = 0xfffeu;
 ;*** 111	-----------------------    (*pPWM).CMPA.half.CMPA = (*pPWM).TBPRD>>2;
 ;*** 112	-----------------------    (*pPWM).CMPB = ((*pPWM).TBPRD>>2)+((*pPWM).TBPRD>>1);
 ;*** 112	-----------------------    return;
@@ -282,7 +282,7 @@ DW$6	.dwtag  DW_TAG_variable, DW_AT_name("pPWM"), DW_AT_symbol_name("_pPWM")
         MOVB      XAR0,#26              ; |107| 
         MOV       *+XAR4[AR0],#0        ; |107| 
 	.dwpsn	"DSP280x_EPwm.c",109,2
-        MOV       *+XAR4[5],#32766      ; |109| 
+        MOV       *+XAR4[5],#65534      ; |109| 
 	.dwpsn	"DSP280x_EPwm.c",111,2
         MOV       AL,*+XAR4[5]          ; |111| 
         MOVB      XAR0,#9               ; |111| 

@@ -31,10 +31,10 @@ void System_Init(void)
 	InitAdc();
 
 	Init_ISR();
-	InitEPWM_A( &EPwm1Regs );
-	InitEPWM_B( &EPwm2Regs );
-	InitEPWM_A( &EPwm3Regs );
-	InitEPWM_B( &EPwm4Regs );
+	InitEPWM( &EPwm1Regs );
+	InitEPWM( &EPwm2Regs );
+	InitEPWM( &EPwm3Regs );
+	InitEPWM( &EPwm4Regs );
 /*
 	InitEPWM( &EPwm1Regs );
 	InitEPWM( &EPwm3Regs );
