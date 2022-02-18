@@ -154,10 +154,10 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define HEIGHT_SEEN			208.0	//274.1		//200.0		// sensor between motor weight center
 #define	HEIGHT_REARdiv2		80.0//104.0
 
-#define	MOTOR_PERIOD_MAXIMUM		32767.0		// clk = 7 -> vel = 9.7 mm/s
-#define	MOTOR_PERIOD_MAXIMUMdiv2	16384.0		// clk = 7 -> vel = 19.9 mm/s
-#define	MOTOR_PERIOD_MAXIMUMdiv10	3.2767		// System minium clock is 10 ns
-#define	MOTOR_PERIOD_MINIMUM		8192.0		// clk = 0 -> vel = 5105 mm/s
+#define	MOTOR_PERIOD_MAXIMUM		65535.0		// clk = 7 -> vel = 5.0 mm/s
+//#define	MOTOR_PERIOD_MAXIMUMdiv2	32767.5
+#define	MOTOR_PERIOD_MAXIMUMdiv10	6.5535		// System minium clock is 10 ns
+#define	MOTOR_PERIOD_MINIMUM		9294.0		// clk = 0 -> vel = 4500 mm/s
 
 /*
 #define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.7 mm/s

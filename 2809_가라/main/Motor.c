@@ -47,13 +47,13 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	{
 		pM->NextVelocity_IQ17 += _IQ16mpy(_IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 		if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)		pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;
-		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17));
+		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{		
 		pM->NextVelocity_IQ17 += _IQ16mpy(_IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)		pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
-		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17));
+		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// Normal Accel Compute
@@ -74,12 +74,12 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	{
 		if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
 			if(pM->NextAccel_IQ16 > pM->AccelLimit_IQ16)			pM->NextAccel_IQ16 = pM->AccelLimit_IQ16;
 		}
 		else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
 			if(pM->NextAccel_IQ16 < -pM->AccelLimit_IQ16)			pM->NextAccel_IQ16 = -pM->AccelLimit_IQ16;
 		}
 	}
@@ -129,7 +129,6 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq16 jerk)
 {	
-	StopCpuTimer0();
 	StopCpuTimer2();
 
 	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
@@ -146,7 +145,6 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 
 void MOVE_TO_END(_iq17 distance)
 {
-	StopCpuTimer0();
 	StopCpuTimer2();
 	
 	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = _IQ17(0.0);
@@ -202,39 +200,12 @@ interrupt void MOTOR_ISR()
 		EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = clk1;	
 		EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = clk2;
 
-		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 1);
-		EPwm2Regs.CMPA.half.CMPA = (EPwm2Regs.TBPRD >> 1);
-				
-		EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
-		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1);
-		EPwm4Regs.CMPA.half.CMPA = (EPwm4Regs.TBPRD >> 1);
-
-/*
 		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 13);
-		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 2);
-		EPwm2Regs.CMPA.half.CMPA = (EPwm2Regs.TBPRD >> 2);
-		EPwm1Regs.CMPB = (EPwm1Regs.TBPRD >> 2) + (EPwm1Regs.TBPRD >> 1);
-		EPwm2Regs.CMPB = (EPwm2Regs.TBPRD >> 2) + (EPwm2Regs.TBPRD >> 1);
+		EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
 		
 		EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 13);
-		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 2);
-		EPwm4Regs.CMPA.half.CMPA = (EPwm4Regs.TBPRD >> 2);
-		EPwm3Regs.CMPB = (EPwm3Regs.TBPRD >> 2) + (EPwm3Regs.TBPRD >> 1);
-		EPwm4Regs.CMPB = (EPwm4Regs.TBPRD >> 2) + (EPwm4Regs.TBPRD >> 1);
-*/
-/*
-		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
-		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm3Regs.TBCTL.bit.CLKDIV);
-		
-		EPwm1Regs.TBCTL.bit.CLKDIV = clk1;		EPwm3Regs.TBCTL.bit.CLKDIV = clk2;
+		EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
 
-		EPwm1Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		EPwm1Regs.CMPB = ((EPwm1Regs.TBPRD) >> 1) + ((EPwm1Regs.TBPRD) >> 2) + ((EPwm1Regs.TBPRD) >> 3);
-		
-		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
-		EPwm3Regs.CMPA.half.CMPA = ((EPwm3Regs.TBPRD) >> 1) + ((EPwm3Regs.TBPRD) >> 2) + ((EPwm3Regs.TBPRD) >> 3);
-*/
 		if(Flag.Fast_U16 | Flag.Extrem_U16) 	SECOND_DECEL_VALUE(&RMotor, &LMotor);
 		if(Flag.MoveState_U16)					TIME_INDEX_U32++;
 		if(Flag.STOP)							STOP_TIME_INDEX_U32++;

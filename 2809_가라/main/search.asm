@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Tue Feb 01 15:30:36 2022                 *
+;* Date/Time created: Fri Feb 18 23:32:17 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -208,8 +208,8 @@ DW$59	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$59, DW_AT_type(*DW$T$156)
 	.dwattr DW$59, DW_AT_declaration(0x01)
 	.dwattr DW$59, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI03210 C:\Users\노호진\AppData\Local\Temp\TI0324 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI0322 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI0326 --object_file search.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI42410 C:\Users\노호진\AppData\Local\Temp\TI4244 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI4242 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI4246 --object_file search.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_Init_RUN
 
@@ -255,9 +255,9 @@ _Init_RUN:
 ;*** 63	-----------------------    *&EPwm3Regs = *&EPwm3Regs|0x1c00u;
 ;*** 63	-----------------------    *&EPwm2Regs = *&EPwm2Regs|0x1c00u;
 ;*** 63	-----------------------    *&EPwm1Regs = *&EPwm1Regs|0x1c00u;
-;*** 64	-----------------------    EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = 32767u;
-;*** 66	-----------------------    EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD>>1;
-;*** 67	-----------------------    EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD>>1;
+;*** 64	-----------------------    EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = 0xffffu;
+;*** 66	-----------------------    EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = 32767u;
+;*** 67	-----------------------    EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = 32767u;
 ;*** 69	-----------------------    *&EPwm4Regs;
 ;*** 69	-----------------------    *&EPwm4Regs = *&EPwm4Regs|3u;
 ;*** 69	-----------------------    *&EPwm3Regs = *&EPwm3Regs|3u;
@@ -325,7 +325,7 @@ _Init_RUN:
         OR        @_EPwm1Regs,#0x1c00   ; |63| 
 	.dwpsn	"search.c",64,2
         MOVW      DP,#_EPwm4Regs+5
-        MOV       AL,#32767             ; |64| 
+        MOV       AL,#65535             ; |64| 
         MOV       @_EPwm4Regs+5,AL      ; |64| 
         MOVW      DP,#_EPwm3Regs+5
         MOV       @_EPwm3Regs+5,AL      ; |64| 
@@ -334,17 +334,13 @@ _Init_RUN:
         MOVW      DP,#_EPwm1Regs+5
         MOV       @_EPwm1Regs+5,AL      ; |64| 
 	.dwpsn	"search.c",66,2
-        MOV       AL,@_EPwm1Regs+5      ; |66| 
-        LSR       AL,1                  ; |66| 
         MOVW      DP,#_EPwm2Regs+9
+        MOV       AL,#32767             ; |66| 
         MOV       @_EPwm2Regs+9,AL      ; |66| 
         MOVW      DP,#_EPwm1Regs+9
         MOV       @_EPwm1Regs+9,AL      ; |66| 
 	.dwpsn	"search.c",67,2
-        MOVW      DP,#_EPwm3Regs+5
-        MOV       AL,@_EPwm3Regs+5      ; |67| 
         MOVW      DP,#_EPwm4Regs+9
-        LSR       AL,1                  ; |67| 
         MOV       @_EPwm4Regs+9,AL      ; |67| 
         MOVW      DP,#_EPwm3Regs+9
         MOV       @_EPwm3Regs+9,AL      ; |67| 
@@ -642,7 +638,7 @@ L2:
         ; return occurs
 
 DW$69	.dwtag  DW_TAG_loop
-	.dwattr DW$69, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L1:1:1643697036")
+	.dwattr DW$69, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L1:1:1645194737")
 	.dwattr DW$69, DW_AT_begin_file("search.c")
 	.dwattr DW$69, DW_AT_begin_line(0x93)
 	.dwattr DW$69, DW_AT_end_line(0xa5)
@@ -1200,7 +1196,7 @@ L22:
         ; return occurs
 
 DW$79	.dwtag  DW_TAG_loop
-	.dwattr DW$79, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L6:1:1643697036")
+	.dwattr DW$79, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L6:1:1645194737")
 	.dwattr DW$79, DW_AT_begin_file("search.c")
 	.dwattr DW$79, DW_AT_begin_line(0xd3)
 	.dwattr DW$79, DW_AT_end_line(0x115)
@@ -1307,7 +1303,7 @@ DW$112	.dwtag  DW_TAG_loop_range
 
 
 DW$113	.dwtag  DW_TAG_loop
-	.dwattr DW$113, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L5:1:1643697036")
+	.dwattr DW$113, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\search.asm:L5:1:1645194737")
 	.dwattr DW$113, DW_AT_begin_file("search.c")
 	.dwattr DW$113, DW_AT_begin_line(0xc7)
 	.dwattr DW$113, DW_AT_end_line(0xcb)
