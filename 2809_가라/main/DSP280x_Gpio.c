@@ -28,20 +28,20 @@ void InitGpio(void)
 //   IO0 	- RIGHT_MOTOR_A_
 	GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;		dir	1			
 //   IO1 	- RIGHT_MOTOR_A^
-	GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;		dir	1			  
+	GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 0;		dir	1			  
 //   IO2 	-  RIGHT_MOTOR_B
-	GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;		dir	1
+	GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 0;		dir	1
 //   IO3 	- RIGHT_MOTOR_B^
-	GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1; 	dir 1
+	GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 0; 	dir 1
 	
 //   IO4 	- LEFT_MOTOR_A
 	GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;		dir	1
 //   IO5 	- LEFT_MOTOR_A^
-	GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;		dir	1
+	GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;		dir	1
 //   IO6 	- LEFT_MOTOR_B
-	GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 1;		dir	1
+	GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 0;		dir	1
 //   IO7 	- LEFT_MOTOR_B^
-	GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 1;		dir	1
+	GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 0;		dir	1
 	
 //   IO8 	- SENSOR_LED0
 	GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;		dir	1
@@ -61,8 +61,8 @@ void InitGpio(void)
 //   IO15   - SW_RIGHT
 	GpioCtrlRegs.GPAMUX1.bit.GPIO15 = 0;	dir	0
 	
-//mux	0000 0000 / 0000 0000 / 0101 0101 / 0101 0101 */
-	GpioCtrlRegs.GPAMUX1.all = 0x00005555;
+//mux	0000 0000 / 0000 0000 / 0000 0001 / 0000 0001 */
+	GpioCtrlRegs.GPAMUX1.all = 0x00000101;
 	
 /*
 //   IO16   - spi simo

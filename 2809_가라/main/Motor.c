@@ -197,14 +197,14 @@ interrupt void MOTOR_ISR()
 		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
 		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm3Regs.TBCTL.bit.CLKDIV);
 	
-		EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = clk1;	
-		EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = clk2;
+		EPwm1Regs.TBCTL.bit.CLKDIV = clk1;	
+		EPwm3Regs.TBCTL.bit.CLKDIV = clk2;
 
-		EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 13);
-		EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		
-		EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 13);
-		EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
+		EPwm1Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
+		EPwm1Regs.CMPA.half.CMPA = (Uint16)(RMotor.PrdNext_IQ14 >> 15);
+
+		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
+		EPwm3Regs.CMPA.half.CMPA = (Uint16)(LMotor.PrdNext_IQ14 >> 15);
 
 		if(Flag.Fast_U16 | Flag.Extrem_U16) 	SECOND_DECEL_VALUE(&RMotor, &LMotor);
 		if(Flag.MoveState_U16)					TIME_INDEX_U32++;
@@ -313,15 +313,8 @@ void SHUTDOWN()
 			StopCpuTimer2();
 			Flag.Motor_U16 = OFF;
 
-			EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 3;
-			EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
-			EPwm1Regs.AQCTLA.all = EPwm3Regs.AQCTLA.all = 0x0001;
-			EPwm1Regs.AQCTLB.all = EPwm3Regs.AQCTLB.all = 0x0001;
-			EPwm2Regs.AQCTLA.all = EPwm4Regs.AQCTLA.all = 0x0001;
-			EPwm2Regs.AQCTLB.all = EPwm4Regs.AQCTLB.all = 0x0001;
-			//TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
-			//EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
-			//GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
+			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
+			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
 			LED_R_OFF;		LED_L_OFF;		
 

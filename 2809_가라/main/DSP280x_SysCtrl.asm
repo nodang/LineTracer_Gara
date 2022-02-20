@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Fri Feb 18 23:32:13 2022                 *
+;* Date/Time created: Sun Feb 20 22:38:01 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -17,8 +17,8 @@ DW$2	.dwtag  DW_TAG_variable, DW_AT_name("SysCtrlRegs"), DW_AT_symbol_name("_Sys
 	.dwattr DW$2, DW_AT_type(*DW$T$75)
 	.dwattr DW$2, DW_AT_declaration(0x01)
 	.dwattr DW$2, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI08810 C:\Users\노호진\AppData\Local\Temp\TI0884 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI0882 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI0886 --object_file DSP280x_SysCtrl.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI39210 C:\Users\노호진\AppData\Local\Temp\TI3924 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI3922 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI3926 --object_file DSP280x_SysCtrl.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_ServiceDog
 
@@ -251,7 +251,7 @@ L4:
         ; return occurs
 
 DW$9	.dwtag  DW_TAG_loop
-	.dwattr DW$9, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\DSP280x_SysCtrl.asm:L3:1:1645194733")
+	.dwattr DW$9, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\DSP280x_SysCtrl.asm:L3:1:1645364281")
 	.dwattr DW$9, DW_AT_begin_file("DSP280x_SysCtrl.c")
 	.dwattr DW$9, DW_AT_begin_line(0xb5)
 	.dwattr DW$9, DW_AT_end_line(0xb9)
@@ -305,13 +305,11 @@ _InitPeripheralClocks:
 ;*** 244	-----------------------    *((volatile struct _PCLKCR0_BITS *)C$1+12L) |= 0x8u;
 ;*** 245	-----------------------    *(&SysCtrlRegs+12L) |= 0x400u;
 ;*** 246	-----------------------    *(&SysCtrlRegs+12L) |= 0x100u;
-;*** 271	-----------------------    *((volatile struct _PCLKCR1_BITS *)C$1+13L) |= 1u;
-;*** 272	-----------------------    *(&SysCtrlRegs+13L) |= 2u;
+;*** 272	-----------------------    *((volatile struct _PCLKCR1_BITS *)C$1+13L) |= 1u;
 ;*** 273	-----------------------    *(&SysCtrlRegs+13L) |= 4u;
-;*** 274	-----------------------    *(&SysCtrlRegs+13L) |= 0x8u;
-;*** 276	-----------------------    *(&SysCtrlRegs+12L) |= 4u;
-;*** 278	-----------------------    asm(" EDIS");
-;*** 278	-----------------------    return;
+;*** 278	-----------------------    *(&SysCtrlRegs+12L) |= 4u;
+;*** 280	-----------------------    asm(" EDIS");
+;*** 280	-----------------------    return;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -344,27 +342,23 @@ DW$12	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
         OR        @_SysCtrlRegs+12,#0x0400 ; |245| 
 	.dwpsn	"DSP280x_SysCtrl.c",246,2
         OR        @_SysCtrlRegs+12,#0x0100 ; |246| 
-	.dwpsn	"DSP280x_SysCtrl.c",271,2
+	.dwpsn	"DSP280x_SysCtrl.c",272,2
         MOVB      ACC,#13
         ADDL      ACC,XAR5
-        MOVL      XAR4,ACC              ; |271| 
-        OR        *+XAR4[0],#0x0001     ; |271| 
-	.dwpsn	"DSP280x_SysCtrl.c",272,2
-        OR        @_SysCtrlRegs+13,#0x0002 ; |272| 
+        MOVL      XAR4,ACC              ; |272| 
+        OR        *+XAR4[0],#0x0001     ; |272| 
 	.dwpsn	"DSP280x_SysCtrl.c",273,2
         OR        @_SysCtrlRegs+13,#0x0004 ; |273| 
-	.dwpsn	"DSP280x_SysCtrl.c",274,2
-        OR        @_SysCtrlRegs+13,#0x0008 ; |274| 
-	.dwpsn	"DSP280x_SysCtrl.c",276,2
-        OR        @_SysCtrlRegs+12,#0x0004 ; |276| 
-	.dwpsn	"DSP280x_SysCtrl.c",278,5
+	.dwpsn	"DSP280x_SysCtrl.c",278,2
+        OR        @_SysCtrlRegs+12,#0x0004 ; |278| 
+	.dwpsn	"DSP280x_SysCtrl.c",280,5
  EDIS
-	.dwpsn	"DSP280x_SysCtrl.c",279,1
+	.dwpsn	"DSP280x_SysCtrl.c",281,1
         SPM       #0
         LRETR
         ; return occurs
 	.dwattr DW$11, DW_AT_end_file("DSP280x_SysCtrl.c")
-	.dwattr DW$11, DW_AT_end_line(0x117)
+	.dwattr DW$11, DW_AT_end_line(0x119)
 	.dwattr DW$11, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$11

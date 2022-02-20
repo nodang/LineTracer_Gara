@@ -59,61 +59,7 @@ void Init_RUN()
 	ERROR_U16_FLAG = OFF;
 	CROSS_PLUS_SEARCH_U32 = 0;
 	CROSS_PLUS_U32 = 0;
-
-	EPwm1Regs.TBCTL.bit.CLKDIV = EPwm2Regs.TBCTL.bit.CLKDIV = EPwm3Regs.TBCTL.bit.CLKDIV = EPwm4Regs.TBCTL.bit.CLKDIV = 7;
-	EPwm1Regs.TBPRD = EPwm2Regs.TBPRD = EPwm3Regs.TBPRD = EPwm4Regs.TBPRD = ((Uint16)MOTOR_PERIOD_MAXIMUM);
-
-	EPwm1Regs.CMPA.half.CMPA = EPwm2Regs.CMPA.half.CMPA = ((Uint16)MOTOR_PERIOD_MAXIMUM) >> 1;
-	EPwm3Regs.CMPA.half.CMPA = EPwm4Regs.CMPA.half.CMPA = ((Uint16)MOTOR_PERIOD_MAXIMUM) >> 1;
-
-	EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 3;
-	EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
-/*
-	CTRMODE
-	00 : Up-count mode
-	01 : Down-count mode
-	10 : Up-down-count mode
-	11 : Stop-freeze counter operation ( default on reset )
-
-	TBCTR : Reading these bits gives the current time-base counter value but isn't Read-Only. so, you can write value to these bits.
-*/
-
-	EPwm1Regs.AQCTLA.all = EPwm4Regs.AQCTLB.all = 0x0090;
-	EPwm1Regs.AQCTLB.all = EPwm4Regs.AQCTLA.all = 0x0060;
-	EPwm2Regs.AQCTLA.all = EPwm3Regs.AQCTLB.all = 0x0006;
-	EPwm2Regs.AQCTLB.all = EPwm3Regs.AQCTLA.all = 0x0009;
-/*
-	//rsvd | CBD CBU CAD CAU PRD ZRO
-	//A    | 00  00  10  01  00  00		0x0090
-	//A^   | 00  00  01  10  00  00		0x0060
-	//B    | 00  00  00  00  01  10		0x0006
-	//B^   | 00  00  00  00  10  01		0x0009
-	//reset| 00  00  00  00  00  01     0x0001
-	//0000 | 00  00  00  00  00  00
-
-	//A    | 10  00  00  01  00  00		0x0810
-	//A^   | 01  00  00  10  00  00		0x0420
-	//B    | 00  01  10  00  00  00		0x0180
-	//B^   | 00  10  01  00  00  00		0x0240
-
-	pPWM->AQCTLA.bit.CAU = AQ_CLEAR;
-	pPWM->AQCTLA.bit.CBD = AQ_SET;
-		
-	pPWM->AQCTLB.bit.CAU = AQ_SET;
-	pPWM->AQCTLB.bit.CBD = AQ_CLEAR;
-
-	pPWM->AQCTLA.bit.CBU = AQ_CLEAR; 
-	pPWM->AQCTLA.bit.CAD = AQ_SET;
 	
-	pPWM->AQCTLB.bit.CBU = AQ_SET;
-	pPWM->AQCTLB.bit.CAD = AQ_CLEAR;
-	
-	// 00 : Do noting
-	// 01 : clear
-	// 10 : set
-	// 11 : toggle
-*/
-/*
 	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 	GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 
@@ -122,7 +68,7 @@ void Init_RUN()
 	
 	EPwm1Regs.TBPRD = (Uint16)MOTOR_PERIOD_MAXIMUM;
 	EPwm3Regs.TBPRD = (Uint16)MOTOR_PERIOD_MAXIMUM;
-*/
+
 }
 
 void RUN()
@@ -139,10 +85,7 @@ void RUN()
 	
 	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
-	//GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
-
-	EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 2;
-	EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
+	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 
 	while(1)
 	{

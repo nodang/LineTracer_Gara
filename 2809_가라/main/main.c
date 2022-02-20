@@ -31,14 +31,10 @@ void System_Init(void)
 	InitAdc();
 
 	Init_ISR();
-	InitEPWM( &EPwm1Regs );
-	InitEPWM( &EPwm2Regs );
-	InitEPWM( &EPwm3Regs );
-	InitEPWM( &EPwm4Regs );
-/*
+
 	InitEPWM( &EPwm1Regs );
 	InitEPWM( &EPwm3Regs );
-	*/
+
 }
 
 void Variable_Init( void )

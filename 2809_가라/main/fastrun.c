@@ -38,11 +38,8 @@ void RUN_SECOND()
 	
 	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
-	//GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 
-	EPwm1Regs.TBCTL.bit.CTRMODE = EPwm2Regs.TBCTL.bit.CTRMODE = EPwm3Regs.TBCTL.bit.CTRMODE = EPwm4Regs.TBCTL.bit.CTRMODE = 2;
-	EPwm1Regs.TBCTR = EPwm2Regs.TBCTR = EPwm3Regs.TBCTR = EPwm4Regs.TBCTR = 0;
-	
 	while(1)
 	{
 		//TxPrintf("%2u, %.4lf, %5ld, %5ld, %5ld, %5ld\n", LMotor.AccHold_U16, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextAccel_IQ16 >> 16, 0, LMotor.NextVelocity_IQ17 >> 17, LMotor.ErrorVelocity_IQ17 >> 17);
