@@ -300,9 +300,9 @@ __VARIABLE_EXT__ _iq15	CROSS_DISTANCE_IQ15;
 #define	TURN_45R	450
 #define	TURN_55R	550
 
-#define	SHORT_DIST		500
-#define	MID_DIST		1000
-#define	LONG_DIST		2000
+#define	SHORT_DIST		300
+#define	MID_DIST		2000
+#define	LONG_DIST		4000
 #define	TURN_45_DIST	235
 #define	TURN_90_DIST	400
 #define	TURN_180_DIST	700
