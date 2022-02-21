@@ -138,7 +138,7 @@ static void VEL()
 			else if(!SW_L)	{ DELAY_US(SW_DELAY);	MOTOR_SPEED_U32 -= 50; }
 			break;
 		case 1:
-			VFDPrintf("CUR|%4lu", END_SPEED_U32);
+			VFDPrintf("END|%4lu", END_SPEED_U32);
 			if(!SW_R)	{ DELAY_US(SW_DELAY);	END_SPEED_U32 += 25; }
 			else if(!SW_L)	{ DELAY_US(SW_DELAY);	END_SPEED_U32 -= 25; }
 			break;

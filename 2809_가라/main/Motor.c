@@ -85,7 +85,7 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	// Step Motor Period Compute	
-	
+/*	
 	if(pM->HandleVelo_IQ17 < pM->TargetHandle_IQ17)
 	{
 		pM->HandleVelo_IQ17 += _IQ17mpy(_IQ17div(_IQ17(HANDLE_ACCEL_U32), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
@@ -98,8 +98,8 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 		//pM->HandleVelo_IQ17 -= _IQ17mpy(_IQ17div(MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->FinalVelo_IQ17), _IQ17(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ17);
 		if(pM->HandleVelo_IQ17 <= pM->TargetHandle_IQ17)		pM->HandleVelo_IQ17 = pM->TargetHandle_IQ17;
 	}
-
-	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->HandleVelo_IQ17;		//pM->HandleVelo_IQ17;
+*/
+	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->TargetHandle_IQ17;		//pM->HandleVelo_IQ17;
 	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17) 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
 	else										pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
 	
