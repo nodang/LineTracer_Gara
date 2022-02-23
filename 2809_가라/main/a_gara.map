@@ -19,11 +19,11 @@ OUTPUT TRANSLATION MAP
 
    CONTENTS: 003e8000..003e8001   codestart Data Width=2   
              003e8002..003ebd7b   .text Data Width=2   
-             003ebd7c..003ed028   .econst Data Width=2   
-             003ed029..003ed2a8   VFD_FONT Data Width=2   
-             003ed2a9..003ed461   IQmath Data Width=2   
-             003ed462..003ed4ca   .cinit Data Width=2   
-             003ed4cb..003ed4ed   ramfuncs Data Width=2   
+             003ebd7c..003ed032   .econst Data Width=2   
+             003ed033..003ed2b2   VFD_FONT Data Width=2   
+             003ed2b3..003ed46b   IQmath Data Width=2   
+             003ed46c..003ed4d4   .cinit Data Width=2   
+             003ed4d5..003ed4f7   ramfuncs Data Width=2   
 
 --------------------------------------------------------------------------------
 00000000..003fffff  Page=1  Memory Width=16  ROM Width=16  "*DEFAULT PAGE 1*"

@@ -201,7 +201,7 @@ void LINE_PRINTF()
 			case LEFT_TURN:
 			case START_LINE:
 			case END_LINE:
-				VFDPrintf("%3u:%4lu",map_U16_cnt, Search[map_U16_cnt].TurnDir_U32);
+				VFDPrintf("%3u:%4lx",map_U16_cnt, Search[map_U16_cnt].TurnDir_U32);
 				break;
 			default:
 				VFDPrintf("%3u: err",map_U16_cnt);
