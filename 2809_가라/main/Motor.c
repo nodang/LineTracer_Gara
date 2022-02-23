@@ -51,7 +51,7 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{		
-		pM->NextVelocity_IQ17 += _IQ16mpy(_IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+		pM->NextVelocity_IQ17 -= _IQ16mpy(_IQ16div(pM->DecelAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)		pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
 		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
 	}
@@ -66,7 +66,6 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 		}
 		else if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)		
 		{
-			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
 			if(pM->NextAccel_IQ16 > _IQ16(0.0))			pM->NextAccel_IQ16 = _IQ16(0.0);
 		}
 	}
@@ -76,11 +75,6 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 		{
 			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
 			if(pM->NextAccel_IQ16 > pM->AccelLimit_IQ16)			pM->NextAccel_IQ16 = pM->AccelLimit_IQ16;
-		}
-		else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)		
-		{
-			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
-			if(pM->NextAccel_IQ16 < -pM->AccelLimit_IQ16)			pM->NextAccel_IQ16 = -pM->AccelLimit_IQ16;
 		}
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -137,6 +131,8 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;	
 
 	RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(jerk, _IQ16(TEN_THOUSAND));
+
+	RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = ((long)HANDLE_ACCEL_U32) << 16;
 	
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
@@ -151,13 +147,17 @@ void MOVE_TO_END(_iq17 distance)
 	RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = _IQ17(0.0);
 	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = distance;
 	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;		
-
+/*
 	RMotor.Jerk_IQ16 = STOP_TIMING_IQ16(RMotor.NextVelocity_IQ17 >> 1);
 	LMotor.Jerk_IQ16 = STOP_TIMING_IQ16(LMotor.NextVelocity_IQ17 >> 1);
 
 	RMotor.Jerk_IQ16 = STOP_JERK_IQ16(RMotor.Jerk_IQ16);
 	LMotor.Jerk_IQ16 = STOP_JERK_IQ16(LMotor.Jerk_IQ16);
- 
+*/
+	RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(((long)JERK_U32) << 16, _IQ16(TEN_THOUSAND));
+
+	RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = STOP_ACC_IQ16;
+
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 	
 	StartCpuTimer2();
@@ -325,11 +325,23 @@ void SHUTDOWN()
 }
 void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _iq16 jerk, volatile _iq17 *decel_dist)
 {
+/*
+// This code is used Jerk.
+// But, decel distance computing should not used Jerk in my mind. 
+
 	curVEL	= _IQ17div(curVEL, _IQ17(1000.0));
 	tarVEL	= _IQ17div(tarVEL, _IQ17(1000.0));
 	jerk	= _IQ16div(jerk, _IQ16(1000.0)) << 1;
 
 	*decel_dist = _IQ17mpy(_IQ17mpy(curVEL + tarVEL, _IQ17sqrt(_IQ17div(labs(tarVEL - curVEL), jerk))), _IQ17(1000.0));
+*/
+	_iq17 decelACC = _IQ16div(((long)HANDLE_ACCEL_U32) << 16, _IQ16(1000.0)) << 2;
+
+	curVEL	= _IQ17div(curVEL, _IQ17(1000.0));
+	tarVEL	= _IQ17div(tarVEL, _IQ17(1000.0));
+	
+	*decel_dist = _IQ17mpy(_IQ17div(_IQ17abs(_IQ17mpy(tarVEL, tarVEL) - _IQ17mpy(curVEL, curVEL)), decelACC), _IQ17(1000.0));
+
 }
 
 void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 cur_vel, volatile _iq16 jerk, volatile _iq17 *vel)
@@ -341,7 +353,7 @@ void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 
 	_iq17 CES3				= _IQ17(0.0);		//cubic equation substitution
 
 	dist -= minus_dist;
-	dist			= _IQ17div(dist, _IQ17(2000.0));
+	dist			= _IQ17div(dist, _IQ17(1000.0));
 	cur_vel 		= _IQ17div(cur_vel, _IQ17(1000.0));
 	jerk			= _IQ16div(jerk, _IQ16(1000.0)) << 1;
 	
@@ -420,7 +432,7 @@ void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	}
 	else
 	{
-		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, _IQ17(0.0), high_vel, LINE->Jerk_IQ16, &LINE->Velo_IQ17);
+		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, high_vel, LINE->Jerk_IQ16, &LINE->Velo_IQ17);
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16, &LINE->DecelDistance_IQ17);
 	}
 }

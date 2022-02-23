@@ -187,7 +187,7 @@ static void ACC()
 			else if(!SW_L)	{ DELAY_US(SW_DELAY);	JERK_SHORT_U32 -= 100; }
 			break;
 		case 4:
-			VFDPrintf("HAC%5lu", (Uint32)HANDLE_ACCEL_U32);
+			VFDPrintf("D A%5lu", (Uint32)HANDLE_ACCEL_U32);
 			if(!SW_R)	{ DELAY_US(SW_DELAY);	HANDLE_ACCEL_U32 += 500; }
 			else if(!SW_L)	{ DELAY_US(SW_DELAY);	HANDLE_ACCEL_U32 -= 500; }
 			break;

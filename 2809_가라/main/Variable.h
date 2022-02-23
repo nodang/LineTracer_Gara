@@ -176,6 +176,9 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define STOP_TIMING_IQ16(A)		_IQ16div(_IQ16div(_IQ16(HEIGHT_SEEN), _IQ16(1.2)), A)
 #define STOP_JERK_IQ16(B)		_IQ16div(_IQ16div(_IQ16div(_IQ16div(_IQ16(HEIGHT_ME), _IQ16(TEN_THOUSAND)), B), B), B)
 
+#define STOP_VEL_IQ15			_IQ15div(((long)END_SPEED_U32) << 15, _IQ15(100.0))
+#define STOP_ACC_IQ16			_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15, STOP_VEL_IQ15), _IQ15(HEIGHT_SEEN)), _IQ15(10000.0))
+
 #define	HANDLE_ACC_IQ17			_IQ17(1.0) + _IQ17mpy(_IQ17div(_IQ17(1.0), ACC_DEC_POINT_COEF_I32 << 17), ACCEL_COEF_I32 << 17)
 #define	HANDLE_DEC_IQ17			_IQ17mpy(_IQ17div(_IQ17(1.0), ACC_DEC_POINT_COEF_I32 << 17), DECEL_COEF_I32 << 17)
 
@@ -207,6 +210,7 @@ typedef volatile struct
 //------------------------------------------------------------------------------------//
 	_iq16	NextAccel_IQ16;
 	_iq16	AccelLimit_IQ16;
+	_iq16	DecelAccel_IQ16;
 
 	_iq16	Jerk_IQ16;
 
