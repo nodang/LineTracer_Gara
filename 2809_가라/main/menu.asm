@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Thu Feb 24 05:10:41 2022                 *
+;* Date/Time created: Sat Feb 26 02:44:16 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -300,8 +300,8 @@ DW$69	.dwtag  DW_TAG_variable, DW_AT_name("SenAdc"), DW_AT_symbol_name("_SenAdc"
 	.dwattr DW$69, DW_AT_type(*DW$T$83)
 	.dwattr DW$69, DW_AT_declaration(0x01)
 	.dwattr DW$69, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI78810 C:\Users\노호진\AppData\Local\Temp\TI7884 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI7882 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI7886 --object_file menu.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI17210 C:\Users\노호진\AppData\Local\Temp\TI1724 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI1722 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI1726 --object_file menu.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 
 DW$70	.dwtag  DW_TAG_subprogram, DW_AT_name("senVAL"), DW_AT_symbol_name("_senVAL$0")
@@ -429,7 +429,7 @@ DW$L$_senVAL$0$6$E:
         ; return occurs
 
 DW$72	.dwtag  DW_TAG_loop
-	.dwattr DW$72, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L3:1:1645647041")
+	.dwattr DW$72, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L3:1:1645811056")
 	.dwattr DW$72, DW_AT_begin_file("menu.c")
 	.dwattr DW$72, DW_AT_begin_line(0x75)
 	.dwattr DW$72, DW_AT_end_line(0x7a)
@@ -618,15 +618,15 @@ DW$L$_hMOTtest$0$5$B:
         ; branchcc occurs ; |269| 
 DW$L$_hMOTtest$0$5$E:
 DW$L$_hMOTtest$0$6$B:
-;*** 269	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 269	-----------------------    DSP28x_usDelay(1249998uL);
 ;*** 269	-----------------------    --PID_Kd_U32;
 ;*** 269	-----------------------    goto g11;
 	.dwpsn	"menu.c",269,21
-        MOV       AL,#9630
-        MOV       AH,#38
+        MOV       AL,#4814
+        MOV       AH,#19
         LCR       #_DSP28x_usDelay      ; |269| 
         ; call occurs [#_DSP28x_usDelay] ; |269| 
-	.dwpsn	"menu.c",269,41
+	.dwpsn	"menu.c",269,38
         MOVW      DP,#_PID_Kd_U32
         MOVB      ACC,#1
         SUBL      @_PID_Kd_U32,ACC      ; |269| 
@@ -636,19 +636,19 @@ DW$L$_hMOTtest$0$6$E:
 L5:    
 DW$L$_hMOTtest$0$7$B:
 ;***	-----------------------g6:
-;*** 268	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 268	-----------------------    DSP28x_usDelay(1249998uL);
 ;*** 268	-----------------------    ++PID_Kd_U32;
 ;*** 268	-----------------------    goto g11;
 	.dwpsn	"menu.c",268,16
-        MOV       AL,#9630
-        MOV       AH,#38
+        MOV       AL,#4814
+        MOV       AH,#19
         LCR       #_DSP28x_usDelay      ; |268| 
         ; call occurs [#_DSP28x_usDelay] ; |268| 
-	.dwpsn	"menu.c",268,36
+	.dwpsn	"menu.c",268,33
         MOVW      DP,#_PID_Kd_U32
         MOVB      ACC,#1
         ADDL      @_PID_Kd_U32,ACC      ; |268| 
-	.dwpsn	"menu.c",268,50
+	.dwpsn	"menu.c",268,47
         BF        L8,UNC                ; |268| 
         ; branch occurs ; |268| 
 DW$L$_hMOTtest$0$7$E:
@@ -680,15 +680,15 @@ DW$L$_hMOTtest$0$9$B:
         ; branchcc occurs ; |264| 
 DW$L$_hMOTtest$0$9$E:
 DW$L$_hMOTtest$0$10$B:
-;*** 264	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 264	-----------------------    DSP28x_usDelay(1249998uL);
 ;*** 264	-----------------------    --PID_Kp_U32;
 ;*** 264	-----------------------    goto g11;
 	.dwpsn	"menu.c",264,21
-        MOV       AL,#9630
-        MOV       AH,#38
+        MOV       AL,#4814
+        MOV       AH,#19
         LCR       #_DSP28x_usDelay      ; |264| 
         ; call occurs [#_DSP28x_usDelay] ; |264| 
-	.dwpsn	"menu.c",264,41
+	.dwpsn	"menu.c",264,38
         MOVW      DP,#_PID_Kp_U32
         MOVB      ACC,#1
         SUBL      @_PID_Kp_U32,ACC      ; |264| 
@@ -698,14 +698,14 @@ DW$L$_hMOTtest$0$10$E:
 L7:    
 DW$L$_hMOTtest$0$11$B:
 ;***	-----------------------g10:
-;*** 263	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 263	-----------------------    DSP28x_usDelay(1249998uL);
 ;*** 263	-----------------------    ++PID_Kp_U32;
 	.dwpsn	"menu.c",263,16
-        MOV       AL,#9630
-        MOV       AH,#38
+        MOV       AL,#4814
+        MOV       AH,#19
         LCR       #_DSP28x_usDelay      ; |263| 
         ; call occurs [#_DSP28x_usDelay] ; |263| 
-	.dwpsn	"menu.c",263,36
+	.dwpsn	"menu.c",263,33
         MOVW      DP,#_PID_Kp_U32
         MOVB      ACC,#1
         ADDL      @_PID_Kp_U32,ACC      ; |263| 
@@ -797,7 +797,7 @@ DW$L$_hMOTtest$0$16$E:
         ; return occurs
 
 DW$82	.dwtag  DW_TAG_loop
-	.dwattr DW$82, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L10:1:1645647041")
+	.dwattr DW$82, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L10:1:1645811056")
 	.dwattr DW$82, DW_AT_begin_file("menu.c")
 	.dwattr DW$82, DW_AT_begin_line(0xfc)
 	.dwattr DW$82, DW_AT_end_line(0x117)
@@ -1328,7 +1328,7 @@ DW$L$_VEL$0$21$E:
         ; return occurs
 
 DW$110	.dwtag  DW_TAG_loop
-	.dwattr DW$110, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L23:1:1645647041")
+	.dwattr DW$110, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L23:1:1645811056")
 	.dwattr DW$110, DW_AT_begin_file("menu.c")
 	.dwattr DW$110, DW_AT_begin_line(0x83)
 	.dwattr DW$110, DW_AT_end_line(0x9d)
@@ -1458,7 +1458,7 @@ DW$L$_SEARCH$0$2$E:
         ; return occurs
 
 DW$132	.dwtag  DW_TAG_loop
-	.dwattr DW$132, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L24:1:1645647041")
+	.dwattr DW$132, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L24:1:1645811056")
 	.dwattr DW$132, DW_AT_begin_file("menu.c")
 	.dwattr DW$132, DW_AT_begin_line(0x124)
 	.dwattr DW$132, DW_AT_end_line(0x124)
@@ -1731,7 +1731,7 @@ L27:
         ; return occurs
 
 DW$143	.dwtag  DW_TAG_loop
-	.dwattr DW$143, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L25:1:1645647041")
+	.dwattr DW$143, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L25:1:1645811056")
 	.dwattr DW$143, DW_AT_begin_file("menu.c")
 	.dwattr DW$143, DW_AT_begin_line(0x49)
 	.dwattr DW$143, DW_AT_end_line(0x52)
@@ -1743,7 +1743,7 @@ DW$145	.dwtag  DW_TAG_loop_range
 	.dwattr DW$145, DW_AT_high_pc(DW$L$_POS$0$5$E)
 
 DW$146	.dwtag  DW_TAG_loop
-	.dwattr DW$146, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L26:2:1645647041")
+	.dwattr DW$146, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L26:2:1645811056")
 	.dwattr DW$146, DW_AT_begin_file("menu.c")
 	.dwattr DW$146, DW_AT_begin_line(0x4b)
 	.dwattr DW$146, DW_AT_end_line(0x4b)
@@ -1997,7 +1997,7 @@ DW$L$_EXTREM$0$2$E:
         ; return occurs
 
 DW$155	.dwtag  DW_TAG_loop
-	.dwattr DW$155, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L32:1:1645647041")
+	.dwattr DW$155, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L32:1:1645811056")
 	.dwattr DW$155, DW_AT_begin_file("menu.c")
 	.dwattr DW$155, DW_AT_begin_line(0x126)
 	.dwattr DW$155, DW_AT_end_line(0x126)
@@ -2070,7 +2070,7 @@ DW$L$_FAST$0$2$E:
         ; return occurs
 
 DW$158	.dwtag  DW_TAG_loop
-	.dwattr DW$158, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L33:1:1645647041")
+	.dwattr DW$158, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L33:1:1645811056")
 	.dwattr DW$158, DW_AT_begin_file("menu.c")
 	.dwattr DW$158, DW_AT_begin_line(0x125)
 	.dwattr DW$158, DW_AT_end_line(0x125)
@@ -2454,7 +2454,7 @@ DW$L$_HAN$0$21$E:
         ; return occurs
 
 DW$165	.dwtag  DW_TAG_loop
-	.dwattr DW$165, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L42:1:1645647041")
+	.dwattr DW$165, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L42:1:1645811056")
 	.dwattr DW$165, DW_AT_begin_file("menu.c")
 	.dwattr DW$165, DW_AT_begin_line(0xd3)
 	.dwattr DW$165, DW_AT_end_line(0xed)
@@ -3003,7 +3003,7 @@ DW$L$_ACC$0$33$E:
         ; return occurs
 
 DW$193	.dwtag  DW_TAG_loop
-	.dwattr DW$193, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L56:1:1645647041")
+	.dwattr DW$193, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L56:1:1645811056")
 	.dwattr DW$193, DW_AT_begin_file("menu.c")
 	.dwattr DW$193, DW_AT_begin_line(0xa5)
 	.dwattr DW$193, DW_AT_end_line(0xc9)
@@ -3274,7 +3274,7 @@ L59:
         ; return occurs
 
 DW$230	.dwtag  DW_TAG_loop
-	.dwattr DW$230, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L57:1:1645647041")
+	.dwattr DW$230, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L57:1:1645811056")
 	.dwattr DW$230, DW_AT_begin_file("menu.c")
 	.dwattr DW$230, DW_AT_begin_line(0x66)
 	.dwattr DW$230, DW_AT_end_line(0x6c)
@@ -3286,7 +3286,7 @@ DW$232	.dwtag  DW_TAG_loop_range
 	.dwattr DW$232, DW_AT_high_pc(DW$L$_ADC$0$5$E)
 
 DW$233	.dwtag  DW_TAG_loop
-	.dwattr DW$233, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L58:2:1645647041")
+	.dwattr DW$233, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L58:2:1645811056")
 	.dwattr DW$233, DW_AT_begin_file("menu.c")
 	.dwattr DW$233, DW_AT_begin_line(0x68)
 	.dwattr DW$233, DW_AT_end_line(0x68)
@@ -3391,7 +3391,7 @@ L61:
         ; return occurs
 
 DW$236	.dwtag  DW_TAG_loop
-	.dwattr DW$236, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L60:1:1645647041")
+	.dwattr DW$236, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L60:1:1645811056")
 	.dwattr DW$236, DW_AT_begin_file("menu.c")
 	.dwattr DW$236, DW_AT_begin_line(0x5a)
 	.dwattr DW$236, DW_AT_end_line(0x5a)
@@ -4005,7 +4005,7 @@ DW$L$_MENU_PA$23$E:
 	.dwcfa	0xc0, 7
 
 DW$256	.dwtag  DW_TAG_loop
-	.dwattr DW$256, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L63:1:1645647041")
+	.dwattr DW$256, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L63:1:1645811056")
 	.dwattr DW$256, DW_AT_begin_file("menu.c")
 	.dwattr DW$256, DW_AT_begin_line(0x149)
 	.dwattr DW$256, DW_AT_end_line(0x162)
@@ -4038,7 +4038,7 @@ DW$265	.dwtag  DW_TAG_loop_range
 	.dwattr DW$265, DW_AT_high_pc(DW$L$_MENU_PA$23$E)
 
 DW$266	.dwtag  DW_TAG_loop
-	.dwattr DW$266, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L64:2:1645647041")
+	.dwattr DW$266, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L64:2:1645811056")
 	.dwattr DW$266, DW_AT_begin_file("menu.c")
 	.dwattr DW$266, DW_AT_begin_line(0x30)
 	.dwattr DW$266, DW_AT_end_line(0x30)
@@ -4049,7 +4049,7 @@ DW$267	.dwtag  DW_TAG_loop_range
 
 
 DW$268	.dwtag  DW_TAG_loop
-	.dwattr DW$268, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L65:2:1645647041")
+	.dwattr DW$268, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L65:2:1645811056")
 	.dwattr DW$268, DW_AT_begin_file("menu.c")
 	.dwattr DW$268, DW_AT_begin_line(0x33)
 	.dwattr DW$268, DW_AT_end_line(0x33)
@@ -4060,7 +4060,7 @@ DW$269	.dwtag  DW_TAG_loop_range
 
 
 DW$270	.dwtag  DW_TAG_loop
-	.dwattr DW$270, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L66:2:1645647041")
+	.dwattr DW$270, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L66:2:1645811056")
 	.dwattr DW$270, DW_AT_begin_file("menu.c")
 	.dwattr DW$270, DW_AT_begin_line(0x36)
 	.dwattr DW$270, DW_AT_end_line(0x36)
@@ -4071,7 +4071,7 @@ DW$271	.dwtag  DW_TAG_loop_range
 
 
 DW$272	.dwtag  DW_TAG_loop
-	.dwattr DW$272, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L72:2:1645647041")
+	.dwattr DW$272, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L72:2:1645811056")
 	.dwattr DW$272, DW_AT_begin_file("menu.c")
 	.dwattr DW$272, DW_AT_begin_line(0x153)
 	.dwattr DW$272, DW_AT_end_line(0x15b)
@@ -4105,7 +4105,7 @@ DW$280	.dwtag  DW_TAG_loop_range
 
 
 DW$281	.dwtag  DW_TAG_loop
-	.dwattr DW$281, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L62:1:1645647041")
+	.dwattr DW$281, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L62:1:1645811056")
 	.dwattr DW$281, DW_AT_begin_file("menu.c")
 	.dwattr DW$281, DW_AT_begin_line(0x146)
 	.dwattr DW$281, DW_AT_end_line(0x146)

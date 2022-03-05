@@ -362,7 +362,7 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 			}
 		}
 
-		pS->PositionTemporary_IQ10 = (pS->PositionTemporary_IQ10 + pS->Position_IQ10) >> 1;
+		pS->PositionTemporary_IQ10 = pS->Position_IQ10; //(pS->PositionTemporary_IQ10 + pS->Position_IQ10) >> 1;
 		
 		cur_position_i32	= pS->PositionTemporary_IQ10 >> 10;
 		

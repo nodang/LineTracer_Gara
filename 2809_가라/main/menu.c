@@ -260,13 +260,13 @@ static void hMOTtest()
 		{
 		case 0:
 			VFDPrintf("Kp  %4lu", PID_Kp_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	PID_Kp_U32++; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	PID_Kp_U32--; }
+			if(!SW_R)	{ DELAY_US(62500);	PID_Kp_U32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	PID_Kp_U32--; }
 			break;
 		case 1:
 			VFDPrintf("Kd  %4lu", PID_Kd_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	PID_Kd_U32++; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	PID_Kd_U32--; }
+			if(!SW_R)	{ DELAY_US(62500);	PID_Kd_U32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	PID_Kd_U32--; }
 			break;
 		}
 		if(!SW_D)	
