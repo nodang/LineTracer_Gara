@@ -124,7 +124,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //-------------------------------------------------------------------------------------------------------------------------------//
 // MOTOR VAR   A B  A_ B_
 #define MAX_VELO_IQ17		_IQ17(4500.0)
-#define MIN_VELO_IQ17		_IQ17(10.0)
+#define MIN_VELO_IQ17		_IQ17(300.0) //_IQ17(10.0)
 #define MAX_ACC_IQ16		_IQ16(11000.0)
 #define MIN_ACC_IQ16		_IQ16(4500.0)
 #define MAX_ACC_IQ17		_IQ17(11000.0)
@@ -162,7 +162,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	MOTOR_PERIOD_MINIMUM		9294.0		// clk = 0 -> vel = 4500 mm/s
 */
 
-#define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.7 mm/s
+#define CLK_DIVISION_CONSTANT		3
+#define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.7 mm/s // clk = 3 -> vel = 159.54 mm/s
 //#define	MOTOR_PERIOD_MAXIMUMdiv2	32767.0
 #define	MOTOR_PERIOD_MAXIMUMdiv10	6.5534		// System minium clock is 10 ns
 #define	MOTOR_PERIOD_MINIMUM		16384.0		// clk = 0 -> vel = 5105 mm/s

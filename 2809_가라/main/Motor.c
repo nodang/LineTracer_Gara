@@ -78,12 +78,14 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	if(pM->PrdNext_IQ14 < _IQ14(MOTOR_PERIOD_MINIMUM)) 	
 	{
 		pM->PrdNext_IQ14	= _IQ14(MOTOR_PERIOD_MINIMUM);
-		if(clk > 0) 	{	clk--;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;	}
+		if(clk > 0) 	
+			{	clk--;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;	}
 	}
 	else if(pM->PrdNext_IQ14 > _IQ14(MOTOR_PERIOD_MAXIMUM))		
 	{
 		pM->PrdNext_IQ14	= _IQ14(MOTOR_PERIOD_MAXIMUM);
-		if(clk < 7) 	{	clk++;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;	}
+		if(clk < CLK_DIVISION_CONSTANT) 	
+			{	clk++;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;	}
 	}
 
 	pM->RolEachStep_IQ17	= _IQ17mpyIQX(STEP_D_IQ17, 17, _IQ13div(((long)CPUTIMER_2_RPD) << 13, pM->PrdNext_IQ14 >> 1) >> clk, 13);
