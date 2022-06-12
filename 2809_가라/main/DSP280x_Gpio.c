@@ -106,7 +106,7 @@ void InitGpio(void)
 	
 
 /*
-//   IO32 -
+//   IO32 - Buzzer
 	GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0;	dir	1
 //   IO33 - L_LED
 	GpioCtrlRegs.GPBMUX1.bit.GPIO33 = 0;	dir	1

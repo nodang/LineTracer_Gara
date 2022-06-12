@@ -12,7 +12,7 @@
 // $Release Date: 2011.10.16 $
 //###########################################################################
 
-#define   _MOTOR_
+#define _MOTOR_
 
 #include "DSP280x_Device.h"
 #include "DSP280x_Examples.h"   // DSP280x Examples Include File
@@ -42,50 +42,65 @@ void Init_MotorCtrl(MOTORCTRL *pM)
 
 inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 {
-	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17)
-	{
+	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17) {
 		pM->NextVelocity_IQ17 += _IQ16mpy(_IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
-		if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)		pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;
-		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
 
-		if(_IQ17abs(pM->NextVelocity_IQ17 - pM->TargetVel_IQ17) < _IQ16abs(_IQ16mpy(_IQ16div(pM->NextAccel_IQ16, pM->Jerk_IQ16), _IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)))))
-		{
+		if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)
+			pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;
+
+		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
+		
+		if(_IQ17abs(pM->NextVelocity_IQ17 - pM->TargetVel_IQ17) < _IQ16abs(_IQ16mpy(_IQ16div(pM->NextAccel_IQ16, pM->Jerk_IQ16), _IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND))))) {
 			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
-			if(pM->NextAccel_IQ16 < _IQ16(0.0))			pM->NextAccel_IQ16 = _IQ16(0.0);
+
+			if(pM->NextAccel_IQ16 < _IQ16(0.0))
+				pM->NextAccel_IQ16 = _IQ16(0.0);
 		}
-		else
-		{
+		else {
 			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
-			if(pM->NextAccel_IQ16 > pM->AccelLimit_IQ16)			pM->NextAccel_IQ16 = pM->AccelLimit_IQ16;
+
+			if(pM->NextAccel_IQ16 > pM->AccelLimit_IQ16)
+				pM->NextAccel_IQ16 = pM->AccelLimit_IQ16;
 		}
 	}
-	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
-	{		
+	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17) {		
 		pM->NextVelocity_IQ17 -= _IQ16mpy(_IQ16div(pM->DecelAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
-		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)		pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
+
+		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)
+			pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
+
 		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
 
-		if(pM->NextAccel_IQ16 > _IQ16(0.0))			pM->NextAccel_IQ16 = _IQ16(0.0);
+		if(pM->NextAccel_IQ16 > _IQ16(0.0))
+			pM->NextAccel_IQ16 = _IQ16(0.0);
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->TargetHandle_IQ17;
-	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17) 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
-	else										pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
+
+	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17)
+		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
+	else
+		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
 
 	//if(Flag.MoveState_U16 == ON && pM->PrdNextTranSecon_IQ17 > _IQ17(6.5535))		pM->PrdNextTranSecon_IQ17 = _IQ17(6.5535);
 	
 	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNextTranSecon_IQ17, 17);
-	if(pM->PrdNext_IQ14 < _IQ14(MOTOR_PERIOD_MINIMUM)) 	
-	{
+	
+	if(pM->PrdNext_IQ14 < _IQ14(MOTOR_PERIOD_MINIMUM)) {
 		pM->PrdNext_IQ14	= _IQ14(MOTOR_PERIOD_MINIMUM);
-		if(clk > 0) 	
-			{	clk--;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;	}
+
+		if(clk > 0) {
+			clk--;		
+			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;
+		}
 	}
-	else if(pM->PrdNext_IQ14 > _IQ14(MOTOR_PERIOD_MAXIMUM))		
-	{
+	else if(pM->PrdNext_IQ14 > _IQ14(MOTOR_PERIOD_MAXIMUM))	{
 		pM->PrdNext_IQ14	= _IQ14(MOTOR_PERIOD_MAXIMUM);
-		if(clk < CLK_DIVISION_CONSTANT) 	
-			{	clk++;		pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;	}
+
+		if(clk < CLK_DIVISION_CONSTANT) {
+			clk++;
+			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;
+		}
 	}
 
 	pM->RolEachStep_IQ17	= _IQ17mpyIQX(STEP_D_IQ17, 17, _IQ13div(((long)CPUTIMER_2_RPD) << 13, pM->PrdNext_IQ14 >> 1) >> clk, 13);
@@ -139,17 +154,14 @@ void MOVE_TO_END(_iq17 distance)
 
 inline void SECOND_DECEL_VALUE(MOTORCTRL *pRM, MOTORCTRL *pLM)
 {
-	if(pRM->DecelFlag_U16 || pLM->DecelFlag_U16)
-	{
-		if(pRM->DecelDistance_IQ17 > pRM->ErrorDistance_IQ17)
-		{
+	if(pRM->DecelFlag_U16 || pLM->DecelFlag_U16) {
+		if(pRM->DecelDistance_IQ17 > pRM->ErrorDistance_IQ17) {
 			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
 			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
 
 			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
 		}
-		else if(pLM->DecelDistance_IQ17 > pLM->ErrorDistance_IQ17)
-		{
+		else if(pLM->DecelDistance_IQ17 > pLM->ErrorDistance_IQ17) {
 			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
 			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
 
@@ -166,8 +178,7 @@ interrupt void MOTOR_ISR()
 	EINT;
 		
 	// MOTOR CONTROL
-	if(Flag.Motor_U16)
-	{	
+	if(Flag.Motor_U16) {	
 		clk1 = MOTOR_MOTION_VALUE(&RMotor, EPwm1Regs.TBCTL.bit.CLKDIV);
 		clk2 = MOTOR_MOTION_VALUE(&LMotor, EPwm3Regs.TBCTL.bit.CLKDIV);
 	
@@ -175,52 +186,62 @@ interrupt void MOTOR_ISR()
 		EPwm3Regs.TBCTL.bit.CLKDIV = clk2;
 
 		EPwm1Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 1) + (EPwm1Regs.TBPRD >> 2) + (EPwm1Regs.TBPRD >> 3) + (EPwm1Regs.TBPRD >> 4);
+		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 2);
 
 		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
-		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1) + (EPwm3Regs.TBPRD >> 2) + (EPwm3Regs.TBPRD >> 3) + (EPwm3Regs.TBPRD >> 4);
+		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 2);
 
-		if(Flag.Fast_U16 | Flag.Extrem_U16) 	SECOND_DECEL_VALUE(&RMotor, &LMotor);
-		if(Flag.MoveState_U16)					TIME_INDEX_U32++;
-		if(Flag.STOP)							STOP_TIME_INDEX_U32++;
+		if(Flag.Fast_U16 | Flag.Extrem_U16)
+			SECOND_DECEL_VALUE(&RMotor, &LMotor);
+		if(Flag.MoveState_U16)
+			TIME_INDEX_U32++;
+		if(Flag.STOP)
+			STOP_TIME_INDEX_U32++;
 	}
 	StartCpuTimer0();
 }
 
 Uint16 END_STOP()
 {	
-	if(Flag.STOP)
-	{
+	if(Flag.STOP) {
 		RMotor.GoneDistance_IQ15 = LMotor.GoneDistance_IQ15 = _IQ15(0.0);
 		SHUTDOWN();
 	
-		if(CpuTimer0Regs.TCR.bit.TSS != 1)	VFDPrintf("runERROR");
-		else if(Flag.Search_U16)
-		{
-			while(CpuTimer0Regs.TCR.bit.TSS == 1)
-			{
+		if(CpuTimer0Regs.TCR.bit.TSS != 1)
+			VFDPrintf("runERROR");
+		else if(Flag.Search_U16) {
+			while(CpuTimer0Regs.TCR.bit.TSS == 1) {
 				VFDPrintf("M%3u|C%2lu", MARK_U16_CNT, CROSS_PLUS_SEARCH_U32);
 				DELAY_US(400000);
 				VFDPrintf("<-N  S->");
 				DELAY_US(200000);
-				if(!SW_R)		{ VFDPrintf("lineSAVE");	save_mark_rom();	save_line_info_rom();	break; }
-				else if(!SW_L)	{ VFDPrintf("saveNONE");	break; }
+
+				if(!SW_R) {
+					VFDPrintf("lineSAVE");
+					save_mark_rom();
+					save_line_info_rom();
+					break;
+				}
+				else if(!SW_L) {
+					VFDPrintf("saveNONE");
+					break;
+				}
 			}
 		}
-		else if(Flag.Fast_U16)
-		{
-			while(CpuTimer0Regs.TCR.bit.TSS == 1)		
-			{
+		else if(Flag.Fast_U16) {
+			while(CpuTimer0Regs.TCR.bit.TSS == 1) {
 				VFDPrintf("M%3u|C%2lu", SECOND_MARK_U16_CNT - 1, CROSS_PLUS_SEARCH_U32);
-				if(!SW_U)		break;
+
+				if(!SW_U)
+					break;
 			}
 		}
-		else if(Flag.Extrem_U16)
-		{
-			while(CpuTimer0Regs.TCR.bit.TSS == 1)		
-			{
+		else if(Flag.Extrem_U16) {
+			while(CpuTimer0Regs.TCR.bit.TSS == 1) {
 				VFDPrintf("M%3u|C%2lu", THIRD_MARK_U16_CNT - 1, CROSS_PLUS_SEARCH_U32);
-				if(!SW_U)		break;
+
+				if(!SW_U)
+					break;
 			}
 		}
 		DELAY_US(SW_DELAY);
@@ -228,13 +249,15 @@ Uint16 END_STOP()
 
 		return 1;
 	}
-	else		return 0;
+	else
+		return 0;
 }
 
 Uint16 LINE_OUT_STOP()
 {
 	//TxPrintf("LINEout : %u\n", LINE_OUT_U16);
-	if(LINE_OUT_U16 < 300)		return 0;
+	if(LINE_OUT_U16 < 300)
+		return 0;
 
 	LINE_OUT_U16 = LINE_OUT;			// 300보다 큰 숫자를 넣음으로서 라인 아웃 처리됨을 알림
 	Flag.MoveState_U16 = OFF;
@@ -248,37 +271,49 @@ Uint16 LINE_OUT_STOP()
 
 void START_END_LINE()
 {
-	if((!Flag.MoveState_U16) && (!Flag.STOP))																	
-	{	
-		Flag.MoveState_U16 = ON;	TIME_INDEX_U32 = 0;
+	if((!Flag.MoveState_U16) && (!Flag.STOP)) {	
+		Flag.MoveState_U16 = ON;
+		TIME_INDEX_U32 = 0;
 
-		if(Flag.Search_U16)			LINE_INFO(NULL);
-		else if(Flag.Fast_U16)		LINE_SECOND(&Search[SECOND_MARK_U16_CNT]);
-		else if(Flag.Extrem_U16)	LINE_THIRD(&Search[THIRD_MARK_U16_CNT]);
+		if(Flag.Search_U16)
+			LINE_INFO(NULL);
+		else if(Flag.Fast_U16)
+			LINE_SECOND(&Search[SECOND_MARK_U16_CNT]);
+		else if(Flag.Extrem_U16)
+			LINE_THIRD(&Search[THIRD_MARK_U16_CNT]);
 	}
-	else if((Flag.MoveState_U16) && (TIME_INDEX_U32 > (2000)))		// 1 seconds / 0.0005 s => 500
-	{		
-		Flag.MoveState_U16 = OFF;	Flag.STOP = ON;
+	// 1 seconds / 0.0005 s => 500
+	else if((Flag.MoveState_U16) && (TIME_INDEX_U32 > (2000)))	{		
+		Flag.MoveState_U16 = OFF;
+		Flag.STOP = ON;
 
-		if(Flag.Search_U16)			LINE_INFO(NULL);
+		if(Flag.Search_U16)
+			LINE_INFO(NULL);
 	}
 }
 
 void SHUTDOWN()
 {	
-	LED_R_ON;		LED_L_ON;
+	LED_R_ON;
+	LED_L_ON;
 
-	if(LINE_OUT_U16 >= LINE_OUT)	{		MOVE_TO_END(_IQ17(0.0));		Flag.Sensor_U16 = OFF;		GpioDataRegs.GPACLEAR.all = SENall;		SenAdc.PositionTemporary_IQ10 = _IQ10(0.0);		}
-	else if(Flag.STOP)						MOVE_TO_END(_IQ17(0.0));
+	if(LINE_OUT_U16 >= LINE_OUT) {
+		MOVE_TO_END(_IQ17(0.0));
+		
+		Flag.Sensor_U16 = OFF;
+		GpioDataRegs.GPACLEAR.all = SENall;
+		SenAdc.PositionTemporary_IQ10 = _IQ10(0.0);
+	}
+	else if(Flag.STOP)
+		MOVE_TO_END(_IQ17(0.0));
 
-	while(1)
-	{
+	while(1) {
 		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.AccelLimit_IQ16 >> 16);
-		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17))
-		{	
+		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17)) {	
 			STOP_TIME_INDEX_U32 = 0;
 			
-			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < (400)))		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
+			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < (400)))
+				POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
 			Flag.STOP = OFF;
 			Flag.Sensor_U16 = OFF;
@@ -290,11 +325,13 @@ void SHUTDOWN()
 			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
 			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
-			LED_R_OFF;		LED_L_OFF;		
+			LED_R_OFF;
+			LED_L_OFF;		
 
 			return ;
 		}
-		else	POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
+		else
+			POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 	}
 }
 void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _iq16 jerk, volatile _iq17 *decel_dist)
@@ -334,8 +371,10 @@ void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 
 	
 	*vel 			= _IQ17mpy(cur_vel + CES3 + _IQ17mpy(_IQ17mpy(_IQ17div(_IQ17(4.0), _IQ17(9.0)), cur_vel), _IQ17div(cur_vel, CES3) - _IQ17(3.0)), _IQ17(1000.0));
 	//TxPrintf("vel %ld\n", (*vel) >> 17);
-	if(*vel > (((long)SECOND_MAX_SPEED_U32) << 17))		*vel = ((long)SECOND_MAX_SPEED_U32) << 17;
-	else if(*vel < (((long)MOTOR_SPEED_U32) << 17))		*vel = ((long)MOTOR_SPEED_U32) << 17;
+	if(*vel > (((long)SECOND_MAX_SPEED_U32) << 17))	
+		*vel = ((long)SECOND_MAX_SPEED_U32) << 17;
+	else if(*vel < (((long)MOTOR_SPEED_U32) << 17))	
+		*vel = ((long)MOTOR_SPEED_U32) << 17;
 }
 
 _iq17 cubeRoot(volatile _iq17 n)
@@ -350,15 +389,23 @@ _iq17 cubeRoot(volatile _iq17 n)
 
 void LINE_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 {
-	if(LINE->TurnDir_U32 & STRAIGHT)			STRAIGHT_DIVISION(LINE, cnt);
-	else			//CURVE
-	{	
-		if(Flag.Extrem_U16)		//THIRD
-		{	
-			if(LINE->TurnDir_U32 & (TURN_R_45 | TURN_R_55))		TURN_DIVISION(LINE, cnt);
-			else	{		LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17 = ((long)MOTOR_SPEED_U32) << 17;		LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;		}
+	if(LINE->TurnDir_U32 & STRAIGHT)
+		STRAIGHT_DIVISION(LINE, cnt);
+	//CURVE
+	else {
+		//THIRD
+		if(Flag.Extrem_U16) {	
+			if(LINE->TurnDir_U32 & (TURN_R_45 | TURN_R_55))
+				TURN_DIVISION(LINE, cnt);
+			else {
+				LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17 = ((long)MOTOR_SPEED_U32) << 17;
+				LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;
+			}
 		}
-		else	{		LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17 = ((long)MOTOR_SPEED_U32) << 17;		LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;		}
+		else {
+			LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17 = ((long)MOTOR_SPEED_U32) << 17;
+			LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;
+		}
 	}
 }
 
@@ -368,30 +415,45 @@ void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	volatile _iq17 low_vel = _IQ17(0.0);
 	
 	LINE->VeloIn_IQ17 = cnt > 0 ? (LINE - 1)->VeloOut_IQ17 : _IQ17(0.0);
+
+	// If it isn't End Turnmark
+	if(!(LINE->TurnDir_U32 & END_LINE)) {
 		
-	if(!(LINE->TurnDir_U32 & END_LINE))																// If it isn't End Turnmark      
-	{
-		LINE_DIVISION((LINE + 1), (cnt + 1));														// Next enter-velocity compute, then substitute escape-velocity	
+		// Next enter-velocity compute, then substitute escape-velocity	
+		LINE_DIVISION((LINE + 1), (cnt + 1));
+		
 		LINE->VeloOut_IQ17 = (LINE + 1)->VeloIn_IQ17;			
 	}
-	else
-	{
-		LINE->VeloOut_IQ17 = ((long)END_SPEED_U32) << 17;			
-		(LINE + 1)->VeloIn_IQ17 = _IQ17(0.0); 								// If it's End Turnmark, Next enter-velocity and escape-velocity is Zero
+	else {
+		LINE->VeloOut_IQ17 = ((long)END_SPEED_U32) << 17;
+		
+		// If it's End Turnmark, Next enter-velocity and escape-velocity is Zero
+		(LINE + 1)->VeloIn_IQ17 = _IQ17(0.0);
 	}
-	if((LINE - 1)->TurnDir_U32 & TURN_R_55)			LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;
-	else if(LINE->Distance_U32 > LONG_DIST)			LINE->Jerk_IQ16 = ((long)JERK_LONG_U32) << 16;
-	else if(LINE->Distance_U32 > MID_DIST)			LINE->Jerk_IQ16 = ((long)JERK_MIDDLE_U32) << 16;
-	else if(LINE->Distance_U32 > SHORT_DIST)		LINE->Jerk_IQ16 = ((long)JERK_SHORT_U32) << 16;
-	else											LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;
+	
+	if((LINE - 1)->TurnDir_U32 & TURN_R_55)
+		LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;
+	else if(LINE->Distance_U32 > LONG_DIST)
+		LINE->Jerk_IQ16 = ((long)JERK_LONG_U32) << 16;
+	else if(LINE->Distance_U32 > MID_DIST)
+		LINE->Jerk_IQ16 = ((long)JERK_MIDDLE_U32) << 16;
+	else if(LINE->Distance_U32 > SHORT_DIST)
+		LINE->Jerk_IQ16 = ((long)JERK_SHORT_U32) << 16;
+	else
+		LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;
 
 	high_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloIn_IQ17 : LINE->VeloOut_IQ17;
 	low_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloOut_IQ17 : LINE->VeloIn_IQ17;	
 
-	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16, &LINE->MotorDistance_IQ17);		// When enter-velocity accelerated to escape-velocity, compute the distance required
-	if(LINE->MotorDistance_IQ17 >= ((long)LINE->Distance_U32) << 17)													// If compute-distance is more than total-track-distance
-	{
-		LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 17;													// decel-distance substitute total-track-distance
+	// When enter-velocity accelerated to escape-velocity, compute the distance required
+	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16, &LINE->MotorDistance_IQ17);
+
+	// If compute-distance is more than total-track-distance
+	if(LINE->MotorDistance_IQ17 >= ((long)LINE->Distance_U32) << 17) {
+
+		// decel-distance substitute total-track-distance
+		LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 17;
+
 		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, low_vel, LINE->Jerk_IQ16, &LINE->Velo_IQ17);
 
 		//if(LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17)	LINE->VeloIn_IQ17 = LINE->Velo_IQ17;
@@ -399,9 +461,9 @@ void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 		
 		if(!cnt)	LINE->Velo_IQ17 = _IQ17(0.0);
 	}
-	else
-	{
+	else {
 		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, high_vel, LINE->Jerk_IQ16, &LINE->Velo_IQ17);
+		
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16, &LINE->DecelDistance_IQ17);
 	}
 }
@@ -412,25 +474,36 @@ void TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	volatile _iq17 low_vel = _IQ17(0.0);
 
 	LINE->VeloIn_IQ17 = LINE->VeloOut_IQ17 = ((long)MOTOR_SPEED_U32) << 17;	LINE->Jerk_IQ16 = ((long)JERK_U32) << 16;
-	if((LINE -1)->TurnDir_U32 & (TURN_R_45 | TURN_R_55))		LINE->VeloIn_IQ17 = (LINE - 1)->VeloOut_IQ17;
+	if((LINE -1)->TurnDir_U32 & (TURN_R_45 | TURN_R_55))
+		LINE->VeloIn_IQ17 = (LINE - 1)->VeloOut_IQ17;
 		
 	high_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloIn_IQ17 : LINE->VeloOut_IQ17;
 	low_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloOut_IQ17 : LINE->VeloIn_IQ17;
 
-	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16, &LINE->MotorDistance_IQ17);		// When enter-velocity accelerated to escape-velocity, compute the distance required
-	if(LINE->MotorDistance_IQ17 >= ((long)LINE->Distance_U32) << 17)													// If compute-distance is more than total-track-distance
-	{
-		LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 17;													// decel-distance substitute total-track-distance
+	// When enter-velocity accelerated to escape-velocity, compute the distance required
+	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16, &LINE->MotorDistance_IQ17);
+
+	// If compute-distance is more than total-track-distance
+	if(LINE->MotorDistance_IQ17 >= ((long)LINE->Distance_U32) << 17) {
+		
+		// decel-distance substitute total-track-distance
+		LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 17;
+		
 		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, low_vel, LINE->Jerk_IQ16, &LINE->Velo_IQ17);
-		if(LINE->Velo_IQ17 > _IQ17(2500.0))		LINE->Velo_IQ17 = _IQ17(2500.0);
+		
+		if(LINE->Velo_IQ17 > _IQ17(2500.0))
+			LINE->Velo_IQ17 = _IQ17(2500.0);
 	}
-	else
-	{
+	else {
 		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, _IQ17(0.0), low_vel, LINE->Jerk_IQ16, &LINE->Velo_IQ17);
-		if(LINE->Velo_IQ17 > _IQ17(2500.0))		LINE->Velo_IQ17 = _IQ17(2500.0);
+
+		if(LINE->Velo_IQ17 > _IQ17(2500.0))
+			LINE->Velo_IQ17 = _IQ17(2500.0);
+		
 		LINE->VeloOut_IQ17 = LINE->Velo_IQ17;
 		
 		DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16, &LINE->MotorDistance_IQ17);
+		
 		LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 17;
 		LINE->DecelDistance_IQ17 -= LINE->MotorDistance_IQ17;
 	}
@@ -444,79 +517,79 @@ void TURN_COMPUTE(TRACKINFO *LINE, Uint16 cnt)
 	int32 turn_theta_L = 0;
 
 	if((LINE->TurnWay_U32 & (STRAIGHT | START_LINE | END_LINE)))
-	{
 		LINE->TurnDir_U32 = (LINE->TurnWay_U32 | STRAIGHT);
-	}
-	else if(!(LINE->TurnWay_U32 & (STRAIGHT | START_LINE | END_LINE)))
-	{
-		if(LINE->TurnWay_U32 & RIGHT_TURN)
-		{
-			//turn_radian_R = TURN_VALUE_RADIAN_IQ15(LINE->Distance_L_U32, LINE->Distance_R_U32) >> 15;
+	else if(!(LINE->TurnWay_U32 & (STRAIGHT | START_LINE | END_LINE))) {
+		if(LINE->TurnWay_U32 & RIGHT_TURN) {
 			turn_theta_R = TURN_VALUE_THETA_IQ15(LINE->Distance_L_U32, LINE->Distance_R_U32) >> 15;
 			
-			if(turn_theta_R <= TURN_45T)		{
+			if(turn_theta_R <= TURN_45T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_45);
 				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_45T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else if(turn_theta_R <= TURN_90T)	{
+			else if(turn_theta_R <= TURN_90T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_90);
 				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_90T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else if(turn_theta_R <= TURN_180T)	{
+			else if(turn_theta_R <= TURN_180T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_180);
 				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_180T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else if(turn_theta_R <= TURN_270T)	{
+			else if(turn_theta_R <= TURN_270T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_270);
 				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else								{
+			else {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | LARGE_TURN);
 				turn_radian_R = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 
-			if(turn_radian_R <= TURN_25R)		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_25);
-			else if(turn_radian_R <= TURN_35R)	LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_35);
-			else if(turn_radian_R <= TURN_45R)	LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_45);
-			else 								LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_55);
+			if(turn_radian_R <= TURN_25R)
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_25);
+			else if(turn_radian_R <= TURN_35R)
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_35);
+			else if(turn_radian_R <= TURN_45R)
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_45);
+			else
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_55);
 		}
-		else
-		{
-			//turn_radian_L = TURN_VALUE_RADIAN_IQ15(LINE->Distance_R_U32, LINE->Distance_L_U32) >> 15;
+		else {
 			turn_theta_L = TURN_VALUE_THETA_IQ15(LINE->Distance_R_U32, LINE->Distance_L_U32) >> 15;
 
-			if(turn_theta_L <= TURN_45T)		{
+			if(turn_theta_L <= TURN_45T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_45);
 				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_45T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else if(turn_theta_L <= TURN_90T)	{
+			else if(turn_theta_L <= TURN_90T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_90);
 				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_90T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else if(turn_theta_L <= TURN_180T)	{
+			else if(turn_theta_L <= TURN_180T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_180);
 				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_180T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else if(turn_theta_L <= TURN_270T)	{
+			else if(turn_theta_L <= TURN_270T) {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_270);
 				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
-			else								{
+			else {
 				LINE->TurnDir_U32 = (LINE->TurnWay_U32 | LARGE_TURN);
 				turn_radian_L = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, _IQ15(TURN_270T)), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 			}
 
-			if(turn_radian_L <= TURN_25R)		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_25);
-			else if(turn_radian_L <= TURN_35R)	LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_35);
-			else if(turn_radian_L <= TURN_45R)	LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_45);
-			else 								LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_55);
+			if(turn_radian_L <= TURN_25R)
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_25);
+			else if(turn_radian_L <= TURN_35R)
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_35);
+			else if(turn_radian_L <= TURN_45R)
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_45);
+			else
+				LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_55);
 		}
 	}
-	else	LINE->TurnDir_U32 = ERROR_TURN;
+	else
+		LINE->TurnDir_U32 = ERROR_TURN;
 
-	if(Flag.TxFlag_U16)		TxPrintf("Angle: %4ld        Radius: %4ld		", turn_theta_L | turn_theta_R, turn_radian_L | turn_radian_R);
+	if(Flag.TxFlag_U16)
+		TxPrintf("Angle: %4ld        Radius: %4ld		", turn_theta_L | turn_theta_R, turn_radian_L | turn_radian_R);
 }
-
-
-
 

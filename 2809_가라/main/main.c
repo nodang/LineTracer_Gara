@@ -19,7 +19,7 @@ void System_Init(void)
 	InitGpio();			// 입출력 포트 초기화	
 	InitCpuTimers();
 	
-	MemCopy(&RamfuncsLoadStart, 	&RamfuncsLoadEnd, 		&RamfuncsRunStart); 
+	MemCopy(&RamfuncsLoadStart, 	&RamfuncsLoadEnd, 	&RamfuncsRunStart); 
 	MemCopy(&RamfuncsLoadStart1, 	&RamfuncsLoadEnd1, 	&RamfuncsRunStart1);
 	
 	InitSci();			

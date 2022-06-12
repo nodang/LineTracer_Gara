@@ -18,10 +18,10 @@ OUTPUT TRANSLATION MAP
    OUTPUT FILES: a_gara.hex [b0..b15]
 
    CONTENTS: 003e8000..003e8001   codestart Data Width=2   
-             003e8002..003ebca2   .text Data Width=2   
-             003ebca4..003ecf5a   .econst Data Width=2   
-             003ecf5b..003ed1da   VFD_FONT Data Width=2   
-             003ed1db..003ed393   IQmath Data Width=2   
+             003e8002..003ebc8e   .text Data Width=2   
+             003ebc90..003ecf46   .econst Data Width=2   
+             003ecf47..003ed1c6   VFD_FONT Data Width=2   
+             003ed1c7..003ed393   IQmath Data Width=2   
              003ed394..003ed3fc   .cinit Data Width=2   
              003ed3fd..003ed41f   ramfuncs Data Width=2   
 

@@ -92,7 +92,7 @@ void RUN()
 		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld, %4u\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV);
 		//TxPrintf("%5ld %4u %2ld\n", (int32)(SenAdc.Position_IQ10 >> 10), LINE_OUT_U16, RMotor.RolEach_IQ26 >> 26);
 		//TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld %4ld %4ld %u %u\n", LMotor.MaxTargetAcc_IQ17 >> 17, LMotor.NextAccel_IQ17 >> 17, LMotor.AccActable_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, LMotor.HandleVelo_IQ17 >> 17, RMotor.HandleVelo_IQ17 >> 17, LMotor.FinalVelo_IQ17 >> 17, RMotor.FinalVelo_IQ17 >> 17, EPwm2Regs.TBCTL.bit.CLKDIV, EPwm1Regs.TBCTL.bit.CLKDIV);
-		//TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld %4ld %4ld\n", LMotor.PrdNext_IQ14 >> 7, RMotor.PrdNext_IQ14 >> 7, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17, LMotor.HandleVelo_IQ17 >> 17, RMotor.HandleVelo_IQ17 >> 17, LMotor.FinalVelo_IQ17 >> 17, RMotor.FinalVelo_IQ17 >> 17);
+		//TxPrintf("%5ld %5lf %5ld %5ld  %4ld %4ld %4ld %4ld\n", LMotor.PrdNext_IQ14 >> 7, _IQ17toF(_IQ17div(HanPID.Pos_PID_IQ17, HanPID.Pos_PID_IQ17 - _IQ17(12000))), LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17, LMotor.HandleVelo_IQ17 >> 17, RMotor.HandleVelo_IQ17 >> 17, LMotor.FinalVelo_IQ17 >> 17, RMotor.FinalVelo_IQ17 >> 17);
 		//TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
 		//TxPrintf("%lf %lf\n", _IQ15toF(SenAdc.Theta_IQ15),  _IQ15toF(RMotor.CurveDist_IQ15));
 		//TxPrintf("%lf\n", _IQ15toF(_IQ15mpy(SenAdc.Theta_IQ15, _IQ15(57.295))));

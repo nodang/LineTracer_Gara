@@ -81,6 +81,9 @@ __VARIABLE_EXT__ Uint16 MENU_U16_CNT;
 #define LED_L_ON		(GpioDataRegs.GPBSET.bit.GPIO33		= 1)
 #define LED_L_OFF		(GpioDataRegs.GPBCLEAR.bit.GPIO33	= 1)
 
+#define BUZ_L_ON		(GpioDataRegs.GPBSET.bit.GPIO32		= 1)
+#define BUZ_L_OFF		(GpioDataRegs.GPBCLEAR.bit.GPIO32	= 1)
+
 #define LINE_OUT	777
 
 typedef	struct {
@@ -124,7 +127,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //-------------------------------------------------------------------------------------------------------------------------------//
 // MOTOR VAR   A B  A_ B_
 #define MAX_VELO_IQ17		_IQ17(4500.0)
-#define MIN_VELO_IQ17		_IQ17(300.0) //_IQ17(10.0)
+#define MIN_VELO_IQ17		_IQ17(320.0) //_IQ17(300.0) //_IQ17(10.0)
 #define MAX_ACC_IQ16		_IQ16(11000.0)
 #define MIN_ACC_IQ16		_IQ16(4500.0)
 #define MAX_ACC_IQ17		_IQ17(11000.0)
@@ -162,13 +165,13 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	MOTOR_PERIOD_MINIMUM		9294.0		// clk = 0 -> vel = 4500 mm/s
 */
 
-#define CLK_DIVISION_CONSTANT		3
-#define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.7 mm/s // clk = 3 -> vel = 159.54 mm/s
+#define CLK_DIVISION_CONSTANT		2
+#define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.7 mm/s // clk = 2 -> vel = 319.08 mm/s
 //#define	MOTOR_PERIOD_MAXIMUMdiv2	32767.0
 #define	MOTOR_PERIOD_MAXIMUMdiv10	6.5534		// System minium clock is 10 ns
 #define	MOTOR_PERIOD_MINIMUM		16384.0		// clk = 0 -> vel = 5105 mm/s
 
-#define MOTOR_ResetEnable	0x00000022		/*GPIO1,5 	0000 0000 0000 0000  0000 0000 0010 0010  */ 
+#define MOTOR_ResetEnable		0x00000022		/*GPIO1,5 	0000 0000 0000 0000  0000 0000 0010 0010  */ 
 
 #define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all
@@ -179,8 +182,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define STOP_TIMING_IQ16(A)		_IQ16div(_IQ16div(_IQ16(HEIGHT_SEEN), _IQ16(1.2)), A)
 #define STOP_JERK_IQ16(B)		_IQ16div(_IQ16div(_IQ16div(_IQ16div(_IQ16(HEIGHT_ME), _IQ16(TEN_THOUSAND)), B), B), B)
 
-#define STOP_VEL_IQ15(A)			(_IQ17div(A, _IQ17(100.0)) >> 2)
-#define STOP_ACC_IQ16(B)			_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15(B), STOP_VEL_IQ15(B)), _IQ15(HEIGHT_SEEN)), _IQ15(10000.0))
+#define STOP_VEL_IQ15(A)		(_IQ17div(A, _IQ17(100.0)) >> 2)
+#define STOP_ACC_IQ16(B)		_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15(B), STOP_VEL_IQ15(B)), _IQ15(HEIGHT_SEEN)), _IQ15(10000.0))
 
 #define	HANDLE_ACC_IQ17			_IQ17(1.0) + _IQ17mpy(_IQ17div(_IQ17(1.0), ACC_DEC_POINT_COEF_I32 << 17), ACCEL_COEF_I32 << 17)
 #define	HANDLE_DEC_IQ17			_IQ17mpy(_IQ17div(_IQ17(1.0), ACC_DEC_POINT_COEF_I32 << 17), DECEL_COEF_I32 << 17)
