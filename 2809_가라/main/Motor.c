@@ -176,6 +176,8 @@ interrupt void MOTOR_ISR()
 	
 	IER &= MINT14;
 	EINT;
+
+	HANDLE();
 		
 	// MOTOR CONTROL
 	if(Flag.Motor_U16) {	

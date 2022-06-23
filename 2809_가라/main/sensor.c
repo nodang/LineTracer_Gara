@@ -394,10 +394,10 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 	}
 	else		LINE_OUT_U16++;
 
-	HANDLE();
+	//HANDLE();
 }
 
-inline void HANDLE()
+void HANDLE()
 {
 	HanPID.Pos_Err_IQ10[4] = HanPID.Pos_Err_IQ10[3];
 	HanPID.Pos_Err_IQ10[3] = HanPID.Pos_Err_IQ10[2];
@@ -461,53 +461,53 @@ void MARK_ENABLE_SHIFT(TURNMARK *left, TURNMARK *right)
 
 void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 {
-	if(mark->SingleFlag_U16)
-	{
-		if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17)
-		{
-			if(mark == &RMark)		LED_R_OFF;
-			else					LED_L_OFF;
+	if(mark->SingleFlag_U16) {
+		if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17)	{
+			if(mark == &RMark)
+				LED_R_OFF;
+			else
+				LED_L_OFF;
+			BUZ_L_OFF;
 
 			mark->SingleFlag_U16 = OFF;
 			mark->TurnFlag_U16 = OFF;
 			mark->TurnmarkDistance_IQ17 = _IQ17(0.0);
 
-			if(mark->CrossMark_U16)		// Cross
-			{
+			// Cross
+			if(mark->CrossMark_U16)	{
 				mark->CrossMark_U16 = OFF;
 				
-				if(mark == &RMark)
-				{
-					if(Flag.Cross)	return;
-					else;	
+				if(mark == &RMark)	{
+					if(Flag.Cross)
+						return;	
 			
 					START_END_LINE();
 				}
-				else;
 			}
-			else						// TurnMark
-			{ 
-				if((!Flag.MoveState_U16) || Flag.Cross)		return;
-				else;
+			// TurnMark
+			else { 
+				if((!Flag.MoveState_U16) || Flag.Cross)
+					return;
 				
-				if(Flag.Search_U16)			LINE_INFO(mark);
-				else if(Flag.Fast_U16)		LINE_SECOND(&Search[SECOND_MARK_U16_CNT]);
-				else if(Flag.Extrem_U16)	LINE_THIRD(&Search[THIRD_MARK_U16_CNT]);
+				if(Flag.Search_U16)
+					LINE_INFO(mark);
+				else if(Flag.Fast_U16)
+					LINE_SECOND(&Search[SECOND_MARK_U16_CNT]);
+				else if(Flag.Extrem_U16)
+					LINE_THIRD(&Search[THIRD_MARK_U16_CNT]);
 			}
 		}
-		else if(remark->SingleFlag_U16)		mark->CrossMark_U16 = ON;
-		else;
+		else if(remark->SingleFlag_U16)
+			mark->CrossMark_U16 = ON;
 		
 		return;
 	}
-	else;
 	
 	MARK_ENABLE_SHIFT(&LMark, &RMark);
 
-	if(mark->MarkEnable_U16 & SENSOR_STATE_U16)		// sensor value checking
-	{
-		if(!mark->TurnFlag_U16)
-		{
+	// sensor value checking
+	if(mark->MarkEnable_U16 & SENSOR_STATE_U16) {
+		if(!mark->TurnFlag_U16) {
 			RMotor.TurnMarkCheckDistance_IQ17 = _IQ17(0.0);
 			LMotor.TurnMarkCheckDistance_IQ17 = _IQ17(0.0);
 			mark->TurnmarkDistance_IQ17	= _IQ17(0.0);
@@ -515,18 +515,19 @@ void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 			mark->LimitDistance_IQ17 = mark->TurnmarkDistance_IQ17 + _IQ17(5.0);
 			mark->TurnFlag_U16 = ON;
 		}
-		else if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17)
-		{
+		else if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17) {
 			mark->SingleFlag_U16 = ON;
 			mark->LimitDistance_IQ17 = mark->TurnmarkDistance_IQ17 + _IQ17(60.0);
 
-			if(mark == &RMark)	LED_R_ON;
-			else				LED_L_ON;
+			if(mark == &RMark)
+				LED_R_ON;
+			else
+				LED_L_ON;
+			BUZ_L_ON;
 		}
-		else;
 	}
-	else											// turnmark do not exist
-	{
+	// turnmark do not exist
+	else {
 		mark->TurnmarkDistance_IQ17 = _IQ17(0.0);
 		mark->TurnFlag_U16 = OFF;
 	}

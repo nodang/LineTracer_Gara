@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Sun Jun 12 21:49:42 2022                 *
+;* Date/Time created: Fri Jun 24 02:10:29 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -308,8 +308,8 @@ DW$71	.dwtag  DW_TAG_variable, DW_AT_name("SenAdc"), DW_AT_symbol_name("_SenAdc"
 	.dwattr DW$71, DW_AT_type(*DW$T$83)
 	.dwattr DW$71, DW_AT_declaration(0x01)
 	.dwattr DW$71, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI72810 C:\Users\노호진\AppData\Local\Temp\TI7284 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI7282 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI7286 --object_file menu.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI80810 C:\Users\노호진\AppData\Local\Temp\TI8084 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI8082 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI8086 --object_file menu.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 
 DW$72	.dwtag  DW_TAG_subprogram, DW_AT_name("senVAL"), DW_AT_symbol_name("_senVAL$0")
@@ -437,7 +437,7 @@ DW$L$_senVAL$0$6$E:
         ; return occurs
 
 DW$74	.dwtag  DW_TAG_loop
-	.dwattr DW$74, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L3:1:1655038182")
+	.dwattr DW$74, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L3:1:1656004229")
 	.dwattr DW$74, DW_AT_begin_file("menu.c")
 	.dwattr DW$74, DW_AT_begin_line(0x75)
 	.dwattr DW$74, DW_AT_end_line(0x7a)
@@ -805,7 +805,7 @@ DW$L$_hMOTtest$0$16$E:
         ; return occurs
 
 DW$84	.dwtag  DW_TAG_loop
-	.dwattr DW$84, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L10:1:1655038182")
+	.dwattr DW$84, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L10:1:1656004229")
 	.dwattr DW$84, DW_AT_begin_file("menu.c")
 	.dwattr DW$84, DW_AT_begin_line(0xfc)
 	.dwattr DW$84, DW_AT_end_line(0x117)
@@ -1336,7 +1336,7 @@ DW$L$_VEL$0$21$E:
         ; return occurs
 
 DW$112	.dwtag  DW_TAG_loop
-	.dwattr DW$112, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L23:1:1655038182")
+	.dwattr DW$112, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L23:1:1656004229")
 	.dwattr DW$112, DW_AT_begin_file("menu.c")
 	.dwattr DW$112, DW_AT_begin_line(0x83)
 	.dwattr DW$112, DW_AT_end_line(0x9d)
@@ -1466,7 +1466,7 @@ DW$L$_SEARCH$0$2$E:
         ; return occurs
 
 DW$134	.dwtag  DW_TAG_loop
-	.dwattr DW$134, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L24:1:1655038182")
+	.dwattr DW$134, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L24:1:1656004229")
 	.dwattr DW$134, DW_AT_begin_file("menu.c")
 	.dwattr DW$134, DW_AT_begin_line(0x124)
 	.dwattr DW$134, DW_AT_end_line(0x124)
@@ -1739,7 +1739,7 @@ L27:
         ; return occurs
 
 DW$145	.dwtag  DW_TAG_loop
-	.dwattr DW$145, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L25:1:1655038182")
+	.dwattr DW$145, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L25:1:1656004229")
 	.dwattr DW$145, DW_AT_begin_file("menu.c")
 	.dwattr DW$145, DW_AT_begin_line(0x49)
 	.dwattr DW$145, DW_AT_end_line(0x52)
@@ -1751,7 +1751,7 @@ DW$147	.dwtag  DW_TAG_loop_range
 	.dwattr DW$147, DW_AT_high_pc(DW$L$_POS$0$5$E)
 
 DW$148	.dwtag  DW_TAG_loop
-	.dwattr DW$148, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L26:2:1655038182")
+	.dwattr DW$148, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L26:2:1656004229")
 	.dwattr DW$148, DW_AT_begin_file("menu.c")
 	.dwattr DW$148, DW_AT_begin_line(0x4b)
 	.dwattr DW$148, DW_AT_end_line(0x4b)
@@ -2005,7 +2005,7 @@ DW$L$_EXTREM$0$2$E:
         ; return occurs
 
 DW$157	.dwtag  DW_TAG_loop
-	.dwattr DW$157, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L32:1:1655038182")
+	.dwattr DW$157, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L32:1:1656004229")
 	.dwattr DW$157, DW_AT_begin_file("menu.c")
 	.dwattr DW$157, DW_AT_begin_line(0x126)
 	.dwattr DW$157, DW_AT_end_line(0x126)
@@ -2078,7 +2078,7 @@ DW$L$_FAST$0$2$E:
         ; return occurs
 
 DW$160	.dwtag  DW_TAG_loop
-	.dwattr DW$160, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L33:1:1655038182")
+	.dwattr DW$160, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L33:1:1656004229")
 	.dwattr DW$160, DW_AT_begin_file("menu.c")
 	.dwattr DW$160, DW_AT_begin_line(0x125)
 	.dwattr DW$160, DW_AT_end_line(0x125)
@@ -2462,7 +2462,7 @@ DW$L$_HAN$0$21$E:
         ; return occurs
 
 DW$167	.dwtag  DW_TAG_loop
-	.dwattr DW$167, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L42:1:1655038182")
+	.dwattr DW$167, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L42:1:1656004229")
 	.dwattr DW$167, DW_AT_begin_file("menu.c")
 	.dwattr DW$167, DW_AT_begin_line(0xd3)
 	.dwattr DW$167, DW_AT_end_line(0xed)
@@ -3011,7 +3011,7 @@ DW$L$_ACC$0$33$E:
         ; return occurs
 
 DW$195	.dwtag  DW_TAG_loop
-	.dwattr DW$195, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L56:1:1655038182")
+	.dwattr DW$195, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L56:1:1656004229")
 	.dwattr DW$195, DW_AT_begin_file("menu.c")
 	.dwattr DW$195, DW_AT_begin_line(0xa5)
 	.dwattr DW$195, DW_AT_end_line(0xc9)
@@ -3282,7 +3282,7 @@ L59:
         ; return occurs
 
 DW$232	.dwtag  DW_TAG_loop
-	.dwattr DW$232, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L57:1:1655038182")
+	.dwattr DW$232, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L57:1:1656004229")
 	.dwattr DW$232, DW_AT_begin_file("menu.c")
 	.dwattr DW$232, DW_AT_begin_line(0x66)
 	.dwattr DW$232, DW_AT_end_line(0x6c)
@@ -3294,7 +3294,7 @@ DW$234	.dwtag  DW_TAG_loop_range
 	.dwattr DW$234, DW_AT_high_pc(DW$L$_ADC$0$5$E)
 
 DW$235	.dwtag  DW_TAG_loop
-	.dwattr DW$235, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L58:2:1655038182")
+	.dwattr DW$235, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L58:2:1656004229")
 	.dwattr DW$235, DW_AT_begin_file("menu.c")
 	.dwattr DW$235, DW_AT_begin_line(0x68)
 	.dwattr DW$235, DW_AT_end_line(0x68)
@@ -3399,7 +3399,7 @@ L61:
         ; return occurs
 
 DW$238	.dwtag  DW_TAG_loop
-	.dwattr DW$238, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L60:1:1655038182")
+	.dwattr DW$238, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L60:1:1656004229")
 	.dwattr DW$238, DW_AT_begin_file("menu.c")
 	.dwattr DW$238, DW_AT_begin_line(0x5a)
 	.dwattr DW$238, DW_AT_end_line(0x5a)
@@ -4013,7 +4013,7 @@ DW$L$_MENU_PA$23$E:
 	.dwcfa	0xc0, 7
 
 DW$258	.dwtag  DW_TAG_loop
-	.dwattr DW$258, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L63:1:1655038182")
+	.dwattr DW$258, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L63:1:1656004229")
 	.dwattr DW$258, DW_AT_begin_file("menu.c")
 	.dwattr DW$258, DW_AT_begin_line(0x149)
 	.dwattr DW$258, DW_AT_end_line(0x162)
@@ -4046,7 +4046,7 @@ DW$267	.dwtag  DW_TAG_loop_range
 	.dwattr DW$267, DW_AT_high_pc(DW$L$_MENU_PA$23$E)
 
 DW$268	.dwtag  DW_TAG_loop
-	.dwattr DW$268, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L64:2:1655038182")
+	.dwattr DW$268, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L64:2:1656004229")
 	.dwattr DW$268, DW_AT_begin_file("menu.c")
 	.dwattr DW$268, DW_AT_begin_line(0x30)
 	.dwattr DW$268, DW_AT_end_line(0x30)
@@ -4057,7 +4057,7 @@ DW$269	.dwtag  DW_TAG_loop_range
 
 
 DW$270	.dwtag  DW_TAG_loop
-	.dwattr DW$270, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L65:2:1655038182")
+	.dwattr DW$270, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L65:2:1656004229")
 	.dwattr DW$270, DW_AT_begin_file("menu.c")
 	.dwattr DW$270, DW_AT_begin_line(0x33)
 	.dwattr DW$270, DW_AT_end_line(0x33)
@@ -4068,7 +4068,7 @@ DW$271	.dwtag  DW_TAG_loop_range
 
 
 DW$272	.dwtag  DW_TAG_loop
-	.dwattr DW$272, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L66:2:1655038182")
+	.dwattr DW$272, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L66:2:1656004229")
 	.dwattr DW$272, DW_AT_begin_file("menu.c")
 	.dwattr DW$272, DW_AT_begin_line(0x36)
 	.dwattr DW$272, DW_AT_end_line(0x36)
@@ -4079,7 +4079,7 @@ DW$273	.dwtag  DW_TAG_loop_range
 
 
 DW$274	.dwtag  DW_TAG_loop
-	.dwattr DW$274, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L72:2:1655038182")
+	.dwattr DW$274, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L72:2:1656004229")
 	.dwattr DW$274, DW_AT_begin_file("menu.c")
 	.dwattr DW$274, DW_AT_begin_line(0x153)
 	.dwattr DW$274, DW_AT_end_line(0x15b)
@@ -4113,7 +4113,7 @@ DW$282	.dwtag  DW_TAG_loop_range
 
 
 DW$283	.dwtag  DW_TAG_loop
-	.dwattr DW$283, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L62:1:1655038182")
+	.dwattr DW$283, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L62:1:1656004229")
 	.dwattr DW$283, DW_AT_begin_file("menu.c")
 	.dwattr DW$283, DW_AT_begin_line(0x146)
 	.dwattr DW$283, DW_AT_end_line(0x146)
