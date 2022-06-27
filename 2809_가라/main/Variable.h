@@ -171,7 +171,9 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	MOTOR_PERIOD_MAXIMUMdiv10	6.5534		// System minium clock is 10 ns
 #define	MOTOR_PERIOD_MINIMUM		16384.0		// clk = 0 -> vel = 5105 mm/s
 
-#define MOTOR_ResetEnable		0x00000022		/*GPIO1,5 	0000 0000 0000 0000  0000 0000 0010 0010  */ 
+//#define MOTOR_ResetEnable		0x00000022		/*GPIO1,5 	0000 0000 0000 0000  0000 0000 0010 0010  */ 
+#define MOTOR_ResetEnable		0x00000044		/*GPIO2,6 	0000 0000 0000 0000  0000 0000 0100 0100  */ 
+
 
 #define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all

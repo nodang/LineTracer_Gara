@@ -33,6 +33,9 @@ void Init_MOTOR()
 	// 모터 제어 환경 변수 초기화
 	Init_MotorCtrl(&LMotor);
 	Init_MotorCtrl(&RMotor);
+
+	GpioDataRegs.GPASET.bit.GPIO1 = 0;
+	GpioDataRegs.GPASET.bit.GPIO5 = 1;
 }
 
 void Init_MotorCtrl(MOTORCTRL *pM)
@@ -188,10 +191,10 @@ interrupt void MOTOR_ISR()
 		EPwm3Regs.TBCTL.bit.CLKDIV = clk2;
 
 		EPwm1Regs.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 2);
+		EPwm1Regs.CMPA.half.CMPA = (EPwm1Regs.TBPRD >> 1);
 
 		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
-		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 2);
+		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1);
 
 		if(Flag.Fast_U16 | Flag.Extrem_U16)
 			SECOND_DECEL_VALUE(&RMotor, &LMotor);
