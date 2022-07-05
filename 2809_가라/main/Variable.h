@@ -129,13 +129,11 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define MAX_VELO_IQ17		_IQ17(4500.0)
 #define MIN_VELO_IQ17		_IQ17(100.0)
 //#define MIN_VELO_IQ17		_IQ17(320.0) //_IQ17(300.0)
-#define MAX_ACC_IQ16		_IQ16(11000.0)
-#define MIN_ACC_IQ16		_IQ16(4500.0)
-#define MAX_ACC_IQ17		_IQ17(11000.0)
-#define MIN_ACC_IQ17		_IQ17(4500.0)
+#define MAX_ACC_IQ16		_IQ16(11200.0)
+#define MIN_ACC_IQ16		_IQ16(3900.0)
+#define MAX_ACC_IQ17		_IQ17(11200.0)
+#define MIN_ACC_IQ17		_IQ17(3900.0)
 #define ACC_GRADIENT_IQ17	_IQ17div(MAX_ACC_IQ17 - MIN_ACC_IQ17, MAX_VELO_IQ17)
-
-#define DECEL_MINIMUM_VELO_IQ17		_IQ17()
 
 #define	TEN_THOUSAND		10000.0
 
@@ -343,6 +341,15 @@ typedef struct
 
 	_iq16	Jerk_IQ16;
 	_iq16	Decel_IQ16;
+
+//---------------------------------------------
+
+	_iq17	ShiftBefore_IQ17;
+	_iq17	ShiftAfter_IQ17;
+	_iq17	ShiftDistLimit_IQ17;
+
+	Uint16	DownFlag_U16:1;
+	Uint16	s44sFlag_U16:1;
 }TRACKINFO;
 
 __VARIABLE_EXT__ TRACKINFO	Search[256];

@@ -71,15 +71,31 @@ void Init_RUN()
 
 }
 
-void RUN()
+void RUN(Uint16 number)
 {
+	const char *table[] = { "        ", "1stREADY", "2ndREADY", "3thREADY", };
+		
 	Init_RUN();
 	
-	VFDPrintf("1stREADY");
+	if(number != 1)	
+	{
+		load_line_info_rom();
+		
+		if(number == 2)
+			Flag.Fast_U16 = ON;
+		else
+			Flag.Extrem_U16 = ON;
+
+		if(TURN_COMPUTE_FUNC())		{ VFDPrintf("cptERROR");	return; }
+		if(TURN_DIVISION_FUNC())	{ VFDPrintf("dvsERROR");	return; }
+	}
+	else 
+		Flag.Search_U16 = ON;
+	
+	VFDPrintf((char *)table[number]);
 	DELAY_US(1000000);
 	VFDPrintf("        ");
 	
-	Flag.Search_U16 = ON;
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
 	
@@ -106,8 +122,17 @@ void RUN()
 				
 		TURN_DECIDE(&RMark, &LMark);
 		TURN_DECIDE(&LMark, &RMark);
-		if(END_STOP() || LINE_OUT_STOP())		return;
-		else;
+
+		if(END_STOP() || LINE_OUT_STOP())		
+			return;
+
+		if(ERROR_U16_FLAG)
+		{	
+			MOVE_TO_MOVE(-1, _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+			Flag.Fast_U16 = OFF;
+			Flag.Extrem_U16 = OFF;
+			ERROR_U16_FLAG = OFF;
+		}
 	} 
 }
 

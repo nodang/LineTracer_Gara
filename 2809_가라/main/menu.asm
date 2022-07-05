@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Tue Jul 05 23:06:50 2022                 *
+;* Date/Time created: Wed Jul 06 03:01:29 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -17,194 +17,189 @@ DW$2	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$30)
 	.dwendtag DW$1
 
 
-DW$3	.dwtag  DW_TAG_subprogram, DW_AT_name("RUN_THIRD"), DW_AT_symbol_name("_RUN_THIRD")
+DW$3	.dwtag  DW_TAG_subprogram, DW_AT_name("save_sensitive_rom"), DW_AT_symbol_name("_save_sensitive_rom")
 	.dwattr DW$3, DW_AT_declaration(0x01)
 	.dwattr DW$3, DW_AT_external(0x01)
 
-DW$4	.dwtag  DW_TAG_subprogram, DW_AT_name("save_handle_rom"), DW_AT_symbol_name("_save_handle_rom")
+DW$4	.dwtag  DW_TAG_subprogram, DW_AT_name("save_accel_rom"), DW_AT_symbol_name("_save_accel_rom")
 	.dwattr DW$4, DW_AT_declaration(0x01)
 	.dwattr DW$4, DW_AT_external(0x01)
 
-DW$5	.dwtag  DW_TAG_subprogram, DW_AT_name("save_sensitive_rom"), DW_AT_symbol_name("_save_sensitive_rom")
+DW$5	.dwtag  DW_TAG_subprogram, DW_AT_name("save_pid_rom"), DW_AT_symbol_name("_save_pid_rom")
 	.dwattr DW$5, DW_AT_declaration(0x01)
 	.dwattr DW$5, DW_AT_external(0x01)
 
-DW$6	.dwtag  DW_TAG_subprogram, DW_AT_name("SENSOR_MAXMIN"), DW_AT_symbol_name("_SENSOR_MAXMIN")
+DW$6	.dwtag  DW_TAG_subprogram, DW_AT_name("VFDPrintf"), DW_AT_symbol_name("_VFDPrintf")
 	.dwattr DW$6, DW_AT_declaration(0x01)
 	.dwattr DW$6, DW_AT_external(0x01)
-
-DW$7	.dwtag  DW_TAG_subprogram, DW_AT_name("save_pid_rom"), DW_AT_symbol_name("_save_pid_rom")
-	.dwattr DW$7, DW_AT_declaration(0x01)
-	.dwattr DW$7, DW_AT_external(0x01)
-
-DW$8	.dwtag  DW_TAG_subprogram, DW_AT_name("VFDPrintf"), DW_AT_symbol_name("_VFDPrintf")
-	.dwattr DW$8, DW_AT_declaration(0x01)
-	.dwattr DW$8, DW_AT_external(0x01)
-DW$9	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$70)
-DW$10	.dwtag  DW_TAG_unspecified_parameters
-	.dwendtag DW$8
+DW$7	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$70)
+DW$8	.dwtag  DW_TAG_unspecified_parameters
+	.dwendtag DW$6
 
 
-DW$11	.dwtag  DW_TAG_subprogram, DW_AT_name("TxPrintf"), DW_AT_symbol_name("_TxPrintf")
-	.dwattr DW$11, DW_AT_declaration(0x01)
-	.dwattr DW$11, DW_AT_external(0x01)
-DW$12	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$70)
-DW$13	.dwtag  DW_TAG_unspecified_parameters
-	.dwendtag DW$11
+DW$9	.dwtag  DW_TAG_subprogram, DW_AT_name("TxPrintf"), DW_AT_symbol_name("_TxPrintf")
+	.dwattr DW$9, DW_AT_declaration(0x01)
+	.dwattr DW$9, DW_AT_external(0x01)
+DW$10	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$70)
+DW$11	.dwtag  DW_TAG_unspecified_parameters
+	.dwendtag DW$9
 
 
-DW$14	.dwtag  DW_TAG_subprogram, DW_AT_name("save_accel_rom"), DW_AT_symbol_name("_save_accel_rom")
+DW$12	.dwtag  DW_TAG_subprogram, DW_AT_name("save_handle_rom"), DW_AT_symbol_name("_save_handle_rom")
+	.dwattr DW$12, DW_AT_declaration(0x01)
+	.dwattr DW$12, DW_AT_external(0x01)
+
+DW$13	.dwtag  DW_TAG_subprogram, DW_AT_name("save_velocity_rom"), DW_AT_symbol_name("_save_velocity_rom")
+	.dwattr DW$13, DW_AT_declaration(0x01)
+	.dwattr DW$13, DW_AT_external(0x01)
+
+DW$14	.dwtag  DW_TAG_subprogram, DW_AT_name("RUN"), DW_AT_symbol_name("_RUN")
 	.dwattr DW$14, DW_AT_declaration(0x01)
 	.dwattr DW$14, DW_AT_external(0x01)
+DW$15	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$19)
+	.dwendtag DW$14
 
-DW$15	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_PRINTF"), DW_AT_symbol_name("_LINE_PRINTF")
-	.dwattr DW$15, DW_AT_declaration(0x01)
-	.dwattr DW$15, DW_AT_external(0x01)
 
-DW$16	.dwtag  DW_TAG_subprogram, DW_AT_name("RUN_SECOND"), DW_AT_symbol_name("_RUN_SECOND")
+DW$16	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_PRINTF"), DW_AT_symbol_name("_LINE_PRINTF")
 	.dwattr DW$16, DW_AT_declaration(0x01)
 	.dwattr DW$16, DW_AT_external(0x01)
 
-DW$17	.dwtag  DW_TAG_subprogram, DW_AT_name("RUN"), DW_AT_symbol_name("_RUN")
+DW$17	.dwtag  DW_TAG_subprogram, DW_AT_name("POSITION_COMPUTE"), DW_AT_symbol_name("_POSITION_COMPUTE")
 	.dwattr DW$17, DW_AT_declaration(0x01)
 	.dwattr DW$17, DW_AT_external(0x01)
-
-DW$18	.dwtag  DW_TAG_subprogram, DW_AT_name("POSITION_COMPUTE"), DW_AT_symbol_name("_POSITION_COMPUTE")
-	.dwattr DW$18, DW_AT_declaration(0x01)
-	.dwattr DW$18, DW_AT_external(0x01)
-DW$19	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$84)
-DW$20	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$86)
+DW$18	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$84)
+DW$19	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$86)
+DW$20	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$87)
 DW$21	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$87)
-DW$22	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$87)
-	.dwendtag DW$18
+	.dwendtag DW$17
 
 
-DW$23	.dwtag  DW_TAG_subprogram, DW_AT_name("save_velocity_rom"), DW_AT_symbol_name("_save_velocity_rom")
-	.dwattr DW$23, DW_AT_declaration(0x01)
-	.dwattr DW$23, DW_AT_external(0x01)
+DW$22	.dwtag  DW_TAG_subprogram, DW_AT_name("TURN_DECIDE"), DW_AT_symbol_name("_TURN_DECIDE")
+	.dwattr DW$22, DW_AT_declaration(0x01)
+	.dwattr DW$22, DW_AT_external(0x01)
+DW$23	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$92)
+DW$24	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$92)
+	.dwendtag DW$22
 
-DW$24	.dwtag  DW_TAG_subprogram, DW_AT_name("TURN_DECIDE"), DW_AT_symbol_name("_TURN_DECIDE")
-	.dwattr DW$24, DW_AT_declaration(0x01)
-	.dwattr DW$24, DW_AT_external(0x01)
-DW$25	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$92)
-DW$26	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$92)
-	.dwendtag DW$24
 
-DW$27	.dwtag  DW_TAG_variable, DW_AT_name("LINE_OUT_U16"), DW_AT_symbol_name("_LINE_OUT_U16")
-	.dwattr DW$27, DW_AT_type(*DW$T$20)
+DW$25	.dwtag  DW_TAG_subprogram, DW_AT_name("SENSOR_MAXMIN"), DW_AT_symbol_name("_SENSOR_MAXMIN")
+	.dwattr DW$25, DW_AT_declaration(0x01)
+	.dwattr DW$25, DW_AT_external(0x01)
+DW$26	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_ENABLE"), DW_AT_symbol_name("_SENSOR_ENABLE")
+	.dwattr DW$26, DW_AT_type(*DW$T$20)
+	.dwattr DW$26, DW_AT_declaration(0x01)
+	.dwattr DW$26, DW_AT_external(0x01)
+DW$27	.dwtag  DW_TAG_variable, DW_AT_name("MENU_U16_CNT"), DW_AT_symbol_name("_MENU_U16_CNT")
+	.dwattr DW$27, DW_AT_type(*DW$T$19)
 	.dwattr DW$27, DW_AT_declaration(0x01)
 	.dwattr DW$27, DW_AT_external(0x01)
-DW$28	.dwtag  DW_TAG_variable, DW_AT_name("MENU_U16_CNT"), DW_AT_symbol_name("_MENU_U16_CNT")
-	.dwattr DW$28, DW_AT_type(*DW$T$19)
+DW$28	.dwtag  DW_TAG_variable, DW_AT_name("LINE_OUT_U16"), DW_AT_symbol_name("_LINE_OUT_U16")
+	.dwattr DW$28, DW_AT_type(*DW$T$20)
 	.dwattr DW$28, DW_AT_declaration(0x01)
 	.dwattr DW$28, DW_AT_external(0x01)
-DW$29	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_ENABLE"), DW_AT_symbol_name("_SENSOR_ENABLE")
-	.dwattr DW$29, DW_AT_type(*DW$T$20)
+DW$29	.dwtag  DW_TAG_variable, DW_AT_name("Flag"), DW_AT_symbol_name("_Flag")
+	.dwattr DW$29, DW_AT_type(*DW$T$157)
 	.dwattr DW$29, DW_AT_declaration(0x01)
 	.dwattr DW$29, DW_AT_external(0x01)
-DW$30	.dwtag  DW_TAG_variable, DW_AT_name("Flag"), DW_AT_symbol_name("_Flag")
-	.dwattr DW$30, DW_AT_type(*DW$T$155)
+DW$30	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_SENSITIVE_U16"), DW_AT_symbol_name("_SENSOR_SENSITIVE_U16")
+	.dwattr DW$30, DW_AT_type(*DW$T$19)
 	.dwattr DW$30, DW_AT_declaration(0x01)
 	.dwattr DW$30, DW_AT_external(0x01)
-DW$31	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_SENSITIVE_U16"), DW_AT_symbol_name("_SENSOR_SENSITIVE_U16")
-	.dwattr DW$31, DW_AT_type(*DW$T$19)
+DW$31	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_STATE_U16"), DW_AT_symbol_name("_SENSOR_STATE_U16")
+	.dwattr DW$31, DW_AT_type(*DW$T$20)
 	.dwattr DW$31, DW_AT_declaration(0x01)
 	.dwattr DW$31, DW_AT_external(0x01)
-DW$32	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_STATE_U16"), DW_AT_symbol_name("_SENSOR_STATE_U16")
+DW$32	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_STATE_U16_CNT"), DW_AT_symbol_name("_SENSOR_STATE_U16_CNT")
 	.dwattr DW$32, DW_AT_type(*DW$T$20)
 	.dwattr DW$32, DW_AT_declaration(0x01)
 	.dwattr DW$32, DW_AT_external(0x01)
-DW$33	.dwtag  DW_TAG_variable, DW_AT_name("SENSOR_STATE_U16_CNT"), DW_AT_symbol_name("_SENSOR_STATE_U16_CNT")
-	.dwattr DW$33, DW_AT_type(*DW$T$20)
+DW$33	.dwtag  DW_TAG_variable, DW_AT_name("SECOND_MAX_SPEED_U32"), DW_AT_symbol_name("_SECOND_MAX_SPEED_U32")
+	.dwattr DW$33, DW_AT_type(*DW$T$30)
 	.dwattr DW$33, DW_AT_declaration(0x01)
 	.dwattr DW$33, DW_AT_external(0x01)
-DW$34	.dwtag  DW_TAG_variable, DW_AT_name("SECOND_MAX_SPEED_U32"), DW_AT_symbol_name("_SECOND_MAX_SPEED_U32")
+DW$34	.dwtag  DW_TAG_variable, DW_AT_name("MOTOR_SPEED_U32"), DW_AT_symbol_name("_MOTOR_SPEED_U32")
 	.dwattr DW$34, DW_AT_type(*DW$T$30)
 	.dwattr DW$34, DW_AT_declaration(0x01)
 	.dwattr DW$34, DW_AT_external(0x01)
-DW$35	.dwtag  DW_TAG_variable, DW_AT_name("MOTOR_SPEED_U32"), DW_AT_symbol_name("_MOTOR_SPEED_U32")
+DW$35	.dwtag  DW_TAG_variable, DW_AT_name("JERK_MIDDLE_U32"), DW_AT_symbol_name("_JERK_MIDDLE_U32")
 	.dwattr DW$35, DW_AT_type(*DW$T$30)
 	.dwattr DW$35, DW_AT_declaration(0x01)
 	.dwattr DW$35, DW_AT_external(0x01)
-DW$36	.dwtag  DW_TAG_variable, DW_AT_name("JERK_MIDDLE_U32"), DW_AT_symbol_name("_JERK_MIDDLE_U32")
+DW$36	.dwtag  DW_TAG_variable, DW_AT_name("JERK_SHORT_U32"), DW_AT_symbol_name("_JERK_SHORT_U32")
 	.dwattr DW$36, DW_AT_type(*DW$T$30)
 	.dwattr DW$36, DW_AT_declaration(0x01)
 	.dwattr DW$36, DW_AT_external(0x01)
-DW$37	.dwtag  DW_TAG_variable, DW_AT_name("JERK_SHORT_U32"), DW_AT_symbol_name("_JERK_SHORT_U32")
+DW$37	.dwtag  DW_TAG_variable, DW_AT_name("JERK_LONG_U32"), DW_AT_symbol_name("_JERK_LONG_U32")
 	.dwattr DW$37, DW_AT_type(*DW$T$30)
 	.dwattr DW$37, DW_AT_declaration(0x01)
 	.dwattr DW$37, DW_AT_external(0x01)
-DW$38	.dwtag  DW_TAG_variable, DW_AT_name("JERK_LONG_U32"), DW_AT_symbol_name("_JERK_LONG_U32")
+DW$38	.dwtag  DW_TAG_variable, DW_AT_name("PID_Kp_U32"), DW_AT_symbol_name("_PID_Kp_U32")
 	.dwattr DW$38, DW_AT_type(*DW$T$30)
 	.dwattr DW$38, DW_AT_declaration(0x01)
 	.dwattr DW$38, DW_AT_external(0x01)
-DW$39	.dwtag  DW_TAG_variable, DW_AT_name("PID_Kp_U32"), DW_AT_symbol_name("_PID_Kp_U32")
+DW$39	.dwtag  DW_TAG_variable, DW_AT_name("PID_Kd_U32"), DW_AT_symbol_name("_PID_Kd_U32")
 	.dwattr DW$39, DW_AT_type(*DW$T$30)
 	.dwattr DW$39, DW_AT_declaration(0x01)
 	.dwattr DW$39, DW_AT_external(0x01)
-DW$40	.dwtag  DW_TAG_variable, DW_AT_name("PID_Kd_U32"), DW_AT_symbol_name("_PID_Kd_U32")
-	.dwattr DW$40, DW_AT_type(*DW$T$30)
+DW$40	.dwtag  DW_TAG_variable, DW_AT_name("ACC_DEC_POINT_COEF_I32"), DW_AT_symbol_name("_ACC_DEC_POINT_COEF_I32")
+	.dwattr DW$40, DW_AT_type(*DW$T$85)
 	.dwattr DW$40, DW_AT_declaration(0x01)
 	.dwattr DW$40, DW_AT_external(0x01)
-DW$41	.dwtag  DW_TAG_variable, DW_AT_name("ACC_DEC_POINT_COEF_I32"), DW_AT_symbol_name("_ACC_DEC_POINT_COEF_I32")
+DW$41	.dwtag  DW_TAG_variable, DW_AT_name("ACCEL_COEF_I32"), DW_AT_symbol_name("_ACCEL_COEF_I32")
 	.dwattr DW$41, DW_AT_type(*DW$T$85)
 	.dwattr DW$41, DW_AT_declaration(0x01)
 	.dwattr DW$41, DW_AT_external(0x01)
-DW$42	.dwtag  DW_TAG_variable, DW_AT_name("ACCEL_COEF_I32"), DW_AT_symbol_name("_ACCEL_COEF_I32")
+DW$42	.dwtag  DW_TAG_variable, DW_AT_name("DECEL_COEF_I32"), DW_AT_symbol_name("_DECEL_COEF_I32")
 	.dwattr DW$42, DW_AT_type(*DW$T$85)
 	.dwattr DW$42, DW_AT_declaration(0x01)
 	.dwattr DW$42, DW_AT_external(0x01)
-DW$43	.dwtag  DW_TAG_variable, DW_AT_name("DECEL_COEF_I32"), DW_AT_symbol_name("_DECEL_COEF_I32")
-	.dwattr DW$43, DW_AT_type(*DW$T$85)
+
+DW$43	.dwtag  DW_TAG_subprogram, DW_AT_name("_IQ16toF"), DW_AT_symbol_name("__IQ16toF")
+	.dwattr DW$43, DW_AT_type(*DW$T$16)
 	.dwattr DW$43, DW_AT_declaration(0x01)
 	.dwattr DW$43, DW_AT_external(0x01)
-
-DW$44	.dwtag  DW_TAG_subprogram, DW_AT_name("_IQ16toF"), DW_AT_symbol_name("__IQ16toF")
-	.dwattr DW$44, DW_AT_type(*DW$T$16)
-	.dwattr DW$44, DW_AT_declaration(0x01)
-	.dwattr DW$44, DW_AT_external(0x01)
-DW$45	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-	.dwendtag DW$44
+DW$44	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
+	.dwendtag DW$43
 
 
-DW$46	.dwtag  DW_TAG_subprogram, DW_AT_name("_IQ17div"), DW_AT_symbol_name("__IQ17div")
-	.dwattr DW$46, DW_AT_type(*DW$T$12)
-	.dwattr DW$46, DW_AT_declaration(0x01)
-	.dwattr DW$46, DW_AT_external(0x01)
+DW$45	.dwtag  DW_TAG_subprogram, DW_AT_name("_IQ17div"), DW_AT_symbol_name("__IQ17div")
+	.dwattr DW$45, DW_AT_type(*DW$T$12)
+	.dwattr DW$45, DW_AT_declaration(0x01)
+	.dwattr DW$45, DW_AT_external(0x01)
+DW$46	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
 DW$47	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-DW$48	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-	.dwendtag DW$46
+	.dwendtag DW$45
 
 
-DW$49	.dwtag  DW_TAG_subprogram, DW_AT_name("__IQmpy"), DW_AT_symbol_name("___IQmpy")
-	.dwattr DW$49, DW_AT_type(*DW$T$12)
-	.dwattr DW$49, DW_AT_declaration(0x01)
-	.dwattr DW$49, DW_AT_external(0x01)
+DW$48	.dwtag  DW_TAG_subprogram, DW_AT_name("__IQmpy"), DW_AT_symbol_name("___IQmpy")
+	.dwattr DW$48, DW_AT_type(*DW$T$12)
+	.dwattr DW$48, DW_AT_declaration(0x01)
+	.dwattr DW$48, DW_AT_external(0x01)
+DW$49	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
 DW$50	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-DW$51	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-DW$52	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$10)
-	.dwendtag DW$49
+DW$51	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$10)
+	.dwendtag DW$48
 
 
-DW$53	.dwtag  DW_TAG_subprogram, DW_AT_name("_IQ17toF"), DW_AT_symbol_name("__IQ17toF")
-	.dwattr DW$53, DW_AT_type(*DW$T$16)
-	.dwattr DW$53, DW_AT_declaration(0x01)
-	.dwattr DW$53, DW_AT_external(0x01)
-DW$54	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-	.dwendtag DW$53
+DW$52	.dwtag  DW_TAG_subprogram, DW_AT_name("_IQ17toF"), DW_AT_symbol_name("__IQ17toF")
+	.dwattr DW$52, DW_AT_type(*DW$T$16)
+	.dwattr DW$52, DW_AT_declaration(0x01)
+	.dwattr DW$52, DW_AT_external(0x01)
+DW$53	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
+	.dwendtag DW$52
 
-DW$55	.dwtag  DW_TAG_variable, DW_AT_name("JERK_U32"), DW_AT_symbol_name("_JERK_U32")
+DW$54	.dwtag  DW_TAG_variable, DW_AT_name("JERK_U32"), DW_AT_symbol_name("_JERK_U32")
+	.dwattr DW$54, DW_AT_type(*DW$T$30)
+	.dwattr DW$54, DW_AT_declaration(0x01)
+	.dwattr DW$54, DW_AT_external(0x01)
+DW$55	.dwtag  DW_TAG_variable, DW_AT_name("END_SPEED_U32"), DW_AT_symbol_name("_END_SPEED_U32")
 	.dwattr DW$55, DW_AT_type(*DW$T$30)
 	.dwattr DW$55, DW_AT_declaration(0x01)
 	.dwattr DW$55, DW_AT_external(0x01)
-DW$56	.dwtag  DW_TAG_variable, DW_AT_name("END_SPEED_U32"), DW_AT_symbol_name("_END_SPEED_U32")
-	.dwattr DW$56, DW_AT_type(*DW$T$30)
+DW$56	.dwtag  DW_TAG_variable, DW_AT_name("CpuTimer2Regs"), DW_AT_symbol_name("_CpuTimer2Regs")
+	.dwattr DW$56, DW_AT_type(*DW$T$149)
 	.dwattr DW$56, DW_AT_declaration(0x01)
 	.dwattr DW$56, DW_AT_external(0x01)
-DW$57	.dwtag  DW_TAG_variable, DW_AT_name("CpuTimer2Regs"), DW_AT_symbol_name("_CpuTimer2Regs")
-	.dwattr DW$57, DW_AT_type(*DW$T$147)
-	.dwattr DW$57, DW_AT_declaration(0x01)
-	.dwattr DW$57, DW_AT_external(0x01)
 	.sect	".econst"
 	.align	2
 _$T1$2$0:
@@ -213,17 +208,17 @@ _$T1$2$0:
 	.field  	_HAN$0,32		; _$T1$2$0[2] @ 64
 	.field  	_hMOTtest$0,32		; _$T1$2$0[3] @ 96
 
-DW$58	.dwtag  DW_TAG_variable, DW_AT_name("$T1$2$0"), DW_AT_symbol_name("_$T1$2$0")
-	.dwattr DW$58, DW_AT_type(*DW$T$82)
-	.dwattr DW$58, DW_AT_location[DW_OP_addr _$T1$2$0]
-DW$59	.dwtag  DW_TAG_variable, DW_AT_name("RMark"), DW_AT_symbol_name("_RMark")
+DW$57	.dwtag  DW_TAG_variable, DW_AT_name("$T1$2$0"), DW_AT_symbol_name("_$T1$2$0")
+	.dwattr DW$57, DW_AT_type(*DW$T$82)
+	.dwattr DW$57, DW_AT_location[DW_OP_addr _$T1$2$0]
+DW$58	.dwtag  DW_TAG_variable, DW_AT_name("RMark"), DW_AT_symbol_name("_RMark")
+	.dwattr DW$58, DW_AT_type(*DW$T$91)
+	.dwattr DW$58, DW_AT_declaration(0x01)
+	.dwattr DW$58, DW_AT_external(0x01)
+DW$59	.dwtag  DW_TAG_variable, DW_AT_name("LMark"), DW_AT_symbol_name("_LMark")
 	.dwattr DW$59, DW_AT_type(*DW$T$91)
 	.dwattr DW$59, DW_AT_declaration(0x01)
 	.dwattr DW$59, DW_AT_external(0x01)
-DW$60	.dwtag  DW_TAG_variable, DW_AT_name("LMark"), DW_AT_symbol_name("_LMark")
-	.dwattr DW$60, DW_AT_type(*DW$T$91)
-	.dwattr DW$60, DW_AT_declaration(0x01)
-	.dwattr DW$60, DW_AT_external(0x01)
 	.sect	".econst"
 	.align	2
 _$T2$3$0:
@@ -232,9 +227,9 @@ _$T2$3$0:
 	.field  	_EXTREM$0,32		; _$T2$3$0[2] @ 64
 	.field  	_MAP$0,32		; _$T2$3$0[3] @ 96
 
-DW$61	.dwtag  DW_TAG_variable, DW_AT_name("$T2$3$0"), DW_AT_symbol_name("_$T2$3$0")
-	.dwattr DW$61, DW_AT_type(*DW$T$82)
-	.dwattr DW$61, DW_AT_location[DW_OP_addr _$T2$3$0]
+DW$60	.dwtag  DW_TAG_variable, DW_AT_name("$T2$3$0"), DW_AT_symbol_name("_$T2$3$0")
+	.dwattr DW$60, DW_AT_type(*DW$T$82)
+	.dwattr DW$60, DW_AT_location[DW_OP_addr _$T2$3$0]
 	.sect	".econst"
 	.align	2
 _$T4$5$0:
@@ -244,9 +239,9 @@ _$T4$5$0:
 	.field  	FSL4,32		; _$T4$5$0[3] @ 96
 	.field  	FSL5,32		; _$T4$5$0[4] @ 128
 
-DW$62	.dwtag  DW_TAG_variable, DW_AT_name("$T4$5$0"), DW_AT_symbol_name("_$T4$5$0")
-	.dwattr DW$62, DW_AT_type(*DW$T$167)
-	.dwattr DW$62, DW_AT_location[DW_OP_addr _$T4$5$0]
+DW$61	.dwtag  DW_TAG_variable, DW_AT_name("$T4$5$0"), DW_AT_symbol_name("_$T4$5$0")
+	.dwattr DW$61, DW_AT_type(*DW$T$169)
+	.dwattr DW$61, DW_AT_location[DW_OP_addr _$T4$5$0]
 	.sect	".econst"
 	.align	2
 _$T0$1$0:
@@ -256,9 +251,9 @@ _$T0$1$0:
 	.field  	_ADC$0,32		; _$T0$1$0[3] @ 96
 	.field  	_senVAL$0,32		; _$T0$1$0[4] @ 128
 
-DW$63	.dwtag  DW_TAG_variable, DW_AT_name("$T0$1$0"), DW_AT_symbol_name("_$T0$1$0")
-	.dwattr DW$63, DW_AT_type(*DW$T$81)
-	.dwattr DW$63, DW_AT_location[DW_OP_addr _$T0$1$0]
+DW$62	.dwtag  DW_TAG_variable, DW_AT_name("$T0$1$0"), DW_AT_symbol_name("_$T0$1$0")
+	.dwattr DW$62, DW_AT_type(*DW$T$81)
+	.dwattr DW$62, DW_AT_location[DW_OP_addr _$T0$1$0]
 	.sect	".econst"
 	.align	2
 _$T5$6$0:
@@ -268,9 +263,9 @@ _$T5$6$0:
 	.field  	FSL9,32		; _$T5$6$0[3] @ 96
 	.field  	FSL10,32		; _$T5$6$0[4] @ 128
 
-DW$64	.dwtag  DW_TAG_variable, DW_AT_name("$T5$6$0"), DW_AT_symbol_name("_$T5$6$0")
-	.dwattr DW$64, DW_AT_type(*DW$T$167)
-	.dwattr DW$64, DW_AT_location[DW_OP_addr _$T5$6$0]
+DW$63	.dwtag  DW_TAG_variable, DW_AT_name("$T5$6$0"), DW_AT_symbol_name("_$T5$6$0")
+	.dwattr DW$63, DW_AT_type(*DW$T$169)
+	.dwattr DW$63, DW_AT_location[DW_OP_addr _$T5$6$0]
 	.sect	".econst"
 	.align	2
 _$T3$4$0:
@@ -281,39 +276,39 @@ _$T3$4$0:
 	.field  	FSL15,32		; _$T3$4$0[4] @ 128
 	.field  	FSL16,32		; _$T3$4$0[5] @ 160
 
-DW$65	.dwtag  DW_TAG_variable, DW_AT_name("$T3$4$0"), DW_AT_symbol_name("_$T3$4$0")
-	.dwattr DW$65, DW_AT_type(*DW$T$166)
-	.dwattr DW$65, DW_AT_location[DW_OP_addr _$T3$4$0]
-DW$66	.dwtag  DW_TAG_variable, DW_AT_name("HanPID"), DW_AT_symbol_name("_HanPID")
+DW$64	.dwtag  DW_TAG_variable, DW_AT_name("$T3$4$0"), DW_AT_symbol_name("_$T3$4$0")
+	.dwattr DW$64, DW_AT_type(*DW$T$168)
+	.dwattr DW$64, DW_AT_location[DW_OP_addr _$T3$4$0]
+DW$65	.dwtag  DW_TAG_variable, DW_AT_name("HanPID"), DW_AT_symbol_name("_HanPID")
+	.dwattr DW$65, DW_AT_type(*DW$T$155)
+	.dwattr DW$65, DW_AT_declaration(0x01)
+	.dwattr DW$65, DW_AT_external(0x01)
+DW$66	.dwtag  DW_TAG_variable, DW_AT_name("SciaRegs"), DW_AT_symbol_name("_SciaRegs")
 	.dwattr DW$66, DW_AT_type(*DW$T$153)
 	.dwattr DW$66, DW_AT_declaration(0x01)
 	.dwattr DW$66, DW_AT_external(0x01)
-DW$67	.dwtag  DW_TAG_variable, DW_AT_name("SciaRegs"), DW_AT_symbol_name("_SciaRegs")
-	.dwattr DW$67, DW_AT_type(*DW$T$151)
+DW$67	.dwtag  DW_TAG_variable, DW_AT_name("POSITION_WEIGHT_I32"), DW_AT_symbol_name("_POSITION_WEIGHT_I32")
+	.dwattr DW$67, DW_AT_type(*DW$T$126)
 	.dwattr DW$67, DW_AT_declaration(0x01)
 	.dwattr DW$67, DW_AT_external(0x01)
-DW$68	.dwtag  DW_TAG_variable, DW_AT_name("POSITION_WEIGHT_I32"), DW_AT_symbol_name("_POSITION_WEIGHT_I32")
-	.dwattr DW$68, DW_AT_type(*DW$T$124)
+DW$68	.dwtag  DW_TAG_variable, DW_AT_name("GpioDataRegs"), DW_AT_symbol_name("_GpioDataRegs")
+	.dwattr DW$68, DW_AT_type(*DW$T$145)
 	.dwattr DW$68, DW_AT_declaration(0x01)
 	.dwattr DW$68, DW_AT_external(0x01)
-DW$69	.dwtag  DW_TAG_variable, DW_AT_name("GpioDataRegs"), DW_AT_symbol_name("_GpioDataRegs")
-	.dwattr DW$69, DW_AT_type(*DW$T$143)
+DW$69	.dwtag  DW_TAG_variable, DW_AT_name("SenAdc"), DW_AT_symbol_name("_SenAdc")
+	.dwattr DW$69, DW_AT_type(*DW$T$83)
 	.dwattr DW$69, DW_AT_declaration(0x01)
 	.dwattr DW$69, DW_AT_external(0x01)
-DW$70	.dwtag  DW_TAG_variable, DW_AT_name("SenAdc"), DW_AT_symbol_name("_SenAdc")
-	.dwattr DW$70, DW_AT_type(*DW$T$83)
-	.dwattr DW$70, DW_AT_declaration(0x01)
-	.dwattr DW$70, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI79610 C:\Users\노호진\AppData\Local\Temp\TI7964 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI7962 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI7966 --object_file menu.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI26410 C:\Users\노호진\AppData\Local\Temp\TI2644 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI2642 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI2646 --object_file menu.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 
-DW$71	.dwtag  DW_TAG_subprogram, DW_AT_name("senVAL"), DW_AT_symbol_name("_senVAL$0")
-	.dwattr DW$71, DW_AT_low_pc(_senVAL$0)
-	.dwattr DW$71, DW_AT_high_pc(0x00)
-	.dwattr DW$71, DW_AT_begin_file("menu.c")
-	.dwattr DW$71, DW_AT_begin_line(0x73)
-	.dwattr DW$71, DW_AT_begin_column(0x0d)
+DW$70	.dwtag  DW_TAG_subprogram, DW_AT_name("senVAL"), DW_AT_symbol_name("_senVAL$0")
+	.dwattr DW$70, DW_AT_low_pc(_senVAL$0)
+	.dwattr DW$70, DW_AT_high_pc(0x00)
+	.dwattr DW$70, DW_AT_begin_file("menu.c")
+	.dwattr DW$70, DW_AT_begin_line(0x73)
+	.dwattr DW$70, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",116,1
 
 	.dwfde DW$CIE
@@ -342,9 +337,9 @@ _senVAL$0:
         ADDB      SP,#4
 	.dwcfa	0x1d, -6
 ;* AR4   assigned to C$1
-DW$72	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$72, DW_AT_type(*DW$T$118)
-	.dwattr DW$72, DW_AT_location[DW_OP_reg12]
+DW$71	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$71, DW_AT_type(*DW$T$120)
+	.dwattr DW$71, DW_AT_location[DW_OP_reg12]
 	.dwpsn	"menu.c",117,2
         BF        L3,UNC                ; |117| 
         ; branch occurs ; |117| 
@@ -432,42 +427,42 @@ DW$L$_senVAL$0$6$E:
         LRETR
         ; return occurs
 
-DW$73	.dwtag  DW_TAG_loop
-	.dwattr DW$73, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L3:1:1657030010")
-	.dwattr DW$73, DW_AT_begin_file("menu.c")
-	.dwattr DW$73, DW_AT_begin_line(0x75)
-	.dwattr DW$73, DW_AT_end_line(0x7a)
+DW$72	.dwtag  DW_TAG_loop
+	.dwattr DW$72, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L3:1:1657044089")
+	.dwattr DW$72, DW_AT_begin_file("menu.c")
+	.dwattr DW$72, DW_AT_begin_line(0x75)
+	.dwattr DW$72, DW_AT_end_line(0x7a)
+DW$73	.dwtag  DW_TAG_loop_range
+	.dwattr DW$73, DW_AT_low_pc(DW$L$_senVAL$0$6$B)
+	.dwattr DW$73, DW_AT_high_pc(DW$L$_senVAL$0$6$E)
 DW$74	.dwtag  DW_TAG_loop_range
-	.dwattr DW$74, DW_AT_low_pc(DW$L$_senVAL$0$6$B)
-	.dwattr DW$74, DW_AT_high_pc(DW$L$_senVAL$0$6$E)
+	.dwattr DW$74, DW_AT_low_pc(DW$L$_senVAL$0$2$B)
+	.dwattr DW$74, DW_AT_high_pc(DW$L$_senVAL$0$2$E)
 DW$75	.dwtag  DW_TAG_loop_range
-	.dwattr DW$75, DW_AT_low_pc(DW$L$_senVAL$0$2$B)
-	.dwattr DW$75, DW_AT_high_pc(DW$L$_senVAL$0$2$E)
+	.dwattr DW$75, DW_AT_low_pc(DW$L$_senVAL$0$5$B)
+	.dwattr DW$75, DW_AT_high_pc(DW$L$_senVAL$0$5$E)
 DW$76	.dwtag  DW_TAG_loop_range
-	.dwattr DW$76, DW_AT_low_pc(DW$L$_senVAL$0$5$B)
-	.dwattr DW$76, DW_AT_high_pc(DW$L$_senVAL$0$5$E)
+	.dwattr DW$76, DW_AT_low_pc(DW$L$_senVAL$0$4$B)
+	.dwattr DW$76, DW_AT_high_pc(DW$L$_senVAL$0$4$E)
 DW$77	.dwtag  DW_TAG_loop_range
-	.dwattr DW$77, DW_AT_low_pc(DW$L$_senVAL$0$4$B)
-	.dwattr DW$77, DW_AT_high_pc(DW$L$_senVAL$0$4$E)
-DW$78	.dwtag  DW_TAG_loop_range
-	.dwattr DW$78, DW_AT_low_pc(DW$L$_senVAL$0$3$B)
-	.dwattr DW$78, DW_AT_high_pc(DW$L$_senVAL$0$3$E)
-	.dwendtag DW$73
+	.dwattr DW$77, DW_AT_low_pc(DW$L$_senVAL$0$3$B)
+	.dwattr DW$77, DW_AT_high_pc(DW$L$_senVAL$0$3$E)
+	.dwendtag DW$72
 
-	.dwattr DW$71, DW_AT_end_file("menu.c")
-	.dwattr DW$71, DW_AT_end_line(0x7d)
-	.dwattr DW$71, DW_AT_end_column(0x01)
+	.dwattr DW$70, DW_AT_end_file("menu.c")
+	.dwattr DW$70, DW_AT_end_line(0x7d)
+	.dwattr DW$70, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$71
+	.dwendtag DW$70
 
 	.sect	".text"
 
-DW$79	.dwtag  DW_TAG_subprogram, DW_AT_name("hMOTtest"), DW_AT_symbol_name("_hMOTtest$0")
-	.dwattr DW$79, DW_AT_low_pc(_hMOTtest$0)
-	.dwattr DW$79, DW_AT_high_pc(0x00)
-	.dwattr DW$79, DW_AT_begin_file("menu.c")
-	.dwattr DW$79, DW_AT_begin_line(0xf5)
-	.dwattr DW$79, DW_AT_begin_column(0x0d)
+DW$78	.dwtag  DW_TAG_subprogram, DW_AT_name("hMOTtest"), DW_AT_symbol_name("_hMOTtest$0")
+	.dwattr DW$78, DW_AT_low_pc(_hMOTtest$0)
+	.dwattr DW$78, DW_AT_high_pc(0x00)
+	.dwattr DW$78, DW_AT_begin_file("menu.c")
+	.dwattr DW$78, DW_AT_begin_line(0xf5)
+	.dwattr DW$78, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",246,1
 
 	.dwfde DW$CIE
@@ -509,17 +504,17 @@ _hMOTtest$0:
         ADDB      SP,#8
 	.dwcfa	0x1d, -16
 ;* AR4   assigned to C$1
-DW$80	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$80, DW_AT_type(*DW$T$118)
-	.dwattr DW$80, DW_AT_location[DW_OP_reg12]
+DW$79	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$79, DW_AT_type(*DW$T$120)
+	.dwattr DW$79, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$2
-DW$81	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
-	.dwattr DW$81, DW_AT_type(*DW$T$118)
-	.dwattr DW$81, DW_AT_location[DW_OP_reg12]
+DW$80	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
+	.dwattr DW$80, DW_AT_type(*DW$T$120)
+	.dwattr DW$80, DW_AT_location[DW_OP_reg12]
 ;* AR3   assigned to _pid_sw_cnt
-DW$82	.dwtag  DW_TAG_variable, DW_AT_name("pid_sw_cnt"), DW_AT_symbol_name("_pid_sw_cnt")
-	.dwattr DW$82, DW_AT_type(*DW$T$19)
-	.dwattr DW$82, DW_AT_location[DW_OP_reg10]
+DW$81	.dwtag  DW_TAG_variable, DW_AT_name("pid_sw_cnt"), DW_AT_symbol_name("_pid_sw_cnt")
+	.dwattr DW$81, DW_AT_type(*DW$T$19)
+	.dwattr DW$81, DW_AT_location[DW_OP_reg10]
 	.dwpsn	"menu.c",250,2
         MOVW      DP,#_CpuTimer2Regs+4
         AND       @_CpuTimer2Regs+4,#0xffef ; |250| 
@@ -800,73 +795,73 @@ DW$L$_hMOTtest$0$16$E:
         LRETR
         ; return occurs
 
-DW$83	.dwtag  DW_TAG_loop
-	.dwattr DW$83, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L10:1:1657030010")
-	.dwattr DW$83, DW_AT_begin_file("menu.c")
-	.dwattr DW$83, DW_AT_begin_line(0xff)
-	.dwattr DW$83, DW_AT_end_line(0x11a)
+DW$82	.dwtag  DW_TAG_loop
+	.dwattr DW$82, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L10:1:1657044089")
+	.dwattr DW$82, DW_AT_begin_file("menu.c")
+	.dwattr DW$82, DW_AT_begin_line(0xff)
+	.dwattr DW$82, DW_AT_end_line(0x11a)
+DW$83	.dwtag  DW_TAG_loop_range
+	.dwattr DW$83, DW_AT_low_pc(DW$L$_hMOTtest$0$16$B)
+	.dwattr DW$83, DW_AT_high_pc(DW$L$_hMOTtest$0$16$E)
 DW$84	.dwtag  DW_TAG_loop_range
-	.dwattr DW$84, DW_AT_low_pc(DW$L$_hMOTtest$0$16$B)
-	.dwattr DW$84, DW_AT_high_pc(DW$L$_hMOTtest$0$16$E)
+	.dwattr DW$84, DW_AT_low_pc(DW$L$_hMOTtest$0$13$B)
+	.dwattr DW$84, DW_AT_high_pc(DW$L$_hMOTtest$0$13$E)
 DW$85	.dwtag  DW_TAG_loop_range
-	.dwattr DW$85, DW_AT_low_pc(DW$L$_hMOTtest$0$13$B)
-	.dwattr DW$85, DW_AT_high_pc(DW$L$_hMOTtest$0$13$E)
+	.dwattr DW$85, DW_AT_low_pc(DW$L$_hMOTtest$0$8$B)
+	.dwattr DW$85, DW_AT_high_pc(DW$L$_hMOTtest$0$8$E)
 DW$86	.dwtag  DW_TAG_loop_range
-	.dwattr DW$86, DW_AT_low_pc(DW$L$_hMOTtest$0$8$B)
-	.dwattr DW$86, DW_AT_high_pc(DW$L$_hMOTtest$0$8$E)
+	.dwattr DW$86, DW_AT_low_pc(DW$L$_hMOTtest$0$4$B)
+	.dwattr DW$86, DW_AT_high_pc(DW$L$_hMOTtest$0$4$E)
 DW$87	.dwtag  DW_TAG_loop_range
-	.dwattr DW$87, DW_AT_low_pc(DW$L$_hMOTtest$0$4$B)
-	.dwattr DW$87, DW_AT_high_pc(DW$L$_hMOTtest$0$4$E)
+	.dwattr DW$87, DW_AT_low_pc(DW$L$_hMOTtest$0$2$B)
+	.dwattr DW$87, DW_AT_high_pc(DW$L$_hMOTtest$0$2$E)
 DW$88	.dwtag  DW_TAG_loop_range
-	.dwattr DW$88, DW_AT_low_pc(DW$L$_hMOTtest$0$2$B)
-	.dwattr DW$88, DW_AT_high_pc(DW$L$_hMOTtest$0$2$E)
+	.dwattr DW$88, DW_AT_low_pc(DW$L$_hMOTtest$0$3$B)
+	.dwattr DW$88, DW_AT_high_pc(DW$L$_hMOTtest$0$3$E)
 DW$89	.dwtag  DW_TAG_loop_range
-	.dwattr DW$89, DW_AT_low_pc(DW$L$_hMOTtest$0$3$B)
-	.dwattr DW$89, DW_AT_high_pc(DW$L$_hMOTtest$0$3$E)
+	.dwattr DW$89, DW_AT_low_pc(DW$L$_hMOTtest$0$5$B)
+	.dwattr DW$89, DW_AT_high_pc(DW$L$_hMOTtest$0$5$E)
 DW$90	.dwtag  DW_TAG_loop_range
-	.dwattr DW$90, DW_AT_low_pc(DW$L$_hMOTtest$0$5$B)
-	.dwattr DW$90, DW_AT_high_pc(DW$L$_hMOTtest$0$5$E)
+	.dwattr DW$90, DW_AT_low_pc(DW$L$_hMOTtest$0$6$B)
+	.dwattr DW$90, DW_AT_high_pc(DW$L$_hMOTtest$0$6$E)
 DW$91	.dwtag  DW_TAG_loop_range
-	.dwattr DW$91, DW_AT_low_pc(DW$L$_hMOTtest$0$6$B)
-	.dwattr DW$91, DW_AT_high_pc(DW$L$_hMOTtest$0$6$E)
+	.dwattr DW$91, DW_AT_low_pc(DW$L$_hMOTtest$0$7$B)
+	.dwattr DW$91, DW_AT_high_pc(DW$L$_hMOTtest$0$7$E)
 DW$92	.dwtag  DW_TAG_loop_range
-	.dwattr DW$92, DW_AT_low_pc(DW$L$_hMOTtest$0$7$B)
-	.dwattr DW$92, DW_AT_high_pc(DW$L$_hMOTtest$0$7$E)
+	.dwattr DW$92, DW_AT_low_pc(DW$L$_hMOTtest$0$9$B)
+	.dwattr DW$92, DW_AT_high_pc(DW$L$_hMOTtest$0$9$E)
 DW$93	.dwtag  DW_TAG_loop_range
-	.dwattr DW$93, DW_AT_low_pc(DW$L$_hMOTtest$0$9$B)
-	.dwattr DW$93, DW_AT_high_pc(DW$L$_hMOTtest$0$9$E)
+	.dwattr DW$93, DW_AT_low_pc(DW$L$_hMOTtest$0$10$B)
+	.dwattr DW$93, DW_AT_high_pc(DW$L$_hMOTtest$0$10$E)
 DW$94	.dwtag  DW_TAG_loop_range
-	.dwattr DW$94, DW_AT_low_pc(DW$L$_hMOTtest$0$10$B)
-	.dwattr DW$94, DW_AT_high_pc(DW$L$_hMOTtest$0$10$E)
+	.dwattr DW$94, DW_AT_low_pc(DW$L$_hMOTtest$0$11$B)
+	.dwattr DW$94, DW_AT_high_pc(DW$L$_hMOTtest$0$11$E)
 DW$95	.dwtag  DW_TAG_loop_range
-	.dwattr DW$95, DW_AT_low_pc(DW$L$_hMOTtest$0$11$B)
-	.dwattr DW$95, DW_AT_high_pc(DW$L$_hMOTtest$0$11$E)
+	.dwattr DW$95, DW_AT_low_pc(DW$L$_hMOTtest$0$15$B)
+	.dwattr DW$95, DW_AT_high_pc(DW$L$_hMOTtest$0$15$E)
 DW$96	.dwtag  DW_TAG_loop_range
-	.dwattr DW$96, DW_AT_low_pc(DW$L$_hMOTtest$0$15$B)
-	.dwattr DW$96, DW_AT_high_pc(DW$L$_hMOTtest$0$15$E)
+	.dwattr DW$96, DW_AT_low_pc(DW$L$_hMOTtest$0$14$B)
+	.dwattr DW$96, DW_AT_high_pc(DW$L$_hMOTtest$0$14$E)
 DW$97	.dwtag  DW_TAG_loop_range
-	.dwattr DW$97, DW_AT_low_pc(DW$L$_hMOTtest$0$14$B)
-	.dwattr DW$97, DW_AT_high_pc(DW$L$_hMOTtest$0$14$E)
-DW$98	.dwtag  DW_TAG_loop_range
-	.dwattr DW$98, DW_AT_low_pc(DW$L$_hMOTtest$0$12$B)
-	.dwattr DW$98, DW_AT_high_pc(DW$L$_hMOTtest$0$12$E)
-	.dwendtag DW$83
+	.dwattr DW$97, DW_AT_low_pc(DW$L$_hMOTtest$0$12$B)
+	.dwattr DW$97, DW_AT_high_pc(DW$L$_hMOTtest$0$12$E)
+	.dwendtag DW$82
 
-	.dwattr DW$79, DW_AT_end_file("menu.c")
-	.dwattr DW$79, DW_AT_end_line(0x124)
-	.dwattr DW$79, DW_AT_end_column(0x01)
+	.dwattr DW$78, DW_AT_end_file("menu.c")
+	.dwattr DW$78, DW_AT_end_line(0x124)
+	.dwattr DW$78, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$79
+	.dwendtag DW$78
 
 	.sect	".text"
 	.global	_botMENU_SW
 
-DW$99	.dwtag  DW_TAG_subprogram, DW_AT_name("botMENU_SW"), DW_AT_symbol_name("_botMENU_SW")
-	.dwattr DW$99, DW_AT_low_pc(_botMENU_SW)
-	.dwattr DW$99, DW_AT_high_pc(0x00)
-	.dwattr DW$99, DW_AT_begin_file("menu.c")
-	.dwattr DW$99, DW_AT_begin_line(0x22)
-	.dwattr DW$99, DW_AT_begin_column(0x08)
+DW$98	.dwtag  DW_TAG_subprogram, DW_AT_name("botMENU_SW"), DW_AT_symbol_name("_botMENU_SW")
+	.dwattr DW$98, DW_AT_low_pc(_botMENU_SW)
+	.dwattr DW$98, DW_AT_high_pc(0x00)
+	.dwattr DW$98, DW_AT_begin_file("menu.c")
+	.dwattr DW$98, DW_AT_begin_line(0x22)
+	.dwattr DW$98, DW_AT_begin_column(0x08)
 	.dwpsn	"menu.c",35,1
 
 	.dwfde DW$CIE
@@ -901,29 +896,29 @@ _botMENU_SW:
 	.dwcfa	0x80, 11, 6
 	.dwcfa	0x1d, -8
 ;* AR4   assigned to _count
-DW$100	.dwtag  DW_TAG_formal_parameter, DW_AT_name("count"), DW_AT_symbol_name("_count")
-	.dwattr DW$100, DW_AT_type(*DW$T$110)
-	.dwattr DW$100, DW_AT_location[DW_OP_reg12]
+DW$99	.dwtag  DW_TAG_formal_parameter, DW_AT_name("count"), DW_AT_symbol_name("_count")
+	.dwattr DW$99, DW_AT_type(*DW$T$112)
+	.dwattr DW$99, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _top
-DW$101	.dwtag  DW_TAG_formal_parameter, DW_AT_name("top"), DW_AT_symbol_name("_top")
-	.dwattr DW$101, DW_AT_type(*DW$T$19)
-	.dwattr DW$101, DW_AT_location[DW_OP_reg0]
+DW$100	.dwtag  DW_TAG_formal_parameter, DW_AT_name("top"), DW_AT_symbol_name("_top")
+	.dwattr DW$100, DW_AT_type(*DW$T$19)
+	.dwattr DW$100, DW_AT_location[DW_OP_reg0]
 ;* AH    assigned to _bottom
-DW$102	.dwtag  DW_TAG_formal_parameter, DW_AT_name("bottom"), DW_AT_symbol_name("_bottom")
-	.dwattr DW$102, DW_AT_type(*DW$T$19)
-	.dwattr DW$102, DW_AT_location[DW_OP_reg1]
+DW$101	.dwtag  DW_TAG_formal_parameter, DW_AT_name("bottom"), DW_AT_symbol_name("_bottom")
+	.dwattr DW$101, DW_AT_type(*DW$T$19)
+	.dwattr DW$101, DW_AT_location[DW_OP_reg1]
 ;* AR3   assigned to _bottom
-DW$103	.dwtag  DW_TAG_variable, DW_AT_name("bottom"), DW_AT_symbol_name("_bottom")
-	.dwattr DW$103, DW_AT_type(*DW$T$114)
-	.dwattr DW$103, DW_AT_location[DW_OP_reg10]
+DW$102	.dwtag  DW_TAG_variable, DW_AT_name("bottom"), DW_AT_symbol_name("_bottom")
+	.dwattr DW$102, DW_AT_type(*DW$T$116)
+	.dwattr DW$102, DW_AT_location[DW_OP_reg10]
 ;* AR1   assigned to _top
-DW$104	.dwtag  DW_TAG_variable, DW_AT_name("top"), DW_AT_symbol_name("_top")
-	.dwattr DW$104, DW_AT_type(*DW$T$114)
-	.dwattr DW$104, DW_AT_location[DW_OP_reg6]
+DW$103	.dwtag  DW_TAG_variable, DW_AT_name("top"), DW_AT_symbol_name("_top")
+	.dwattr DW$103, DW_AT_type(*DW$T$116)
+	.dwattr DW$103, DW_AT_location[DW_OP_reg6]
 ;* AR2   assigned to _count
-DW$105	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
-	.dwattr DW$105, DW_AT_type(*DW$T$111)
-	.dwattr DW$105, DW_AT_location[DW_OP_reg8]
+DW$104	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
+	.dwattr DW$104, DW_AT_type(*DW$T$113)
+	.dwattr DW$104, DW_AT_location[DW_OP_reg8]
         MOVZ      AR3,AH                ; |35| 
         MOVL      XAR2,XAR4             ; |35| 
         MOVZ      AR1,AL                ; |35| 
@@ -1002,20 +997,20 @@ L14:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$99, DW_AT_end_file("menu.c")
-	.dwattr DW$99, DW_AT_end_line(0x29)
-	.dwattr DW$99, DW_AT_end_column(0x01)
+	.dwattr DW$98, DW_AT_end_file("menu.c")
+	.dwattr DW$98, DW_AT_end_line(0x29)
+	.dwattr DW$98, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$99
+	.dwendtag DW$98
 
 	.sect	".text"
 
-DW$106	.dwtag  DW_TAG_subprogram, DW_AT_name("VEL"), DW_AT_symbol_name("_VEL$0")
-	.dwattr DW$106, DW_AT_low_pc(_VEL$0)
-	.dwattr DW$106, DW_AT_high_pc(0x00)
-	.dwattr DW$106, DW_AT_begin_file("menu.c")
-	.dwattr DW$106, DW_AT_begin_line(0x7f)
-	.dwattr DW$106, DW_AT_begin_column(0x0d)
+DW$105	.dwtag  DW_TAG_subprogram, DW_AT_name("VEL"), DW_AT_symbol_name("_VEL$0")
+	.dwattr DW$105, DW_AT_low_pc(_VEL$0)
+	.dwattr DW$105, DW_AT_high_pc(0x00)
+	.dwattr DW$105, DW_AT_begin_file("menu.c")
+	.dwattr DW$105, DW_AT_begin_line(0x7f)
+	.dwattr DW$105, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",128,1
 
 	.dwfde DW$CIE
@@ -1048,21 +1043,21 @@ _VEL$0:
         ADDB      SP,#4
 	.dwcfa	0x1d, -8
 ;* AR4   assigned to C$1
-DW$107	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$107, DW_AT_type(*DW$T$118)
-	.dwattr DW$107, DW_AT_location[DW_OP_reg12]
+DW$106	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$106, DW_AT_type(*DW$T$120)
+	.dwattr DW$106, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$2
-DW$108	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
-	.dwattr DW$108, DW_AT_type(*DW$T$118)
-	.dwattr DW$108, DW_AT_location[DW_OP_reg12]
+DW$107	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
+	.dwattr DW$107, DW_AT_type(*DW$T$120)
+	.dwattr DW$107, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$3
-DW$109	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
-	.dwattr DW$109, DW_AT_type(*DW$T$118)
-	.dwattr DW$109, DW_AT_location[DW_OP_reg12]
+DW$108	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
+	.dwattr DW$108, DW_AT_type(*DW$T$120)
+	.dwattr DW$108, DW_AT_location[DW_OP_reg12]
 ;* AR1   assigned to _m_sw_cnt
-DW$110	.dwtag  DW_TAG_variable, DW_AT_name("m_sw_cnt"), DW_AT_symbol_name("_m_sw_cnt")
-	.dwattr DW$110, DW_AT_type(*DW$T$19)
-	.dwattr DW$110, DW_AT_location[DW_OP_reg6]
+DW$109	.dwtag  DW_TAG_variable, DW_AT_name("m_sw_cnt"), DW_AT_symbol_name("_m_sw_cnt")
+	.dwattr DW$109, DW_AT_type(*DW$T$19)
+	.dwattr DW$109, DW_AT_location[DW_OP_reg6]
 	.dwpsn	"menu.c",129,9
         MOVB      XAR1,#0
 	.dwpsn	"menu.c",131,2
@@ -1331,87 +1326,87 @@ DW$L$_VEL$0$21$E:
         LRETR
         ; return occurs
 
-DW$111	.dwtag  DW_TAG_loop
-	.dwattr DW$111, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L23:1:1657030010")
-	.dwattr DW$111, DW_AT_begin_file("menu.c")
-	.dwattr DW$111, DW_AT_begin_line(0x83)
-	.dwattr DW$111, DW_AT_end_line(0x9d)
+DW$110	.dwtag  DW_TAG_loop
+	.dwattr DW$110, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L23:1:1657044089")
+	.dwattr DW$110, DW_AT_begin_file("menu.c")
+	.dwattr DW$110, DW_AT_begin_line(0x83)
+	.dwattr DW$110, DW_AT_end_line(0x9d)
+DW$111	.dwtag  DW_TAG_loop_range
+	.dwattr DW$111, DW_AT_low_pc(DW$L$_VEL$0$21$B)
+	.dwattr DW$111, DW_AT_high_pc(DW$L$_VEL$0$21$E)
 DW$112	.dwtag  DW_TAG_loop_range
-	.dwattr DW$112, DW_AT_low_pc(DW$L$_VEL$0$21$B)
-	.dwattr DW$112, DW_AT_high_pc(DW$L$_VEL$0$21$E)
+	.dwattr DW$112, DW_AT_low_pc(DW$L$_VEL$0$18$B)
+	.dwattr DW$112, DW_AT_high_pc(DW$L$_VEL$0$18$E)
 DW$113	.dwtag  DW_TAG_loop_range
-	.dwattr DW$113, DW_AT_low_pc(DW$L$_VEL$0$18$B)
-	.dwattr DW$113, DW_AT_high_pc(DW$L$_VEL$0$18$E)
+	.dwattr DW$113, DW_AT_low_pc(DW$L$_VEL$0$13$B)
+	.dwattr DW$113, DW_AT_high_pc(DW$L$_VEL$0$13$E)
 DW$114	.dwtag  DW_TAG_loop_range
-	.dwattr DW$114, DW_AT_low_pc(DW$L$_VEL$0$13$B)
-	.dwattr DW$114, DW_AT_high_pc(DW$L$_VEL$0$13$E)
+	.dwattr DW$114, DW_AT_low_pc(DW$L$_VEL$0$9$B)
+	.dwattr DW$114, DW_AT_high_pc(DW$L$_VEL$0$9$E)
 DW$115	.dwtag  DW_TAG_loop_range
-	.dwattr DW$115, DW_AT_low_pc(DW$L$_VEL$0$9$B)
-	.dwattr DW$115, DW_AT_high_pc(DW$L$_VEL$0$9$E)
+	.dwattr DW$115, DW_AT_low_pc(DW$L$_VEL$0$5$B)
+	.dwattr DW$115, DW_AT_high_pc(DW$L$_VEL$0$5$E)
 DW$116	.dwtag  DW_TAG_loop_range
-	.dwattr DW$116, DW_AT_low_pc(DW$L$_VEL$0$5$B)
-	.dwattr DW$116, DW_AT_high_pc(DW$L$_VEL$0$5$E)
+	.dwattr DW$116, DW_AT_low_pc(DW$L$_VEL$0$2$B)
+	.dwattr DW$116, DW_AT_high_pc(DW$L$_VEL$0$2$E)
 DW$117	.dwtag  DW_TAG_loop_range
-	.dwattr DW$117, DW_AT_low_pc(DW$L$_VEL$0$2$B)
-	.dwattr DW$117, DW_AT_high_pc(DW$L$_VEL$0$2$E)
+	.dwattr DW$117, DW_AT_low_pc(DW$L$_VEL$0$3$B)
+	.dwattr DW$117, DW_AT_high_pc(DW$L$_VEL$0$3$E)
 DW$118	.dwtag  DW_TAG_loop_range
-	.dwattr DW$118, DW_AT_low_pc(DW$L$_VEL$0$3$B)
-	.dwattr DW$118, DW_AT_high_pc(DW$L$_VEL$0$3$E)
+	.dwattr DW$118, DW_AT_low_pc(DW$L$_VEL$0$4$B)
+	.dwattr DW$118, DW_AT_high_pc(DW$L$_VEL$0$4$E)
 DW$119	.dwtag  DW_TAG_loop_range
-	.dwattr DW$119, DW_AT_low_pc(DW$L$_VEL$0$4$B)
-	.dwattr DW$119, DW_AT_high_pc(DW$L$_VEL$0$4$E)
+	.dwattr DW$119, DW_AT_low_pc(DW$L$_VEL$0$6$B)
+	.dwattr DW$119, DW_AT_high_pc(DW$L$_VEL$0$6$E)
 DW$120	.dwtag  DW_TAG_loop_range
-	.dwattr DW$120, DW_AT_low_pc(DW$L$_VEL$0$6$B)
-	.dwattr DW$120, DW_AT_high_pc(DW$L$_VEL$0$6$E)
+	.dwattr DW$120, DW_AT_low_pc(DW$L$_VEL$0$7$B)
+	.dwattr DW$120, DW_AT_high_pc(DW$L$_VEL$0$7$E)
 DW$121	.dwtag  DW_TAG_loop_range
-	.dwattr DW$121, DW_AT_low_pc(DW$L$_VEL$0$7$B)
-	.dwattr DW$121, DW_AT_high_pc(DW$L$_VEL$0$7$E)
+	.dwattr DW$121, DW_AT_low_pc(DW$L$_VEL$0$8$B)
+	.dwattr DW$121, DW_AT_high_pc(DW$L$_VEL$0$8$E)
 DW$122	.dwtag  DW_TAG_loop_range
-	.dwattr DW$122, DW_AT_low_pc(DW$L$_VEL$0$8$B)
-	.dwattr DW$122, DW_AT_high_pc(DW$L$_VEL$0$8$E)
+	.dwattr DW$122, DW_AT_low_pc(DW$L$_VEL$0$10$B)
+	.dwattr DW$122, DW_AT_high_pc(DW$L$_VEL$0$10$E)
 DW$123	.dwtag  DW_TAG_loop_range
-	.dwattr DW$123, DW_AT_low_pc(DW$L$_VEL$0$10$B)
-	.dwattr DW$123, DW_AT_high_pc(DW$L$_VEL$0$10$E)
+	.dwattr DW$123, DW_AT_low_pc(DW$L$_VEL$0$11$B)
+	.dwattr DW$123, DW_AT_high_pc(DW$L$_VEL$0$11$E)
 DW$124	.dwtag  DW_TAG_loop_range
-	.dwattr DW$124, DW_AT_low_pc(DW$L$_VEL$0$11$B)
-	.dwattr DW$124, DW_AT_high_pc(DW$L$_VEL$0$11$E)
+	.dwattr DW$124, DW_AT_low_pc(DW$L$_VEL$0$12$B)
+	.dwattr DW$124, DW_AT_high_pc(DW$L$_VEL$0$12$E)
 DW$125	.dwtag  DW_TAG_loop_range
-	.dwattr DW$125, DW_AT_low_pc(DW$L$_VEL$0$12$B)
-	.dwattr DW$125, DW_AT_high_pc(DW$L$_VEL$0$12$E)
+	.dwattr DW$125, DW_AT_low_pc(DW$L$_VEL$0$14$B)
+	.dwattr DW$125, DW_AT_high_pc(DW$L$_VEL$0$14$E)
 DW$126	.dwtag  DW_TAG_loop_range
-	.dwattr DW$126, DW_AT_low_pc(DW$L$_VEL$0$14$B)
-	.dwattr DW$126, DW_AT_high_pc(DW$L$_VEL$0$14$E)
+	.dwattr DW$126, DW_AT_low_pc(DW$L$_VEL$0$15$B)
+	.dwattr DW$126, DW_AT_high_pc(DW$L$_VEL$0$15$E)
 DW$127	.dwtag  DW_TAG_loop_range
-	.dwattr DW$127, DW_AT_low_pc(DW$L$_VEL$0$15$B)
-	.dwattr DW$127, DW_AT_high_pc(DW$L$_VEL$0$15$E)
+	.dwattr DW$127, DW_AT_low_pc(DW$L$_VEL$0$16$B)
+	.dwattr DW$127, DW_AT_high_pc(DW$L$_VEL$0$16$E)
 DW$128	.dwtag  DW_TAG_loop_range
-	.dwattr DW$128, DW_AT_low_pc(DW$L$_VEL$0$16$B)
-	.dwattr DW$128, DW_AT_high_pc(DW$L$_VEL$0$16$E)
+	.dwattr DW$128, DW_AT_low_pc(DW$L$_VEL$0$20$B)
+	.dwattr DW$128, DW_AT_high_pc(DW$L$_VEL$0$20$E)
 DW$129	.dwtag  DW_TAG_loop_range
-	.dwattr DW$129, DW_AT_low_pc(DW$L$_VEL$0$20$B)
-	.dwattr DW$129, DW_AT_high_pc(DW$L$_VEL$0$20$E)
+	.dwattr DW$129, DW_AT_low_pc(DW$L$_VEL$0$19$B)
+	.dwattr DW$129, DW_AT_high_pc(DW$L$_VEL$0$19$E)
 DW$130	.dwtag  DW_TAG_loop_range
-	.dwattr DW$130, DW_AT_low_pc(DW$L$_VEL$0$19$B)
-	.dwattr DW$130, DW_AT_high_pc(DW$L$_VEL$0$19$E)
-DW$131	.dwtag  DW_TAG_loop_range
-	.dwattr DW$131, DW_AT_low_pc(DW$L$_VEL$0$17$B)
-	.dwattr DW$131, DW_AT_high_pc(DW$L$_VEL$0$17$E)
-	.dwendtag DW$111
+	.dwattr DW$130, DW_AT_low_pc(DW$L$_VEL$0$17$B)
+	.dwattr DW$130, DW_AT_high_pc(DW$L$_VEL$0$17$E)
+	.dwendtag DW$110
 
-	.dwattr DW$106, DW_AT_end_file("menu.c")
-	.dwattr DW$106, DW_AT_end_line(0xa0)
-	.dwattr DW$106, DW_AT_end_column(0x01)
+	.dwattr DW$105, DW_AT_end_file("menu.c")
+	.dwattr DW$105, DW_AT_end_line(0xa0)
+	.dwattr DW$105, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$106
+	.dwendtag DW$105
 
 	.sect	".text"
 
-DW$132	.dwtag  DW_TAG_subprogram, DW_AT_name("SEARCH"), DW_AT_symbol_name("_SEARCH$0")
-	.dwattr DW$132, DW_AT_low_pc(_SEARCH$0)
-	.dwattr DW$132, DW_AT_high_pc(0x00)
-	.dwattr DW$132, DW_AT_begin_file("menu.c")
-	.dwattr DW$132, DW_AT_begin_line(0x127)
-	.dwattr DW$132, DW_AT_begin_column(0x0d)
+DW$131	.dwtag  DW_TAG_subprogram, DW_AT_name("SEARCH"), DW_AT_symbol_name("_SEARCH$0")
+	.dwattr DW$131, DW_AT_low_pc(_SEARCH$0)
+	.dwattr DW$131, DW_AT_high_pc(0x00)
+	.dwattr DW$131, DW_AT_begin_file("menu.c")
+	.dwattr DW$131, DW_AT_begin_line(0x127)
+	.dwattr DW$131, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",295,23
 
 	.dwfde DW$CIE
@@ -1432,19 +1427,20 @@ DW$132	.dwtag  DW_TAG_subprogram, DW_AT_name("SEARCH"), DW_AT_symbol_name("_SEAR
 ;*                                                             *
 ;***************************************************************
 _SEARCH$0:
-;*** 295	-----------------------    RUN();
+;*** 295	-----------------------    RUN(1u);
 ;***  	-----------------------    #pragma LOOP_FLAGS(4096u)
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
 	.dwpsn	"menu.c",295,25
+        MOVB      AL,#1                 ; |295| 
         LCR       #_RUN                 ; |295| 
         ; call occurs [#_RUN] ; |295| 
 L24:    
 DW$L$_SEARCH$0$2$B:
 ;***	-----------------------g2:
 ;*** 295	-----------------------    if ( *(&GpioDataRegs+1)&0x8000u ) goto g2;
-	.dwpsn	"menu.c",295,32
+	.dwpsn	"menu.c",295,33
         MOVW      DP,#_GpioDataRegs+1
         TBIT      @_GpioDataRegs+1,#15  ; |295| 
         BF        L24,TC                ; |295| 
@@ -1452,39 +1448,39 @@ DW$L$_SEARCH$0$2$B:
 DW$L$_SEARCH$0$2$E:
 ;*** 295	-----------------------    DSP28x_usDelay(2499998uL);
 ;*** 295	-----------------------    return;
-	.dwpsn	"menu.c",295,45
+	.dwpsn	"menu.c",295,46
         MOV       AL,#9630
         MOV       AH,#38
         LCR       #_DSP28x_usDelay      ; |295| 
         ; call occurs [#_DSP28x_usDelay] ; |295| 
-	.dwpsn	"menu.c",295,66
+	.dwpsn	"menu.c",295,67
         LRETR
         ; return occurs
 
-DW$133	.dwtag  DW_TAG_loop
-	.dwattr DW$133, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L24:1:1657030010")
-	.dwattr DW$133, DW_AT_begin_file("menu.c")
-	.dwattr DW$133, DW_AT_begin_line(0x127)
-	.dwattr DW$133, DW_AT_end_line(0x127)
-DW$134	.dwtag  DW_TAG_loop_range
-	.dwattr DW$134, DW_AT_low_pc(DW$L$_SEARCH$0$2$B)
-	.dwattr DW$134, DW_AT_high_pc(DW$L$_SEARCH$0$2$E)
-	.dwendtag DW$133
-
-	.dwattr DW$132, DW_AT_end_file("menu.c")
+DW$132	.dwtag  DW_TAG_loop
+	.dwattr DW$132, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L24:1:1657044089")
+	.dwattr DW$132, DW_AT_begin_file("menu.c")
+	.dwattr DW$132, DW_AT_begin_line(0x127)
 	.dwattr DW$132, DW_AT_end_line(0x127)
-	.dwattr DW$132, DW_AT_end_column(0x42)
-	.dwendentry
+DW$133	.dwtag  DW_TAG_loop_range
+	.dwattr DW$133, DW_AT_low_pc(DW$L$_SEARCH$0$2$B)
+	.dwattr DW$133, DW_AT_high_pc(DW$L$_SEARCH$0$2$E)
 	.dwendtag DW$132
+
+	.dwattr DW$131, DW_AT_end_file("menu.c")
+	.dwattr DW$131, DW_AT_end_line(0x127)
+	.dwattr DW$131, DW_AT_end_column(0x43)
+	.dwendentry
+	.dwendtag DW$131
 
 	.sect	".text"
 
-DW$135	.dwtag  DW_TAG_subprogram, DW_AT_name("POS"), DW_AT_symbol_name("_POS$0")
-	.dwattr DW$135, DW_AT_low_pc(_POS$0)
-	.dwattr DW$135, DW_AT_high_pc(0x00)
-	.dwattr DW$135, DW_AT_begin_file("menu.c")
-	.dwattr DW$135, DW_AT_begin_line(0x42)
-	.dwattr DW$135, DW_AT_begin_column(0x0d)
+DW$134	.dwtag  DW_TAG_subprogram, DW_AT_name("POS"), DW_AT_symbol_name("_POS$0")
+	.dwattr DW$134, DW_AT_low_pc(_POS$0)
+	.dwattr DW$134, DW_AT_high_pc(0x00)
+	.dwattr DW$134, DW_AT_begin_file("menu.c")
+	.dwattr DW$134, DW_AT_begin_line(0x42)
+	.dwattr DW$134, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",67,1
 
 	.dwfde DW$CIE
@@ -1524,33 +1520,33 @@ _POS$0:
         ADDB      SP,#20
 	.dwcfa	0x1d, -28
 ;* AR3   assigned to C$1
-DW$136	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$136, DW_AT_type(*DW$T$117)
-	.dwattr DW$136, DW_AT_location[DW_OP_reg10]
+DW$135	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$135, DW_AT_type(*DW$T$119)
+	.dwattr DW$135, DW_AT_location[DW_OP_reg10]
 ;* AR2   assigned to _count
-DW$137	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
-	.dwattr DW$137, DW_AT_type(*DW$T$19)
-	.dwattr DW$137, DW_AT_location[DW_OP_reg8]
-DW$138	.dwtag  DW_TAG_variable, DW_AT_name("K$25"), DW_AT_symbol_name("K$25")
-	.dwattr DW$138, DW_AT_type(*DW$T$92)
-	.dwattr DW$138, DW_AT_location[DW_OP_breg20 -14]
+DW$136	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
+	.dwattr DW$136, DW_AT_type(*DW$T$19)
+	.dwattr DW$136, DW_AT_location[DW_OP_reg8]
+DW$137	.dwtag  DW_TAG_variable, DW_AT_name("K$25"), DW_AT_symbol_name("K$25")
+	.dwattr DW$137, DW_AT_type(*DW$T$92)
+	.dwattr DW$137, DW_AT_location[DW_OP_breg20 -14]
 ;* AR1   assigned to K$24
-DW$139	.dwtag  DW_TAG_variable, DW_AT_name("K$24"), DW_AT_symbol_name("K$24")
-	.dwattr DW$139, DW_AT_type(*DW$T$92)
-	.dwattr DW$139, DW_AT_location[DW_OP_reg6]
-DW$140	.dwtag  DW_TAG_variable, DW_AT_name("K$23"), DW_AT_symbol_name("K$23")
-	.dwattr DW$140, DW_AT_type(*DW$T$131)
-	.dwattr DW$140, DW_AT_location[DW_OP_breg20 -16]
-DW$141	.dwtag  DW_TAG_variable, DW_AT_name("K$21"), DW_AT_symbol_name("K$21")
+DW$138	.dwtag  DW_TAG_variable, DW_AT_name("K$24"), DW_AT_symbol_name("K$24")
+	.dwattr DW$138, DW_AT_type(*DW$T$92)
+	.dwattr DW$138, DW_AT_location[DW_OP_reg6]
+DW$139	.dwtag  DW_TAG_variable, DW_AT_name("K$23"), DW_AT_symbol_name("K$23")
+	.dwattr DW$139, DW_AT_type(*DW$T$133)
+	.dwattr DW$139, DW_AT_location[DW_OP_breg20 -16]
+DW$140	.dwtag  DW_TAG_variable, DW_AT_name("K$21"), DW_AT_symbol_name("K$21")
+	.dwattr DW$140, DW_AT_type(*DW$T$87)
+	.dwattr DW$140, DW_AT_location[DW_OP_breg20 -18]
+DW$141	.dwtag  DW_TAG_variable, DW_AT_name("K$20"), DW_AT_symbol_name("K$20")
 	.dwattr DW$141, DW_AT_type(*DW$T$87)
-	.dwattr DW$141, DW_AT_location[DW_OP_breg20 -18]
-DW$142	.dwtag  DW_TAG_variable, DW_AT_name("K$20"), DW_AT_symbol_name("K$20")
-	.dwattr DW$142, DW_AT_type(*DW$T$87)
-	.dwattr DW$142, DW_AT_location[DW_OP_breg20 -20]
+	.dwattr DW$141, DW_AT_location[DW_OP_breg20 -20]
 ;* AR3   assigned to K$11
-DW$143	.dwtag  DW_TAG_variable, DW_AT_name("K$11"), DW_AT_symbol_name("K$11")
-	.dwattr DW$143, DW_AT_type(*DW$T$117)
-	.dwattr DW$143, DW_AT_location[DW_OP_reg10]
+DW$142	.dwtag  DW_TAG_variable, DW_AT_name("K$11"), DW_AT_symbol_name("K$11")
+	.dwattr DW$142, DW_AT_type(*DW$T$119)
+	.dwattr DW$142, DW_AT_location[DW_OP_reg10]
 	.dwpsn	"menu.c",70,2
         MOVW      DP,#_Flag
         OR        @_Flag,#0x0004        ; |70| 
@@ -1734,45 +1730,45 @@ L27:
         LRETR
         ; return occurs
 
-DW$144	.dwtag  DW_TAG_loop
-	.dwattr DW$144, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L25:1:1657030010")
-	.dwattr DW$144, DW_AT_begin_file("menu.c")
-	.dwattr DW$144, DW_AT_begin_line(0x49)
-	.dwattr DW$144, DW_AT_end_line(0x52)
+DW$143	.dwtag  DW_TAG_loop
+	.dwattr DW$143, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L25:1:1657044089")
+	.dwattr DW$143, DW_AT_begin_file("menu.c")
+	.dwattr DW$143, DW_AT_begin_line(0x49)
+	.dwattr DW$143, DW_AT_end_line(0x52)
+DW$144	.dwtag  DW_TAG_loop_range
+	.dwattr DW$144, DW_AT_low_pc(DW$L$_POS$0$3$B)
+	.dwattr DW$144, DW_AT_high_pc(DW$L$_POS$0$3$E)
 DW$145	.dwtag  DW_TAG_loop_range
-	.dwattr DW$145, DW_AT_low_pc(DW$L$_POS$0$3$B)
-	.dwattr DW$145, DW_AT_high_pc(DW$L$_POS$0$3$E)
-DW$146	.dwtag  DW_TAG_loop_range
-	.dwattr DW$146, DW_AT_low_pc(DW$L$_POS$0$5$B)
-	.dwattr DW$146, DW_AT_high_pc(DW$L$_POS$0$5$E)
+	.dwattr DW$145, DW_AT_low_pc(DW$L$_POS$0$5$B)
+	.dwattr DW$145, DW_AT_high_pc(DW$L$_POS$0$5$E)
 
-DW$147	.dwtag  DW_TAG_loop
-	.dwattr DW$147, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L26:2:1657030010")
-	.dwattr DW$147, DW_AT_begin_file("menu.c")
-	.dwattr DW$147, DW_AT_begin_line(0x4b)
-	.dwattr DW$147, DW_AT_end_line(0x4b)
-DW$148	.dwtag  DW_TAG_loop_range
-	.dwattr DW$148, DW_AT_low_pc(DW$L$_POS$0$4$B)
-	.dwattr DW$148, DW_AT_high_pc(DW$L$_POS$0$4$E)
-	.dwendtag DW$147
+DW$146	.dwtag  DW_TAG_loop
+	.dwattr DW$146, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L26:2:1657044089")
+	.dwattr DW$146, DW_AT_begin_file("menu.c")
+	.dwattr DW$146, DW_AT_begin_line(0x4b)
+	.dwattr DW$146, DW_AT_end_line(0x4b)
+DW$147	.dwtag  DW_TAG_loop_range
+	.dwattr DW$147, DW_AT_low_pc(DW$L$_POS$0$4$B)
+	.dwattr DW$147, DW_AT_high_pc(DW$L$_POS$0$4$E)
+	.dwendtag DW$146
 
-	.dwendtag DW$144
+	.dwendtag DW$143
 
-	.dwattr DW$135, DW_AT_end_file("menu.c")
-	.dwattr DW$135, DW_AT_end_line(0x56)
-	.dwattr DW$135, DW_AT_end_column(0x01)
+	.dwattr DW$134, DW_AT_end_file("menu.c")
+	.dwattr DW$134, DW_AT_end_line(0x56)
+	.dwattr DW$134, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$135
+	.dwendtag DW$134
 
 	.sect	".text"
 	.global	_MENU_SW
 
-DW$149	.dwtag  DW_TAG_subprogram, DW_AT_name("MENU_SW"), DW_AT_symbol_name("_MENU_SW")
-	.dwattr DW$149, DW_AT_low_pc(_MENU_SW)
-	.dwattr DW$149, DW_AT_high_pc(0x00)
-	.dwattr DW$149, DW_AT_begin_file("menu.c")
-	.dwattr DW$149, DW_AT_begin_line(0x19)
-	.dwattr DW$149, DW_AT_begin_column(0x08)
+DW$148	.dwtag  DW_TAG_subprogram, DW_AT_name("MENU_SW"), DW_AT_symbol_name("_MENU_SW")
+	.dwattr DW$148, DW_AT_low_pc(_MENU_SW)
+	.dwattr DW$148, DW_AT_high_pc(0x00)
+	.dwattr DW$148, DW_AT_begin_file("menu.c")
+	.dwattr DW$148, DW_AT_begin_line(0x19)
+	.dwattr DW$148, DW_AT_begin_column(0x08)
 	.dwpsn	"menu.c",26,1
 
 	.dwfde DW$CIE
@@ -1804,21 +1800,21 @@ _MENU_SW:
 	.dwcfa	0x80, 9, 4
 	.dwcfa	0x1d, -6
 ;* AR4   assigned to _count
-DW$150	.dwtag  DW_TAG_formal_parameter, DW_AT_name("count"), DW_AT_symbol_name("_count")
-	.dwattr DW$150, DW_AT_type(*DW$T$110)
-	.dwattr DW$150, DW_AT_location[DW_OP_reg12]
+DW$149	.dwtag  DW_TAG_formal_parameter, DW_AT_name("count"), DW_AT_symbol_name("_count")
+	.dwattr DW$149, DW_AT_type(*DW$T$112)
+	.dwattr DW$149, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _each
-DW$151	.dwtag  DW_TAG_formal_parameter, DW_AT_name("each"), DW_AT_symbol_name("_each")
-	.dwattr DW$151, DW_AT_type(*DW$T$19)
-	.dwattr DW$151, DW_AT_location[DW_OP_reg0]
+DW$150	.dwtag  DW_TAG_formal_parameter, DW_AT_name("each"), DW_AT_symbol_name("_each")
+	.dwattr DW$150, DW_AT_type(*DW$T$19)
+	.dwattr DW$150, DW_AT_location[DW_OP_reg0]
 ;* AR1   assigned to _each
-DW$152	.dwtag  DW_TAG_variable, DW_AT_name("each"), DW_AT_symbol_name("_each")
-	.dwattr DW$152, DW_AT_type(*DW$T$114)
-	.dwattr DW$152, DW_AT_location[DW_OP_reg6]
+DW$151	.dwtag  DW_TAG_variable, DW_AT_name("each"), DW_AT_symbol_name("_each")
+	.dwattr DW$151, DW_AT_type(*DW$T$116)
+	.dwattr DW$151, DW_AT_location[DW_OP_reg6]
 ;* AR2   assigned to _count
-DW$153	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
-	.dwattr DW$153, DW_AT_type(*DW$T$111)
-	.dwattr DW$153, DW_AT_location[DW_OP_reg8]
+DW$152	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
+	.dwattr DW$152, DW_AT_type(*DW$T$113)
+	.dwattr DW$152, DW_AT_location[DW_OP_reg8]
         MOVL      XAR2,XAR4             ; |26| 
         MOVZ      AR1,AL                ; |26| 
 	.dwpsn	"menu.c",27,2
@@ -1892,20 +1888,20 @@ L31:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$149, DW_AT_end_file("menu.c")
-	.dwattr DW$149, DW_AT_end_line(0x20)
-	.dwattr DW$149, DW_AT_end_column(0x01)
+	.dwattr DW$148, DW_AT_end_file("menu.c")
+	.dwattr DW$148, DW_AT_end_line(0x20)
+	.dwattr DW$148, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$149
+	.dwendtag DW$148
 
 	.sect	".text"
 
-DW$154	.dwtag  DW_TAG_subprogram, DW_AT_name("MAP"), DW_AT_symbol_name("_MAP$0")
-	.dwattr DW$154, DW_AT_low_pc(_MAP$0)
-	.dwattr DW$154, DW_AT_high_pc(0x00)
-	.dwattr DW$154, DW_AT_begin_file("menu.c")
-	.dwattr DW$154, DW_AT_begin_line(0x12a)
-	.dwattr DW$154, DW_AT_begin_column(0x0d)
+DW$153	.dwtag  DW_TAG_subprogram, DW_AT_name("MAP"), DW_AT_symbol_name("_MAP$0")
+	.dwattr DW$153, DW_AT_low_pc(_MAP$0)
+	.dwattr DW$153, DW_AT_high_pc(0x00)
+	.dwattr DW$153, DW_AT_begin_file("menu.c")
+	.dwattr DW$153, DW_AT_begin_line(0x12a)
+	.dwattr DW$153, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",298,21
 
 	.dwfde DW$CIE
@@ -1937,20 +1933,20 @@ _MAP$0:
 	.dwpsn	"menu.c",298,38
         LRETR
         ; return occurs
-	.dwattr DW$154, DW_AT_end_file("menu.c")
-	.dwattr DW$154, DW_AT_end_line(0x12a)
-	.dwattr DW$154, DW_AT_end_column(0x26)
+	.dwattr DW$153, DW_AT_end_file("menu.c")
+	.dwattr DW$153, DW_AT_end_line(0x12a)
+	.dwattr DW$153, DW_AT_end_column(0x26)
 	.dwendentry
-	.dwendtag DW$154
+	.dwendtag DW$153
 
 	.sect	".text"
 
-DW$155	.dwtag  DW_TAG_subprogram, DW_AT_name("EXTREM"), DW_AT_symbol_name("_EXTREM$0")
-	.dwattr DW$155, DW_AT_low_pc(_EXTREM$0)
-	.dwattr DW$155, DW_AT_high_pc(0x00)
-	.dwattr DW$155, DW_AT_begin_file("menu.c")
-	.dwattr DW$155, DW_AT_begin_line(0x129)
-	.dwattr DW$155, DW_AT_begin_column(0x0d)
+DW$154	.dwtag  DW_TAG_subprogram, DW_AT_name("EXTREM"), DW_AT_symbol_name("_EXTREM$0")
+	.dwattr DW$154, DW_AT_low_pc(_EXTREM$0)
+	.dwattr DW$154, DW_AT_high_pc(0x00)
+	.dwattr DW$154, DW_AT_begin_file("menu.c")
+	.dwattr DW$154, DW_AT_begin_line(0x129)
+	.dwattr DW$154, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",297,23
 
 	.dwfde DW$CIE
@@ -1971,19 +1967,20 @@ DW$155	.dwtag  DW_TAG_subprogram, DW_AT_name("EXTREM"), DW_AT_symbol_name("_EXTR
 ;*                                                             *
 ;***************************************************************
 _EXTREM$0:
-;*** 297	-----------------------    RUN_THIRD();
+;*** 297	-----------------------    RUN(3u);
 ;***  	-----------------------    #pragma LOOP_FLAGS(4096u)
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
 	.dwpsn	"menu.c",297,25
-        LCR       #_RUN_THIRD           ; |297| 
-        ; call occurs [#_RUN_THIRD] ; |297| 
+        MOVB      AL,#3                 ; |297| 
+        LCR       #_RUN                 ; |297| 
+        ; call occurs [#_RUN] ; |297| 
 L32:    
 DW$L$_EXTREM$0$2$B:
 ;***	-----------------------g2:
 ;*** 297	-----------------------    if ( *(&GpioDataRegs+1)&0x8000u ) goto g2;
-	.dwpsn	"menu.c",297,38
+	.dwpsn	"menu.c",297,33
         MOVW      DP,#_GpioDataRegs+1
         TBIT      @_GpioDataRegs+1,#15  ; |297| 
         BF        L32,TC                ; |297| 
@@ -1991,39 +1988,39 @@ DW$L$_EXTREM$0$2$B:
 DW$L$_EXTREM$0$2$E:
 ;*** 297	-----------------------    DSP28x_usDelay(2499998uL);
 ;*** 297	-----------------------    return;
-	.dwpsn	"menu.c",297,51
+	.dwpsn	"menu.c",297,46
         MOV       AL,#9630
         MOV       AH,#38
         LCR       #_DSP28x_usDelay      ; |297| 
         ; call occurs [#_DSP28x_usDelay] ; |297| 
-	.dwpsn	"menu.c",297,72
+	.dwpsn	"menu.c",297,67
         LRETR
         ; return occurs
 
-DW$156	.dwtag  DW_TAG_loop
-	.dwattr DW$156, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L32:1:1657030010")
-	.dwattr DW$156, DW_AT_begin_file("menu.c")
-	.dwattr DW$156, DW_AT_begin_line(0x129)
-	.dwattr DW$156, DW_AT_end_line(0x129)
-DW$157	.dwtag  DW_TAG_loop_range
-	.dwattr DW$157, DW_AT_low_pc(DW$L$_EXTREM$0$2$B)
-	.dwattr DW$157, DW_AT_high_pc(DW$L$_EXTREM$0$2$E)
-	.dwendtag DW$156
-
-	.dwattr DW$155, DW_AT_end_file("menu.c")
+DW$155	.dwtag  DW_TAG_loop
+	.dwattr DW$155, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L32:1:1657044089")
+	.dwattr DW$155, DW_AT_begin_file("menu.c")
+	.dwattr DW$155, DW_AT_begin_line(0x129)
 	.dwattr DW$155, DW_AT_end_line(0x129)
-	.dwattr DW$155, DW_AT_end_column(0x48)
-	.dwendentry
+DW$156	.dwtag  DW_TAG_loop_range
+	.dwattr DW$156, DW_AT_low_pc(DW$L$_EXTREM$0$2$B)
+	.dwattr DW$156, DW_AT_high_pc(DW$L$_EXTREM$0$2$E)
 	.dwendtag DW$155
+
+	.dwattr DW$154, DW_AT_end_file("menu.c")
+	.dwattr DW$154, DW_AT_end_line(0x129)
+	.dwattr DW$154, DW_AT_end_column(0x43)
+	.dwendentry
+	.dwendtag DW$154
 
 	.sect	".text"
 
-DW$158	.dwtag  DW_TAG_subprogram, DW_AT_name("FAST"), DW_AT_symbol_name("_FAST$0")
-	.dwattr DW$158, DW_AT_low_pc(_FAST$0)
-	.dwattr DW$158, DW_AT_high_pc(0x00)
-	.dwattr DW$158, DW_AT_begin_file("menu.c")
-	.dwattr DW$158, DW_AT_begin_line(0x128)
-	.dwattr DW$158, DW_AT_begin_column(0x0d)
+DW$157	.dwtag  DW_TAG_subprogram, DW_AT_name("FAST"), DW_AT_symbol_name("_FAST$0")
+	.dwattr DW$157, DW_AT_low_pc(_FAST$0)
+	.dwattr DW$157, DW_AT_high_pc(0x00)
+	.dwattr DW$157, DW_AT_begin_file("menu.c")
+	.dwattr DW$157, DW_AT_begin_line(0x128)
+	.dwattr DW$157, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",296,21
 
 	.dwfde DW$CIE
@@ -2044,19 +2041,20 @@ DW$158	.dwtag  DW_TAG_subprogram, DW_AT_name("FAST"), DW_AT_symbol_name("_FAST$0
 ;*                                                             *
 ;***************************************************************
 _FAST$0:
-;*** 296	-----------------------    RUN_SECOND();
+;*** 296	-----------------------    RUN(2u);
 ;***  	-----------------------    #pragma LOOP_FLAGS(4096u)
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
 	.dwpsn	"menu.c",296,23
-        LCR       #_RUN_SECOND          ; |296| 
-        ; call occurs [#_RUN_SECOND] ; |296| 
+        MOVB      AL,#2                 ; |296| 
+        LCR       #_RUN                 ; |296| 
+        ; call occurs [#_RUN] ; |296| 
 L33:    
 DW$L$_FAST$0$2$B:
 ;***	-----------------------g2:
 ;*** 296	-----------------------    if ( *(&GpioDataRegs+1)&0x8000u ) goto g2;
-	.dwpsn	"menu.c",296,37
+	.dwpsn	"menu.c",296,31
         MOVW      DP,#_GpioDataRegs+1
         TBIT      @_GpioDataRegs+1,#15  ; |296| 
         BF        L33,TC                ; |296| 
@@ -2064,39 +2062,39 @@ DW$L$_FAST$0$2$B:
 DW$L$_FAST$0$2$E:
 ;*** 296	-----------------------    DSP28x_usDelay(2499998uL);
 ;*** 296	-----------------------    return;
-	.dwpsn	"menu.c",296,50
+	.dwpsn	"menu.c",296,44
         MOV       AL,#9630
         MOV       AH,#38
         LCR       #_DSP28x_usDelay      ; |296| 
         ; call occurs [#_DSP28x_usDelay] ; |296| 
-	.dwpsn	"menu.c",296,71
+	.dwpsn	"menu.c",296,65
         LRETR
         ; return occurs
 
-DW$159	.dwtag  DW_TAG_loop
-	.dwattr DW$159, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L33:1:1657030010")
-	.dwattr DW$159, DW_AT_begin_file("menu.c")
-	.dwattr DW$159, DW_AT_begin_line(0x128)
-	.dwattr DW$159, DW_AT_end_line(0x128)
-DW$160	.dwtag  DW_TAG_loop_range
-	.dwattr DW$160, DW_AT_low_pc(DW$L$_FAST$0$2$B)
-	.dwattr DW$160, DW_AT_high_pc(DW$L$_FAST$0$2$E)
-	.dwendtag DW$159
-
-	.dwattr DW$158, DW_AT_end_file("menu.c")
+DW$158	.dwtag  DW_TAG_loop
+	.dwattr DW$158, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L33:1:1657044089")
+	.dwattr DW$158, DW_AT_begin_file("menu.c")
+	.dwattr DW$158, DW_AT_begin_line(0x128)
 	.dwattr DW$158, DW_AT_end_line(0x128)
-	.dwattr DW$158, DW_AT_end_column(0x47)
-	.dwendentry
+DW$159	.dwtag  DW_TAG_loop_range
+	.dwattr DW$159, DW_AT_low_pc(DW$L$_FAST$0$2$B)
+	.dwattr DW$159, DW_AT_high_pc(DW$L$_FAST$0$2$E)
 	.dwendtag DW$158
+
+	.dwattr DW$157, DW_AT_end_file("menu.c")
+	.dwattr DW$157, DW_AT_end_line(0x128)
+	.dwattr DW$157, DW_AT_end_column(0x41)
+	.dwendentry
+	.dwendtag DW$157
 
 	.sect	".text"
 
-DW$161	.dwtag  DW_TAG_subprogram, DW_AT_name("HAN"), DW_AT_symbol_name("_HAN$0")
-	.dwattr DW$161, DW_AT_low_pc(_HAN$0)
-	.dwattr DW$161, DW_AT_high_pc(0x00)
-	.dwattr DW$161, DW_AT_begin_file("menu.c")
-	.dwattr DW$161, DW_AT_begin_line(0xd2)
-	.dwattr DW$161, DW_AT_begin_column(0x0d)
+DW$160	.dwtag  DW_TAG_subprogram, DW_AT_name("HAN"), DW_AT_symbol_name("_HAN$0")
+	.dwattr DW$160, DW_AT_low_pc(_HAN$0)
+	.dwattr DW$160, DW_AT_high_pc(0x00)
+	.dwattr DW$160, DW_AT_begin_file("menu.c")
+	.dwattr DW$160, DW_AT_begin_line(0xd2)
+	.dwattr DW$160, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",211,1
 
 	.dwfde DW$CIE
@@ -2129,21 +2127,21 @@ _HAN$0:
         ADDB      SP,#6
 	.dwcfa	0x1d, -10
 ;* AR4   assigned to C$1
-DW$162	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$162, DW_AT_type(*DW$T$118)
-	.dwattr DW$162, DW_AT_location[DW_OP_reg12]
+DW$161	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$161, DW_AT_type(*DW$T$120)
+	.dwattr DW$161, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$2
-DW$163	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
-	.dwattr DW$163, DW_AT_type(*DW$T$118)
-	.dwattr DW$163, DW_AT_location[DW_OP_reg12]
+DW$162	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
+	.dwattr DW$162, DW_AT_type(*DW$T$120)
+	.dwattr DW$162, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$3
-DW$164	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
-	.dwattr DW$164, DW_AT_type(*DW$T$118)
-	.dwattr DW$164, DW_AT_location[DW_OP_reg12]
+DW$163	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
+	.dwattr DW$163, DW_AT_type(*DW$T$120)
+	.dwattr DW$163, DW_AT_location[DW_OP_reg12]
 ;* AR1   assigned to _m_sw_cnt
-DW$165	.dwtag  DW_TAG_variable, DW_AT_name("m_sw_cnt"), DW_AT_symbol_name("_m_sw_cnt")
-	.dwattr DW$165, DW_AT_type(*DW$T$19)
-	.dwattr DW$165, DW_AT_location[DW_OP_reg6]
+DW$164	.dwtag  DW_TAG_variable, DW_AT_name("m_sw_cnt"), DW_AT_symbol_name("_m_sw_cnt")
+	.dwattr DW$164, DW_AT_type(*DW$T$19)
+	.dwattr DW$164, DW_AT_location[DW_OP_reg6]
 	.dwpsn	"menu.c",212,9
         MOVB      XAR1,#0
 	.dwpsn	"menu.c",214,2
@@ -2457,87 +2455,87 @@ DW$L$_HAN$0$21$E:
         LRETR
         ; return occurs
 
-DW$166	.dwtag  DW_TAG_loop
-	.dwattr DW$166, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L42:1:1657030010")
-	.dwattr DW$166, DW_AT_begin_file("menu.c")
-	.dwattr DW$166, DW_AT_begin_line(0xd6)
-	.dwattr DW$166, DW_AT_end_line(0xf0)
+DW$165	.dwtag  DW_TAG_loop
+	.dwattr DW$165, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L42:1:1657044089")
+	.dwattr DW$165, DW_AT_begin_file("menu.c")
+	.dwattr DW$165, DW_AT_begin_line(0xd6)
+	.dwattr DW$165, DW_AT_end_line(0xf0)
+DW$166	.dwtag  DW_TAG_loop_range
+	.dwattr DW$166, DW_AT_low_pc(DW$L$_HAN$0$21$B)
+	.dwattr DW$166, DW_AT_high_pc(DW$L$_HAN$0$21$E)
 DW$167	.dwtag  DW_TAG_loop_range
-	.dwattr DW$167, DW_AT_low_pc(DW$L$_HAN$0$21$B)
-	.dwattr DW$167, DW_AT_high_pc(DW$L$_HAN$0$21$E)
+	.dwattr DW$167, DW_AT_low_pc(DW$L$_HAN$0$18$B)
+	.dwattr DW$167, DW_AT_high_pc(DW$L$_HAN$0$18$E)
 DW$168	.dwtag  DW_TAG_loop_range
-	.dwattr DW$168, DW_AT_low_pc(DW$L$_HAN$0$18$B)
-	.dwattr DW$168, DW_AT_high_pc(DW$L$_HAN$0$18$E)
+	.dwattr DW$168, DW_AT_low_pc(DW$L$_HAN$0$13$B)
+	.dwattr DW$168, DW_AT_high_pc(DW$L$_HAN$0$13$E)
 DW$169	.dwtag  DW_TAG_loop_range
-	.dwattr DW$169, DW_AT_low_pc(DW$L$_HAN$0$13$B)
-	.dwattr DW$169, DW_AT_high_pc(DW$L$_HAN$0$13$E)
+	.dwattr DW$169, DW_AT_low_pc(DW$L$_HAN$0$9$B)
+	.dwattr DW$169, DW_AT_high_pc(DW$L$_HAN$0$9$E)
 DW$170	.dwtag  DW_TAG_loop_range
-	.dwattr DW$170, DW_AT_low_pc(DW$L$_HAN$0$9$B)
-	.dwattr DW$170, DW_AT_high_pc(DW$L$_HAN$0$9$E)
+	.dwattr DW$170, DW_AT_low_pc(DW$L$_HAN$0$5$B)
+	.dwattr DW$170, DW_AT_high_pc(DW$L$_HAN$0$5$E)
 DW$171	.dwtag  DW_TAG_loop_range
-	.dwattr DW$171, DW_AT_low_pc(DW$L$_HAN$0$5$B)
-	.dwattr DW$171, DW_AT_high_pc(DW$L$_HAN$0$5$E)
+	.dwattr DW$171, DW_AT_low_pc(DW$L$_HAN$0$2$B)
+	.dwattr DW$171, DW_AT_high_pc(DW$L$_HAN$0$2$E)
 DW$172	.dwtag  DW_TAG_loop_range
-	.dwattr DW$172, DW_AT_low_pc(DW$L$_HAN$0$2$B)
-	.dwattr DW$172, DW_AT_high_pc(DW$L$_HAN$0$2$E)
+	.dwattr DW$172, DW_AT_low_pc(DW$L$_HAN$0$3$B)
+	.dwattr DW$172, DW_AT_high_pc(DW$L$_HAN$0$3$E)
 DW$173	.dwtag  DW_TAG_loop_range
-	.dwattr DW$173, DW_AT_low_pc(DW$L$_HAN$0$3$B)
-	.dwattr DW$173, DW_AT_high_pc(DW$L$_HAN$0$3$E)
+	.dwattr DW$173, DW_AT_low_pc(DW$L$_HAN$0$4$B)
+	.dwattr DW$173, DW_AT_high_pc(DW$L$_HAN$0$4$E)
 DW$174	.dwtag  DW_TAG_loop_range
-	.dwattr DW$174, DW_AT_low_pc(DW$L$_HAN$0$4$B)
-	.dwattr DW$174, DW_AT_high_pc(DW$L$_HAN$0$4$E)
+	.dwattr DW$174, DW_AT_low_pc(DW$L$_HAN$0$6$B)
+	.dwattr DW$174, DW_AT_high_pc(DW$L$_HAN$0$6$E)
 DW$175	.dwtag  DW_TAG_loop_range
-	.dwattr DW$175, DW_AT_low_pc(DW$L$_HAN$0$6$B)
-	.dwattr DW$175, DW_AT_high_pc(DW$L$_HAN$0$6$E)
+	.dwattr DW$175, DW_AT_low_pc(DW$L$_HAN$0$7$B)
+	.dwattr DW$175, DW_AT_high_pc(DW$L$_HAN$0$7$E)
 DW$176	.dwtag  DW_TAG_loop_range
-	.dwattr DW$176, DW_AT_low_pc(DW$L$_HAN$0$7$B)
-	.dwattr DW$176, DW_AT_high_pc(DW$L$_HAN$0$7$E)
+	.dwattr DW$176, DW_AT_low_pc(DW$L$_HAN$0$8$B)
+	.dwattr DW$176, DW_AT_high_pc(DW$L$_HAN$0$8$E)
 DW$177	.dwtag  DW_TAG_loop_range
-	.dwattr DW$177, DW_AT_low_pc(DW$L$_HAN$0$8$B)
-	.dwattr DW$177, DW_AT_high_pc(DW$L$_HAN$0$8$E)
+	.dwattr DW$177, DW_AT_low_pc(DW$L$_HAN$0$10$B)
+	.dwattr DW$177, DW_AT_high_pc(DW$L$_HAN$0$10$E)
 DW$178	.dwtag  DW_TAG_loop_range
-	.dwattr DW$178, DW_AT_low_pc(DW$L$_HAN$0$10$B)
-	.dwattr DW$178, DW_AT_high_pc(DW$L$_HAN$0$10$E)
+	.dwattr DW$178, DW_AT_low_pc(DW$L$_HAN$0$11$B)
+	.dwattr DW$178, DW_AT_high_pc(DW$L$_HAN$0$11$E)
 DW$179	.dwtag  DW_TAG_loop_range
-	.dwattr DW$179, DW_AT_low_pc(DW$L$_HAN$0$11$B)
-	.dwattr DW$179, DW_AT_high_pc(DW$L$_HAN$0$11$E)
+	.dwattr DW$179, DW_AT_low_pc(DW$L$_HAN$0$12$B)
+	.dwattr DW$179, DW_AT_high_pc(DW$L$_HAN$0$12$E)
 DW$180	.dwtag  DW_TAG_loop_range
-	.dwattr DW$180, DW_AT_low_pc(DW$L$_HAN$0$12$B)
-	.dwattr DW$180, DW_AT_high_pc(DW$L$_HAN$0$12$E)
+	.dwattr DW$180, DW_AT_low_pc(DW$L$_HAN$0$14$B)
+	.dwattr DW$180, DW_AT_high_pc(DW$L$_HAN$0$14$E)
 DW$181	.dwtag  DW_TAG_loop_range
-	.dwattr DW$181, DW_AT_low_pc(DW$L$_HAN$0$14$B)
-	.dwattr DW$181, DW_AT_high_pc(DW$L$_HAN$0$14$E)
+	.dwattr DW$181, DW_AT_low_pc(DW$L$_HAN$0$15$B)
+	.dwattr DW$181, DW_AT_high_pc(DW$L$_HAN$0$15$E)
 DW$182	.dwtag  DW_TAG_loop_range
-	.dwattr DW$182, DW_AT_low_pc(DW$L$_HAN$0$15$B)
-	.dwattr DW$182, DW_AT_high_pc(DW$L$_HAN$0$15$E)
+	.dwattr DW$182, DW_AT_low_pc(DW$L$_HAN$0$16$B)
+	.dwattr DW$182, DW_AT_high_pc(DW$L$_HAN$0$16$E)
 DW$183	.dwtag  DW_TAG_loop_range
-	.dwattr DW$183, DW_AT_low_pc(DW$L$_HAN$0$16$B)
-	.dwattr DW$183, DW_AT_high_pc(DW$L$_HAN$0$16$E)
+	.dwattr DW$183, DW_AT_low_pc(DW$L$_HAN$0$20$B)
+	.dwattr DW$183, DW_AT_high_pc(DW$L$_HAN$0$20$E)
 DW$184	.dwtag  DW_TAG_loop_range
-	.dwattr DW$184, DW_AT_low_pc(DW$L$_HAN$0$20$B)
-	.dwattr DW$184, DW_AT_high_pc(DW$L$_HAN$0$20$E)
+	.dwattr DW$184, DW_AT_low_pc(DW$L$_HAN$0$19$B)
+	.dwattr DW$184, DW_AT_high_pc(DW$L$_HAN$0$19$E)
 DW$185	.dwtag  DW_TAG_loop_range
-	.dwattr DW$185, DW_AT_low_pc(DW$L$_HAN$0$19$B)
-	.dwattr DW$185, DW_AT_high_pc(DW$L$_HAN$0$19$E)
-DW$186	.dwtag  DW_TAG_loop_range
-	.dwattr DW$186, DW_AT_low_pc(DW$L$_HAN$0$17$B)
-	.dwattr DW$186, DW_AT_high_pc(DW$L$_HAN$0$17$E)
-	.dwendtag DW$166
+	.dwattr DW$185, DW_AT_low_pc(DW$L$_HAN$0$17$B)
+	.dwattr DW$185, DW_AT_high_pc(DW$L$_HAN$0$17$E)
+	.dwendtag DW$165
 
-	.dwattr DW$161, DW_AT_end_file("menu.c")
-	.dwattr DW$161, DW_AT_end_line(0xf4)
-	.dwattr DW$161, DW_AT_end_column(0x01)
+	.dwattr DW$160, DW_AT_end_file("menu.c")
+	.dwattr DW$160, DW_AT_end_line(0xf4)
+	.dwattr DW$160, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$161
+	.dwendtag DW$160
 
 	.sect	".text"
 
-DW$187	.dwtag  DW_TAG_subprogram, DW_AT_name("ACC"), DW_AT_symbol_name("_ACC$0")
-	.dwattr DW$187, DW_AT_low_pc(_ACC$0)
-	.dwattr DW$187, DW_AT_high_pc(0x00)
-	.dwattr DW$187, DW_AT_begin_file("menu.c")
-	.dwattr DW$187, DW_AT_begin_line(0xa1)
-	.dwattr DW$187, DW_AT_begin_column(0x0d)
+DW$186	.dwtag  DW_TAG_subprogram, DW_AT_name("ACC"), DW_AT_symbol_name("_ACC$0")
+	.dwattr DW$186, DW_AT_low_pc(_ACC$0)
+	.dwattr DW$186, DW_AT_high_pc(0x00)
+	.dwattr DW$186, DW_AT_begin_file("menu.c")
+	.dwattr DW$186, DW_AT_begin_line(0xa1)
+	.dwattr DW$186, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",162,1
 
 	.dwfde DW$CIE
@@ -2570,25 +2568,25 @@ _ACC$0:
         ADDB      SP,#4
 	.dwcfa	0x1d, -8
 ;* AR4   assigned to C$1
-DW$188	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$188, DW_AT_type(*DW$T$118)
-	.dwattr DW$188, DW_AT_location[DW_OP_reg12]
+DW$187	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$187, DW_AT_type(*DW$T$120)
+	.dwattr DW$187, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$2
-DW$189	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
-	.dwattr DW$189, DW_AT_type(*DW$T$118)
-	.dwattr DW$189, DW_AT_location[DW_OP_reg12]
+DW$188	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
+	.dwattr DW$188, DW_AT_type(*DW$T$120)
+	.dwattr DW$188, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$3
-DW$190	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
-	.dwattr DW$190, DW_AT_type(*DW$T$118)
-	.dwattr DW$190, DW_AT_location[DW_OP_reg12]
+DW$189	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
+	.dwattr DW$189, DW_AT_type(*DW$T$120)
+	.dwattr DW$189, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to C$4
-DW$191	.dwtag  DW_TAG_variable, DW_AT_name("C$4"), DW_AT_symbol_name("C$4")
-	.dwattr DW$191, DW_AT_type(*DW$T$118)
-	.dwattr DW$191, DW_AT_location[DW_OP_reg12]
+DW$190	.dwtag  DW_TAG_variable, DW_AT_name("C$4"), DW_AT_symbol_name("C$4")
+	.dwattr DW$190, DW_AT_type(*DW$T$120)
+	.dwattr DW$190, DW_AT_location[DW_OP_reg12]
 ;* AR1   assigned to _m_sw_cnt
-DW$192	.dwtag  DW_TAG_variable, DW_AT_name("m_sw_cnt"), DW_AT_symbol_name("_m_sw_cnt")
-	.dwattr DW$192, DW_AT_type(*DW$T$19)
-	.dwattr DW$192, DW_AT_location[DW_OP_reg6]
+DW$191	.dwtag  DW_TAG_variable, DW_AT_name("m_sw_cnt"), DW_AT_symbol_name("_m_sw_cnt")
+	.dwattr DW$191, DW_AT_type(*DW$T$19)
+	.dwattr DW$191, DW_AT_location[DW_OP_reg6]
 	.dwpsn	"menu.c",163,9
         MOVB      XAR1,#0
 	.dwpsn	"menu.c",165,2
@@ -2924,102 +2922,102 @@ DW$L$_ACC$0$26$E:
         LRETR
         ; return occurs
 
-DW$193	.dwtag  DW_TAG_loop
-	.dwattr DW$193, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L53:1:1657030010")
-	.dwattr DW$193, DW_AT_begin_file("menu.c")
-	.dwattr DW$193, DW_AT_begin_line(0xa5)
-	.dwattr DW$193, DW_AT_end_line(0xcc)
+DW$192	.dwtag  DW_TAG_loop
+	.dwattr DW$192, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L53:1:1657044089")
+	.dwattr DW$192, DW_AT_begin_file("menu.c")
+	.dwattr DW$192, DW_AT_begin_line(0xa5)
+	.dwattr DW$192, DW_AT_end_line(0xcc)
+DW$193	.dwtag  DW_TAG_loop_range
+	.dwattr DW$193, DW_AT_low_pc(DW$L$_ACC$0$26$B)
+	.dwattr DW$193, DW_AT_high_pc(DW$L$_ACC$0$26$E)
 DW$194	.dwtag  DW_TAG_loop_range
-	.dwattr DW$194, DW_AT_low_pc(DW$L$_ACC$0$26$B)
-	.dwattr DW$194, DW_AT_high_pc(DW$L$_ACC$0$26$E)
+	.dwattr DW$194, DW_AT_low_pc(DW$L$_ACC$0$23$B)
+	.dwattr DW$194, DW_AT_high_pc(DW$L$_ACC$0$23$E)
 DW$195	.dwtag  DW_TAG_loop_range
-	.dwattr DW$195, DW_AT_low_pc(DW$L$_ACC$0$23$B)
-	.dwattr DW$195, DW_AT_high_pc(DW$L$_ACC$0$23$E)
+	.dwattr DW$195, DW_AT_low_pc(DW$L$_ACC$0$18$B)
+	.dwattr DW$195, DW_AT_high_pc(DW$L$_ACC$0$18$E)
 DW$196	.dwtag  DW_TAG_loop_range
-	.dwattr DW$196, DW_AT_low_pc(DW$L$_ACC$0$18$B)
-	.dwattr DW$196, DW_AT_high_pc(DW$L$_ACC$0$18$E)
+	.dwattr DW$196, DW_AT_low_pc(DW$L$_ACC$0$14$B)
+	.dwattr DW$196, DW_AT_high_pc(DW$L$_ACC$0$14$E)
 DW$197	.dwtag  DW_TAG_loop_range
-	.dwattr DW$197, DW_AT_low_pc(DW$L$_ACC$0$14$B)
-	.dwattr DW$197, DW_AT_high_pc(DW$L$_ACC$0$14$E)
+	.dwattr DW$197, DW_AT_low_pc(DW$L$_ACC$0$10$B)
+	.dwattr DW$197, DW_AT_high_pc(DW$L$_ACC$0$10$E)
 DW$198	.dwtag  DW_TAG_loop_range
-	.dwattr DW$198, DW_AT_low_pc(DW$L$_ACC$0$10$B)
-	.dwattr DW$198, DW_AT_high_pc(DW$L$_ACC$0$10$E)
+	.dwattr DW$198, DW_AT_low_pc(DW$L$_ACC$0$6$B)
+	.dwattr DW$198, DW_AT_high_pc(DW$L$_ACC$0$6$E)
 DW$199	.dwtag  DW_TAG_loop_range
-	.dwattr DW$199, DW_AT_low_pc(DW$L$_ACC$0$6$B)
-	.dwattr DW$199, DW_AT_high_pc(DW$L$_ACC$0$6$E)
+	.dwattr DW$199, DW_AT_low_pc(DW$L$_ACC$0$2$B)
+	.dwattr DW$199, DW_AT_high_pc(DW$L$_ACC$0$2$E)
 DW$200	.dwtag  DW_TAG_loop_range
-	.dwattr DW$200, DW_AT_low_pc(DW$L$_ACC$0$2$B)
-	.dwattr DW$200, DW_AT_high_pc(DW$L$_ACC$0$2$E)
+	.dwattr DW$200, DW_AT_low_pc(DW$L$_ACC$0$3$B)
+	.dwattr DW$200, DW_AT_high_pc(DW$L$_ACC$0$3$E)
 DW$201	.dwtag  DW_TAG_loop_range
-	.dwattr DW$201, DW_AT_low_pc(DW$L$_ACC$0$3$B)
-	.dwattr DW$201, DW_AT_high_pc(DW$L$_ACC$0$3$E)
+	.dwattr DW$201, DW_AT_low_pc(DW$L$_ACC$0$4$B)
+	.dwattr DW$201, DW_AT_high_pc(DW$L$_ACC$0$4$E)
 DW$202	.dwtag  DW_TAG_loop_range
-	.dwattr DW$202, DW_AT_low_pc(DW$L$_ACC$0$4$B)
-	.dwattr DW$202, DW_AT_high_pc(DW$L$_ACC$0$4$E)
+	.dwattr DW$202, DW_AT_low_pc(DW$L$_ACC$0$5$B)
+	.dwattr DW$202, DW_AT_high_pc(DW$L$_ACC$0$5$E)
 DW$203	.dwtag  DW_TAG_loop_range
-	.dwattr DW$203, DW_AT_low_pc(DW$L$_ACC$0$5$B)
-	.dwattr DW$203, DW_AT_high_pc(DW$L$_ACC$0$5$E)
+	.dwattr DW$203, DW_AT_low_pc(DW$L$_ACC$0$7$B)
+	.dwattr DW$203, DW_AT_high_pc(DW$L$_ACC$0$7$E)
 DW$204	.dwtag  DW_TAG_loop_range
-	.dwattr DW$204, DW_AT_low_pc(DW$L$_ACC$0$7$B)
-	.dwattr DW$204, DW_AT_high_pc(DW$L$_ACC$0$7$E)
+	.dwattr DW$204, DW_AT_low_pc(DW$L$_ACC$0$8$B)
+	.dwattr DW$204, DW_AT_high_pc(DW$L$_ACC$0$8$E)
 DW$205	.dwtag  DW_TAG_loop_range
-	.dwattr DW$205, DW_AT_low_pc(DW$L$_ACC$0$8$B)
-	.dwattr DW$205, DW_AT_high_pc(DW$L$_ACC$0$8$E)
+	.dwattr DW$205, DW_AT_low_pc(DW$L$_ACC$0$9$B)
+	.dwattr DW$205, DW_AT_high_pc(DW$L$_ACC$0$9$E)
 DW$206	.dwtag  DW_TAG_loop_range
-	.dwattr DW$206, DW_AT_low_pc(DW$L$_ACC$0$9$B)
-	.dwattr DW$206, DW_AT_high_pc(DW$L$_ACC$0$9$E)
+	.dwattr DW$206, DW_AT_low_pc(DW$L$_ACC$0$11$B)
+	.dwattr DW$206, DW_AT_high_pc(DW$L$_ACC$0$11$E)
 DW$207	.dwtag  DW_TAG_loop_range
-	.dwattr DW$207, DW_AT_low_pc(DW$L$_ACC$0$11$B)
-	.dwattr DW$207, DW_AT_high_pc(DW$L$_ACC$0$11$E)
+	.dwattr DW$207, DW_AT_low_pc(DW$L$_ACC$0$12$B)
+	.dwattr DW$207, DW_AT_high_pc(DW$L$_ACC$0$12$E)
 DW$208	.dwtag  DW_TAG_loop_range
-	.dwattr DW$208, DW_AT_low_pc(DW$L$_ACC$0$12$B)
-	.dwattr DW$208, DW_AT_high_pc(DW$L$_ACC$0$12$E)
+	.dwattr DW$208, DW_AT_low_pc(DW$L$_ACC$0$13$B)
+	.dwattr DW$208, DW_AT_high_pc(DW$L$_ACC$0$13$E)
 DW$209	.dwtag  DW_TAG_loop_range
-	.dwattr DW$209, DW_AT_low_pc(DW$L$_ACC$0$13$B)
-	.dwattr DW$209, DW_AT_high_pc(DW$L$_ACC$0$13$E)
+	.dwattr DW$209, DW_AT_low_pc(DW$L$_ACC$0$15$B)
+	.dwattr DW$209, DW_AT_high_pc(DW$L$_ACC$0$15$E)
 DW$210	.dwtag  DW_TAG_loop_range
-	.dwattr DW$210, DW_AT_low_pc(DW$L$_ACC$0$15$B)
-	.dwattr DW$210, DW_AT_high_pc(DW$L$_ACC$0$15$E)
+	.dwattr DW$210, DW_AT_low_pc(DW$L$_ACC$0$16$B)
+	.dwattr DW$210, DW_AT_high_pc(DW$L$_ACC$0$16$E)
 DW$211	.dwtag  DW_TAG_loop_range
-	.dwattr DW$211, DW_AT_low_pc(DW$L$_ACC$0$16$B)
-	.dwattr DW$211, DW_AT_high_pc(DW$L$_ACC$0$16$E)
+	.dwattr DW$211, DW_AT_low_pc(DW$L$_ACC$0$17$B)
+	.dwattr DW$211, DW_AT_high_pc(DW$L$_ACC$0$17$E)
 DW$212	.dwtag  DW_TAG_loop_range
-	.dwattr DW$212, DW_AT_low_pc(DW$L$_ACC$0$17$B)
-	.dwattr DW$212, DW_AT_high_pc(DW$L$_ACC$0$17$E)
+	.dwattr DW$212, DW_AT_low_pc(DW$L$_ACC$0$19$B)
+	.dwattr DW$212, DW_AT_high_pc(DW$L$_ACC$0$19$E)
 DW$213	.dwtag  DW_TAG_loop_range
-	.dwattr DW$213, DW_AT_low_pc(DW$L$_ACC$0$19$B)
-	.dwattr DW$213, DW_AT_high_pc(DW$L$_ACC$0$19$E)
+	.dwattr DW$213, DW_AT_low_pc(DW$L$_ACC$0$20$B)
+	.dwattr DW$213, DW_AT_high_pc(DW$L$_ACC$0$20$E)
 DW$214	.dwtag  DW_TAG_loop_range
-	.dwattr DW$214, DW_AT_low_pc(DW$L$_ACC$0$20$B)
-	.dwattr DW$214, DW_AT_high_pc(DW$L$_ACC$0$20$E)
+	.dwattr DW$214, DW_AT_low_pc(DW$L$_ACC$0$21$B)
+	.dwattr DW$214, DW_AT_high_pc(DW$L$_ACC$0$21$E)
 DW$215	.dwtag  DW_TAG_loop_range
-	.dwattr DW$215, DW_AT_low_pc(DW$L$_ACC$0$21$B)
-	.dwattr DW$215, DW_AT_high_pc(DW$L$_ACC$0$21$E)
+	.dwattr DW$215, DW_AT_low_pc(DW$L$_ACC$0$25$B)
+	.dwattr DW$215, DW_AT_high_pc(DW$L$_ACC$0$25$E)
 DW$216	.dwtag  DW_TAG_loop_range
-	.dwattr DW$216, DW_AT_low_pc(DW$L$_ACC$0$25$B)
-	.dwattr DW$216, DW_AT_high_pc(DW$L$_ACC$0$25$E)
+	.dwattr DW$216, DW_AT_low_pc(DW$L$_ACC$0$24$B)
+	.dwattr DW$216, DW_AT_high_pc(DW$L$_ACC$0$24$E)
 DW$217	.dwtag  DW_TAG_loop_range
-	.dwattr DW$217, DW_AT_low_pc(DW$L$_ACC$0$24$B)
-	.dwattr DW$217, DW_AT_high_pc(DW$L$_ACC$0$24$E)
-DW$218	.dwtag  DW_TAG_loop_range
-	.dwattr DW$218, DW_AT_low_pc(DW$L$_ACC$0$22$B)
-	.dwattr DW$218, DW_AT_high_pc(DW$L$_ACC$0$22$E)
-	.dwendtag DW$193
+	.dwattr DW$217, DW_AT_low_pc(DW$L$_ACC$0$22$B)
+	.dwattr DW$217, DW_AT_high_pc(DW$L$_ACC$0$22$E)
+	.dwendtag DW$192
 
-	.dwattr DW$187, DW_AT_end_file("menu.c")
-	.dwattr DW$187, DW_AT_end_line(0xd1)
-	.dwattr DW$187, DW_AT_end_column(0x01)
+	.dwattr DW$186, DW_AT_end_file("menu.c")
+	.dwattr DW$186, DW_AT_end_line(0xd1)
+	.dwattr DW$186, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$187
+	.dwendtag DW$186
 
 	.sect	".text"
 
-DW$219	.dwtag  DW_TAG_subprogram, DW_AT_name("ADC"), DW_AT_symbol_name("_ADC$0")
-	.dwattr DW$219, DW_AT_low_pc(_ADC$0)
-	.dwattr DW$219, DW_AT_high_pc(0x00)
-	.dwattr DW$219, DW_AT_begin_file("menu.c")
-	.dwattr DW$219, DW_AT_begin_line(0x60)
-	.dwattr DW$219, DW_AT_begin_column(0x0d)
+DW$218	.dwtag  DW_TAG_subprogram, DW_AT_name("ADC"), DW_AT_symbol_name("_ADC$0")
+	.dwattr DW$218, DW_AT_low_pc(_ADC$0)
+	.dwattr DW$218, DW_AT_high_pc(0x00)
+	.dwattr DW$218, DW_AT_begin_file("menu.c")
+	.dwattr DW$218, DW_AT_begin_line(0x60)
+	.dwattr DW$218, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",97,1
 
 	.dwfde DW$CIE
@@ -3055,16 +3053,16 @@ _ADC$0:
         ADDB      SP,#6
 	.dwcfa	0x1d, -12
 ;* AR1   assigned to _count
-DW$220	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
+DW$219	.dwtag  DW_TAG_variable, DW_AT_name("count"), DW_AT_symbol_name("_count")
+	.dwattr DW$219, DW_AT_type(*DW$T$19)
+	.dwattr DW$219, DW_AT_location[DW_OP_reg6]
+DW$220	.dwtag  DW_TAG_variable, DW_AT_name("m_adc_cnt"), DW_AT_symbol_name("_m_adc_cnt")
 	.dwattr DW$220, DW_AT_type(*DW$T$19)
-	.dwattr DW$220, DW_AT_location[DW_OP_reg6]
-DW$221	.dwtag  DW_TAG_variable, DW_AT_name("m_adc_cnt"), DW_AT_symbol_name("_m_adc_cnt")
-	.dwattr DW$221, DW_AT_type(*DW$T$19)
-	.dwattr DW$221, DW_AT_location[DW_OP_breg20 -5]
+	.dwattr DW$220, DW_AT_location[DW_OP_breg20 -5]
 ;* AR3   assigned to K$10
-DW$222	.dwtag  DW_TAG_variable, DW_AT_name("K$10"), DW_AT_symbol_name("K$10")
-	.dwattr DW$222, DW_AT_type(*DW$T$117)
-	.dwattr DW$222, DW_AT_location[DW_OP_reg10]
+DW$221	.dwtag  DW_TAG_variable, DW_AT_name("K$10"), DW_AT_symbol_name("K$10")
+	.dwattr DW$221, DW_AT_type(*DW$T$119)
+	.dwattr DW$221, DW_AT_location[DW_OP_reg10]
 	.dwpsn	"menu.c",99,9
         MOV       *-SP[5],#0            ; |99| 
 	.dwpsn	"menu.c",101,2
@@ -3174,44 +3172,44 @@ L56:
         LRETR
         ; return occurs
 
-DW$223	.dwtag  DW_TAG_loop
-	.dwattr DW$223, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L54:1:1657030010")
-	.dwattr DW$223, DW_AT_begin_file("menu.c")
-	.dwattr DW$223, DW_AT_begin_line(0x66)
-	.dwattr DW$223, DW_AT_end_line(0x6c)
+DW$222	.dwtag  DW_TAG_loop
+	.dwattr DW$222, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L54:1:1657044089")
+	.dwattr DW$222, DW_AT_begin_file("menu.c")
+	.dwattr DW$222, DW_AT_begin_line(0x66)
+	.dwattr DW$222, DW_AT_end_line(0x6c)
+DW$223	.dwtag  DW_TAG_loop_range
+	.dwattr DW$223, DW_AT_low_pc(DW$L$_ADC$0$3$B)
+	.dwattr DW$223, DW_AT_high_pc(DW$L$_ADC$0$3$E)
 DW$224	.dwtag  DW_TAG_loop_range
-	.dwattr DW$224, DW_AT_low_pc(DW$L$_ADC$0$3$B)
-	.dwattr DW$224, DW_AT_high_pc(DW$L$_ADC$0$3$E)
-DW$225	.dwtag  DW_TAG_loop_range
-	.dwattr DW$225, DW_AT_low_pc(DW$L$_ADC$0$5$B)
-	.dwattr DW$225, DW_AT_high_pc(DW$L$_ADC$0$5$E)
+	.dwattr DW$224, DW_AT_low_pc(DW$L$_ADC$0$5$B)
+	.dwattr DW$224, DW_AT_high_pc(DW$L$_ADC$0$5$E)
 
-DW$226	.dwtag  DW_TAG_loop
-	.dwattr DW$226, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L55:2:1657030010")
-	.dwattr DW$226, DW_AT_begin_file("menu.c")
-	.dwattr DW$226, DW_AT_begin_line(0x68)
-	.dwattr DW$226, DW_AT_end_line(0x68)
-DW$227	.dwtag  DW_TAG_loop_range
-	.dwattr DW$227, DW_AT_low_pc(DW$L$_ADC$0$4$B)
-	.dwattr DW$227, DW_AT_high_pc(DW$L$_ADC$0$4$E)
-	.dwendtag DW$226
+DW$225	.dwtag  DW_TAG_loop
+	.dwattr DW$225, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L55:2:1657044089")
+	.dwattr DW$225, DW_AT_begin_file("menu.c")
+	.dwattr DW$225, DW_AT_begin_line(0x68)
+	.dwattr DW$225, DW_AT_end_line(0x68)
+DW$226	.dwtag  DW_TAG_loop_range
+	.dwattr DW$226, DW_AT_low_pc(DW$L$_ADC$0$4$B)
+	.dwattr DW$226, DW_AT_high_pc(DW$L$_ADC$0$4$E)
+	.dwendtag DW$225
 
-	.dwendtag DW$223
+	.dwendtag DW$222
 
-	.dwattr DW$219, DW_AT_end_file("menu.c")
-	.dwattr DW$219, DW_AT_end_line(0x72)
-	.dwattr DW$219, DW_AT_end_column(0x01)
+	.dwattr DW$218, DW_AT_end_file("menu.c")
+	.dwattr DW$218, DW_AT_end_line(0x72)
+	.dwattr DW$218, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$219
+	.dwendtag DW$218
 
 	.sect	".text"
 
-DW$228	.dwtag  DW_TAG_subprogram, DW_AT_name("ARROW"), DW_AT_symbol_name("_ARROW$0")
-	.dwattr DW$228, DW_AT_low_pc(_ARROW$0)
-	.dwattr DW$228, DW_AT_high_pc(0x00)
-	.dwattr DW$228, DW_AT_begin_file("menu.c")
-	.dwattr DW$228, DW_AT_begin_line(0x57)
-	.dwattr DW$228, DW_AT_begin_column(0x0d)
+DW$227	.dwtag  DW_TAG_subprogram, DW_AT_name("ARROW"), DW_AT_symbol_name("_ARROW$0")
+	.dwattr DW$227, DW_AT_low_pc(_ARROW$0)
+	.dwattr DW$227, DW_AT_high_pc(0x00)
+	.dwattr DW$227, DW_AT_begin_file("menu.c")
+	.dwattr DW$227, DW_AT_begin_line(0x57)
+	.dwattr DW$227, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",88,1
 
 	.dwfde DW$CIE
@@ -3291,30 +3289,30 @@ L58:
         LRETR
         ; return occurs
 
-DW$229	.dwtag  DW_TAG_loop
-	.dwattr DW$229, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L57:1:1657030010")
-	.dwattr DW$229, DW_AT_begin_file("menu.c")
-	.dwattr DW$229, DW_AT_begin_line(0x5a)
-	.dwattr DW$229, DW_AT_end_line(0x5a)
-DW$230	.dwtag  DW_TAG_loop_range
-	.dwattr DW$230, DW_AT_low_pc(DW$L$_ARROW$0$2$B)
-	.dwattr DW$230, DW_AT_high_pc(DW$L$_ARROW$0$2$E)
-	.dwendtag DW$229
-
-	.dwattr DW$228, DW_AT_end_file("menu.c")
-	.dwattr DW$228, DW_AT_end_line(0x5f)
-	.dwattr DW$228, DW_AT_end_column(0x01)
-	.dwendentry
+DW$228	.dwtag  DW_TAG_loop
+	.dwattr DW$228, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L57:1:1657044089")
+	.dwattr DW$228, DW_AT_begin_file("menu.c")
+	.dwattr DW$228, DW_AT_begin_line(0x5a)
+	.dwattr DW$228, DW_AT_end_line(0x5a)
+DW$229	.dwtag  DW_TAG_loop_range
+	.dwattr DW$229, DW_AT_low_pc(DW$L$_ARROW$0$2$B)
+	.dwattr DW$229, DW_AT_high_pc(DW$L$_ARROW$0$2$E)
 	.dwendtag DW$228
+
+	.dwattr DW$227, DW_AT_end_file("menu.c")
+	.dwattr DW$227, DW_AT_end_line(0x5f)
+	.dwattr DW$227, DW_AT_end_column(0x01)
+	.dwendentry
+	.dwendtag DW$227
 
 	.sect	".text"
 
-DW$231	.dwtag  DW_TAG_subprogram, DW_AT_name("MAXMIN"), DW_AT_symbol_name("_MAXMIN$0")
-	.dwattr DW$231, DW_AT_low_pc(_MAXMIN$0)
-	.dwattr DW$231, DW_AT_high_pc(0x00)
-	.dwattr DW$231, DW_AT_begin_file("menu.c")
-	.dwattr DW$231, DW_AT_begin_line(0x3b)
-	.dwattr DW$231, DW_AT_begin_column(0x0d)
+DW$230	.dwtag  DW_TAG_subprogram, DW_AT_name("MAXMIN"), DW_AT_symbol_name("_MAXMIN$0")
+	.dwattr DW$230, DW_AT_low_pc(_MAXMIN$0)
+	.dwattr DW$230, DW_AT_high_pc(0x00)
+	.dwattr DW$230, DW_AT_begin_file("menu.c")
+	.dwattr DW$230, DW_AT_begin_line(0x3b)
+	.dwattr DW$230, DW_AT_begin_column(0x0d)
 	.dwpsn	"menu.c",60,1
 
 	.dwfde DW$CIE
@@ -3360,21 +3358,21 @@ _MAXMIN$0:
 	.dwpsn	"menu.c",65,1
         LRETR
         ; return occurs
-	.dwattr DW$231, DW_AT_end_file("menu.c")
-	.dwattr DW$231, DW_AT_end_line(0x41)
-	.dwattr DW$231, DW_AT_end_column(0x01)
+	.dwattr DW$230, DW_AT_end_file("menu.c")
+	.dwattr DW$230, DW_AT_end_line(0x41)
+	.dwattr DW$230, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$231
+	.dwendtag DW$230
 
 	.sect	".text"
 	.global	_MENU_PA
 
-DW$232	.dwtag  DW_TAG_subprogram, DW_AT_name("MENU_PA"), DW_AT_symbol_name("_MENU_PA")
-	.dwattr DW$232, DW_AT_low_pc(_MENU_PA)
-	.dwattr DW$232, DW_AT_high_pc(0x00)
-	.dwattr DW$232, DW_AT_begin_file("menu.c")
-	.dwattr DW$232, DW_AT_begin_line(0x130)
-	.dwattr DW$232, DW_AT_begin_column(0x06)
+DW$231	.dwtag  DW_TAG_subprogram, DW_AT_name("MENU_PA"), DW_AT_symbol_name("_MENU_PA")
+	.dwattr DW$231, DW_AT_low_pc(_MENU_PA)
+	.dwattr DW$231, DW_AT_high_pc(0x00)
+	.dwattr DW$231, DW_AT_begin_file("menu.c")
+	.dwattr DW$231, DW_AT_begin_line(0x130)
+	.dwattr DW$231, DW_AT_begin_column(0x06)
 	.dwpsn	"menu.c",305,1
 
 	.dwfde DW$CIE
@@ -3426,60 +3424,60 @@ _MENU_PA:
         SUBB      FP,#8
         ADDB      SP,#78
 	.dwcfa	0x1d, -86
-DW$233	.dwtag  DW_TAG_variable, DW_AT_name("botmenu_u16_cnt"), DW_AT_symbol_name("_botmenu_u16_cnt")
-	.dwattr DW$233, DW_AT_type(*DW$T$19)
-	.dwattr DW$233, DW_AT_location[DW_OP_breg20 -5]
+DW$232	.dwtag  DW_TAG_variable, DW_AT_name("botmenu_u16_cnt"), DW_AT_symbol_name("_botmenu_u16_cnt")
+	.dwattr DW$232, DW_AT_type(*DW$T$19)
+	.dwattr DW$232, DW_AT_location[DW_OP_breg20 -5]
 ;* AR1   assigned to L$3
-DW$234	.dwtag  DW_TAG_variable, DW_AT_name("L$3"), DW_AT_symbol_name("L$3")
-	.dwattr DW$234, DW_AT_type(*DW$T$10)
-	.dwattr DW$234, DW_AT_location[DW_OP_reg6]
+DW$233	.dwtag  DW_TAG_variable, DW_AT_name("L$3"), DW_AT_symbol_name("L$3")
+	.dwattr DW$233, DW_AT_type(*DW$T$10)
+	.dwattr DW$233, DW_AT_location[DW_OP_reg6]
 ;* AR3   assigned to L$2
-DW$235	.dwtag  DW_TAG_variable, DW_AT_name("L$2"), DW_AT_symbol_name("L$2")
+DW$234	.dwtag  DW_TAG_variable, DW_AT_name("L$2"), DW_AT_symbol_name("L$2")
+	.dwattr DW$234, DW_AT_type(*DW$T$10)
+	.dwattr DW$234, DW_AT_location[DW_OP_reg10]
+;* AR3   assigned to L$1
+DW$235	.dwtag  DW_TAG_variable, DW_AT_name("L$1"), DW_AT_symbol_name("L$1")
 	.dwattr DW$235, DW_AT_type(*DW$T$10)
 	.dwattr DW$235, DW_AT_location[DW_OP_reg10]
-;* AR3   assigned to L$1
-DW$236	.dwtag  DW_TAG_variable, DW_AT_name("L$1"), DW_AT_symbol_name("L$1")
-	.dwattr DW$236, DW_AT_type(*DW$T$10)
-	.dwattr DW$236, DW_AT_location[DW_OP_reg10]
-DW$237	.dwtag  DW_TAG_variable, DW_AT_name("K$109"), DW_AT_symbol_name("K$109")
-	.dwattr DW$237, DW_AT_type(*DW$T$110)
-	.dwattr DW$237, DW_AT_location[DW_OP_breg20 -78]
+DW$236	.dwtag  DW_TAG_variable, DW_AT_name("K$109"), DW_AT_symbol_name("K$109")
+	.dwattr DW$236, DW_AT_type(*DW$T$112)
+	.dwattr DW$236, DW_AT_location[DW_OP_breg20 -78]
 ;* AR3   assigned to U$74
-DW$238	.dwtag  DW_TAG_variable, DW_AT_name("U$74"), DW_AT_symbol_name("U$74")
-	.dwattr DW$238, DW_AT_type(*DW$T$130)
-	.dwattr DW$238, DW_AT_location[DW_OP_reg10]
+DW$237	.dwtag  DW_TAG_variable, DW_AT_name("U$74"), DW_AT_symbol_name("U$74")
+	.dwattr DW$237, DW_AT_type(*DW$T$132)
+	.dwattr DW$237, DW_AT_location[DW_OP_reg10]
 ;* AR1   assigned to U$64
-DW$239	.dwtag  DW_TAG_variable, DW_AT_name("U$64"), DW_AT_symbol_name("U$64")
-	.dwattr DW$239, DW_AT_type(*DW$T$118)
-	.dwattr DW$239, DW_AT_location[DW_OP_reg6]
+DW$238	.dwtag  DW_TAG_variable, DW_AT_name("U$64"), DW_AT_symbol_name("U$64")
+	.dwattr DW$238, DW_AT_type(*DW$T$120)
+	.dwattr DW$238, DW_AT_location[DW_OP_reg6]
 ;* AR1   assigned to U$53
-DW$240	.dwtag  DW_TAG_variable, DW_AT_name("U$53"), DW_AT_symbol_name("U$53")
-	.dwattr DW$240, DW_AT_type(*DW$T$118)
-	.dwattr DW$240, DW_AT_location[DW_OP_reg6]
-DW$241	.dwtag  DW_TAG_variable, DW_AT_name("SENmenu"), DW_AT_symbol_name("_SENmenu")
-	.dwattr DW$241, DW_AT_type(*DW$T$75)
-	.dwattr DW$241, DW_AT_location[DW_OP_breg20 -16]
-DW$242	.dwtag  DW_TAG_variable, DW_AT_name("MOTmenu"), DW_AT_symbol_name("_MOTmenu")
+DW$239	.dwtag  DW_TAG_variable, DW_AT_name("U$53"), DW_AT_symbol_name("U$53")
+	.dwattr DW$239, DW_AT_type(*DW$T$120)
+	.dwattr DW$239, DW_AT_location[DW_OP_reg6]
+DW$240	.dwtag  DW_TAG_variable, DW_AT_name("SENmenu"), DW_AT_symbol_name("_SENmenu")
+	.dwattr DW$240, DW_AT_type(*DW$T$75)
+	.dwattr DW$240, DW_AT_location[DW_OP_breg20 -16]
+DW$241	.dwtag  DW_TAG_variable, DW_AT_name("MOTmenu"), DW_AT_symbol_name("_MOTmenu")
+	.dwattr DW$241, DW_AT_type(*DW$T$76)
+	.dwattr DW$241, DW_AT_location[DW_OP_breg20 -24]
+DW$242	.dwtag  DW_TAG_variable, DW_AT_name("RUNmenu"), DW_AT_symbol_name("_RUNmenu")
 	.dwattr DW$242, DW_AT_type(*DW$T$76)
-	.dwattr DW$242, DW_AT_location[DW_OP_breg20 -24]
-DW$243	.dwtag  DW_TAG_variable, DW_AT_name("RUNmenu"), DW_AT_symbol_name("_RUNmenu")
-	.dwattr DW$243, DW_AT_type(*DW$T$76)
-	.dwattr DW$243, DW_AT_location[DW_OP_breg20 -32]
-DW$244	.dwtag  DW_TAG_variable, DW_AT_name("SENchar"), DW_AT_symbol_name("_SENchar")
-	.dwattr DW$244, DW_AT_type(*DW$T$161)
-	.dwattr DW$244, DW_AT_location[DW_OP_breg20 -44]
-DW$245	.dwtag  DW_TAG_variable, DW_AT_name("MOTchar"), DW_AT_symbol_name("_MOTchar")
-	.dwattr DW$245, DW_AT_type(*DW$T$162)
-	.dwattr DW$245, DW_AT_location[DW_OP_breg20 -54]
-DW$246	.dwtag  DW_TAG_variable, DW_AT_name("RUNchar"), DW_AT_symbol_name("_RUNchar")
-	.dwattr DW$246, DW_AT_type(*DW$T$162)
-	.dwattr DW$246, DW_AT_location[DW_OP_breg20 -64]
-DW$247	.dwtag  DW_TAG_variable, DW_AT_name("MENUvoid"), DW_AT_symbol_name("_MENUvoid")
-	.dwattr DW$247, DW_AT_type(*DW$T$78)
-	.dwattr DW$247, DW_AT_location[DW_OP_breg20 -70]
-DW$248	.dwtag  DW_TAG_variable, DW_AT_name("MENUchar"), DW_AT_symbol_name("_MENUchar")
-	.dwattr DW$248, DW_AT_type(*DW$T$164)
-	.dwattr DW$248, DW_AT_location[DW_OP_breg20 -76]
+	.dwattr DW$242, DW_AT_location[DW_OP_breg20 -32]
+DW$243	.dwtag  DW_TAG_variable, DW_AT_name("SENchar"), DW_AT_symbol_name("_SENchar")
+	.dwattr DW$243, DW_AT_type(*DW$T$163)
+	.dwattr DW$243, DW_AT_location[DW_OP_breg20 -44]
+DW$244	.dwtag  DW_TAG_variable, DW_AT_name("MOTchar"), DW_AT_symbol_name("_MOTchar")
+	.dwattr DW$244, DW_AT_type(*DW$T$164)
+	.dwattr DW$244, DW_AT_location[DW_OP_breg20 -54]
+DW$245	.dwtag  DW_TAG_variable, DW_AT_name("RUNchar"), DW_AT_symbol_name("_RUNchar")
+	.dwattr DW$245, DW_AT_type(*DW$T$164)
+	.dwattr DW$245, DW_AT_location[DW_OP_breg20 -64]
+DW$246	.dwtag  DW_TAG_variable, DW_AT_name("MENUvoid"), DW_AT_symbol_name("_MENUvoid")
+	.dwattr DW$246, DW_AT_type(*DW$T$78)
+	.dwattr DW$246, DW_AT_location[DW_OP_breg20 -70]
+DW$247	.dwtag  DW_TAG_variable, DW_AT_name("MENUchar"), DW_AT_symbol_name("_MENUchar")
+	.dwattr DW$247, DW_AT_type(*DW$T$166)
+	.dwattr DW$247, DW_AT_location[DW_OP_breg20 -76]
 	.dwpsn	"menu.c",308,9
         MOVZ      AR4,SP                ; |308| 
         MOVB      ACC,#10
@@ -3621,7 +3619,7 @@ DW$L$_MENU_PA$5$B:
         ; branchcc occurs ; |339| 
 DW$L$_MENU_PA$5$E:
 DW$L$_MENU_PA$6$B:
-;*** 47	-----------------------    TxPrintf("\nMAX |");  // [21]
+;*** 47	-----------------------    TxPrintf("\nMAX |");  // [19]
 ;***  	-----------------------    #pragma MUST_ITERATE(16, 16, 16)
 ;***  	-----------------------    #pragma LOOP_FLAGS(5120u)
 ;***  	-----------------------    U$53 = &SenAdc;
@@ -3638,9 +3636,9 @@ DW$L$_MENU_PA$6$E:
 L61:    
 DW$L$_MENU_PA$7$B:
 ;***	-----------------------g7:
-;*** 48	-----------------------    TxPrintf("% 4u |", U$53[17]);  // [21]
-;*** 48	-----------------------    ++U$53;  // [21]
-;*** 48	-----------------------    if ( (--L$1) != (-1) ) goto g7;  // [21]
+;*** 48	-----------------------    TxPrintf("% 4u |", U$53[17]);  // [19]
+;*** 48	-----------------------    ++U$53;  // [19]
+;*** 48	-----------------------    if ( (--L$1) != (-1) ) goto g7;  // [19]
 	.dwpsn	"menu.c",48,38
         MOVL      XAR4,#FSL40           ; |48| 
         MOVB      XAR0,#17              ; |48| 
@@ -3659,7 +3657,7 @@ DW$L$_MENU_PA$7$B:
         ; branchcc occurs ; |48| 
 DW$L$_MENU_PA$7$E:
 DW$L$_MENU_PA$8$B:
-;*** 50	-----------------------    TxPrintf("\nMIN |");  // [21]
+;*** 50	-----------------------    TxPrintf("\nMIN |");  // [19]
 ;***  	-----------------------    #pragma MUST_ITERATE(16, 16, 16)
 ;***  	-----------------------    #pragma LOOP_FLAGS(5120u)
 ;***  	-----------------------    U$64 = &SenAdc;
@@ -3676,9 +3674,9 @@ DW$L$_MENU_PA$8$E:
 L62:    
 DW$L$_MENU_PA$9$B:
 ;***	-----------------------g9:
-;*** 51	-----------------------    TxPrintf("% 4u |", U$64[33]);  // [21]
-;*** 51	-----------------------    ++U$64;  // [21]
-;*** 51	-----------------------    if ( (--L$2) != (-1) ) goto g9;  // [21]
+;*** 51	-----------------------    TxPrintf("% 4u |", U$64[33]);  // [19]
+;*** 51	-----------------------    ++U$64;  // [19]
+;*** 51	-----------------------    if ( (--L$2) != (-1) ) goto g9;  // [19]
 	.dwpsn	"menu.c",51,38
         MOVL      XAR4,#FSL40           ; |51| 
         MOVB      XAR0,#33              ; |51| 
@@ -3697,7 +3695,7 @@ DW$L$_MENU_PA$9$B:
         ; branchcc occurs ; |51| 
 DW$L$_MENU_PA$9$E:
 DW$L$_MENU_PA$10$B:
-;*** 53	-----------------------    TxPrintf("\nMaxMinusMin |");  // [21]
+;*** 53	-----------------------    TxPrintf("\nMaxMinusMin |");  // [19]
 ;***  	-----------------------    #pragma MUST_ITERATE(16, 16, 16)
 ;***  	-----------------------    #pragma LOOP_FLAGS(5120u)
 ;***  	-----------------------    U$74 = &SenAdc+86L;
@@ -3713,8 +3711,8 @@ DW$L$_MENU_PA$10$E:
 L63:    
 DW$L$_MENU_PA$11$B:
 ;***	-----------------------g11:
-;*** 54	-----------------------    TxPrintf("% 4ld |", *U$74++>>17);  // [21]
-;*** 54	-----------------------    if ( (--L$3) != (-1) ) goto g11;  // [21]
+;*** 54	-----------------------    TxPrintf("% 4ld |", *U$74++>>17);  // [19]
+;*** 54	-----------------------    if ( (--L$3) != (-1) ) goto g11;  // [19]
 	.dwpsn	"menu.c",54,38
         MOVL      XAR4,#FSL43           ; |54| 
         MOV       T,#17                 ; |54| 
@@ -3729,8 +3727,8 @@ DW$L$_MENU_PA$11$B:
         ; branchcc occurs ; |54| 
 DW$L$_MENU_PA$11$E:
 DW$L$_MENU_PA$12$B:
-;*** 56	-----------------------    TxPrintf("\n");  // [21]
-;*** 56	-----------------------    *(&CpuTimer2Regs+4L) &= 0xffefu;  // [21]
+;*** 56	-----------------------    TxPrintf("\n");  // [19]
+;*** 56	-----------------------    *(&CpuTimer2Regs+4L) &= 0xffefu;  // [19]
 	.dwpsn	"menu.c",56,2
         MOVL      XAR4,#FSL35           ; |56| 
         MOVL      *-SP[2],XAR4          ; |56| 
@@ -3905,124 +3903,124 @@ DW$L$_MENU_PA$23$E:
 	.dwcfa	0x1d, -2
 	.dwcfa	0xc0, 7
 
-DW$249	.dwtag  DW_TAG_loop
-	.dwattr DW$249, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L60:1:1657030010")
-	.dwattr DW$249, DW_AT_begin_file("menu.c")
-	.dwattr DW$249, DW_AT_begin_line(0x14c)
-	.dwattr DW$249, DW_AT_end_line(0x165)
+DW$248	.dwtag  DW_TAG_loop
+	.dwattr DW$248, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L60:1:1657044089")
+	.dwattr DW$248, DW_AT_begin_file("menu.c")
+	.dwattr DW$248, DW_AT_begin_line(0x14c)
+	.dwattr DW$248, DW_AT_end_line(0x165)
+DW$249	.dwtag  DW_TAG_loop_range
+	.dwattr DW$249, DW_AT_low_pc(DW$L$_MENU_PA$4$B)
+	.dwattr DW$249, DW_AT_high_pc(DW$L$_MENU_PA$4$E)
 DW$250	.dwtag  DW_TAG_loop_range
-	.dwattr DW$250, DW_AT_low_pc(DW$L$_MENU_PA$4$B)
-	.dwattr DW$250, DW_AT_high_pc(DW$L$_MENU_PA$4$E)
+	.dwattr DW$250, DW_AT_low_pc(DW$L$_MENU_PA$6$B)
+	.dwattr DW$250, DW_AT_high_pc(DW$L$_MENU_PA$6$E)
 DW$251	.dwtag  DW_TAG_loop_range
-	.dwattr DW$251, DW_AT_low_pc(DW$L$_MENU_PA$6$B)
-	.dwattr DW$251, DW_AT_high_pc(DW$L$_MENU_PA$6$E)
+	.dwattr DW$251, DW_AT_low_pc(DW$L$_MENU_PA$8$B)
+	.dwattr DW$251, DW_AT_high_pc(DW$L$_MENU_PA$8$E)
 DW$252	.dwtag  DW_TAG_loop_range
-	.dwattr DW$252, DW_AT_low_pc(DW$L$_MENU_PA$8$B)
-	.dwattr DW$252, DW_AT_high_pc(DW$L$_MENU_PA$8$E)
+	.dwattr DW$252, DW_AT_low_pc(DW$L$_MENU_PA$10$B)
+	.dwattr DW$252, DW_AT_high_pc(DW$L$_MENU_PA$10$E)
 DW$253	.dwtag  DW_TAG_loop_range
-	.dwattr DW$253, DW_AT_low_pc(DW$L$_MENU_PA$10$B)
-	.dwattr DW$253, DW_AT_high_pc(DW$L$_MENU_PA$10$E)
+	.dwattr DW$253, DW_AT_low_pc(DW$L$_MENU_PA$5$B)
+	.dwattr DW$253, DW_AT_high_pc(DW$L$_MENU_PA$5$E)
 DW$254	.dwtag  DW_TAG_loop_range
-	.dwattr DW$254, DW_AT_low_pc(DW$L$_MENU_PA$5$B)
-	.dwattr DW$254, DW_AT_high_pc(DW$L$_MENU_PA$5$E)
+	.dwattr DW$254, DW_AT_low_pc(DW$L$_MENU_PA$12$B)
+	.dwattr DW$254, DW_AT_high_pc(DW$L$_MENU_PA$12$E)
 DW$255	.dwtag  DW_TAG_loop_range
-	.dwattr DW$255, DW_AT_low_pc(DW$L$_MENU_PA$12$B)
-	.dwattr DW$255, DW_AT_high_pc(DW$L$_MENU_PA$12$E)
+	.dwattr DW$255, DW_AT_low_pc(DW$L$_MENU_PA$13$B)
+	.dwattr DW$255, DW_AT_high_pc(DW$L$_MENU_PA$13$E)
 DW$256	.dwtag  DW_TAG_loop_range
-	.dwattr DW$256, DW_AT_low_pc(DW$L$_MENU_PA$13$B)
-	.dwattr DW$256, DW_AT_high_pc(DW$L$_MENU_PA$13$E)
+	.dwattr DW$256, DW_AT_low_pc(DW$L$_MENU_PA$22$B)
+	.dwattr DW$256, DW_AT_high_pc(DW$L$_MENU_PA$22$E)
 DW$257	.dwtag  DW_TAG_loop_range
-	.dwattr DW$257, DW_AT_low_pc(DW$L$_MENU_PA$22$B)
-	.dwattr DW$257, DW_AT_high_pc(DW$L$_MENU_PA$22$E)
-DW$258	.dwtag  DW_TAG_loop_range
-	.dwattr DW$258, DW_AT_low_pc(DW$L$_MENU_PA$23$B)
-	.dwattr DW$258, DW_AT_high_pc(DW$L$_MENU_PA$23$E)
+	.dwattr DW$257, DW_AT_low_pc(DW$L$_MENU_PA$23$B)
+	.dwattr DW$257, DW_AT_high_pc(DW$L$_MENU_PA$23$E)
 
-DW$259	.dwtag  DW_TAG_loop
-	.dwattr DW$259, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L61:2:1657030010")
-	.dwattr DW$259, DW_AT_begin_file("menu.c")
-	.dwattr DW$259, DW_AT_begin_line(0x30)
-	.dwattr DW$259, DW_AT_end_line(0x30)
-DW$260	.dwtag  DW_TAG_loop_range
-	.dwattr DW$260, DW_AT_low_pc(DW$L$_MENU_PA$7$B)
-	.dwattr DW$260, DW_AT_high_pc(DW$L$_MENU_PA$7$E)
-	.dwendtag DW$259
+DW$258	.dwtag  DW_TAG_loop
+	.dwattr DW$258, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L61:2:1657044089")
+	.dwattr DW$258, DW_AT_begin_file("menu.c")
+	.dwattr DW$258, DW_AT_begin_line(0x30)
+	.dwattr DW$258, DW_AT_end_line(0x30)
+DW$259	.dwtag  DW_TAG_loop_range
+	.dwattr DW$259, DW_AT_low_pc(DW$L$_MENU_PA$7$B)
+	.dwattr DW$259, DW_AT_high_pc(DW$L$_MENU_PA$7$E)
+	.dwendtag DW$258
 
 
-DW$261	.dwtag  DW_TAG_loop
-	.dwattr DW$261, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L62:2:1657030010")
-	.dwattr DW$261, DW_AT_begin_file("menu.c")
-	.dwattr DW$261, DW_AT_begin_line(0x33)
-	.dwattr DW$261, DW_AT_end_line(0x33)
-DW$262	.dwtag  DW_TAG_loop_range
-	.dwattr DW$262, DW_AT_low_pc(DW$L$_MENU_PA$9$B)
-	.dwattr DW$262, DW_AT_high_pc(DW$L$_MENU_PA$9$E)
-	.dwendtag DW$261
+DW$260	.dwtag  DW_TAG_loop
+	.dwattr DW$260, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L62:2:1657044089")
+	.dwattr DW$260, DW_AT_begin_file("menu.c")
+	.dwattr DW$260, DW_AT_begin_line(0x33)
+	.dwattr DW$260, DW_AT_end_line(0x33)
+DW$261	.dwtag  DW_TAG_loop_range
+	.dwattr DW$261, DW_AT_low_pc(DW$L$_MENU_PA$9$B)
+	.dwattr DW$261, DW_AT_high_pc(DW$L$_MENU_PA$9$E)
+	.dwendtag DW$260
 
 
-DW$263	.dwtag  DW_TAG_loop
-	.dwattr DW$263, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L63:2:1657030010")
-	.dwattr DW$263, DW_AT_begin_file("menu.c")
-	.dwattr DW$263, DW_AT_begin_line(0x36)
-	.dwattr DW$263, DW_AT_end_line(0x36)
-DW$264	.dwtag  DW_TAG_loop_range
-	.dwattr DW$264, DW_AT_low_pc(DW$L$_MENU_PA$11$B)
-	.dwattr DW$264, DW_AT_high_pc(DW$L$_MENU_PA$11$E)
-	.dwendtag DW$263
+DW$262	.dwtag  DW_TAG_loop
+	.dwattr DW$262, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L63:2:1657044089")
+	.dwattr DW$262, DW_AT_begin_file("menu.c")
+	.dwattr DW$262, DW_AT_begin_line(0x36)
+	.dwattr DW$262, DW_AT_end_line(0x36)
+DW$263	.dwtag  DW_TAG_loop_range
+	.dwattr DW$263, DW_AT_low_pc(DW$L$_MENU_PA$11$B)
+	.dwattr DW$263, DW_AT_high_pc(DW$L$_MENU_PA$11$E)
+	.dwendtag DW$262
 
 
-DW$265	.dwtag  DW_TAG_loop
-	.dwattr DW$265, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L69:2:1657030010")
-	.dwattr DW$265, DW_AT_begin_file("menu.c")
-	.dwattr DW$265, DW_AT_begin_line(0x156)
-	.dwattr DW$265, DW_AT_end_line(0x15e)
+DW$264	.dwtag  DW_TAG_loop
+	.dwattr DW$264, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L69:2:1657044089")
+	.dwattr DW$264, DW_AT_begin_file("menu.c")
+	.dwattr DW$264, DW_AT_begin_line(0x156)
+	.dwattr DW$264, DW_AT_end_line(0x15e)
+DW$265	.dwtag  DW_TAG_loop_range
+	.dwattr DW$265, DW_AT_low_pc(DW$L$_MENU_PA$21$B)
+	.dwattr DW$265, DW_AT_high_pc(DW$L$_MENU_PA$21$E)
 DW$266	.dwtag  DW_TAG_loop_range
-	.dwattr DW$266, DW_AT_low_pc(DW$L$_MENU_PA$21$B)
-	.dwattr DW$266, DW_AT_high_pc(DW$L$_MENU_PA$21$E)
+	.dwattr DW$266, DW_AT_low_pc(DW$L$_MENU_PA$14$B)
+	.dwattr DW$266, DW_AT_high_pc(DW$L$_MENU_PA$14$E)
 DW$267	.dwtag  DW_TAG_loop_range
-	.dwattr DW$267, DW_AT_low_pc(DW$L$_MENU_PA$14$B)
-	.dwattr DW$267, DW_AT_high_pc(DW$L$_MENU_PA$14$E)
+	.dwattr DW$267, DW_AT_low_pc(DW$L$_MENU_PA$15$B)
+	.dwattr DW$267, DW_AT_high_pc(DW$L$_MENU_PA$15$E)
 DW$268	.dwtag  DW_TAG_loop_range
-	.dwattr DW$268, DW_AT_low_pc(DW$L$_MENU_PA$15$B)
-	.dwattr DW$268, DW_AT_high_pc(DW$L$_MENU_PA$15$E)
+	.dwattr DW$268, DW_AT_low_pc(DW$L$_MENU_PA$16$B)
+	.dwattr DW$268, DW_AT_high_pc(DW$L$_MENU_PA$16$E)
 DW$269	.dwtag  DW_TAG_loop_range
-	.dwattr DW$269, DW_AT_low_pc(DW$L$_MENU_PA$16$B)
-	.dwattr DW$269, DW_AT_high_pc(DW$L$_MENU_PA$16$E)
+	.dwattr DW$269, DW_AT_low_pc(DW$L$_MENU_PA$17$B)
+	.dwattr DW$269, DW_AT_high_pc(DW$L$_MENU_PA$17$E)
 DW$270	.dwtag  DW_TAG_loop_range
-	.dwattr DW$270, DW_AT_low_pc(DW$L$_MENU_PA$17$B)
-	.dwattr DW$270, DW_AT_high_pc(DW$L$_MENU_PA$17$E)
+	.dwattr DW$270, DW_AT_low_pc(DW$L$_MENU_PA$20$B)
+	.dwattr DW$270, DW_AT_high_pc(DW$L$_MENU_PA$20$E)
 DW$271	.dwtag  DW_TAG_loop_range
-	.dwattr DW$271, DW_AT_low_pc(DW$L$_MENU_PA$20$B)
-	.dwattr DW$271, DW_AT_high_pc(DW$L$_MENU_PA$20$E)
+	.dwattr DW$271, DW_AT_low_pc(DW$L$_MENU_PA$19$B)
+	.dwattr DW$271, DW_AT_high_pc(DW$L$_MENU_PA$19$E)
 DW$272	.dwtag  DW_TAG_loop_range
-	.dwattr DW$272, DW_AT_low_pc(DW$L$_MENU_PA$19$B)
-	.dwattr DW$272, DW_AT_high_pc(DW$L$_MENU_PA$19$E)
-DW$273	.dwtag  DW_TAG_loop_range
-	.dwattr DW$273, DW_AT_low_pc(DW$L$_MENU_PA$18$B)
-	.dwattr DW$273, DW_AT_high_pc(DW$L$_MENU_PA$18$E)
-	.dwendtag DW$265
+	.dwattr DW$272, DW_AT_low_pc(DW$L$_MENU_PA$18$B)
+	.dwattr DW$272, DW_AT_high_pc(DW$L$_MENU_PA$18$E)
+	.dwendtag DW$264
 
-	.dwendtag DW$249
+	.dwendtag DW$248
 
 
-DW$274	.dwtag  DW_TAG_loop
-	.dwattr DW$274, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L59:1:1657030010")
-	.dwattr DW$274, DW_AT_begin_file("menu.c")
-	.dwattr DW$274, DW_AT_begin_line(0x149)
-	.dwattr DW$274, DW_AT_end_line(0x149)
-DW$275	.dwtag  DW_TAG_loop_range
-	.dwattr DW$275, DW_AT_low_pc(DW$L$_MENU_PA$2$B)
-	.dwattr DW$275, DW_AT_high_pc(DW$L$_MENU_PA$2$E)
-	.dwendtag DW$274
+DW$273	.dwtag  DW_TAG_loop
+	.dwattr DW$273, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\menu.asm:L59:1:1657044089")
+	.dwattr DW$273, DW_AT_begin_file("menu.c")
+	.dwattr DW$273, DW_AT_begin_line(0x149)
+	.dwattr DW$273, DW_AT_end_line(0x149)
+DW$274	.dwtag  DW_TAG_loop_range
+	.dwattr DW$274, DW_AT_low_pc(DW$L$_MENU_PA$2$B)
+	.dwattr DW$274, DW_AT_high_pc(DW$L$_MENU_PA$2$E)
+	.dwendtag DW$273
 
-	.dwattr DW$232, DW_AT_end_file("menu.c")
-	.dwattr DW$232, DW_AT_end_line(0x166)
-	.dwattr DW$232, DW_AT_end_column(0x01)
+	.dwattr DW$231, DW_AT_end_file("menu.c")
+	.dwattr DW$231, DW_AT_end_line(0x166)
+	.dwattr DW$231, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$232
+	.dwendtag DW$231
 
 ;* Inlined function references:
-;* [ 21] WhatMAXMIN
+;* [ 19] WhatMAXMIN
 ;***************************************************************
 ;* FAR STRINGS                                                 *
 ;***************************************************************
@@ -4117,23 +4115,21 @@ FSL43:	.string	"% 4ld |",0
 ;* UNDEFINED EXTERNAL REFERENCES                               *
 ;***************************************************************
 	.global	_DSP28x_usDelay
-	.global	_RUN_THIRD
-	.global	_save_handle_rom
 	.global	_save_sensitive_rom
-	.global	_SENSOR_MAXMIN
+	.global	_save_accel_rom
 	.global	_save_pid_rom
 	.global	_VFDPrintf
 	.global	_TxPrintf
-	.global	_save_accel_rom
-	.global	_LINE_PRINTF
-	.global	_RUN_SECOND
-	.global	_RUN
-	.global	_POSITION_COMPUTE
+	.global	_save_handle_rom
 	.global	_save_velocity_rom
+	.global	_RUN
+	.global	_LINE_PRINTF
+	.global	_POSITION_COMPUTE
 	.global	_TURN_DECIDE
-	.global	_LINE_OUT_U16
-	.global	_MENU_U16_CNT
+	.global	_SENSOR_MAXMIN
 	.global	_SENSOR_ENABLE
+	.global	_MENU_U16_CNT
+	.global	_LINE_OUT_U16
 	.global	_Flag
 	.global	_SENSOR_SENSITIVE_U16
 	.global	_SENSOR_STATE_U16
@@ -4169,8 +4165,8 @@ FSL43:	.string	"% 4ld |",0
 
 DW$T$71	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$71, DW_AT_language(DW_LANG_C)
-DW$276	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$70)
-DW$277	.dwtag  DW_TAG_unspecified_parameters
+DW$275	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$70)
+DW$276	.dwtag  DW_TAG_unspecified_parameters
 	.dwendtag DW$T$71
 
 
@@ -4180,63 +4176,69 @@ DW$T$73	.dwtag  DW_TAG_subroutine_type
 DW$T$75	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$74)
 	.dwattr DW$T$75, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$75, DW_AT_byte_size(0x0a)
-DW$278	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$278, DW_AT_upper_bound(0x04)
+DW$277	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$277, DW_AT_upper_bound(0x04)
 	.dwendtag DW$T$75
 
 
 DW$T$76	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$74)
 	.dwattr DW$T$76, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$76, DW_AT_byte_size(0x08)
-DW$279	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$279, DW_AT_upper_bound(0x03)
+DW$278	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$278, DW_AT_upper_bound(0x03)
 	.dwendtag DW$T$76
 
 
 DW$T$78	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$77)
 	.dwattr DW$T$78, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$78, DW_AT_byte_size(0x06)
-DW$280	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$280, DW_AT_upper_bound(0x02)
+DW$279	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$279, DW_AT_upper_bound(0x02)
 	.dwendtag DW$T$78
 
 
 DW$T$81	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$80)
 	.dwattr DW$T$81, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$81, DW_AT_byte_size(0x0a)
-DW$281	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$281, DW_AT_upper_bound(0x04)
+DW$280	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$280, DW_AT_upper_bound(0x04)
 	.dwendtag DW$T$81
 
 
 DW$T$82	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$80)
 	.dwattr DW$T$82, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$82, DW_AT_byte_size(0x08)
-DW$282	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$282, DW_AT_upper_bound(0x03)
+DW$281	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$281, DW_AT_upper_bound(0x03)
 	.dwendtag DW$T$82
 
 
 DW$T$88	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$88, DW_AT_language(DW_LANG_C)
-DW$283	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$84)
-DW$284	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$86)
+DW$282	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$84)
+DW$283	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$86)
+DW$284	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$87)
 DW$285	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$87)
-DW$286	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$87)
 	.dwendtag DW$T$88
 
 
 DW$T$93	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$93, DW_AT_language(DW_LANG_C)
+DW$286	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$92)
 DW$287	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$92)
-DW$288	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$92)
 	.dwendtag DW$T$93
 
 
 DW$T$95	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$95, DW_AT_language(DW_LANG_C)
-DW$289	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$30)
+DW$288	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$19)
 	.dwendtag DW$T$95
+
+
+DW$T$97	.dwtag  DW_TAG_subroutine_type
+	.dwattr DW$T$97, DW_AT_language(DW_LANG_C)
+DW$289	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$30)
+	.dwendtag DW$T$97
 
 DW$T$10	.dwtag  DW_TAG_base_type, DW_AT_name("int")
 	.dwattr DW$T$10, DW_AT_encoding(DW_ATE_signed)
@@ -4249,35 +4251,35 @@ DW$T$20	.dwtag  DW_TAG_volatile_type
 	.dwattr DW$T$20, DW_AT_type(*DW$290)
 DW$T$87	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$20)
 	.dwattr DW$T$87, DW_AT_address_class(0x16)
-DW$T$110	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$19)
-	.dwattr DW$T$110, DW_AT_address_class(0x16)
+DW$T$112	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$19)
+	.dwattr DW$T$112, DW_AT_address_class(0x16)
 DW$291	.dwtag  DW_TAG_far_type
-	.dwattr DW$291, DW_AT_type(*DW$T$110)
-DW$T$111	.dwtag  DW_TAG_const_type
-	.dwattr DW$T$111, DW_AT_type(*DW$291)
+	.dwattr DW$291, DW_AT_type(*DW$T$112)
+DW$T$113	.dwtag  DW_TAG_const_type
+	.dwattr DW$T$113, DW_AT_type(*DW$291)
 
-DW$T$112	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$19)
-	.dwattr DW$T$112, DW_AT_language(DW_LANG_C)
-DW$292	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$110)
+DW$T$114	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$19)
+	.dwattr DW$T$114, DW_AT_language(DW_LANG_C)
+DW$292	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$112)
 DW$293	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$19)
-	.dwendtag DW$T$112
+	.dwendtag DW$T$114
 
 
-DW$T$113	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$19)
-	.dwattr DW$T$113, DW_AT_language(DW_LANG_C)
-DW$294	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$110)
+DW$T$115	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$19)
+	.dwattr DW$T$115, DW_AT_language(DW_LANG_C)
+DW$294	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$112)
 DW$295	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$19)
 DW$296	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$19)
-	.dwendtag DW$T$113
+	.dwendtag DW$T$115
 
 DW$297	.dwtag  DW_TAG_far_type
 	.dwattr DW$297, DW_AT_type(*DW$T$19)
-DW$T$114	.dwtag  DW_TAG_const_type
-	.dwattr DW$T$114, DW_AT_type(*DW$297)
-DW$T$117	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$116)
-	.dwattr DW$T$117, DW_AT_address_class(0x16)
-DW$T$118	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$115)
-	.dwattr DW$T$118, DW_AT_address_class(0x16)
+DW$T$116	.dwtag  DW_TAG_const_type
+	.dwattr DW$T$116, DW_AT_type(*DW$297)
+DW$T$119	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$118)
+	.dwattr DW$T$119, DW_AT_address_class(0x16)
+DW$T$120	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$117)
+	.dwattr DW$T$120, DW_AT_address_class(0x16)
 DW$T$12	.dwtag  DW_TAG_base_type, DW_AT_name("long")
 	.dwattr DW$T$12, DW_AT_encoding(DW_ATE_signed)
 	.dwattr DW$T$12, DW_AT_byte_size(0x02)
@@ -4286,42 +4288,42 @@ DW$T$85	.dwtag  DW_TAG_typedef, DW_AT_name("int32"), DW_AT_type(*DW$T$12)
 DW$T$86	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$85)
 	.dwattr DW$T$86, DW_AT_address_class(0x16)
 
-DW$T$124	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$85)
-	.dwattr DW$T$124, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$124, DW_AT_byte_size(0x20)
+DW$T$126	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$85)
+	.dwattr DW$T$126, DW_AT_language(DW_LANG_C)
+	.dwattr DW$T$126, DW_AT_byte_size(0x20)
 DW$298	.dwtag  DW_TAG_subrange_type
 	.dwattr DW$298, DW_AT_upper_bound(0x0f)
-	.dwendtag DW$T$124
+	.dwendtag DW$T$126
 
 
-DW$T$125	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$12)
-	.dwattr DW$T$125, DW_AT_language(DW_LANG_C)
+DW$T$127	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$12)
+	.dwattr DW$T$127, DW_AT_language(DW_LANG_C)
 DW$299	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
 DW$300	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
 DW$301	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$10)
-	.dwendtag DW$T$125
+	.dwendtag DW$T$127
 
 
-DW$T$126	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$12)
-	.dwattr DW$T$126, DW_AT_language(DW_LANG_C)
+DW$T$128	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$12)
+	.dwattr DW$T$128, DW_AT_language(DW_LANG_C)
 DW$302	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
 DW$303	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-	.dwendtag DW$T$126
+	.dwendtag DW$T$128
 
-DW$T$130	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$129)
-	.dwattr DW$T$130, DW_AT_address_class(0x16)
-DW$T$131	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$12)
-	.dwattr DW$T$131, DW_AT_address_class(0x16)
+DW$T$132	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$131)
+	.dwattr DW$T$132, DW_AT_address_class(0x16)
+DW$T$133	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$12)
+	.dwattr DW$T$133, DW_AT_address_class(0x16)
 DW$T$30	.dwtag  DW_TAG_typedef, DW_AT_name("Uint32"), DW_AT_type(*DW$T$13)
 	.dwattr DW$T$30, DW_AT_language(DW_LANG_C)
 DW$T$16	.dwtag  DW_TAG_base_type, DW_AT_name("float")
 	.dwattr DW$T$16, DW_AT_encoding(DW_ATE_float)
 	.dwattr DW$T$16, DW_AT_byte_size(0x02)
 
-DW$T$133	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$16)
-	.dwattr DW$T$133, DW_AT_language(DW_LANG_C)
+DW$T$135	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$16)
+	.dwattr DW$T$135, DW_AT_language(DW_LANG_C)
 DW$304	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$12)
-	.dwendtag DW$T$133
+	.dwendtag DW$T$135
 
 DW$T$83	.dwtag  DW_TAG_typedef, DW_AT_name("SENSORADC"), DW_AT_type(*DW$T$27)
 	.dwattr DW$T$83, DW_AT_language(DW_LANG_C)
@@ -4333,61 +4335,61 @@ DW$T$92	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$91)
 	.dwattr DW$T$92, DW_AT_address_class(0x16)
 DW$305	.dwtag  DW_TAG_far_type
 	.dwattr DW$305, DW_AT_type(*DW$T$35)
-DW$T$143	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$143, DW_AT_type(*DW$305)
+DW$T$145	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$145, DW_AT_type(*DW$305)
 DW$306	.dwtag  DW_TAG_far_type
 	.dwattr DW$306, DW_AT_type(*DW$T$46)
-DW$T$147	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$147, DW_AT_type(*DW$306)
+DW$T$149	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$149, DW_AT_type(*DW$306)
 DW$307	.dwtag  DW_TAG_far_type
 	.dwattr DW$307, DW_AT_type(*DW$T$65)
-DW$T$151	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$151, DW_AT_type(*DW$307)
-DW$T$153	.dwtag  DW_TAG_typedef, DW_AT_name("HANDLEPID"), DW_AT_type(*DW$T$67)
-	.dwattr DW$T$153, DW_AT_language(DW_LANG_C)
-DW$T$155	.dwtag  DW_TAG_typedef, DW_AT_name("BITFLAG"), DW_AT_type(*DW$T$154)
+DW$T$153	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$153, DW_AT_type(*DW$307)
+DW$T$155	.dwtag  DW_TAG_typedef, DW_AT_name("HANDLEPID"), DW_AT_type(*DW$T$67)
 	.dwattr DW$T$155, DW_AT_language(DW_LANG_C)
+DW$T$157	.dwtag  DW_TAG_typedef, DW_AT_name("BITFLAG"), DW_AT_type(*DW$T$156)
+	.dwattr DW$T$157, DW_AT_language(DW_LANG_C)
 DW$T$70	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$69)
 	.dwattr DW$T$70, DW_AT_address_class(0x16)
 
-DW$T$161	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$160)
-	.dwattr DW$T$161, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$161, DW_AT_byte_size(0x0c)
+DW$T$163	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$162)
+	.dwattr DW$T$163, DW_AT_language(DW_LANG_C)
+	.dwattr DW$T$163, DW_AT_byte_size(0x0c)
 DW$308	.dwtag  DW_TAG_subrange_type
 	.dwattr DW$308, DW_AT_upper_bound(0x05)
-	.dwendtag DW$T$161
+	.dwendtag DW$T$163
 
 
-DW$T$162	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$160)
-	.dwattr DW$T$162, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$162, DW_AT_byte_size(0x0a)
+DW$T$164	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$162)
+	.dwattr DW$T$164, DW_AT_language(DW_LANG_C)
+	.dwattr DW$T$164, DW_AT_byte_size(0x0a)
 DW$309	.dwtag  DW_TAG_subrange_type
 	.dwattr DW$309, DW_AT_upper_bound(0x04)
-	.dwendtag DW$T$162
-
-
-DW$T$164	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$163)
-	.dwattr DW$T$164, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$164, DW_AT_byte_size(0x06)
-DW$310	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$310, DW_AT_upper_bound(0x02)
 	.dwendtag DW$T$164
 
 
 DW$T$166	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$165)
 	.dwattr DW$T$166, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$166, DW_AT_byte_size(0x0c)
-DW$311	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$311, DW_AT_upper_bound(0x05)
+	.dwattr DW$T$166, DW_AT_byte_size(0x06)
+DW$310	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$310, DW_AT_upper_bound(0x02)
 	.dwendtag DW$T$166
 
 
-DW$T$167	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$165)
-	.dwattr DW$T$167, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$167, DW_AT_byte_size(0x0a)
+DW$T$168	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$167)
+	.dwattr DW$T$168, DW_AT_language(DW_LANG_C)
+	.dwattr DW$T$168, DW_AT_byte_size(0x0c)
+DW$311	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$311, DW_AT_upper_bound(0x05)
+	.dwendtag DW$T$168
+
+
+DW$T$169	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$167)
+	.dwattr DW$T$169, DW_AT_language(DW_LANG_C)
+	.dwattr DW$T$169, DW_AT_byte_size(0x0a)
 DW$312	.dwtag  DW_TAG_subrange_type
 	.dwattr DW$312, DW_AT_upper_bound(0x04)
-	.dwendtag DW$T$167
+	.dwendtag DW$T$169
 
 DW$T$74	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$73)
 	.dwattr DW$T$74, DW_AT_address_class(0x16)
@@ -4402,20 +4404,20 @@ DW$T$11	.dwtag  DW_TAG_base_type, DW_AT_name("unsigned int")
 	.dwattr DW$T$11, DW_AT_byte_size(0x01)
 DW$314	.dwtag  DW_TAG_far_type
 	.dwattr DW$314, DW_AT_type(*DW$T$11)
-DW$T$115	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$115, DW_AT_type(*DW$314)
+DW$T$117	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$117, DW_AT_type(*DW$314)
 
-DW$T$116	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$115)
-	.dwattr DW$T$116, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$116, DW_AT_byte_size(0x10)
+DW$T$118	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$117)
+	.dwattr DW$T$118, DW_AT_language(DW_LANG_C)
+	.dwattr DW$T$118, DW_AT_byte_size(0x10)
 DW$315	.dwtag  DW_TAG_subrange_type
 	.dwattr DW$315, DW_AT_upper_bound(0x0f)
-	.dwendtag DW$T$116
+	.dwendtag DW$T$118
 
 DW$316	.dwtag  DW_TAG_far_type
 	.dwattr DW$316, DW_AT_type(*DW$T$12)
-DW$T$129	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$129, DW_AT_type(*DW$316)
+DW$T$131	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$131, DW_AT_type(*DW$316)
 DW$T$13	.dwtag  DW_TAG_base_type, DW_AT_name("unsigned long")
 	.dwattr DW$T$13, DW_AT_encoding(DW_ATE_unsigned)
 	.dwattr DW$T$13, DW_AT_byte_size(0x02)
@@ -4629,19 +4631,19 @@ DW$361	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$66)
 
 DW$362	.dwtag  DW_TAG_far_type
 	.dwattr DW$362, DW_AT_type(*DW$T$68)
-DW$T$154	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$154, DW_AT_type(*DW$362)
+DW$T$156	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$156, DW_AT_type(*DW$362)
 DW$T$69	.dwtag  DW_TAG_base_type, DW_AT_name("signed char")
 	.dwattr DW$T$69, DW_AT_encoding(DW_ATE_signed_char)
 	.dwattr DW$T$69, DW_AT_byte_size(0x01)
-DW$T$160	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$159)
-	.dwattr DW$T$160, DW_AT_address_class(0x16)
-DW$T$163	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$160)
-	.dwattr DW$T$163, DW_AT_address_class(0x16)
+DW$T$162	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$161)
+	.dwattr DW$T$162, DW_AT_address_class(0x16)
+DW$T$165	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$162)
+	.dwattr DW$T$165, DW_AT_address_class(0x16)
 DW$363	.dwtag  DW_TAG_far_type
-	.dwattr DW$363, DW_AT_type(*DW$T$160)
-DW$T$165	.dwtag  DW_TAG_const_type
-	.dwattr DW$T$165, DW_AT_type(*DW$363)
+	.dwattr DW$363, DW_AT_type(*DW$T$162)
+DW$T$167	.dwtag  DW_TAG_const_type
+	.dwattr DW$T$167, DW_AT_type(*DW$363)
 
 DW$T$21	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$20)
 	.dwattr DW$T$21, DW_AT_language(DW_LANG_C)
@@ -4997,8 +4999,8 @@ DW$417	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
 
 DW$418	.dwtag  DW_TAG_far_type
 	.dwattr DW$418, DW_AT_type(*DW$T$69)
-DW$T$159	.dwtag  DW_TAG_const_type
-	.dwattr DW$T$159, DW_AT_type(*DW$418)
+DW$T$161	.dwtag  DW_TAG_const_type
+	.dwattr DW$T$161, DW_AT_type(*DW$418)
 DW$T$22	.dwtag  DW_TAG_typedef, DW_AT_name("_iq10"), DW_AT_type(*DW$T$12)
 	.dwattr DW$T$22, DW_AT_language(DW_LANG_C)
 DW$419	.dwtag  DW_TAG_far_type
@@ -5663,11 +5665,11 @@ DW$532	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
 	.dwendtag DW$T$63
 
 
-	.dwattr DW$232, DW_AT_external(0x01)
-	.dwattr DW$149, DW_AT_external(0x01)
-	.dwattr DW$149, DW_AT_type(*DW$T$19)
-	.dwattr DW$99, DW_AT_external(0x01)
-	.dwattr DW$99, DW_AT_type(*DW$T$19)
+	.dwattr DW$231, DW_AT_external(0x01)
+	.dwattr DW$148, DW_AT_external(0x01)
+	.dwattr DW$148, DW_AT_type(*DW$T$19)
+	.dwattr DW$98, DW_AT_external(0x01)
+	.dwattr DW$98, DW_AT_type(*DW$T$19)
 	.dwattr DW$CU, DW_AT_language(DW_LANG_C)
 
 ;***************************************************************

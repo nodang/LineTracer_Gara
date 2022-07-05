@@ -4,7 +4,6 @@
 
 #endif
 
-extern void RUN_THIRD();
 extern void LINE_THIRD(TRACKINFO * LINE);
 
 

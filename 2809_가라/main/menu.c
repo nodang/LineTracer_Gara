@@ -292,9 +292,9 @@ static void hMOTtest()
 }
 
 
-static void SEARCH()		{	RUN();	while(SW_U);	DELAY_US(SW_DELAY);		}
-static void FAST()		{	RUN_SECOND();	while(SW_U);	DELAY_US(SW_DELAY);		}
-static void EXTREM()		{	RUN_THIRD();	while(SW_U);	DELAY_US(SW_DELAY);		}
+static void SEARCH()		{	RUN(1);	while(SW_U);	DELAY_US(SW_DELAY);		}
+static void FAST()		{	RUN(2);	while(SW_U);	DELAY_US(SW_DELAY);		}
+static void EXTREM()		{	RUN(3);	while(SW_U);	DELAY_US(SW_DELAY);		}
 static void MAP()			{	LINE_PRINTF();	}
 
 #define sen_each 5
