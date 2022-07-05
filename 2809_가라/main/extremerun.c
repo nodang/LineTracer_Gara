@@ -20,7 +20,7 @@ void RUN_THIRD()
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
 	
-	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+	MOVE_TO_MOVE(-1 ,_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 
 	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 	
@@ -39,7 +39,7 @@ void RUN_THIRD()
 		if(END_STOP() || LINE_OUT_STOP())		return;
 
 
-		if(ERROR_U16_FLAG)	{	MOVE_TO_MOVE(_IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+		if(ERROR_U16_FLAG)	{	MOVE_TO_MOVE(-1, _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
 								Flag.Extrem_U16 = OFF;
 								ERROR_U16_FLAG = OFF;	
 							}
@@ -49,7 +49,7 @@ void RUN_THIRD()
 
 void LINE_THIRD(TRACKINFO *LINE)
 {	
-	MOVE_TO_MOVE(		((long)LINE->Distance_U32) << 17, LINE->DecelDistance_IQ17, LINE->Velo_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16		);
+	MOVE_TO_MOVE(	THIRD_MARK_U16_CNT,	((long)LINE->Distance_U32) << 17, LINE->DecelDistance_IQ17, LINE->Velo_IQ17, LINE->VeloOut_IQ17, LINE->Jerk_IQ16	);
 	
 	if(THIRD_MARK_U16_CNT > MARK_U16_CNT)		ERROR_U16_FLAG = ON;
 	else										THIRD_MARK_U16_CNT++;

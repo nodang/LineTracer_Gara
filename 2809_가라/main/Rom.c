@@ -305,8 +305,8 @@ void save_accel_rom()
 	save_rom[ j++ ] = ( (Uint16)JERK_SHORT_U32 >> 0 ) & 0xff;
 	save_rom[ j++ ] = ( (Uint16)JERK_SHORT_U32 >> 8 ) & 0xff;
 
-	save_rom[ j++ ] = ( (Uint16)HANDLE_ACCEL_U32 >> 0 ) & 0xff;
-	save_rom[ j++ ] = ( (Uint16)HANDLE_ACCEL_U32 >> 8 ) & 0xff;;
+	//save_rom[ j++ ] = ( (Uint16)HANDLE_ACCEL_U32 >> 0 ) & 0xff;
+	//save_rom[ j++ ] = ( (Uint16)HANDLE_ACCEL_U32 >> 8 ) & 0xff;;
 	
 	SpiWriteRom( ( Uint16 )ACCEL_PAGE, 0, 10, save_rom );
 
@@ -331,10 +331,11 @@ void load_accel_rom()
 	JERK_SHORT_U32 = ( ( load_rom[ j++ ] & 0xff ) << 0 );
 	JERK_SHORT_U32 |= ( ( load_rom[ j++ ] & 0xff ) << 8 );
 	
-	HANDLE_ACCEL_U32 = ( ( load_rom[ j++ ] & 0xff ) << 0 );
-	HANDLE_ACCEL_U32 |= ( ( load_rom[ j++ ] & 0xff ) << 8 );
+	//HANDLE_ACCEL_U32 = ( ( load_rom[ j++ ] & 0xff ) << 0 );
+	//HANDLE_ACCEL_U32 |= ( ( load_rom[ j++ ] & 0xff ) << 8 );
 
-	TxPrintf("JERK: %4lu | LONG: %4lu | MIDDLE: %4lu | SHORT: %4lu | ACCEL: %4lu\n", JERK_U32, JERK_LONG_U32, JERK_MIDDLE_U32, JERK_SHORT_U32, HANDLE_ACCEL_U32);
+	//TxPrintf("JERK: %4lu | LONG: %4lu | MIDDLE: %4lu | SHORT: %4lu | ACCEL: %4lu\n", JERK_U32, JERK_LONG_U32, JERK_MIDDLE_U32, JERK_SHORT_U32, HANDLE_ACCEL_U32);
+	TxPrintf("JERK: %4lu | LONG: %4lu | MIDDLE: %4lu | SHORT: %4lu\n", JERK_U32, JERK_LONG_U32, JERK_MIDDLE_U32, JERK_SHORT_U32);
 }
 
 void save_sensitive_rom()
