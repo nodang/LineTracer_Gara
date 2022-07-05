@@ -81,8 +81,8 @@ __VARIABLE_EXT__ Uint16 MENU_U16_CNT;
 #define LED_L_ON		(GpioDataRegs.GPBSET.bit.GPIO33		= 1)
 #define LED_L_OFF		(GpioDataRegs.GPBCLEAR.bit.GPIO33	= 1)
 
-#define BUZ_L_ON		(GpioDataRegs.GPBSET.bit.GPIO32		= 1)
-#define BUZ_L_OFF		(GpioDataRegs.GPBCLEAR.bit.GPIO32	= 1)
+#define BUZ_ON			(GpioDataRegs.GPBSET.bit.GPIO32		= 1)
+#define BUZ_OFF			(GpioDataRegs.GPBCLEAR.bit.GPIO32	= 1)
 
 #define LINE_OUT	777
 
@@ -127,7 +127,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //-------------------------------------------------------------------------------------------------------------------------------//
 // MOTOR VAR   A B  A_ B_
 #define MAX_VELO_IQ17		_IQ17(4500.0)
-#define MIN_VELO_IQ17		_IQ17(320.0) //_IQ17(300.0) //_IQ17(10.0)
+#define MIN_VELO_IQ17		_IQ17(100.0)
+//#define MIN_VELO_IQ17		_IQ17(320.0) //_IQ17(300.0)
 #define MAX_ACC_IQ16		_IQ16(11000.0)
 #define MIN_ACC_IQ16		_IQ16(4500.0)
 #define MAX_ACC_IQ17		_IQ17(11000.0)
@@ -165,15 +166,16 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	MOTOR_PERIOD_MINIMUM		9294.0		// clk = 0 -> vel = 4500 mm/s
 */
 
-#define CLK_DIVISION_CONSTANT		2
-#define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.7 mm/s // clk = 2 -> vel = 319.08 mm/s
-//#define	MOTOR_PERIOD_MAXIMUMdiv2	32767.0
+#define CLK_DIVISION_CONSTANT		4 // 2
+#define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.97 mm/s // clk = 4 -> vel = 79.77 mm/s
 #define	MOTOR_PERIOD_MAXIMUMdiv10	6.5534		// System minium clock is 10 ns
 #define	MOTOR_PERIOD_MINIMUM		16384.0		// clk = 0 -> vel = 5105 mm/s
 
 //#define MOTOR_ResetEnable		0x00000022		/*GPIO1,5 	0000 0000 0000 0000  0000 0000 0010 0010  */ 
 #define MOTOR_ResetEnable		0x00000044		/*GPIO2,6 	0000 0000 0000 0000  0000 0000 0100 0100  */ 
 
+#define MOTOR_DIR				(GpioDataRegs.GPADAT.all | 0x00000020)		
+// GPIO1 = off,GPIO5 = on		/*0000 0000 0000 0000  0000 0000 0010 0000  */ 
 
 #define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all

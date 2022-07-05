@@ -393,8 +393,6 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 		else									{ pS->Position_U16_CNT = 6;		*state = 0;	*enable = 0x0000;	}
 	}
 	else		LINE_OUT_U16++;
-
-	//HANDLE();
 }
 
 void HANDLE()
@@ -467,7 +465,7 @@ void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 				LED_R_OFF;
 			else
 				LED_L_OFF;
-			BUZ_L_OFF;
+			BUZ_OFF;
 
 			mark->SingleFlag_U16 = OFF;
 			mark->TurnFlag_U16 = OFF;
@@ -523,7 +521,7 @@ void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 				LED_R_ON;
 			else
 				LED_L_ON;
-			BUZ_L_ON;
+			BUZ_ON;
 		}
 	}
 	// turnmark do not exist

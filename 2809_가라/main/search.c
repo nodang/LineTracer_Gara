@@ -60,7 +60,7 @@ void Init_RUN()
 	CROSS_PLUS_SEARCH_U32 = 0;
 	CROSS_PLUS_U32 = 0;
 	
-	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+	//GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 	GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 
 	EPwm1Regs.TBCTL.bit.CLKDIV = CLK_DIVISION_CONSTANT;

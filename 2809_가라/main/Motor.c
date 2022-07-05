@@ -34,8 +34,7 @@ void Init_MOTOR()
 	Init_MotorCtrl(&LMotor);
 	Init_MotorCtrl(&RMotor);
 
-	GpioDataRegs.GPASET.bit.GPIO1 = 0;
-	GpioDataRegs.GPASET.bit.GPIO5 = 1;
+	GpioDataRegs.GPADAT.all = MOTOR_DIR;
 }
 
 void Init_MotorCtrl(MOTORCTRL *pM)
@@ -315,9 +314,9 @@ void SHUTDOWN()
 	while(1) {
 		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.AccelLimit_IQ16 >> 16);
 		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17)) {	
+
 			STOP_TIME_INDEX_U32 = 0;
-			
-			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < (400)))
+			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 100))		// 5 mm  = MINVEL(100 mm/s) * 0.05s
 				POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
 			Flag.STOP = OFF;
@@ -331,7 +330,8 @@ void SHUTDOWN()
 			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
 			LED_R_OFF;
-			LED_L_OFF;		
+			LED_L_OFF;
+			BUZ_OFF;
 
 			return ;
 		}
