@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Wed Jul 06 03:01:30 2022                 *
+;* Date/Time created: Wed Jul 06 15:53:48 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -237,8 +237,8 @@ DW$69	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$69, DW_AT_type(*DW$T$157)
 	.dwattr DW$69, DW_AT_declaration(0x01)
 	.dwattr DW$69, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI56010 C:\Users\노호진\AppData\Local\Temp\TI5604 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI5602 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI5606 --object_file Motor.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI33610 C:\Users\노호진\AppData\Local\Temp\TI3364 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI3362 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI3366 --object_file Motor.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_START_END_LINE
 
@@ -246,9 +246,9 @@ DW$70	.dwtag  DW_TAG_subprogram, DW_AT_name("START_END_LINE"), DW_AT_symbol_name
 	.dwattr DW$70, DW_AT_low_pc(_START_END_LINE)
 	.dwattr DW$70, DW_AT_high_pc(0x00)
 	.dwattr DW$70, DW_AT_begin_file("Motor.c")
-	.dwattr DW$70, DW_AT_begin_line(0x117)
+	.dwattr DW$70, DW_AT_begin_line(0x11a)
 	.dwattr DW$70, DW_AT_begin_column(0x06)
-	.dwpsn	"Motor.c",280,1
+	.dwpsn	"Motor.c",283,1
 
 	.dwfde DW$CIE
 
@@ -268,109 +268,109 @@ DW$70	.dwtag  DW_TAG_subprogram, DW_AT_name("START_END_LINE"), DW_AT_symbol_name
 ;*                                                             *
 ;***************************************************************
 _START_END_LINE:
-;*** 281	-----------------------    if ( *&Flag&1u ) goto g8;
+;*** 284	-----------------------    if ( *&Flag&1u ) goto g8;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
-	.dwpsn	"Motor.c",281,2
+	.dwpsn	"Motor.c",284,2
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#0             ; |281| 
-        BF        L2,TC                 ; |281| 
-        ; branchcc occurs ; |281| 
-;*** 281	-----------------------    if ( *&Flag&0x20u ) goto g8;
-        TBIT      @_Flag,#5             ; |281| 
-        BF        L2,TC                 ; |281| 
-        ; branchcc occurs ; |281| 
-;*** 282	-----------------------    *&Flag |= 1u;
-;*** 283	-----------------------    TIME_INDEX_U32 = 0uL;
-;*** 285	-----------------------    if ( *&Flag&0x40u ) goto g11;
-	.dwpsn	"Motor.c",282,3
-        OR        @_Flag,#0x0001        ; |282| 
-	.dwpsn	"Motor.c",283,3
+        TBIT      @_Flag,#0             ; |284| 
+        BF        L2,TC                 ; |284| 
+        ; branchcc occurs ; |284| 
+;*** 284	-----------------------    if ( *&Flag&0x20u ) goto g8;
+        TBIT      @_Flag,#5             ; |284| 
+        BF        L2,TC                 ; |284| 
+        ; branchcc occurs ; |284| 
+;*** 285	-----------------------    *&Flag |= 1u;
+;*** 286	-----------------------    TIME_INDEX_U32 = 0uL;
+;*** 288	-----------------------    if ( *&Flag&0x40u ) goto g11;
+	.dwpsn	"Motor.c",285,3
+        OR        @_Flag,#0x0001        ; |285| 
+	.dwpsn	"Motor.c",286,3
         MOVW      DP,#_TIME_INDEX_U32
         MOVB      ACC,#0
-        MOVL      @_TIME_INDEX_U32,ACC  ; |283| 
-	.dwpsn	"Motor.c",285,3
+        MOVL      @_TIME_INDEX_U32,ACC  ; |286| 
+	.dwpsn	"Motor.c",288,3
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#6             ; |285| 
-        BF        L3,TC                 ; |285| 
-        ; branchcc occurs ; |285| 
-;*** 287	-----------------------    if ( *&Flag&0x80u ) goto g7;
-	.dwpsn	"Motor.c",287,8
-        TBIT      @_Flag,#7             ; |287| 
-        BF        L1,TC                 ; |287| 
-        ; branchcc occurs ; |287| 
-;*** 289	-----------------------    if ( !(*&Flag&0x100u) ) goto g12;
-	.dwpsn	"Motor.c",289,8
-        TBIT      @_Flag,#8             ; |289| 
-        BF        L4,NTC                ; |289| 
-        ; branchcc occurs ; |289| 
-;*** 290	-----------------------    LINE_THIRD((long)THIRD_MARK_U16_CNT*34+&Search);
-;*** 290	-----------------------    goto g12;
-	.dwpsn	"Motor.c",290,4
+        TBIT      @_Flag,#6             ; |288| 
+        BF        L3,TC                 ; |288| 
+        ; branchcc occurs ; |288| 
+;*** 290	-----------------------    if ( *&Flag&0x80u ) goto g7;
+	.dwpsn	"Motor.c",290,8
+        TBIT      @_Flag,#7             ; |290| 
+        BF        L1,TC                 ; |290| 
+        ; branchcc occurs ; |290| 
+;*** 292	-----------------------    if ( !(*&Flag&0x100u) ) goto g12;
+	.dwpsn	"Motor.c",292,8
+        TBIT      @_Flag,#8             ; |292| 
+        BF        L4,NTC                ; |292| 
+        ; branchcc occurs ; |292| 
+;*** 293	-----------------------    LINE_THIRD((long)THIRD_MARK_U16_CNT*34+&Search);
+;*** 293	-----------------------    goto g12;
+	.dwpsn	"Motor.c",293,4
         MOVW      DP,#_THIRD_MARK_U16_CNT
-        MOV       T,#34                 ; |290| 
-        MPYXU     ACC,T,@_THIRD_MARK_U16_CNT ; |290| 
-        MOVL      XAR4,#_Search         ; |290| 
+        MOV       T,#34                 ; |293| 
+        MPYXU     ACC,T,@_THIRD_MARK_U16_CNT ; |293| 
+        MOVL      XAR4,#_Search         ; |293| 
         ADDL      XAR4,ACC
-        LCR       #_LINE_THIRD          ; |290| 
-        ; call occurs [#_LINE_THIRD] ; |290| 
-        BF        L4,UNC                ; |290| 
-        ; branch occurs ; |290| 
+        LCR       #_LINE_THIRD          ; |293| 
+        ; call occurs [#_LINE_THIRD] ; |293| 
+        BF        L4,UNC                ; |293| 
+        ; branch occurs ; |293| 
 L1:    
 ;***	-----------------------g7:
-;*** 288	-----------------------    LINE_SECOND((long)SECOND_MARK_U16_CNT*34+&Search);
-;*** 288	-----------------------    goto g12;
-	.dwpsn	"Motor.c",288,4
+;*** 291	-----------------------    LINE_SECOND((long)SECOND_MARK_U16_CNT*34+&Search);
+;*** 291	-----------------------    goto g12;
+	.dwpsn	"Motor.c",291,4
         MOVW      DP,#_SECOND_MARK_U16_CNT
-        MOV       T,#34                 ; |288| 
-        MPYXU     ACC,T,@_SECOND_MARK_U16_CNT ; |288| 
-        MOVL      XAR4,#_Search         ; |288| 
+        MOV       T,#34                 ; |291| 
+        MPYXU     ACC,T,@_SECOND_MARK_U16_CNT ; |291| 
+        MOVL      XAR4,#_Search         ; |291| 
         ADDL      XAR4,ACC
-        LCR       #_LINE_SECOND         ; |288| 
-        ; call occurs [#_LINE_SECOND] ; |288| 
-        BF        L4,UNC                ; |288| 
-        ; branch occurs ; |288| 
+        LCR       #_LINE_SECOND         ; |291| 
+        ; call occurs [#_LINE_SECOND] ; |291| 
+        BF        L4,UNC                ; |291| 
+        ; branch occurs ; |291| 
 L2:    
 ;***	-----------------------g8:
-;*** 293	-----------------------    if ( !(*&Flag&1u) ) goto g12;
-	.dwpsn	"Motor.c",293,7
-        TBIT      @_Flag,#0             ; |293| 
-        BF        L4,NTC                ; |293| 
-        ; branchcc occurs ; |293| 
-;*** 293	-----------------------    if ( TIME_INDEX_U32 <= 2000uL ) goto g12;
-        MOV       ACC,#2000             ; |293| 
+;*** 296	-----------------------    if ( !(*&Flag&1u) ) goto g12;
+	.dwpsn	"Motor.c",296,7
+        TBIT      @_Flag,#0             ; |296| 
+        BF        L4,NTC                ; |296| 
+        ; branchcc occurs ; |296| 
+;*** 296	-----------------------    if ( TIME_INDEX_U32 <= 2000uL ) goto g12;
+        MOV       ACC,#2000             ; |296| 
         MOVW      DP,#_TIME_INDEX_U32
-        CMPL      ACC,@_TIME_INDEX_U32  ; |293| 
-        BF        L4,HIS                ; |293| 
-        ; branchcc occurs ; |293| 
-;*** 294	-----------------------    *&Flag &= 0xfffeu;
-;*** 295	-----------------------    *&Flag |= 0x20u;
-;*** 297	-----------------------    if ( !(*&Flag&0x40u) ) goto g12;
-	.dwpsn	"Motor.c",294,3
-        MOVW      DP,#_Flag
-        AND       @_Flag,#0xfffe        ; |294| 
-	.dwpsn	"Motor.c",295,3
-        OR        @_Flag,#0x0020        ; |295| 
+        CMPL      ACC,@_TIME_INDEX_U32  ; |296| 
+        BF        L4,HIS                ; |296| 
+        ; branchcc occurs ; |296| 
+;*** 297	-----------------------    *&Flag &= 0xfffeu;
+;*** 298	-----------------------    *&Flag |= 0x20u;
+;*** 300	-----------------------    if ( !(*&Flag&0x40u) ) goto g12;
 	.dwpsn	"Motor.c",297,3
-        TBIT      @_Flag,#6             ; |297| 
-        BF        L4,NTC                ; |297| 
-        ; branchcc occurs ; |297| 
+        MOVW      DP,#_Flag
+        AND       @_Flag,#0xfffe        ; |297| 
+	.dwpsn	"Motor.c",298,3
+        OR        @_Flag,#0x0020        ; |298| 
+	.dwpsn	"Motor.c",300,3
+        TBIT      @_Flag,#6             ; |300| 
+        BF        L4,NTC                ; |300| 
+        ; branchcc occurs ; |300| 
 L3:    
 ;***	-----------------------g11:
-;*** 298	-----------------------    LINE_INFO(NULL);
+;*** 301	-----------------------    LINE_INFO(NULL);
 ;***	-----------------------g12:
 ;***  	-----------------------    return;
-	.dwpsn	"Motor.c",298,4
+	.dwpsn	"Motor.c",301,4
         MOVB      XAR4,#0
-        LCR       #_LINE_INFO           ; |298| 
-        ; call occurs [#_LINE_INFO] ; |298| 
+        LCR       #_LINE_INFO           ; |301| 
+        ; call occurs [#_LINE_INFO] ; |301| 
 L4:    
-	.dwpsn	"Motor.c",300,1
+	.dwpsn	"Motor.c",303,1
         LRETR
         ; return occurs
 	.dwattr DW$70, DW_AT_end_file("Motor.c")
-	.dwattr DW$70, DW_AT_end_line(0x12c)
+	.dwattr DW$70, DW_AT_end_line(0x12f)
 	.dwattr DW$70, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$70
@@ -382,9 +382,9 @@ DW$71	.dwtag  DW_TAG_subprogram, DW_AT_name("MOVE_TO_END"), DW_AT_symbol_name("_
 	.dwattr DW$71, DW_AT_low_pc(_MOVE_TO_END)
 	.dwattr DW$71, DW_AT_high_pc(0x00)
 	.dwattr DW$71, DW_AT_begin_file("Motor.c")
-	.dwattr DW$71, DW_AT_begin_line(0x8d)
+	.dwattr DW$71, DW_AT_begin_line(0x90)
 	.dwattr DW$71, DW_AT_begin_column(0x06)
-	.dwpsn	"Motor.c",142,1
+	.dwpsn	"Motor.c",145,1
 
 	.dwfde DW$CIE
 
@@ -404,19 +404,19 @@ DW$71	.dwtag  DW_TAG_subprogram, DW_AT_name("MOVE_TO_END"), DW_AT_symbol_name("_
 ;*                                                             *
 ;***************************************************************
 _MOVE_TO_END:
-;*** 143	-----------------------    *(&CpuTimer2Regs+4L) |= 0x10u;
-;*** 145	-----------------------    LMotor.TargetVel_IQ17 = 0L;
-;*** 145	-----------------------    RMotor.TargetVel_IQ17 = 0L;
-;*** 146	-----------------------    LMotor.DecelVelocity_IQ17 = 0L;
-;*** 146	-----------------------    RMotor.DecelVelocity_IQ17 = 0L;
-;*** 147	-----------------------    RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = distance;
-;*** 148	-----------------------    RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
-;*** 150	-----------------------    RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(JERK_U32<<16, 655360000L);
-;*** 152	-----------------------    RMotor.DecelAccel_IQ16 = __IQmpy(_IQ15div(__IQmpy(_IQ17div(RMotor.NextVelocity_IQ17, 13107200L)>>2, _IQ17div(RMotor.NextVelocity_IQ17, 13107200L)>>2, 15), 6815744L), 327680000L, 15);
-;*** 153	-----------------------    LMotor.DecelAccel_IQ16 = __IQmpy(_IQ15div(__IQmpy(_IQ17div(LMotor.NextVelocity_IQ17, 13107200L)>>2, _IQ17div(LMotor.NextVelocity_IQ17, 13107200L)>>2, 15), 6815744L), 327680000L, 15);
-;*** 155	-----------------------    RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = 1u;
-;*** 157	-----------------------    *(&CpuTimer2Regs+4L) &= 0xffefu;
-;*** 157	-----------------------    return;
+;*** 146	-----------------------    *(&CpuTimer2Regs+4L) |= 0x10u;
+;*** 148	-----------------------    LMotor.TargetVel_IQ17 = 0L;
+;*** 148	-----------------------    RMotor.TargetVel_IQ17 = 0L;
+;*** 149	-----------------------    LMotor.DecelVelocity_IQ17 = 0L;
+;*** 149	-----------------------    RMotor.DecelVelocity_IQ17 = 0L;
+;*** 150	-----------------------    RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = distance;
+;*** 151	-----------------------    RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
+;*** 153	-----------------------    RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(JERK_U32<<16, 655360000L);
+;*** 155	-----------------------    RMotor.DecelAccel_IQ16 = __IQmpy(_IQ15div(__IQmpy(_IQ17div(RMotor.NextVelocity_IQ17, 13107200L)>>2, _IQ17div(RMotor.NextVelocity_IQ17, 13107200L)>>2, 15), 6815744L), 327680000L, 15);
+;*** 156	-----------------------    LMotor.DecelAccel_IQ16 = __IQmpy(_IQ15div(__IQmpy(_IQ17div(LMotor.NextVelocity_IQ17, 13107200L)>>2, _IQ17div(LMotor.NextVelocity_IQ17, 13107200L)>>2, 15), 6815744L), 327680000L, 15);
+;*** 158	-----------------------    RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = 1u;
+;*** 160	-----------------------    *(&CpuTimer2Regs+4L) &= 0xffefu;
+;*** 160	-----------------------    return;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -429,127 +429,127 @@ _MOVE_TO_END:
 DW$72	.dwtag  DW_TAG_formal_parameter, DW_AT_name("distance"), DW_AT_symbol_name("_distance")
 	.dwattr DW$72, DW_AT_type(*DW$T$24)
 	.dwattr DW$72, DW_AT_location[DW_OP_reg0]
-	.dwpsn	"Motor.c",143,2
+	.dwpsn	"Motor.c",146,2
         MOVW      DP,#_CpuTimer2Regs+4
-        OR        @_CpuTimer2Regs+4,#0x0010 ; |143| 
-	.dwpsn	"Motor.c",145,2
+        OR        @_CpuTimer2Regs+4,#0x0010 ; |146| 
+	.dwpsn	"Motor.c",148,2
         MOVB      XAR6,#0
         MOVW      DP,#_LMotor
-        MOVL      @_LMotor,XAR6         ; |145| 
+        MOVL      @_LMotor,XAR6         ; |148| 
         MOVW      DP,#_RMotor
-        MOVL      @_RMotor,XAR6         ; |145| 
-	.dwpsn	"Motor.c",146,2
+        MOVL      @_RMotor,XAR6         ; |148| 
+	.dwpsn	"Motor.c",149,2
         MOVW      DP,#_LMotor+6
-        MOVL      @_LMotor+6,XAR6       ; |146| 
+        MOVL      @_LMotor+6,XAR6       ; |149| 
         MOVW      DP,#_RMotor+6
-        MOVL      @_RMotor+6,XAR6       ; |146| 
-	.dwpsn	"Motor.c",147,2
-        MOVW      DP,#_LMotor+14
-        MOVL      @_LMotor+14,ACC       ; |147| 
-        MOVW      DP,#_RMotor+14
-        MOVL      @_RMotor+14,ACC       ; |147| 
-	.dwpsn	"Motor.c",148,2
-        MOVW      DP,#_LMotor+18
-        MOVL      @_LMotor+18,ACC       ; |148| 
-        MOVW      DP,#_RMotor+18
-        MOVL      @_RMotor+18,ACC       ; |148| 
+        MOVL      @_RMotor+6,XAR6       ; |149| 
 	.dwpsn	"Motor.c",150,2
+        MOVW      DP,#_LMotor+14
+        MOVL      @_LMotor+14,ACC       ; |150| 
+        MOVW      DP,#_RMotor+14
+        MOVL      @_RMotor+14,ACC       ; |150| 
+	.dwpsn	"Motor.c",151,2
+        MOVW      DP,#_LMotor+18
+        MOVL      @_LMotor+18,ACC       ; |151| 
+        MOVW      DP,#_RMotor+18
+        MOVL      @_RMotor+18,ACC       ; |151| 
+	.dwpsn	"Motor.c",153,2
         MOVW      DP,#_JERK_U32
         MOV       PH,#10000
         MOV       PL,#0
-        MOVL      ACC,@_JERK_U32        ; |150| 
-        MOVL      *-SP[2],P             ; |150| 
-        LSL       ACC,16                ; |150| 
-        LCR       #__IQ16div            ; |150| 
-        ; call occurs [#__IQ16div] ; |150| 
+        MOVL      ACC,@_JERK_U32        ; |153| 
+        MOVL      *-SP[2],P             ; |153| 
+        LSL       ACC,16                ; |153| 
+        LCR       #__IQ16div            ; |153| 
+        ; call occurs [#__IQ16div] ; |153| 
         MOVW      DP,#_LMotor+34
-        MOVL      @_LMotor+34,ACC       ; |150| 
+        MOVL      @_LMotor+34,ACC       ; |153| 
         MOVW      DP,#_RMotor+34
-        MOVL      @_RMotor+34,ACC       ; |150| 
-	.dwpsn	"Motor.c",152,2
+        MOVL      @_RMotor+34,ACC       ; |153| 
+	.dwpsn	"Motor.c",155,2
         MOV       PH,#200
         MOV       PL,#0
-        MOVL      *-SP[2],P             ; |152| 
-        MOVL      ACC,@_RMotor+2        ; |152| 
-        LCR       #__IQ17div            ; |152| 
-        ; call occurs [#__IQ17div] ; |152| 
+        MOVL      *-SP[2],P             ; |155| 
+        MOVL      ACC,@_RMotor+2        ; |155| 
+        LCR       #__IQ17div            ; |155| 
+        ; call occurs [#__IQ17div] ; |155| 
         SETC      SXM
-        SFR       ACC,2                 ; |152| 
+        SFR       ACC,2                 ; |155| 
         MOV       PH,#200
         MOV       PL,#0
         MOVW      DP,#_RMotor+2
-        MOVL      XAR1,ACC              ; |152| 
-        MOVL      *-SP[2],P             ; |152| 
-        MOVL      ACC,@_RMotor+2        ; |152| 
-        LCR       #__IQ17div            ; |152| 
-        ; call occurs [#__IQ17div] ; |152| 
+        MOVL      XAR1,ACC              ; |155| 
+        MOVL      *-SP[2],P             ; |155| 
+        MOVL      ACC,@_RMotor+2        ; |155| 
+        LCR       #__IQ17div            ; |155| 
+        ; call occurs [#__IQ17div] ; |155| 
         SETC      SXM
-        SFR       ACC,2                 ; |152| 
-        MOVL      XT,ACC                ; |152| 
-        IMPYL     P,XT,XAR1             ; |152| 
-        MOVL      XT,ACC                ; |152| 
-        QMPYL     ACC,XT,XAR1           ; |152| 
-        ASR64     ACC:P,#15             ; |152| 
-        MOVL      ACC,P                 ; |152| 
+        SFR       ACC,2                 ; |155| 
+        MOVL      XT,ACC                ; |155| 
+        IMPYL     P,XT,XAR1             ; |155| 
+        MOVL      XT,ACC                ; |155| 
+        QMPYL     ACC,XT,XAR1           ; |155| 
+        ASR64     ACC:P,#15             ; |155| 
+        MOVL      ACC,P                 ; |155| 
         MOV       PH,#104
         MOV       PL,#0
-        MOVL      *-SP[2],P             ; |152| 
-        LCR       #__IQ15div            ; |152| 
-        ; call occurs [#__IQ15div] ; |152| 
-        MOVL      XT,ACC                ; |152| 
+        MOVL      *-SP[2],P             ; |155| 
+        LCR       #__IQ15div            ; |155| 
+        ; call occurs [#__IQ15div] ; |155| 
+        MOVL      XT,ACC                ; |155| 
         MOV       ACC,#10000 << 15
-        IMPYL     P,XT,ACC              ; |152| 
-        QMPYL     ACC,XT,ACC            ; |152| 
+        IMPYL     P,XT,ACC              ; |155| 
+        QMPYL     ACC,XT,ACC            ; |155| 
         MOVW      DP,#_RMotor+32
-        ASR64     ACC:P,#15             ; |152| 
-        MOVL      @_RMotor+32,P         ; |152| 
-	.dwpsn	"Motor.c",153,2
+        ASR64     ACC:P,#15             ; |155| 
+        MOVL      @_RMotor+32,P         ; |155| 
+	.dwpsn	"Motor.c",156,2
         MOV       PH,#200
         MOV       PL,#0
         MOVW      DP,#_LMotor+2
-        MOVL      *-SP[2],P             ; |153| 
-        MOVL      ACC,@_LMotor+2        ; |153| 
-        LCR       #__IQ17div            ; |153| 
-        ; call occurs [#__IQ17div] ; |153| 
+        MOVL      *-SP[2],P             ; |156| 
+        MOVL      ACC,@_LMotor+2        ; |156| 
+        LCR       #__IQ17div            ; |156| 
+        ; call occurs [#__IQ17div] ; |156| 
         SETC      SXM
-        SFR       ACC,2                 ; |153| 
+        SFR       ACC,2                 ; |156| 
         MOV       PH,#200
         MOV       PL,#0
         MOVW      DP,#_LMotor+2
-        MOVL      XAR1,ACC              ; |153| 
-        MOVL      *-SP[2],P             ; |153| 
-        MOVL      ACC,@_LMotor+2        ; |153| 
-        LCR       #__IQ17div            ; |153| 
-        ; call occurs [#__IQ17div] ; |153| 
+        MOVL      XAR1,ACC              ; |156| 
+        MOVL      *-SP[2],P             ; |156| 
+        MOVL      ACC,@_LMotor+2        ; |156| 
+        LCR       #__IQ17div            ; |156| 
+        ; call occurs [#__IQ17div] ; |156| 
         SETC      SXM
-        SFR       ACC,2                 ; |153| 
-        MOVL      XT,ACC                ; |153| 
-        IMPYL     P,XT,XAR1             ; |153| 
-        MOVL      XT,ACC                ; |153| 
-        QMPYL     ACC,XT,XAR1           ; |153| 
-        ASR64     ACC:P,#15             ; |153| 
-        MOVL      ACC,P                 ; |153| 
+        SFR       ACC,2                 ; |156| 
+        MOVL      XT,ACC                ; |156| 
+        IMPYL     P,XT,XAR1             ; |156| 
+        MOVL      XT,ACC                ; |156| 
+        QMPYL     ACC,XT,XAR1           ; |156| 
+        ASR64     ACC:P,#15             ; |156| 
+        MOVL      ACC,P                 ; |156| 
         MOV       PH,#104
         MOV       PL,#0
-        MOVL      *-SP[2],P             ; |153| 
-        LCR       #__IQ15div            ; |153| 
-        ; call occurs [#__IQ15div] ; |153| 
-        MOVL      XT,ACC                ; |153| 
+        MOVL      *-SP[2],P             ; |156| 
+        LCR       #__IQ15div            ; |156| 
+        ; call occurs [#__IQ15div] ; |156| 
+        MOVL      XT,ACC                ; |156| 
         MOV       ACC,#10000 << 15
-        IMPYL     P,XT,ACC              ; |153| 
-        QMPYL     ACC,XT,ACC            ; |153| 
+        IMPYL     P,XT,ACC              ; |156| 
+        QMPYL     ACC,XT,ACC            ; |156| 
         MOVW      DP,#_LMotor+32
-        ASR64     ACC:P,#15             ; |153| 
-        MOVL      @_LMotor+32,P         ; |153| 
-	.dwpsn	"Motor.c",155,2
-        MOVB      AL,#1                 ; |155| 
-        MOV       @_LMotor+20,AL        ; |155| 
+        ASR64     ACC:P,#15             ; |156| 
+        MOVL      @_LMotor+32,P         ; |156| 
+	.dwpsn	"Motor.c",158,2
+        MOVB      AL,#1                 ; |158| 
+        MOV       @_LMotor+20,AL        ; |158| 
         MOVW      DP,#_RMotor+20
-        MOV       @_RMotor+20,AL        ; |155| 
-	.dwpsn	"Motor.c",157,2
+        MOV       @_RMotor+20,AL        ; |158| 
+	.dwpsn	"Motor.c",160,2
         MOVW      DP,#_CpuTimer2Regs+4
-        AND       @_CpuTimer2Regs+4,#0xffef ; |157| 
-	.dwpsn	"Motor.c",158,1
+        AND       @_CpuTimer2Regs+4,#0xffef ; |160| 
+	.dwpsn	"Motor.c",161,1
         SUBB      SP,#2
 	.dwcfa	0x1d, -4
         MOVL      XAR1,*--SP
@@ -558,7 +558,7 @@ DW$72	.dwtag  DW_TAG_formal_parameter, DW_AT_name("distance"), DW_AT_symbol_name
         LRETR
         ; return occurs
 	.dwattr DW$71, DW_AT_end_file("Motor.c")
-	.dwattr DW$71, DW_AT_end_line(0x9e)
+	.dwattr DW$71, DW_AT_end_line(0xa1)
 	.dwattr DW$71, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$71
@@ -570,9 +570,9 @@ DW$73	.dwtag  DW_TAG_subprogram, DW_AT_name("SHUTDOWN"), DW_AT_symbol_name("_SHU
 	.dwattr DW$73, DW_AT_low_pc(_SHUTDOWN)
 	.dwattr DW$73, DW_AT_high_pc(0x00)
 	.dwattr DW$73, DW_AT_begin_file("Motor.c")
-	.dwattr DW$73, DW_AT_begin_line(0x12e)
+	.dwattr DW$73, DW_AT_begin_line(0x131)
 	.dwattr DW$73, DW_AT_begin_column(0x06)
-	.dwpsn	"Motor.c",303,1
+	.dwpsn	"Motor.c",306,1
 
 	.dwfde DW$CIE
 
@@ -592,10 +592,10 @@ DW$73	.dwtag  DW_TAG_subprogram, DW_AT_name("SHUTDOWN"), DW_AT_symbol_name("_SHU
 ;*                                                             *
 ;***************************************************************
 _SHUTDOWN:
-;*** 304	-----------------------    K$1 = &GpioDataRegs+10L;
-;*** 304	-----------------------    *(volatile unsigned *)K$1 |= 4u;
-;*** 305	-----------------------    *(volatile unsigned *)K$1 |= 2u;
-;*** 307	-----------------------    if ( LINE_OUT_U16 >= 777u ) goto g4;
+;*** 307	-----------------------    K$1 = &GpioDataRegs+10L;
+;*** 307	-----------------------    *(volatile unsigned *)K$1 |= 4u;
+;*** 308	-----------------------    *(volatile unsigned *)K$1 |= 2u;
+;*** 310	-----------------------    if ( LINE_OUT_U16 >= 777u ) goto g4;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -652,52 +652,52 @@ DW$83	.dwtag  DW_TAG_variable, DW_AT_name("K$1"), DW_AT_symbol_name("K$1")
 DW$84	.dwtag  DW_TAG_variable, DW_AT_name("K$1"), DW_AT_symbol_name("K$1")
 	.dwattr DW$84, DW_AT_type(*DW$T$169)
 	.dwattr DW$84, DW_AT_location[DW_OP_reg14]
-	.dwpsn	"Motor.c",304,2
-        MOVL      XAR4,#_GpioDataRegs+10 ; |304| 
-        OR        *+XAR4[0],#0x0004     ; |304| 
-	.dwpsn	"Motor.c",305,2
-        OR        *+XAR4[0],#0x0002     ; |305| 
 	.dwpsn	"Motor.c",307,2
+        MOVL      XAR4,#_GpioDataRegs+10 ; |307| 
+        OR        *+XAR4[0],#0x0004     ; |307| 
+	.dwpsn	"Motor.c",308,2
+        OR        *+XAR4[0],#0x0002     ; |308| 
+	.dwpsn	"Motor.c",310,2
         MOVW      DP,#_LINE_OUT_U16
-        CMP       @_LINE_OUT_U16,#777   ; |307| 
-        BF        L5,HIS                ; |307| 
-        ; branchcc occurs ; |307| 
-;*** 314	-----------------------    if ( !(*&Flag&0x20u) ) goto g5;
-	.dwpsn	"Motor.c",314,7
+        CMP       @_LINE_OUT_U16,#777   ; |310| 
+        BF        L5,HIS                ; |310| 
+        ; branchcc occurs ; |310| 
+;*** 317	-----------------------    if ( !(*&Flag&0x20u) ) goto g5;
+	.dwpsn	"Motor.c",317,7
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#5             ; |314| 
-        BF        L6,NTC                ; |314| 
-        ; branchcc occurs ; |314| 
-;*** 315	-----------------------    MOVE_TO_END(0L);
-;*** 315	-----------------------    goto g5;
-	.dwpsn	"Motor.c",315,3
+        TBIT      @_Flag,#5             ; |317| 
+        BF        L6,NTC                ; |317| 
+        ; branchcc occurs ; |317| 
+;*** 318	-----------------------    MOVE_TO_END(0L);
+;*** 318	-----------------------    goto g5;
+	.dwpsn	"Motor.c",318,3
         MOVB      ACC,#0
-        LCR       #_MOVE_TO_END         ; |315| 
-        ; call occurs [#_MOVE_TO_END] ; |315| 
-        BF        L6,UNC                ; |315| 
-        ; branch occurs ; |315| 
+        LCR       #_MOVE_TO_END         ; |318| 
+        ; call occurs [#_MOVE_TO_END] ; |318| 
+        BF        L6,UNC                ; |318| 
+        ; branch occurs ; |318| 
 L5:    
 ;***	-----------------------g4:
-;*** 308	-----------------------    MOVE_TO_END(0L);
-;*** 310	-----------------------    *&Flag &= 0xfffbu;
-;*** 311	-----------------------    GpioDataRegs.GPACLEAR.all = 7347968uL;
-;*** 312	-----------------------    SenAdc.PositionTemporary_IQ10 = 0L;
-	.dwpsn	"Motor.c",308,3
-        MOVB      ACC,#0
-        LCR       #_MOVE_TO_END         ; |308| 
-        ; call occurs [#_MOVE_TO_END] ; |308| 
-	.dwpsn	"Motor.c",310,3
-        MOVW      DP,#_Flag
-        AND       @_Flag,#0xfffb        ; |310| 
+;*** 311	-----------------------    MOVE_TO_END(0L);
+;*** 313	-----------------------    *&Flag &= 0xfffbu;
+;*** 314	-----------------------    GpioDataRegs.GPACLEAR.all = 7347968uL;
+;*** 315	-----------------------    SenAdc.PositionTemporary_IQ10 = 0L;
 	.dwpsn	"Motor.c",311,3
+        MOVB      ACC,#0
+        LCR       #_MOVE_TO_END         ; |311| 
+        ; call occurs [#_MOVE_TO_END] ; |311| 
+	.dwpsn	"Motor.c",313,3
+        MOVW      DP,#_Flag
+        AND       @_Flag,#0xfffb        ; |313| 
+	.dwpsn	"Motor.c",314,3
         MOV       PH,#112
         MOV       PL,#7936
         MOVW      DP,#_GpioDataRegs+4
-        MOVL      @_GpioDataRegs+4,P    ; |311| 
-	.dwpsn	"Motor.c",312,3
+        MOVL      @_GpioDataRegs+4,P    ; |314| 
+	.dwpsn	"Motor.c",315,3
         MOVW      DP,#_SenAdc+68
         MOVB      ACC,#0
-        MOVL      @_SenAdc+68,ACC       ; |312| 
+        MOVL      @_SenAdc+68,ACC       ; |315| 
 L6:    
 ;***	-----------------------g5:
 ;***  	-----------------------    if ( LMotor.NextVelocity_IQ17 < 13107200L ) goto g8;
@@ -723,42 +723,42 @@ L7:
 L8:    
 DW$L$_SHUTDOWN$7$B:
 ;***	-----------------------g7:
-;*** 342	-----------------------    POSITION_COMPUTE(K$12, K$20, K$18, K$17);
-;*** 342	-----------------------    if ( LMotor.NextVelocity_IQ17 >= 13107200L ) goto g7;
-	.dwpsn	"Motor.c",342,4
-        MOVL      *-SP[2],XAR3          ; |342| 
-        MOVL      XAR5,XAR2             ; |342| 
-        MOVL      XAR4,XAR1             ; |342| 
-        MOVL      ACC,*-SP[6]           ; |342| 
-        MOVL      *-SP[4],ACC           ; |342| 
-        LCR       #_POSITION_COMPUTE    ; |342| 
-        ; call occurs [#_POSITION_COMPUTE] ; |342| 
+;*** 345	-----------------------    POSITION_COMPUTE(K$12, K$20, K$18, K$17);
+;*** 345	-----------------------    if ( LMotor.NextVelocity_IQ17 >= 13107200L ) goto g7;
+	.dwpsn	"Motor.c",345,4
+        MOVL      *-SP[2],XAR3          ; |345| 
+        MOVL      XAR5,XAR2             ; |345| 
+        MOVL      XAR4,XAR1             ; |345| 
+        MOVL      ACC,*-SP[6]           ; |345| 
+        MOVL      *-SP[4],ACC           ; |345| 
+        LCR       #_POSITION_COMPUTE    ; |345| 
+        ; call occurs [#_POSITION_COMPUTE] ; |345| 
         MOV       AL,#0
         MOVW      DP,#_LMotor+2
         MOV       AH,#200
-        CMPL      ACC,@_LMotor+2        ; |342| 
-        BF        L8,LEQ                ; |342| 
-        ; branchcc occurs ; |342| 
+        CMPL      ACC,@_LMotor+2        ; |345| 
+        BF        L8,LEQ                ; |345| 
+        ; branchcc occurs ; |345| 
 DW$L$_SHUTDOWN$7$E:
 L9:    
 ;***	-----------------------g8:
-;*** 319	-----------------------    if ( RMotor.NextVelocity_IQ17 >= 13107200L ) goto g6;
-	.dwpsn	"Motor.c",319,3
+;*** 322	-----------------------    if ( RMotor.NextVelocity_IQ17 >= 13107200L ) goto g6;
+	.dwpsn	"Motor.c",322,3
         MOVW      DP,#_RMotor+2
-        CMPL      ACC,@_RMotor+2        ; |319| 
-        BF        L7,LEQ                ; |319| 
-        ; branchcc occurs ; |319| 
-;*** 321	-----------------------    STOP_TIME_INDEX_U32 = 0uL;
-;*** 322	-----------------------    if ( LINE_OUT_U16 >= 777u ) goto g13;
-	.dwpsn	"Motor.c",321,4
+        CMPL      ACC,@_RMotor+2        ; |322| 
+        BF        L7,LEQ                ; |322| 
+        ; branchcc occurs ; |322| 
+;*** 324	-----------------------    STOP_TIME_INDEX_U32 = 0uL;
+;*** 325	-----------------------    if ( LINE_OUT_U16 >= 777u ) goto g13;
+	.dwpsn	"Motor.c",324,4
         MOVB      ACC,#0
         MOVW      DP,#_STOP_TIME_INDEX_U32
-        MOVL      @_STOP_TIME_INDEX_U32,ACC ; |321| 
-	.dwpsn	"Motor.c",322,4
+        MOVL      @_STOP_TIME_INDEX_U32,ACC ; |324| 
+	.dwpsn	"Motor.c",325,4
         MOVW      DP,#_LINE_OUT_U16
-        CMP       @_LINE_OUT_U16,#777   ; |322| 
-        BF        L11,HIS               ; |322| 
-        ; branchcc occurs ; |322| 
+        CMP       @_LINE_OUT_U16,#777   ; |325| 
+        BF        L11,HIS               ; |325| 
+        ; branchcc occurs ; |325| 
 ;***  	-----------------------    K$12 = &SenAdc;
 ;***  	-----------------------    K$17 = &SENSOR_ENABLE;
 ;***  	-----------------------    K$18 = &SENSOR_STATE_U16_CNT;
@@ -773,90 +773,90 @@ L9:
 L10:    
 DW$L$_SHUTDOWN$11$B:
 ;***	-----------------------g11:
-;*** 322	-----------------------    if ( STOP_TIME_INDEX_U32 >= 100uL ) goto g13;
-	.dwpsn	"Motor.c",322,10
+;*** 325	-----------------------    if ( STOP_TIME_INDEX_U32 >= 100uL ) goto g13;
+	.dwpsn	"Motor.c",325,10
         MOVB      ACC,#100
         MOVW      DP,#_STOP_TIME_INDEX_U32
-        CMPL      ACC,@_STOP_TIME_INDEX_U32 ; |322| 
-        BF        L11,LOS               ; |322| 
-        ; branchcc occurs ; |322| 
+        CMPL      ACC,@_STOP_TIME_INDEX_U32 ; |325| 
+        BF        L11,LOS               ; |325| 
+        ; branchcc occurs ; |325| 
 DW$L$_SHUTDOWN$11$E:
 DW$L$_SHUTDOWN$12$B:
-;*** 323	-----------------------    POSITION_COMPUTE(K$12, K$20, K$18, K$17);
-;*** 323	-----------------------    if ( LINE_OUT_U16 < 777u ) goto g11;
-	.dwpsn	"Motor.c",323,5
-        MOVL      *-SP[2],XAR3          ; |323| 
-        MOVL      XAR5,XAR2             ; |323| 
-        MOVL      XAR4,XAR1             ; |323| 
-        MOVL      ACC,*-SP[6]           ; |323| 
-        MOVL      *-SP[4],ACC           ; |323| 
-        LCR       #_POSITION_COMPUTE    ; |323| 
-        ; call occurs [#_POSITION_COMPUTE] ; |323| 
+;*** 326	-----------------------    POSITION_COMPUTE(K$12, K$20, K$18, K$17);
+;*** 326	-----------------------    if ( LINE_OUT_U16 < 777u ) goto g11;
+	.dwpsn	"Motor.c",326,5
+        MOVL      *-SP[2],XAR3          ; |326| 
+        MOVL      XAR5,XAR2             ; |326| 
+        MOVL      XAR4,XAR1             ; |326| 
+        MOVL      ACC,*-SP[6]           ; |326| 
+        MOVL      *-SP[4],ACC           ; |326| 
+        LCR       #_POSITION_COMPUTE    ; |326| 
+        ; call occurs [#_POSITION_COMPUTE] ; |326| 
         MOVW      DP,#_LINE_OUT_U16
-        CMP       @_LINE_OUT_U16,#777   ; |323| 
-        BF        L10,LO                ; |323| 
-        ; branchcc occurs ; |323| 
+        CMP       @_LINE_OUT_U16,#777   ; |326| 
+        BF        L10,LO                ; |326| 
+        ; branchcc occurs ; |326| 
 DW$L$_SHUTDOWN$12$E:
 L11:    
 ;***	-----------------------g13:
-;*** 325	-----------------------    K$6 = &Flag;
-;*** 325	-----------------------    *K$6 &= 0xffdfu;
-;*** 326	-----------------------    *K$6 &= 0xfffbu;
-;*** 327	-----------------------    K$1 = &GpioDataRegs;
-;*** 327	-----------------------    (*(volatile struct _GPIO_DATA_REGS *)K$1).GPACLEAR.all = 7347968uL;
-;*** 328	-----------------------    *(&CpuTimer0Regs+4L) |= 0x10u;
-;*** 329	-----------------------    *(&CpuTimer2Regs+4L) |= 0x10u;
-;*** 330	-----------------------    *K$6 &= 0xfffdu;
-;*** 332	-----------------------    EPwm3Regs.CMPA.half.CMPA = 0u;
-;*** 332	-----------------------    EPwm1Regs.CMPA.half.CMPA = 0u;
-;*** 333	-----------------------    (*(volatile struct _GPIO_DATA_REGS *)K$1).GPACLEAR.all = 68uL;
-;*** 335	-----------------------    ((volatile unsigned *)K$1)[12] |= 4u;
-;*** 336	-----------------------    ((volatile unsigned *)K$1)[12] |= 2u;
-;*** 337	-----------------------    ((volatile unsigned *)K$1)[12] |= 1u;
-;*** 339	-----------------------    return;
-	.dwpsn	"Motor.c",325,4
-        MOVL      XAR4,#_Flag           ; |325| 
-        AND       *+XAR4[0],#0xffdf     ; |325| 
-	.dwpsn	"Motor.c",326,4
-        AND       *+XAR4[0],#0xfffb     ; |326| 
-	.dwpsn	"Motor.c",327,4
+;*** 328	-----------------------    K$6 = &Flag;
+;*** 328	-----------------------    *K$6 &= 0xffdfu;
+;*** 329	-----------------------    *K$6 &= 0xfffbu;
+;*** 330	-----------------------    K$1 = &GpioDataRegs;
+;*** 330	-----------------------    (*(volatile struct _GPIO_DATA_REGS *)K$1).GPACLEAR.all = 7347968uL;
+;*** 331	-----------------------    *(&CpuTimer0Regs+4L) |= 0x10u;
+;*** 332	-----------------------    *(&CpuTimer2Regs+4L) |= 0x10u;
+;*** 333	-----------------------    *K$6 &= 0xfffdu;
+;*** 335	-----------------------    EPwm3Regs.CMPA.half.CMPA = 0u;
+;*** 335	-----------------------    EPwm1Regs.CMPA.half.CMPA = 0u;
+;*** 336	-----------------------    (*(volatile struct _GPIO_DATA_REGS *)K$1).GPACLEAR.all = 68uL;
+;*** 338	-----------------------    ((volatile unsigned *)K$1)[12] |= 4u;
+;*** 339	-----------------------    ((volatile unsigned *)K$1)[12] |= 2u;
+;*** 340	-----------------------    ((volatile unsigned *)K$1)[12] |= 1u;
+;*** 342	-----------------------    return;
+	.dwpsn	"Motor.c",328,4
+        MOVL      XAR4,#_Flag           ; |328| 
+        AND       *+XAR4[0],#0xffdf     ; |328| 
+	.dwpsn	"Motor.c",329,4
+        AND       *+XAR4[0],#0xfffb     ; |329| 
+	.dwpsn	"Motor.c",330,4
         MOV       PH,#112
         MOV       PL,#7936
-        MOVL      XAR5,#_GpioDataRegs   ; |327| 
-        MOVL      *+XAR5[4],P           ; |327| 
-	.dwpsn	"Motor.c",328,4
+        MOVL      XAR5,#_GpioDataRegs   ; |330| 
+        MOVL      *+XAR5[4],P           ; |330| 
+	.dwpsn	"Motor.c",331,4
         MOVW      DP,#_CpuTimer0Regs+4
-        OR        @_CpuTimer0Regs+4,#0x0010 ; |328| 
-	.dwpsn	"Motor.c",329,4
-        MOVW      DP,#_CpuTimer2Regs+4
-        OR        @_CpuTimer2Regs+4,#0x0010 ; |329| 
-	.dwpsn	"Motor.c",330,4
-        AND       *+XAR4[0],#0xfffd     ; |330| 
+        OR        @_CpuTimer0Regs+4,#0x0010 ; |331| 
 	.dwpsn	"Motor.c",332,4
-        MOVW      DP,#_EPwm3Regs+9
-        MOV       @_EPwm3Regs+9,#0      ; |332| 
-        MOVW      DP,#_EPwm1Regs+9
-        MOV       @_EPwm1Regs+9,#0      ; |332| 
+        MOVW      DP,#_CpuTimer2Regs+4
+        OR        @_CpuTimer2Regs+4,#0x0010 ; |332| 
 	.dwpsn	"Motor.c",333,4
-        MOVB      ACC,#68
-        MOVL      *+XAR5[4],ACC         ; |333| 
+        AND       *+XAR4[0],#0xfffd     ; |333| 
 	.dwpsn	"Motor.c",335,4
-        MOVB      ACC,#12
-        ADDL      ACC,XAR5
-        MOVL      XAR4,ACC              ; |335| 
-        OR        *+XAR4[0],#0x0004     ; |335| 
+        MOVW      DP,#_EPwm3Regs+9
+        MOV       @_EPwm3Regs+9,#0      ; |335| 
+        MOVW      DP,#_EPwm1Regs+9
+        MOV       @_EPwm1Regs+9,#0      ; |335| 
 	.dwpsn	"Motor.c",336,4
+        MOVB      ACC,#68
+        MOVL      *+XAR5[4],ACC         ; |336| 
+	.dwpsn	"Motor.c",338,4
         MOVB      ACC,#12
         ADDL      ACC,XAR5
-        MOVL      XAR4,ACC              ; |336| 
-        OR        *+XAR4[0],#0x0002     ; |336| 
-	.dwpsn	"Motor.c",337,4
-        MOVB      ACC,#12
-        ADDL      ACC,XAR5
-        MOVL      XAR4,ACC              ; |337| 
-        OR        *+XAR4[0],#0x0001     ; |337| 
+        MOVL      XAR4,ACC              ; |338| 
+        OR        *+XAR4[0],#0x0004     ; |338| 
 	.dwpsn	"Motor.c",339,4
-	.dwpsn	"Motor.c",344,1
+        MOVB      ACC,#12
+        ADDL      ACC,XAR5
+        MOVL      XAR4,ACC              ; |339| 
+        OR        *+XAR4[0],#0x0002     ; |339| 
+	.dwpsn	"Motor.c",340,4
+        MOVB      ACC,#12
+        ADDL      ACC,XAR5
+        MOVL      XAR4,ACC              ; |340| 
+        OR        *+XAR4[0],#0x0001     ; |340| 
+	.dwpsn	"Motor.c",342,4
+	.dwpsn	"Motor.c",347,1
         SUBB      SP,#6
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -872,10 +872,10 @@ L11:
         ; return occurs
 
 DW$85	.dwtag  DW_TAG_loop
-	.dwattr DW$85, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L10:1:1657044090")
+	.dwattr DW$85, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L10:1:1657090428")
 	.dwattr DW$85, DW_AT_begin_file("Motor.c")
-	.dwattr DW$85, DW_AT_begin_line(0x142)
-	.dwattr DW$85, DW_AT_end_line(0x143)
+	.dwattr DW$85, DW_AT_begin_line(0x145)
+	.dwattr DW$85, DW_AT_end_line(0x146)
 DW$86	.dwtag  DW_TAG_loop_range
 	.dwattr DW$86, DW_AT_low_pc(DW$L$_SHUTDOWN$11$B)
 	.dwattr DW$86, DW_AT_high_pc(DW$L$_SHUTDOWN$11$E)
@@ -886,17 +886,17 @@ DW$87	.dwtag  DW_TAG_loop_range
 
 
 DW$88	.dwtag  DW_TAG_loop
-	.dwattr DW$88, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L8:1:1657044090")
+	.dwattr DW$88, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L8:1:1657090428")
 	.dwattr DW$88, DW_AT_begin_file("Motor.c")
-	.dwattr DW$88, DW_AT_begin_line(0x156)
-	.dwattr DW$88, DW_AT_end_line(0x156)
+	.dwattr DW$88, DW_AT_begin_line(0x159)
+	.dwattr DW$88, DW_AT_end_line(0x159)
 DW$89	.dwtag  DW_TAG_loop_range
 	.dwattr DW$89, DW_AT_low_pc(DW$L$_SHUTDOWN$7$B)
 	.dwattr DW$89, DW_AT_high_pc(DW$L$_SHUTDOWN$7$E)
 	.dwendtag DW$88
 
 	.dwattr DW$73, DW_AT_end_file("Motor.c")
-	.dwattr DW$73, DW_AT_end_line(0x158)
+	.dwattr DW$73, DW_AT_end_line(0x15b)
 	.dwattr DW$73, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$73
@@ -908,9 +908,9 @@ DW$90	.dwtag  DW_TAG_subprogram, DW_AT_name("MOVE_TO_MOVE"), DW_AT_symbol_name("
 	.dwattr DW$90, DW_AT_low_pc(_MOVE_TO_MOVE)
 	.dwattr DW$90, DW_AT_high_pc(0x00)
 	.dwattr DW$90, DW_AT_begin_file("Motor.c")
-	.dwattr DW$90, DW_AT_begin_line(0x78)
+	.dwattr DW$90, DW_AT_begin_line(0x7b)
 	.dwattr DW$90, DW_AT_begin_column(0x06)
-	.dwpsn	"Motor.c",121,1
+	.dwpsn	"Motor.c",124,1
 
 	.dwfde DW$CIE
 
@@ -930,13 +930,13 @@ DW$90	.dwtag  DW_TAG_subprogram, DW_AT_name("MOVE_TO_MOVE"), DW_AT_symbol_name("
 ;*                                                             *
 ;***************************************************************
 _MOVE_TO_MOVE:
-;*** 122	-----------------------    *(&CpuTimer2Regs+4L) |= 0x10u;
-;*** 124	-----------------------    RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
-;*** 125	-----------------------    RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = decel_velocity;
-;*** 126	-----------------------    RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = decel_distance;
-;*** 127	-----------------------    RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
-;*** 129	-----------------------    RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(jerk, 655360000L);
-;*** 131	-----------------------    if ( cnt != (-1) ) goto g3;
+;*** 125	-----------------------    *(&CpuTimer2Regs+4L) |= 0x10u;
+;*** 127	-----------------------    RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
+;*** 128	-----------------------    RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = decel_velocity;
+;*** 129	-----------------------    RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = decel_distance;
+;*** 130	-----------------------    RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
+;*** 132	-----------------------    RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(jerk, 655360000L);
+;*** 134	-----------------------    if ( cnt != (-1) ) goto g3;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -988,99 +988,99 @@ DW$100	.dwtag  DW_TAG_variable, DW_AT_name("decel_distance"), DW_AT_symbol_name(
 DW$101	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
 	.dwattr DW$101, DW_AT_type(*DW$T$135)
 	.dwattr DW$101, DW_AT_location[DW_OP_reg10]
-        MOVL      P,*-SP[10]            ; |121| 
-        MOVL      XAR7,*-SP[14]         ; |121| 
-        MOVL      XAR6,*-SP[16]         ; |121| 
-        MOVL      XAR1,*-SP[12]         ; |121| 
-        MOVZ      AR3,AR4               ; |121| 
-	.dwpsn	"Motor.c",122,2
-        MOVW      DP,#_CpuTimer2Regs+4
-        OR        @_CpuTimer2Regs+4,#0x0010 ; |122| 
-	.dwpsn	"Motor.c",124,2
-        MOVW      DP,#_LMotor
-        MOVL      @_LMotor,XAR1         ; |124| 
-        MOVW      DP,#_RMotor
-        MOVL      @_RMotor,XAR1         ; |124| 
+        MOVL      P,*-SP[10]            ; |124| 
+        MOVL      XAR7,*-SP[14]         ; |124| 
+        MOVL      XAR6,*-SP[16]         ; |124| 
+        MOVL      XAR1,*-SP[12]         ; |124| 
+        MOVZ      AR3,AR4               ; |124| 
 	.dwpsn	"Motor.c",125,2
-        MOVW      DP,#_LMotor+6
-        MOVL      @_LMotor+6,XAR7       ; |125| 
-        MOVW      DP,#_RMotor+6
-        MOVL      @_RMotor+6,XAR7       ; |125| 
-	.dwpsn	"Motor.c",126,2
-        MOVW      DP,#_LMotor+14
-        MOVL      @_LMotor+14,P         ; |126| 
-        MOVW      DP,#_RMotor+14
-        MOVL      @_RMotor+14,P         ; |126| 
+        MOVW      DP,#_CpuTimer2Regs+4
+        OR        @_CpuTimer2Regs+4,#0x0010 ; |125| 
 	.dwpsn	"Motor.c",127,2
-        MOVW      DP,#_LMotor+18
-        MOVL      @_LMotor+18,ACC       ; |127| 
-        MOVW      DP,#_RMotor+18
-        MOVL      @_RMotor+18,ACC       ; |127| 
+        MOVW      DP,#_LMotor
+        MOVL      @_LMotor,XAR1         ; |127| 
+        MOVW      DP,#_RMotor
+        MOVL      @_RMotor,XAR1         ; |127| 
+	.dwpsn	"Motor.c",128,2
+        MOVW      DP,#_LMotor+6
+        MOVL      @_LMotor+6,XAR7       ; |128| 
+        MOVW      DP,#_RMotor+6
+        MOVL      @_RMotor+6,XAR7       ; |128| 
 	.dwpsn	"Motor.c",129,2
+        MOVW      DP,#_LMotor+14
+        MOVL      @_LMotor+14,P         ; |129| 
+        MOVW      DP,#_RMotor+14
+        MOVL      @_RMotor+14,P         ; |129| 
+	.dwpsn	"Motor.c",130,2
+        MOVW      DP,#_LMotor+18
+        MOVL      @_LMotor+18,ACC       ; |130| 
+        MOVW      DP,#_RMotor+18
+        MOVL      @_RMotor+18,ACC       ; |130| 
+	.dwpsn	"Motor.c",132,2
         MOV       PH,#10000
         MOV       PL,#0
-        MOVL      *-SP[2],P             ; |129| 
-        MOVL      ACC,XAR6              ; |129| 
-        LCR       #__IQ16div            ; |129| 
-        ; call occurs [#__IQ16div] ; |129| 
+        MOVL      *-SP[2],P             ; |132| 
+        MOVL      ACC,XAR6              ; |132| 
+        LCR       #__IQ16div            ; |132| 
+        ; call occurs [#__IQ16div] ; |132| 
         MOVW      DP,#_LMotor+34
-        MOVL      @_LMotor+34,ACC       ; |129| 
+        MOVL      @_LMotor+34,ACC       ; |132| 
         MOVW      DP,#_RMotor+34
-        MOVL      @_RMotor+34,ACC       ; |129| 
-	.dwpsn	"Motor.c",131,2
-        CMP       AR3,#-1               ; |131| 
-        BF        L12,NEQ               ; |131| 
-        ; branchcc occurs ; |131| 
-;*** 134	-----------------------    RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = 1468006400L-__IQmpy(_IQ17div(956825600L, 589824000L), target_velocity, 17);
-;*** 134	-----------------------    goto g4;
-	.dwpsn	"Motor.c",134,3
+        MOVL      @_RMotor+34,ACC       ; |132| 
+	.dwpsn	"Motor.c",134,2
+        CMP       AR3,#-1               ; |134| 
+        BF        L12,NEQ               ; |134| 
+        ; branchcc occurs ; |134| 
+;*** 137	-----------------------    RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = 1468006400L-__IQmpy(_IQ17div(956825600L, 589824000L), target_velocity, 17);
+;*** 137	-----------------------    goto g4;
+	.dwpsn	"Motor.c",137,3
         MOV       PH,#9000
         MOV       PL,#0
         MOV       ACC,#29200 << 15
-        MOVL      *-SP[2],P             ; |134| 
-        LCR       #__IQ17div            ; |134| 
-        ; call occurs [#__IQ17div] ; |134| 
-        MOVL      XT,ACC                ; |134| 
-        IMPYL     P,XT,XAR1             ; |134| 
-        QMPYL     ACC,XT,XAR1           ; |134| 
-        LSL64     ACC:P,#15             ; |134| 
+        MOVL      *-SP[2],P             ; |137| 
+        LCR       #__IQ17div            ; |137| 
+        ; call occurs [#__IQ17div] ; |137| 
+        MOVL      XT,ACC                ; |137| 
+        IMPYL     P,XT,XAR1             ; |137| 
+        QMPYL     ACC,XT,XAR1           ; |137| 
+        LSL64     ACC:P,#15             ; |137| 
         MOV       PH,#22400
         MOV       PL,#0
         MOVW      DP,#_LMotor+32
         SUBL      P,ACC
-        MOVL      @_LMotor+32,P         ; |134| 
+        MOVL      @_LMotor+32,P         ; |137| 
         MOVW      DP,#_RMotor+32
-        MOVL      @_RMotor+32,P         ; |134| 
-        BF        L13,UNC               ; |134| 
-        ; branch occurs ; |134| 
+        MOVL      @_RMotor+32,P         ; |137| 
+        BF        L13,UNC               ; |137| 
+        ; branch occurs ; |137| 
 L12:    
 ;***	-----------------------g3:
-;*** 132	-----------------------    RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = (Search[(long)cnt]).Decel_IQ16;
-	.dwpsn	"Motor.c",132,3
-        MOV       T,AR3                 ; |132| 
-        MOVL      XAR4,#_Search+24      ; |132| 
-        MPYB      ACC,T,#34             ; |132| 
+;*** 135	-----------------------    RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = (Search[(long)cnt]).Decel_IQ16;
+	.dwpsn	"Motor.c",135,3
+        MOV       T,AR3                 ; |135| 
+        MOVL      XAR4,#_Search+24      ; |135| 
+        MPYB      ACC,T,#34             ; |135| 
         ADDL      XAR4,ACC
         MOVW      DP,#_LMotor+32
-        MOVL      ACC,*+XAR4[0]         ; |132| 
-        MOVL      @_LMotor+32,ACC       ; |132| 
+        MOVL      ACC,*+XAR4[0]         ; |135| 
+        MOVL      @_LMotor+32,ACC       ; |135| 
         MOVW      DP,#_RMotor+32
-        MOVL      @_RMotor+32,ACC       ; |132| 
+        MOVL      @_RMotor+32,ACC       ; |135| 
 L13:    
 ;***	-----------------------g4:
-;*** 136	-----------------------    RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = 1u;
-;*** 138	-----------------------    *(&CpuTimer2Regs+4L) &= 0xffefu;
-;*** 138	-----------------------    return;
-	.dwpsn	"Motor.c",136,2
-        MOVB      AL,#1                 ; |136| 
+;*** 139	-----------------------    RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = 1u;
+;*** 141	-----------------------    *(&CpuTimer2Regs+4L) &= 0xffefu;
+;*** 141	-----------------------    return;
+	.dwpsn	"Motor.c",139,2
+        MOVB      AL,#1                 ; |139| 
         MOVW      DP,#_LMotor+20
-        MOV       @_LMotor+20,AL        ; |136| 
+        MOV       @_LMotor+20,AL        ; |139| 
         MOVW      DP,#_RMotor+20
-        MOV       @_RMotor+20,AL        ; |136| 
-	.dwpsn	"Motor.c",138,2
+        MOV       @_RMotor+20,AL        ; |139| 
+	.dwpsn	"Motor.c",141,2
         MOVW      DP,#_CpuTimer2Regs+4
-        AND       @_CpuTimer2Regs+4,#0xffef ; |138| 
-	.dwpsn	"Motor.c",139,1
+        AND       @_CpuTimer2Regs+4,#0xffef ; |141| 
+	.dwpsn	"Motor.c",142,1
         SUBB      SP,#2
 	.dwcfa	0x1d, -6
         MOVL      XAR3,*--SP
@@ -1092,7 +1092,7 @@ L13:
         LRETR
         ; return occurs
 	.dwattr DW$90, DW_AT_end_file("Motor.c")
-	.dwattr DW$90, DW_AT_end_line(0x8b)
+	.dwattr DW$90, DW_AT_end_line(0x8e)
 	.dwattr DW$90, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$90
@@ -1104,10 +1104,10 @@ DW$102	.dwtag  DW_TAG_subprogram, DW_AT_name("MOTOR_ISR"), DW_AT_symbol_name("_M
 	.dwattr DW$102, DW_AT_low_pc(_MOTOR_ISR)
 	.dwattr DW$102, DW_AT_high_pc(0x00)
 	.dwattr DW$102, DW_AT_begin_file("Motor.c")
-	.dwattr DW$102, DW_AT_begin_line(0xb2)
+	.dwattr DW$102, DW_AT_begin_line(0xb5)
 	.dwattr DW$102, DW_AT_begin_column(0x10)
 	.dwattr DW$102, DW_AT_TI_interrupt(0x01)
-	.dwpsn	"Motor.c",179,1
+	.dwpsn	"Motor.c",182,1
 
 	.dwfde DW$CIE
 
@@ -1127,10 +1127,10 @@ DW$102	.dwtag  DW_TAG_subprogram, DW_AT_name("MOTOR_ISR"), DW_AT_symbol_name("_M
 ;*                                                             *
 ;***************************************************************
 _MOTOR_ISR:
-;*** 182	-----------------------    IER &= 0x13bu;
-;*** 183	-----------------------    asm(" clrc INTM");
-;*** 185	-----------------------    HANDLE();
-;*** 188	-----------------------    if ( !(*&Flag&2u) ) goto g54;
+;*** 185	-----------------------    IER &= 0x13bu;
+;*** 186	-----------------------    asm(" clrc INTM");
+;*** 188	-----------------------    HANDLE();
+;*** 191	-----------------------    if ( !(*&Flag&2u) ) goto g54;
         ASP
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
@@ -1216,26 +1216,26 @@ DW$112	.dwtag  DW_TAG_variable, DW_AT_name("S$4"), DW_AT_symbol_name("S$4")
 DW$113	.dwtag  DW_TAG_variable, DW_AT_name("clk1"), DW_AT_symbol_name("_clk1")
 	.dwattr DW$113, DW_AT_type(*DW$T$19)
 	.dwattr DW$113, DW_AT_location[DW_OP_reg10]
-	.dwpsn	"Motor.c",182,2
-        AND       IER,#0x013b           ; |182| 
-	.dwpsn	"Motor.c",183,2
- clrc INTM
 	.dwpsn	"Motor.c",185,2
-        SPM       #0
-        LCR       #_HANDLE              ; |185| 
-        ; call occurs [#_HANDLE] ; |185| 
+        AND       IER,#0x013b           ; |185| 
+	.dwpsn	"Motor.c",186,2
+ clrc INTM
 	.dwpsn	"Motor.c",188,2
+        SPM       #0
+        LCR       #_HANDLE              ; |188| 
+        ; call occurs [#_HANDLE] ; |188| 
+	.dwpsn	"Motor.c",191,2
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#1             ; |188| 
-        BF        L54,NTC               ; |188| 
-        ; branchcc occurs ; |188| 
-;*** 189	-----------------------    clk = *&EPwm1Regs>>10&7u;
+        TBIT      @_Flag,#1             ; |191| 
+        BF        L54,NTC               ; |191| 
+        ; branchcc occurs ; |191| 
+;*** 192	-----------------------    clk = *&EPwm1Regs>>10&7u;
 ;*** 47	-----------------------    if ( RMotor.NextVelocity_IQ17 < RMotor.TargetVel_IQ17 ) goto g7;  // [19]
-	.dwpsn	"Motor.c",189,3
+	.dwpsn	"Motor.c",192,3
         MOVW      DP,#_EPwm1Regs
-        AND       AL,@_EPwm1Regs,#0x1c00 ; |189| 
-        LSR       AL,10                 ; |189| 
-        MOVZ      AR3,AL                ; |189| 
+        AND       AL,@_EPwm1Regs,#0x1c00 ; |192| 
+        LSR       AL,10                 ; |192| 
+        MOVZ      AR3,AL                ; |192| 
 	.dwpsn	"Motor.c",47,2
         MOVW      DP,#_RMotor
         MOVL      ACC,@_RMotor          ; |47| 
@@ -1473,11 +1473,10 @@ L18:
         MOVL      @_RMotor+28,ACC       ; |59| 
 L19:    
 ;***	-----------------------g14:
-;*** 80	-----------------------    RMotor.FinalVelo_IQ17 = RMotor.NextVelocity_IQ17+RMotor.TargetHandle_IQ17;  // [19]
+;*** 80	-----------------------    RMotor.FinalVelo_IQ17 = RMotor.NextVelocity_IQ17;  // [19]
 ;*** 82	-----------------------    if ( RMotor.FinalVelo_IQ17 < 13107200L ) goto g16;  // [19]
 	.dwpsn	"Motor.c",80,2
-        MOVL      ACC,@_RMotor+36       ; |80| 
-        ADDL      ACC,@_RMotor+2        ; |80| 
+        MOVL      ACC,@_RMotor+2        ; |80| 
         MOVL      @_RMotor+38,ACC       ; |80| 
 	.dwpsn	"Motor.c",82,2
         MOV       AL,#0
@@ -1485,19 +1484,19 @@ L19:
         CMPL      ACC,@_RMotor+38       ; |82| 
         BF        L20,GT                ; |82| 
         ; branchcc occurs ; |82| 
-;*** 85	-----------------------    RMotor.PrdNextTranSecon_IQ17 = _IQ17div(1096350464L, RMotor.FinalVelo_IQ17);  // [19]
-;*** 85	-----------------------    goto g17;  // [19]
-	.dwpsn	"Motor.c",85,3
-        MOVL      ACC,@_RMotor+38       ; |85| 
-        MOVL      *-SP[2],ACC           ; |85| 
+;*** 86	-----------------------    RMotor.PrdNextTranSecon_IQ17 = _IQ17div(1096350464L, RMotor.FinalVelo_IQ17);  // [19]
+;*** 86	-----------------------    goto g17;  // [19]
+	.dwpsn	"Motor.c",86,3
+        MOVL      ACC,@_RMotor+38       ; |86| 
+        MOVL      *-SP[2],ACC           ; |86| 
         MOV       AL,#64256
         MOV       AH,#16728
-        LCR       #__IQ17div            ; |85| 
-        ; call occurs [#__IQ17div] ; |85| 
+        LCR       #__IQ17div            ; |86| 
+        ; call occurs [#__IQ17div] ; |86| 
         MOVW      DP,#_RMotor+24
-        MOVL      @_RMotor+24,ACC       ; |85| 
-        BF        L21,UNC               ; |85| 
-        ; branch occurs ; |85| 
+        MOVL      @_RMotor+24,ACC       ; |86| 
+        BF        L21,UNC               ; |86| 
+        ; branch occurs ; |86| 
 L20:    
 ;***	-----------------------g16:
 ;*** 83	-----------------------    RMotor.PrdNextTranSecon_IQ17 = 858967L<<clk;  // [19]
@@ -1509,170 +1508,177 @@ L20:
         MOVL      @_RMotor+24,ACC       ; |83| 
 L21:    
 ;***	-----------------------g17:
-;*** 89	-----------------------    RMotor.PrdNext_IQ14 = __IQxmpy(81920000L>>clk, RMotor.PrdNextTranSecon_IQ17, 16);  // [19]
-;*** 91	-----------------------    if ( RMotor.PrdNext_IQ14 < 268435456L ) goto g21;  // [19]
-	.dwpsn	"Motor.c",89,2
+;*** 88	-----------------------    RMotor.PrdNextTranSecon_IQ17 = __IQmpy(RMotor.PrdNextTranSecon_IQ17, RMotor.TargetHandle_IQ17, 17);  // [19]
+;*** 92	-----------------------    RMotor.PrdNext_IQ14 = __IQxmpy(81920000L>>clk, RMotor.PrdNextTranSecon_IQ17, 16);  // [19]
+;*** 94	-----------------------    if ( RMotor.PrdNext_IQ14 < 268435456L ) goto g21;  // [19]
+	.dwpsn	"Motor.c",88,2
+        MOVL      XT,@_RMotor+24        ; |88| 
+        IMPYL     P,XT,@_RMotor+36      ; |88| 
+        QMPYL     ACC,XT,@_RMotor+36    ; |88| 
+        LSL64     ACC:P,#15             ; |88| 
+        MOVL      @_RMotor+24,ACC       ; |88| 
+	.dwpsn	"Motor.c",92,2
+        MOV       T,AR3                 ; |92| 
         MOV       ACC,#2500 << 15
-        MOV       T,AR3                 ; |89| 
-        ASRL      ACC,T                 ; |89| 
-        MOVL      XT,ACC                ; |89| 
-        IMPYL     P,XT,@_RMotor+24      ; |89| 
-        MOVL      XT,ACC                ; |89| 
-        QMPYL     ACC,XT,@_RMotor+24    ; |89| 
-        LSL64     ACC:P,#16             ; |89| 
-        MOVL      @_RMotor+22,ACC       ; |89| 
-	.dwpsn	"Motor.c",91,2
+        ASRL      ACC,T                 ; |92| 
+        MOVL      XT,ACC                ; |92| 
+        IMPYL     P,XT,@_RMotor+24      ; |92| 
+        MOVL      XT,ACC                ; |92| 
+        QMPYL     ACC,XT,@_RMotor+24    ; |92| 
+        LSL64     ACC:P,#16             ; |92| 
+        MOVL      @_RMotor+22,ACC       ; |92| 
+	.dwpsn	"Motor.c",94,2
         MOV       ACC,#8192 << 15
-        CMPL      ACC,@_RMotor+22       ; |91| 
-        BF        L22,GT                ; |91| 
-        ; branchcc occurs ; |91| 
-;*** 99	-----------------------    if ( RMotor.PrdNext_IQ14 <= 1073709056L ) goto g23;  // [19]
-	.dwpsn	"Motor.c",99,7
+        CMPL      ACC,@_RMotor+22       ; |94| 
+        BF        L22,GT                ; |94| 
+        ; branchcc occurs ; |94| 
+;*** 102	-----------------------    if ( RMotor.PrdNext_IQ14 <= 1073709056L ) goto g23;  // [19]
+	.dwpsn	"Motor.c",102,7
         MOV       ACC,#32767 << 15
-        CMPL      ACC,@_RMotor+22       ; |99| 
-        BF        L23,GEQ               ; |99| 
-        ; branchcc occurs ; |99| 
-;*** 100	-----------------------    RMotor.PrdNext_IQ14 = 1073709056L;  // [19]
-;*** 102	-----------------------    if ( clk >= 4u ) goto g23;  // [19]
-	.dwpsn	"Motor.c",100,3
+        CMPL      ACC,@_RMotor+22       ; |102| 
+        BF        L23,GEQ               ; |102| 
+        ; branchcc occurs ; |102| 
+;*** 103	-----------------------    RMotor.PrdNext_IQ14 = 1073709056L;  // [19]
+;*** 105	-----------------------    if ( clk >= 4u ) goto g23;  // [19]
+	.dwpsn	"Motor.c",103,3
         MOV       PH,#16383
         MOV       PL,#32768
-        MOVL      @_RMotor+22,P         ; |100| 
-	.dwpsn	"Motor.c",102,3
+        MOVL      @_RMotor+22,P         ; |103| 
+	.dwpsn	"Motor.c",105,3
         MOV       AL,AR3
-        CMPB      AL,#4                 ; |102| 
-        BF        L23,HIS               ; |102| 
-        ; branchcc occurs ; |102| 
-;*** 103	-----------------------    ++clk;  // [19]
-;*** 104	-----------------------    RMotor.PrdNext_IQ14 = RMotor.PrdNext_IQ14>>1;  // [19]
-;*** 104	-----------------------    goto g23;  // [19]
-	.dwpsn	"Motor.c",103,4
-        ADDB      XAR3,#1               ; |103| 
-	.dwpsn	"Motor.c",104,4
-        MOVL      ACC,@_RMotor+22       ; |104| 
+        CMPB      AL,#4                 ; |105| 
+        BF        L23,HIS               ; |105| 
+        ; branchcc occurs ; |105| 
+;*** 106	-----------------------    ++clk;  // [19]
+;*** 107	-----------------------    RMotor.PrdNext_IQ14 = RMotor.PrdNext_IQ14>>1;  // [19]
+;*** 107	-----------------------    goto g23;  // [19]
+	.dwpsn	"Motor.c",106,4
+        ADDB      XAR3,#1               ; |106| 
+	.dwpsn	"Motor.c",107,4
+        MOVL      ACC,@_RMotor+22       ; |107| 
         SETC      SXM
-        SFR       ACC,1                 ; |104| 
-        MOVL      @_RMotor+22,ACC       ; |104| 
-        BF        L23,UNC               ; |104| 
-        ; branch occurs ; |104| 
+        SFR       ACC,1                 ; |107| 
+        MOVL      @_RMotor+22,ACC       ; |107| 
+        BF        L23,UNC               ; |107| 
+        ; branch occurs ; |107| 
 L22:    
 ;***	-----------------------g21:
-;*** 92	-----------------------    RMotor.PrdNext_IQ14 = 268435456L;  // [19]
-;*** 94	-----------------------    if ( !clk ) goto g23;  // [19]
-	.dwpsn	"Motor.c",92,3
+;*** 95	-----------------------    RMotor.PrdNext_IQ14 = 268435456L;  // [19]
+;*** 97	-----------------------    if ( !clk ) goto g23;  // [19]
+	.dwpsn	"Motor.c",95,3
         MOV       PH,#4096
         MOV       PL,#0
-        MOVL      @_RMotor+22,P         ; |92| 
-	.dwpsn	"Motor.c",94,3
+        MOVL      @_RMotor+22,P         ; |95| 
+	.dwpsn	"Motor.c",97,3
         MOV       AL,AR3
-        BF        L23,EQ                ; |94| 
-        ; branchcc occurs ; |94| 
-;*** 95	-----------------------    --clk;  // [19]
-;*** 96	-----------------------    RMotor.PrdNext_IQ14 = RMotor.PrdNext_IQ14*2L;  // [19]
-	.dwpsn	"Motor.c",95,4
-        SUBB      XAR3,#1               ; |95| 
-	.dwpsn	"Motor.c",96,4
-        MOVL      ACC,@_RMotor+22       ; |96| 
-        LSL       ACC,1                 ; |96| 
-        MOVL      @_RMotor+22,ACC       ; |96| 
+        BF        L23,EQ                ; |97| 
+        ; branchcc occurs ; |97| 
+;*** 98	-----------------------    --clk;  // [19]
+;*** 99	-----------------------    RMotor.PrdNext_IQ14 = RMotor.PrdNext_IQ14*2L;  // [19]
+	.dwpsn	"Motor.c",98,4
+        SUBB      XAR3,#1               ; |98| 
+	.dwpsn	"Motor.c",99,4
+        MOVL      ACC,@_RMotor+22       ; |99| 
+        LSL       ACC,1                 ; |99| 
+        MOVL      @_RMotor+22,ACC       ; |99| 
 L23:    
 ;***	-----------------------g23:
-;*** 108	-----------------------    RMotor.RolEachStep_IQ17 = __IQxmpy(109635L, _IQ13div(CpuTimer2Regs.PRD.all<<13, RMotor.PrdNext_IQ14>>1)>>clk, 19);  // [19]
-;*** 110	-----------------------    (RMotor.TurnMarkCheckDistance_IQ17 > 2146959360L) ? (S$4 = 0L) : (S$4 = RMotor.RolEachStep_IQ17);  // [19]
-	.dwpsn	"Motor.c",108,2
-        MOVL      ACC,@_RMotor+22       ; |108| 
+;*** 111	-----------------------    RMotor.RolEachStep_IQ17 = __IQxmpy(109635L, _IQ13div(CpuTimer2Regs.PRD.all<<13, RMotor.PrdNext_IQ14>>1)>>clk, 19);  // [19]
+;*** 113	-----------------------    (RMotor.TurnMarkCheckDistance_IQ17 > 2146959360L) ? (S$4 = 0L) : (S$4 = RMotor.RolEachStep_IQ17);  // [19]
+	.dwpsn	"Motor.c",111,2
+        MOVL      ACC,@_RMotor+22       ; |111| 
         SETC      SXM
         MOVW      DP,#_CpuTimer2Regs+2
-        SFR       ACC,1                 ; |108| 
-        MOVL      *-SP[2],ACC           ; |108| 
-        MOVL      ACC,@_CpuTimer2Regs+2 ; |108| 
-        LSL       ACC,13                ; |108| 
-        LCR       #__IQ13div            ; |108| 
-        ; call occurs [#__IQ13div] ; |108| 
-        MOV       T,AR3                 ; |108| 
-        MOVL      XAR4,#109635          ; |108| 
-        ASRL      ACC,T                 ; |108| 
-        MOVL      XT,XAR4               ; |108| 
-        IMPYL     P,XT,ACC              ; |108| 
-        QMPYL     ACC,XT,ACC            ; |108| 
+        SFR       ACC,1                 ; |111| 
+        MOVL      *-SP[2],ACC           ; |111| 
+        MOVL      ACC,@_CpuTimer2Regs+2 ; |111| 
+        LSL       ACC,13                ; |111| 
+        LCR       #__IQ13div            ; |111| 
+        ; call occurs [#__IQ13div] ; |111| 
+        MOV       T,AR3                 ; |111| 
+        MOVL      XAR4,#109635          ; |111| 
+        ASRL      ACC,T                 ; |111| 
+        MOVL      XT,XAR4               ; |111| 
+        IMPYL     P,XT,ACC              ; |111| 
+        QMPYL     ACC,XT,ACC            ; |111| 
         MOVW      DP,#_RMotor+26
-        ASR64     ACC:P,13              ; |108| 
-        MOVL      @_RMotor+26,P         ; |108| 
-	.dwpsn	"Motor.c",110,2
+        ASR64     ACC:P,13              ; |111| 
+        MOVL      @_RMotor+26,P         ; |111| 
+	.dwpsn	"Motor.c",113,2
         MOV       AL,#0
         MOV       AH,#32760
-        CMPL      ACC,@_RMotor+8        ; |110| 
-        BF        L24,GEQ               ; |110| 
-        ; branchcc occurs ; |110| 
+        CMPL      ACC,@_RMotor+8        ; |113| 
+        BF        L24,GEQ               ; |113| 
+        ; branchcc occurs ; |113| 
         MOVB      ACC,#0
-        BF        L25,UNC               ; |110| 
-        ; branch occurs ; |110| 
+        BF        L25,UNC               ; |113| 
+        ; branch occurs ; |113| 
 L24:    
-        MOVL      ACC,@_RMotor+26       ; |110| 
+        MOVL      ACC,@_RMotor+26       ; |113| 
 L25:    
-;*** 110	-----------------------    RMotor.TurnMarkCheckDistance_IQ17 += S$4;  // [19]
-;*** 111	-----------------------    (RMotor.CrossCheckDistance_IQ15 > 1073479680L) ? (S$3 = 0L) : (S$3 = RMotor.RolEachStep_IQ17>>2);  // [19]
-        ADDL      @_RMotor+8,ACC        ; |110| 
-	.dwpsn	"Motor.c",111,2
-        MOV       ACC,#32760 << 15
-        CMPL      ACC,@_RMotor+12       ; |111| 
-        BF        L26,GEQ               ; |111| 
-        ; branchcc occurs ; |111| 
-        MOVB      ACC,#0
-        BF        L27,UNC               ; |111| 
-        ; branch occurs ; |111| 
-L26:    
-        MOVL      ACC,@_RMotor+26       ; |111| 
-        SETC      SXM
-        SFR       ACC,2                 ; |111| 
-L27:    
-;*** 111	-----------------------    RMotor.CrossCheckDistance_IQ15 += S$3;  // [19]
-;*** 112	-----------------------    (RMotor.GoneDistance_IQ15 > 536739840L) ? (S$2 = 0L) : (S$2 = RMotor.RolEachStep_IQ17>>2);  // [19]
-        ADDL      @_RMotor+12,ACC       ; |111| 
-	.dwpsn	"Motor.c",112,2
-        MOV       ACC,#16380 << 15
-        CMPL      ACC,@_RMotor+10       ; |112| 
-        BF        L28,GEQ               ; |112| 
-        ; branchcc occurs ; |112| 
-        MOVB      ACC,#0
-        BF        L29,UNC               ; |112| 
-        ; branch occurs ; |112| 
-L28:    
-        MOVL      ACC,@_RMotor+26       ; |112| 
-        SETC      SXM
-        SFR       ACC,2                 ; |112| 
-L29:    
-;*** 112	-----------------------    RMotor.GoneDistance_IQ15 += S$2;  // [19]
-;*** 114	-----------------------    RMotor.ErrorDistance_IQ17 = RMotor.UserDistance_IQ17-RMotor.GoneDistance_IQ15*4L;  // [19]
-;*** 115	-----------------------    (RMotor.ErrorDistance_IQ17 < 0L) ? (S$1 = 0L) : (S$1 = RMotor.ErrorDistance_IQ17);  // [19]
-        ADDL      @_RMotor+10,ACC       ; |112| 
+;*** 113	-----------------------    RMotor.TurnMarkCheckDistance_IQ17 += S$4;  // [19]
+;*** 114	-----------------------    (RMotor.CrossCheckDistance_IQ15 > 1073479680L) ? (S$3 = 0L) : (S$3 = RMotor.RolEachStep_IQ17>>2);  // [19]
+        ADDL      @_RMotor+8,ACC        ; |113| 
 	.dwpsn	"Motor.c",114,2
-        MOVL      ACC,@_RMotor+10       ; |114| 
-        MOVL      XAR6,@_RMotor+18      ; |114| 
-        LSL       ACC,2                 ; |114| 
-        SUBL      XAR6,ACC
-        MOVL      @_RMotor+16,XAR6      ; |114| 
+        MOV       ACC,#32760 << 15
+        CMPL      ACC,@_RMotor+12       ; |114| 
+        BF        L26,GEQ               ; |114| 
+        ; branchcc occurs ; |114| 
+        MOVB      ACC,#0
+        BF        L27,UNC               ; |114| 
+        ; branch occurs ; |114| 
+L26:    
+        MOVL      ACC,@_RMotor+26       ; |114| 
+        SETC      SXM
+        SFR       ACC,2                 ; |114| 
+L27:    
+;*** 114	-----------------------    RMotor.CrossCheckDistance_IQ15 += S$3;  // [19]
+;*** 115	-----------------------    (RMotor.GoneDistance_IQ15 > 536739840L) ? (S$2 = 0L) : (S$2 = RMotor.RolEachStep_IQ17>>2);  // [19]
+        ADDL      @_RMotor+12,ACC       ; |114| 
 	.dwpsn	"Motor.c",115,2
-        MOVL      ACC,@_RMotor+16       ; |115| 
-        BF        L30,GEQ               ; |115| 
+        MOV       ACC,#16380 << 15
+        CMPL      ACC,@_RMotor+10       ; |115| 
+        BF        L28,GEQ               ; |115| 
         ; branchcc occurs ; |115| 
         MOVB      ACC,#0
-        BF        L31,UNC               ; |115| 
+        BF        L29,UNC               ; |115| 
         ; branch occurs ; |115| 
-L30:    
-        MOVL      ACC,@_RMotor+16       ; |115| 
-L31:    
-;*** 115	-----------------------    RMotor.ErrorDistance_IQ17 = S$1;  // [19]
-;*** 117	-----------------------    clk1 = clk;  // [19]
-;*** 190	-----------------------    clk = *&EPwm3Regs>>10&7u;
-;*** 47	-----------------------    if ( LMotor.NextVelocity_IQ17 < LMotor.TargetVel_IQ17 ) goto g28;  // [19]
-        MOVL      @_RMotor+16,ACC       ; |115| 
+L28:    
+        MOVL      ACC,@_RMotor+26       ; |115| 
+        SETC      SXM
+        SFR       ACC,2                 ; |115| 
+L29:    
+;*** 115	-----------------------    RMotor.GoneDistance_IQ15 += S$2;  // [19]
+;*** 117	-----------------------    RMotor.ErrorDistance_IQ17 = RMotor.UserDistance_IQ17-RMotor.GoneDistance_IQ15*4L;  // [19]
+;*** 118	-----------------------    (RMotor.ErrorDistance_IQ17 < 0L) ? (S$1 = 0L) : (S$1 = RMotor.ErrorDistance_IQ17);  // [19]
+        ADDL      @_RMotor+10,ACC       ; |115| 
 	.dwpsn	"Motor.c",117,2
-	.dwpsn	"Motor.c",190,3
+        MOVL      ACC,@_RMotor+10       ; |117| 
+        MOVL      XAR6,@_RMotor+18      ; |117| 
+        LSL       ACC,2                 ; |117| 
+        SUBL      XAR6,ACC
+        MOVL      @_RMotor+16,XAR6      ; |117| 
+	.dwpsn	"Motor.c",118,2
+        MOVL      ACC,@_RMotor+16       ; |118| 
+        BF        L30,GEQ               ; |118| 
+        ; branchcc occurs ; |118| 
+        MOVB      ACC,#0
+        BF        L31,UNC               ; |118| 
+        ; branch occurs ; |118| 
+L30:    
+        MOVL      ACC,@_RMotor+16       ; |118| 
+L31:    
+;*** 118	-----------------------    RMotor.ErrorDistance_IQ17 = S$1;  // [19]
+;*** 120	-----------------------    clk1 = clk;  // [19]
+;*** 193	-----------------------    clk = *&EPwm3Regs>>10&7u;
+;*** 47	-----------------------    if ( LMotor.NextVelocity_IQ17 < LMotor.TargetVel_IQ17 ) goto g28;  // [19]
+        MOVL      @_RMotor+16,ACC       ; |118| 
+	.dwpsn	"Motor.c",120,2
+	.dwpsn	"Motor.c",193,3
         MOVW      DP,#_EPwm3Regs
-        AND       AL,@_EPwm3Regs,#0x1c00 ; |190| 
-        LSR       AL,10                 ; |190| 
-        MOVZ      AR1,AL                ; |190| 
+        AND       AL,@_EPwm3Regs,#0x1c00 ; |193| 
+        LSR       AL,10                 ; |193| 
+        MOVZ      AR1,AL                ; |193| 
 	.dwpsn	"Motor.c",47,2
         MOVW      DP,#_LMotor
         MOVL      ACC,@_LMotor          ; |47| 
@@ -1910,11 +1916,10 @@ L36:
         MOVL      @_LMotor+28,ACC       ; |59| 
 L37:    
 ;***	-----------------------g35:
-;*** 80	-----------------------    LMotor.FinalVelo_IQ17 = LMotor.NextVelocity_IQ17+LMotor.TargetHandle_IQ17;  // [19]
+;*** 80	-----------------------    LMotor.FinalVelo_IQ17 = LMotor.NextVelocity_IQ17;  // [19]
 ;*** 82	-----------------------    if ( LMotor.FinalVelo_IQ17 < 13107200L ) goto g37;  // [19]
 	.dwpsn	"Motor.c",80,2
-        MOVL      ACC,@_LMotor+36       ; |80| 
-        ADDL      ACC,@_LMotor+2        ; |80| 
+        MOVL      ACC,@_LMotor+2        ; |80| 
         MOVL      @_LMotor+38,ACC       ; |80| 
 	.dwpsn	"Motor.c",82,2
         MOV       AL,#0
@@ -1922,19 +1927,19 @@ L37:
         CMPL      ACC,@_LMotor+38       ; |82| 
         BF        L38,GT                ; |82| 
         ; branchcc occurs ; |82| 
-;*** 85	-----------------------    LMotor.PrdNextTranSecon_IQ17 = _IQ17div(1096350464L, LMotor.FinalVelo_IQ17);  // [19]
-;*** 85	-----------------------    goto g38;  // [19]
-	.dwpsn	"Motor.c",85,3
-        MOVL      ACC,@_LMotor+38       ; |85| 
-        MOVL      *-SP[2],ACC           ; |85| 
+;*** 86	-----------------------    LMotor.PrdNextTranSecon_IQ17 = _IQ17div(1096350464L, LMotor.FinalVelo_IQ17);  // [19]
+;*** 86	-----------------------    goto g38;  // [19]
+	.dwpsn	"Motor.c",86,3
+        MOVL      ACC,@_LMotor+38       ; |86| 
+        MOVL      *-SP[2],ACC           ; |86| 
         MOV       AL,#64256
         MOV       AH,#16728
-        LCR       #__IQ17div            ; |85| 
-        ; call occurs [#__IQ17div] ; |85| 
+        LCR       #__IQ17div            ; |86| 
+        ; call occurs [#__IQ17div] ; |86| 
         MOVW      DP,#_LMotor+24
-        MOVL      @_LMotor+24,ACC       ; |85| 
-        BF        L39,UNC               ; |85| 
-        ; branch occurs ; |85| 
+        MOVL      @_LMotor+24,ACC       ; |86| 
+        BF        L39,UNC               ; |86| 
+        ; branch occurs ; |86| 
 L38:    
 ;***	-----------------------g37:
 ;*** 83	-----------------------    LMotor.PrdNextTranSecon_IQ17 = 858967L<<clk;  // [19]
@@ -1946,287 +1951,294 @@ L38:
         MOVL      @_LMotor+24,ACC       ; |83| 
 L39:    
 ;***	-----------------------g38:
-;*** 89	-----------------------    LMotor.PrdNext_IQ14 = __IQxmpy(81920000L>>clk, LMotor.PrdNextTranSecon_IQ17, 16);  // [19]
-;*** 91	-----------------------    if ( LMotor.PrdNext_IQ14 < 268435456L ) goto g42;  // [19]
-	.dwpsn	"Motor.c",89,2
+;*** 88	-----------------------    LMotor.PrdNextTranSecon_IQ17 = __IQmpy(LMotor.PrdNextTranSecon_IQ17, LMotor.TargetHandle_IQ17, 17);  // [19]
+;*** 92	-----------------------    LMotor.PrdNext_IQ14 = __IQxmpy(81920000L>>clk, LMotor.PrdNextTranSecon_IQ17, 16);  // [19]
+;*** 94	-----------------------    if ( LMotor.PrdNext_IQ14 < 268435456L ) goto g42;  // [19]
+	.dwpsn	"Motor.c",88,2
+        MOVL      XT,@_LMotor+24        ; |88| 
+        IMPYL     P,XT,@_LMotor+36      ; |88| 
+        QMPYL     ACC,XT,@_LMotor+36    ; |88| 
+        LSL64     ACC:P,#15             ; |88| 
+        MOVL      @_LMotor+24,ACC       ; |88| 
+	.dwpsn	"Motor.c",92,2
+        MOV       T,AR1                 ; |92| 
         MOV       ACC,#2500 << 15
-        MOV       T,AR1                 ; |89| 
-        ASRL      ACC,T                 ; |89| 
-        MOVL      XT,ACC                ; |89| 
-        IMPYL     P,XT,@_LMotor+24      ; |89| 
-        MOVL      XT,ACC                ; |89| 
-        QMPYL     ACC,XT,@_LMotor+24    ; |89| 
-        LSL64     ACC:P,#16             ; |89| 
-        MOVL      @_LMotor+22,ACC       ; |89| 
-	.dwpsn	"Motor.c",91,2
+        ASRL      ACC,T                 ; |92| 
+        MOVL      XT,ACC                ; |92| 
+        IMPYL     P,XT,@_LMotor+24      ; |92| 
+        MOVL      XT,ACC                ; |92| 
+        QMPYL     ACC,XT,@_LMotor+24    ; |92| 
+        LSL64     ACC:P,#16             ; |92| 
+        MOVL      @_LMotor+22,ACC       ; |92| 
+	.dwpsn	"Motor.c",94,2
         MOV       ACC,#8192 << 15
-        CMPL      ACC,@_LMotor+22       ; |91| 
-        BF        L40,GT                ; |91| 
-        ; branchcc occurs ; |91| 
-;*** 99	-----------------------    if ( LMotor.PrdNext_IQ14 <= 1073709056L ) goto g44;  // [19]
-	.dwpsn	"Motor.c",99,7
+        CMPL      ACC,@_LMotor+22       ; |94| 
+        BF        L40,GT                ; |94| 
+        ; branchcc occurs ; |94| 
+;*** 102	-----------------------    if ( LMotor.PrdNext_IQ14 <= 1073709056L ) goto g44;  // [19]
+	.dwpsn	"Motor.c",102,7
         MOV       ACC,#32767 << 15
-        CMPL      ACC,@_LMotor+22       ; |99| 
-        BF        L41,GEQ               ; |99| 
-        ; branchcc occurs ; |99| 
-;*** 100	-----------------------    LMotor.PrdNext_IQ14 = 1073709056L;  // [19]
-;*** 102	-----------------------    if ( clk >= 4u ) goto g44;  // [19]
-	.dwpsn	"Motor.c",100,3
+        CMPL      ACC,@_LMotor+22       ; |102| 
+        BF        L41,GEQ               ; |102| 
+        ; branchcc occurs ; |102| 
+;*** 103	-----------------------    LMotor.PrdNext_IQ14 = 1073709056L;  // [19]
+;*** 105	-----------------------    if ( clk >= 4u ) goto g44;  // [19]
+	.dwpsn	"Motor.c",103,3
         MOV       PH,#16383
         MOV       PL,#32768
-        MOVL      @_LMotor+22,P         ; |100| 
-	.dwpsn	"Motor.c",102,3
+        MOVL      @_LMotor+22,P         ; |103| 
+	.dwpsn	"Motor.c",105,3
         MOV       AL,AR1
-        CMPB      AL,#4                 ; |102| 
-        BF        L41,HIS               ; |102| 
-        ; branchcc occurs ; |102| 
-;*** 103	-----------------------    ++clk;  // [19]
-;*** 104	-----------------------    LMotor.PrdNext_IQ14 = LMotor.PrdNext_IQ14>>1;  // [19]
-;*** 104	-----------------------    goto g44;  // [19]
-	.dwpsn	"Motor.c",103,4
-        ADDB      XAR1,#1               ; |103| 
-	.dwpsn	"Motor.c",104,4
-        MOVL      ACC,@_LMotor+22       ; |104| 
+        CMPB      AL,#4                 ; |105| 
+        BF        L41,HIS               ; |105| 
+        ; branchcc occurs ; |105| 
+;*** 106	-----------------------    ++clk;  // [19]
+;*** 107	-----------------------    LMotor.PrdNext_IQ14 = LMotor.PrdNext_IQ14>>1;  // [19]
+;*** 107	-----------------------    goto g44;  // [19]
+	.dwpsn	"Motor.c",106,4
+        ADDB      XAR1,#1               ; |106| 
+	.dwpsn	"Motor.c",107,4
+        MOVL      ACC,@_LMotor+22       ; |107| 
         SETC      SXM
-        SFR       ACC,1                 ; |104| 
-        MOVL      @_LMotor+22,ACC       ; |104| 
-        BF        L41,UNC               ; |104| 
-        ; branch occurs ; |104| 
+        SFR       ACC,1                 ; |107| 
+        MOVL      @_LMotor+22,ACC       ; |107| 
+        BF        L41,UNC               ; |107| 
+        ; branch occurs ; |107| 
 L40:    
 ;***	-----------------------g42:
-;*** 92	-----------------------    LMotor.PrdNext_IQ14 = 268435456L;  // [19]
-;*** 94	-----------------------    if ( !clk ) goto g44;  // [19]
-	.dwpsn	"Motor.c",92,3
+;*** 95	-----------------------    LMotor.PrdNext_IQ14 = 268435456L;  // [19]
+;*** 97	-----------------------    if ( !clk ) goto g44;  // [19]
+	.dwpsn	"Motor.c",95,3
         MOV       PH,#4096
         MOV       PL,#0
-        MOVL      @_LMotor+22,P         ; |92| 
-	.dwpsn	"Motor.c",94,3
+        MOVL      @_LMotor+22,P         ; |95| 
+	.dwpsn	"Motor.c",97,3
         MOV       AL,AR1
-        BF        L41,EQ                ; |94| 
-        ; branchcc occurs ; |94| 
-;*** 95	-----------------------    --clk;  // [19]
-;*** 96	-----------------------    LMotor.PrdNext_IQ14 = LMotor.PrdNext_IQ14*2L;  // [19]
-	.dwpsn	"Motor.c",95,4
-        SUBB      XAR1,#1               ; |95| 
-	.dwpsn	"Motor.c",96,4
-        MOVL      ACC,@_LMotor+22       ; |96| 
-        LSL       ACC,1                 ; |96| 
-        MOVL      @_LMotor+22,ACC       ; |96| 
+        BF        L41,EQ                ; |97| 
+        ; branchcc occurs ; |97| 
+;*** 98	-----------------------    --clk;  // [19]
+;*** 99	-----------------------    LMotor.PrdNext_IQ14 = LMotor.PrdNext_IQ14*2L;  // [19]
+	.dwpsn	"Motor.c",98,4
+        SUBB      XAR1,#1               ; |98| 
+	.dwpsn	"Motor.c",99,4
+        MOVL      ACC,@_LMotor+22       ; |99| 
+        LSL       ACC,1                 ; |99| 
+        MOVL      @_LMotor+22,ACC       ; |99| 
 L41:    
 ;***	-----------------------g44:
-;*** 108	-----------------------    LMotor.RolEachStep_IQ17 = __IQxmpy(109635L, _IQ13div(CpuTimer2Regs.PRD.all<<13, LMotor.PrdNext_IQ14>>1)>>clk, 19);  // [19]
-;*** 110	-----------------------    (LMotor.TurnMarkCheckDistance_IQ17 > 2146959360L) ? (S$4 = 0L) : (S$4 = LMotor.RolEachStep_IQ17);  // [19]
-	.dwpsn	"Motor.c",108,2
-        MOVL      ACC,@_LMotor+22       ; |108| 
+;*** 111	-----------------------    LMotor.RolEachStep_IQ17 = __IQxmpy(109635L, _IQ13div(CpuTimer2Regs.PRD.all<<13, LMotor.PrdNext_IQ14>>1)>>clk, 19);  // [19]
+;*** 113	-----------------------    (LMotor.TurnMarkCheckDistance_IQ17 > 2146959360L) ? (S$4 = 0L) : (S$4 = LMotor.RolEachStep_IQ17);  // [19]
+	.dwpsn	"Motor.c",111,2
+        MOVL      ACC,@_LMotor+22       ; |111| 
         SETC      SXM
         MOVW      DP,#_CpuTimer2Regs+2
-        SFR       ACC,1                 ; |108| 
-        MOVL      *-SP[2],ACC           ; |108| 
-        MOVL      ACC,@_CpuTimer2Regs+2 ; |108| 
-        LSL       ACC,13                ; |108| 
-        LCR       #__IQ13div            ; |108| 
-        ; call occurs [#__IQ13div] ; |108| 
-        MOV       T,AR1                 ; |108| 
-        MOVL      XAR4,#109635          ; |108| 
-        ASRL      ACC,T                 ; |108| 
-        MOVL      XT,XAR4               ; |108| 
-        IMPYL     P,XT,ACC              ; |108| 
-        QMPYL     ACC,XT,ACC            ; |108| 
+        SFR       ACC,1                 ; |111| 
+        MOVL      *-SP[2],ACC           ; |111| 
+        MOVL      ACC,@_CpuTimer2Regs+2 ; |111| 
+        LSL       ACC,13                ; |111| 
+        LCR       #__IQ13div            ; |111| 
+        ; call occurs [#__IQ13div] ; |111| 
+        MOV       T,AR1                 ; |111| 
+        MOVL      XAR4,#109635          ; |111| 
+        ASRL      ACC,T                 ; |111| 
+        MOVL      XT,XAR4               ; |111| 
+        IMPYL     P,XT,ACC              ; |111| 
+        QMPYL     ACC,XT,ACC            ; |111| 
         MOVW      DP,#_LMotor+26
-        ASR64     ACC:P,13              ; |108| 
-        MOVL      @_LMotor+26,P         ; |108| 
-	.dwpsn	"Motor.c",110,2
+        ASR64     ACC:P,13              ; |111| 
+        MOVL      @_LMotor+26,P         ; |111| 
+	.dwpsn	"Motor.c",113,2
         MOV       AL,#0
         MOV       AH,#32760
-        CMPL      ACC,@_LMotor+8        ; |110| 
-        BF        L42,GEQ               ; |110| 
-        ; branchcc occurs ; |110| 
+        CMPL      ACC,@_LMotor+8        ; |113| 
+        BF        L42,GEQ               ; |113| 
+        ; branchcc occurs ; |113| 
         MOVB      ACC,#0
-        BF        L43,UNC               ; |110| 
-        ; branch occurs ; |110| 
+        BF        L43,UNC               ; |113| 
+        ; branch occurs ; |113| 
 L42:    
-        MOVL      ACC,@_LMotor+26       ; |110| 
+        MOVL      ACC,@_LMotor+26       ; |113| 
 L43:    
-;*** 110	-----------------------    LMotor.TurnMarkCheckDistance_IQ17 += S$4;  // [19]
-;*** 111	-----------------------    (LMotor.CrossCheckDistance_IQ15 > 1073479680L) ? (S$3 = 0L) : (S$3 = LMotor.RolEachStep_IQ17>>2);  // [19]
-        ADDL      @_LMotor+8,ACC        ; |110| 
-	.dwpsn	"Motor.c",111,2
-        MOV       ACC,#32760 << 15
-        CMPL      ACC,@_LMotor+12       ; |111| 
-        BF        L44,GEQ               ; |111| 
-        ; branchcc occurs ; |111| 
-        MOVB      ACC,#0
-        BF        L45,UNC               ; |111| 
-        ; branch occurs ; |111| 
-L44:    
-        MOVL      ACC,@_LMotor+26       ; |111| 
-        SETC      SXM
-        SFR       ACC,2                 ; |111| 
-L45:    
-;*** 111	-----------------------    LMotor.CrossCheckDistance_IQ15 += S$3;  // [19]
-;*** 112	-----------------------    (LMotor.GoneDistance_IQ15 > 536739840L) ? (S$2 = 0L) : (S$2 = LMotor.RolEachStep_IQ17>>2);  // [19]
-        ADDL      @_LMotor+12,ACC       ; |111| 
-	.dwpsn	"Motor.c",112,2
-        MOV       ACC,#16380 << 15
-        CMPL      ACC,@_LMotor+10       ; |112| 
-        BF        L46,GEQ               ; |112| 
-        ; branchcc occurs ; |112| 
-        MOVB      ACC,#0
-        BF        L47,UNC               ; |112| 
-        ; branch occurs ; |112| 
-L46:    
-        MOVL      ACC,@_LMotor+26       ; |112| 
-        SETC      SXM
-        SFR       ACC,2                 ; |112| 
-L47:    
-;*** 112	-----------------------    LMotor.GoneDistance_IQ15 += S$2;  // [19]
-;*** 114	-----------------------    LMotor.ErrorDistance_IQ17 = LMotor.UserDistance_IQ17-LMotor.GoneDistance_IQ15*4L;  // [19]
-;*** 115	-----------------------    (LMotor.ErrorDistance_IQ17 < 0L) ? (S$1 = 0L) : (S$1 = LMotor.ErrorDistance_IQ17);  // [19]
-        ADDL      @_LMotor+10,ACC       ; |112| 
+;*** 113	-----------------------    LMotor.TurnMarkCheckDistance_IQ17 += S$4;  // [19]
+;*** 114	-----------------------    (LMotor.CrossCheckDistance_IQ15 > 1073479680L) ? (S$3 = 0L) : (S$3 = LMotor.RolEachStep_IQ17>>2);  // [19]
+        ADDL      @_LMotor+8,ACC        ; |113| 
 	.dwpsn	"Motor.c",114,2
-        MOVL      ACC,@_LMotor+10       ; |114| 
-        MOVL      XAR6,@_LMotor+18      ; |114| 
-        LSL       ACC,2                 ; |114| 
-        SUBL      XAR6,ACC
-        MOVL      @_LMotor+16,XAR6      ; |114| 
+        MOV       ACC,#32760 << 15
+        CMPL      ACC,@_LMotor+12       ; |114| 
+        BF        L44,GEQ               ; |114| 
+        ; branchcc occurs ; |114| 
+        MOVB      ACC,#0
+        BF        L45,UNC               ; |114| 
+        ; branch occurs ; |114| 
+L44:    
+        MOVL      ACC,@_LMotor+26       ; |114| 
+        SETC      SXM
+        SFR       ACC,2                 ; |114| 
+L45:    
+;*** 114	-----------------------    LMotor.CrossCheckDistance_IQ15 += S$3;  // [19]
+;*** 115	-----------------------    (LMotor.GoneDistance_IQ15 > 536739840L) ? (S$2 = 0L) : (S$2 = LMotor.RolEachStep_IQ17>>2);  // [19]
+        ADDL      @_LMotor+12,ACC       ; |114| 
 	.dwpsn	"Motor.c",115,2
-        MOVL      ACC,@_LMotor+16       ; |115| 
-        BF        L48,GEQ               ; |115| 
+        MOV       ACC,#16380 << 15
+        CMPL      ACC,@_LMotor+10       ; |115| 
+        BF        L46,GEQ               ; |115| 
         ; branchcc occurs ; |115| 
         MOVB      ACC,#0
-        BF        L49,UNC               ; |115| 
+        BF        L47,UNC               ; |115| 
         ; branch occurs ; |115| 
-L48:    
-        MOVL      ACC,@_LMotor+16       ; |115| 
-L49:    
-;*** 115	-----------------------    LMotor.ErrorDistance_IQ17 = S$1;  // [19]
-;*** 117	-----------------------    *&EPwm1Regs = *&EPwm1Regs&0xe3ffu|(clk1&7u)<<10;  // [19]
-;*** 193	-----------------------    *&EPwm3Regs = *&EPwm3Regs&0xe3ffu|(clk&7u)<<10;
-;*** 195	-----------------------    EPwm1Regs.TBPRD = RMotor.PrdNext_IQ14>>14;
-;*** 196	-----------------------    EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD>>1;
-;*** 198	-----------------------    EPwm3Regs.TBPRD = LMotor.PrdNext_IQ14>>14;
-;*** 199	-----------------------    EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD>>1;
-;*** 201	-----------------------    if ( !((*&Flag>>1|*&Flag)&0x80u) ) goto g50;
-        MOVL      @_LMotor+16,ACC       ; |115| 
+L46:    
+        MOVL      ACC,@_LMotor+26       ; |115| 
+        SETC      SXM
+        SFR       ACC,2                 ; |115| 
+L47:    
+;*** 115	-----------------------    LMotor.GoneDistance_IQ15 += S$2;  // [19]
+;*** 117	-----------------------    LMotor.ErrorDistance_IQ17 = LMotor.UserDistance_IQ17-LMotor.GoneDistance_IQ15*4L;  // [19]
+;*** 118	-----------------------    (LMotor.ErrorDistance_IQ17 < 0L) ? (S$1 = 0L) : (S$1 = LMotor.ErrorDistance_IQ17);  // [19]
+        ADDL      @_LMotor+10,ACC       ; |115| 
 	.dwpsn	"Motor.c",117,2
-        AND       AL,AR3,#0x0007        ; |117| 
+        MOVL      ACC,@_LMotor+10       ; |117| 
+        MOVL      XAR6,@_LMotor+18      ; |117| 
+        LSL       ACC,2                 ; |117| 
+        SUBL      XAR6,ACC
+        MOVL      @_LMotor+16,XAR6      ; |117| 
+	.dwpsn	"Motor.c",118,2
+        MOVL      ACC,@_LMotor+16       ; |118| 
+        BF        L48,GEQ               ; |118| 
+        ; branchcc occurs ; |118| 
+        MOVB      ACC,#0
+        BF        L49,UNC               ; |118| 
+        ; branch occurs ; |118| 
+L48:    
+        MOVL      ACC,@_LMotor+16       ; |118| 
+L49:    
+;*** 118	-----------------------    LMotor.ErrorDistance_IQ17 = S$1;  // [19]
+;*** 120	-----------------------    *&EPwm1Regs = *&EPwm1Regs&0xe3ffu|(clk1&7u)<<10;  // [19]
+;*** 196	-----------------------    *&EPwm3Regs = *&EPwm3Regs&0xe3ffu|(clk&7u)<<10;
+;*** 198	-----------------------    EPwm1Regs.TBPRD = RMotor.PrdNext_IQ14>>14;
+;*** 199	-----------------------    EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD>>1;
+;*** 201	-----------------------    EPwm3Regs.TBPRD = LMotor.PrdNext_IQ14>>14;
+;*** 202	-----------------------    EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD>>1;
+;*** 204	-----------------------    if ( !((*&Flag>>1|*&Flag)&0x80u) ) goto g50;
+        MOVL      @_LMotor+16,ACC       ; |118| 
+	.dwpsn	"Motor.c",120,2
+        AND       AL,AR3,#0x0007        ; |120| 
         MOVW      DP,#_EPwm1Regs
-        LSL       AL,10                 ; |117| 
-        AND       AH,@_EPwm1Regs,#0xe3ff ; |117| 
-        OR        AL,AH                 ; |117| 
-        MOV       @_EPwm1Regs,AL        ; |117| 
-	.dwpsn	"Motor.c",193,3
-        AND       AL,AR1,#0x0007        ; |193| 
-        MOVW      DP,#_EPwm3Regs
-        LSL       AL,10                 ; |193| 
-        AND       AH,@_EPwm3Regs,#0xe3ff ; |193| 
-        OR        AL,AH                 ; |193| 
-        MOV       @_EPwm3Regs,AL        ; |193| 
-	.dwpsn	"Motor.c",195,3
-        MOVW      DP,#_RMotor+22
-        MOVL      ACC,@_RMotor+22       ; |195| 
-        MOVW      DP,#_EPwm1Regs+5
-        MOVH      @_EPwm1Regs+5,ACC << 2 ; |195| 
+        LSL       AL,10                 ; |120| 
+        AND       AH,@_EPwm1Regs,#0xe3ff ; |120| 
+        OR        AL,AH                 ; |120| 
+        MOV       @_EPwm1Regs,AL        ; |120| 
 	.dwpsn	"Motor.c",196,3
-        MOV       AL,@_EPwm1Regs+5      ; |196| 
-        LSR       AL,1                  ; |196| 
-        MOV       @_EPwm1Regs+9,AL      ; |196| 
+        AND       AL,AR1,#0x0007        ; |196| 
+        MOVW      DP,#_EPwm3Regs
+        LSL       AL,10                 ; |196| 
+        AND       AH,@_EPwm3Regs,#0xe3ff ; |196| 
+        OR        AL,AH                 ; |196| 
+        MOV       @_EPwm3Regs,AL        ; |196| 
 	.dwpsn	"Motor.c",198,3
-        MOVW      DP,#_LMotor+22
-        MOVL      ACC,@_LMotor+22       ; |198| 
-        MOVW      DP,#_EPwm3Regs+5
-        MOVH      @_EPwm3Regs+5,ACC << 2 ; |198| 
+        MOVW      DP,#_RMotor+22
+        MOVL      ACC,@_RMotor+22       ; |198| 
+        MOVW      DP,#_EPwm1Regs+5
+        MOVH      @_EPwm1Regs+5,ACC << 2 ; |198| 
 	.dwpsn	"Motor.c",199,3
-        MOV       AL,@_EPwm3Regs+5      ; |199| 
+        MOV       AL,@_EPwm1Regs+5      ; |199| 
         LSR       AL,1                  ; |199| 
-        MOV       @_EPwm3Regs+9,AL      ; |199| 
+        MOV       @_EPwm1Regs+9,AL      ; |199| 
 	.dwpsn	"Motor.c",201,3
+        MOVW      DP,#_LMotor+22
+        MOVL      ACC,@_LMotor+22       ; |201| 
+        MOVW      DP,#_EPwm3Regs+5
+        MOVH      @_EPwm3Regs+5,ACC << 2 ; |201| 
+	.dwpsn	"Motor.c",202,3
+        MOV       AL,@_EPwm3Regs+5      ; |202| 
+        LSR       AL,1                  ; |202| 
+        MOV       @_EPwm3Regs+9,AL      ; |202| 
+	.dwpsn	"Motor.c",204,3
         MOVW      DP,#_Flag
-        MOV       AL,@_Flag             ; |201| 
-        LSR       AL,1                  ; |201| 
-        OR        AL,@_Flag             ; |201| 
-        ANDB      AL,#0x80              ; |201| 
-        BF        L52,EQ                ; |201| 
-        ; branchcc occurs ; |201| 
-;*** 162	-----------------------    if ( RMotor.DecelFlag_U16 ) goto g47;  // [22]
-	.dwpsn	"Motor.c",162,2
+        MOV       AL,@_Flag             ; |204| 
+        LSR       AL,1                  ; |204| 
+        OR        AL,@_Flag             ; |204| 
+        ANDB      AL,#0x80              ; |204| 
+        BF        L52,EQ                ; |204| 
+        ; branchcc occurs ; |204| 
+;*** 165	-----------------------    if ( RMotor.DecelFlag_U16 ) goto g47;  // [22]
+	.dwpsn	"Motor.c",165,2
         MOVW      DP,#_RMotor+20
-        MOV       AL,@_RMotor+20        ; |162| 
-        BF        L50,NEQ               ; |162| 
-        ; branchcc occurs ; |162| 
-;*** 162	-----------------------    if ( !LMotor.DecelFlag_U16 ) goto g50;  // [22]
+        MOV       AL,@_RMotor+20        ; |165| 
+        BF        L50,NEQ               ; |165| 
+        ; branchcc occurs ; |165| 
+;*** 165	-----------------------    if ( !LMotor.DecelFlag_U16 ) goto g50;  // [22]
         MOVW      DP,#_LMotor+20
-        MOV       AL,@_LMotor+20        ; |162| 
-        BF        L52,EQ                ; |162| 
-        ; branchcc occurs ; |162| 
+        MOV       AL,@_LMotor+20        ; |165| 
+        BF        L52,EQ                ; |165| 
+        ; branchcc occurs ; |165| 
 L50:    
 ;***	-----------------------g47:
-;*** 163	-----------------------    if ( RMotor.DecelDistance_IQ17 > RMotor.ErrorDistance_IQ17 ) goto g49;  // [22]
-	.dwpsn	"Motor.c",163,3
+;*** 166	-----------------------    if ( RMotor.DecelDistance_IQ17 > RMotor.ErrorDistance_IQ17 ) goto g49;  // [22]
+	.dwpsn	"Motor.c",166,3
         MOVW      DP,#_RMotor+16
-        MOVL      ACC,@_RMotor+16       ; |163| 
-        CMPL      ACC,@_RMotor+14       ; |163| 
-        BF        L51,LT                ; |163| 
-        ; branchcc occurs ; |163| 
-;*** 169	-----------------------    if ( LMotor.DecelDistance_IQ17 <= LMotor.ErrorDistance_IQ17 ) goto g50;  // [22]
-	.dwpsn	"Motor.c",169,8
+        MOVL      ACC,@_RMotor+16       ; |166| 
+        CMPL      ACC,@_RMotor+14       ; |166| 
+        BF        L51,LT                ; |166| 
+        ; branchcc occurs ; |166| 
+;*** 172	-----------------------    if ( LMotor.DecelDistance_IQ17 <= LMotor.ErrorDistance_IQ17 ) goto g50;  // [22]
+	.dwpsn	"Motor.c",172,8
         MOVW      DP,#_LMotor+16
-        MOVL      ACC,@_LMotor+16       ; |169| 
-        CMPL      ACC,@_LMotor+14       ; |169| 
-        BF        L52,GEQ               ; |169| 
-        ; branchcc occurs ; |169| 
+        MOVL      ACC,@_LMotor+16       ; |172| 
+        CMPL      ACC,@_LMotor+14       ; |172| 
+        BF        L52,GEQ               ; |172| 
+        ; branchcc occurs ; |172| 
 L51:    
 ;***	-----------------------g49:
-;*** 164	-----------------------    RMotor.TargetVel_IQ17 = RMotor.DecelVelocity_IQ17;  // [22]
-;*** 165	-----------------------    LMotor.TargetVel_IQ17 = LMotor.DecelVelocity_IQ17;  // [22]
-;*** 167	-----------------------    LMotor.DecelFlag_U16 = 0u;  // [22]
-;*** 167	-----------------------    RMotor.DecelFlag_U16 = 0u;  // [22]
-	.dwpsn	"Motor.c",164,4
-        MOVW      DP,#_RMotor+6
-        MOVL      ACC,@_RMotor+6        ; |164| 
-        MOVL      @_RMotor,ACC          ; |164| 
-	.dwpsn	"Motor.c",165,4
-        MOVW      DP,#_LMotor+6
-        MOVL      ACC,@_LMotor+6        ; |165| 
-        MOVL      @_LMotor,ACC          ; |165| 
+;*** 167	-----------------------    RMotor.TargetVel_IQ17 = RMotor.DecelVelocity_IQ17;  // [22]
+;*** 168	-----------------------    LMotor.TargetVel_IQ17 = LMotor.DecelVelocity_IQ17;  // [22]
+;*** 170	-----------------------    LMotor.DecelFlag_U16 = 0u;  // [22]
+;*** 170	-----------------------    RMotor.DecelFlag_U16 = 0u;  // [22]
 	.dwpsn	"Motor.c",167,4
-        MOV       @_LMotor+20,#0        ; |167| 
+        MOVW      DP,#_RMotor+6
+        MOVL      ACC,@_RMotor+6        ; |167| 
+        MOVL      @_RMotor,ACC          ; |167| 
+	.dwpsn	"Motor.c",168,4
+        MOVW      DP,#_LMotor+6
+        MOVL      ACC,@_LMotor+6        ; |168| 
+        MOVL      @_LMotor,ACC          ; |168| 
+	.dwpsn	"Motor.c",170,4
+        MOV       @_LMotor+20,#0        ; |170| 
         MOVW      DP,#_RMotor+20
-        MOV       @_RMotor+20,#0        ; |167| 
+        MOV       @_RMotor+20,#0        ; |170| 
 L52:    
 ;***	-----------------------g50:
-;*** 203	-----------------------    if ( !(*&Flag&1u) ) goto g52;
-	.dwpsn	"Motor.c",203,3
+;*** 206	-----------------------    if ( !(*&Flag&1u) ) goto g52;
+	.dwpsn	"Motor.c",206,3
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#0             ; |203| 
-        BF        L53,NTC               ; |203| 
-        ; branchcc occurs ; |203| 
-;*** 204	-----------------------    ++TIME_INDEX_U32;
-	.dwpsn	"Motor.c",204,4
+        TBIT      @_Flag,#0             ; |206| 
+        BF        L53,NTC               ; |206| 
+        ; branchcc occurs ; |206| 
+;*** 207	-----------------------    ++TIME_INDEX_U32;
+	.dwpsn	"Motor.c",207,4
         MOVB      ACC,#1
         MOVW      DP,#_TIME_INDEX_U32
-        ADDL      @_TIME_INDEX_U32,ACC  ; |204| 
+        ADDL      @_TIME_INDEX_U32,ACC  ; |207| 
 L53:    
 ;***	-----------------------g52:
-;*** 205	-----------------------    if ( !(*&Flag&0x20u) ) goto g54;
-	.dwpsn	"Motor.c",205,3
+;*** 208	-----------------------    if ( !(*&Flag&0x20u) ) goto g54;
+	.dwpsn	"Motor.c",208,3
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#5             ; |205| 
-        BF        L54,NTC               ; |205| 
-        ; branchcc occurs ; |205| 
-;*** 206	-----------------------    ++STOP_TIME_INDEX_U32;
-	.dwpsn	"Motor.c",206,4
+        TBIT      @_Flag,#5             ; |208| 
+        BF        L54,NTC               ; |208| 
+        ; branchcc occurs ; |208| 
+;*** 209	-----------------------    ++STOP_TIME_INDEX_U32;
+	.dwpsn	"Motor.c",209,4
         MOVB      ACC,#1
         MOVW      DP,#_STOP_TIME_INDEX_U32
-        ADDL      @_STOP_TIME_INDEX_U32,ACC ; |206| 
+        ADDL      @_STOP_TIME_INDEX_U32,ACC ; |209| 
 L54:    
 ;***	-----------------------g54:
-;*** 208	-----------------------    *(&CpuTimer0Regs+4L) &= 0xffefu;
-;*** 208	-----------------------    return;
-	.dwpsn	"Motor.c",208,2
+;*** 211	-----------------------    *(&CpuTimer0Regs+4L) &= 0xffefu;
+;*** 211	-----------------------    return;
+	.dwpsn	"Motor.c",211,2
         MOVW      DP,#_CpuTimer0Regs+4
-        AND       @_CpuTimer0Regs+4,#0xffef ; |208| 
-	.dwpsn	"Motor.c",209,1
+        AND       @_CpuTimer0Regs+4,#0xffef ; |211| 
+	.dwpsn	"Motor.c",212,1
         SUBB      SP,#2
 	.dwcfa	0x1d, -18
         MOVL      XT,*--SP
@@ -2259,7 +2271,7 @@ L54:
         IRET
         ; return occurs
 	.dwattr DW$102, DW_AT_end_file("Motor.c")
-	.dwattr DW$102, DW_AT_end_line(0xd1)
+	.dwattr DW$102, DW_AT_end_line(0xd4)
 	.dwattr DW$102, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$102
@@ -2271,9 +2283,9 @@ DW$114	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_OUT_STOP"), DW_AT_symbol_name
 	.dwattr DW$114, DW_AT_low_pc(_LINE_OUT_STOP)
 	.dwattr DW$114, DW_AT_high_pc(0x00)
 	.dwattr DW$114, DW_AT_begin_file("Motor.c")
-	.dwattr DW$114, DW_AT_begin_line(0x107)
+	.dwattr DW$114, DW_AT_begin_line(0x10a)
 	.dwattr DW$114, DW_AT_begin_column(0x08)
-	.dwpsn	"Motor.c",264,1
+	.dwpsn	"Motor.c",267,1
 
 	.dwfde DW$CIE
 
@@ -2293,52 +2305,52 @@ DW$114	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_OUT_STOP"), DW_AT_symbol_name
 ;*                                                             *
 ;***************************************************************
 _LINE_OUT_STOP:
-;*** 266	-----------------------    if ( LINE_OUT_U16 >= 300u ) goto g3;
+;*** 269	-----------------------    if ( LINE_OUT_U16 >= 300u ) goto g3;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
         ADDB      SP,#2
 	.dwcfa	0x1d, -4
-	.dwpsn	"Motor.c",266,2
+	.dwpsn	"Motor.c",269,2
         MOVW      DP,#_LINE_OUT_U16
-        CMP       @_LINE_OUT_U16,#300   ; |266| 
-        BF        L55,HIS               ; |266| 
-        ; branchcc occurs ; |266| 
-;*** 267	-----------------------    return 0u;
-	.dwpsn	"Motor.c",267,3
+        CMP       @_LINE_OUT_U16,#300   ; |269| 
+        BF        L55,HIS               ; |269| 
+        ; branchcc occurs ; |269| 
+;*** 270	-----------------------    return 0u;
+	.dwpsn	"Motor.c",270,3
         MOVB      AL,#0
-        BF        L56,UNC               ; |267| 
-        ; branch occurs ; |267| 
+        BF        L56,UNC               ; |270| 
+        ; branch occurs ; |270| 
 L55:    
 ;***	-----------------------g3:
-;*** 269	-----------------------    LINE_OUT_U16 = 777u;
-;*** 270	-----------------------    *&Flag &= 0xfffeu;
-;*** 272	-----------------------    SHUTDOWN();
-;*** 274	-----------------------    VFDPrintf("line OUT");
-;*** 276	-----------------------    return 1u;
-	.dwpsn	"Motor.c",269,2
-        MOV       @_LINE_OUT_U16,#777   ; |269| 
-	.dwpsn	"Motor.c",270,2
-        MOVW      DP,#_Flag
-        AND       @_Flag,#0xfffe        ; |270| 
+;*** 272	-----------------------    LINE_OUT_U16 = 777u;
+;*** 273	-----------------------    *&Flag &= 0xfffeu;
+;*** 275	-----------------------    SHUTDOWN();
+;*** 277	-----------------------    VFDPrintf("line OUT");
+;*** 279	-----------------------    return 1u;
 	.dwpsn	"Motor.c",272,2
-        LCR       #_SHUTDOWN            ; |272| 
-        ; call occurs [#_SHUTDOWN] ; |272| 
-	.dwpsn	"Motor.c",274,2
-        MOVL      XAR4,#FSL1            ; |274| 
-        MOVL      *-SP[2],XAR4          ; |274| 
-        LCR       #_VFDPrintf           ; |274| 
-        ; call occurs [#_VFDPrintf] ; |274| 
-	.dwpsn	"Motor.c",276,2
-        MOVB      AL,#1                 ; |276| 
+        MOV       @_LINE_OUT_U16,#777   ; |272| 
+	.dwpsn	"Motor.c",273,2
+        MOVW      DP,#_Flag
+        AND       @_Flag,#0xfffe        ; |273| 
+	.dwpsn	"Motor.c",275,2
+        LCR       #_SHUTDOWN            ; |275| 
+        ; call occurs [#_SHUTDOWN] ; |275| 
+	.dwpsn	"Motor.c",277,2
+        MOVL      XAR4,#FSL1            ; |277| 
+        MOVL      *-SP[2],XAR4          ; |277| 
+        LCR       #_VFDPrintf           ; |277| 
+        ; call occurs [#_VFDPrintf] ; |277| 
+	.dwpsn	"Motor.c",279,2
+        MOVB      AL,#1                 ; |279| 
 L56:    
-	.dwpsn	"Motor.c",277,1
-        SUBB      SP,#2                 ; |276| 
+	.dwpsn	"Motor.c",280,1
+        SUBB      SP,#2                 ; |279| 
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
 	.dwattr DW$114, DW_AT_end_file("Motor.c")
-	.dwattr DW$114, DW_AT_end_line(0x115)
+	.dwattr DW$114, DW_AT_end_line(0x118)
 	.dwattr DW$114, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$114
@@ -2500,9 +2512,9 @@ DW$119	.dwtag  DW_TAG_subprogram, DW_AT_name("END_STOP"), DW_AT_symbol_name("_EN
 	.dwattr DW$119, DW_AT_low_pc(_END_STOP)
 	.dwattr DW$119, DW_AT_high_pc(0x00)
 	.dwattr DW$119, DW_AT_begin_file("Motor.c")
-	.dwattr DW$119, DW_AT_begin_line(0xd3)
+	.dwattr DW$119, DW_AT_begin_line(0xd6)
 	.dwattr DW$119, DW_AT_begin_column(0x08)
-	.dwpsn	"Motor.c",212,1
+	.dwpsn	"Motor.c",215,1
 
 	.dwfde DW$CIE
 
@@ -2522,7 +2534,7 @@ DW$119	.dwtag  DW_TAG_subprogram, DW_AT_name("END_STOP"), DW_AT_symbol_name("_EN
 ;*                                                             *
 ;***************************************************************
 _END_STOP:
-;*** 213	-----------------------    if ( *&Flag&0x20u ) goto g3;
+;*** 216	-----------------------    if ( *&Flag&0x20u ) goto g3;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -2532,260 +2544,260 @@ _END_STOP:
 DW$120	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
 	.dwattr DW$120, DW_AT_type(*DW$T$139)
 	.dwattr DW$120, DW_AT_location[DW_OP_reg12]
-	.dwpsn	"Motor.c",213,2
+	.dwpsn	"Motor.c",216,2
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#5             ; |213| 
-        BF        L57,TC                ; |213| 
-        ; branchcc occurs ; |213| 
-;*** 260	-----------------------    return 0u;
-	.dwpsn	"Motor.c",260,3
+        TBIT      @_Flag,#5             ; |216| 
+        BF        L57,TC                ; |216| 
+        ; branchcc occurs ; |216| 
+;*** 263	-----------------------    return 0u;
+	.dwpsn	"Motor.c",263,3
         MOVB      AL,#0
-        BF        L64,UNC               ; |260| 
-        ; branch occurs ; |260| 
+        BF        L64,UNC               ; |263| 
+        ; branch occurs ; |263| 
 L57:    
 ;***	-----------------------g3:
-;*** 214	-----------------------    LMotor.GoneDistance_IQ15 = 0L;
-;*** 214	-----------------------    RMotor.GoneDistance_IQ15 = 0L;
-;*** 215	-----------------------    SHUTDOWN();
-;*** 217	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g19;
-	.dwpsn	"Motor.c",214,3
+;*** 217	-----------------------    LMotor.GoneDistance_IQ15 = 0L;
+;*** 217	-----------------------    RMotor.GoneDistance_IQ15 = 0L;
+;*** 218	-----------------------    SHUTDOWN();
+;*** 220	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g19;
+	.dwpsn	"Motor.c",217,3
         MOVB      ACC,#0
         MOVW      DP,#_LMotor+10
-        MOVL      @_LMotor+10,ACC       ; |214| 
+        MOVL      @_LMotor+10,ACC       ; |217| 
         MOVW      DP,#_RMotor+10
-        MOVL      @_RMotor+10,ACC       ; |214| 
-	.dwpsn	"Motor.c",215,3
-        LCR       #_SHUTDOWN            ; |215| 
-        ; call occurs [#_SHUTDOWN] ; |215| 
-	.dwpsn	"Motor.c",217,3
+        MOVL      @_RMotor+10,ACC       ; |217| 
+	.dwpsn	"Motor.c",218,3
+        LCR       #_SHUTDOWN            ; |218| 
+        ; call occurs [#_SHUTDOWN] ; |218| 
+	.dwpsn	"Motor.c",220,3
         MOVW      DP,#_CpuTimer0Regs+4
-        TBIT      @_CpuTimer0Regs+4,#4  ; |217| 
-        BF        L62,NTC               ; |217| 
-        ; branchcc occurs ; |217| 
-;*** 219	-----------------------    if ( *&Flag&0x40u ) goto g13;
-	.dwpsn	"Motor.c",219,8
+        TBIT      @_CpuTimer0Regs+4,#4  ; |220| 
+        BF        L62,NTC               ; |220| 
+        ; branchcc occurs ; |220| 
+;*** 222	-----------------------    if ( *&Flag&0x40u ) goto g13;
+	.dwpsn	"Motor.c",222,8
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#6             ; |219| 
-        BF        L60,TC                ; |219| 
-        ; branchcc occurs ; |219| 
-;*** 238	-----------------------    if ( *&Flag&0x80u ) goto g10;
-	.dwpsn	"Motor.c",238,8
-        TBIT      @_Flag,#7             ; |238| 
-        BF        L59,TC                ; |238| 
-        ; branchcc occurs ; |238| 
-;*** 246	-----------------------    if ( !(*&Flag&0x100u) ) goto g20;
+        TBIT      @_Flag,#6             ; |222| 
+        BF        L60,TC                ; |222| 
+        ; branchcc occurs ; |222| 
+;*** 241	-----------------------    if ( *&Flag&0x80u ) goto g10;
+	.dwpsn	"Motor.c",241,8
+        TBIT      @_Flag,#7             ; |241| 
+        BF        L59,TC                ; |241| 
+        ; branchcc occurs ; |241| 
+;*** 249	-----------------------    if ( !(*&Flag&0x100u) ) goto g20;
 ;***  	-----------------------    #pragma LOOP_FLAGS(5376u)
-	.dwpsn	"Motor.c",246,8
-        TBIT      @_Flag,#8             ; |246| 
-        BF        L63,NTC               ; |246| 
-        ; branchcc occurs ; |246| 
+	.dwpsn	"Motor.c",249,8
+        TBIT      @_Flag,#8             ; |249| 
+        BF        L63,NTC               ; |249| 
+        ; branchcc occurs ; |249| 
 L58:    
 DW$L$_END_STOP$7$B:
 ;***	-----------------------g8:
-;*** 247	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g20;
-	.dwpsn	"Motor.c",247,10
+;*** 250	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g20;
+	.dwpsn	"Motor.c",250,10
         MOVW      DP,#_CpuTimer0Regs+4
-        TBIT      @_CpuTimer0Regs+4,#4  ; |247| 
-        BF        L63,NTC               ; |247| 
-        ; branchcc occurs ; |247| 
+        TBIT      @_CpuTimer0Regs+4,#4  ; |250| 
+        BF        L63,NTC               ; |250| 
+        ; branchcc occurs ; |250| 
 DW$L$_END_STOP$7$E:
 DW$L$_END_STOP$8$B:
-;*** 248	-----------------------    VFDPrintf("M%3u|C%2lu", THIRD_MARK_U16_CNT-1u, CROSS_PLUS_SEARCH_U32);
-;*** 251	-----------------------    if ( *(&GpioDataRegs+1)&0x8000u ) goto g8;
-	.dwpsn	"Motor.c",248,5
+;*** 251	-----------------------    VFDPrintf("M%3u|C%2lu", THIRD_MARK_U16_CNT-1u, CROSS_PLUS_SEARCH_U32);
+;*** 254	-----------------------    if ( *(&GpioDataRegs+1)&0x8000u ) goto g8;
+	.dwpsn	"Motor.c",251,5
         MOVW      DP,#_THIRD_MARK_U16_CNT
-        MOVL      XAR4,#FSL2            ; |248| 
-        MOV       AL,@_THIRD_MARK_U16_CNT ; |248| 
-        MOVL      *-SP[2],XAR4          ; |248| 
+        MOVL      XAR4,#FSL2            ; |251| 
+        MOV       AL,@_THIRD_MARK_U16_CNT ; |251| 
+        MOVL      *-SP[2],XAR4          ; |251| 
         ADDB      AL,#-1
         MOVW      DP,#_CROSS_PLUS_SEARCH_U32
-        MOV       *-SP[3],AL            ; |248| 
-        MOVL      ACC,@_CROSS_PLUS_SEARCH_U32 ; |248| 
-        MOVL      *-SP[6],ACC           ; |248| 
-        LCR       #_VFDPrintf           ; |248| 
-        ; call occurs [#_VFDPrintf] ; |248| 
-	.dwpsn	"Motor.c",251,6
+        MOV       *-SP[3],AL            ; |251| 
+        MOVL      ACC,@_CROSS_PLUS_SEARCH_U32 ; |251| 
+        MOVL      *-SP[6],ACC           ; |251| 
+        LCR       #_VFDPrintf           ; |251| 
+        ; call occurs [#_VFDPrintf] ; |251| 
+	.dwpsn	"Motor.c",254,6
         MOVW      DP,#_GpioDataRegs+1
-        TBIT      @_GpioDataRegs+1,#15  ; |251| 
-        BF        L58,TC                ; |251| 
-        ; branchcc occurs ; |251| 
+        TBIT      @_GpioDataRegs+1,#15  ; |254| 
+        BF        L58,TC                ; |254| 
+        ; branchcc occurs ; |254| 
 DW$L$_END_STOP$8$E:
-;*** 251	-----------------------    goto g20;
+;*** 254	-----------------------    goto g20;
 ;***	-----------------------g10:
 ;***  	-----------------------    #pragma LOOP_FLAGS(5376u)
-        BF        L63,UNC               ; |251| 
-        ; branch occurs ; |251| 
+        BF        L63,UNC               ; |254| 
+        ; branch occurs ; |254| 
 L59:    
 DW$L$_END_STOP$10$B:
 ;***	-----------------------g11:
-;*** 239	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g20;
-	.dwpsn	"Motor.c",239,10
+;*** 242	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g20;
+	.dwpsn	"Motor.c",242,10
         MOVW      DP,#_CpuTimer0Regs+4
-        TBIT      @_CpuTimer0Regs+4,#4  ; |239| 
-        BF        L63,NTC               ; |239| 
-        ; branchcc occurs ; |239| 
+        TBIT      @_CpuTimer0Regs+4,#4  ; |242| 
+        BF        L63,NTC               ; |242| 
+        ; branchcc occurs ; |242| 
 DW$L$_END_STOP$10$E:
 DW$L$_END_STOP$11$B:
-;*** 240	-----------------------    VFDPrintf("M%3u|C%2lu", SECOND_MARK_U16_CNT-1u, CROSS_PLUS_SEARCH_U32);
-;*** 243	-----------------------    if ( *(&GpioDataRegs+1)&0x8000u ) goto g11;
-	.dwpsn	"Motor.c",240,5
+;*** 243	-----------------------    VFDPrintf("M%3u|C%2lu", SECOND_MARK_U16_CNT-1u, CROSS_PLUS_SEARCH_U32);
+;*** 246	-----------------------    if ( *(&GpioDataRegs+1)&0x8000u ) goto g11;
+	.dwpsn	"Motor.c",243,5
         MOVW      DP,#_SECOND_MARK_U16_CNT
-        MOVL      XAR4,#FSL2            ; |240| 
-        MOV       AL,@_SECOND_MARK_U16_CNT ; |240| 
-        MOVL      *-SP[2],XAR4          ; |240| 
+        MOVL      XAR4,#FSL2            ; |243| 
+        MOV       AL,@_SECOND_MARK_U16_CNT ; |243| 
+        MOVL      *-SP[2],XAR4          ; |243| 
         ADDB      AL,#-1
         MOVW      DP,#_CROSS_PLUS_SEARCH_U32
-        MOV       *-SP[3],AL            ; |240| 
-        MOVL      ACC,@_CROSS_PLUS_SEARCH_U32 ; |240| 
-        MOVL      *-SP[6],ACC           ; |240| 
-        LCR       #_VFDPrintf           ; |240| 
-        ; call occurs [#_VFDPrintf] ; |240| 
-	.dwpsn	"Motor.c",243,6
+        MOV       *-SP[3],AL            ; |243| 
+        MOVL      ACC,@_CROSS_PLUS_SEARCH_U32 ; |243| 
+        MOVL      *-SP[6],ACC           ; |243| 
+        LCR       #_VFDPrintf           ; |243| 
+        ; call occurs [#_VFDPrintf] ; |243| 
+	.dwpsn	"Motor.c",246,6
         MOVW      DP,#_GpioDataRegs+1
-        TBIT      @_GpioDataRegs+1,#15  ; |243| 
-        BF        L59,TC                ; |243| 
-        ; branchcc occurs ; |243| 
+        TBIT      @_GpioDataRegs+1,#15  ; |246| 
+        BF        L59,TC                ; |246| 
+        ; branchcc occurs ; |246| 
 DW$L$_END_STOP$11$E:
-;*** 243	-----------------------    goto g20;
+;*** 246	-----------------------    goto g20;
 ;***	-----------------------g13:
 ;***  	-----------------------    #pragma LOOP_FLAGS(5376u)
-        BF        L63,UNC               ; |243| 
-        ; branch occurs ; |243| 
+        BF        L63,UNC               ; |246| 
+        ; branch occurs ; |246| 
 L60:    
 DW$L$_END_STOP$13$B:
 ;***	-----------------------g14:
-;*** 220	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g20;
-	.dwpsn	"Motor.c",220,10
+;*** 223	-----------------------    if ( !(*(&CpuTimer0Regs+4L)&0x10u) ) goto g20;
+	.dwpsn	"Motor.c",223,10
         MOVW      DP,#_CpuTimer0Regs+4
-        TBIT      @_CpuTimer0Regs+4,#4  ; |220| 
-        BF        L63,NTC               ; |220| 
-        ; branchcc occurs ; |220| 
+        TBIT      @_CpuTimer0Regs+4,#4  ; |223| 
+        BF        L63,NTC               ; |223| 
+        ; branchcc occurs ; |223| 
 DW$L$_END_STOP$13$E:
 DW$L$_END_STOP$14$B:
-;*** 221	-----------------------    VFDPrintf("M%3u|C%2lu", MARK_U16_CNT, CROSS_PLUS_SEARCH_U32);
-;*** 222	-----------------------    DSP28x_usDelay(7999998uL);
-;*** 223	-----------------------    VFDPrintf("<-N  S->");
-;*** 224	-----------------------    DSP28x_usDelay(3999998uL);
-;*** 226	-----------------------    C$1 = &GpioDataRegs;
-;*** 226	-----------------------    if ( !(*C$1&0x4000u) ) goto g18;
-	.dwpsn	"Motor.c",221,5
+;*** 224	-----------------------    VFDPrintf("M%3u|C%2lu", MARK_U16_CNT, CROSS_PLUS_SEARCH_U32);
+;*** 225	-----------------------    DSP28x_usDelay(7999998uL);
+;*** 226	-----------------------    VFDPrintf("<-N  S->");
+;*** 227	-----------------------    DSP28x_usDelay(3999998uL);
+;*** 229	-----------------------    C$1 = &GpioDataRegs;
+;*** 229	-----------------------    if ( !(*C$1&0x4000u) ) goto g18;
+	.dwpsn	"Motor.c",224,5
         MOVW      DP,#_MARK_U16_CNT
-        MOVL      XAR4,#FSL2            ; |221| 
-        MOV       AL,@_MARK_U16_CNT     ; |221| 
-        MOVL      *-SP[2],XAR4          ; |221| 
+        MOVL      XAR4,#FSL2            ; |224| 
+        MOV       AL,@_MARK_U16_CNT     ; |224| 
+        MOVL      *-SP[2],XAR4          ; |224| 
         MOVW      DP,#_CROSS_PLUS_SEARCH_U32
-        MOV       *-SP[3],AL            ; |221| 
-        MOVL      ACC,@_CROSS_PLUS_SEARCH_U32 ; |221| 
-        MOVL      *-SP[6],ACC           ; |221| 
-        LCR       #_VFDPrintf           ; |221| 
-        ; call occurs [#_VFDPrintf] ; |221| 
-	.dwpsn	"Motor.c",222,5
+        MOV       *-SP[3],AL            ; |224| 
+        MOVL      ACC,@_CROSS_PLUS_SEARCH_U32 ; |224| 
+        MOVL      *-SP[6],ACC           ; |224| 
+        LCR       #_VFDPrintf           ; |224| 
+        ; call occurs [#_VFDPrintf] ; |224| 
+	.dwpsn	"Motor.c",225,5
         MOV       AL,#4606
         MOV       AH,#122
-        LCR       #_DSP28x_usDelay      ; |222| 
-        ; call occurs [#_DSP28x_usDelay] ; |222| 
-	.dwpsn	"Motor.c",223,5
-        MOVL      XAR4,#FSL3            ; |223| 
-        MOVL      *-SP[2],XAR4          ; |223| 
-        LCR       #_VFDPrintf           ; |223| 
-        ; call occurs [#_VFDPrintf] ; |223| 
-	.dwpsn	"Motor.c",224,5
+        LCR       #_DSP28x_usDelay      ; |225| 
+        ; call occurs [#_DSP28x_usDelay] ; |225| 
+	.dwpsn	"Motor.c",226,5
+        MOVL      XAR4,#FSL3            ; |226| 
+        MOVL      *-SP[2],XAR4          ; |226| 
+        LCR       #_VFDPrintf           ; |226| 
+        ; call occurs [#_VFDPrintf] ; |226| 
+	.dwpsn	"Motor.c",227,5
         MOV       AL,#2302
         MOV       AH,#61
-        LCR       #_DSP28x_usDelay      ; |224| 
-        ; call occurs [#_DSP28x_usDelay] ; |224| 
-	.dwpsn	"Motor.c",226,5
-        MOVL      XAR4,#_GpioDataRegs   ; |226| 
-        TBIT      *+XAR4[0],#14         ; |226| 
-        BF        L61,NTC               ; |226| 
-        ; branchcc occurs ; |226| 
+        LCR       #_DSP28x_usDelay      ; |227| 
+        ; call occurs [#_DSP28x_usDelay] ; |227| 
+	.dwpsn	"Motor.c",229,5
+        MOVL      XAR4,#_GpioDataRegs   ; |229| 
+        TBIT      *+XAR4[0],#14         ; |229| 
+        BF        L61,NTC               ; |229| 
+        ; branchcc occurs ; |229| 
 DW$L$_END_STOP$14$E:
 DW$L$_END_STOP$15$B:
-;*** 232	-----------------------    if ( C$1[1]&0x4000u ) goto g14;
-	.dwpsn	"Motor.c",232,10
-        TBIT      *+XAR4[1],#14         ; |232| 
-        BF        L60,TC                ; |232| 
-        ; branchcc occurs ; |232| 
+;*** 235	-----------------------    if ( C$1[1]&0x4000u ) goto g14;
+	.dwpsn	"Motor.c",235,10
+        TBIT      *+XAR4[1],#14         ; |235| 
+        BF        L60,TC                ; |235| 
+        ; branchcc occurs ; |235| 
 DW$L$_END_STOP$15$E:
-;*** 233	-----------------------    VFDPrintf("saveNONE");
-;*** 234	-----------------------    goto g20;
-	.dwpsn	"Motor.c",233,6
-        MOVL      XAR4,#FSL4            ; |233| 
-        MOVL      *-SP[2],XAR4          ; |233| 
-        LCR       #_VFDPrintf           ; |233| 
-        ; call occurs [#_VFDPrintf] ; |233| 
-	.dwpsn	"Motor.c",234,6
-        BF        L63,UNC               ; |234| 
-        ; branch occurs ; |234| 
+;*** 236	-----------------------    VFDPrintf("saveNONE");
+;*** 237	-----------------------    goto g20;
+	.dwpsn	"Motor.c",236,6
+        MOVL      XAR4,#FSL4            ; |236| 
+        MOVL      *-SP[2],XAR4          ; |236| 
+        LCR       #_VFDPrintf           ; |236| 
+        ; call occurs [#_VFDPrintf] ; |236| 
+	.dwpsn	"Motor.c",237,6
+        BF        L63,UNC               ; |237| 
+        ; branch occurs ; |237| 
 L61:    
 ;***	-----------------------g18:
-;*** 227	-----------------------    VFDPrintf("lineSAVE");
-;*** 228	-----------------------    save_mark_rom();
-;*** 229	-----------------------    save_line_info_rom();
-;*** 230	-----------------------    goto g20;
-	.dwpsn	"Motor.c",227,6
-        MOVL      XAR4,#FSL5            ; |227| 
-        MOVL      *-SP[2],XAR4          ; |227| 
-        LCR       #_VFDPrintf           ; |227| 
-        ; call occurs [#_VFDPrintf] ; |227| 
-	.dwpsn	"Motor.c",228,6
-        LCR       #_save_mark_rom       ; |228| 
-        ; call occurs [#_save_mark_rom] ; |228| 
-	.dwpsn	"Motor.c",229,6
-        LCR       #_save_line_info_rom  ; |229| 
-        ; call occurs [#_save_line_info_rom] ; |229| 
+;*** 230	-----------------------    VFDPrintf("lineSAVE");
+;*** 231	-----------------------    save_mark_rom();
+;*** 232	-----------------------    save_line_info_rom();
+;*** 233	-----------------------    goto g20;
 	.dwpsn	"Motor.c",230,6
-        BF        L63,UNC               ; |230| 
-        ; branch occurs ; |230| 
+        MOVL      XAR4,#FSL5            ; |230| 
+        MOVL      *-SP[2],XAR4          ; |230| 
+        LCR       #_VFDPrintf           ; |230| 
+        ; call occurs [#_VFDPrintf] ; |230| 
+	.dwpsn	"Motor.c",231,6
+        LCR       #_save_mark_rom       ; |231| 
+        ; call occurs [#_save_mark_rom] ; |231| 
+	.dwpsn	"Motor.c",232,6
+        LCR       #_save_line_info_rom  ; |232| 
+        ; call occurs [#_save_line_info_rom] ; |232| 
+	.dwpsn	"Motor.c",233,6
+        BF        L63,UNC               ; |233| 
+        ; branch occurs ; |233| 
 L62:    
 ;***	-----------------------g19:
-;*** 218	-----------------------    VFDPrintf("runERROR");
-	.dwpsn	"Motor.c",218,4
-        MOVL      XAR4,#FSL6            ; |218| 
-        MOVL      *-SP[2],XAR4          ; |218| 
-        LCR       #_VFDPrintf           ; |218| 
-        ; call occurs [#_VFDPrintf] ; |218| 
+;*** 221	-----------------------    VFDPrintf("runERROR");
+	.dwpsn	"Motor.c",221,4
+        MOVL      XAR4,#FSL6            ; |221| 
+        MOVL      *-SP[2],XAR4          ; |221| 
+        LCR       #_VFDPrintf           ; |221| 
+        ; call occurs [#_VFDPrintf] ; |221| 
 L63:    
 ;***	-----------------------g20:
-;*** 254	-----------------------    DSP28x_usDelay(2499998uL);
-;*** 255	-----------------------    VFDPrintf("T %3lf", (float)TIME_INDEX_U32*5.00000023748725652695e-4F);
-;*** 257	-----------------------    return 1u;
-	.dwpsn	"Motor.c",254,3
+;*** 257	-----------------------    DSP28x_usDelay(2499998uL);
+;*** 258	-----------------------    VFDPrintf("T %3lf", (float)TIME_INDEX_U32*5.00000023748725652695e-4F);
+;*** 260	-----------------------    return 1u;
+	.dwpsn	"Motor.c",257,3
         MOV       AL,#9630
         MOV       AH,#38
-        LCR       #_DSP28x_usDelay      ; |254| 
-        ; call occurs [#_DSP28x_usDelay] ; |254| 
-	.dwpsn	"Motor.c",255,3
+        LCR       #_DSP28x_usDelay      ; |257| 
+        ; call occurs [#_DSP28x_usDelay] ; |257| 
+	.dwpsn	"Motor.c",258,3
         MOVW      DP,#_TIME_INDEX_U32
-        MOVL      ACC,@_TIME_INDEX_U32  ; |255| 
-        LCR       #UL$$TOFS             ; |255| 
-        ; call occurs [#UL$$TOFS] ; |255| 
-        MOVL      XAR6,ACC              ; |255| 
+        MOVL      ACC,@_TIME_INDEX_U32  ; |258| 
+        LCR       #UL$$TOFS             ; |258| 
+        ; call occurs [#UL$$TOFS] ; |258| 
+        MOVL      XAR6,ACC              ; |258| 
         MOV       AL,#4719
         MOV       AH,#14851
-        MOVL      *-SP[2],ACC           ; |255| 
-        MOVL      ACC,XAR6              ; |255| 
-        LCR       #FS$$MPY              ; |255| 
-        ; call occurs [#FS$$MPY] ; |255| 
-        MOVL      XAR4,#FSL7            ; |255| 
-        MOVL      *-SP[2],XAR4          ; |255| 
-        MOVL      *-SP[4],ACC           ; |255| 
-        LCR       #_VFDPrintf           ; |255| 
-        ; call occurs [#_VFDPrintf] ; |255| 
-	.dwpsn	"Motor.c",257,3
-        MOVB      AL,#1                 ; |257| 
+        MOVL      *-SP[2],ACC           ; |258| 
+        MOVL      ACC,XAR6              ; |258| 
+        LCR       #FS$$MPY              ; |258| 
+        ; call occurs [#FS$$MPY] ; |258| 
+        MOVL      XAR4,#FSL7            ; |258| 
+        MOVL      *-SP[2],XAR4          ; |258| 
+        MOVL      *-SP[4],ACC           ; |258| 
+        LCR       #_VFDPrintf           ; |258| 
+        ; call occurs [#_VFDPrintf] ; |258| 
+	.dwpsn	"Motor.c",260,3
+        MOVB      AL,#1                 ; |260| 
 L64:    
-	.dwpsn	"Motor.c",261,1
-        SUBB      SP,#6                 ; |257| 
+	.dwpsn	"Motor.c",264,1
+        SUBB      SP,#6                 ; |260| 
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
 
 DW$121	.dwtag  DW_TAG_loop
-	.dwattr DW$121, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L60:1:1657044090")
+	.dwattr DW$121, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L60:1:1657090428")
 	.dwattr DW$121, DW_AT_begin_file("Motor.c")
-	.dwattr DW$121, DW_AT_begin_line(0xdc)
-	.dwattr DW$121, DW_AT_end_line(0xec)
+	.dwattr DW$121, DW_AT_begin_line(0xdf)
+	.dwattr DW$121, DW_AT_end_line(0xef)
 DW$122	.dwtag  DW_TAG_loop_range
 	.dwattr DW$122, DW_AT_low_pc(DW$L$_END_STOP$13$B)
 	.dwattr DW$122, DW_AT_high_pc(DW$L$_END_STOP$13$E)
@@ -2799,10 +2811,10 @@ DW$124	.dwtag  DW_TAG_loop_range
 
 
 DW$125	.dwtag  DW_TAG_loop
-	.dwattr DW$125, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L59:1:1657044090")
+	.dwattr DW$125, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L59:1:1657090428")
 	.dwattr DW$125, DW_AT_begin_file("Motor.c")
-	.dwattr DW$125, DW_AT_begin_line(0xef)
-	.dwattr DW$125, DW_AT_end_line(0xf4)
+	.dwattr DW$125, DW_AT_begin_line(0xf2)
+	.dwattr DW$125, DW_AT_end_line(0xf7)
 DW$126	.dwtag  DW_TAG_loop_range
 	.dwattr DW$126, DW_AT_low_pc(DW$L$_END_STOP$10$B)
 	.dwattr DW$126, DW_AT_high_pc(DW$L$_END_STOP$10$E)
@@ -2813,10 +2825,10 @@ DW$127	.dwtag  DW_TAG_loop_range
 
 
 DW$128	.dwtag  DW_TAG_loop
-	.dwattr DW$128, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L58:1:1657044090")
+	.dwattr DW$128, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\Motor.asm:L58:1:1657090428")
 	.dwattr DW$128, DW_AT_begin_file("Motor.c")
-	.dwattr DW$128, DW_AT_begin_line(0xf7)
-	.dwattr DW$128, DW_AT_end_line(0xfc)
+	.dwattr DW$128, DW_AT_begin_line(0xfa)
+	.dwattr DW$128, DW_AT_end_line(0xff)
 DW$129	.dwtag  DW_TAG_loop_range
 	.dwattr DW$129, DW_AT_low_pc(DW$L$_END_STOP$7$B)
 	.dwattr DW$129, DW_AT_high_pc(DW$L$_END_STOP$7$E)
@@ -2826,7 +2838,7 @@ DW$130	.dwtag  DW_TAG_loop_range
 	.dwendtag DW$128
 
 	.dwattr DW$119, DW_AT_end_file("Motor.c")
-	.dwattr DW$119, DW_AT_end_line(0x105)
+	.dwattr DW$119, DW_AT_end_line(0x108)
 	.dwattr DW$119, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$119

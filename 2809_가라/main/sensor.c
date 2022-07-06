@@ -402,52 +402,34 @@ void HANDLE()
 	HanPID.Pos_Err_IQ10[2] = HanPID.Pos_Err_IQ10[1];
 	HanPID.Pos_Err_IQ10[1] = SenAdc.PositionTemporary_IQ10;
 	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[2] - HanPID.Pos_Err_IQ10[1];
-/*
-	HanPID.Pos_Err_IQ10[1] = (	(HanPID.Pos_Err_IQ10[4] << 2) 
-								+ (HanPID.Pos_Err_IQ10[3] << 2) 
-								+ (HanPID.Pos_Err_IQ10[2] << 1) 
-								+ (HanPID.Pos_Err_IQ10[1] << 1) 
-								+ HanPID.Pos_Err_IQ10[0] 
-								+ SenAdc.PositionTemporary_IQ10	) >> 4;
-*/
+
 	HanPID.Pos_P_IQ17 = _IQ17mpyIQX(PID_Kp_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
 
 	HanPID.Pos_D_IQ17 = _IQ17mpyIQX(PID_Kd_IQ17, 17, HanPID.Pos_Err_IQ10[0], 10);
 
-	HanPID.Pos_PID_IQ17 = (HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17) >> 2;
-/*
-	if(HanPID.Pos_PID_IQ17 > _IQ10(0.0))			// Right curve
+	HanPID.Pos_PID_IQ17 = _IQ17div((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17) >> 1, _IQ17(1000.0));
+
+	if(HanPID.Pos_PID_IQ17 > _IQ17(0.0))			// Right curve
 	{
-		//RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
-		//LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
-		//RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(RMotor.TargetVel_IQ17, HANDLE_DEC_IQ17));
-		//LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(LMotor.TargetVel_IQ17, HANDLE_ACC_IQ17));
-		RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
-		LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
+		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+		LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
+
+		if(LMotor.TargetHandle_IQ17 <= _IQ17(0.0))
+			LMotor.TargetHandle_IQ17 = _IQ17(0.0);
 	}
-	
 	else if(HanPID.Pos_PID_IQ17 < _IQ10(0.0))		// left curve
 	{
-		//RMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(-MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
-		//LMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ7(_IQ10div(SenAdc.PositionTemporary_IQ10, _IQ10(-MAX_POSITION))), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
-		//RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(RMotor.TargetVel_IQ17, HANDLE_ACC_IQ17));
-		//LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(LMotor.TargetVel_IQ17, HANDLE_DEC_IQ17));
-		RMotor.TargetHandle_IQ17 = -_IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_ACC_IQ17));
-		LMotor.TargetHandle_IQ17 = _IQ17mpy(_IQ17div(HanPID.Pos_PID_IQ17, _IQ17(MAX_POSITION)), _IQ17mpy(MAX_VELO_IQ17, HANDLE_DEC_IQ17));
+		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
+		LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+
+		if(RMotor.TargetHandle_IQ17 <= _IQ17(0.0))
+			RMotor.TargetHandle_IQ17 = _IQ17(0.0);
 	}
 	else													// Straight
 	{
-		RMotor.TargetHandle_IQ17 = _IQ17(0.0);	
-		LMotor.TargetHandle_IQ17 = _IQ17(0.0);
+		RMotor.TargetHandle_IQ17 = _IQ17(1.0);	
+		LMotor.TargetHandle_IQ17 = _IQ17(1.0);
 	}
-*/
-	RMotor.TargetHandle_IQ17 = _IQ17mpy((MAX_VELO_IQ17 - RMotor.NextVelocity_IQ17), _IQ16div(HanPID.Pos_PID_IQ17, HanPID.Pos_PID_IQ17 - _IQ16(MAX_POSITION)) << 1);
-	LMotor.TargetHandle_IQ17 = _IQ17mpy((MAX_VELO_IQ17 - LMotor.NextVelocity_IQ17), _IQ16div(HanPID.Pos_PID_IQ17, HanPID.Pos_PID_IQ17 + _IQ16(MAX_POSITION)) << 1);
-
-	if((RMotor.TargetHandle_IQ17 + RMotor.NextVelocity_IQ17) > MAX_VELO_IQ17)		RMotor.TargetHandle_IQ17 = MAX_VELO_IQ17 - RMotor.NextVelocity_IQ17;
-	else if((RMotor.TargetHandle_IQ17 + RMotor.NextVelocity_IQ17) < MIN_VELO_IQ17)	RMotor.TargetHandle_IQ17 = MIN_VELO_IQ17 - RMotor.NextVelocity_IQ17;
-	if((LMotor.TargetHandle_IQ17 + LMotor.NextVelocity_IQ17) > MAX_VELO_IQ17)		LMotor.TargetHandle_IQ17 = MAX_VELO_IQ17 - LMotor.NextVelocity_IQ17;
-	else if((LMotor.TargetHandle_IQ17 + LMotor.NextVelocity_IQ17) < MIN_VELO_IQ17)	LMotor.TargetHandle_IQ17 = MIN_VELO_IQ17 - LMotor.NextVelocity_IQ17;
 }
 
 void MARK_ENABLE_SHIFT(TURNMARK *left, TURNMARK *right)

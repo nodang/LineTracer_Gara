@@ -48,6 +48,9 @@ void Init_RUN()
 	//HandleAccel_IQ28 = HandleAcc_IQ28 + _IQ28(((float32)HandleAcc_U16_CNT - 3000.0) * (0.0000001));
 	//HandleDecel_IQ28 = HandleDec_IQ28 + _IQ28(((float32)HandleDec_U16_CNT - 2000.0) * (0.000001));
 
+	//sla7052m ÀÌÈÄ
+	//2000	Acc = 0.0000300		Dec = 0.000700
+
 	TIME_INDEX_U32 = 0;
 	STOP_TIME_INDEX_U32 = 0;
 
@@ -112,9 +115,14 @@ void RUN(Uint16 number)
 		//TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
 		//TxPrintf("%lf %lf\n", _IQ15toF(SenAdc.Theta_IQ15),  _IQ15toF(RMotor.CurveDist_IQ15));
 		//TxPrintf("%lf\n", _IQ15toF(_IQ15mpy(SenAdc.Theta_IQ15, _IQ15(57.295))));
-		//TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld\n", 
-		//		 LMotor.AccelLimit_IQ16 >> 16, LMotor.NextAccel_IQ16 >> 16, LMotor.NextVelocity_IQ17 >> 17, LMotor.TargetVel_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17);
 
+
+		//TxPrintf("%6lf %6lf\n", _IQ17toF(LMotor.TargetHandle_IQ17), _IQ17toF(RMotor.TargetHandle_IQ17));
+		//TxPrintf("%6ld %d %6ld %d\n", LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV, RMotor.PrdNext_IQ14 >> 14, EPwm1Regs.TBCTL.bit.CLKDIV);
+#if 0
+		TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld\n", 
+				 LMotor.AccelLimit_IQ16 >> 16, LMotor.NextAccel_IQ16 >> 16, LMotor.NextVelocity_IQ17 >> 17, LMotor.TargetVel_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17);
+#endif
 		
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 

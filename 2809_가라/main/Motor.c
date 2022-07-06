@@ -77,14 +77,17 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 			pM->NextAccel_IQ16 = _IQ16(0.0);
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17 + pM->TargetHandle_IQ17;
+	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17;
 
 	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17)
 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
 	else
+		
 		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
 
-	//if(Flag.MoveState_U16 == ON && pM->PrdNextTranSecon_IQ17 > _IQ17(6.5535))		pM->PrdNextTranSecon_IQ17 = _IQ17(6.5535);
+	pM->PrdNextTranSecon_IQ17 = _IQ17mpy(pM->PrdNextTranSecon_IQ17, pM->TargetHandle_IQ17);
+	//if(pM->PrdNextTranSecon_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)		
+	//	pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
 	
 	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNextTranSecon_IQ17, 17);
 	

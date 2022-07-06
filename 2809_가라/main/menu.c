@@ -216,19 +216,19 @@ static void HAN()
 		switch(m_sw_cnt)
 		{
 		case 0:
-			VFDPrintf("%2ldA%.3lf", (int32)ACCEL_COEF_I32, _IQ17toF(HANDLE_ACC_IQ17));
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	ACCEL_COEF_I32++; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	ACCEL_COEF_I32--; }
+			VFDPrintf("ACC %+4ld", (int32)ACCEL_COEF_I32);
+			if(!SW_R)	{ DELAY_US(62500);	ACCEL_COEF_I32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	ACCEL_COEF_I32--; }
 			break;
 		case 1:
-			VFDPrintf("%2ldD%.3lf", (int32)DECEL_COEF_I32, _IQ17toF(HANDLE_DEC_IQ17));
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	DECEL_COEF_I32++; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	DECEL_COEF_I32--; }
+			VFDPrintf("DEC %+4ld", (int32)DECEL_COEF_I32);
+			if(!SW_R)	{ DELAY_US(62500);	DECEL_COEF_I32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	DECEL_COEF_I32--; }
 			break;
 		case 2:
 			VFDPrintf("POINT%3ld", (int32)ACC_DEC_POINT_COEF_I32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	ACC_DEC_POINT_COEF_I32++; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	ACC_DEC_POINT_COEF_I32--; }
+			if(!SW_R)	{ DELAY_US(62500);	ACC_DEC_POINT_COEF_I32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	ACC_DEC_POINT_COEF_I32--; }
 			break;
 		}
 		if(!SW_D)	
