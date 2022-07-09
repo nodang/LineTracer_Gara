@@ -254,7 +254,7 @@ static void hMOTtest()
 
 	while(SW_U)
 	{
-		TxPrintf("H: %lf  |  P: %.4lf  |  D: %.5lf\n", _IQ16toF(HanPID.Pos_PID_IQ17), _IQ17toF(PID_Kp_IQ17), _IQ17toF(PID_Kd_IQ17));
+		TxPrintf("H: %lf  |  P: %.4lf  |  D: %.5lf\n", _IQ17toF(HanPID.Pos_PID_IQ17), _IQ17toF(PID_Kp_IQ17), _IQ17toF(PID_Kd_IQ17));
 		//TxPrintf("%lf,%.4lf,%.5lf\n", _IQ17toF(HanPID.Pos_PID_IQ17), _IQ17toF(HanPID.Kp_IQ17), _IQ17toF(HanPID.Kd_IQ17));
 		
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
@@ -290,7 +290,6 @@ static void hMOTtest()
 	save_pid_rom();
 	DELAY_US(SW_DELAY);
 }
-
 
 static void SEARCH()		{	RUN(1);	while(SW_U);	DELAY_US(SW_DELAY);		}
 static void FAST()		{	RUN(2);	while(SW_U);	DELAY_US(SW_DELAY);		}

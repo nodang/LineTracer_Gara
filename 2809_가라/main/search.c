@@ -50,6 +50,9 @@ void Init_RUN()
 
 	//sla7052m ¿Ã»ƒ
 	//2000	Acc = 0.0000300		Dec = 0.000700
+	//2100	acc = 0.0000247		dec = 0.000590
+	//2200	acc = 0.0000293		dec = 0.000582
+	//2300	0					570
 
 	TIME_INDEX_U32 = 0;
 	STOP_TIME_INDEX_U32 = 0;
@@ -62,16 +65,11 @@ void Init_RUN()
 	ERROR_U16_FLAG = OFF;
 	CROSS_PLUS_SEARCH_U32 = 0;
 	CROSS_PLUS_U32 = 0;
-	
-	//GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+
 	GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 
-	EPwm1Regs.TBCTL.bit.CLKDIV = CLK_DIVISION_CONSTANT;
-	EPwm3Regs.TBCTL.bit.CLKDIV = CLK_DIVISION_CONSTANT;
-	
-	EPwm1Regs.TBPRD = (Uint16)MOTOR_PERIOD_MAXIMUM;
-	EPwm3Regs.TBPRD = (Uint16)MOTOR_PERIOD_MAXIMUM;
-
+	EPwm1Regs.TBCTL.bit.CLKDIV = EPwm3Regs.TBCTL.bit.CLKDIV = CLK_DIVISION_CONSTANT;	
+	EPwm1Regs.TBPRD = EPwm3Regs.TBPRD = (Uint16)MOTOR_PERIOD_MAXIMUM;
 }
 
 void RUN(Uint16 number)
@@ -83,14 +81,20 @@ void RUN(Uint16 number)
 	if(number != 1)	
 	{
 		load_line_info_rom();
+		if(TURN_COMPUTE_FUNC())		{ VFDPrintf("cptERROR");	return; }
 		
 		if(number == 2)
+		{
 			Flag.Fast_U16 = ON;
-		else
+			if(TURN_DIVISION_FUNC())	{ VFDPrintf("dvsERROR");	return; }
+		}
+		else if(number == 3)
+		{
 			Flag.Extrem_U16 = ON;
-
-		if(TURN_COMPUTE_FUNC())		{ VFDPrintf("cptERROR");	return; }
-		if(TURN_DIVISION_FUNC())	{ VFDPrintf("dvsERROR");	return; }
+			if(xTURN_DIVISION_FUNC())	{ VFDPrintf("dvsERROR");	return; }
+		}
+		else
+			return;
 	}
 	else 
 		Flag.Search_U16 = ON;

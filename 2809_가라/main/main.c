@@ -54,6 +54,7 @@ void Variable_Init( void )
 
 //-----------------------------------------------------//
 //	 MOTOR VAR
+	GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 
 	load_velocity_rom();
 	load_accel_rom();
