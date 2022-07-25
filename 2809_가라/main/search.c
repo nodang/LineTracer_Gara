@@ -54,14 +54,29 @@ void Init_RUN()
 	//2200	acc = 0.0000293		dec = 0.000582
 	//2300	0					570
 
+	//2200	260					250
+	//2200	330					205			2차 39.0
+	//2100	300					207			2차 40.5
+
+	//new tire
+	//2200  150					260
+	//2200	200					250			2차 잘안돼이ㅣㅇ
+	//2300	50					290			2200은 돼요40.7정도 
+	
 	TIME_INDEX_U32 = 0;
 	STOP_TIME_INDEX_U32 = 0;
 
+	memset((void *)&HanPID,0x00,sizeof(HANDLEPID));
 	memset((void *)Search,0x00,sizeof(TRACKINFO)*256);
 
 	MARK_U16_CNT = 0;
+	
 	SECOND_MARK_U16_CNT = 0;
+	
 	THIRD_MARK_U16_CNT = 0;
+	XRUN_DIST_IQ15 = 0;
+	SHIFT_DIST_IQ17 = _IQ17(0.0);
+	
 	ERROR_U16_FLAG = OFF;
 	CROSS_PLUS_SEARCH_U32 = 0;
 	CROSS_PLUS_U32 = 0;
@@ -106,7 +121,7 @@ void RUN(Uint16 number)
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
 	
-	MOVE_TO_MOVE(-1, _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+	MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
 
 	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 
@@ -119,9 +134,12 @@ void RUN(Uint16 number)
 		//TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
 		//TxPrintf("%lf %lf\n", _IQ15toF(SenAdc.Theta_IQ15),  _IQ15toF(RMotor.CurveDist_IQ15));
 		//TxPrintf("%lf\n", _IQ15toF(_IQ15mpy(SenAdc.Theta_IQ15, _IQ15(57.295))));
-
-
-		//TxPrintf("%6lf %6lf\n", _IQ17toF(LMotor.TargetHandle_IQ17), _IQ17toF(RMotor.TargetHandle_IQ17));
+#if 0
+		//TxPrintf("%6lf,%6lf\n", _IQ17toF(LMotor.NextVelocity_IQ17), _IQ17toF(RMotor.NextAccel_IQ16));
+		TxPrintf("%6lf,%6lf\n", _IQ17toF(_IQ17div(STEP_10000D_IQ17, LMotor.PrdNextTranSecon_IQ17)), _IQ17toF(_IQ17div(STEP_10000D_IQ17, RMotor.PrdNextTranSecon_IQ17)));
+		//TxPrintf("%6lf,%6lf\n", _IQ17toF(_IQ17div(STEP_10000D_IQ17, LMotor.PrdNextTranSecon_IQ17)), _IQ17toF(_IQ17div(LMotor.FinalVelo_IQ17, LMotor.TargetHandle_IQ17)));
+#endif
+		//TxPrintf("CNT: %u    KP: %lf\n",THIRD_MARK_U16_CNT, _IQ17toF(HanPID.Kp_val_IQ17));
 		//TxPrintf("%6ld %d %6ld %d\n", LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV, RMotor.PrdNext_IQ14 >> 14, EPwm1Regs.TBCTL.bit.CLKDIV);
 #if 0
 		TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld\n", 
@@ -131,6 +149,8 @@ void RUN(Uint16 number)
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
 		LMark.TurnmarkDistance_IQ17 = RMark.TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17 >> 1) + (LMotor.TurnMarkCheckDistance_IQ17 >> 1);
+		SHIFT_DIST_IQ17 = (LMotor.RolEachStep_IQ17 >> 1) + (RMotor.RolEachStep_IQ17 >> 1);
+		XRUN_DIST_IQ15 = (LMotor.GoneDistance_IQ15 >> 1) + (RMotor.GoneDistance_IQ15 >> 1);
 				
 		TURN_DECIDE(&RMark, &LMark);
 		TURN_DECIDE(&LMark, &RMark);
@@ -140,7 +160,7 @@ void RUN(Uint16 number)
 
 		if(ERROR_U16_FLAG)
 		{	
-			MOVE_TO_MOVE(-1, _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 16);
+			MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
 			Flag.Fast_U16 = OFF;
 			Flag.Extrem_U16 = OFF;
 			ERROR_U16_FLAG = OFF;
@@ -189,7 +209,11 @@ void LINE_PRINTF()
 	Flag.TxFlag_U16 = ON;
 
 	TURN_COMPUTE_FUNC();
-	TURN_DIVISION_FUNC();
+	
+	if(Flag.Extrem_U16)
+		xTURN_DIVISION_FUNC();
+	else
+		TURN_DIVISION_FUNC();
 
 	while(shutdown_U16)
 	{

@@ -21,6 +21,8 @@
 #define MAX_POSITION	12000
 #define MAX_STRAIGHT	1000
 
+#define MIN_MAXMIN		1024.0
+
 // ADC CHANNEL SORTING
 Uint32 adc_prog[16] = {	adc_channel0,	adc_channel1,	adc_channel2,	adc_channel3,
 						adc_channel4,	adc_channel5,	adc_channel6,	adc_channel7,
@@ -60,7 +62,6 @@ void Init_SENSOR()
 	memset((void *)SenAdc.Adc_U16,0x00,sizeof(Uint16)*16);
 	memset((void *)SenAdc.Div127_U16,0x00,sizeof(Uint16)*16);
 	memset((void *)SenAdc.AdcValue_U16,0x00,sizeof(Uint16)*16);
-	memset((void *)&HanPID,0x00,sizeof(HANDLEPID));
 	memset((void *)ARROW_ACTIVE_U16,0x00,sizeof(Uint16)*16);
 	memset((void *)ARROW_PASSIVE_U16,0x00,sizeof(Uint16)*16);
 	memset((void *)POSITION_WEIGHT_I32,0x00,sizeof(int32)*16);
@@ -230,7 +231,7 @@ void SENSOR_MAXMIN()
 			SenAdc.Max_U16[sensor_maxmin_count] -=	(SenAdc.Max_U16[sensor_maxmin_count] >> 1); 
 			SenAdc.Min_U16[sensor_maxmin_count] +=	(SenAdc.Min_U16[sensor_maxmin_count] >> 1);
 			
-			SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] =	((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	>=	_IQ17(1200.0)	?	
+			SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] =	((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	>=	_IQ17(MIN_MAXMIN)	?	
 															((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	:	_IQ17(-1.0);
 			save_sw += SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] == _IQ17(-1.0)	?	1	:	0;
 		}
@@ -242,7 +243,7 @@ void SENSOR_MAXMIN()
 			SenAdc.Max_U16[sensor_maxmin_count] -=	(SenAdc.Max_U16[sensor_maxmin_count] >> 3); 
 			SenAdc.Min_U16[sensor_maxmin_count] +=	(SenAdc.Min_U16[sensor_maxmin_count] >> 3);
 			
-			SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] =	((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	>=	_IQ17(1200.0)	?	
+			SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] =	((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	>=	_IQ17(MIN_MAXMIN)	?	
 															((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	:	_IQ17(-1.0);
 			save_sw += SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] == _IQ17(-1.0)	?	1	:	0;
 		}
@@ -254,7 +255,7 @@ void SENSOR_MAXMIN()
 			SenAdc.Max_U16[sensor_maxmin_count] -=	(SenAdc.Max_U16[sensor_maxmin_count] >> 2); 
 			SenAdc.Min_U16[sensor_maxmin_count] +=	(SenAdc.Min_U16[sensor_maxmin_count] >> 2);
 			
-			SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] =	((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	>=	_IQ17(1200.0)	?	
+			SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] =	((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	>=	_IQ17(MIN_MAXMIN)	?	
 															((((long)SenAdc.Max_U16[sensor_maxmin_count]) << 17) - (((long)SenAdc.Min_U16[sensor_maxmin_count]) << 17))	:	_IQ17(-1.0);
 			save_sw += SenAdc.MaxminusMin_IQ17[sensor_maxmin_count] == _IQ17(-1.0)	?	1	:	0;
 		}
@@ -393,9 +394,11 @@ void HANDLE()
 	HanPID.Pos_Err_IQ10[1] = SenAdc.PositionTemporary_IQ10;
 	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[2] - HanPID.Pos_Err_IQ10[1];
 
-	HanPID.Pos_P_IQ17 = _IQ17mpyIQX(PID_Kp_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
-
-	HanPID.Pos_D_IQ17 = _IQ17mpyIQX(PID_Kd_IQ17, 17, HanPID.Pos_Err_IQ10[0], 10);
+	//HanPID.Pos_P_IQ17 = _IQ17mpyIQX(PID_Kp_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
+	//HanPID.Pos_D_IQ17 = _IQ17mpyIQX(PID_Kd_IQ17, 17, HanPID.Pos_Err_IQ10[0], 10);
+	
+	HanPID.Pos_P_IQ17 = _IQ17mpyIQX(HanPID.Kp_val_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
+	HanPID.Pos_D_IQ17 = _IQ17mpyIQX(HanPID.Kd_val_IQ17, 17, HanPID.Pos_Err_IQ10[0], 10);
 
 	HanPID.Pos_PID_IQ17 = _IQ17div((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17), _IQ17(1000.0));
 

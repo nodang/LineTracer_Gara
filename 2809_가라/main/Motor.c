@@ -46,47 +46,37 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 {
 	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17) 
 	{
-		pM->NextVelocity_IQ17 += _IQ16mpy(_IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+		pM->NextVelocity_IQ17 += _IQ15mpy(_IQ14div(pM->NextAccel_IQ14, _IQ14(TEN_THOUSAND)) << 1, CPUTIMER_2_PRDdiv10000_IQ15) << 2;
 
 		if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)
 			pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;
 
-		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
+		pM->AccelLimit_IQ14 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 3;
 		
-		if(_IQ17abs(pM->NextVelocity_IQ17 - pM->TargetVel_IQ17) < _IQ16abs(_IQ16mpy(_IQ16div(pM->NextAccel_IQ16, pM->Jerk_IQ16), _IQ16div(pM->NextAccel_IQ16, _IQ16(TEN_THOUSAND))))) 
-		{
-			pM->NextAccel_IQ16 -= _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+		pM->NextAccel_IQ14 += _IQ14mpy(_IQ14abs(pM->Jerk_IQ14), CPUTIMER_2_PRDdiv10000_IQ14);
 
-			if(pM->NextAccel_IQ16 < _IQ16(0.0))
-				pM->NextAccel_IQ16 = _IQ16(0.0);
-		}
-		else 
-		{
-			pM->NextAccel_IQ16 += _IQ16mpy(_IQ16abs(pM->Jerk_IQ16), CPUTIMER_2_PRDdiv10000_IQ16);
-
-			if(pM->NextAccel_IQ16 > pM->AccelLimit_IQ16)
-				pM->NextAccel_IQ16 = pM->AccelLimit_IQ16;
-		}
+		if(pM->NextAccel_IQ14 > pM->AccelLimit_IQ14)
+			pM->NextAccel_IQ14 = pM->AccelLimit_IQ14;
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{		
-		pM->NextVelocity_IQ17 -= _IQ16mpy(_IQ16div(pM->DecelAccel_IQ16, _IQ16(TEN_THOUSAND)), CPUTIMER_2_PRDdiv10000_IQ16) << 1;
+		pM->NextVelocity_IQ17 -= _IQ15mpy(_IQ14div(pM->DecelAccel_IQ14, _IQ14(TEN_THOUSAND)) << 1, CPUTIMER_2_PRDdiv10000_IQ15) << 2;
 
 		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)
 			pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
 
-		pM->AccelLimit_IQ16 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 1;
+		pM->AccelLimit_IQ14 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 3;
 
-		if(pM->NextAccel_IQ16 > _IQ16(0.0))
-			pM->NextAccel_IQ16 = _IQ16(0.0);
+		if(pM->NextAccel_IQ14 > _IQ14(0.0))
+			pM->NextAccel_IQ14 = _IQ14(0.0);
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-	pM->FinalVelo_IQ17 = pM->NextVelocity_IQ17;
+	//pM->FinalVelo_IQ17 = _IQ17div(pM->NextVelocity_IQ17, pM->TargetHandle_IQ17);
 
-	if(pM->FinalVelo_IQ17 < MIN_VELO_IQ17)
+	if(pM->NextVelocity_IQ17 < MIN_VELO_IQ17)
 		pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
 	else
-		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->FinalVelo_IQ17);
+		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
 	
 	pM->PrdNextTranSecon_IQ17 	= _IQ17mpy(pM->PrdNextTranSecon_IQ17, pM->TargetHandle_IQ17);
 
@@ -112,26 +102,7 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	}
 	
 	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNextTranSecon_IQ17, 17);
-/*	
-	if(pM->PrdNext_IQ14	< _IQ14(MOTOR_PERIOD_MINIMUM))
-	{
-		//pM->PrdNext_IQ14 = _IQ14(MOTOR_PERIOD_MINIMUM);
-		if(clk > 0)
-		{
-			clk--;
-			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;
-		}
-	}
-	else if(pM->PrdNext_IQ14 > _IQ14(MOTOR_PERIOD_MAXIMUM))
-	{
-		//pM->PrdNext_IQ14 = _IQ14(MOTOR_PERIOD_MAXIMUM);
-		if(clk < CLK_DIVISION_CONSTANT)
-		{
-			clk++;
-			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;
-		}
-	}
-*/
+
 	pM->RolEachStep_IQ17	= _IQ17mpyIQX(STEP_D_IQ17, 17, _IQ13div(((long)CPUTIMER_2_RPD) << 13, pM->PrdNext_IQ14 >> 1) >> clk, 13);
 
 	pM->TurnMarkCheckDistance_IQ17 	+= pM->TurnMarkCheckDistance_IQ17 > _IQ17(16380.0) ? _IQ17(0.0) : pM->RolEachStep_IQ17;
@@ -144,7 +115,7 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	return clk;
 }
 
-void MOVE_TO_MOVE(int16 cnt, _iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq16 jerk)
+void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq14 jerk, _iq14 decel_acc)
 {	
 	StopCpuTimer2();
 
@@ -153,12 +124,8 @@ void MOVE_TO_MOVE(int16 cnt, _iq17 distance, _iq17 decel_distance, _iq17 target_
 	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = decel_distance;
 	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;	
 
-	RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(jerk, _IQ16(TEN_THOUSAND));
-	
-	if(cnt != -1)
-		RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = Search[cnt].Decel_IQ16;
-	else
-		RMotor.DecelAccel_IQ16 = LMotor.DecelAccel_IQ16 = MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, target_velocity);
+	RMotor.Jerk_IQ14 = LMotor.Jerk_IQ14 = _IQ14div(jerk, _IQ14(TEN_THOUSAND));
+	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = decel_acc;
 	
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
@@ -174,10 +141,10 @@ void MOVE_TO_END(_iq17 distance)
 	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = distance;
 	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;		
 
-	RMotor.Jerk_IQ16 = LMotor.Jerk_IQ16 = _IQ16div(((long)JERK_U32) << 16, _IQ16(TEN_THOUSAND));
+	RMotor.Jerk_IQ14 = LMotor.Jerk_IQ14 = _IQ14div(((long)JERK_U32) << 14, _IQ14(TEN_THOUSAND));
 
-	RMotor.DecelAccel_IQ16 = STOP_ACC_IQ16(RMotor.NextVelocity_IQ17);
-	LMotor.DecelAccel_IQ16 = STOP_ACC_IQ16(LMotor.NextVelocity_IQ17);
+	RMotor.DecelAccel_IQ14 = STOP_ACC_IQ14(RMotor.NextVelocity_IQ17);
+	LMotor.DecelAccel_IQ14 = STOP_ACC_IQ14(LMotor.NextVelocity_IQ17);
 
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 	
@@ -209,6 +176,7 @@ interrupt void MOTOR_ISR()
 	IER &= MINT14;
 	EINT;
 
+	xHANDLE();
 	HANDLE();
 		
 	// MOTOR CONTROL
@@ -314,7 +282,16 @@ void START_END_LINE()
 		else if(Flag.Fast_U16)
 			LINE_SECOND(&Search[SECOND_MARK_U16_CNT]);
 		else if(Flag.Extrem_U16)
+		{	
 			LINE_THIRD(&Search[THIRD_MARK_U16_CNT]);
+			/*
+			TRACKINFO *p_track = &Search[THIRD_MARK_U16_CNT];
+			MOVE_TO_MOVE( ((long)p_track->Distance_U32) << 17, p_track->DecelDistance_IQ17, p_track->Velo_IQ17, p_track->VeloOut_IQ17, p_track->Jerk_IQ14, p_track->Decel_IQ14 );
+
+			LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
+			CROSS_PLUS_U32 = 0;
+			*/
+		}
 	}
 	// 1 seconds / 0.0005 s => 500
 	else if((Flag.MoveState_U16) && (TIME_INDEX_U32 > (2000)))	{		
@@ -345,8 +322,8 @@ void SHUTDOWN()
 	while(1) 
 	{
 		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.AccelLimit_IQ16 >> 16);
-		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17)) {	
-
+		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17))
+		{	
 			STOP_TIME_INDEX_U32 = 0;
 			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 1000))		// 5.0 mm  = MINVEL(10 mm/s) * 0.5 s
 				POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
@@ -358,8 +335,8 @@ void SHUTDOWN()
 			StopCpuTimer2();
 			Flag.Motor_U16 = OFF;
 
-			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
 			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
+			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
 			
 			LED_R_OFF;
 			LED_L_OFF;

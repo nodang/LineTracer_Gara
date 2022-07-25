@@ -6,5 +6,7 @@
 
 extern void LINE_THIRD(TRACKINFO * LINE);
 extern Uint16 xTURN_DIVISION_FUNC();
+extern void xHANDLE();
+
 
 

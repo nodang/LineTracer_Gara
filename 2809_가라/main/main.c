@@ -60,6 +60,7 @@ void Variable_Init( void )
 	load_accel_rom();
 	load_handle_rom();
 	load_pid_rom();
+
 	//load_line_info_rom();
 //-----------------------------------------------------//
 	/*JERK_U32 = MOTOR_SPEED_U32 = SECOND_MAX_SPEED_U32 =  SECOND_CURVE_U32
