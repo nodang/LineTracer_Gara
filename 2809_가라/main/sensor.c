@@ -434,12 +434,12 @@ void MARK_ENABLE_SHIFT(TURNMARK *left, TURNMARK *right)
 
 void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 {
-	if(mark->SingleFlag_U16) {
-		if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17)	{
-			if(mark == &RMark)
-				LED_R_OFF;
-			else
-				LED_L_OFF;
+	if(mark->SingleFlag_U16)
+	{
+		if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17)
+		{
+			LED_R_OFF;
+			LED_L_OFF;
 			BUZ_OFF;
 
 			mark->SingleFlag_U16 = OFF;
@@ -496,7 +496,9 @@ void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 				LED_R_ON;
 			else
 				LED_L_ON;
-			BUZ_ON;
+
+			if(!Flag.Cross)
+				BUZ_ON;
 		}
 	}
 	// turnmark do not exist

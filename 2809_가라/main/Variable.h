@@ -152,7 +152,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define	STEP_10000D_IQ15	_IQ15(8246.680715)
 
 #define	HEIGHT_ME			300.0	//		208.0	//292.7		//300.0		// 약 255mm
-#define HEIGHT_SEEN			150.0	//191.0	//251.0		6센치 센서 체크중임		// sensor between motor weight center
+#define HEIGHT_SEEN			225.0	//191.0	//251.0		6센치 센서 체크중임		// sensor between motor weight center
 #define	HEIGHT_REARdiv2		104.0	//80.0
 
 #define CLK_DIVISION_CONSTANT		7	// 4 // 2
@@ -328,8 +328,6 @@ __VARIABLE_EXT__ _iq17	SHIFT_DIST_IQ17;
 #define	TURN_180_DIST	700
 #define	TURN_270_DIST	1000
 
-#define TURN_VALUE_THETA_IQ15(A, B)		 _IQ15mpy(_IQ15div(((long)(A - B)) << 15, _IQ16(HEIGHT_REARdiv2)),  _IQ15div(_IQ15(180.0), _IQ15(PI)))
-
 typedef struct
 {
 	Uint32	Distance_R_U32;
@@ -363,6 +361,7 @@ typedef struct
 }TRACKINFO;
 
 __VARIABLE_EXT__ TRACKINFO	Search[256];
+
 __VARIABLE_EXT__	Uint16	MARK_U16_CNT;
 __VARIABLE_EXT__ 	Uint16	SECOND_MARK_U16_CNT;		// 한 개 더 검출되는 것이 맞음 -1 해야함
 __VARIABLE_EXT__ 	Uint16	THIRD_MARK_U16_CNT;			// 한 개 더 검출되는 것이 맞음 -1 해야함

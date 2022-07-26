@@ -153,14 +153,17 @@ void MOVE_TO_END(_iq17 distance)
 
 inline void SECOND_DECEL_VALUE(MOTORCTRL *pRM, MOTORCTRL *pLM)
 {
-	if(pRM->DecelFlag_U16 || pLM->DecelFlag_U16) {
-		if(pRM->DecelDistance_IQ17 > pRM->ErrorDistance_IQ17) {
+	if(pRM->DecelFlag_U16 || pLM->DecelFlag_U16)
+	{
+		if(pRM->DecelDistance_IQ17 > pRM->ErrorDistance_IQ17)
+		{
 			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
 			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
 
 			pRM->DecelFlag_U16 = pLM->DecelFlag_U16 = OFF;
 		}
-		else if(pLM->DecelDistance_IQ17 > pLM->ErrorDistance_IQ17) {
+		else if(pLM->DecelDistance_IQ17 > pLM->ErrorDistance_IQ17)
+		{
 			pRM->TargetVel_IQ17 = pRM->DecelVelocity_IQ17;
 			pLM->TargetVel_IQ17 = pLM->DecelVelocity_IQ17;
 

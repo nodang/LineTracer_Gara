@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Mon Jul 25 20:56:29 2022                 *
+;* Date/Time created: Tue Jul 26 21:01:49 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -316,8 +316,8 @@ DW$68	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$68, DW_AT_type(*DW$T$160)
 	.dwattr DW$68, DW_AT_declaration(0x01)
 	.dwattr DW$68, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI26010 C:\Users\노호진\AppData\Local\Temp\TI2604 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI2602 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI2606 --object_file sensor.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI33210 C:\Users\노호진\AppData\Local\Temp\TI3324 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI3322 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI3326 --object_file sensor.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_MARK_ENABLE_SHIFT
 
@@ -462,7 +462,7 @@ DW$74	.dwtag  DW_TAG_subprogram, DW_AT_name("TURN_DECIDE"), DW_AT_symbol_name("_
 ;*                                                             *
 ;***************************************************************
 _TURN_DECIDE:
-;*** 437	-----------------------    if ( *((volatile unsigned * const)mark+7)&2u ) goto g11;
+;*** 437	-----------------------    if ( *((volatile unsigned * const)mark+7)&2u ) goto g12;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -497,7 +497,7 @@ DW$80	.dwtag  DW_TAG_variable, DW_AT_name("K$6"), DW_AT_symbol_name("K$6")
         ; branchcc occurs ; |437| 
 ;*** 479	-----------------------    K$6 = &RMark;
 ;*** 479	-----------------------    MARK_ENABLE_SHIFT(&LMark, K$6);
-;*** 482	-----------------------    if ( !((*mark).MarkEnable_U16&SENSOR_STATE_U16) ) goto g10;
+;*** 482	-----------------------    if ( !((*mark).MarkEnable_U16&SENSOR_STATE_U16) ) goto g11;
 	.dwpsn	"sensor.c",479,2
         MOVL      XAR4,#_RMark          ; |479| 
         MOVL      XAR5,XAR4             ; |479| 
@@ -511,12 +511,12 @@ DW$80	.dwtag  DW_TAG_variable, DW_AT_name("K$6"), DW_AT_symbol_name("K$6")
         AND       AL,*+XAR6[6]          ; |482| 
         BF        L7,EQ                 ; |482| 
         ; branchcc occurs ; |482| 
-;*** 483	-----------------------    if ( !(*((volatile unsigned * const)mark+7)&1u) ) goto g9;
+;*** 483	-----------------------    if ( !(*((volatile unsigned * const)mark+7)&1u) ) goto g10;
 	.dwpsn	"sensor.c",483,3
         TBIT      *+XAR6[7],#0          ; |483| 
         BF        L6,NTC                ; |483| 
         ; branchcc occurs ; |483| 
-;*** 491	-----------------------    if ( (*mark).TurnmarkDistance_IQ17 <= (*mark).LimitDistance_IQ17 ) goto g29;
+;*** 491	-----------------------    if ( (*mark).TurnmarkDistance_IQ17 <= (*mark).LimitDistance_IQ17 ) goto g30;
 	.dwpsn	"sensor.c",491,8
         MOVL      ACC,*+XAR6[2]         ; |491| 
         CMPL      ACC,*+XAR6[0]         ; |491| 
@@ -551,20 +551,26 @@ L4:
         OR        @_GpioDataRegs+10,#0x0004 ; |496| 
 L5:    
 ;***	-----------------------g8:
-;*** 499	-----------------------    *(&GpioDataRegs+10L) |= 1u;
-;*** 499	-----------------------    goto g29;
-	.dwpsn	"sensor.c",499,4
-        OR        @_GpioDataRegs+10,#0x0001 ; |499| 
-        BF        L15,UNC               ; |499| 
-        ; branch occurs ; |499| 
+;*** 496	-----------------------    if ( *&Flag&0x8u ) goto g30;
+        MOVW      DP,#_Flag
+        TBIT      @_Flag,#3             ; |496| 
+        BF        L15,TC                ; |496| 
+        ; branchcc occurs ; |496| 
+;*** 501	-----------------------    *(&GpioDataRegs+10L) |= 1u;
+;*** 501	-----------------------    goto g30;
+	.dwpsn	"sensor.c",501,5
+        MOVW      DP,#_GpioDataRegs+10
+        OR        @_GpioDataRegs+10,#0x0001 ; |501| 
+        BF        L15,UNC               ; |501| 
+        ; branch occurs ; |501| 
 L6:    
-;***	-----------------------g9:
+;***	-----------------------g10:
 ;*** 484	-----------------------    RMotor.TurnMarkCheckDistance_IQ17 = 0L;
 ;*** 485	-----------------------    LMotor.TurnMarkCheckDistance_IQ17 = 0L;
 ;*** 486	-----------------------    (*mark).TurnmarkDistance_IQ17 = 0L;
 ;*** 488	-----------------------    (*mark).LimitDistance_IQ17 = (*mark).TurnmarkDistance_IQ17+655360L;
 ;*** 489	-----------------------    *((volatile unsigned * const)mark+7) |= 1u;
-;*** 490	-----------------------    goto g29;
+;*** 490	-----------------------    goto g30;
 	.dwpsn	"sensor.c",484,4
         MOVB      ACC,#0
         MOVW      DP,#_RMotor+8
@@ -585,40 +591,40 @@ L6:
         BF        L15,UNC               ; |490| 
         ; branch occurs ; |490| 
 L7:    
-;***	-----------------------g10:
-;*** 504	-----------------------    (*mark).TurnmarkDistance_IQ17 = 0L;
-;*** 505	-----------------------    *((volatile unsigned * const)mark+7) &= 0xfffeu;
-;*** 505	-----------------------    goto g29;
-	.dwpsn	"sensor.c",504,3
-        MOVB      ACC,#0
-        MOVL      *+XAR6[0],ACC         ; |504| 
-	.dwpsn	"sensor.c",505,3
-        AND       *+XAR6[7],#0xfffe     ; |505| 
-        BF        L15,UNC               ; |505| 
-        ; branch occurs ; |505| 
-L8:    
 ;***	-----------------------g11:
-;*** 438	-----------------------    if ( (*mark).TurnmarkDistance_IQ17 > (*mark).LimitDistance_IQ17 ) goto g14;
+;*** 506	-----------------------    (*mark).TurnmarkDistance_IQ17 = 0L;
+;*** 507	-----------------------    *((volatile unsigned * const)mark+7) &= 0xfffeu;
+;*** 507	-----------------------    goto g30;
+	.dwpsn	"sensor.c",506,3
+        MOVB      ACC,#0
+        MOVL      *+XAR6[0],ACC         ; |506| 
+	.dwpsn	"sensor.c",507,3
+        AND       *+XAR6[7],#0xfffe     ; |507| 
+        BF        L15,UNC               ; |507| 
+        ; branch occurs ; |507| 
+L8:    
+;***	-----------------------g12:
+;*** 438	-----------------------    if ( (*mark).TurnmarkDistance_IQ17 > (*mark).LimitDistance_IQ17 ) goto g15;
 	.dwpsn	"sensor.c",438,3
         MOVL      ACC,*+XAR6[2]         ; |438| 
         CMPL      ACC,*+XAR6[0]         ; |438| 
         BF        L9,LT                 ; |438| 
         ; branchcc occurs ; |438| 
-;*** 473	-----------------------    if ( !(*((volatile unsigned * const)remark+7)&2u) ) goto g29;
+;*** 473	-----------------------    if ( !(*((volatile unsigned * const)remark+7)&2u) ) goto g30;
 	.dwpsn	"sensor.c",473,8
         TBIT      *+XAR5[7],#1          ; |473| 
         BF        L15,NTC               ; |473| 
         ; branchcc occurs ; |473| 
 ;*** 474	-----------------------    *((volatile unsigned * const)mark+7) |= 4u;
-;*** 474	-----------------------    goto g29;
+;*** 474	-----------------------    goto g30;
 	.dwpsn	"sensor.c",474,4
         OR        *+XAR6[7],#0x0004     ; |474| 
         BF        L15,UNC               ; |474| 
         ; branch occurs ; |474| 
 L9:    
-;***	-----------------------g14:
+;***	-----------------------g15:
 ;*** 439	-----------------------    K$6 = &RMark;
-;*** 439	-----------------------    if ( mark == K$6 ) goto g16;
+;*** 439	-----------------------    if ( mark == K$6 ) goto g17;
 	.dwpsn	"sensor.c",439,4
         MOVL      XAR4,#_RMark          ; |439| 
         MOVL      ACC,XAR4              ; |439| 
@@ -626,25 +632,25 @@ L9:
         BF        L10,EQ                ; |439| 
         ; branchcc occurs ; |439| 
 ;*** 442	-----------------------    *(&GpioDataRegs+12L) |= 2u;
-;*** 442	-----------------------    goto g17;
+;*** 442	-----------------------    goto g18;
 	.dwpsn	"sensor.c",442,5
         MOVW      DP,#_GpioDataRegs+12
         OR        @_GpioDataRegs+12,#0x0002 ; |442| 
         BF        L11,UNC               ; |442| 
         ; branch occurs ; |442| 
 L10:    
-;***	-----------------------g16:
+;***	-----------------------g17:
 ;*** 440	-----------------------    *(&GpioDataRegs+12L) |= 4u;
 	.dwpsn	"sensor.c",440,5
         MOVW      DP,#_GpioDataRegs+12
         OR        @_GpioDataRegs+12,#0x0004 ; |440| 
 L11:    
-;***	-----------------------g17:
+;***	-----------------------g18:
 ;*** 443	-----------------------    *(&GpioDataRegs+12L) |= 1u;
 ;*** 445	-----------------------    *((volatile unsigned * const)mark+7) &= 0xfffdu;
 ;*** 446	-----------------------    *((volatile unsigned * const)mark+7) &= 0xfffeu;
 ;*** 447	-----------------------    (*mark).TurnmarkDistance_IQ17 = 0L;
-;*** 450	-----------------------    if ( *((volatile unsigned * const)mark+7)&4u ) goto g26;
+;*** 450	-----------------------    if ( *((volatile unsigned * const)mark+7)&4u ) goto g27;
 	.dwpsn	"sensor.c",443,4
         OR        @_GpioDataRegs+12,#0x0001 ; |443| 
 	.dwpsn	"sensor.c",445,4
@@ -658,33 +664,33 @@ L11:
         TBIT      *+XAR6[7],#2          ; |450| 
         BF        L14,TC                ; |450| 
         ; branchcc occurs ; |450| 
-;*** 462	-----------------------    if ( !(*&Flag&1u) ) goto g29;
+;*** 462	-----------------------    if ( !(*&Flag&1u) ) goto g30;
 	.dwpsn	"sensor.c",462,5
         MOVW      DP,#_Flag
         TBIT      @_Flag,#0             ; |462| 
         BF        L15,NTC               ; |462| 
         ; branchcc occurs ; |462| 
-;*** 462	-----------------------    if ( *&Flag&0x8u ) goto g29;
+;*** 462	-----------------------    if ( *&Flag&0x8u ) goto g30;
         TBIT      @_Flag,#3             ; |462| 
         BF        L15,TC                ; |462| 
         ; branchcc occurs ; |462| 
-;*** 465	-----------------------    if ( *&Flag&0x40u ) goto g25;
+;*** 465	-----------------------    if ( *&Flag&0x40u ) goto g26;
 	.dwpsn	"sensor.c",465,5
         TBIT      @_Flag,#6             ; |465| 
         BF        L13,TC                ; |465| 
         ; branchcc occurs ; |465| 
-;*** 467	-----------------------    if ( *&Flag&0x80u ) goto g24;
+;*** 467	-----------------------    if ( *&Flag&0x80u ) goto g25;
 	.dwpsn	"sensor.c",467,10
         TBIT      @_Flag,#7             ; |467| 
         BF        L12,TC                ; |467| 
         ; branchcc occurs ; |467| 
-;*** 469	-----------------------    if ( !(*&Flag&0x100u) ) goto g29;
+;*** 469	-----------------------    if ( !(*&Flag&0x100u) ) goto g30;
 	.dwpsn	"sensor.c",469,10
         TBIT      @_Flag,#8             ; |469| 
         BF        L15,NTC               ; |469| 
         ; branchcc occurs ; |469| 
 ;*** 470	-----------------------    LINE_THIRD((long)THIRD_MARK_U16_CNT*36+&Search);
-;*** 470	-----------------------    goto g29;
+;*** 470	-----------------------    goto g30;
 	.dwpsn	"sensor.c",470,6
         MOVW      DP,#_THIRD_MARK_U16_CNT
         MOV       T,#36                 ; |470| 
@@ -696,9 +702,9 @@ L11:
         BF        L15,UNC               ; |470| 
         ; branch occurs ; |470| 
 L12:    
-;***	-----------------------g24:
+;***	-----------------------g25:
 ;*** 468	-----------------------    LINE_SECOND((long)SECOND_MARK_U16_CNT*36+&Search);
-;*** 468	-----------------------    goto g29;
+;*** 468	-----------------------    goto g30;
 	.dwpsn	"sensor.c",468,6
         MOVW      DP,#_SECOND_MARK_U16_CNT
         MOV       T,#36                 ; |468| 
@@ -710,9 +716,9 @@ L12:
         BF        L15,UNC               ; |468| 
         ; branch occurs ; |468| 
 L13:    
-;***	-----------------------g25:
+;***	-----------------------g26:
 ;*** 466	-----------------------    LINE_INFO(mark);
-;*** 466	-----------------------    goto g29;
+;*** 466	-----------------------    goto g30;
 	.dwpsn	"sensor.c",466,6
         MOVL      XAR4,XAR6             ; |466| 
         LCR       #_LINE_INFO           ; |466| 
@@ -720,33 +726,33 @@ L13:
         BF        L15,UNC               ; |466| 
         ; branch occurs ; |466| 
 L14:    
-;***	-----------------------g26:
+;***	-----------------------g27:
 ;*** 451	-----------------------    *((volatile unsigned * const)mark+7) &= 0xfffbu;
-;*** 453	-----------------------    if ( mark != K$6 ) goto g29;
+;*** 453	-----------------------    if ( mark != K$6 ) goto g30;
 	.dwpsn	"sensor.c",451,5
         AND       *+XAR6[7],#0xfffb     ; |451| 
 	.dwpsn	"sensor.c",453,5
         CMPL      ACC,XAR6              ; |453| 
         BF        L15,NEQ               ; |453| 
         ; branchcc occurs ; |453| 
-;*** 454	-----------------------    if ( *&Flag&0x8u ) goto g29;
+;*** 454	-----------------------    if ( *&Flag&0x8u ) goto g30;
 	.dwpsn	"sensor.c",454,6
         MOVW      DP,#_Flag
         TBIT      @_Flag,#3             ; |454| 
         BF        L15,TC                ; |454| 
         ; branchcc occurs ; |454| 
 ;*** 457	-----------------------    START_END_LINE();
-;***	-----------------------g29:
+;***	-----------------------g30:
 ;***  	-----------------------    return;
 	.dwpsn	"sensor.c",457,6
         LCR       #_START_END_LINE      ; |457| 
         ; call occurs [#_START_END_LINE] ; |457| 
 L15:    
-	.dwpsn	"sensor.c",507,1
+	.dwpsn	"sensor.c",509,1
         LRETR
         ; return occurs
 	.dwattr DW$74, DW_AT_end_file("sensor.c")
-	.dwattr DW$74, DW_AT_end_line(0x1fb)
+	.dwattr DW$74, DW_AT_end_line(0x1fd)
 	.dwattr DW$74, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$74
@@ -1757,7 +1763,7 @@ L51:
         ; return occurs
 
 DW$120	.dwtag  DW_TAG_loop
-	.dwattr DW$120, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L50:1:1658750189")
+	.dwattr DW$120, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L50:1:1658836909")
 	.dwattr DW$120, DW_AT_begin_file("sensor.c")
 	.dwattr DW$120, DW_AT_begin_line(0x11a)
 	.dwattr DW$120, DW_AT_end_line(0x12e)
@@ -1792,7 +1798,7 @@ DW$129	.dwtag  DW_TAG_loop_range
 
 
 DW$130	.dwtag  DW_TAG_loop
-	.dwattr DW$130, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L44:1:1658750189")
+	.dwattr DW$130, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L44:1:1658836909")
 	.dwattr DW$130, DW_AT_begin_file("sensor.c")
 	.dwattr DW$130, DW_AT_begin_line(0x110)
 	.dwattr DW$130, DW_AT_end_line(0x110)
@@ -1803,7 +1809,7 @@ DW$131	.dwtag  DW_TAG_loop_range
 
 
 DW$132	.dwtag  DW_TAG_loop
-	.dwattr DW$132, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L43:1:1658750189")
+	.dwattr DW$132, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L43:1:1658836909")
 	.dwattr DW$132, DW_AT_begin_file("sensor.c")
 	.dwattr DW$132, DW_AT_begin_line(0x10d)
 	.dwattr DW$132, DW_AT_end_line(0x10d)
@@ -1814,7 +1820,7 @@ DW$133	.dwtag  DW_TAG_loop_range
 
 
 DW$134	.dwtag  DW_TAG_loop
-	.dwattr DW$134, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L42:1:1658750189")
+	.dwattr DW$134, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L42:1:1658836909")
 	.dwattr DW$134, DW_AT_begin_file("sensor.c")
 	.dwattr DW$134, DW_AT_begin_line(0x10a)
 	.dwattr DW$134, DW_AT_end_line(0x10a)
@@ -1825,7 +1831,7 @@ DW$135	.dwtag  DW_TAG_loop_range
 
 
 DW$136	.dwtag  DW_TAG_loop
-	.dwattr DW$136, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L37:1:1658750189")
+	.dwattr DW$136, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L37:1:1658836909")
 	.dwattr DW$136, DW_AT_begin_file("sensor.c")
 	.dwattr DW$136, DW_AT_begin_line(0xe5)
 	.dwattr DW$136, DW_AT_end_line(0xed)
@@ -1851,7 +1857,7 @@ DW$142	.dwtag  DW_TAG_loop_range
 
 
 DW$143	.dwtag  DW_TAG_loop
-	.dwattr DW$143, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L32:1:1658750189")
+	.dwattr DW$143, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L32:1:1658836909")
 	.dwattr DW$143, DW_AT_begin_file("sensor.c")
 	.dwattr DW$143, DW_AT_begin_line(0xfd)
 	.dwattr DW$143, DW_AT_end_line(0x105)
@@ -1877,7 +1883,7 @@ DW$149	.dwtag  DW_TAG_loop_range
 
 
 DW$150	.dwtag  DW_TAG_loop
-	.dwattr DW$150, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L27:1:1658750189")
+	.dwattr DW$150, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L27:1:1658836909")
 	.dwattr DW$150, DW_AT_begin_file("sensor.c")
 	.dwattr DW$150, DW_AT_begin_line(0xf1)
 	.dwattr DW$150, DW_AT_end_line(0xf9)
@@ -1903,7 +1909,7 @@ DW$156	.dwtag  DW_TAG_loop_range
 
 
 DW$157	.dwtag  DW_TAG_loop
-	.dwattr DW$157, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L26:1:1658750189")
+	.dwattr DW$157, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L26:1:1658836909")
 	.dwattr DW$157, DW_AT_begin_file("sensor.c")
 	.dwattr DW$157, DW_AT_begin_line(0xe1)
 	.dwattr DW$157, DW_AT_end_line(0xe1)
@@ -1914,7 +1920,7 @@ DW$158	.dwtag  DW_TAG_loop_range
 
 
 DW$159	.dwtag  DW_TAG_loop
-	.dwattr DW$159, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L21:1:1658750189")
+	.dwattr DW$159, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L21:1:1658836909")
 	.dwattr DW$159, DW_AT_begin_file("sensor.c")
 	.dwattr DW$159, DW_AT_begin_line(0xd8)
 	.dwattr DW$159, DW_AT_end_line(0xdc)
@@ -1926,7 +1932,7 @@ DW$161	.dwtag  DW_TAG_loop_range
 	.dwattr DW$161, DW_AT_high_pc(DW$L$_SENSOR_MAXMIN$14$E)
 
 DW$162	.dwtag  DW_TAG_loop
-	.dwattr DW$162, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L22:2:1658750189")
+	.dwattr DW$162, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L22:2:1658836909")
 	.dwattr DW$162, DW_AT_begin_file("sensor.c")
 	.dwattr DW$162, DW_AT_begin_line(0xda)
 	.dwattr DW$162, DW_AT_end_line(0xdb)
@@ -1948,7 +1954,7 @@ DW$166	.dwtag  DW_TAG_loop_range
 
 
 DW$167	.dwtag  DW_TAG_loop
-	.dwattr DW$167, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L16:1:1658750189")
+	.dwattr DW$167, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L16:1:1658836909")
 	.dwattr DW$167, DW_AT_begin_file("sensor.c")
 	.dwattr DW$167, DW_AT_begin_line(0xce)
 	.dwattr DW$167, DW_AT_end_line(0xd2)
@@ -1960,7 +1966,7 @@ DW$169	.dwtag  DW_TAG_loop_range
 	.dwattr DW$169, DW_AT_high_pc(DW$L$_SENSOR_MAXMIN$7$E)
 
 DW$170	.dwtag  DW_TAG_loop
-	.dwattr DW$170, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L17:2:1658750189")
+	.dwattr DW$170, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L17:2:1658836909")
 	.dwattr DW$170, DW_AT_begin_file("sensor.c")
 	.dwattr DW$170, DW_AT_begin_line(0xd0)
 	.dwattr DW$170, DW_AT_end_line(0xd1)
@@ -2140,9 +2146,9 @@ DW$178	.dwtag  DW_TAG_subprogram, DW_AT_name("CROSS_CHECK"), DW_AT_symbol_name("
 	.dwattr DW$178, DW_AT_low_pc(_CROSS_CHECK$0)
 	.dwattr DW$178, DW_AT_high_pc(0x00)
 	.dwattr DW$178, DW_AT_begin_file("sensor.c")
-	.dwattr DW$178, DW_AT_begin_line(0x1fd)
+	.dwattr DW$178, DW_AT_begin_line(0x1ff)
 	.dwattr DW$178, DW_AT_begin_column(0x0d)
-	.dwpsn	"sensor.c",510,1
+	.dwpsn	"sensor.c",512,1
 
 	.dwfde DW$CIE
 
@@ -2162,11 +2168,11 @@ DW$178	.dwtag  DW_TAG_subprogram, DW_AT_name("CROSS_CHECK"), DW_AT_symbol_name("
 ;*                                                             *
 ;***************************************************************
 _CROSS_CHECK$0:
-;*** 511	-----------------------    state = 0u;
-;*** 512	-----------------------    condition1 = 0u;
-;*** 513	-----------------------    condition2 = 0u;
-;*** 514	-----------------------    condition3 = 0u;
-;*** 516	-----------------------    if ( SENSOR_ENABLE&0xfu ) goto g5;
+;*** 513	-----------------------    state = 0u;
+;*** 514	-----------------------    condition1 = 0u;
+;*** 515	-----------------------    condition2 = 0u;
+;*** 516	-----------------------    condition3 = 0u;
+;*** 518	-----------------------    if ( SENSOR_ENABLE&0xfu ) goto g5;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -2188,249 +2194,249 @@ DW$182	.dwtag  DW_TAG_variable, DW_AT_name("condition2"), DW_AT_symbol_name("_co
 DW$183	.dwtag  DW_TAG_variable, DW_AT_name("condition3"), DW_AT_symbol_name("_condition3")
 	.dwattr DW$183, DW_AT_type(*DW$T$25)
 	.dwattr DW$183, DW_AT_location[DW_OP_breg20 -4]
-	.dwpsn	"sensor.c",511,18
-        MOV       *-SP[1],#0            ; |511| 
-	.dwpsn	"sensor.c",512,18
-        MOV       *-SP[2],#0            ; |512| 
 	.dwpsn	"sensor.c",513,18
-        MOV       *-SP[3],#0            ; |513| 
+        MOV       *-SP[1],#0            ; |513| 
 	.dwpsn	"sensor.c",514,18
-        MOV       *-SP[4],#0            ; |514| 
-	.dwpsn	"sensor.c",516,2
+        MOV       *-SP[2],#0            ; |514| 
+	.dwpsn	"sensor.c",515,18
+        MOV       *-SP[3],#0            ; |515| 
+	.dwpsn	"sensor.c",516,18
+        MOV       *-SP[4],#0            ; |516| 
+	.dwpsn	"sensor.c",518,2
         MOVW      DP,#_SENSOR_ENABLE
-        MOV       AL,@_SENSOR_ENABLE    ; |516| 
-        ANDB      AL,#0x0f              ; |516| 
-        BF        L54,NEQ               ; |516| 
-        ; branchcc occurs ; |516| 
-;*** 517	-----------------------    if ( SENSOR_ENABLE&0xf000u ) goto g4;
-	.dwpsn	"sensor.c",517,7
-        AND       AL,@_SENSOR_ENABLE,#0xf000 ; |517| 
-        BF        L53,NEQ               ; |517| 
-        ; branchcc occurs ; |517| 
-;*** 518	-----------------------    state = 9u;
-;*** 518	-----------------------    goto g6;
-	.dwpsn	"sensor.c",518,15
-        MOV       *-SP[1],#9            ; |518| 
-        BF        L55,UNC               ; |518| 
-        ; branch occurs ; |518| 
+        MOV       AL,@_SENSOR_ENABLE    ; |518| 
+        ANDB      AL,#0x0f              ; |518| 
+        BF        L54,NEQ               ; |518| 
+        ; branchcc occurs ; |518| 
+;*** 519	-----------------------    if ( SENSOR_ENABLE&0xf000u ) goto g4;
+	.dwpsn	"sensor.c",519,7
+        AND       AL,@_SENSOR_ENABLE,#0xf000 ; |519| 
+        BF        L53,NEQ               ; |519| 
+        ; branchcc occurs ; |519| 
+;*** 520	-----------------------    state = 9u;
+;*** 520	-----------------------    goto g6;
+	.dwpsn	"sensor.c",520,15
+        MOV       *-SP[1],#9            ; |520| 
+        BF        L55,UNC               ; |520| 
+        ; branch occurs ; |520| 
 L53:    
 ;***	-----------------------g4:
-;*** 517	-----------------------    state = SENSOR_STATE_U16_CNT+9u;
-;*** 517	-----------------------    goto g6;
-	.dwpsn	"sensor.c",517,39
+;*** 519	-----------------------    state = SENSOR_STATE_U16_CNT+9u;
+;*** 519	-----------------------    goto g6;
+	.dwpsn	"sensor.c",519,39
         MOVW      DP,#_SENSOR_STATE_U16_CNT
-        MOV       AL,@_SENSOR_STATE_U16_CNT ; |517| 
-        ADDB      AL,#9                 ; |517| 
-        MOV       *-SP[1],AL            ; |517| 
-        BF        L55,UNC               ; |517| 
-        ; branch occurs ; |517| 
+        MOV       AL,@_SENSOR_STATE_U16_CNT ; |519| 
+        ADDB      AL,#9                 ; |519| 
+        MOV       *-SP[1],AL            ; |519| 
+        BF        L55,UNC               ; |519| 
+        ; branch occurs ; |519| 
 L54:    
 ;***	-----------------------g5:
-;*** 516	-----------------------    state = 9u-SENSOR_STATE_U16_CNT;
-	.dwpsn	"sensor.c",516,36
-        MOVB      AL,#9                 ; |516| 
+;*** 518	-----------------------    state = 9u-SENSOR_STATE_U16_CNT;
+	.dwpsn	"sensor.c",518,36
+        MOVB      AL,#9                 ; |518| 
         MOVW      DP,#_SENSOR_STATE_U16_CNT
-        SUB       AL,@_SENSOR_STATE_U16_CNT ; |516| 
-        MOV       *-SP[1],AL            ; |516| 
+        SUB       AL,@_SENSOR_STATE_U16_CNT ; |518| 
+        MOV       *-SP[1],AL            ; |518| 
 L55:    
 ;***	-----------------------g6:
-;*** 520	-----------------------    C$1 = &state_table[0];
-;*** 520	-----------------------    condition1 = (C$1[state]&SENSOR_STATE_U16) == C$1[state];
-	.dwpsn	"sensor.c",520,2
-        MOVW      DP,#_SENSOR_STATE_U16
-        MOVZ      AR0,*-SP[1]           ; |520| 
-        MOVB      AH,#0
-        MOVL      XAR5,#_state_table    ; |520| 
-        MOV       AL,@_SENSOR_STATE_U16 ; |520| 
-        AND       AL,*+XAR5[AR0]        ; |520| 
-        MOVZ      AR0,*-SP[1]           ; |520| 
-        CMP       AL,*+XAR5[AR0]        ; |520| 
-        BF        L56,NEQ               ; |520| 
-        ; branchcc occurs ; |520| 
-        MOVB      AH,#1                 ; |520| 
-L56:    
-;*** 521	-----------------------    condition2 = (C$1[state-1]&SENSOR_STATE_U16) == C$1[state-1];
-        MOV       *-SP[2],AH            ; |520| 
-	.dwpsn	"sensor.c",521,2
-        MOV       AL,*-SP[1]            ; |521| 
-        ADDB      AL,#-1
-        MOVZ      AR0,AL                ; |521| 
-        MOV       AH,@_SENSOR_STATE_U16 ; |521| 
-        AND       AH,*+XAR5[AR0]        ; |521| 
-        MOV       AL,*-SP[1]            ; |521| 
-        ADDB      AL,#-1
-        MOVZ      AR0,AL                ; |521| 
-        MOVB      XAR4,#0
-        CMP       AH,*+XAR5[AR0]        ; |521| 
-        BF        L57,NEQ               ; |521| 
-        ; branchcc occurs ; |521| 
-        MOVB      XAR4,#1               ; |521| 
-L57:    
-;*** 522	-----------------------    condition3 = (C$1[state+1]&SENSOR_STATE_U16) == C$1[state+1];
-        MOV       *-SP[3],AR4           ; |521| 
+;*** 522	-----------------------    C$1 = &state_table[0];
+;*** 522	-----------------------    condition1 = (C$1[state]&SENSOR_STATE_U16) == C$1[state];
 	.dwpsn	"sensor.c",522,2
-        MOV       AL,*-SP[1]            ; |522| 
-        ADDB      AL,#1                 ; |522| 
-        MOVZ      AR0,AL                ; |522| 
-        MOV       AH,@_SENSOR_STATE_U16 ; |522| 
-        AND       AH,*+XAR5[AR0]        ; |522| 
-        MOV       AL,*-SP[1]            ; |522| 
-        ADDB      AL,#1                 ; |522| 
-        MOVZ      AR0,AL                ; |522| 
-        MOVB      XAR4,#0
-        CMP       AH,*+XAR5[AR0]        ; |522| 
-        BF        L58,NEQ               ; |522| 
+        MOVW      DP,#_SENSOR_STATE_U16
+        MOVZ      AR0,*-SP[1]           ; |522| 
+        MOVB      AH,#0
+        MOVL      XAR5,#_state_table    ; |522| 
+        MOV       AL,@_SENSOR_STATE_U16 ; |522| 
+        AND       AL,*+XAR5[AR0]        ; |522| 
+        MOVZ      AR0,*-SP[1]           ; |522| 
+        CMP       AL,*+XAR5[AR0]        ; |522| 
+        BF        L56,NEQ               ; |522| 
         ; branchcc occurs ; |522| 
-        MOVB      XAR4,#1               ; |522| 
-L58:    
-;*** 523	-----------------------    if ( condition1 ) goto g17;
-        MOV       *-SP[4],AR4           ; |522| 
+        MOVB      AH,#1                 ; |522| 
+L56:    
+;*** 523	-----------------------    condition2 = (C$1[state-1]&SENSOR_STATE_U16) == C$1[state-1];
+        MOV       *-SP[2],AH            ; |522| 
 	.dwpsn	"sensor.c",523,2
-        MOV       AL,*-SP[2]            ; |523| 
-        BF        L62,NEQ               ; |523| 
+        MOV       AL,*-SP[1]            ; |523| 
+        ADDB      AL,#-1
+        MOVZ      AR0,AL                ; |523| 
+        MOV       AH,@_SENSOR_STATE_U16 ; |523| 
+        AND       AH,*+XAR5[AR0]        ; |523| 
+        MOV       AL,*-SP[1]            ; |523| 
+        ADDB      AL,#-1
+        MOVZ      AR0,AL                ; |523| 
+        MOVB      XAR4,#0
+        CMP       AH,*+XAR5[AR0]        ; |523| 
+        BF        L57,NEQ               ; |523| 
         ; branchcc occurs ; |523| 
-;*** 523	-----------------------    if ( condition2 ) goto g17;
-        MOV       AL,*-SP[3]            ; |523| 
-        BF        L62,NEQ               ; |523| 
-        ; branchcc occurs ; |523| 
-;*** 523	-----------------------    if ( condition3 ) goto g17;
-        MOV       AL,*-SP[4]            ; |523| 
-        BF        L62,NEQ               ; |523| 
-        ; branchcc occurs ; |523| 
-;*** 524	-----------------------    if ( !(*&Flag&0x8u) ) goto g16;
-	.dwpsn	"sensor.c",524,7
-        MOVW      DP,#_Flag
-        TBIT      @_Flag,#3             ; |524| 
-        BF        L61,NTC               ; |524| 
+        MOVB      XAR4,#1               ; |523| 
+L57:    
+;*** 524	-----------------------    condition3 = (C$1[state+1]&SENSOR_STATE_U16) == C$1[state+1];
+        MOV       *-SP[3],AR4           ; |523| 
+	.dwpsn	"sensor.c",524,2
+        MOV       AL,*-SP[1]            ; |524| 
+        ADDB      AL,#1                 ; |524| 
+        MOVZ      AR0,AL                ; |524| 
+        MOV       AH,@_SENSOR_STATE_U16 ; |524| 
+        AND       AH,*+XAR5[AR0]        ; |524| 
+        MOV       AL,*-SP[1]            ; |524| 
+        ADDB      AL,#1                 ; |524| 
+        MOVZ      AR0,AL                ; |524| 
+        MOVB      XAR4,#0
+        CMP       AH,*+XAR5[AR0]        ; |524| 
+        BF        L58,NEQ               ; |524| 
         ; branchcc occurs ; |524| 
-;*** 526	-----------------------    if ( (CROSS_DISTANCE_IQ15 = RMotor.CrossCheckDistance_IQ15+LMotor.CrossCheckDistance_IQ15>>1) <= 4915200L ) goto g18;
-	.dwpsn	"sensor.c",526,3
+        MOVB      XAR4,#1               ; |524| 
+L58:    
+;*** 525	-----------------------    if ( condition1 ) goto g17;
+        MOV       *-SP[4],AR4           ; |524| 
+	.dwpsn	"sensor.c",525,2
+        MOV       AL,*-SP[2]            ; |525| 
+        BF        L62,NEQ               ; |525| 
+        ; branchcc occurs ; |525| 
+;*** 525	-----------------------    if ( condition2 ) goto g17;
+        MOV       AL,*-SP[3]            ; |525| 
+        BF        L62,NEQ               ; |525| 
+        ; branchcc occurs ; |525| 
+;*** 525	-----------------------    if ( condition3 ) goto g17;
+        MOV       AL,*-SP[4]            ; |525| 
+        BF        L62,NEQ               ; |525| 
+        ; branchcc occurs ; |525| 
+;*** 526	-----------------------    if ( !(*&Flag&0x8u) ) goto g16;
+	.dwpsn	"sensor.c",526,7
+        MOVW      DP,#_Flag
+        TBIT      @_Flag,#3             ; |526| 
+        BF        L61,NTC               ; |526| 
+        ; branchcc occurs ; |526| 
+;*** 528	-----------------------    if ( (CROSS_DISTANCE_IQ15 = RMotor.CrossCheckDistance_IQ15+LMotor.CrossCheckDistance_IQ15>>1) <= 4915200L ) goto g18;
+	.dwpsn	"sensor.c",528,3
         MOVW      DP,#_LMotor+12
-        MOVL      ACC,@_LMotor+12       ; |526| 
+        MOVL      ACC,@_LMotor+12       ; |528| 
         SETC      SXM
         MOVW      DP,#_RMotor+12
-        ADDL      ACC,@_RMotor+12       ; |526| 
-        SFR       ACC,1                 ; |526| 
+        ADDL      ACC,@_RMotor+12       ; |528| 
+        SFR       ACC,1                 ; |528| 
         MOVW      DP,#_CROSS_DISTANCE_IQ15
-        MOVL      XAR6,ACC              ; |526| 
-        MOVL      @_CROSS_DISTANCE_IQ15,ACC ; |526| 
+        MOVL      XAR6,ACC              ; |528| 
+        MOVL      @_CROSS_DISTANCE_IQ15,ACC ; |528| 
         MOV       AL,#0
         MOV       AH,#75
-        CMPL      ACC,XAR6              ; |526| 
-        BF        L63,GEQ               ; |526| 
-        ; branchcc occurs ; |526| 
-;*** 529	-----------------------    *&Flag &= 0xfff7u;
-;*** 530	-----------------------    *(&LMark+7) &= 0xfffeu;
-;*** 530	-----------------------    *(&RMark+7) &= 0xfffeu;
-;*** 531	-----------------------    LMark.TurnmarkDistance_IQ17 = 0L;
-;*** 531	-----------------------    RMark.TurnmarkDistance_IQ17 = 0L;
-;*** 532	-----------------------    LMotor.CrossCheckDistance_IQ15 = 0L;
-;*** 532	-----------------------    RMotor.CrossCheckDistance_IQ15 = 0L;
-;*** 533	-----------------------    CROSS_DISTANCE_IQ15 = 0L;
-;*** 535	-----------------------    if ( *&Flag&0x40u ) goto g15;
-	.dwpsn	"sensor.c",529,4
-        MOVW      DP,#_Flag
-        AND       @_Flag,#0xfff7        ; |529| 
-	.dwpsn	"sensor.c",530,4
-        MOVW      DP,#_LMark+7
-        AND       @_LMark+7,#0xfffe     ; |530| 
-        MOVW      DP,#_RMark+7
-        AND       @_RMark+7,#0xfffe     ; |530| 
+        CMPL      ACC,XAR6              ; |528| 
+        BF        L63,GEQ               ; |528| 
+        ; branchcc occurs ; |528| 
+;*** 531	-----------------------    *&Flag &= 0xfff7u;
+;*** 532	-----------------------    *(&LMark+7) &= 0xfffeu;
+;*** 532	-----------------------    *(&RMark+7) &= 0xfffeu;
+;*** 533	-----------------------    LMark.TurnmarkDistance_IQ17 = 0L;
+;*** 533	-----------------------    RMark.TurnmarkDistance_IQ17 = 0L;
+;*** 534	-----------------------    LMotor.CrossCheckDistance_IQ15 = 0L;
+;*** 534	-----------------------    RMotor.CrossCheckDistance_IQ15 = 0L;
+;*** 535	-----------------------    CROSS_DISTANCE_IQ15 = 0L;
+;*** 537	-----------------------    if ( *&Flag&0x40u ) goto g15;
 	.dwpsn	"sensor.c",531,4
+        MOVW      DP,#_Flag
+        AND       @_Flag,#0xfff7        ; |531| 
+	.dwpsn	"sensor.c",532,4
+        MOVW      DP,#_LMark+7
+        AND       @_LMark+7,#0xfffe     ; |532| 
+        MOVW      DP,#_RMark+7
+        AND       @_RMark+7,#0xfffe     ; |532| 
+	.dwpsn	"sensor.c",533,4
         MOVW      DP,#_LMark
         MOVB      ACC,#0
-        MOVL      @_LMark,ACC           ; |531| 
+        MOVL      @_LMark,ACC           ; |533| 
         MOVW      DP,#_RMark
-        MOVL      @_RMark,ACC           ; |531| 
-	.dwpsn	"sensor.c",532,4
+        MOVL      @_RMark,ACC           ; |533| 
+	.dwpsn	"sensor.c",534,4
         MOVW      DP,#_LMotor+12
-        MOVL      @_LMotor+12,ACC       ; |532| 
+        MOVL      @_LMotor+12,ACC       ; |534| 
         MOVW      DP,#_RMotor+12
-        MOVL      @_RMotor+12,ACC       ; |532| 
-	.dwpsn	"sensor.c",533,4
-        MOVW      DP,#_CROSS_DISTANCE_IQ15
-        MOVL      @_CROSS_DISTANCE_IQ15,ACC ; |533| 
+        MOVL      @_RMotor+12,ACC       ; |534| 
 	.dwpsn	"sensor.c",535,4
+        MOVW      DP,#_CROSS_DISTANCE_IQ15
+        MOVL      @_CROSS_DISTANCE_IQ15,ACC ; |535| 
+	.dwpsn	"sensor.c",537,4
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#6             ; |535| 
-        BF        L60,TC                ; |535| 
-        ; branchcc occurs ; |535| 
-;*** 536	-----------------------    if ( *&Flag&0x80u ) goto g14;
-	.dwpsn	"sensor.c",536,9
-        TBIT      @_Flag,#7             ; |536| 
-        BF        L59,TC                ; |536| 
-        ; branchcc occurs ; |536| 
-;*** 537	-----------------------    if ( !(*&Flag&0x100u) ) goto g18;
-	.dwpsn	"sensor.c",537,9
-        TBIT      @_Flag,#8             ; |537| 
-        BF        L63,NTC               ; |537| 
+        TBIT      @_Flag,#6             ; |537| 
+        BF        L60,TC                ; |537| 
         ; branchcc occurs ; |537| 
+;*** 538	-----------------------    if ( *&Flag&0x80u ) goto g14;
+	.dwpsn	"sensor.c",538,9
+        TBIT      @_Flag,#7             ; |538| 
+        BF        L59,TC                ; |538| 
+        ; branchcc occurs ; |538| 
+;*** 539	-----------------------    if ( !(*&Flag&0x100u) ) goto g18;
+	.dwpsn	"sensor.c",539,9
+        TBIT      @_Flag,#8             ; |539| 
+        BF        L63,NTC               ; |539| 
+        ; branchcc occurs ; |539| 
 L59:    
 ;***	-----------------------g14:
-;*** 536	-----------------------    ++CROSS_PLUS_U32;
-;*** 536	-----------------------    ++CROSS_PLUS_SEARCH_U32;
-;*** 536	-----------------------    goto g18;
-	.dwpsn	"sensor.c",536,30
+;*** 538	-----------------------    ++CROSS_PLUS_U32;
+;*** 538	-----------------------    ++CROSS_PLUS_SEARCH_U32;
+;*** 538	-----------------------    goto g18;
+	.dwpsn	"sensor.c",538,30
         MOVB      ACC,#1
         MOVW      DP,#_CROSS_PLUS_U32
-        ADDL      @_CROSS_PLUS_U32,ACC  ; |536| 
-	.dwpsn	"sensor.c",536,53
+        ADDL      @_CROSS_PLUS_U32,ACC  ; |538| 
+	.dwpsn	"sensor.c",538,53
         MOVW      DP,#_CROSS_PLUS_SEARCH_U32
-        ADDL      @_CROSS_PLUS_SEARCH_U32,ACC ; |536| 
-	.dwpsn	"sensor.c",536,78
-        BF        L63,UNC               ; |536| 
-        ; branch occurs ; |536| 
+        ADDL      @_CROSS_PLUS_SEARCH_U32,ACC ; |538| 
+	.dwpsn	"sensor.c",538,78
+        BF        L63,UNC               ; |538| 
+        ; branch occurs ; |538| 
 L60:    
 ;***	-----------------------g15:
-;*** 535	-----------------------    ++(Search[(long)MARK_U16_CNT]).CrossPlus_U32;
-;*** 535	-----------------------    ++CROSS_PLUS_SEARCH_U32;
-;*** 535	-----------------------    goto g18;
-	.dwpsn	"sensor.c",535,28
+;*** 537	-----------------------    ++(Search[(long)MARK_U16_CNT]).CrossPlus_U32;
+;*** 537	-----------------------    ++CROSS_PLUS_SEARCH_U32;
+;*** 537	-----------------------    goto g18;
+	.dwpsn	"sensor.c",537,28
         MOVW      DP,#_MARK_U16_CNT
-        MOV       T,#36                 ; |535| 
-        MOVL      XAR4,#_Search+10      ; |535| 
-        MPYXU     ACC,T,@_MARK_U16_CNT  ; |535| 
+        MOV       T,#36                 ; |537| 
+        MOVL      XAR4,#_Search+10      ; |537| 
+        MPYXU     ACC,T,@_MARK_U16_CNT  ; |537| 
         ADDL      XAR4,ACC
         MOVB      ACC,#1
-        ADDL      *+XAR4[0],ACC         ; |535| 
-	.dwpsn	"sensor.c",535,66
+        ADDL      *+XAR4[0],ACC         ; |537| 
+	.dwpsn	"sensor.c",537,66
         MOVW      DP,#_CROSS_PLUS_SEARCH_U32
-        ADDL      @_CROSS_PLUS_SEARCH_U32,ACC ; |535| 
-	.dwpsn	"sensor.c",535,91
-        BF        L63,UNC               ; |535| 
-        ; branch occurs ; |535| 
+        ADDL      @_CROSS_PLUS_SEARCH_U32,ACC ; |537| 
+	.dwpsn	"sensor.c",537,91
+        BF        L63,UNC               ; |537| 
+        ; branch occurs ; |537| 
 L61:    
 ;***	-----------------------g16:
-;*** 542	-----------------------    LMotor.CrossCheckDistance_IQ15 = 0L;
-;*** 542	-----------------------    RMotor.CrossCheckDistance_IQ15 = 0L;
-;*** 542	-----------------------    CROSS_DISTANCE_IQ15 = 0L;
-;*** 542	-----------------------    goto g18;
-	.dwpsn	"sensor.c",542,7
+;*** 544	-----------------------    LMotor.CrossCheckDistance_IQ15 = 0L;
+;*** 544	-----------------------    RMotor.CrossCheckDistance_IQ15 = 0L;
+;*** 544	-----------------------    CROSS_DISTANCE_IQ15 = 0L;
+;*** 544	-----------------------    goto g18;
+	.dwpsn	"sensor.c",544,7
         MOVB      ACC,#0
         MOVW      DP,#_LMotor+12
-        MOVL      @_LMotor+12,ACC       ; |542| 
+        MOVL      @_LMotor+12,ACC       ; |544| 
         MOVW      DP,#_RMotor+12
-        MOVL      @_RMotor+12,ACC       ; |542| 
+        MOVL      @_RMotor+12,ACC       ; |544| 
         MOVW      DP,#_CROSS_DISTANCE_IQ15
-        MOVL      @_CROSS_DISTANCE_IQ15,ACC ; |542| 
-        BF        L63,UNC               ; |542| 
-        ; branch occurs ; |542| 
+        MOVL      @_CROSS_DISTANCE_IQ15,ACC ; |544| 
+        BF        L63,UNC               ; |544| 
+        ; branch occurs ; |544| 
 L62:    
 ;***	-----------------------g17:
-;*** 523	-----------------------    *&Flag |= 0x8u;
+;*** 525	-----------------------    *&Flag |= 0x8u;
 ;***	-----------------------g18:
 ;***  	-----------------------    return;
-	.dwpsn	"sensor.c",523,51
+	.dwpsn	"sensor.c",525,51
         MOVW      DP,#_Flag
-        OR        @_Flag,#0x0008        ; |523| 
+        OR        @_Flag,#0x0008        ; |525| 
 L63:    
-	.dwpsn	"sensor.c",543,1
+	.dwpsn	"sensor.c",545,1
         SUBB      SP,#4
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
 	.dwattr DW$178, DW_AT_end_file("sensor.c")
-	.dwattr DW$178, DW_AT_end_line(0x21f)
+	.dwattr DW$178, DW_AT_end_line(0x221)
 	.dwattr DW$178, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$178
@@ -3594,7 +3600,7 @@ DW$L$_Init_SENSOR$2$E:
         ; return occurs
 
 DW$206	.dwtag  DW_TAG_loop
-	.dwattr DW$206, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L88:1:1658750189")
+	.dwattr DW$206, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\sensor.asm:L88:1:1658836909")
 	.dwattr DW$206, DW_AT_begin_file("sensor.c")
 	.dwattr DW$206, DW_AT_begin_line(0x68)
 	.dwattr DW$206, DW_AT_end_line(0x68)
