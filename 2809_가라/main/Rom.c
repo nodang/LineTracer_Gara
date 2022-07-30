@@ -260,10 +260,12 @@ void load_maxmin_rom()
 	#endif
 }
 
+#define VELO_SIZE		14
+
 void save_velocity_rom()
 {
 	int32 j = 0;
-   	Uint16 save_rom[ 12 ] = {0,};
+   	Uint16 save_rom[ VELO_SIZE ] = {0,};
 
    	save_rom[ j++ ] = ( (Uint16)MOTOR_SPEED_U32 >> 0 ) & 0xff;
    	save_rom[ j++ ] = ( (Uint16)MOTOR_SPEED_U32 >> 8 ) & 0xff;
@@ -282,16 +284,19 @@ void save_velocity_rom()
 
 	save_rom[ j++ ] = ( (Uint16)xS44S_SPEED_U32 >> 0 ) & 0xff;
    	save_rom[ j++ ] = ( (Uint16)xS44S_SPEED_U32 >> 8 ) & 0xff;
+
+	save_rom[ j++ ] = ( (Uint16)x90_SPEED_U32 >> 0 ) & 0xff;
+   	save_rom[ j++ ] = ( (Uint16)x90_SPEED_U32 >> 8 ) & 0xff;
 	
-   	SpiWriteRom( ( Uint16 )VELOCITY_PAGE, 0, 12, save_rom );
+   	SpiWriteRom( ( Uint16 )VELOCITY_PAGE, 0, VELO_SIZE, save_rom );
 }
 
 void load_velocity_rom()
 {
 	int32 j = 0;
-	Uint16 load_rom[ 12 ] = {0,};
+	Uint16 load_rom[ VELO_SIZE ] = {0,};
 
-	SpiReadRom( ( Uint16 )VELOCITY_PAGE, 0, 12, load_rom );
+	SpiReadRom( ( Uint16 )VELOCITY_PAGE, 0, VELO_SIZE, load_rom );
 
 	MOTOR_SPEED_U32 = ( ( load_rom[ j++ ] & 0xff ) << 0 );
 	MOTOR_SPEED_U32 |= ( ( load_rom[ j++ ] & 0xff ) << 8 );
@@ -311,8 +316,12 @@ void load_velocity_rom()
 	xS44S_SPEED_U32 = ( ( load_rom[ j++ ] & 0xff ) << 0 );
 	xS44S_SPEED_U32 |= ( ( load_rom[ j++ ] & 0xff ) << 8 );
 
+	x90_SPEED_U32 = ( ( load_rom[ j++ ] & 0xff ) << 0 );
+	x90_SPEED_U32 |= ( ( load_rom[ j++ ] & 0xff ) << 8 );
+
 	TxPrintf("MOTOR: %4lu | END: %4lu | SECOND: %4lu\n", MOTOR_SPEED_U32, END_SPEED_U32, SECOND_MAX_SPEED_U32);
 	TxPrintf("x45: %4lu | xs4s: %4lu | xs44s: %4lu\n", x45_SPEED_U32, xS4S_SPEED_U32, xS44S_SPEED_U32);
+	TxPrintf("x90: %4lu\n", x90_SPEED_U32);
 }
 
 void save_accel_rom()
@@ -391,10 +400,12 @@ void load_sensitive_rom()
 
 }
 
+#define HANDLE_SIZE		10
+
 void save_handle_rom()
 {
 	int32 j = 0;
-	Uint16 save_rom[ 6 ] = {0,};
+	Uint16 save_rom[ HANDLE_SIZE ] = {0,};
 
 	save_rom[ j++ ] = ( (int16)RATIO_I32 >> 0 ) & 0xff;
 	save_rom[ j++ ] = ( (int16)RATIO_I32 >> 8 ) & 0xff;
@@ -405,15 +416,21 @@ void save_handle_rom()
 	save_rom[ j++ ] = ( (int16)DECEL_COEF_I32 >> 0 ) & 0xff;
 	save_rom[ j++ ] = ( (int16)DECEL_COEF_I32 >> 8 ) & 0xff;
 
-	SpiWriteRom( ( Uint16 )HANDLE_PAGE, 0, 6, save_rom );
+	save_rom[ j++ ] = ( (Uint16)S44S_KP_U32 >> 0 ) & 0xff;
+	save_rom[ j++ ] = ( (Uint16)S44S_KP_U32 >> 8 ) & 0xff;
+	
+	save_rom[ j++ ] = ( (Uint16)Down_Kp_U32 >> 0 ) & 0xff;
+	save_rom[ j++ ] = ( (Uint16)Down_Kp_U32 >> 8 ) & 0xff;
+
+	SpiWriteRom( ( Uint16 )HANDLE_PAGE, 0, HANDLE_SIZE, save_rom );
 }
 
 void load_handle_rom()
 {
 	int32 j = 0;
-	Uint16 load_rom[ 6 ] = {0,};
+	Uint16 load_rom[ HANDLE_SIZE ] = {0,};
 	
-	SpiReadRom( ( Uint16 )HANDLE_PAGE, 0, 6, load_rom );
+	SpiReadRom( ( Uint16 )HANDLE_PAGE, 0, HANDLE_SIZE, load_rom );
 
 	RATIO_I32 = (int16)( ( load_rom[ j++ ] & 0xff ) << 0 );
 	RATIO_I32 |= (int16)( ( load_rom[ j++ ] & 0xff ) << 8 );
@@ -424,13 +441,21 @@ void load_handle_rom()
 	DECEL_COEF_I32 = (int16)( ( load_rom[ j++ ] & 0xff ) << 0 );
 	DECEL_COEF_I32 |= (int16)( ( load_rom[ j++ ] & 0xff ) << 8 );
 
-	TxPrintf("RATIO: %4ld | ACCEL: %4ld | DECEL: %4ld\n", RATIO_I32, ACCEL_COEF_I32, DECEL_COEF_I32);
+	S44S_KP_U32 = (Uint16)( ( load_rom[ j++ ] & 0xff ) << 0 );
+	S44S_KP_U32 |= (Uint16)( ( load_rom[ j++ ] & 0xff ) << 8 );
+
+	Down_Kp_U32 = (Uint16)( ( load_rom[ j++ ] & 0xff ) << 0 );
+	Down_Kp_U32 |= (Uint16)( ( load_rom[ j++ ] & 0xff ) << 8 );
+
+	TxPrintf("DownKp: %4lu | S44S KP: %4ld | RATIO: %4ld | ACCEL: %4ld | DECEL: %4ld\n", Down_Kp_U32, S44S_KP_U32, RATIO_I32, ACCEL_COEF_I32, DECEL_COEF_I32);
 }
+
+#define PID_SIZE 	4
 
 void save_pid_rom()
 {
 	int16 i = 0;
-	Uint16 pid_rom[ 6 ] = { 0, };
+	Uint16 pid_rom[ PID_SIZE ] = { 0, };
 
 	pid_rom[ i++ ] = ( (Uint16)(PID_Kp_U32) >> 0 ) & 0xff;
 	pid_rom[ i++ ] = ( (Uint16)(PID_Kp_U32) >> 8 ) & 0xff;
@@ -438,18 +463,18 @@ void save_pid_rom()
 	pid_rom[ i++ ] = ( (Uint16)(PID_Kd_U32) >> 0 ) & 0xff;
 	pid_rom[ i++ ] = ( (Uint16)(PID_Kd_U32) >> 8 ) & 0xff;
 
-	pid_rom[ i++ ] = ( (Uint16)(Down_Kp_U32) >> 0 ) & 0xff;
-	pid_rom[ i++ ] = ( (Uint16)(Down_Kp_U32) >> 8 ) & 0xff;
+	//pid_rom[ i++ ] = ( (Uint16)(Down_Kp_U32) >> 0 ) & 0xff;
+	//pid_rom[ i++ ] = ( (Uint16)(Down_Kp_U32) >> 8 ) & 0xff;
 
-	SpiWriteRom( ( Uint16 )PID_PAGE, 0x00, 6, pid_rom);
+	SpiWriteRom( ( Uint16 )PID_PAGE, 0x00, PID_SIZE, pid_rom);
 }
 
 void load_pid_rom()
 {
 	int16 i = 0;
-	Uint16 pid_rom[ 6 ] = { 0, };
+	Uint16 pid_rom[ PID_SIZE ] = { 0, };
 
-	SpiReadRom( ( Uint16 )PID_PAGE, 0x00, 6, pid_rom);
+	SpiReadRom( ( Uint16 )PID_PAGE, 0x00, PID_SIZE, pid_rom);
 
 	PID_Kp_U32 = ( ( pid_rom[ i++ ] & 0xff ) << 0 );
 	PID_Kp_U32 |= ( ( pid_rom[ i++ ] & 0xff ) << 8 );
@@ -457,10 +482,10 @@ void load_pid_rom()
 	PID_Kd_U32 = ( ( pid_rom[ i++ ] & 0xff ) << 0 );
 	PID_Kd_U32 |= ( ( pid_rom[ i++ ] & 0xff ) << 8 );
 
-	Down_Kp_U32 = ( ( pid_rom[ i++ ] & 0xff ) << 0 );
-	Down_Kp_U32 |= ( ( pid_rom[ i++ ] & 0xff ) << 8 );
+	//Down_Kp_U32 = ( ( pid_rom[ i++ ] & 0xff ) << 0 );
+	//Down_Kp_U32 |= ( ( pid_rom[ i++ ] & 0xff ) << 8 );
 
-	TxPrintf("Kp: %4lu | Kd: %4lu | DownKp: %4lu\n", PID_Kp_U32, PID_Kd_U32, Down_Kp_U32);
+	TxPrintf("Kp: %4lu | Kd: %4lu\n", PID_Kp_U32, PID_Kd_U32);
 }
 
 void save_line_info()

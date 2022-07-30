@@ -162,11 +162,17 @@ static void VEL()
 			if(!SW_R)	{ DELAY_US(SW_DELAY);	xS44S_SPEED_U32 += 50; }
 			else if(!SW_L)	{ DELAY_US(SW_DELAY);	xS44S_SPEED_U32 -= 50; }
 			break;
+		case 6:
+			VFDPrintf("x90|%4lu", x90_SPEED_U32);
+			if(!SW_R)	{ DELAY_US(SW_DELAY);	x90_SPEED_U32 += 50; }
+			else if(!SW_L)	{ DELAY_US(SW_DELAY);	x90_SPEED_U32 -= 50; }
+			break;
+
 		}
 		if(!SW_D)	
 		{ 
 			DELAY_US(SW_DELAY);	
-			if(m_sw_cnt < 5)	m_sw_cnt++;
+			if(m_sw_cnt < 6)	m_sw_cnt++;
 			else				m_sw_cnt = 0; 	
 		}
 	}
@@ -245,11 +251,21 @@ static void HAN()
 			if(!SW_R)	{ DELAY_US(62500);	RATIO_I32++; }
 			else if(!SW_L)	{ DELAY_US(62500);	RATIO_I32--; }
 			break;
+		case 3:
+			VFDPrintf("DownKp%2lu", Down_Kp_U32);
+			if(!SW_R)	{ DELAY_US(62500);	Down_Kp_U32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	Down_Kp_U32--; }
+			break;
+		case 4:
+			VFDPrintf("s44sKp%2lu", S44S_KP_U32);
+			if(!SW_R)	{ DELAY_US(62500);	S44S_KP_U32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	S44S_KP_U32--; }
+			break;
 		}
 		if(!SW_D)	
 		{ 
 			DELAY_US(SW_DELAY); 
-			if(m_sw_cnt < 2)	m_sw_cnt++;
+			if(m_sw_cnt < 4)	m_sw_cnt++;
 			else				m_sw_cnt = 0;	
 		}
 	}
@@ -286,16 +302,11 @@ static void hMOTtest()
 			if(!SW_R)	{ DELAY_US(62500);	PID_Kd_U32++; }
 			else if(!SW_L)	{ DELAY_US(62500);	PID_Kd_U32--; }
 			break;
-		case 2:
-			VFDPrintf("DownKp%2lu", Down_Kp_U32);
-			if(!SW_R)	{ DELAY_US(62500);	Down_Kp_U32++; }
-			else if(!SW_L)	{ DELAY_US(62500);	Down_Kp_U32--; }
-			break;
 		}
 		if(!SW_D)	
 		{ 
 			DELAY_US(SW_DELAY); 
-			if(pid_sw_cnt < 2)	pid_sw_cnt++;
+			if(pid_sw_cnt < 1)	pid_sw_cnt++;
 			else				pid_sw_cnt = 0;	
 		}
 
