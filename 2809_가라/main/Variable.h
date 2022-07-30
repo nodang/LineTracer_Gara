@@ -188,7 +188,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 
 #define Kp_DOWN_IQ17			_IQ17mpy(_IQ17(0.01), ((long)Down_Kp_U32) << 17)
 //#define KP_RATIO_IQ17			_IQ17(0.014)
-#define KP_RATIO_IQ17			_IQ17mpy(_IQ17(0.001), RATIO_I32 << 17)
+#define KP_RATIO_IQ17			_IQ17mpy(_IQ17(0.0001), RATIO_I32 << 17)
 
 
 typedef volatile struct
@@ -221,7 +221,9 @@ typedef volatile struct
 	_iq14	Jerk_IQ14;
 
 	_iq17	TargetHandle_IQ17;
-	_iq17	FinalVelo_IQ17;
+	//_iq17	FinalVelo_IQ17;
+
+	Uint32	StepCntFlag_U32;
 }MOTORCTRL;
 
 __VARIABLE_EXT__ MOTORCTRL	RMotor, LMotor;
@@ -338,6 +340,7 @@ typedef struct
 	Uint32	TurnDir_U32;
 
 	Uint32	CrossPlus_U32;
+	Uint32	StepCnt_U32;
 
 	_iq17	Velo_IQ17;
 	_iq17	VeloIn_IQ17;

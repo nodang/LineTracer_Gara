@@ -37,9 +37,17 @@ typedef enum
    LINE_CROSS_PAGE_2,
    ENDACCEL_PAGE,
    SENSITIVE_PAGE,
-   PID_PAGE
- 
+   PID_PAGE,
+   LINE_ROL_PAGE_1,
+   LINE_ROL_PAGE_2
 }rom_page;
+
+static void save_mark_rom();
+static void load_mark_rom();
+static void save_line_info_rom();
+static void load_line_info_rom();
+static void save_line_info2_rom();
+static void load_line_info2_rom();
 
 
 void save_maxmin_rom()
@@ -455,8 +463,21 @@ void load_pid_rom()
 	TxPrintf("Kp: %4lu | Kd: %4lu | DownKp: %4lu\n", PID_Kp_U32, PID_Kd_U32, Down_Kp_U32);
 }
 
+void save_line_info()
+{
+	save_mark_rom();
+	save_line_info_rom();
+	save_line_info2_rom();
+}
 
-void save_mark_rom()
+void load_line_info()
+{
+	load_mark_rom();
+	load_line_info_rom();
+	load_line_info2_rom();
+}
+
+static void save_mark_rom()
 {
 	int16 i = 0;
 
@@ -468,7 +489,7 @@ void save_mark_rom()
 	SpiWriteRom( ( Uint16 )MARK_PAGE, 0x00, (Uint16)2, mark_rom);
 }
 
-void load_mark_rom()
+static void load_mark_rom()
 {
 	int16 i = 0;
 	Uint16 mark_rom[ 2 ] = { 0, };
@@ -481,7 +502,7 @@ void load_mark_rom()
 	TxPrintf("MARK CNT: %4u\n", MARK_U16_CNT);
 }
 
-void save_line_info_rom( void )
+static void save_line_info_rom( void )
 {
 
 	int16 i = 0, j = 0, k = 0, l = 0, m = 0, n = 0;
@@ -490,9 +511,9 @@ void save_line_info_rom( void )
 	Uint16 turn_rom[ MAX_PAGE ] = { 0, };
 	Uint16 ldist_rom[ MAX_PAGE ] = { 0, };
 	Uint16 rdist_rom[ MAX_PAGE ] = { 0, };
-	Uint16 cross_rom[ MAX_PAGE ] = { 0, };
+	Uint16 cross_rom[ MAX_PAGE ] = { 0, };	
 
-	j = k = l = m = n = 0;
+	j = k = l = m = n  = 0;
 	for( i = 0; i < 128; i++ )
 	{
 		dist_rom[ j++ ] = ( ( ( Uint16 )( Search[ i ].Distance_U32 ) ) >> 0  ) & 0xff;
@@ -541,10 +562,9 @@ void save_line_info_rom( void )
 	SpiWriteRom( ( Uint16 )LINE_LDIST_PAGE_2, 0x00, ( Uint16 )MAX_PAGE, ldist_rom );
 	SpiWriteRom( ( Uint16 )LINE_RDIST_PAGE_2, 0x00, ( Uint16 )MAX_PAGE, rdist_rom );
 	SpiWriteRom( ( Uint16 )LINE_CROSS_PAGE_2, 0x00, ( Uint16 )MAX_PAGE, cross_rom );
-
 }
 
-void load_line_info_rom( void )
+static void load_line_info_rom( void )
 {
 	int16 i = 0, j = 0, k = 0, l = 0, m = 0, n = 0;
 
@@ -603,8 +623,52 @@ void load_line_info_rom( void )
 		Search[ i ].CrossPlus_U32 = ( Uint32 )( ( cross_rom[ n++ ] & 0xff ) << 0 );
 		Search[ i ].CrossPlus_U32 |= ( Uint32 )( ( cross_rom[ n++ ] & 0xff ) << 8 );	
 	}
-	
-	load_mark_rom();
+}
+
+static void save_line_info2_rom()
+{
+	int32 i = 0, j = 0;
+	Uint16 rolcnt_rom[ MAX_PAGE ] = { 0, };
+
+	j = 0;
+	for( i = 0; i < 128; i++ )
+	{
+		rolcnt_rom[ j++ ] = ( ( ( Uint16 )( Search[ i ].StepCnt_U32 ) ) >> 0  ) & 0xff;
+		rolcnt_rom[ j++ ] = ( ( ( Uint16 )( Search[ i ].StepCnt_U32 ) ) >> 8  ) & 0xff;
+	}	
+	SpiWriteRom( ( Uint16 )LINE_ROL_PAGE_1, 0x00, ( Uint16 )MAX_PAGE, rolcnt_rom );
+
+	j = 0;
+	for( i = 128; i < 256; i++ )
+	{
+		rolcnt_rom[ j++ ] = ( ( ( Uint16 )( Search[ i ].StepCnt_U32 ) ) >> 0  ) & 0xff;
+		rolcnt_rom[ j++ ] = ( ( ( Uint16 )( Search[ i ].StepCnt_U32 ) ) >> 8  ) & 0xff;
+	}
+	SpiWriteRom( ( Uint16 )LINE_ROL_PAGE_2, 0x00, ( Uint16 )MAX_PAGE, rolcnt_rom );
+}
+
+static void load_line_info2_rom()
+{
+	int32 i = 0, j = 0;
+	Uint16 rolcnt_rom[ MAX_PAGE ] = { 0, };
+
+	j = 0;
+	SpiReadRom( ( Uint16 )LINE_ROL_PAGE_1, 0x00, ( Uint16 )MAX_PAGE, rolcnt_rom );
+
+	for( i = 0; i < 128; i++ )
+	{
+		Search[ i ].StepCnt_U32 = ( Uint32 )( ( rolcnt_rom[ j++ ] & 0xff ) << 0 );
+		Search[ i ].StepCnt_U32 |= ( Uint32 )( ( rolcnt_rom[ j++ ] & 0xff ) << 8 );	
+	}
+
+	j = 0;
+	SpiReadRom( ( Uint16 )LINE_ROL_PAGE_2, 0x00, ( Uint16 )MAX_PAGE, rolcnt_rom );
+
+	for( i = 128; i < 256; i++ )
+	{
+		Search[ i ].StepCnt_U32 = ( Uint32 )( ( rolcnt_rom[ j++ ] & 0xff ) << 0 );
+		Search[ i ].StepCnt_U32 |= ( Uint32 )( ( rolcnt_rom[ j++ ] & 0xff ) << 8 );	
+	}
 }
 
 

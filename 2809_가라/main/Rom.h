@@ -31,10 +31,9 @@ void save_handle_rom();
 void load_handle_rom();
 void save_pid_rom();
 void load_pid_rom();
-void save_mark_rom();
-void load_mark_rom();
-void save_line_info_rom();
-void load_line_info_rom();
+
+void save_line_info();
+void load_line_info();
 
 
 /*

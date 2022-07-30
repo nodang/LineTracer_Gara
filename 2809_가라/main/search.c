@@ -95,7 +95,7 @@ void RUN(Uint16 number)
 	
 	if(number != 1)	
 	{
-		load_line_info_rom();
+		load_line_info();
 		if(TURN_COMPUTE_FUNC())		{ VFDPrintf("cptERROR");	return; }
 		
 		if(number == 2)
@@ -170,9 +170,11 @@ void RUN(Uint16 number)
 
 void LINE_INFO(TURNMARK *mark)
 {
+	Search[MARK_U16_CNT].StepCnt_U32 = (LMotor.StepCntFlag_U32 + RMotor.StepCntFlag_U32) >> 1;
 	Search[MARK_U16_CNT].Distance_R_U32 = (Uint32)(RMotor.GoneDistance_IQ15 >> 15);
 	Search[MARK_U16_CNT].Distance_L_U32 = (Uint32)(LMotor.GoneDistance_IQ15 >> 15);
 	Search[MARK_U16_CNT].Distance_U32 = (Search[MARK_U16_CNT].Distance_L_U32 + Search[MARK_U16_CNT].Distance_R_U32) >> 1;
+	LMotor.StepCntFlag_U32 = RMotor.StepCntFlag_U32 = 0;
 	LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
 	
 	if(mark == NULL)
@@ -196,7 +198,7 @@ void LINE_PRINTF()
 	volatile	Uint16	shutdown_U16 = 1;
 
 	Init_RUN();
-	load_line_info_rom();
+	load_line_info();
 
 	VFDPrintf("<-2  3->");
 	while(SW_L&SW_R)

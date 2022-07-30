@@ -479,8 +479,10 @@ void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 	MARK_ENABLE_SHIFT(&LMark, &RMark);
 
 	// sensor value checking
-	if(mark->MarkEnable_U16 & SENSOR_STATE_U16) {
-		if(!mark->TurnFlag_U16) {
+	if(mark->MarkEnable_U16 & SENSOR_STATE_U16)
+	{
+		if(!mark->TurnFlag_U16) 
+		{
 			RMotor.TurnMarkCheckDistance_IQ17 = _IQ17(0.0);
 			LMotor.TurnMarkCheckDistance_IQ17 = _IQ17(0.0);
 			mark->TurnmarkDistance_IQ17	= _IQ17(0.0);
@@ -488,7 +490,8 @@ void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 			mark->LimitDistance_IQ17 = mark->TurnmarkDistance_IQ17 + _IQ17(5.0);
 			mark->TurnFlag_U16 = ON;
 		}
-		else if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17) {
+		else if(mark->TurnmarkDistance_IQ17 > mark->LimitDistance_IQ17)
+		{
 			mark->SingleFlag_U16 = ON;
 			mark->LimitDistance_IQ17 = mark->TurnmarkDistance_IQ17 + _IQ17(60.0);
 
@@ -502,7 +505,8 @@ void TURN_DECIDE(TURNMARK *mark, TURNMARK *remark)
 		}
 	}
 	// turnmark do not exist
-	else {
+	else
+	{
 		mark->TurnmarkDistance_IQ17 = _IQ17(0.0);
 		mark->TurnFlag_U16 = OFF;
 	}
