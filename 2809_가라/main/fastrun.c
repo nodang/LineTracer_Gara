@@ -85,7 +85,8 @@ void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _
 	curACC = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, curVEL)) >> 3;
 	tarACC = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, tarVEL)) >> 3;
 
-	*decel = (tarACC >> 1) + (curACC >> 1);	// + (tarACC >> 3);
+	*decel = (tarACC >> 1) + (curACC >> 1);
+
 	curVEL	= _IQ17div(curVEL, _IQ17(1000.0));
 	tarVEL	= _IQ17div(tarVEL, _IQ17(1000.0));
 	decelACC = _IQ14div(*decel, _IQ14(1000.0)) << 4;
@@ -316,6 +317,11 @@ static void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 		
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
+
+		/*
+		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
+		*/
 	}
 }
 

@@ -197,14 +197,19 @@ interrupt void MOTOR_ISR()
 		EPwm3Regs.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
 		EPwm3Regs.CMPA.half.CMPA = (EPwm3Regs.TBPRD >> 1);
 
+		SHIFT_DIST_IQ17 = (LMotor.RolEachStep_IQ17 >> 1) + (RMotor.RolEachStep_IQ17 >> 1);
+
 		if(Flag.Fast_U16 | Flag.Extrem_U16)
 			SECOND_DECEL_VALUE(&RMotor, &LMotor);
 		if(Flag.MoveState_U16)
 			TIME_INDEX_U32++;
-		if(Flag.STOP)
-			STOP_TIME_INDEX_U32++;
 	}
-	StartCpuTimer0();
+	
+	if(Flag.STOP)
+		STOP_TIME_INDEX_U32++;
+
+	if(Flag.Sensor_U16)
+		StartCpuTimer0();
 }
 
 Uint16 END_STOP()
@@ -285,16 +290,7 @@ void START_END_LINE()
 		else if(Flag.Fast_U16)
 			LINE_SECOND(&Search[SECOND_MARK_U16_CNT]);
 		else if(Flag.Extrem_U16)
-		{	
 			LINE_THIRD(&Search[THIRD_MARK_U16_CNT]);
-			/*
-			TRACKINFO *p_track = &Search[THIRD_MARK_U16_CNT];
-			MOVE_TO_MOVE( ((long)p_track->Distance_U32) << 17, p_track->DecelDistance_IQ17, p_track->Velo_IQ17, p_track->VeloOut_IQ17, p_track->Jerk_IQ14, p_track->Decel_IQ14 );
-
-			LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
-			CROSS_PLUS_U32 = 0;
-			*/
-		}
 	}
 	// 1 seconds / 0.0005 s => 500
 	else if((Flag.MoveState_U16) && (TIME_INDEX_U32 > (2000)))	{		
@@ -327,19 +323,33 @@ void SHUTDOWN()
 		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.AccelLimit_IQ16 >> 16);
 		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17))
 		{	
+			/*
 			STOP_TIME_INDEX_U32 = 0;
 			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 1000))		// 5.0 mm  = MINVEL(10 mm/s) * 0.5 s
 				POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
-
-			Flag.STOP = OFF;
+			*/
+			/*
+			GpioDataRegs.GPADAT.all = MOTOR_DIR_REV;
+			
+			STOP_TIME_INDEX_U32 = 0;
+			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 1000))		// 5.0 mm  = MINVEL(10 mm/s) * 0.5 s
+				POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
+			*/
 			Flag.Sensor_U16 = OFF;
 			GpioDataRegs.GPACLEAR.all = SENall;
 			StopCpuTimer0();
-			StopCpuTimer2();
-			Flag.Motor_U16 = OFF;
 
-			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
+			Flag.Motor_U16 = OFF;
+			GpioDataRegs.GPADAT.all = MOTOR_DIR_REV;
 			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
+			
+			STOP_TIME_INDEX_U32 = 0;
+			
+			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 1000));		// 0.5 s
+			
+			StopCpuTimer2();
+			
+			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
 			LED_R_OFF;
 			LED_L_OFF;

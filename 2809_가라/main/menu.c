@@ -109,8 +109,6 @@ static void ADC()
 	Flag.Sensor_U16 = OFF;
 	GpioDataRegs.GPACLEAR.all = SENall;
 	DELAY_US(SW_DELAY);
-
-
 }
 static void senVAL()
 {
@@ -257,6 +255,11 @@ static void HAN()
 			else if(!SW_L)	{ DELAY_US(62500);	Down_Kp_U32--; }
 			break;
 		case 4:
+			VFDPrintf("SharKp%2lu", SHARP_KP_U32);
+			if(!SW_R)	{ DELAY_US(62500);	SHARP_KP_U32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	SHARP_KP_U32--; }
+			break;
+		case 5:
 			VFDPrintf("s44sKp%2lu", S44S_KP_U32);
 			if(!SW_R)	{ DELAY_US(62500);	S44S_KP_U32++; }
 			else if(!SW_L)	{ DELAY_US(62500);	S44S_KP_U32--; }
@@ -265,11 +268,10 @@ static void HAN()
 		if(!SW_D)	
 		{ 
 			DELAY_US(SW_DELAY); 
-			if(m_sw_cnt < 4)	m_sw_cnt++;
+			if(m_sw_cnt < 5)	m_sw_cnt++;
 			else				m_sw_cnt = 0;	
 		}
 	}
-	//ACCEL_COEF_I32 = DECEL_COEF_I32 =  ACC_DEC_POINT_COEF_I32 = 0;
 	save_handle_rom();
 	DELAY_US(SW_DELAY);
 }
@@ -372,7 +374,7 @@ void MENU_PA()		// 포인터배열 메뉴
 			while(SW_U)
 			{	
 				VFDPrintf( ( char* ) *( *(MENUchar + MENU_U16_CNT) + botmenu_u16_cnt ) );
-				if(!SW_D)		{	DELAY_US(SW_DELAY);		( *( *(MENUvoid + MENU_U16_CNT) + (botmenu_u16_cnt -1) ) )();	}
+				if(!SW_D)		{	DELAY_US(SW_DELAY);		( *( *(MENUvoid + MENU_U16_CNT) + (botmenu_u16_cnt - 1) ) )();	}
 
 				if(MENU_U16_CNT == 0)			botMENU_SW(&botmenu_u16_cnt, sen_each, 1);
 				else if(MENU_U16_CNT == 1)		botMENU_SW(&botmenu_u16_cnt, mot_each, 1);

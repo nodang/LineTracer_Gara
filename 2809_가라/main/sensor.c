@@ -402,6 +402,9 @@ void HANDLE()
 
 	HanPID.Pos_PID_IQ17 = _IQ17div((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17), _IQ17(1000.0));
 
+	if(GpioDataRegs.GPADAT.bit.GPIO1)
+		HanPID.Pos_PID_IQ17 = -HanPID.Pos_PID_IQ17;
+
 	if(HanPID.Pos_PID_IQ17 > _IQ17(0.0))			// Right curve
 	{
 		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);

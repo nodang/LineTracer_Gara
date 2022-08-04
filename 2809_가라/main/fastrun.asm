@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Sun Jul 31 03:33:19 2022                 *
+;* Date/Time created: Thu Aug 04 06:33:51 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -142,8 +142,8 @@ DW$42	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$42, DW_AT_type(*DW$T$85)
 	.dwattr DW$42, DW_AT_declaration(0x01)
 	.dwattr DW$42, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI52810 C:\Users\노호진\AppData\Local\Temp\TI5284 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI5282 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI5286 --object_file fastrun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI68410 C:\Users\노호진\AppData\Local\Temp\TI6844 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI6842 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI6846 --object_file fastrun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_cubeRoot
 
@@ -151,9 +151,9 @@ DW$43	.dwtag  DW_TAG_subprogram, DW_AT_name("cubeRoot"), DW_AT_symbol_name("_cub
 	.dwattr DW$43, DW_AT_low_pc(_cubeRoot)
 	.dwattr DW$43, DW_AT_high_pc(0x00)
 	.dwattr DW$43, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$43, DW_AT_begin_line(0x7c)
+	.dwattr DW$43, DW_AT_begin_line(0x7d)
 	.dwattr DW$43, DW_AT_begin_column(0x07)
-	.dwpsn	"fastrun.c",125,1
+	.dwpsn	"fastrun.c",126,1
 
 	.dwfde DW$CIE
 
@@ -173,9 +173,9 @@ DW$43	.dwtag  DW_TAG_subprogram, DW_AT_name("cubeRoot"), DW_AT_symbol_name("_cub
 ;*                                                             *
 ;***************************************************************
 _cubeRoot:
-;*** 125	-----------------------    n = n;
-;*** 128	-----------------------    i = 131072L;
-;*** 128	-----------------------    if ( __IQmpy(131072L, __IQmpy(131072L, 131072L, 17), 17) > n ) goto g4;
+;*** 126	-----------------------    n = n;
+;*** 129	-----------------------    i = 131072L;
+;*** 129	-----------------------    if ( __IQmpy(131072L, __IQmpy(131072L, 131072L, 17), 17) > n ) goto g4;
 ;***  	-----------------------    #pragma LOOP_FLAGS(4096u)
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
@@ -197,108 +197,108 @@ DW$46	.dwtag  DW_TAG_variable, DW_AT_name("i"), DW_AT_symbol_name("_i")
 DW$47	.dwtag  DW_TAG_variable, DW_AT_name("n"), DW_AT_symbol_name("_n")
 	.dwattr DW$47, DW_AT_type(*DW$T$22)
 	.dwattr DW$47, DW_AT_location[DW_OP_breg20 -2]
-        MOVL      *-SP[2],ACC           ; |125| 
-	.dwpsn	"fastrun.c",128,6
-        MOVL      XAR4,#131072          ; |128| 
+        MOVL      *-SP[2],ACC           ; |126| 
+	.dwpsn	"fastrun.c",129,6
+        MOVL      XAR4,#131072          ; |129| 
         MOV       AH,#2
         MOV       AL,#0
-        MOVL      XAR5,#131072          ; |128| 
-        MOVL      XT,XAR4               ; |128| 
-        MOVL      XAR6,ACC              ; |128| 
-        IMPYL     P,XT,XAR5             ; |128| 
-        QMPYL     ACC,XT,XAR5           ; |128| 
-        LSL64     ACC:P,#15             ; |128| 
-        MOVL      XT,XAR4               ; |128| 
-        IMPYL     P,XT,ACC              ; |128| 
-        QMPYL     ACC,XT,ACC            ; |128| 
-        LSL64     ACC:P,#15             ; |128| 
-        CMPL      ACC,*-SP[2]           ; |128| 
-        BF        L2,GT                 ; |128| 
-        ; branchcc occurs ; |128| 
+        MOVL      XAR5,#131072          ; |129| 
+        MOVL      XT,XAR4               ; |129| 
+        MOVL      XAR6,ACC              ; |129| 
+        IMPYL     P,XT,XAR5             ; |129| 
+        QMPYL     ACC,XT,XAR5           ; |129| 
+        LSL64     ACC:P,#15             ; |129| 
+        MOVL      XT,XAR4               ; |129| 
+        IMPYL     P,XT,ACC              ; |129| 
+        QMPYL     ACC,XT,ACC            ; |129| 
+        LSL64     ACC:P,#15             ; |129| 
+        CMPL      ACC,*-SP[2]           ; |129| 
+        BF        L2,GT                 ; |129| 
+        ; branchcc occurs ; |129| 
 L1:    
 DW$L$_cubeRoot$2$B:
 ;***	-----------------------g3:
-;*** 128	-----------------------    i += 131072L;
-;*** 128	-----------------------    if ( __IQmpy(i, __IQmpy(i, i, 17), 17) <= n ) goto g3;
-	.dwpsn	"fastrun.c",128,56
+;*** 129	-----------------------    i += 131072L;
+;*** 129	-----------------------    if ( __IQmpy(i, __IQmpy(i, i, 17), 17) <= n ) goto g3;
+	.dwpsn	"fastrun.c",129,56
         MOVL      ACC,XAR6
-        ADD       ACC,#4 << 15          ; |128| 
-        MOVL      XAR6,ACC              ; |128| 
-        MOVL      XT,ACC                ; |128| 
-        IMPYL     P,XT,XAR6             ; |128| 
-        MOVL      XT,XAR6               ; |128| 
-        QMPYL     ACC,XT,XAR6           ; |128| 
-        LSL64     ACC:P,#15             ; |128| 
-        MOVL      XT,XAR6               ; |128| 
-        IMPYL     P,XT,ACC              ; |128| 
-        MOVL      XT,XAR6               ; |128| 
-        QMPYL     ACC,XT,ACC            ; |128| 
-        LSL64     ACC:P,#15             ; |128| 
-        CMPL      ACC,*-SP[2]           ; |128| 
-        BF        L1,LEQ                ; |128| 
-        ; branchcc occurs ; |128| 
+        ADD       ACC,#4 << 15          ; |129| 
+        MOVL      XAR6,ACC              ; |129| 
+        MOVL      XT,ACC                ; |129| 
+        IMPYL     P,XT,XAR6             ; |129| 
+        MOVL      XT,XAR6               ; |129| 
+        QMPYL     ACC,XT,XAR6           ; |129| 
+        LSL64     ACC:P,#15             ; |129| 
+        MOVL      XT,XAR6               ; |129| 
+        IMPYL     P,XT,ACC              ; |129| 
+        MOVL      XT,XAR6               ; |129| 
+        QMPYL     ACC,XT,ACC            ; |129| 
+        LSL64     ACC:P,#15             ; |129| 
+        CMPL      ACC,*-SP[2]           ; |129| 
+        BF        L1,LEQ                ; |129| 
+        ; branchcc occurs ; |129| 
 DW$L$_cubeRoot$2$E:
 L2:    
 ;***	-----------------------g4:
-;*** 129	-----------------------    i -= 131072L;
-;*** 129	-----------------------    if ( __IQmpy(i, __IQmpy(i, i, 17), 17) >= n ) goto g7;
+;*** 130	-----------------------    i -= 131072L;
+;*** 130	-----------------------    if ( __IQmpy(i, __IQmpy(i, i, 17), 17) >= n ) goto g7;
 ;***  	-----------------------    #pragma LOOP_FLAGS(4096u)
-	.dwpsn	"fastrun.c",129,6
+	.dwpsn	"fastrun.c",130,6
         MOVL      ACC,XAR6
-        SUB       ACC,#4 << 15          ; |129| 
-        MOVL      XAR6,ACC              ; |129| 
-        MOVL      XT,ACC                ; |129| 
-        IMPYL     P,XT,XAR6             ; |129| 
-        MOVL      XT,XAR6               ; |129| 
-        QMPYL     ACC,XT,XAR6           ; |129| 
-        LSL64     ACC:P,#15             ; |129| 
-        MOVL      XT,XAR6               ; |129| 
-        IMPYL     P,XT,ACC              ; |129| 
-        MOVL      XT,XAR6               ; |129| 
-        QMPYL     ACC,XT,ACC            ; |129| 
-        LSL64     ACC:P,#15             ; |129| 
-        CMPL      ACC,*-SP[2]           ; |129| 
-        BF        L4,GEQ                ; |129| 
-        ; branchcc occurs ; |129| 
+        SUB       ACC,#4 << 15          ; |130| 
+        MOVL      XAR6,ACC              ; |130| 
+        MOVL      XT,ACC                ; |130| 
+        IMPYL     P,XT,XAR6             ; |130| 
+        MOVL      XT,XAR6               ; |130| 
+        QMPYL     ACC,XT,XAR6           ; |130| 
+        LSL64     ACC:P,#15             ; |130| 
+        MOVL      XT,XAR6               ; |130| 
+        IMPYL     P,XT,ACC              ; |130| 
+        MOVL      XT,XAR6               ; |130| 
+        QMPYL     ACC,XT,ACC            ; |130| 
+        LSL64     ACC:P,#15             ; |130| 
+        CMPL      ACC,*-SP[2]           ; |130| 
+        BF        L4,GEQ                ; |130| 
+        ; branchcc occurs ; |130| 
 L3:    
 DW$L$_cubeRoot$4$B:
 ;***	-----------------------g6:
-;*** 129	-----------------------    i += 13L;
-;*** 129	-----------------------    if ( __IQmpy(i, __IQmpy(i, i, 17), 17) < n ) goto g6;
-	.dwpsn	"fastrun.c",129,56
+;*** 130	-----------------------    i += 13L;
+;*** 130	-----------------------    if ( __IQmpy(i, __IQmpy(i, i, 17), 17) < n ) goto g6;
+	.dwpsn	"fastrun.c",130,56
         MOVL      ACC,XAR6
-        ADDB      ACC,#13               ; |129| 
-        MOVL      XAR6,ACC              ; |129| 
-        MOVL      XT,ACC                ; |129| 
-        IMPYL     P,XT,XAR6             ; |129| 
-        MOVL      XT,XAR6               ; |129| 
-        QMPYL     ACC,XT,XAR6           ; |129| 
-        LSL64     ACC:P,#15             ; |129| 
-        MOVL      XT,XAR6               ; |129| 
-        IMPYL     P,XT,ACC              ; |129| 
-        MOVL      XT,XAR6               ; |129| 
-        QMPYL     ACC,XT,ACC            ; |129| 
-        LSL64     ACC:P,#15             ; |129| 
-        CMPL      ACC,*-SP[2]           ; |129| 
-        BF        L3,LT                 ; |129| 
-        ; branchcc occurs ; |129| 
+        ADDB      ACC,#13               ; |130| 
+        MOVL      XAR6,ACC              ; |130| 
+        MOVL      XT,ACC                ; |130| 
+        IMPYL     P,XT,XAR6             ; |130| 
+        MOVL      XT,XAR6               ; |130| 
+        QMPYL     ACC,XT,XAR6           ; |130| 
+        LSL64     ACC:P,#15             ; |130| 
+        MOVL      XT,XAR6               ; |130| 
+        IMPYL     P,XT,ACC              ; |130| 
+        MOVL      XT,XAR6               ; |130| 
+        QMPYL     ACC,XT,ACC            ; |130| 
+        LSL64     ACC:P,#15             ; |130| 
+        CMPL      ACC,*-SP[2]           ; |130| 
+        BF        L3,LT                 ; |130| 
+        ; branchcc occurs ; |130| 
 DW$L$_cubeRoot$4$E:
 L4:    
 ;***	-----------------------g7:
-;*** 131	-----------------------    return i;
-	.dwpsn	"fastrun.c",131,2
-	.dwpsn	"fastrun.c",132,1
-        MOVL      ACC,XAR6              ; |131| 
-        SUBB      SP,#2                 ; |131| 
+;*** 132	-----------------------    return i;
+	.dwpsn	"fastrun.c",132,2
+	.dwpsn	"fastrun.c",133,1
+        MOVL      ACC,XAR6              ; |132| 
+        SUBB      SP,#2                 ; |132| 
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
 
 DW$48	.dwtag  DW_TAG_loop
-	.dwattr DW$48, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L3:1:1659205999")
+	.dwattr DW$48, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L3:1:1659562431")
 	.dwattr DW$48, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$48, DW_AT_begin_line(0x81)
-	.dwattr DW$48, DW_AT_end_line(0x81)
+	.dwattr DW$48, DW_AT_begin_line(0x82)
+	.dwattr DW$48, DW_AT_end_line(0x82)
 DW$49	.dwtag  DW_TAG_loop_range
 	.dwattr DW$49, DW_AT_low_pc(DW$L$_cubeRoot$4$B)
 	.dwattr DW$49, DW_AT_high_pc(DW$L$_cubeRoot$4$E)
@@ -306,17 +306,17 @@ DW$49	.dwtag  DW_TAG_loop_range
 
 
 DW$50	.dwtag  DW_TAG_loop
-	.dwattr DW$50, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L1:1:1659205999")
+	.dwattr DW$50, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L1:1:1659562431")
 	.dwattr DW$50, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$50, DW_AT_begin_line(0x80)
-	.dwattr DW$50, DW_AT_end_line(0x80)
+	.dwattr DW$50, DW_AT_begin_line(0x81)
+	.dwattr DW$50, DW_AT_end_line(0x81)
 DW$51	.dwtag  DW_TAG_loop_range
 	.dwattr DW$51, DW_AT_low_pc(DW$L$_cubeRoot$2$B)
 	.dwattr DW$51, DW_AT_high_pc(DW$L$_cubeRoot$2$E)
 	.dwendtag DW$50
 
 	.dwattr DW$43, DW_AT_end_file("fastrun.c")
-	.dwattr DW$43, DW_AT_end_line(0x84)
+	.dwattr DW$43, DW_AT_end_line(0x85)
 	.dwattr DW$43, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$43
@@ -328,9 +328,9 @@ DW$52	.dwtag  DW_TAG_subprogram, DW_AT_name("VEL_COMPUTE"), DW_AT_symbol_name("_
 	.dwattr DW$52, DW_AT_low_pc(_VEL_COMPUTE)
 	.dwattr DW$52, DW_AT_high_pc(0x00)
 	.dwattr DW$52, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$52, DW_AT_begin_line(0x61)
+	.dwattr DW$52, DW_AT_begin_line(0x62)
 	.dwattr DW$52, DW_AT_begin_column(0x06)
-	.dwpsn	"fastrun.c",98,1
+	.dwpsn	"fastrun.c",99,1
 
 	.dwfde DW$CIE
 
@@ -350,22 +350,22 @@ DW$52	.dwtag  DW_TAG_subprogram, DW_AT_name("VEL_COMPUTE"), DW_AT_symbol_name("_
 ;*                                                             *
 ;***************************************************************
 _VEL_COMPUTE:
-;*** 98	-----------------------    dist = dist;
-;*** 98	-----------------------    minus_dist = minus_dist;
-;*** 98	-----------------------    cur_vel = cur_vel;
-;*** 98	-----------------------    jerk = jerk;
-;*** 105	-----------------------    dist -= minus_dist;
-;*** 106	-----------------------    dist = _IQ17div(dist, 131072000L);
-;*** 107	-----------------------    cur_vel = _IQ17div(cur_vel, 131072000L);
-;*** 108	-----------------------    jerk = _IQ14div(jerk, 16384000L)<<3;
-;*** 110	-----------------------    halfSPACEpow2 = __IQmpy(dist, dist, 17);
-;*** 111	-----------------------    inVELOpow3 = __IQmpy(cur_vel, __IQmpy(cur_vel, cur_vel, 17), 17);
-;*** 112	-----------------------    CES1 = __IQmpy(_IQ17sqrt(__IQmpy(_IQ17div(4194304L, 3538944L), _IQ17div(inVELOpow3, jerk), 17)+halfSPACEpow2), __IQmpy(jerk, dist, 17), 17);
-;*** 113	-----------------------    CES2 = __IQmpy(_IQ17div(2097152L, 3538944L), inVELOpow3, 17)+__IQmpy(jerk, halfSPACEpow2, 17);
-;*** 114	-----------------------    CES3 = cubeRoot(CES1+CES2>>1);
-;*** 116	-----------------------    *vel = __IQmpy(__IQmpy(__IQmpy(_IQ17div(524288L, 1179648L), cur_vel, 17), _IQ17div(cur_vel, CES3)-393216L, 17)+cur_vel+CES3, 131072000L, 17);
-;*** 118	-----------------------    U$25 = SECOND_MAX_SPEED_U32<<17;
-;*** 118	-----------------------    if ( *vel > U$25 ) goto g4;
+;*** 99	-----------------------    dist = dist;
+;*** 99	-----------------------    minus_dist = minus_dist;
+;*** 99	-----------------------    cur_vel = cur_vel;
+;*** 99	-----------------------    jerk = jerk;
+;*** 106	-----------------------    dist -= minus_dist;
+;*** 107	-----------------------    dist = _IQ17div(dist, 131072000L);
+;*** 108	-----------------------    cur_vel = _IQ17div(cur_vel, 131072000L);
+;*** 109	-----------------------    jerk = _IQ14div(jerk, 16384000L)<<3;
+;*** 111	-----------------------    halfSPACEpow2 = __IQmpy(dist, dist, 17);
+;*** 112	-----------------------    inVELOpow3 = __IQmpy(cur_vel, __IQmpy(cur_vel, cur_vel, 17), 17);
+;*** 113	-----------------------    CES1 = __IQmpy(_IQ17sqrt(__IQmpy(_IQ17div(4194304L, 3538944L), _IQ17div(inVELOpow3, jerk), 17)+halfSPACEpow2), __IQmpy(jerk, dist, 17), 17);
+;*** 114	-----------------------    CES2 = __IQmpy(_IQ17div(2097152L, 3538944L), inVELOpow3, 17)+__IQmpy(jerk, halfSPACEpow2, 17);
+;*** 115	-----------------------    CES3 = cubeRoot(CES1+CES2>>1);
+;*** 117	-----------------------    *vel = __IQmpy(__IQmpy(__IQmpy(_IQ17div(524288L, 1179648L), cur_vel, 17), _IQ17div(cur_vel, CES3)-393216L, 17)+cur_vel+CES3, 131072000L, 17);
+;*** 119	-----------------------    U$25 = SECOND_MAX_SPEED_U32<<17;
+;*** 119	-----------------------    if ( *vel > U$25 ) goto g4;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -452,182 +452,182 @@ DW$71	.dwtag  DW_TAG_variable, DW_AT_name("cur_vel"), DW_AT_symbol_name("_cur_ve
 DW$72	.dwtag  DW_TAG_variable, DW_AT_name("jerk"), DW_AT_symbol_name("_jerk")
 	.dwattr DW$72, DW_AT_type(*DW$T$40)
 	.dwattr DW$72, DW_AT_location[DW_OP_breg20 -10]
-        MOVL      XAR7,*-SP[26]         ; |98| 
-        MOVL      XAR6,*-SP[24]         ; |98| 
-        MOVL      P,*-SP[22]            ; |98| 
-        MOVL      *-SP[4],ACC           ; |98| 
-        MOVL      *-SP[6],P             ; |98| 
-        MOVL      *-SP[8],XAR6          ; |98| 
-        MOVL      *-SP[10],XAR7         ; |98| 
-        MOVL      XAR1,XAR4             ; |98| 
-	.dwpsn	"fastrun.c",105,2
-        MOVL      ACC,*-SP[6]           ; |105| 
-        SUBL      *-SP[4],ACC           ; |105| 
+        MOVL      XAR7,*-SP[26]         ; |99| 
+        MOVL      XAR6,*-SP[24]         ; |99| 
+        MOVL      P,*-SP[22]            ; |99| 
+        MOVL      *-SP[4],ACC           ; |99| 
+        MOVL      *-SP[6],P             ; |99| 
+        MOVL      *-SP[8],XAR6          ; |99| 
+        MOVL      *-SP[10],XAR7         ; |99| 
+        MOVL      XAR1,XAR4             ; |99| 
 	.dwpsn	"fastrun.c",106,2
-        MOV       PH,#2000
-        MOV       PL,#0
-        MOVL      *-SP[2],P             ; |106| 
-        MOVL      ACC,*-SP[4]           ; |106| 
-        LCR       #__IQ17div            ; |106| 
-        ; call occurs [#__IQ17div] ; |106| 
-        MOVL      *-SP[4],ACC           ; |106| 
+        MOVL      ACC,*-SP[6]           ; |106| 
+        SUBL      *-SP[4],ACC           ; |106| 
 	.dwpsn	"fastrun.c",107,2
         MOV       PH,#2000
         MOV       PL,#0
         MOVL      *-SP[2],P             ; |107| 
-        MOVL      ACC,*-SP[8]           ; |107| 
+        MOVL      ACC,*-SP[4]           ; |107| 
         LCR       #__IQ17div            ; |107| 
         ; call occurs [#__IQ17div] ; |107| 
-        MOVL      *-SP[8],ACC           ; |107| 
+        MOVL      *-SP[4],ACC           ; |107| 
 	.dwpsn	"fastrun.c",108,2
-        MOV       PH,#250
+        MOV       PH,#2000
         MOV       PL,#0
         MOVL      *-SP[2],P             ; |108| 
-        MOVL      ACC,*-SP[10]          ; |108| 
-        LCR       #__IQ14div            ; |108| 
-        ; call occurs [#__IQ14div] ; |108| 
-        LSL       ACC,3                 ; |108| 
-        MOVL      *-SP[10],ACC          ; |108| 
-	.dwpsn	"fastrun.c",110,2
-        MOVL      ACC,*-SP[4]           ; |110| 
-        MOVL      XT,*-SP[4]            ; |110| 
-        IMPYL     P,XT,ACC              ; |110| 
-        QMPYL     ACC,XT,ACC            ; |110| 
-        LSL64     ACC:P,#15             ; |110| 
-        MOVL      XAR2,ACC              ; |110| 
+        MOVL      ACC,*-SP[8]           ; |108| 
+        LCR       #__IQ17div            ; |108| 
+        ; call occurs [#__IQ17div] ; |108| 
+        MOVL      *-SP[8],ACC           ; |108| 
+	.dwpsn	"fastrun.c",109,2
+        MOV       PH,#250
+        MOV       PL,#0
+        MOVL      *-SP[2],P             ; |109| 
+        MOVL      ACC,*-SP[10]          ; |109| 
+        LCR       #__IQ14div            ; |109| 
+        ; call occurs [#__IQ14div] ; |109| 
+        LSL       ACC,3                 ; |109| 
+        MOVL      *-SP[10],ACC          ; |109| 
 	.dwpsn	"fastrun.c",111,2
-        MOVL      ACC,*-SP[8]           ; |111| 
-        MOVL      XT,*-SP[8]            ; |111| 
+        MOVL      ACC,*-SP[4]           ; |111| 
+        MOVL      XT,*-SP[4]            ; |111| 
         IMPYL     P,XT,ACC              ; |111| 
         QMPYL     ACC,XT,ACC            ; |111| 
         LSL64     ACC:P,#15             ; |111| 
-        MOVL      XT,*-SP[8]            ; |111| 
-        IMPYL     P,XT,ACC              ; |111| 
-        QMPYL     ACC,XT,ACC            ; |111| 
-        MOVL      *-SP[12],ACC          ; |111| 
-        LSL64     ACC:P,#15             ; |111| 
-        MOVL      *-SP[12],ACC          ; |111| 
+        MOVL      XAR2,ACC              ; |111| 
 	.dwpsn	"fastrun.c",112,2
-        MOVL      ACC,*-SP[10]          ; |112| 
-        MOVL      *-SP[2],ACC           ; |112| 
-        MOVL      ACC,*-SP[12]          ; |112| 
-        LCR       #__IQ17div            ; |112| 
-        ; call occurs [#__IQ17div] ; |112| 
-        MOVL      XAR3,ACC              ; |112| 
-        MOVL      XAR4,#3538944         ; |112| 
-        MOV       AL,#0
-        MOVL      *-SP[2],XAR4          ; |112| 
-        MOV       AH,#64
-        LCR       #__IQ17div            ; |112| 
-        ; call occurs [#__IQ17div] ; |112| 
-        MOVL      XT,ACC                ; |112| 
-        QMPYL     ACC,XT,XAR3           ; |112| 
-        IMPYL     P,XT,XAR3             ; |112| 
-        LSL64     ACC:P,#15             ; |112| 
-        ADDL      ACC,XAR2
-        LCR       #__IQ17sqrt           ; |112| 
-        ; call occurs [#__IQ17sqrt] ; |112| 
-        MOVL      XAR6,ACC              ; |112| 
-        MOVL      ACC,*-SP[4]           ; |112| 
-        MOVL      XT,*-SP[10]           ; |112| 
+        MOVL      ACC,*-SP[8]           ; |112| 
+        MOVL      XT,*-SP[8]            ; |112| 
         IMPYL     P,XT,ACC              ; |112| 
         QMPYL     ACC,XT,ACC            ; |112| 
         LSL64     ACC:P,#15             ; |112| 
-        MOVL      XT,XAR6               ; |112| 
+        MOVL      XT,*-SP[8]            ; |112| 
         IMPYL     P,XT,ACC              ; |112| 
-        MOVL      XT,XAR6               ; |112| 
         QMPYL     ACC,XT,ACC            ; |112| 
+        MOVL      *-SP[12],ACC          ; |112| 
         LSL64     ACC:P,#15             ; |112| 
-        MOVL      XAR3,ACC              ; |112| 
+        MOVL      *-SP[12],ACC          ; |112| 
 	.dwpsn	"fastrun.c",113,2
+        MOVL      ACC,*-SP[10]          ; |113| 
+        MOVL      *-SP[2],ACC           ; |113| 
+        MOVL      ACC,*-SP[12]          ; |113| 
+        LCR       #__IQ17div            ; |113| 
+        ; call occurs [#__IQ17div] ; |113| 
+        MOVL      XAR3,ACC              ; |113| 
         MOVL      XAR4,#3538944         ; |113| 
         MOV       AL,#0
         MOVL      *-SP[2],XAR4          ; |113| 
-        MOV       AH,#32
+        MOV       AH,#64
         LCR       #__IQ17div            ; |113| 
         ; call occurs [#__IQ17div] ; |113| 
         MOVL      XT,ACC                ; |113| 
-        MOVL      ACC,*-SP[12]          ; |113| 
+        QMPYL     ACC,XT,XAR3           ; |113| 
+        IMPYL     P,XT,XAR3             ; |113| 
+        LSL64     ACC:P,#15             ; |113| 
+        ADDL      ACC,XAR2
+        LCR       #__IQ17sqrt           ; |113| 
+        ; call occurs [#__IQ17sqrt] ; |113| 
+        MOVL      XAR6,ACC              ; |113| 
+        MOVL      ACC,*-SP[4]           ; |113| 
+        MOVL      XT,*-SP[10]           ; |113| 
         IMPYL     P,XT,ACC              ; |113| 
-        MOVL      ACC,*-SP[12]          ; |113| 
         QMPYL     ACC,XT,ACC            ; |113| 
         LSL64     ACC:P,#15             ; |113| 
-        MOVL      XT,*-SP[10]           ; |113| 
-        MOVL      XAR6,ACC              ; |113| 
-        QMPYL     ACC,XT,XAR2           ; |113| 
-        IMPYL     P,XT,XAR2             ; |113| 
+        MOVL      XT,XAR6               ; |113| 
+        IMPYL     P,XT,ACC              ; |113| 
+        MOVL      XT,XAR6               ; |113| 
+        QMPYL     ACC,XT,ACC            ; |113| 
         LSL64     ACC:P,#15             ; |113| 
-        ADDL      ACC,XAR6
+        MOVL      XAR3,ACC              ; |113| 
 	.dwpsn	"fastrun.c",114,2
+        MOVL      XAR4,#3538944         ; |114| 
+        MOV       AL,#0
+        MOVL      *-SP[2],XAR4          ; |114| 
+        MOV       AH,#32
+        LCR       #__IQ17div            ; |114| 
+        ; call occurs [#__IQ17div] ; |114| 
+        MOVL      XT,ACC                ; |114| 
+        MOVL      ACC,*-SP[12]          ; |114| 
+        IMPYL     P,XT,ACC              ; |114| 
+        MOVL      ACC,*-SP[12]          ; |114| 
+        QMPYL     ACC,XT,ACC            ; |114| 
+        LSL64     ACC:P,#15             ; |114| 
+        MOVL      XT,*-SP[10]           ; |114| 
+        MOVL      XAR6,ACC              ; |114| 
+        QMPYL     ACC,XT,XAR2           ; |114| 
+        IMPYL     P,XT,XAR2             ; |114| 
+        LSL64     ACC:P,#15             ; |114| 
+        ADDL      ACC,XAR6
+	.dwpsn	"fastrun.c",115,2
         SETC      SXM
         ADDL      ACC,XAR3
-        SFR       ACC,1                 ; |114| 
-        LCR       #_cubeRoot            ; |114| 
-        ; call occurs [#_cubeRoot] ; |114| 
-        MOVL      XAR3,ACC              ; |114| 
-	.dwpsn	"fastrun.c",116,2
-        MOVL      XAR4,#1179648         ; |116| 
+        SFR       ACC,1                 ; |115| 
+        LCR       #_cubeRoot            ; |115| 
+        ; call occurs [#_cubeRoot] ; |115| 
+        MOVL      XAR3,ACC              ; |115| 
+	.dwpsn	"fastrun.c",117,2
+        MOVL      XAR4,#1179648         ; |117| 
         MOV       AL,#0
-        MOVL      *-SP[2],XAR4          ; |116| 
+        MOVL      *-SP[2],XAR4          ; |117| 
         MOV       AH,#8
-        LCR       #__IQ17div            ; |116| 
-        ; call occurs [#__IQ17div] ; |116| 
-        MOVL      XT,ACC                ; |116| 
-        MOVL      ACC,*-SP[8]           ; |116| 
-        IMPYL     P,XT,ACC              ; |116| 
-        QMPYL     ACC,XT,ACC            ; |116| 
-        LSL64     ACC:P,#15             ; |116| 
-        MOVL      *-SP[2],XAR3          ; |116| 
-        MOVL      XAR2,ACC              ; |116| 
-        MOVL      ACC,*-SP[8]           ; |116| 
-        LCR       #__IQ17div            ; |116| 
-        ; call occurs [#__IQ17div] ; |116| 
-        SUB       ACC,#12 << 15         ; |116| 
-        MOVL      XT,XAR2               ; |116| 
-        IMPYL     P,XT,ACC              ; |116| 
-        MOVL      XT,XAR2               ; |116| 
-        QMPYL     ACC,XT,ACC            ; |116| 
-        LSL64     ACC:P,#15             ; |116| 
-        ADDL      ACC,*-SP[8]           ; |116| 
+        LCR       #__IQ17div            ; |117| 
+        ; call occurs [#__IQ17div] ; |117| 
+        MOVL      XT,ACC                ; |117| 
+        MOVL      ACC,*-SP[8]           ; |117| 
+        IMPYL     P,XT,ACC              ; |117| 
+        QMPYL     ACC,XT,ACC            ; |117| 
+        LSL64     ACC:P,#15             ; |117| 
+        MOVL      *-SP[2],XAR3          ; |117| 
+        MOVL      XAR2,ACC              ; |117| 
+        MOVL      ACC,*-SP[8]           ; |117| 
+        LCR       #__IQ17div            ; |117| 
+        ; call occurs [#__IQ17div] ; |117| 
+        SUB       ACC,#12 << 15         ; |117| 
+        MOVL      XT,XAR2               ; |117| 
+        IMPYL     P,XT,ACC              ; |117| 
+        MOVL      XT,XAR2               ; |117| 
+        QMPYL     ACC,XT,ACC            ; |117| 
+        LSL64     ACC:P,#15             ; |117| 
+        ADDL      ACC,*-SP[8]           ; |117| 
         ADDL      ACC,XAR3
-        MOVL      XT,ACC                ; |116| 
+        MOVL      XT,ACC                ; |117| 
         MOV       ACC,#4000 << 15
-        IMPYL     P,XT,ACC              ; |116| 
-        QMPYL     ACC,XT,ACC            ; |116| 
-        LSL64     ACC:P,#15             ; |116| 
-        MOVL      *+XAR1[0],ACC         ; |116| 
-	.dwpsn	"fastrun.c",118,2
+        IMPYL     P,XT,ACC              ; |117| 
+        QMPYL     ACC,XT,ACC            ; |117| 
+        LSL64     ACC:P,#15             ; |117| 
+        MOVL      *+XAR1[0],ACC         ; |117| 
+	.dwpsn	"fastrun.c",119,2
         MOVW      DP,#_SECOND_MAX_SPEED_U32
-        MOV       T,#17                 ; |118| 
-        MOVL      ACC,@_SECOND_MAX_SPEED_U32 ; |118| 
-        LSLL      ACC,T                 ; |118| 
-        CMPL      ACC,*+XAR1[0]         ; |118| 
-        BF        L5,LT                 ; |118| 
-        ; branchcc occurs ; |118| 
-;*** 120	-----------------------    C$1 = MOTOR_SPEED_U32<<17;
-;*** 120	-----------------------    if ( *vel >= C$1 ) goto g5;
-	.dwpsn	"fastrun.c",120,7
+        MOV       T,#17                 ; |119| 
+        MOVL      ACC,@_SECOND_MAX_SPEED_U32 ; |119| 
+        LSLL      ACC,T                 ; |119| 
+        CMPL      ACC,*+XAR1[0]         ; |119| 
+        BF        L5,LT                 ; |119| 
+        ; branchcc occurs ; |119| 
+;*** 121	-----------------------    C$1 = MOTOR_SPEED_U32<<17;
+;*** 121	-----------------------    if ( *vel >= C$1 ) goto g5;
+	.dwpsn	"fastrun.c",121,7
         MOVW      DP,#_MOTOR_SPEED_U32
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |120| 
-        LSLL      ACC,T                 ; |120| 
-        CMPL      ACC,*+XAR1[0]         ; |120| 
-        BF        L6,LEQ                ; |120| 
-        ; branchcc occurs ; |120| 
-;*** 121	-----------------------    *vel = C$1;
-;*** 121	-----------------------    goto g5;
-	.dwpsn	"fastrun.c",121,3
-        MOVL      *+XAR1[0],ACC         ; |121| 
-        BF        L6,UNC                ; |121| 
-        ; branch occurs ; |121| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |121| 
+        LSLL      ACC,T                 ; |121| 
+        CMPL      ACC,*+XAR1[0]         ; |121| 
+        BF        L6,LEQ                ; |121| 
+        ; branchcc occurs ; |121| 
+;*** 122	-----------------------    *vel = C$1;
+;*** 122	-----------------------    goto g5;
+	.dwpsn	"fastrun.c",122,3
+        MOVL      *+XAR1[0],ACC         ; |122| 
+        BF        L6,UNC                ; |122| 
+        ; branch occurs ; |122| 
 L5:    
 ;***	-----------------------g4:
-;*** 119	-----------------------    *vel = U$25;
+;*** 120	-----------------------    *vel = U$25;
 ;***	-----------------------g5:
 ;***  	-----------------------    return;
-	.dwpsn	"fastrun.c",119,3
-        MOVL      *+XAR1[0],ACC         ; |119| 
+	.dwpsn	"fastrun.c",120,3
+        MOVL      *+XAR1[0],ACC         ; |120| 
 L6:    
-	.dwpsn	"fastrun.c",122,1
+	.dwpsn	"fastrun.c",123,1
         SUBB      SP,#12
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -642,7 +642,7 @@ L6:
         LRETR
         ; return occurs
 	.dwattr DW$52, DW_AT_end_file("fastrun.c")
-	.dwattr DW$52, DW_AT_end_line(0x7a)
+	.dwattr DW$52, DW_AT_end_line(0x7b)
 	.dwattr DW$52, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$52
@@ -681,11 +681,11 @@ _DECEL_DIST_COMPUTE:
 ;*** 85	-----------------------    curACC = 786432000L-__IQmpy(_IQ17div(393216000L, 589824000L), curVEL, 17)>>3;
 ;*** 86	-----------------------    tarACC = 786432000L-__IQmpy(_IQ17div(393216000L, 589824000L), tarVEL, 17)>>3;
 ;*** 88	-----------------------    *decel = (tarACC>>1)+(curACC>>1);
-;*** 89	-----------------------    curVEL = _IQ17div(curVEL, 131072000L);
-;*** 90	-----------------------    tarVEL = _IQ17div(tarVEL, 131072000L);
-;*** 91	-----------------------    decelACC = _IQ14div(*decel, 16384000L)<<4;
-;*** 93	-----------------------    *decel_dist = __IQmpy(_IQ17div(ABS(__IQmpy(tarVEL, tarVEL, 17)-__IQmpy(curVEL, curVEL, 17)), decelACC), 131072000L, 17);
-;*** 93	-----------------------    return;
+;*** 90	-----------------------    curVEL = _IQ17div(curVEL, 131072000L);
+;*** 91	-----------------------    tarVEL = _IQ17div(tarVEL, 131072000L);
+;*** 92	-----------------------    decelACC = _IQ14div(*decel, 16384000L)<<4;
+;*** 94	-----------------------    *decel_dist = __IQmpy(_IQ17div(ABS(__IQmpy(tarVEL, tarVEL, 17)-__IQmpy(curVEL, curVEL, 17)), decelACC), 131072000L, 17);
+;*** 94	-----------------------    return;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -796,55 +796,55 @@ DW$86	.dwtag  DW_TAG_variable, DW_AT_name("tarVEL"), DW_AT_symbol_name("_tarVEL"
         SFR       ACC,1                 ; |88| 
         ADDL      ACC,P << PM           ; |88| 
         MOVL      *+XAR1[0],ACC         ; |88| 
-	.dwpsn	"fastrun.c",89,2
-        MOV       PH,#2000
-        MOV       PL,#0
-        MOVL      *-SP[2],P             ; |89| 
-        SPM       #0
-        MOVL      ACC,*-SP[4]           ; |89| 
-        LCR       #__IQ17div            ; |89| 
-        ; call occurs [#__IQ17div] ; |89| 
-        MOVL      *-SP[4],ACC           ; |89| 
 	.dwpsn	"fastrun.c",90,2
         MOV       PH,#2000
         MOV       PL,#0
         MOVL      *-SP[2],P             ; |90| 
-        MOVL      ACC,*-SP[6]           ; |90| 
+        SPM       #0
+        MOVL      ACC,*-SP[4]           ; |90| 
         LCR       #__IQ17div            ; |90| 
         ; call occurs [#__IQ17div] ; |90| 
-        MOVL      *-SP[6],ACC           ; |90| 
+        MOVL      *-SP[4],ACC           ; |90| 
 	.dwpsn	"fastrun.c",91,2
-        MOV       PH,#250
+        MOV       PH,#2000
         MOV       PL,#0
         MOVL      *-SP[2],P             ; |91| 
-        MOVL      ACC,*+XAR1[0]         ; |91| 
-        LCR       #__IQ14div            ; |91| 
-        ; call occurs [#__IQ14div] ; |91| 
-        LSL       ACC,4                 ; |91| 
-	.dwpsn	"fastrun.c",93,2
-        MOVL      *-SP[2],ACC           ; |93| 
-        MOVL      ACC,*-SP[4]           ; |93| 
-        MOVL      XT,*-SP[4]            ; |93| 
-        IMPYL     P,XT,ACC              ; |93| 
-        QMPYL     ACC,XT,ACC            ; |93| 
-        LSL64     ACC:P,#15             ; |93| 
-        MOVL      XAR6,ACC              ; |93| 
-        MOVL      ACC,*-SP[6]           ; |93| 
-        MOVL      XT,*-SP[6]            ; |93| 
-        IMPYL     P,XT,ACC              ; |93| 
-        QMPYL     ACC,XT,ACC            ; |93| 
-        LSL64     ACC:P,#15             ; |93| 
+        MOVL      ACC,*-SP[6]           ; |91| 
+        LCR       #__IQ17div            ; |91| 
+        ; call occurs [#__IQ17div] ; |91| 
+        MOVL      *-SP[6],ACC           ; |91| 
+	.dwpsn	"fastrun.c",92,2
+        MOV       PH,#250
+        MOV       PL,#0
+        MOVL      *-SP[2],P             ; |92| 
+        MOVL      ACC,*+XAR1[0]         ; |92| 
+        LCR       #__IQ14div            ; |92| 
+        ; call occurs [#__IQ14div] ; |92| 
+        LSL       ACC,4                 ; |92| 
+	.dwpsn	"fastrun.c",94,2
+        MOVL      *-SP[2],ACC           ; |94| 
+        MOVL      ACC,*-SP[4]           ; |94| 
+        MOVL      XT,*-SP[4]            ; |94| 
+        IMPYL     P,XT,ACC              ; |94| 
+        QMPYL     ACC,XT,ACC            ; |94| 
+        LSL64     ACC:P,#15             ; |94| 
+        MOVL      XAR6,ACC              ; |94| 
+        MOVL      ACC,*-SP[6]           ; |94| 
+        MOVL      XT,*-SP[6]            ; |94| 
+        IMPYL     P,XT,ACC              ; |94| 
+        QMPYL     ACC,XT,ACC            ; |94| 
+        LSL64     ACC:P,#15             ; |94| 
         SUBL      ACC,XAR6
-        ABS       ACC                   ; |93| 
-        LCR       #__IQ17div            ; |93| 
-        ; call occurs [#__IQ17div] ; |93| 
-        MOVL      XT,ACC                ; |93| 
+        ABS       ACC                   ; |94| 
+        LCR       #__IQ17div            ; |94| 
+        ; call occurs [#__IQ17div] ; |94| 
+        MOVL      XT,ACC                ; |94| 
         MOV       ACC,#4000 << 15
-        IMPYL     P,XT,ACC              ; |93| 
-        QMPYL     ACC,XT,ACC            ; |93| 
-        LSL64     ACC:P,#15             ; |93| 
-        MOVL      *+XAR3[0],ACC         ; |93| 
-	.dwpsn	"fastrun.c",95,1
+        IMPYL     P,XT,ACC              ; |94| 
+        QMPYL     ACC,XT,ACC            ; |94| 
+        LSL64     ACC:P,#15             ; |94| 
+        MOVL      *+XAR3[0],ACC         ; |94| 
+	.dwpsn	"fastrun.c",96,1
         SUBB      SP,#6
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -859,7 +859,7 @@ DW$86	.dwtag  DW_TAG_variable, DW_AT_name("tarVEL"), DW_AT_symbol_name("_tarVEL"
         LRETR
         ; return occurs
 	.dwattr DW$73, DW_AT_end_file("fastrun.c")
-	.dwattr DW$73, DW_AT_end_line(0x5f)
+	.dwattr DW$73, DW_AT_end_line(0x60)
 	.dwattr DW$73, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$73
@@ -870,9 +870,9 @@ DW$87	.dwtag  DW_TAG_subprogram, DW_AT_name("STRAIGHT_DIVISION"), DW_AT_symbol_n
 	.dwattr DW$87, DW_AT_low_pc(_STRAIGHT_DIVISION$0)
 	.dwattr DW$87, DW_AT_high_pc(0x00)
 	.dwattr DW$87, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$87, DW_AT_begin_line(0x103)
+	.dwattr DW$87, DW_AT_begin_line(0x104)
 	.dwattr DW$87, DW_AT_begin_column(0x0d)
-	.dwpsn	"fastrun.c",260,1
+	.dwpsn	"fastrun.c",261,1
 
 	.dwfde DW$CIE
 
@@ -892,10 +892,10 @@ DW$87	.dwtag  DW_TAG_subprogram, DW_AT_name("STRAIGHT_DIVISION"), DW_AT_symbol_n
 ;*                                                             *
 ;***************************************************************
 _STRAIGHT_DIVISION$0:
-;*** 261	-----------------------    high_vel = 0L;
-;*** 262	-----------------------    low_vel = 0L;
-;*** 263	-----------------------    m_dist = 0L;
-;*** 265	-----------------------    cnt ? (S$1 = *((long * const)LINE-20L)) : (S$1 = 0L);
+;*** 262	-----------------------    high_vel = 0L;
+;*** 263	-----------------------    low_vel = 0L;
+;*** 264	-----------------------    m_dist = 0L;
+;*** 266	-----------------------    cnt ? (S$1 = *((long * const)LINE-14L)) : (S$1 = 0L);
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -970,61 +970,61 @@ DW$102	.dwtag  DW_TAG_variable, DW_AT_name("low_vel"), DW_AT_symbol_name("_low_v
 DW$103	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
 	.dwattr DW$103, DW_AT_type(*DW$T$22)
 	.dwattr DW$103, DW_AT_location[DW_OP_breg20 -12]
-        MOV       *-SP[13],AL           ; |260| 
-        MOVL      XAR1,XAR4             ; |260| 
-	.dwpsn	"fastrun.c",261,17
-        MOVB      ACC,#0
-        MOVL      *-SP[8],ACC           ; |261| 
+        MOV       *-SP[13],AL           ; |261| 
+        MOVL      XAR1,XAR4             ; |261| 
 	.dwpsn	"fastrun.c",262,17
-        MOVL      *-SP[10],ACC          ; |262| 
+        MOVB      ACC,#0
+        MOVL      *-SP[8],ACC           ; |262| 
 	.dwpsn	"fastrun.c",263,17
-        MOVL      *-SP[12],ACC          ; |263| 
-	.dwpsn	"fastrun.c",265,2
+        MOVL      *-SP[10],ACC          ; |263| 
+	.dwpsn	"fastrun.c",264,17
+        MOVL      *-SP[12],ACC          ; |264| 
+	.dwpsn	"fastrun.c",266,2
         MOV       AL,*-SP[13]
-        BF        L7,EQ                 ; |265| 
-        ; branchcc occurs ; |265| 
-        MOVL      XAR4,XAR1             ; |265| 
-        SUBB      XAR4,#20              ; |265| 
-        MOVL      XAR6,*+XAR4[0]        ; |265| 
-        BF        L8,UNC                ; |265| 
-        ; branch occurs ; |265| 
+        BF        L7,EQ                 ; |266| 
+        ; branchcc occurs ; |266| 
+        MOVL      XAR4,XAR1             ; |266| 
+        SUBB      XAR4,#14              ; |266| 
+        MOVL      XAR6,*+XAR4[0]        ; |266| 
+        BF        L8,UNC                ; |266| 
+        ; branch occurs ; |266| 
 L7:    
         MOVB      XAR6,#0
 L8:    
-;*** 265	-----------------------    (*LINE).VeloIn_IQ17 = v$2 = S$1;
-;*** 268	-----------------------    if ( (*LINE).TurnDir_U32&0x2000uL ) goto g5;
-        MOVB      XAR0,#16              ; |265| 
-        MOVL      *+XAR1[AR0],XAR6      ; |265| 
-	.dwpsn	"fastrun.c",268,2
-        MOVB      XAR0,#8               ; |268| 
-        MOVL      ACC,*+XAR1[AR0]       ; |268| 
-        AND       AL,#0x2000            ; |268| 
+;*** 266	-----------------------    (*LINE).VeloIn_IQ17 = v$2 = S$1;
+;*** 269	-----------------------    if ( (*LINE).TurnDir_U32&0x2000uL ) goto g5;
+        MOVB      XAR0,#16              ; |266| 
+        MOVL      *+XAR1[AR0],XAR6      ; |266| 
+	.dwpsn	"fastrun.c",269,2
+        MOVB      XAR0,#8               ; |269| 
+        MOVL      ACC,*+XAR1[AR0]       ; |269| 
+        AND       AL,#0x2000            ; |269| 
         MOVB      AH,#0
-        TEST      ACC                   ; |268| 
-        BF        L10,NEQ               ; |268| 
-        ; branchcc occurs ; |268| 
-;*** 271	-----------------------    LINE_DIVISION(LINE+38L, cnt+1u);
-;*** 273	-----------------------    (*LINE).VeloOut_IQ17 = v$1 = *((long * const)LINE+54L);
-;*** 274	-----------------------    if ( (v$3 = (*LINE).Distance_U32) > 1500uL ) goto g4;
-	.dwpsn	"fastrun.c",271,3
-        MOVB      ACC,#38
+        TEST      ACC                   ; |269| 
+        BF        L10,NEQ               ; |269| 
+        ; branchcc occurs ; |269| 
+;*** 272	-----------------------    LINE_DIVISION(LINE+32L, cnt+1u);
+;*** 274	-----------------------    (*LINE).VeloOut_IQ17 = v$1 = *((long * const)LINE+48L);
+;*** 275	-----------------------    if ( (v$3 = (*LINE).Distance_U32) > 1500uL ) goto g4;
+	.dwpsn	"fastrun.c",272,3
+        MOVB      ACC,#32
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |271| 
-        MOVB      AL,#1                 ; |271| 
-        ADD       AL,*-SP[13]           ; |271| 
-        LCR       #_LINE_DIVISION$0     ; |271| 
-        ; call occurs [#_LINE_DIVISION$0] ; |271| 
-	.dwpsn	"fastrun.c",273,3
-        MOVB      XAR0,#54              ; |273| 
-        MOVL      XAR7,*+XAR1[AR0]      ; |273| 
-        MOVB      XAR0,#18              ; |273| 
-        MOVL      *+XAR1[AR0],XAR7      ; |273| 
-	.dwpsn	"fastrun.c",274,2
-        MOVL      P,*+XAR1[4]           ; |274| 
-        MOV       ACC,#1500             ; |274| 
-        CMPL      ACC,P                 ; |274| 
-        BF        L9,LO                 ; |274| 
-        ; branchcc occurs ; |274| 
+        MOVL      XAR4,ACC              ; |272| 
+        MOVB      AL,#1                 ; |272| 
+        ADD       AL,*-SP[13]           ; |272| 
+        LCR       #_LINE_DIVISION$0     ; |272| 
+        ; call occurs [#_LINE_DIVISION$0] ; |272| 
+	.dwpsn	"fastrun.c",274,3
+        MOVB      XAR0,#48              ; |274| 
+        MOVL      XAR7,*+XAR1[AR0]      ; |274| 
+        MOVB      XAR0,#18              ; |274| 
+        MOVL      *+XAR1[AR0],XAR7      ; |274| 
+	.dwpsn	"fastrun.c",275,2
+        MOVL      P,*+XAR1[4]           ; |275| 
+        MOV       ACC,#1500             ; |275| 
+        CMPL      ACC,P                 ; |275| 
+        BF        L9,LO                 ; |275| 
+        ; branchcc occurs ; |275| 
 ;***  	-----------------------    v$2 = (*LINE).VeloIn_IQ17;
 ;***  	-----------------------    goto g6;
         MOVB      XAR0,#16
@@ -1041,246 +1041,246 @@ L9:
         ; branch occurs
 L10:    
 ;***	-----------------------g5:
-;*** 276	-----------------------    (*LINE).VeloOut_IQ17 = v$1 = END_SPEED_U32<<17;
-;*** 279	-----------------------    *((long * const)LINE+54L) = 0L;
-;*** 279	-----------------------    if ( (v$3 = (*LINE).Distance_U32) > 1500uL ) goto g7;
-	.dwpsn	"fastrun.c",276,3
+;*** 277	-----------------------    (*LINE).VeloOut_IQ17 = v$1 = END_SPEED_U32<<17;
+;*** 280	-----------------------    *((long * const)LINE+48L) = 0L;
+;*** 280	-----------------------    if ( (v$3 = (*LINE).Distance_U32) > 1500uL ) goto g7;
+	.dwpsn	"fastrun.c",277,3
         MOVW      DP,#_END_SPEED_U32
-        MOV       T,#17                 ; |276| 
-        MOVB      XAR0,#18              ; |276| 
-        MOVL      ACC,@_END_SPEED_U32   ; |276| 
-        LSLL      ACC,T                 ; |276| 
-        MOVL      *+XAR1[AR0],ACC       ; |276| 
-        MOVL      XAR7,ACC              ; |276| 
-	.dwpsn	"fastrun.c",279,3
-        MOVB      XAR0,#54              ; |279| 
+        MOV       T,#17                 ; |277| 
+        MOVB      XAR0,#18              ; |277| 
+        MOVL      ACC,@_END_SPEED_U32   ; |277| 
+        LSLL      ACC,T                 ; |277| 
+        MOVL      *+XAR1[AR0],ACC       ; |277| 
+        MOVL      XAR7,ACC              ; |277| 
+	.dwpsn	"fastrun.c",280,3
+        MOVB      XAR0,#48              ; |280| 
         MOVB      ACC,#0
-        MOVL      *+XAR1[AR0],ACC       ; |279| 
-        MOVL      P,*+XAR1[4]           ; |279| 
-        MOV       ACC,#1500             ; |279| 
-        CMPL      ACC,P                 ; |279| 
-        BF        L15,LO                ; |279| 
-        ; branchcc occurs ; |279| 
+        MOVL      *+XAR1[AR0],ACC       ; |280| 
+        MOVL      P,*+XAR1[4]           ; |280| 
+        MOV       ACC,#1500             ; |280| 
+        CMPL      ACC,P                 ; |280| 
+        BF        L15,LO                ; |280| 
+        ; branchcc occurs ; |280| 
 L11:    
 ;***	-----------------------g6:
-;*** 284	-----------------------    (*LINE).Jerk_IQ14 = (v$3 > 700uL) ? JERK_MIDDLE_U32<<14 : (v$3 > 300uL) ? JERK_SHORT_U32<<14 : JERK_U32<<14;
-	.dwpsn	"fastrun.c",284,7
-        MOV       ACC,#700              ; |284| 
-        CMPL      ACC,P                 ; |284| 
-        BF        L12,HIS               ; |284| 
-        ; branchcc occurs ; |284| 
+;*** 285	-----------------------    (*LINE).Jerk_IQ14 = (v$3 > 700uL) ? JERK_MIDDLE_U32<<14 : (v$3 > 300uL) ? JERK_SHORT_U32<<14 : JERK_U32<<14;
+	.dwpsn	"fastrun.c",285,7
+        MOV       ACC,#700              ; |285| 
+        CMPL      ACC,P                 ; |285| 
+        BF        L12,HIS               ; |285| 
+        ; branchcc occurs ; |285| 
         MOVW      DP,#_JERK_MIDDLE_U32
-        MOVL      ACC,@_JERK_MIDDLE_U32 ; |284| 
-        LSL       ACC,14                ; |284| 
-        BF        L14,UNC               ; |284| 
-        ; branch occurs ; |284| 
+        MOVL      ACC,@_JERK_MIDDLE_U32 ; |285| 
+        LSL       ACC,14                ; |285| 
+        BF        L14,UNC               ; |285| 
+        ; branch occurs ; |285| 
 L12:    
-        MOV       ACC,#300              ; |284| 
-        CMPL      ACC,P                 ; |284| 
-        BF        L13,HIS               ; |284| 
-        ; branchcc occurs ; |284| 
+        MOV       ACC,#300              ; |285| 
+        CMPL      ACC,P                 ; |285| 
+        BF        L13,HIS               ; |285| 
+        ; branchcc occurs ; |285| 
         MOVW      DP,#_JERK_SHORT_U32
-        MOVL      ACC,@_JERK_SHORT_U32  ; |284| 
-        LSL       ACC,14                ; |284| 
-        BF        L14,UNC               ; |284| 
-        ; branch occurs ; |284| 
+        MOVL      ACC,@_JERK_SHORT_U32  ; |285| 
+        LSL       ACC,14                ; |285| 
+        BF        L14,UNC               ; |285| 
+        ; branch occurs ; |285| 
 L13:    
         MOVW      DP,#_JERK_U32
-        MOVL      ACC,@_JERK_U32        ; |284| 
-        LSL       ACC,14                ; |284| 
+        MOVL      ACC,@_JERK_U32        ; |285| 
+        LSL       ACC,14                ; |285| 
 L14:    
-;*** 285	-----------------------    goto g8;
-        MOVB      XAR0,#24              ; |284| 
-        MOVL      *+XAR1[AR0],ACC       ; |284| 
-	.dwpsn	"fastrun.c",285,3
-        BF        L16,UNC               ; |285| 
-        ; branch occurs ; |285| 
+;*** 286	-----------------------    goto g8;
+        MOVB      XAR0,#24              ; |285| 
+        MOVL      *+XAR1[AR0],ACC       ; |285| 
+	.dwpsn	"fastrun.c",286,3
+        BF        L16,UNC               ; |286| 
+        ; branch occurs ; |286| 
 L15:    
 ;***	-----------------------g7:
-;*** 283	-----------------------    (*LINE).Jerk_IQ14 = JERK_LONG_U32<<14;
-	.dwpsn	"fastrun.c",283,3
+;*** 284	-----------------------    (*LINE).Jerk_IQ14 = JERK_LONG_U32<<14;
+	.dwpsn	"fastrun.c",284,3
         MOVW      DP,#_JERK_LONG_U32
-        MOVB      XAR0,#24              ; |283| 
-        MOVL      ACC,@_JERK_LONG_U32   ; |283| 
-        LSL       ACC,14                ; |283| 
-        MOVL      *+XAR1[AR0],ACC       ; |283| 
+        MOVB      XAR0,#24              ; |284| 
+        MOVL      ACC,@_JERK_LONG_U32   ; |284| 
+        LSL       ACC,14                ; |284| 
+        MOVL      *+XAR1[AR0],ACC       ; |284| 
 L16:    
 ;***	-----------------------g8:
-;*** 291	-----------------------    high_vel = __lmax(v$2, v$1);
-;*** 292	-----------------------    low_vel = __lmin(v$1, v$2);
-;*** 295	-----------------------    K$53 = (long * const)LINE+26L;
-;*** 295	-----------------------    DECEL_DIST_COMPUTE(v$2, v$1, (long * const)LINE+22L, K$53);
-;*** 298	-----------------------    v$3 = (*LINE).Distance_U32;
-;*** 298	-----------------------    U$57 = v$3<<17;
-;*** 298	-----------------------    if ( (*LINE).MotorDistance_IQ17 >= U$57 ) goto g13;
-	.dwpsn	"fastrun.c",291,2
-        MOVL      ACC,XAR7              ; |291| 
-        MAXL      ACC,XAR6              ; |291| 
-        MOVL      *-SP[8],ACC           ; |291| 
+;*** 292	-----------------------    high_vel = __lmax(v$2, v$1);
+;*** 293	-----------------------    low_vel = __lmin(v$1, v$2);
+;*** 296	-----------------------    K$53 = (long * const)LINE+26L;
+;*** 296	-----------------------    DECEL_DIST_COMPUTE(v$2, v$1, (long * const)LINE+22L, K$53);
+;*** 299	-----------------------    v$3 = (*LINE).Distance_U32;
+;*** 299	-----------------------    U$57 = v$3<<17;
+;*** 299	-----------------------    if ( (*LINE).MotorDistance_IQ17 >= U$57 ) goto g13;
 	.dwpsn	"fastrun.c",292,2
-        MOVL      ACC,XAR6              ; |292| 
-        MINL      ACC,XAR7              ; |292| 
-        MOVL      *-SP[10],ACC          ; |292| 
-	.dwpsn	"fastrun.c",295,2
+        MOVL      ACC,XAR7              ; |292| 
+        MAXL      ACC,XAR6              ; |292| 
+        MOVL      *-SP[8],ACC           ; |292| 
+	.dwpsn	"fastrun.c",293,2
+        MOVL      ACC,XAR6              ; |293| 
+        MINL      ACC,XAR7              ; |293| 
+        MOVL      *-SP[10],ACC          ; |293| 
+	.dwpsn	"fastrun.c",296,2
         MOVB      ACC,#26
         ADDL      ACC,XAR1
-        MOVL      XAR3,ACC              ; |295| 
-        MOVL      XAR5,ACC              ; |295| 
+        MOVL      XAR3,ACC              ; |296| 
+        MOVL      XAR5,ACC              ; |296| 
         MOVB      ACC,#22
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |295| 
-        MOVL      *-SP[2],XAR7          ; |295| 
-        MOVL      ACC,XAR6              ; |295| 
-        LCR       #_DECEL_DIST_COMPUTE  ; |295| 
-        ; call occurs [#_DECEL_DIST_COMPUTE] ; |295| 
-	.dwpsn	"fastrun.c",298,2
-        MOVL      XAR6,*+XAR1[4]        ; |298| 
-        MOV       T,#17                 ; |298| 
-        MOVL      ACC,XAR6              ; |298| 
-        MOVB      XAR0,#22              ; |298| 
-        LSLL      ACC,T                 ; |298| 
-        CMPL      ACC,*+XAR1[AR0]       ; |298| 
-        MOVL      XAR2,ACC              ; |298| 
-        BF        L19,LEQ               ; |298| 
-        ; branchcc occurs ; |298| 
-;*** 311	-----------------------    m_dist = __IQmpy(U$57, _IQ17div(131072L, 393216L), 17);
-;*** 313	-----------------------    C$3 = (*LINE).MotorDistance_IQ17;
-;*** 313	-----------------------    if ( C$3 < m_dist ) goto g11;
-	.dwpsn	"fastrun.c",311,3
-        MOVL      XAR4,#393216          ; |311| 
+        MOVL      XAR4,ACC              ; |296| 
+        MOVL      *-SP[2],XAR7          ; |296| 
+        MOVL      ACC,XAR6              ; |296| 
+        LCR       #_DECEL_DIST_COMPUTE  ; |296| 
+        ; call occurs [#_DECEL_DIST_COMPUTE] ; |296| 
+	.dwpsn	"fastrun.c",299,2
+        MOVL      XAR6,*+XAR1[4]        ; |299| 
+        MOV       T,#17                 ; |299| 
+        MOVL      ACC,XAR6              ; |299| 
+        MOVB      XAR0,#22              ; |299| 
+        LSLL      ACC,T                 ; |299| 
+        CMPL      ACC,*+XAR1[AR0]       ; |299| 
+        MOVL      XAR2,ACC              ; |299| 
+        BF        L19,LEQ               ; |299| 
+        ; branchcc occurs ; |299| 
+;*** 312	-----------------------    m_dist = __IQmpy(U$57, _IQ17div(131072L, 393216L), 17);
+;*** 314	-----------------------    C$3 = (*LINE).MotorDistance_IQ17;
+;*** 314	-----------------------    if ( C$3 < m_dist ) goto g11;
+	.dwpsn	"fastrun.c",312,3
+        MOVL      XAR4,#393216          ; |312| 
         MOV       AL,#0
-        MOVL      *-SP[2],XAR4          ; |311| 
+        MOVL      *-SP[2],XAR4          ; |312| 
         MOV       AH,#2
-        LCR       #__IQ17div            ; |311| 
-        ; call occurs [#__IQ17div] ; |311| 
-        MOVL      XT,XAR2               ; |311| 
-        IMPYL     P,XT,ACC              ; |311| 
-        MOVL      XT,XAR2               ; |311| 
-        QMPYL     ACC,XT,ACC            ; |311| 
-        LSL64     ACC:P,#15             ; |311| 
-        MOVL      *-SP[12],ACC          ; |311| 
-	.dwpsn	"fastrun.c",313,3
-        MOVB      XAR0,#22              ; |313| 
-        MOVL      ACC,*+XAR1[AR0]       ; |313| 
-        CMPL      ACC,*-SP[12]          ; |313| 
-        BF        L17,LT                ; |313| 
-        ; branchcc occurs ; |313| 
-;*** 316	-----------------------    VEL_COMPUTE(U$57, C$3, high_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
-;*** 316	-----------------------    goto g12;
-	.dwpsn	"fastrun.c",316,4
-        MOVL      *-SP[2],ACC           ; |316| 
-        MOVB      XAR0,#24              ; |316| 
-        MOVL      ACC,*-SP[8]           ; |316| 
-        MOVL      *-SP[4],ACC           ; |316| 
-        MOVL      ACC,*+XAR1[AR0]       ; |316| 
-        MOVL      *-SP[6],ACC           ; |316| 
+        LCR       #__IQ17div            ; |312| 
+        ; call occurs [#__IQ17div] ; |312| 
+        MOVL      XT,XAR2               ; |312| 
+        IMPYL     P,XT,ACC              ; |312| 
+        MOVL      XT,XAR2               ; |312| 
+        QMPYL     ACC,XT,ACC            ; |312| 
+        LSL64     ACC:P,#15             ; |312| 
+        MOVL      *-SP[12],ACC          ; |312| 
+	.dwpsn	"fastrun.c",314,3
+        MOVB      XAR0,#22              ; |314| 
+        MOVL      ACC,*+XAR1[AR0]       ; |314| 
+        CMPL      ACC,*-SP[12]          ; |314| 
+        BF        L17,LT                ; |314| 
+        ; branchcc occurs ; |314| 
+;*** 317	-----------------------    VEL_COMPUTE(U$57, C$3, high_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
+;*** 317	-----------------------    goto g12;
+	.dwpsn	"fastrun.c",317,4
+        MOVL      *-SP[2],ACC           ; |317| 
+        MOVB      XAR0,#24              ; |317| 
+        MOVL      ACC,*-SP[8]           ; |317| 
+        MOVL      *-SP[4],ACC           ; |317| 
+        MOVL      ACC,*+XAR1[AR0]       ; |317| 
+        MOVL      *-SP[6],ACC           ; |317| 
         MOVB      ACC,#14
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |316| 
-        MOVL      ACC,XAR2              ; |316| 
-        LCR       #_VEL_COMPUTE         ; |316| 
-        ; call occurs [#_VEL_COMPUTE] ; |316| 
-        BF        L18,UNC               ; |316| 
-        ; branch occurs ; |316| 
+        MOVL      XAR4,ACC              ; |317| 
+        MOVL      ACC,XAR2              ; |317| 
+        LCR       #_VEL_COMPUTE         ; |317| 
+        ; call occurs [#_VEL_COMPUTE] ; |317| 
+        BF        L18,UNC               ; |317| 
+        ; branch occurs ; |317| 
 L17:    
 ;***	-----------------------g11:
-;*** 314	-----------------------    VEL_COMPUTE(U$57, m_dist, high_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
-	.dwpsn	"fastrun.c",314,4
-        MOVL      ACC,*-SP[12]          ; |314| 
-        MOVB      XAR0,#24              ; |314| 
-        MOVL      *-SP[2],ACC           ; |314| 
-        MOVL      ACC,*-SP[8]           ; |314| 
-        MOVL      *-SP[4],ACC           ; |314| 
-        MOVL      ACC,*+XAR1[AR0]       ; |314| 
-        MOVL      *-SP[6],ACC           ; |314| 
+;*** 315	-----------------------    VEL_COMPUTE(U$57, m_dist, high_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
+	.dwpsn	"fastrun.c",315,4
+        MOVL      ACC,*-SP[12]          ; |315| 
+        MOVB      XAR0,#24              ; |315| 
+        MOVL      *-SP[2],ACC           ; |315| 
+        MOVL      ACC,*-SP[8]           ; |315| 
+        MOVL      *-SP[4],ACC           ; |315| 
+        MOVL      ACC,*+XAR1[AR0]       ; |315| 
+        MOVL      *-SP[6],ACC           ; |315| 
         MOVB      ACC,#14
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |314| 
-        MOVL      ACC,XAR2              ; |314| 
-        LCR       #_VEL_COMPUTE         ; |314| 
-        ; call occurs [#_VEL_COMPUTE] ; |314| 
+        MOVL      XAR4,ACC              ; |315| 
+        MOVL      ACC,XAR2              ; |315| 
+        LCR       #_VEL_COMPUTE         ; |315| 
+        ; call occurs [#_VEL_COMPUTE] ; |315| 
 L18:    
 ;***	-----------------------g12:
-;*** 318	-----------------------    DECEL_DIST_COMPUTE((*LINE).Velo_IQ17, (*LINE).VeloOut_IQ17, (long * const)LINE+20L, K$53);
-;*** 318	-----------------------    goto g18;
-	.dwpsn	"fastrun.c",318,3
-        MOVB      XAR0,#18              ; |318| 
-        MOVL      ACC,*+XAR1[AR0]       ; |318| 
-        MOVL      XAR5,XAR3             ; |318| 
-        MOVL      *-SP[2],ACC           ; |318| 
+;*** 319	-----------------------    DECEL_DIST_COMPUTE((*LINE).Velo_IQ17, (*LINE).VeloOut_IQ17, (long * const)LINE+20L, K$53);
+;*** 319	-----------------------    goto g18;
+	.dwpsn	"fastrun.c",319,3
+        MOVB      XAR0,#18              ; |319| 
+        MOVL      ACC,*+XAR1[AR0]       ; |319| 
+        MOVL      XAR5,XAR3             ; |319| 
+        MOVL      *-SP[2],ACC           ; |319| 
         MOVB      ACC,#20
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |318| 
-        MOVB      XAR0,#14              ; |318| 
-        MOVL      ACC,*+XAR1[AR0]       ; |318| 
-        LCR       #_DECEL_DIST_COMPUTE  ; |318| 
-        ; call occurs [#_DECEL_DIST_COMPUTE] ; |318| 
-        BF        L22,UNC               ; |318| 
-        ; branch occurs ; |318| 
+        MOVL      XAR4,ACC              ; |319| 
+        MOVB      XAR0,#14              ; |319| 
+        MOVL      ACC,*+XAR1[AR0]       ; |319| 
+        LCR       #_DECEL_DIST_COMPUTE  ; |319| 
+        ; call occurs [#_DECEL_DIST_COMPUTE] ; |319| 
+        BF        L22,UNC               ; |319| 
+        ; branch occurs ; |319| 
 L19:    
 ;***	-----------------------g13:
-;*** 301	-----------------------    (*LINE).DecelDistance_IQ17 = C$2 = v$3<<17;
-;*** 303	-----------------------    VEL_COMPUTE(C$2, 0L, low_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
-;*** 305	-----------------------    if ( (*LINE).VeloIn_IQ17 > (*LINE).VeloOut_IQ17 ) goto g15;
-	.dwpsn	"fastrun.c",301,3
-        MOVL      ACC,XAR6              ; |301| 
-        MOVB      XAR0,#20              ; |301| 
-        LSLL      ACC,T                 ; |301| 
-        MOVL      *+XAR1[AR0],ACC       ; |301| 
-        MOVL      XAR6,ACC              ; |301| 
-	.dwpsn	"fastrun.c",303,3
+;*** 302	-----------------------    (*LINE).DecelDistance_IQ17 = C$2 = v$3<<17;
+;*** 304	-----------------------    VEL_COMPUTE(C$2, 0L, low_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
+;*** 306	-----------------------    if ( (*LINE).VeloIn_IQ17 > (*LINE).VeloOut_IQ17 ) goto g15;
+	.dwpsn	"fastrun.c",302,3
+        MOVL      ACC,XAR6              ; |302| 
+        MOVB      XAR0,#20              ; |302| 
+        LSLL      ACC,T                 ; |302| 
+        MOVL      *+XAR1[AR0],ACC       ; |302| 
+        MOVL      XAR6,ACC              ; |302| 
+	.dwpsn	"fastrun.c",304,3
         MOVB      ACC,#0
-        MOVL      *-SP[2],ACC           ; |303| 
-        MOVB      XAR0,#24              ; |303| 
-        MOVL      ACC,*-SP[10]          ; |303| 
-        MOVL      *-SP[4],ACC           ; |303| 
-        MOVL      ACC,*+XAR1[AR0]       ; |303| 
-        MOVL      *-SP[6],ACC           ; |303| 
+        MOVL      *-SP[2],ACC           ; |304| 
+        MOVB      XAR0,#24              ; |304| 
+        MOVL      ACC,*-SP[10]          ; |304| 
+        MOVL      *-SP[4],ACC           ; |304| 
+        MOVL      ACC,*+XAR1[AR0]       ; |304| 
+        MOVL      *-SP[6],ACC           ; |304| 
         MOVB      ACC,#14
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |303| 
-        MOVL      ACC,XAR6              ; |303| 
-        LCR       #_VEL_COMPUTE         ; |303| 
-        ; call occurs [#_VEL_COMPUTE] ; |303| 
-	.dwpsn	"fastrun.c",305,3
-        MOVB      XAR0,#18              ; |305| 
-        MOVL      ACC,*+XAR1[AR0]       ; |305| 
-        MOVB      XAR0,#16              ; |305| 
-        CMPL      ACC,*+XAR1[AR0]       ; |305| 
-        BF        L20,LT                ; |305| 
-        ; branchcc occurs ; |305| 
-;*** 306	-----------------------    (*LINE).VeloOut_IQ17 = (*LINE).Velo_IQ17;
-;*** 306	-----------------------    goto g16;
-	.dwpsn	"fastrun.c",306,17
-        MOVB      XAR0,#14              ; |306| 
-        MOVL      ACC,*+XAR1[AR0]       ; |306| 
+        MOVL      XAR4,ACC              ; |304| 
+        MOVL      ACC,XAR6              ; |304| 
+        LCR       #_VEL_COMPUTE         ; |304| 
+        ; call occurs [#_VEL_COMPUTE] ; |304| 
+	.dwpsn	"fastrun.c",306,3
         MOVB      XAR0,#18              ; |306| 
-        MOVL      *+XAR1[AR0],ACC       ; |306| 
-        BF        L21,UNC               ; |306| 
-        ; branch occurs ; |306| 
+        MOVL      ACC,*+XAR1[AR0]       ; |306| 
+        MOVB      XAR0,#16              ; |306| 
+        CMPL      ACC,*+XAR1[AR0]       ; |306| 
+        BF        L20,LT                ; |306| 
+        ; branchcc occurs ; |306| 
+;*** 307	-----------------------    (*LINE).VeloOut_IQ17 = (*LINE).Velo_IQ17;
+;*** 307	-----------------------    goto g16;
+	.dwpsn	"fastrun.c",307,17
+        MOVB      XAR0,#14              ; |307| 
+        MOVL      ACC,*+XAR1[AR0]       ; |307| 
+        MOVB      XAR0,#18              ; |307| 
+        MOVL      *+XAR1[AR0],ACC       ; |307| 
+        BF        L21,UNC               ; |307| 
+        ; branch occurs ; |307| 
 L20:    
 ;***	-----------------------g15:
-;*** 305	-----------------------    (*LINE).VeloIn_IQ17 = (*LINE).Velo_IQ17;
-	.dwpsn	"fastrun.c",305,46
-        MOVB      XAR0,#14              ; |305| 
-        MOVL      ACC,*+XAR1[AR0]       ; |305| 
-        MOVB      XAR0,#16              ; |305| 
-        MOVL      *+XAR1[AR0],ACC       ; |305| 
+;*** 306	-----------------------    (*LINE).VeloIn_IQ17 = (*LINE).Velo_IQ17;
+	.dwpsn	"fastrun.c",306,46
+        MOVB      XAR0,#14              ; |306| 
+        MOVL      ACC,*+XAR1[AR0]       ; |306| 
+        MOVB      XAR0,#16              ; |306| 
+        MOVL      *+XAR1[AR0],ACC       ; |306| 
 L21:    
 ;***	-----------------------g16:
-;*** 305	-----------------------    if ( cnt ) goto g18;
+;*** 306	-----------------------    if ( cnt ) goto g18;
         MOV       AL,*-SP[13]
-        BF        L22,NEQ               ; |305| 
-        ; branchcc occurs ; |305| 
-;*** 308	-----------------------    (*LINE).Velo_IQ17 = 0L;
+        BF        L22,NEQ               ; |306| 
+        ; branchcc occurs ; |306| 
+;*** 309	-----------------------    (*LINE).Velo_IQ17 = 0L;
 ;***	-----------------------g18:
 ;***  	-----------------------    return;
-	.dwpsn	"fastrun.c",308,12
+	.dwpsn	"fastrun.c",309,12
         MOVB      ACC,#0
-        MOVB      XAR0,#14              ; |308| 
-        MOVL      *+XAR1[AR0],ACC       ; |308| 
+        MOVB      XAR0,#14              ; |309| 
+        MOVL      *+XAR1[AR0],ACC       ; |309| 
 L22:    
-	.dwpsn	"fastrun.c",320,1
+	.dwpsn	"fastrun.c",326,1
         SUBB      SP,#14
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -1295,7 +1295,7 @@ L22:
         LRETR
         ; return occurs
 	.dwattr DW$87, DW_AT_end_file("fastrun.c")
-	.dwattr DW$87, DW_AT_end_line(0x140)
+	.dwattr DW$87, DW_AT_end_line(0x146)
 	.dwattr DW$87, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$87
@@ -1306,9 +1306,9 @@ DW$104	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_DIVISION"), DW_AT_symbol_name
 	.dwattr DW$104, DW_AT_low_pc(_LINE_DIVISION$0)
 	.dwattr DW$104, DW_AT_high_pc(0x00)
 	.dwattr DW$104, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$104, DW_AT_begin_line(0xf5)
+	.dwattr DW$104, DW_AT_begin_line(0xf6)
 	.dwattr DW$104, DW_AT_begin_column(0x0d)
-	.dwpsn	"fastrun.c",246,1
+	.dwpsn	"fastrun.c",247,1
 
 	.dwfde DW$CIE
 
@@ -1328,7 +1328,7 @@ DW$104	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_DIVISION"), DW_AT_symbol_name
 ;*                                                             *
 ;***************************************************************
 _LINE_DIVISION$0:
-;*** 247	-----------------------    if ( !(int)((unsigned long)((unsigned)(*LINE).TurnDir_U32^0xffffu)&1uL) ) goto g3;
+;*** 248	-----------------------    if ( !(int)((unsigned long)((unsigned)(*LINE).TurnDir_U32^0xffffu)&1uL) ) goto g3;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -1353,70 +1353,70 @@ DW$107	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
 DW$108	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
 	.dwattr DW$108, DW_AT_type(*DW$T$84)
 	.dwattr DW$108, DW_AT_location[DW_OP_reg6]
-        MOVL      XAR1,XAR4             ; |246| 
-        MOVZ      AR6,AL                ; |246| 
-	.dwpsn	"fastrun.c",247,2
-        MOVB      XAR0,#8               ; |247| 
-        MOVZ      AR7,*+XAR1[AR0]       ; |247| 
-        XOR       AR7,#0xffff           ; |247| 
+        MOVL      XAR1,XAR4             ; |247| 
+        MOVZ      AR6,AL                ; |247| 
+	.dwpsn	"fastrun.c",248,2
+        MOVB      XAR0,#8               ; |248| 
+        MOVZ      AR7,*+XAR1[AR0]       ; |248| 
+        XOR       AR7,#0xffff           ; |248| 
         MOVB      ACC,#1
-        AND       ACC,AR7               ; |247| 
-        BF        L23,EQ                ; |247| 
-        ; branchcc occurs ; |247| 
-;*** 252	-----------------------    (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = (*LINE).VeloIn_IQ17 = MOTOR_SPEED_U32<<17;
-;*** 253	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
-;*** 255	-----------------------    (*LINE).Decel_IQ14 = 786432000L-__IQmpy(_IQ17div(393216000L, 589824000L), (*LINE).Velo_IQ17, 17)>>3;
-;*** 255	-----------------------    goto g4;
-	.dwpsn	"fastrun.c",252,3
-        MOVW      DP,#_MOTOR_SPEED_U32
-        MOV       T,#17                 ; |252| 
-        MOVB      XAR0,#16              ; |252| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |252| 
-        LSLL      ACC,T                 ; |252| 
-        MOVL      *+XAR1[AR0],ACC       ; |252| 
-        MOVB      XAR0,#18              ; |252| 
-        MOVL      *+XAR1[AR0],ACC       ; |252| 
-        MOVB      XAR0,#14              ; |252| 
-        MOVL      *+XAR1[AR0],ACC       ; |252| 
+        AND       ACC,AR7               ; |248| 
+        BF        L23,EQ                ; |248| 
+        ; branchcc occurs ; |248| 
+;*** 253	-----------------------    (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = (*LINE).VeloIn_IQ17 = MOTOR_SPEED_U32<<17;
+;*** 254	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
+;*** 256	-----------------------    (*LINE).Decel_IQ14 = 786432000L-__IQmpy(_IQ17div(393216000L, 589824000L), (*LINE).Velo_IQ17, 17)>>3;
+;*** 256	-----------------------    goto g4;
 	.dwpsn	"fastrun.c",253,3
-        MOVW      DP,#_JERK_U32
-        MOVL      ACC,@_JERK_U32        ; |253| 
-        MOVB      XAR0,#24              ; |253| 
-        LSL       ACC,14                ; |253| 
+        MOVW      DP,#_MOTOR_SPEED_U32
+        MOV       T,#17                 ; |253| 
+        MOVB      XAR0,#16              ; |253| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |253| 
+        LSLL      ACC,T                 ; |253| 
         MOVL      *+XAR1[AR0],ACC       ; |253| 
-	.dwpsn	"fastrun.c",255,3
+        MOVB      XAR0,#18              ; |253| 
+        MOVL      *+XAR1[AR0],ACC       ; |253| 
+        MOVB      XAR0,#14              ; |253| 
+        MOVL      *+XAR1[AR0],ACC       ; |253| 
+	.dwpsn	"fastrun.c",254,3
+        MOVW      DP,#_JERK_U32
+        MOVL      ACC,@_JERK_U32        ; |254| 
+        MOVB      XAR0,#24              ; |254| 
+        LSL       ACC,14                ; |254| 
+        MOVL      *+XAR1[AR0],ACC       ; |254| 
+	.dwpsn	"fastrun.c",256,3
         MOV       PH,#9000
         MOV       PL,#0
-        MOVL      *-SP[2],P             ; |255| 
+        MOVL      *-SP[2],P             ; |256| 
         MOV       ACC,#12000 << 15
-        LCR       #__IQ17div            ; |255| 
-        ; call occurs [#__IQ17div] ; |255| 
-        MOVB      XAR0,#14              ; |255| 
-        MOVL      XT,ACC                ; |255| 
-        IMPYL     P,XT,*+XAR1[AR0]      ; |255| 
-        QMPYL     ACC,XT,*+XAR1[AR0]    ; |255| 
-        LSL64     ACC:P,#15             ; |255| 
-        MOVL      XAR6,ACC              ; |255| 
+        LCR       #__IQ17div            ; |256| 
+        ; call occurs [#__IQ17div] ; |256| 
+        MOVB      XAR0,#14              ; |256| 
+        MOVL      XT,ACC                ; |256| 
+        IMPYL     P,XT,*+XAR1[AR0]      ; |256| 
+        QMPYL     ACC,XT,*+XAR1[AR0]    ; |256| 
+        LSL64     ACC:P,#15             ; |256| 
+        MOVL      XAR6,ACC              ; |256| 
         MOV       ACC,#24000 << 15
         SETC      SXM
         SUBL      ACC,XAR6
-        SFR       ACC,3                 ; |255| 
-        MOVB      XAR0,#26              ; |255| 
-        MOVL      *+XAR1[AR0],ACC       ; |255| 
-        BF        L24,UNC               ; |255| 
-        ; branch occurs ; |255| 
+        SFR       ACC,3                 ; |256| 
+        MOVB      XAR0,#26              ; |256| 
+        MOVL      *+XAR1[AR0],ACC       ; |256| 
+        BF        L24,UNC               ; |256| 
+        ; branch occurs ; |256| 
 L23:    
 ;***	-----------------------g3:
-;*** 248	-----------------------    STRAIGHT_DIVISION(LINE, cnt);
+;*** 249	-----------------------    STRAIGHT_DIVISION(LINE, cnt);
 ;***	-----------------------g4:
 ;***  	-----------------------    return;
-	.dwpsn	"fastrun.c",248,3
-        MOV       AL,AR6                ; |248| 
-        MOVL      XAR4,XAR1             ; |248| 
-        LCR       #_STRAIGHT_DIVISION$0 ; |248| 
-        ; call occurs [#_STRAIGHT_DIVISION$0] ; |248| 
+	.dwpsn	"fastrun.c",249,3
+        MOV       AL,AR6                ; |249| 
+        MOVL      XAR4,XAR1             ; |249| 
+        LCR       #_STRAIGHT_DIVISION$0 ; |249| 
+        ; call occurs [#_STRAIGHT_DIVISION$0] ; |249| 
 L24:    
-	.dwpsn	"fastrun.c",257,1
+	.dwpsn	"fastrun.c",258,1
         SUBB      SP,#2
 	.dwcfa	0x1d, -4
         MOVL      XAR1,*--SP
@@ -1425,7 +1425,7 @@ L24:
         LRETR
         ; return occurs
 	.dwattr DW$104, DW_AT_end_file("fastrun.c")
-	.dwattr DW$104, DW_AT_end_line(0x101)
+	.dwattr DW$104, DW_AT_end_line(0x102)
 	.dwattr DW$104, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$104
@@ -1586,11 +1586,11 @@ DW$L$_TURN_DIVISION_FUNC$8$E:
 L29:    
 DW$L$_TURN_DIVISION_FUNC$9$B:
 ;***	-----------------------g4:
-;*** 60	-----------------------    U$7 += 38;
+;*** 60	-----------------------    U$7 += 32;
 ;*** 60	-----------------------    if ( MARK_U16_CNT >= (++cnt) ) goto g2;
 	.dwpsn	"fastrun.c",60,36
         MOVL      ACC,XAR1              ; |60| 
-        MOVB      XAR4,#38              ; |60| 
+        MOVB      XAR4,#32              ; |60| 
         ADDU      ACC,AR4               ; |60| 
         MOVL      XAR1,ACC              ; |60| 
 	.dwpsn	"fastrun.c",60,15
@@ -1617,7 +1617,7 @@ DW$L$_TURN_DIVISION_FUNC$9$E:
         ; return occurs
 
 DW$114	.dwtag  DW_TAG_loop
-	.dwattr DW$114, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L25:1:1659205999")
+	.dwattr DW$114, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L25:1:1659562431")
 	.dwattr DW$114, DW_AT_begin_file("fastrun.c")
 	.dwattr DW$114, DW_AT_begin_line(0x3c)
 	.dwattr DW$114, DW_AT_end_line(0x47)
@@ -1659,9 +1659,9 @@ DW$123	.dwtag  DW_TAG_subprogram, DW_AT_name("COMPUTE_THETA"), DW_AT_symbol_name
 	.dwattr DW$123, DW_AT_low_pc(_COMPUTE_THETA$0)
 	.dwattr DW$123, DW_AT_high_pc(0x00)
 	.dwattr DW$123, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$123, DW_AT_begin_line(0xea)
+	.dwattr DW$123, DW_AT_begin_line(0xeb)
 	.dwattr DW$123, DW_AT_begin_column(0x0e)
-	.dwpsn	"fastrun.c",235,1
+	.dwpsn	"fastrun.c",236,1
 
 	.dwfde DW$CIE
 
@@ -1681,13 +1681,13 @@ DW$123	.dwtag  DW_TAG_subprogram, DW_AT_name("COMPUTE_THETA"), DW_AT_symbol_name
 ;*                                                             *
 ;***************************************************************
 _COMPUTE_THETA$0:
-;*** 235	-----------------------    l_dist = l_dist;
-;*** 235	-----------------------    h_dist = h_dist;
-;*** 236	-----------------------    th = 0L;
-;*** 237	-----------------------    diff = h_dist-l_dist;
-;*** 239	-----------------------    th = _IQ15div(diff<<15, 6815744L);
-;*** 240	-----------------------    th = __IQmpy(th, _IQ15div(5898240L, 102943L), 15)>>15;
-;*** 242	-----------------------    return th;
+;*** 236	-----------------------    l_dist = l_dist;
+;*** 236	-----------------------    h_dist = h_dist;
+;*** 237	-----------------------    th = 0L;
+;*** 238	-----------------------    diff = h_dist-l_dist;
+;*** 240	-----------------------    th = _IQ15div(diff<<15, 6815744L);
+;*** 241	-----------------------    th = __IQmpy(th, _IQ15div(5898240L, 102943L), 15)>>15;
+;*** 243	-----------------------    return th;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -1720,49 +1720,49 @@ DW$130	.dwtag  DW_TAG_variable, DW_AT_name("th"), DW_AT_symbol_name("_th")
 DW$131	.dwtag  DW_TAG_variable, DW_AT_name("diff"), DW_AT_symbol_name("_diff")
 	.dwattr DW$131, DW_AT_type(*DW$T$70)
 	.dwattr DW$131, DW_AT_location[DW_OP_breg20 -10]
-        MOVL      XAR6,*-SP[14]         ; |235| 
-        MOVL      *-SP[4],ACC           ; |235| 
-        MOVL      *-SP[6],XAR6          ; |235| 
-	.dwpsn	"fastrun.c",236,17
-        MOVB      ACC,#0
-        MOVL      *-SP[8],ACC           ; |236| 
+        MOVL      XAR6,*-SP[14]         ; |236| 
+        MOVL      *-SP[4],ACC           ; |236| 
+        MOVL      *-SP[6],XAR6          ; |236| 
 	.dwpsn	"fastrun.c",237,17
-        MOVL      ACC,*-SP[6]           ; |237| 
-        SUBL      ACC,*-SP[4]           ; |237| 
-        MOVL      *-SP[10],ACC          ; |237| 
-	.dwpsn	"fastrun.c",239,2
+        MOVB      ACC,#0
+        MOVL      *-SP[8],ACC           ; |237| 
+	.dwpsn	"fastrun.c",238,17
+        MOVL      ACC,*-SP[6]           ; |238| 
+        SUBL      ACC,*-SP[4]           ; |238| 
+        MOVL      *-SP[10],ACC          ; |238| 
+	.dwpsn	"fastrun.c",240,2
         MOV       PH,#104
         MOV       PL,#0
-        MOVL      *-SP[2],P             ; |239| 
-        MOVL      ACC,*-SP[10]          ; |239| 
-        LSL       ACC,15                ; |239| 
-        LCR       #__IQ15div            ; |239| 
-        ; call occurs [#__IQ15div] ; |239| 
-        MOVL      *-SP[8],ACC           ; |239| 
-	.dwpsn	"fastrun.c",240,2
-        MOVL      XAR4,#102943          ; |240| 
-        MOV       AL,#0
-        MOVL      *-SP[2],XAR4          ; |240| 
-        MOV       AH,#90
+        MOVL      *-SP[2],P             ; |240| 
+        MOVL      ACC,*-SP[10]          ; |240| 
+        LSL       ACC,15                ; |240| 
         LCR       #__IQ15div            ; |240| 
         ; call occurs [#__IQ15div] ; |240| 
-        MOVL      XT,*-SP[8]            ; |240| 
-        IMPYL     P,XT,ACC              ; |240| 
-        QMPYL     ACC,XT,ACC            ; |240| 
-        ASR64     ACC:P,#15             ; |240| 
-        SETC      SXM
-        MOVL      ACC,P                 ; |240| 
-        SFR       ACC,15                ; |240| 
         MOVL      *-SP[8],ACC           ; |240| 
-	.dwpsn	"fastrun.c",242,2
-        MOVL      ACC,*-SP[8]           ; |242| 
-	.dwpsn	"fastrun.c",243,1
-        SUBB      SP,#10                ; |242| 
+	.dwpsn	"fastrun.c",241,2
+        MOVL      XAR4,#102943          ; |241| 
+        MOV       AL,#0
+        MOVL      *-SP[2],XAR4          ; |241| 
+        MOV       AH,#90
+        LCR       #__IQ15div            ; |241| 
+        ; call occurs [#__IQ15div] ; |241| 
+        MOVL      XT,*-SP[8]            ; |241| 
+        IMPYL     P,XT,ACC              ; |241| 
+        QMPYL     ACC,XT,ACC            ; |241| 
+        ASR64     ACC:P,#15             ; |241| 
+        SETC      SXM
+        MOVL      ACC,P                 ; |241| 
+        SFR       ACC,15                ; |241| 
+        MOVL      *-SP[8],ACC           ; |241| 
+	.dwpsn	"fastrun.c",243,2
+        MOVL      ACC,*-SP[8]           ; |243| 
+	.dwpsn	"fastrun.c",244,1
+        SUBB      SP,#10                ; |243| 
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
 	.dwattr DW$123, DW_AT_end_file("fastrun.c")
-	.dwattr DW$123, DW_AT_end_line(0xf3)
+	.dwattr DW$123, DW_AT_end_line(0xf4)
 	.dwattr DW$123, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$123
@@ -1773,9 +1773,9 @@ DW$132	.dwtag  DW_TAG_subprogram, DW_AT_name("_TURN_COMPUTE_"), DW_AT_symbol_nam
 	.dwattr DW$132, DW_AT_low_pc(__TURN_COMPUTE_$0)
 	.dwattr DW$132, DW_AT_high_pc(0x00)
 	.dwattr DW$132, DW_AT_begin_file("fastrun.c")
-	.dwattr DW$132, DW_AT_begin_line(0x9f)
+	.dwattr DW$132, DW_AT_begin_line(0xa0)
 	.dwattr DW$132, DW_AT_begin_column(0x0d)
-	.dwpsn	"fastrun.c",160,1
+	.dwpsn	"fastrun.c",161,1
 
 	.dwfde DW$CIE
 
@@ -1795,9 +1795,9 @@ DW$132	.dwtag  DW_TAG_subprogram, DW_AT_name("_TURN_COMPUTE_"), DW_AT_symbol_nam
 ;*                                                             *
 ;***************************************************************
 __TURN_COMPUTE_$0:
-;*** 160	-----------------------    l_dist = l_dist;
-;*** 160	-----------------------    h_dist = h_dist;
-;*** 163	-----------------------    if ( (turn_theta = COMPUTE_THETA(l_dist, h_dist)) < 46L ) goto g9;
+;*** 161	-----------------------    l_dist = l_dist;
+;*** 161	-----------------------    h_dist = h_dist;
+;*** 164	-----------------------    if ( (turn_theta = COMPUTE_THETA(l_dist, h_dist)) < 46L ) goto g9;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -1857,223 +1857,223 @@ DW$143	.dwtag  DW_TAG_variable, DW_AT_name("l_dist"), DW_AT_symbol_name("_l_dist
 DW$144	.dwtag  DW_TAG_variable, DW_AT_name("h_dist"), DW_AT_symbol_name("_h_dist")
 	.dwattr DW$144, DW_AT_type(*DW$T$48)
 	.dwattr DW$144, DW_AT_location[DW_OP_breg20 -10]
-        MOVL      XAR6,*-SP[20]         ; |160| 
-        MOVL      *-SP[8],ACC           ; |160| 
-        MOVL      *-SP[10],XAR6         ; |160| 
-        MOVL      XAR1,XAR4             ; |160| 
-	.dwpsn	"fastrun.c",163,2
-        MOVL      ACC,*-SP[10]          ; |163| 
-        MOVL      *-SP[2],ACC           ; |163| 
-        MOVL      ACC,*-SP[8]           ; |163| 
-        LCR       #_COMPUTE_THETA$0     ; |163| 
-        ; call occurs [#_COMPUTE_THETA$0] ; |163| 
-        MOVL      XAR6,ACC              ; |163| 
+        MOVL      XAR6,*-SP[20]         ; |161| 
+        MOVL      *-SP[8],ACC           ; |161| 
+        MOVL      *-SP[10],XAR6         ; |161| 
+        MOVL      XAR1,XAR4             ; |161| 
+	.dwpsn	"fastrun.c",164,2
+        MOVL      ACC,*-SP[10]          ; |164| 
+        MOVL      *-SP[2],ACC           ; |164| 
+        MOVL      ACC,*-SP[8]           ; |164| 
+        LCR       #_COMPUTE_THETA$0     ; |164| 
+        ; call occurs [#_COMPUTE_THETA$0] ; |164| 
+        MOVL      XAR6,ACC              ; |164| 
         MOVB      ACC,#46
-        CMPL      ACC,XAR6              ; |163| 
-        BF        L33,GT                ; |163| 
-        ; branchcc occurs ; |163| 
-;*** 170	-----------------------    if ( turn_theta <= 90L ) goto g8;
-	.dwpsn	"fastrun.c",170,7
+        CMPL      ACC,XAR6              ; |164| 
+        BF        L33,GT                ; |164| 
+        ; branchcc occurs ; |164| 
+;*** 171	-----------------------    if ( turn_theta <= 90L ) goto g8;
+	.dwpsn	"fastrun.c",171,7
         MOVB      ACC,#90
-        CMPL      ACC,XAR6              ; |170| 
-        BF        L32,GEQ               ; |170| 
-        ; branchcc occurs ; |170| 
-;*** 175	-----------------------    if ( turn_theta <= 180L ) goto g7;
-	.dwpsn	"fastrun.c",175,7
+        CMPL      ACC,XAR6              ; |171| 
+        BF        L32,GEQ               ; |171| 
+        ; branchcc occurs ; |171| 
+;*** 176	-----------------------    if ( turn_theta <= 180L ) goto g7;
+	.dwpsn	"fastrun.c",176,7
         MOVB      ACC,#180
-        CMPL      ACC,XAR6              ; |175| 
-        BF        L31,GEQ               ; |175| 
-        ; branchcc occurs ; |175| 
-;*** 180	-----------------------    if ( turn_theta <= 270L ) goto g6;
-	.dwpsn	"fastrun.c",180,7
-        MOV       ACC,#270              ; |180| 
-        CMPL      ACC,XAR6              ; |180| 
-        BF        L30,GEQ               ; |180| 
-        ; branchcc occurs ; |180| 
-;*** 187	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x4000uL;
-;*** 188	-----------------------    turn_theta = 360L;
-;*** 188	-----------------------    goto g10;
-	.dwpsn	"fastrun.c",187,3
-        MOVL      ACC,*+XAR1[6]         ; |187| 
-        MOVB      XAR0,#8               ; |187| 
-        OR        AL,#16384             ; |187| 
-        MOVL      *+XAR1[AR0],ACC       ; |187| 
+        CMPL      ACC,XAR6              ; |176| 
+        BF        L31,GEQ               ; |176| 
+        ; branchcc occurs ; |176| 
+;*** 181	-----------------------    if ( turn_theta <= 270L ) goto g6;
+	.dwpsn	"fastrun.c",181,7
+        MOV       ACC,#270              ; |181| 
+        CMPL      ACC,XAR6              ; |181| 
+        BF        L30,GEQ               ; |181| 
+        ; branchcc occurs ; |181| 
+;*** 188	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x4000uL;
+;*** 189	-----------------------    turn_theta = 360L;
+;*** 189	-----------------------    goto g10;
 	.dwpsn	"fastrun.c",188,3
-        MOVL      XAR3,#360             ; |188| 
-        BF        L34,UNC               ; |188| 
-        ; branch occurs ; |188| 
+        MOVL      ACC,*+XAR1[6]         ; |188| 
+        MOVB      XAR0,#8               ; |188| 
+        OR        AL,#16384             ; |188| 
+        MOVL      *+XAR1[AR0],ACC       ; |188| 
+	.dwpsn	"fastrun.c",189,3
+        MOVL      XAR3,#360             ; |189| 
+        BF        L34,UNC               ; |189| 
+        ; branch occurs ; |189| 
 L30:    
 ;***	-----------------------g6:
-;*** 182	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x80uL;
-;*** 183	-----------------------    turn_theta = 270L;
-;*** 184	-----------------------    goto g10;
-	.dwpsn	"fastrun.c",182,3
-        MOVL      ACC,*+XAR1[6]         ; |182| 
-        MOVB      XAR0,#8               ; |182| 
-        ORB       AL,#0x80              ; |182| 
-        MOVL      *+XAR1[AR0],ACC       ; |182| 
+;*** 183	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x80uL;
+;*** 184	-----------------------    turn_theta = 270L;
+;*** 185	-----------------------    goto g10;
 	.dwpsn	"fastrun.c",183,3
-        MOVL      XAR3,#270             ; |183| 
-	.dwpsn	"fastrun.c",184,2
-        BF        L34,UNC               ; |184| 
-        ; branch occurs ; |184| 
+        MOVL      ACC,*+XAR1[6]         ; |183| 
+        MOVB      XAR0,#8               ; |183| 
+        ORB       AL,#0x80              ; |183| 
+        MOVL      *+XAR1[AR0],ACC       ; |183| 
+	.dwpsn	"fastrun.c",184,3
+        MOVL      XAR3,#270             ; |184| 
+	.dwpsn	"fastrun.c",185,2
+        BF        L34,UNC               ; |185| 
+        ; branch occurs ; |185| 
 L31:    
 ;***	-----------------------g7:
-;*** 177	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x40uL;
-;*** 178	-----------------------    turn_theta = 180L;
-;*** 179	-----------------------    goto g10;
-	.dwpsn	"fastrun.c",177,3
-        MOVL      ACC,*+XAR1[6]         ; |177| 
-        MOVB      XAR0,#8               ; |177| 
-        ORB       AL,#0x40              ; |177| 
-        MOVL      *+XAR1[AR0],ACC       ; |177| 
+;*** 178	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x40uL;
+;*** 179	-----------------------    turn_theta = 180L;
+;*** 180	-----------------------    goto g10;
 	.dwpsn	"fastrun.c",178,3
+        MOVL      ACC,*+XAR1[6]         ; |178| 
+        MOVB      XAR0,#8               ; |178| 
+        ORB       AL,#0x40              ; |178| 
+        MOVL      *+XAR1[AR0],ACC       ; |178| 
+	.dwpsn	"fastrun.c",179,3
         MOVB      XAR3,#180
-	.dwpsn	"fastrun.c",179,2
-        BF        L34,UNC               ; |179| 
-        ; branch occurs ; |179| 
+	.dwpsn	"fastrun.c",180,2
+        BF        L34,UNC               ; |180| 
+        ; branch occurs ; |180| 
 L32:    
 ;***	-----------------------g8:
-;*** 172	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x20uL;
-;*** 173	-----------------------    turn_theta = 90L;
-;*** 174	-----------------------    goto g10;
-	.dwpsn	"fastrun.c",172,3
-        MOVL      ACC,*+XAR1[6]         ; |172| 
-        MOVB      XAR0,#8               ; |172| 
-        ORB       AL,#0x20              ; |172| 
-        MOVL      *+XAR1[AR0],ACC       ; |172| 
+;*** 173	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x20uL;
+;*** 174	-----------------------    turn_theta = 90L;
+;*** 175	-----------------------    goto g10;
 	.dwpsn	"fastrun.c",173,3
+        MOVL      ACC,*+XAR1[6]         ; |173| 
+        MOVB      XAR0,#8               ; |173| 
+        ORB       AL,#0x20              ; |173| 
+        MOVL      *+XAR1[AR0],ACC       ; |173| 
+	.dwpsn	"fastrun.c",174,3
         MOVB      XAR3,#90
-	.dwpsn	"fastrun.c",174,2
-        BF        L34,UNC               ; |174| 
-        ; branch occurs ; |174| 
+	.dwpsn	"fastrun.c",175,2
+        BF        L34,UNC               ; |175| 
+        ; branch occurs ; |175| 
 L33:    
 ;***	-----------------------g9:
-;*** 167	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x10uL;
-;*** 168	-----------------------    turn_theta = 45L;
-	.dwpsn	"fastrun.c",167,3
-        MOVL      ACC,*+XAR1[6]         ; |167| 
-        MOVB      XAR0,#8               ; |167| 
-        ORB       AL,#0x10              ; |167| 
-        MOVL      *+XAR1[AR0],ACC       ; |167| 
+;*** 168	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|0x10uL;
+;*** 169	-----------------------    turn_theta = 45L;
 	.dwpsn	"fastrun.c",168,3
+        MOVL      ACC,*+XAR1[6]         ; |168| 
+        MOVB      XAR0,#8               ; |168| 
+        ORB       AL,#0x10              ; |168| 
+        MOVL      *+XAR1[AR0],ACC       ; |168| 
+	.dwpsn	"fastrun.c",169,3
         MOVB      XAR3,#45
 L34:    
 ;***	-----------------------g10:
-;*** 192	-----------------------    if ( (turn_radius = __IQmpy(_IQ15div((*LINE).Distance_U32<<15, turn_theta<<15), _IQ15div(5898240L, 102943L), 15)>>15) <= 250L ) goto g16;
-	.dwpsn	"fastrun.c",192,2
-        MOVL      ACC,XAR3              ; |192| 
-        LSL       ACC,15                ; |192| 
-        MOVL      *-SP[2],ACC           ; |192| 
-        MOVL      ACC,*+XAR1[4]         ; |192| 
-        LSL       ACC,15                ; |192| 
-        LCR       #__IQ15div            ; |192| 
-        ; call occurs [#__IQ15div] ; |192| 
-        MOVL      XAR2,ACC              ; |192| 
-        MOVL      XAR4,#102943          ; |192| 
+;*** 193	-----------------------    if ( (turn_radius = __IQmpy(_IQ15div((*LINE).Distance_U32<<15, turn_theta<<15), _IQ15div(5898240L, 102943L), 15)>>15) <= 250L ) goto g16;
+	.dwpsn	"fastrun.c",193,2
+        MOVL      ACC,XAR3              ; |193| 
+        LSL       ACC,15                ; |193| 
+        MOVL      *-SP[2],ACC           ; |193| 
+        MOVL      ACC,*+XAR1[4]         ; |193| 
+        LSL       ACC,15                ; |193| 
+        LCR       #__IQ15div            ; |193| 
+        ; call occurs [#__IQ15div] ; |193| 
+        MOVL      XAR2,ACC              ; |193| 
+        MOVL      XAR4,#102943          ; |193| 
         MOV       AL,#0
-        MOVL      *-SP[2],XAR4          ; |192| 
+        MOVL      *-SP[2],XAR4          ; |193| 
         MOV       AH,#90
-        LCR       #__IQ15div            ; |192| 
-        ; call occurs [#__IQ15div] ; |192| 
-        MOVL      XT,XAR2               ; |192| 
-        IMPYL     P,XT,ACC              ; |192| 
-        MOVL      XT,XAR2               ; |192| 
-        QMPYL     ACC,XT,ACC            ; |192| 
-        ASR64     ACC:P,#15             ; |192| 
+        LCR       #__IQ15div            ; |193| 
+        ; call occurs [#__IQ15div] ; |193| 
+        MOVL      XT,XAR2               ; |193| 
+        IMPYL     P,XT,ACC              ; |193| 
+        MOVL      XT,XAR2               ; |193| 
+        QMPYL     ACC,XT,ACC            ; |193| 
+        ASR64     ACC:P,#15             ; |193| 
         SETC      SXM
-        MOVL      ACC,P                 ; |192| 
-        SFR       ACC,15                ; |192| 
-        MOVL      XAR6,ACC              ; |192| 
+        MOVL      ACC,P                 ; |193| 
+        SFR       ACC,15                ; |193| 
+        MOVL      XAR6,ACC              ; |193| 
         MOVB      ACC,#250
-        CMPL      ACC,XAR6              ; |192| 
-        BF        L37,GEQ               ; |192| 
-        ; branchcc occurs ; |192| 
-;*** 199	-----------------------    if ( turn_radius <= 350L ) goto g15;
-	.dwpsn	"fastrun.c",199,7
-        MOV       ACC,#350              ; |199| 
-        CMPL      ACC,XAR6              ; |199| 
-        BF        L36,GEQ               ; |199| 
-        ; branchcc occurs ; |199| 
-;*** 204	-----------------------    if ( turn_radius <= 450L ) goto g14;
-	.dwpsn	"fastrun.c",204,7
-        MOV       ACC,#450              ; |204| 
-        CMPL      ACC,XAR6              ; |204| 
-        BF        L35,GEQ               ; |204| 
-        ; branchcc occurs ; |204| 
-;*** 211	-----------------------    (*LINE).TurnDir_U32 |= 0x800uL;
-;*** 212	-----------------------    turn_radius = 550L;
-;*** 212	-----------------------    goto g17;
-	.dwpsn	"fastrun.c",211,3
+        CMPL      ACC,XAR6              ; |193| 
+        BF        L37,GEQ               ; |193| 
+        ; branchcc occurs ; |193| 
+;*** 200	-----------------------    if ( turn_radius <= 350L ) goto g15;
+	.dwpsn	"fastrun.c",200,7
+        MOV       ACC,#350              ; |200| 
+        CMPL      ACC,XAR6              ; |200| 
+        BF        L36,GEQ               ; |200| 
+        ; branchcc occurs ; |200| 
+;*** 205	-----------------------    if ( turn_radius <= 450L ) goto g14;
+	.dwpsn	"fastrun.c",205,7
+        MOV       ACC,#450              ; |205| 
+        CMPL      ACC,XAR6              ; |205| 
+        BF        L35,GEQ               ; |205| 
+        ; branchcc occurs ; |205| 
+;*** 212	-----------------------    (*LINE).TurnDir_U32 |= 0x800uL;
+;*** 213	-----------------------    turn_radius = 550L;
+;*** 213	-----------------------    goto g17;
+	.dwpsn	"fastrun.c",212,3
         MOVB      ACC,#8
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |211| 
-        OR        *+XAR4[0],#2048       ; |211| 
-	.dwpsn	"fastrun.c",212,3
-        MOVL      XAR4,#550             ; |212| 
-        BF        L38,UNC               ; |212| 
-        ; branch occurs ; |212| 
+        MOVL      XAR4,ACC              ; |212| 
+        OR        *+XAR4[0],#2048       ; |212| 
+	.dwpsn	"fastrun.c",213,3
+        MOVL      XAR4,#550             ; |213| 
+        BF        L38,UNC               ; |213| 
+        ; branch occurs ; |213| 
 L35:    
 ;***	-----------------------g14:
-;*** 206	-----------------------    (*LINE).TurnDir_U32 |= 0x400uL;
-;*** 207	-----------------------    turn_radius = 450L;
-;*** 208	-----------------------    goto g17;
-	.dwpsn	"fastrun.c",206,3
+;*** 207	-----------------------    (*LINE).TurnDir_U32 |= 0x400uL;
+;*** 208	-----------------------    turn_radius = 450L;
+;*** 209	-----------------------    goto g17;
+	.dwpsn	"fastrun.c",207,3
         MOVB      ACC,#8
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |206| 
-        OR        *+XAR4[0],#1024       ; |206| 
-	.dwpsn	"fastrun.c",207,3
-        MOVL      XAR4,#450             ; |207| 
-	.dwpsn	"fastrun.c",208,2
-        BF        L38,UNC               ; |208| 
-        ; branch occurs ; |208| 
+        MOVL      XAR4,ACC              ; |207| 
+        OR        *+XAR4[0],#1024       ; |207| 
+	.dwpsn	"fastrun.c",208,3
+        MOVL      XAR4,#450             ; |208| 
+	.dwpsn	"fastrun.c",209,2
+        BF        L38,UNC               ; |209| 
+        ; branch occurs ; |209| 
 L36:    
 ;***	-----------------------g15:
-;*** 201	-----------------------    (*LINE).TurnDir_U32 |= 0x200uL;
-;*** 202	-----------------------    turn_radius = 350L;
-;*** 203	-----------------------    goto g17;
-	.dwpsn	"fastrun.c",201,3
+;*** 202	-----------------------    (*LINE).TurnDir_U32 |= 0x200uL;
+;*** 203	-----------------------    turn_radius = 350L;
+;*** 204	-----------------------    goto g17;
+	.dwpsn	"fastrun.c",202,3
         MOVB      ACC,#8
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |201| 
-        OR        *+XAR4[0],#512        ; |201| 
-	.dwpsn	"fastrun.c",202,3
-        MOVL      XAR4,#350             ; |202| 
-	.dwpsn	"fastrun.c",203,2
-        BF        L38,UNC               ; |203| 
-        ; branch occurs ; |203| 
+        MOVL      XAR4,ACC              ; |202| 
+        OR        *+XAR4[0],#512        ; |202| 
+	.dwpsn	"fastrun.c",203,3
+        MOVL      XAR4,#350             ; |203| 
+	.dwpsn	"fastrun.c",204,2
+        BF        L38,UNC               ; |204| 
+        ; branch occurs ; |204| 
 L37:    
 ;***	-----------------------g16:
-;*** 196	-----------------------    (*LINE).TurnDir_U32 |= 0x100uL;
-;*** 197	-----------------------    turn_radius = 250L;
-	.dwpsn	"fastrun.c",196,3
+;*** 197	-----------------------    (*LINE).TurnDir_U32 |= 0x100uL;
+;*** 198	-----------------------    turn_radius = 250L;
+	.dwpsn	"fastrun.c",197,3
         MOVB      ACC,#8
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |196| 
-        OR        *+XAR4[0],#256        ; |196| 
-	.dwpsn	"fastrun.c",197,3
+        MOVL      XAR4,ACC              ; |197| 
+        OR        *+XAR4[0],#256        ; |197| 
+	.dwpsn	"fastrun.c",198,3
         MOVB      XAR4,#250
 L38:    
 ;***	-----------------------g17:
-;*** 215	-----------------------    if ( !(*&Flag&0x200u) ) goto g19;
-	.dwpsn	"fastrun.c",215,2
+;*** 216	-----------------------    if ( !(*&Flag&0x200u) ) goto g19;
+	.dwpsn	"fastrun.c",216,2
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#9             ; |215| 
-        BF        L39,NTC               ; |215| 
-        ; branchcc occurs ; |215| 
-;*** 216	-----------------------    TxPrintf("Angle: %4ld        Radius: %4ld\t\t", turn_theta, turn_radius);
+        TBIT      @_Flag,#9             ; |216| 
+        BF        L39,NTC               ; |216| 
+        ; branchcc occurs ; |216| 
+;*** 217	-----------------------    TxPrintf("Angle: %4ld        Radius: %4ld\t\t", turn_theta, turn_radius);
 ;***	-----------------------g19:
 ;***  	-----------------------    return;
-	.dwpsn	"fastrun.c",216,3
-        MOVL      XAR5,#FSL2            ; |216| 
-        MOVL      *-SP[2],XAR5          ; |216| 
-        MOVL      *-SP[4],XAR3          ; |216| 
-        MOVL      *-SP[6],XAR4          ; |216| 
-        LCR       #_TxPrintf            ; |216| 
-        ; call occurs [#_TxPrintf] ; |216| 
+	.dwpsn	"fastrun.c",217,3
+        MOVL      XAR5,#FSL2            ; |217| 
+        MOVL      *-SP[2],XAR5          ; |217| 
+        MOVL      *-SP[4],XAR3          ; |217| 
+        MOVL      *-SP[6],XAR4          ; |217| 
+        LCR       #_TxPrintf            ; |217| 
+        ; call occurs [#_TxPrintf] ; |217| 
 L39:    
-	.dwpsn	"fastrun.c",217,1
+	.dwpsn	"fastrun.c",218,1
         SUBB      SP,#10
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -2088,7 +2088,7 @@ L39:
         LRETR
         ; return occurs
 	.dwattr DW$132, DW_AT_end_file("fastrun.c")
-	.dwattr DW$132, DW_AT_end_line(0xd9)
+	.dwattr DW$132, DW_AT_end_line(0xda)
 	.dwattr DW$132, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$132
@@ -2167,87 +2167,87 @@ L40:
 DW$L$_TURN_COMPUTE_FUNC$2$B:
 ;***	-----------------------g2:
 ;*** 43	-----------------------    LINE = U$7;
-;*** 136	-----------------------    C$1 = (*LINE).TurnWay_U32;  // [14]
-;*** 136	-----------------------    if ( C$1&0x3001uL ) goto g6;  // [14]
+;*** 137	-----------------------    C$1 = (*LINE).TurnWay_U32;  // [14]
+;*** 137	-----------------------    if ( C$1&0x3001uL ) goto g6;  // [14]
 	.dwpsn	"fastrun.c",43,3
         MOVL      XAR2,XAR1             ; |43| 
-	.dwpsn	"fastrun.c",136,2
-        MOV       ACC,#12289            ; |136| 
-        MOVL      P,*+XAR2[6]           ; |136| 
-        AND       AL,PL                 ; |136| 
-        AND       AH,PH                 ; |136| 
-        TEST      ACC                   ; |136| 
-        BF        L42,NEQ               ; |136| 
-        ; branchcc occurs ; |136| 
+	.dwpsn	"fastrun.c",137,2
+        MOV       ACC,#12289            ; |137| 
+        MOVL      P,*+XAR2[6]           ; |137| 
+        AND       AL,PL                 ; |137| 
+        AND       AH,PH                 ; |137| 
+        TEST      ACC                   ; |137| 
+        BF        L42,NEQ               ; |137| 
+        ; branchcc occurs ; |137| 
 DW$L$_TURN_COMPUTE_FUNC$2$E:
 DW$L$_TURN_COMPUTE_FUNC$3$B:
-;*** 145	-----------------------    if ( C$1&4uL ) goto g5;  // [14]
-	.dwpsn	"fastrun.c",145,3
-        MOVL      ACC,P                 ; |145| 
-        ANDB      AL,#0x04              ; |145| 
+;*** 146	-----------------------    if ( C$1&4uL ) goto g5;  // [14]
+	.dwpsn	"fastrun.c",146,3
+        MOVL      ACC,P                 ; |146| 
+        ANDB      AL,#0x04              ; |146| 
         MOVB      AH,#0
-        TEST      ACC                   ; |145| 
-        BF        L41,NEQ               ; |145| 
-        ; branchcc occurs ; |145| 
+        TEST      ACC                   ; |146| 
+        BF        L41,NEQ               ; |146| 
+        ; branchcc occurs ; |146| 
 DW$L$_TURN_COMPUTE_FUNC$3$E:
 DW$L$_TURN_COMPUTE_FUNC$4$B:
-;*** 148	-----------------------    _TURN_COMPUTE_(LINE, (*LINE).Distance_L_U32, (*LINE).Distance_R_U32);  // [14]
-;*** 148	-----------------------    if ( (U$21 = (*LINE).TurnDir_U32) == 0uL ) goto g10;  // [14]
-	.dwpsn	"fastrun.c",148,4
-        MOVL      ACC,*+XAR2[0]         ; |148| 
-        MOVL      XAR4,XAR2             ; |148| 
-        MOVL      *-SP[2],ACC           ; |148| 
-        MOVL      ACC,*+XAR2[2]         ; |148| 
-        LCR       #__TURN_COMPUTE_$0    ; |148| 
-        ; call occurs [#__TURN_COMPUTE_$0] ; |148| 
-        MOVB      XAR0,#8               ; |148| 
-        MOVL      ACC,*+XAR2[AR0]       ; |148| 
-        BF        L45,EQ                ; |148| 
-        ; branchcc occurs ; |148| 
+;*** 149	-----------------------    _TURN_COMPUTE_(LINE, (*LINE).Distance_L_U32, (*LINE).Distance_R_U32);  // [14]
+;*** 149	-----------------------    if ( (U$21 = (*LINE).TurnDir_U32) == 0uL ) goto g10;  // [14]
+	.dwpsn	"fastrun.c",149,4
+        MOVL      ACC,*+XAR2[0]         ; |149| 
+        MOVL      XAR4,XAR2             ; |149| 
+        MOVL      *-SP[2],ACC           ; |149| 
+        MOVL      ACC,*+XAR2[2]         ; |149| 
+        LCR       #__TURN_COMPUTE_$0    ; |149| 
+        ; call occurs [#__TURN_COMPUTE_$0] ; |149| 
+        MOVB      XAR0,#8               ; |149| 
+        MOVL      ACC,*+XAR2[AR0]       ; |149| 
+        BF        L45,EQ                ; |149| 
+        ; branchcc occurs ; |149| 
 DW$L$_TURN_COMPUTE_FUNC$4$E:
 DW$L$_TURN_COMPUTE_FUNC$5$B:
-;*** 148	-----------------------    goto g11;  // [14]
-        BF        L46,UNC               ; |148| 
-        ; branch occurs ; |148| 
+;*** 149	-----------------------    goto g11;  // [14]
+        BF        L46,UNC               ; |149| 
+        ; branch occurs ; |149| 
 DW$L$_TURN_COMPUTE_FUNC$5$E:
 L41:    
 DW$L$_TURN_COMPUTE_FUNC$6$B:
 ;***	-----------------------g5:
-;*** 146	-----------------------    _TURN_COMPUTE_(LINE, (*LINE).Distance_R_U32, (*LINE).Distance_L_U32);  // [14]
-;*** 146	-----------------------    goto g9;  // [14]
-	.dwpsn	"fastrun.c",146,4
-        MOVL      ACC,*+XAR2[2]         ; |146| 
-        MOVL      XAR4,XAR2             ; |146| 
-        MOVL      *-SP[2],ACC           ; |146| 
-        MOVL      ACC,*+XAR2[0]         ; |146| 
-        LCR       #__TURN_COMPUTE_$0    ; |146| 
-        ; call occurs [#__TURN_COMPUTE_$0] ; |146| 
-        BF        L44,UNC               ; |146| 
-        ; branch occurs ; |146| 
+;*** 147	-----------------------    _TURN_COMPUTE_(LINE, (*LINE).Distance_R_U32, (*LINE).Distance_L_U32);  // [14]
+;*** 147	-----------------------    goto g9;  // [14]
+	.dwpsn	"fastrun.c",147,4
+        MOVL      ACC,*+XAR2[2]         ; |147| 
+        MOVL      XAR4,XAR2             ; |147| 
+        MOVL      *-SP[2],ACC           ; |147| 
+        MOVL      ACC,*+XAR2[0]         ; |147| 
+        LCR       #__TURN_COMPUTE_$0    ; |147| 
+        ; call occurs [#__TURN_COMPUTE_$0] ; |147| 
+        BF        L44,UNC               ; |147| 
+        ; branch occurs ; |147| 
 DW$L$_TURN_COMPUTE_FUNC$6$E:
 L42:    
 DW$L$_TURN_COMPUTE_FUNC$7$B:
 ;***	-----------------------g6:
-;*** 138	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|1uL;  // [14]
-;*** 140	-----------------------    if ( *&Flag&0x200u ) goto g8;  // [14]
-	.dwpsn	"fastrun.c",138,3
-        MOVL      ACC,*+XAR2[6]         ; |138| 
-        MOVB      XAR0,#8               ; |138| 
-        ORB       AL,#0x01              ; |138| 
-        MOVL      *+XAR2[AR0],ACC       ; |138| 
-	.dwpsn	"fastrun.c",140,3
+;*** 139	-----------------------    (*LINE).TurnDir_U32 = (*LINE).TurnWay_U32|1uL;  // [14]
+;*** 141	-----------------------    if ( *&Flag&0x200u ) goto g8;  // [14]
+	.dwpsn	"fastrun.c",139,3
+        MOVL      ACC,*+XAR2[6]         ; |139| 
+        MOVB      XAR0,#8               ; |139| 
+        ORB       AL,#0x01              ; |139| 
+        MOVL      *+XAR2[AR0],ACC       ; |139| 
+	.dwpsn	"fastrun.c",141,3
         MOVW      DP,#_Flag
-        TBIT      @_Flag,#9             ; |140| 
-        BF        L43,TC                ; |140| 
-        ; branchcc occurs ; |140| 
+        TBIT      @_Flag,#9             ; |141| 
+        BF        L43,TC                ; |141| 
+        ; branchcc occurs ; |141| 
 DW$L$_TURN_COMPUTE_FUNC$7$E:
 DW$L$_TURN_COMPUTE_FUNC$8$B:
-;*** 45	-----------------------    U$7 = &Search[(long)cnt];
+;*** 45	-----------------------    U$7 = ((long)cnt<<5)+&Search;
 ;*** 45	-----------------------    goto g9;
 	.dwpsn	"fastrun.c",45,3
-        MOV       T,#38                 ; |45| 
+        MOVU      ACC,AR3
         MOVL      XAR4,#_Search         ; |45| 
-        MPYXU     ACC,T,AR3             ; |45| 
+        LSL       ACC,5                 ; |45| 
         ADDL      XAR4,ACC
         MOVL      XAR1,XAR4             ; |45| 
         BF        L44,UNC               ; |45| 
@@ -2256,21 +2256,21 @@ DW$L$_TURN_COMPUTE_FUNC$8$E:
 L43:    
 DW$L$_TURN_COMPUTE_FUNC$9$B:
 ;***	-----------------------g8:
-;*** 141	-----------------------    TxPrintf("Angle:    0        Radius:    0\t\t");  // [14]
-	.dwpsn	"fastrun.c",141,4
-        MOVL      XAR4,#FSL3            ; |141| 
-        MOVL      *-SP[2],XAR4          ; |141| 
-        LCR       #_TxPrintf            ; |141| 
-        ; call occurs [#_TxPrintf] ; |141| 
+;*** 142	-----------------------    TxPrintf("Angle:    0        Radius:    0\t\t");  // [14]
+	.dwpsn	"fastrun.c",142,4
+        MOVL      XAR4,#FSL3            ; |142| 
+        MOVL      *-SP[2],XAR4          ; |142| 
+        LCR       #_TxPrintf            ; |142| 
+        ; call occurs [#_TxPrintf] ; |142| 
 DW$L$_TURN_COMPUTE_FUNC$9$E:
 L44:    
 DW$L$_TURN_COMPUTE_FUNC$10$B:
 ;***	-----------------------g9:
-;*** 141	-----------------------    if ( U$21 = (*U$7).TurnDir_U32 ) goto g11;  // [14]
-        MOVB      XAR0,#8               ; |141| 
-        MOVL      ACC,*+XAR1[AR0]       ; |141| 
-        BF        L46,NEQ               ; |141| 
-        ; branchcc occurs ; |141| 
+;*** 142	-----------------------    if ( U$21 = (*U$7).TurnDir_U32 ) goto g11;  // [14]
+        MOVB      XAR0,#8               ; |142| 
+        MOVL      ACC,*+XAR1[AR0]       ; |142| 
+        BF        L46,NEQ               ; |142| 
+        ; branchcc occurs ; |142| 
 DW$L$_TURN_COMPUTE_FUNC$10$E:
 L45:    
 ;***	-----------------------g10:
@@ -2314,11 +2314,11 @@ DW$L$_TURN_COMPUTE_FUNC$13$E:
 L47:    
 DW$L$_TURN_COMPUTE_FUNC$14$B:
 ;***	-----------------------g13:
-;*** 41	-----------------------    U$7 += 38;
+;*** 41	-----------------------    U$7 += 32;
 ;*** 41	-----------------------    if ( MARK_U16_CNT >= (++cnt) ) goto g2;
 	.dwpsn	"fastrun.c",41,36
         MOVL      ACC,XAR1              ; |41| 
-        MOVB      XAR4,#38              ; |41| 
+        MOVB      XAR4,#32              ; |41| 
         ADDU      ACC,AR4               ; |41| 
         MOVL      XAR1,ACC              ; |41| 
 	.dwpsn	"fastrun.c",41,15
@@ -2349,7 +2349,7 @@ L48:
         ; return occurs
 
 DW$151	.dwtag  DW_TAG_loop
-	.dwattr DW$151, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L40:1:1659205999")
+	.dwattr DW$151, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\fastrun.asm:L40:1:1659562431")
 	.dwattr DW$151, DW_AT_begin_file("fastrun.c")
 	.dwattr DW$151, DW_AT_begin_line(0x29)
 	.dwattr DW$151, DW_AT_end_line(0x34)
@@ -2722,7 +2722,7 @@ DW$T$84	.dwtag  DW_TAG_const_type
 
 DW$T$85	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$36)
 	.dwattr DW$T$85, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$85, DW_AT_byte_size(0x2600)
+	.dwattr DW$T$85, DW_AT_byte_size(0x2000)
 DW$210	.dwtag  DW_TAG_subrange_type
 	.dwattr DW$210, DW_AT_upper_bound(0xff)
 	.dwendtag DW$T$85
@@ -2740,7 +2740,7 @@ DW$T$11	.dwtag  DW_TAG_base_type, DW_AT_name("unsigned int")
 	.dwattr DW$T$11, DW_AT_byte_size(0x01)
 
 DW$T$25	.dwtag  DW_TAG_structure_type
-	.dwattr DW$T$25, DW_AT_byte_size(0x26)
+	.dwattr DW$T$25, DW_AT_byte_size(0x20)
 DW$211	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
 	.dwattr DW$211, DW_AT_name("Distance_R_U32"), DW_AT_symbol_name("_Distance_R_U32")
 	.dwattr DW$211, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
@@ -2798,188 +2798,176 @@ DW$224	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
 	.dwattr DW$224, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
 	.dwattr DW$224, DW_AT_accessibility(DW_ACCESS_public)
 DW$225	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$22)
-	.dwattr DW$225, DW_AT_name("ShiftBefore_IQ17"), DW_AT_symbol_name("_ShiftBefore_IQ17")
+	.dwattr DW$225, DW_AT_name("Kp_UpDown_IQ17"), DW_AT_symbol_name("_Kp_UpDown_IQ17")
 	.dwattr DW$225, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
 	.dwattr DW$225, DW_AT_accessibility(DW_ACCESS_public)
-DW$226	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$22)
-	.dwattr DW$226, DW_AT_name("ShiftAfter_IQ17"), DW_AT_symbol_name("_ShiftAfter_IQ17")
+DW$226	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$226, DW_AT_name("DownFlag_U16"), DW_AT_symbol_name("_DownFlag_U16")
+	.dwattr DW$226, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$226, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
 	.dwattr DW$226, DW_AT_accessibility(DW_ACCESS_public)
-DW$227	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$22)
-	.dwattr DW$227, DW_AT_name("ShiftDistLimit_IQ17"), DW_AT_symbol_name("_ShiftDistLimit_IQ17")
-	.dwattr DW$227, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
+DW$227	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$227, DW_AT_name("s44sFlag_U16"), DW_AT_symbol_name("_s44sFlag_U16")
+	.dwattr DW$227, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$227, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
 	.dwattr DW$227, DW_AT_accessibility(DW_ACCESS_public)
-DW$228	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$22)
-	.dwattr DW$228, DW_AT_name("Kp_UpDown_IQ17"), DW_AT_symbol_name("_Kp_UpDown_IQ17")
-	.dwattr DW$228, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
-	.dwattr DW$228, DW_AT_accessibility(DW_ACCESS_public)
-DW$229	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$229, DW_AT_name("DownFlag_U16"), DW_AT_symbol_name("_DownFlag_U16")
-	.dwattr DW$229, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$229, DW_AT_data_member_location[DW_OP_plus_uconst 0x24]
-	.dwattr DW$229, DW_AT_accessibility(DW_ACCESS_public)
-DW$230	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$230, DW_AT_name("s44sFlag_U16"), DW_AT_symbol_name("_s44sFlag_U16")
-	.dwattr DW$230, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$230, DW_AT_data_member_location[DW_OP_plus_uconst 0x24]
-	.dwattr DW$230, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$25
 
 DW$T$36	.dwtag  DW_TAG_typedef, DW_AT_name("TRACKINFO"), DW_AT_type(*DW$T$25)
 	.dwattr DW$T$36, DW_AT_language(DW_LANG_C)
-DW$231	.dwtag  DW_TAG_far_type
-	.dwattr DW$231, DW_AT_type(*DW$T$28)
+DW$228	.dwtag  DW_TAG_far_type
+	.dwattr DW$228, DW_AT_type(*DW$T$28)
 DW$T$89	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$89, DW_AT_type(*DW$231)
-DW$232	.dwtag  DW_TAG_far_type
-	.dwattr DW$232, DW_AT_type(*DW$T$29)
+	.dwattr DW$T$89, DW_AT_type(*DW$228)
+DW$229	.dwtag  DW_TAG_far_type
+	.dwattr DW$229, DW_AT_type(*DW$T$29)
 DW$T$91	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$91, DW_AT_type(*DW$232)
+	.dwattr DW$T$91, DW_AT_type(*DW$229)
 DW$T$30	.dwtag  DW_TAG_base_type, DW_AT_name("signed char")
 	.dwattr DW$T$30, DW_AT_encoding(DW_ATE_signed_char)
 	.dwattr DW$T$30, DW_AT_byte_size(0x01)
-DW$233	.dwtag  DW_TAG_far_type
-	.dwattr DW$233, DW_AT_type(*DW$T$23)
+DW$230	.dwtag  DW_TAG_far_type
+	.dwattr DW$230, DW_AT_type(*DW$T$23)
 DW$T$24	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$24, DW_AT_type(*DW$233)
+	.dwattr DW$T$24, DW_AT_type(*DW$230)
 
 DW$T$28	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$28, DW_AT_byte_size(0x28)
+DW$231	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$231, DW_AT_name("TargetVel_IQ17"), DW_AT_symbol_name("_TargetVel_IQ17")
+	.dwattr DW$231, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$231, DW_AT_accessibility(DW_ACCESS_public)
+DW$232	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$232, DW_AT_name("NextVelocity_IQ17"), DW_AT_symbol_name("_NextVelocity_IQ17")
+	.dwattr DW$232, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
+	.dwattr DW$232, DW_AT_accessibility(DW_ACCESS_public)
+DW$233	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$233, DW_AT_name("HandleVelo_IQ17"), DW_AT_symbol_name("_HandleVelo_IQ17")
+	.dwattr DW$233, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
+	.dwattr DW$233, DW_AT_accessibility(DW_ACCESS_public)
 DW$234	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$234, DW_AT_name("TargetVel_IQ17"), DW_AT_symbol_name("_TargetVel_IQ17")
-	.dwattr DW$234, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$234, DW_AT_name("DecelVelocity_IQ17"), DW_AT_symbol_name("_DecelVelocity_IQ17")
+	.dwattr DW$234, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
 	.dwattr DW$234, DW_AT_accessibility(DW_ACCESS_public)
 DW$235	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$235, DW_AT_name("NextVelocity_IQ17"), DW_AT_symbol_name("_NextVelocity_IQ17")
-	.dwattr DW$235, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
+	.dwattr DW$235, DW_AT_name("TurnMarkCheckDistance_IQ17"), DW_AT_symbol_name("_TurnMarkCheckDistance_IQ17")
+	.dwattr DW$235, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
 	.dwattr DW$235, DW_AT_accessibility(DW_ACCESS_public)
-DW$236	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$236, DW_AT_name("HandleVelo_IQ17"), DW_AT_symbol_name("_HandleVelo_IQ17")
-	.dwattr DW$236, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
+DW$236	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$26)
+	.dwattr DW$236, DW_AT_name("GoneDistance_IQ15"), DW_AT_symbol_name("_GoneDistance_IQ15")
+	.dwattr DW$236, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
 	.dwattr DW$236, DW_AT_accessibility(DW_ACCESS_public)
-DW$237	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$237, DW_AT_name("DecelVelocity_IQ17"), DW_AT_symbol_name("_DecelVelocity_IQ17")
-	.dwattr DW$237, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
+DW$237	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$26)
+	.dwattr DW$237, DW_AT_name("CrossCheckDistance_IQ15"), DW_AT_symbol_name("_CrossCheckDistance_IQ15")
+	.dwattr DW$237, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
 	.dwattr DW$237, DW_AT_accessibility(DW_ACCESS_public)
 DW$238	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$238, DW_AT_name("TurnMarkCheckDistance_IQ17"), DW_AT_symbol_name("_TurnMarkCheckDistance_IQ17")
-	.dwattr DW$238, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
+	.dwattr DW$238, DW_AT_name("DecelDistance_IQ17"), DW_AT_symbol_name("_DecelDistance_IQ17")
+	.dwattr DW$238, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
 	.dwattr DW$238, DW_AT_accessibility(DW_ACCESS_public)
-DW$239	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$26)
-	.dwattr DW$239, DW_AT_name("GoneDistance_IQ15"), DW_AT_symbol_name("_GoneDistance_IQ15")
-	.dwattr DW$239, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
+DW$239	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$239, DW_AT_name("ErrorDistance_IQ17"), DW_AT_symbol_name("_ErrorDistance_IQ17")
+	.dwattr DW$239, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
 	.dwattr DW$239, DW_AT_accessibility(DW_ACCESS_public)
-DW$240	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$26)
-	.dwattr DW$240, DW_AT_name("CrossCheckDistance_IQ15"), DW_AT_symbol_name("_CrossCheckDistance_IQ15")
-	.dwattr DW$240, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
+DW$240	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$240, DW_AT_name("UserDistance_IQ17"), DW_AT_symbol_name("_UserDistance_IQ17")
+	.dwattr DW$240, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
 	.dwattr DW$240, DW_AT_accessibility(DW_ACCESS_public)
-DW$241	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$241, DW_AT_name("DecelDistance_IQ17"), DW_AT_symbol_name("_DecelDistance_IQ17")
-	.dwattr DW$241, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
+DW$241	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
+	.dwattr DW$241, DW_AT_name("DecelFlag_U16"), DW_AT_symbol_name("_DecelFlag_U16")
+	.dwattr DW$241, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
 	.dwattr DW$241, DW_AT_accessibility(DW_ACCESS_public)
-DW$242	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$242, DW_AT_name("ErrorDistance_IQ17"), DW_AT_symbol_name("_ErrorDistance_IQ17")
-	.dwattr DW$242, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
+DW$242	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$27)
+	.dwattr DW$242, DW_AT_name("PrdNext_IQ14"), DW_AT_symbol_name("_PrdNext_IQ14")
+	.dwattr DW$242, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
 	.dwattr DW$242, DW_AT_accessibility(DW_ACCESS_public)
 DW$243	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$243, DW_AT_name("UserDistance_IQ17"), DW_AT_symbol_name("_UserDistance_IQ17")
-	.dwattr DW$243, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
+	.dwattr DW$243, DW_AT_name("PrdNextTranSecon_IQ17"), DW_AT_symbol_name("_PrdNextTranSecon_IQ17")
+	.dwattr DW$243, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
 	.dwattr DW$243, DW_AT_accessibility(DW_ACCESS_public)
-DW$244	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$244, DW_AT_name("DecelFlag_U16"), DW_AT_symbol_name("_DecelFlag_U16")
-	.dwattr DW$244, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
+DW$244	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$244, DW_AT_name("RolEachStep_IQ17"), DW_AT_symbol_name("_RolEachStep_IQ17")
+	.dwattr DW$244, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
 	.dwattr DW$244, DW_AT_accessibility(DW_ACCESS_public)
-DW$245	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$27)
-	.dwattr DW$245, DW_AT_name("PrdNext_IQ14"), DW_AT_symbol_name("_PrdNext_IQ14")
-	.dwattr DW$245, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
+DW$245	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
+	.dwattr DW$245, DW_AT_name("NextAccel_IQ14"), DW_AT_symbol_name("_NextAccel_IQ14")
+	.dwattr DW$245, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
 	.dwattr DW$245, DW_AT_accessibility(DW_ACCESS_public)
-DW$246	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$246, DW_AT_name("PrdNextTranSecon_IQ17"), DW_AT_symbol_name("_PrdNextTranSecon_IQ17")
-	.dwattr DW$246, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
+DW$246	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
+	.dwattr DW$246, DW_AT_name("AccelLimit_IQ14"), DW_AT_symbol_name("_AccelLimit_IQ14")
+	.dwattr DW$246, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
 	.dwattr DW$246, DW_AT_accessibility(DW_ACCESS_public)
-DW$247	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$247, DW_AT_name("RolEachStep_IQ17"), DW_AT_symbol_name("_RolEachStep_IQ17")
-	.dwattr DW$247, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
+DW$247	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
+	.dwattr DW$247, DW_AT_name("DecelAccel_IQ14"), DW_AT_symbol_name("_DecelAccel_IQ14")
+	.dwattr DW$247, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
 	.dwattr DW$247, DW_AT_accessibility(DW_ACCESS_public)
 DW$248	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
-	.dwattr DW$248, DW_AT_name("NextAccel_IQ14"), DW_AT_symbol_name("_NextAccel_IQ14")
-	.dwattr DW$248, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
+	.dwattr DW$248, DW_AT_name("Jerk_IQ14"), DW_AT_symbol_name("_Jerk_IQ14")
+	.dwattr DW$248, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
 	.dwattr DW$248, DW_AT_accessibility(DW_ACCESS_public)
-DW$249	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
-	.dwattr DW$249, DW_AT_name("AccelLimit_IQ14"), DW_AT_symbol_name("_AccelLimit_IQ14")
-	.dwattr DW$249, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
+DW$249	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$249, DW_AT_name("TargetHandle_IQ17"), DW_AT_symbol_name("_TargetHandle_IQ17")
+	.dwattr DW$249, DW_AT_data_member_location[DW_OP_plus_uconst 0x24]
 	.dwattr DW$249, DW_AT_accessibility(DW_ACCESS_public)
-DW$250	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
-	.dwattr DW$250, DW_AT_name("DecelAccel_IQ14"), DW_AT_symbol_name("_DecelAccel_IQ14")
-	.dwattr DW$250, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
+DW$250	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$250, DW_AT_name("StepCntFlag_U32"), DW_AT_symbol_name("_StepCntFlag_U32")
+	.dwattr DW$250, DW_AT_data_member_location[DW_OP_plus_uconst 0x26]
 	.dwattr DW$250, DW_AT_accessibility(DW_ACCESS_public)
-DW$251	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
-	.dwattr DW$251, DW_AT_name("Jerk_IQ14"), DW_AT_symbol_name("_Jerk_IQ14")
-	.dwattr DW$251, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
-	.dwattr DW$251, DW_AT_accessibility(DW_ACCESS_public)
-DW$252	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$252, DW_AT_name("TargetHandle_IQ17"), DW_AT_symbol_name("_TargetHandle_IQ17")
-	.dwattr DW$252, DW_AT_data_member_location[DW_OP_plus_uconst 0x24]
-	.dwattr DW$252, DW_AT_accessibility(DW_ACCESS_public)
-DW$253	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$253, DW_AT_name("StepCntFlag_U32"), DW_AT_symbol_name("_StepCntFlag_U32")
-	.dwattr DW$253, DW_AT_data_member_location[DW_OP_plus_uconst 0x26]
-	.dwattr DW$253, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$28
 
 
 DW$T$29	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$29, DW_AT_byte_size(0x01)
+DW$251	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
+	.dwattr DW$251, DW_AT_name("MoveState_U16"), DW_AT_symbol_name("_MoveState_U16")
+	.dwattr DW$251, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
+	.dwattr DW$251, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$251, DW_AT_accessibility(DW_ACCESS_public)
+DW$252	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
+	.dwattr DW$252, DW_AT_name("Motor_U16"), DW_AT_symbol_name("_Motor_U16")
+	.dwattr DW$252, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$252, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$252, DW_AT_accessibility(DW_ACCESS_public)
+DW$253	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
+	.dwattr DW$253, DW_AT_name("Sensor_U16"), DW_AT_symbol_name("_Sensor_U16")
+	.dwattr DW$253, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$253, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$253, DW_AT_accessibility(DW_ACCESS_public)
 DW$254	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$254, DW_AT_name("MoveState_U16"), DW_AT_symbol_name("_MoveState_U16")
-	.dwattr DW$254, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
+	.dwattr DW$254, DW_AT_name("Cross"), DW_AT_symbol_name("_Cross")
+	.dwattr DW$254, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
 	.dwattr DW$254, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$254, DW_AT_accessibility(DW_ACCESS_public)
 DW$255	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$255, DW_AT_name("Motor_U16"), DW_AT_symbol_name("_Motor_U16")
-	.dwattr DW$255, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$255, DW_AT_name("CrossFlag_U16"), DW_AT_symbol_name("_CrossFlag_U16")
+	.dwattr DW$255, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
 	.dwattr DW$255, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$255, DW_AT_accessibility(DW_ACCESS_public)
 DW$256	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$256, DW_AT_name("Sensor_U16"), DW_AT_symbol_name("_Sensor_U16")
-	.dwattr DW$256, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$256, DW_AT_name("STOP"), DW_AT_symbol_name("_STOP")
+	.dwattr DW$256, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
 	.dwattr DW$256, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$256, DW_AT_accessibility(DW_ACCESS_public)
 DW$257	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$257, DW_AT_name("Cross"), DW_AT_symbol_name("_Cross")
-	.dwattr DW$257, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
+	.dwattr DW$257, DW_AT_name("Search_U16"), DW_AT_symbol_name("_Search_U16")
+	.dwattr DW$257, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
 	.dwattr DW$257, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$257, DW_AT_accessibility(DW_ACCESS_public)
 DW$258	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$258, DW_AT_name("CrossFlag_U16"), DW_AT_symbol_name("_CrossFlag_U16")
-	.dwattr DW$258, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
+	.dwattr DW$258, DW_AT_name("Fast_U16"), DW_AT_symbol_name("_Fast_U16")
+	.dwattr DW$258, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
 	.dwattr DW$258, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$258, DW_AT_accessibility(DW_ACCESS_public)
 DW$259	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$259, DW_AT_name("STOP"), DW_AT_symbol_name("_STOP")
-	.dwattr DW$259, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
+	.dwattr DW$259, DW_AT_name("Extrem_U16"), DW_AT_symbol_name("_Extrem_U16")
+	.dwattr DW$259, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
 	.dwattr DW$259, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$259, DW_AT_accessibility(DW_ACCESS_public)
 DW$260	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$260, DW_AT_name("Search_U16"), DW_AT_symbol_name("_Search_U16")
-	.dwattr DW$260, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
+	.dwattr DW$260, DW_AT_name("TxFlag_U16"), DW_AT_symbol_name("_TxFlag_U16")
+	.dwattr DW$260, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
 	.dwattr DW$260, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$260, DW_AT_accessibility(DW_ACCESS_public)
-DW$261	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$261, DW_AT_name("Fast_U16"), DW_AT_symbol_name("_Fast_U16")
-	.dwattr DW$261, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
-	.dwattr DW$261, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$261, DW_AT_accessibility(DW_ACCESS_public)
-DW$262	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$262, DW_AT_name("Extrem_U16"), DW_AT_symbol_name("_Extrem_U16")
-	.dwattr DW$262, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
-	.dwattr DW$262, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$262, DW_AT_accessibility(DW_ACCESS_public)
-DW$263	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
-	.dwattr DW$263, DW_AT_name("TxFlag_U16"), DW_AT_symbol_name("_TxFlag_U16")
-	.dwattr DW$263, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
-	.dwattr DW$263, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$263, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$29
 
 DW$T$26	.dwtag  DW_TAG_typedef, DW_AT_name("_iq15"), DW_AT_type(*DW$T$12)
@@ -3051,87 +3039,87 @@ DW$CIE	.dwcie 1, 40
 ;* DWARF REGISTER MAP                                          *
 ;***************************************************************
 
-DW$264	.dwtag  DW_TAG_assign_register, DW_AT_name("AL")
-	.dwattr DW$264, DW_AT_location[DW_OP_reg0]
-DW$265	.dwtag  DW_TAG_assign_register, DW_AT_name("AH")
-	.dwattr DW$265, DW_AT_location[DW_OP_reg1]
-DW$266	.dwtag  DW_TAG_assign_register, DW_AT_name("PL")
-	.dwattr DW$266, DW_AT_location[DW_OP_reg2]
-DW$267	.dwtag  DW_TAG_assign_register, DW_AT_name("PH")
-	.dwattr DW$267, DW_AT_location[DW_OP_reg3]
-DW$268	.dwtag  DW_TAG_assign_register, DW_AT_name("AR0")
-	.dwattr DW$268, DW_AT_location[DW_OP_reg4]
-DW$269	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR0")
-	.dwattr DW$269, DW_AT_location[DW_OP_reg5]
-DW$270	.dwtag  DW_TAG_assign_register, DW_AT_name("AR1")
-	.dwattr DW$270, DW_AT_location[DW_OP_reg6]
-DW$271	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR1")
-	.dwattr DW$271, DW_AT_location[DW_OP_reg7]
-DW$272	.dwtag  DW_TAG_assign_register, DW_AT_name("AR2")
-	.dwattr DW$272, DW_AT_location[DW_OP_reg8]
-DW$273	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR2")
-	.dwattr DW$273, DW_AT_location[DW_OP_reg9]
-DW$274	.dwtag  DW_TAG_assign_register, DW_AT_name("AR3")
-	.dwattr DW$274, DW_AT_location[DW_OP_reg10]
-DW$275	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR3")
-	.dwattr DW$275, DW_AT_location[DW_OP_reg11]
-DW$276	.dwtag  DW_TAG_assign_register, DW_AT_name("AR4")
-	.dwattr DW$276, DW_AT_location[DW_OP_reg12]
-DW$277	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR4")
-	.dwattr DW$277, DW_AT_location[DW_OP_reg13]
-DW$278	.dwtag  DW_TAG_assign_register, DW_AT_name("AR5")
-	.dwattr DW$278, DW_AT_location[DW_OP_reg14]
-DW$279	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR5")
-	.dwattr DW$279, DW_AT_location[DW_OP_reg15]
-DW$280	.dwtag  DW_TAG_assign_register, DW_AT_name("AR6")
-	.dwattr DW$280, DW_AT_location[DW_OP_reg16]
-DW$281	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR6")
-	.dwattr DW$281, DW_AT_location[DW_OP_reg17]
-DW$282	.dwtag  DW_TAG_assign_register, DW_AT_name("AR7")
-	.dwattr DW$282, DW_AT_location[DW_OP_reg18]
-DW$283	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR7")
-	.dwattr DW$283, DW_AT_location[DW_OP_reg19]
-DW$284	.dwtag  DW_TAG_assign_register, DW_AT_name("SP")
-	.dwattr DW$284, DW_AT_location[DW_OP_reg20]
-DW$285	.dwtag  DW_TAG_assign_register, DW_AT_name("XT")
-	.dwattr DW$285, DW_AT_location[DW_OP_reg21]
-DW$286	.dwtag  DW_TAG_assign_register, DW_AT_name("T")
-	.dwattr DW$286, DW_AT_location[DW_OP_reg22]
-DW$287	.dwtag  DW_TAG_assign_register, DW_AT_name("ST0")
-	.dwattr DW$287, DW_AT_location[DW_OP_reg23]
-DW$288	.dwtag  DW_TAG_assign_register, DW_AT_name("ST1")
-	.dwattr DW$288, DW_AT_location[DW_OP_reg24]
-DW$289	.dwtag  DW_TAG_assign_register, DW_AT_name("PC")
-	.dwattr DW$289, DW_AT_location[DW_OP_reg25]
-DW$290	.dwtag  DW_TAG_assign_register, DW_AT_name("RPC")
-	.dwattr DW$290, DW_AT_location[DW_OP_reg26]
-DW$291	.dwtag  DW_TAG_assign_register, DW_AT_name("FP")
-	.dwattr DW$291, DW_AT_location[DW_OP_reg27]
-DW$292	.dwtag  DW_TAG_assign_register, DW_AT_name("DP")
-	.dwattr DW$292, DW_AT_location[DW_OP_reg28]
-DW$293	.dwtag  DW_TAG_assign_register, DW_AT_name("SXM")
-	.dwattr DW$293, DW_AT_location[DW_OP_reg29]
-DW$294	.dwtag  DW_TAG_assign_register, DW_AT_name("PM")
-	.dwattr DW$294, DW_AT_location[DW_OP_reg30]
-DW$295	.dwtag  DW_TAG_assign_register, DW_AT_name("OVM")
-	.dwattr DW$295, DW_AT_location[DW_OP_reg31]
-DW$296	.dwtag  DW_TAG_assign_register, DW_AT_name("PAGE0")
-	.dwattr DW$296, DW_AT_location[DW_OP_regx 0x20]
-DW$297	.dwtag  DW_TAG_assign_register, DW_AT_name("AMODE")
-	.dwattr DW$297, DW_AT_location[DW_OP_regx 0x21]
-DW$298	.dwtag  DW_TAG_assign_register, DW_AT_name("IFR")
-	.dwattr DW$298, DW_AT_location[DW_OP_regx 0x22]
-DW$299	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
-	.dwattr DW$299, DW_AT_location[DW_OP_regx 0x23]
-DW$300	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
-	.dwattr DW$300, DW_AT_location[DW_OP_regx 0x24]
-DW$301	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDO")
-	.dwattr DW$301, DW_AT_location[DW_OP_regx 0x25]
-DW$302	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDOH")
-	.dwattr DW$302, DW_AT_location[DW_OP_regx 0x26]
-DW$303	.dwtag  DW_TAG_assign_register, DW_AT_name("VOL")
-	.dwattr DW$303, DW_AT_location[DW_OP_regx 0x27]
-DW$304	.dwtag  DW_TAG_assign_register, DW_AT_name("CIE_RETA")
-	.dwattr DW$304, DW_AT_location[DW_OP_regx 0x28]
+DW$261	.dwtag  DW_TAG_assign_register, DW_AT_name("AL")
+	.dwattr DW$261, DW_AT_location[DW_OP_reg0]
+DW$262	.dwtag  DW_TAG_assign_register, DW_AT_name("AH")
+	.dwattr DW$262, DW_AT_location[DW_OP_reg1]
+DW$263	.dwtag  DW_TAG_assign_register, DW_AT_name("PL")
+	.dwattr DW$263, DW_AT_location[DW_OP_reg2]
+DW$264	.dwtag  DW_TAG_assign_register, DW_AT_name("PH")
+	.dwattr DW$264, DW_AT_location[DW_OP_reg3]
+DW$265	.dwtag  DW_TAG_assign_register, DW_AT_name("AR0")
+	.dwattr DW$265, DW_AT_location[DW_OP_reg4]
+DW$266	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR0")
+	.dwattr DW$266, DW_AT_location[DW_OP_reg5]
+DW$267	.dwtag  DW_TAG_assign_register, DW_AT_name("AR1")
+	.dwattr DW$267, DW_AT_location[DW_OP_reg6]
+DW$268	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR1")
+	.dwattr DW$268, DW_AT_location[DW_OP_reg7]
+DW$269	.dwtag  DW_TAG_assign_register, DW_AT_name("AR2")
+	.dwattr DW$269, DW_AT_location[DW_OP_reg8]
+DW$270	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR2")
+	.dwattr DW$270, DW_AT_location[DW_OP_reg9]
+DW$271	.dwtag  DW_TAG_assign_register, DW_AT_name("AR3")
+	.dwattr DW$271, DW_AT_location[DW_OP_reg10]
+DW$272	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR3")
+	.dwattr DW$272, DW_AT_location[DW_OP_reg11]
+DW$273	.dwtag  DW_TAG_assign_register, DW_AT_name("AR4")
+	.dwattr DW$273, DW_AT_location[DW_OP_reg12]
+DW$274	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR4")
+	.dwattr DW$274, DW_AT_location[DW_OP_reg13]
+DW$275	.dwtag  DW_TAG_assign_register, DW_AT_name("AR5")
+	.dwattr DW$275, DW_AT_location[DW_OP_reg14]
+DW$276	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR5")
+	.dwattr DW$276, DW_AT_location[DW_OP_reg15]
+DW$277	.dwtag  DW_TAG_assign_register, DW_AT_name("AR6")
+	.dwattr DW$277, DW_AT_location[DW_OP_reg16]
+DW$278	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR6")
+	.dwattr DW$278, DW_AT_location[DW_OP_reg17]
+DW$279	.dwtag  DW_TAG_assign_register, DW_AT_name("AR7")
+	.dwattr DW$279, DW_AT_location[DW_OP_reg18]
+DW$280	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR7")
+	.dwattr DW$280, DW_AT_location[DW_OP_reg19]
+DW$281	.dwtag  DW_TAG_assign_register, DW_AT_name("SP")
+	.dwattr DW$281, DW_AT_location[DW_OP_reg20]
+DW$282	.dwtag  DW_TAG_assign_register, DW_AT_name("XT")
+	.dwattr DW$282, DW_AT_location[DW_OP_reg21]
+DW$283	.dwtag  DW_TAG_assign_register, DW_AT_name("T")
+	.dwattr DW$283, DW_AT_location[DW_OP_reg22]
+DW$284	.dwtag  DW_TAG_assign_register, DW_AT_name("ST0")
+	.dwattr DW$284, DW_AT_location[DW_OP_reg23]
+DW$285	.dwtag  DW_TAG_assign_register, DW_AT_name("ST1")
+	.dwattr DW$285, DW_AT_location[DW_OP_reg24]
+DW$286	.dwtag  DW_TAG_assign_register, DW_AT_name("PC")
+	.dwattr DW$286, DW_AT_location[DW_OP_reg25]
+DW$287	.dwtag  DW_TAG_assign_register, DW_AT_name("RPC")
+	.dwattr DW$287, DW_AT_location[DW_OP_reg26]
+DW$288	.dwtag  DW_TAG_assign_register, DW_AT_name("FP")
+	.dwattr DW$288, DW_AT_location[DW_OP_reg27]
+DW$289	.dwtag  DW_TAG_assign_register, DW_AT_name("DP")
+	.dwattr DW$289, DW_AT_location[DW_OP_reg28]
+DW$290	.dwtag  DW_TAG_assign_register, DW_AT_name("SXM")
+	.dwattr DW$290, DW_AT_location[DW_OP_reg29]
+DW$291	.dwtag  DW_TAG_assign_register, DW_AT_name("PM")
+	.dwattr DW$291, DW_AT_location[DW_OP_reg30]
+DW$292	.dwtag  DW_TAG_assign_register, DW_AT_name("OVM")
+	.dwattr DW$292, DW_AT_location[DW_OP_reg31]
+DW$293	.dwtag  DW_TAG_assign_register, DW_AT_name("PAGE0")
+	.dwattr DW$293, DW_AT_location[DW_OP_regx 0x20]
+DW$294	.dwtag  DW_TAG_assign_register, DW_AT_name("AMODE")
+	.dwattr DW$294, DW_AT_location[DW_OP_regx 0x21]
+DW$295	.dwtag  DW_TAG_assign_register, DW_AT_name("IFR")
+	.dwattr DW$295, DW_AT_location[DW_OP_regx 0x22]
+DW$296	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
+	.dwattr DW$296, DW_AT_location[DW_OP_regx 0x23]
+DW$297	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
+	.dwattr DW$297, DW_AT_location[DW_OP_regx 0x24]
+DW$298	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDO")
+	.dwattr DW$298, DW_AT_location[DW_OP_regx 0x25]
+DW$299	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDOH")
+	.dwattr DW$299, DW_AT_location[DW_OP_regx 0x26]
+DW$300	.dwtag  DW_TAG_assign_register, DW_AT_name("VOL")
+	.dwattr DW$300, DW_AT_location[DW_OP_regx 0x27]
+DW$301	.dwtag  DW_TAG_assign_register, DW_AT_name("CIE_RETA")
+	.dwattr DW$301, DW_AT_location[DW_OP_regx 0x28]
 	.dwendtag DW$CU
 

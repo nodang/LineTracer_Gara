@@ -62,6 +62,8 @@ void Init_RUN()
 	//2200  150					260
 	//2200	200					250			2Â÷ Àß¾ÈµÅÀÌ¤Ó¤·
 	//2300	50					290			2200Àº µÅ¿ä40.7Á¤µµ 
+
+	//2300  254					298	 kp = 0.9
 	
 	TIME_INDEX_U32 = 0;
 	STOP_TIME_INDEX_U32 = 0;
@@ -149,7 +151,6 @@ void RUN(Uint16 number)
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
 		LMark.TurnmarkDistance_IQ17 = RMark.TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17 >> 1) + (LMotor.TurnMarkCheckDistance_IQ17 >> 1);
-		SHIFT_DIST_IQ17 = (LMotor.RolEachStep_IQ17 >> 1) + (RMotor.RolEachStep_IQ17 >> 1);
 		XRUN_DIST_IQ15 = (LMotor.GoneDistance_IQ15 >> 1) + (RMotor.GoneDistance_IQ15 >> 1);
 				
 		TURN_DECIDE(&RMark, &LMark);

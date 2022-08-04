@@ -400,7 +400,7 @@ void load_sensitive_rom()
 
 }
 
-#define HANDLE_SIZE		10
+#define HANDLE_SIZE		12
 
 void save_handle_rom()
 {
@@ -421,6 +421,9 @@ void save_handle_rom()
 	
 	save_rom[ j++ ] = ( (Uint16)Down_Kp_U32 >> 0 ) & 0xff;
 	save_rom[ j++ ] = ( (Uint16)Down_Kp_U32 >> 8 ) & 0xff;
+
+	save_rom[ j++ ] = ( (Uint16)SHARP_KP_U32 >> 0 ) & 0xff;
+	save_rom[ j++ ] = ( (Uint16)SHARP_KP_U32 >> 8 ) & 0xff;
 
 	SpiWriteRom( ( Uint16 )HANDLE_PAGE, 0, HANDLE_SIZE, save_rom );
 }
@@ -446,8 +449,12 @@ void load_handle_rom()
 
 	Down_Kp_U32 = (Uint16)( ( load_rom[ j++ ] & 0xff ) << 0 );
 	Down_Kp_U32 |= (Uint16)( ( load_rom[ j++ ] & 0xff ) << 8 );
+	
+	SHARP_KP_U32 = (Uint16)( ( load_rom[ j++ ] & 0xff ) << 0 );
+	SHARP_KP_U32 |= (Uint16)( ( load_rom[ j++ ] & 0xff ) << 8 );
 
-	TxPrintf("DownKp: %4lu | S44S KP: %4ld | RATIO: %4ld | ACCEL: %4ld | DECEL: %4ld\n", Down_Kp_U32, S44S_KP_U32, RATIO_I32, ACCEL_COEF_I32, DECEL_COEF_I32);
+	TxPrintf("DownKp: %4lu | SharpKp: %4lu | S44S KP: %4ld | RATIO: %4ld | ACCEL: %4ld | DECEL: %4ld\n", 
+			 Down_Kp_U32, SHARP_KP_U32, S44S_KP_U32, RATIO_I32, ACCEL_COEF_I32, DECEL_COEF_I32);
 }
 
 #define PID_SIZE 	4

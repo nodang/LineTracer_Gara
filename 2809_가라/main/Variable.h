@@ -166,8 +166,11 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define MOTOR_ResetEnable		0x00000022		/*GPIO1,5 	0000 0000 0000 0000  0000 0000 0010 0010  */ 
 #define MOTOR_ResetEnable		0x00000044		/*GPIO2,6 	0000 0000 0000 0000  0000 0000 0100 0100  */ 
 
-#define MOTOR_DIR				(GpioDataRegs.GPADAT.all | 0x00000020)		
+#define MOTOR_DIR_BLANK			(GpioDataRegs.GPADAT.all & 0xffffffdd)
+#define MOTOR_DIR				(MOTOR_DIR_BLANK | 0x00000020)		
 // GPIO1 = off,GPIO5 = on		/*0000 0000 0000 0000  0000 0000 0010 0000  */ 
+#define MOTOR_DIR_REV			(MOTOR_DIR_BLANK | 0x00000002)		
+// GPIO1 = on,GPIO5 = off		/*0000 0000 0000 0000  0000 0000 0000 0010  */ 
 
 #define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all
@@ -178,16 +181,17 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define CPUTIMER_2_PRDdiv10000_IQ17		_IQ17div(((long)CPUTIMER_2_RPD) << 17, _IQ17(TEN_THOUSAND))
 
 #define STOP_VEL_IQ15(A)		(_IQ17div(A, _IQ17(100.0)) >> 2)
-#define STOP_ACC_IQ14(B)		(_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15(B), STOP_VEL_IQ15(B)), _IQ15(HEIGHT_SEEN)), _IQ15(10000.0)) >> 2)
+#define STOP_ACC_IQ14(B)		(_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15(B), STOP_VEL_IQ15(B)), _IQ15(HEIGHT_SEEN - 60.0)), _IQ15(10000.0)) >> 2)
 // 2800 이상 overflow 발생
 #define	HANDLE_ACCmpy1000_IQ17	_IQ17div(ACCEL_COEF_I32 << 17, _IQ17(TEN_THOUSAND))	//ACC_DEC_POINT_COEF_I32 << 17)
 #define	HANDLE_DECmpy1000_IQ17	_IQ17div(DECEL_COEF_I32 << 17, _IQ17(1000.0))
 
-#define PID_Kp_IQ17				_IQ17mpy(_IQ17(0.1), ((long)PID_Kp_U32) << 17)
+#define PID_Kp_IQ17				_IQ17mpy(_IQ17(0.01), ((long)PID_Kp_U32) << 17)
 #define PID_Kd_IQ17				_IQ17mpy(_IQ17(0.001), ((long)PID_Kd_U32) << 17)
 
 #define Kp_DOWN_IQ17			_IQ17mpy(_IQ17(0.01), ((long)Down_Kp_U32) << 17)
 #define Kp_SHORT_S44S_IQ17		_IQ17mpy(_IQ17(0.01), ((long)S44S_KP_U32) << 17)
+#define Kp_SHARP_TURN_IQ17		_IQ17mpy(_IQ17(0.01), ((long)SHARP_KP_U32) << 17)
 
 //#define KP_RATIO_IQ17			_IQ17(0.014)
 #define KP_RATIO_IQ17			_IQ17mpy(_IQ17(0.0001), RATIO_I32 << 17)
@@ -250,6 +254,7 @@ __VARIABLE_EXT__ int32	DECEL_COEF_I32;
 __VARIABLE_EXT__ int32	RATIO_I32;
 __VARIABLE_EXT__ Uint32	Down_Kp_U32;
 __VARIABLE_EXT__ int32	S44S_KP_U32;
+__VARIABLE_EXT__ int32	SHARP_KP_U32;
 
 //__VARIABLE_EXT__ Uint32	HANDLE_ACCEL_U32;
 
@@ -355,11 +360,6 @@ typedef struct
 	_iq14	Decel_IQ14;
 
 //---------------------------------------------
-
-	volatile _iq17	ShiftBefore_IQ17;
-	volatile _iq17	ShiftAfter_IQ17;
-	volatile _iq17	ShiftDistLimit_IQ17;
-
 	volatile _iq17	Kp_UpDown_IQ17;
 
 	volatile Uint16	DownFlag_U16:1;
