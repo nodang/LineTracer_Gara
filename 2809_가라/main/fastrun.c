@@ -18,7 +18,7 @@
 
 static void TURN_COMPUTE(TRACKINFO *LINE, Uint16 cnt);
 static void _TURN_COMPUTE_(TRACKINFO *LINE, volatile Uint32 l_dist, volatile Uint32 h_dist);
-static int32 COMPUTE_RADIUS(volatile Uint32 l_dist, volatile Uint32 h_dist);
+//static int32 COMPUTE_RADIUS(volatile Uint32 l_dist, volatile Uint32 h_dist);
 static int32 COMPUTE_THETA(volatile Uint32 l_dist, volatile Uint32 h_dist);
 static void LINE_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 static void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt);
@@ -79,8 +79,8 @@ void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _
 // But, I think decel distance computing should not used Jerk. 
 // It's so slowly.
 */
-	_iq17 decelACC;
-	_iq14 curACC, tarACC;
+	volatile _iq17 decelACC;
+	volatile _iq14 curACC, tarACC;
 
 	curACC = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, curVEL)) >> 3;
 	tarACC = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, tarVEL)) >> 3;
@@ -95,6 +95,33 @@ void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _
 
 }
 
+void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 cur_vel, volatile _iq14 jerk, volatile _iq17 *vel)
+{
+	volatile _iq17 cur_acc, tar_vel, tar_acc;
+
+	dist -= minus_dist;
+	dist = _IQ17div(dist, _IQ17(1000.0));
+	//jerk = _IQ14div(jerk, _IQ14(1000.0)) << 3;
+	
+	cur_vel = _IQ17div(cur_vel, _IQ17(1000.0));
+	cur_acc = _IQ17div(MAX_ACC_IQ17, _IQ17(1000.0)) - _IQ17mpy(ACC_GRADIENT_IQ17, cur_vel);
+	
+	tar_vel = _IQ17sqrt(_IQ17mpy(cur_vel, cur_vel) + (_IQ17mpy(dist, cur_acc) << 1));
+	tar_acc = _IQ17div(MAX_ACC_IQ17, _IQ17(1000.0)) - _IQ17mpy(ACC_GRADIENT_IQ17, tar_vel);
+	tar_acc = (cur_acc >> 1) + (tar_acc >> 1); 
+	
+	tar_vel = _IQ17sqrt(_IQ17mpy(cur_vel, cur_vel) + (_IQ17mpy(dist, tar_acc) << 1));
+
+	//TxPrintf("%lf %lf %lf %lf\n", _IQ17toF(cur_vel), _IQ17toF(cur_acc), _IQ17toF(tar_vel), _IQ17toF(tar_acc));
+	
+	if(tar_vel > _IQ17(10.0))	tar_vel = _IQ17(10.0);
+
+	*vel = _IQ17mpy(tar_vel, _IQ17(1000.0));
+
+	if(*vel > (((long)SECOND_MAX_SPEED_U32) << 17))		*vel = ((long)SECOND_MAX_SPEED_U32) << 17;
+	else if(*vel < (((long)MOTOR_SPEED_U32) << 17))		*vel = ((long)MOTOR_SPEED_U32) << 17;
+}
+/*
 void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 cur_vel, volatile _iq14 jerk, volatile _iq17 *vel)
 {
 	_iq17 halfSPACEpow2		= _IQ17(0.0);
@@ -121,7 +148,7 @@ void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 
 	else if(*vel < (((long)MOTOR_SPEED_U32) << 17))	
 		*vel = ((long)MOTOR_SPEED_U32) << 17;
 }
-
+*/
 _iq17 cubeRoot(volatile _iq17 n)
 {
 	_iq17 i, precision = _IQ17(0.0001);
@@ -216,7 +243,7 @@ static void _TURN_COMPUTE_(TRACKINFO *LINE, volatile Uint32 l_dist, volatile Uin
 	if(Flag.TxFlag_U16)
 		TxPrintf("Angle: %4ld        Radius: %4ld		", turn_theta, turn_radius);
 }
-
+/*
 static int32 COMPUTE_RADIUS(volatile Uint32 l_dist, volatile Uint32 h_dist)
 {
 	volatile int32 r = 0;
@@ -231,7 +258,7 @@ static int32 COMPUTE_RADIUS(volatile Uint32 l_dist, volatile Uint32 h_dist)
 
 	return r;
 }
-
+*/
 static int32 COMPUTE_THETA(volatile Uint32 l_dist, volatile Uint32 h_dist)
 {
 	volatile int32 th = 0;
@@ -290,34 +317,36 @@ static void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 		LINE->Jerk_IQ14 = ((long)JERK_U32) << 14;
 
 	high_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloIn_IQ17 : LINE->VeloOut_IQ17;
-	low_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloOut_IQ17 : LINE->VeloIn_IQ17;	
+	low_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloOut_IQ17 : LINE->VeloIn_IQ17;
+
+	m_dist = ((long)LINE->Distance_U32) << 17;
 
 	// When enter-velocity accelerated to escape-velocity, compute the distance required
 	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, &LINE->MotorDistance_IQ17, &LINE->Decel_IQ14);
 
 	// If compute-distance is more than total-track-distance
-	if(LINE->MotorDistance_IQ17 >= ((long)LINE->Distance_U32) << 17) {
+	if(LINE->MotorDistance_IQ17 >= m_dist) {
 
 		// decel-distance substitute total-track-distance
-		LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 17;
+		LINE->DecelDistance_IQ17 = m_dist;
 
-		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, _IQ17(0.0), low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+		VEL_COMPUTE(m_dist, _IQ17(0.0), low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 
 		if(LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17)	LINE->VeloIn_IQ17 = LINE->Velo_IQ17;
 		else										LINE->VeloOut_IQ17 = LINE->Velo_IQ17;
 		
-		if(!cnt)	LINE->Velo_IQ17 = _IQ17(0.0);
+		if(!cnt)	LINE->VeloIn_IQ17 = _IQ17(0.0);
 	}
 	else {
-		m_dist = _IQ17mpy(((long)LINE->Distance_U32) << 17, _IQ17div(_IQ17(1.0),_IQ17(3.0)));
-
-		if(LINE->MotorDistance_IQ17 < m_dist)
-			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, m_dist, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-		else
-			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+		m_dist = m_dist >> 1;
+		
+		VEL_COMPUTE(m_dist, LINE->MotorDistance_IQ17 >> 1, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 		
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
 
+		if(LINE->DecelDistance_IQ17 > m_dist)
+			LINE->DecelDistance_IQ17 = m_dist;
+		
 		/*
 		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);

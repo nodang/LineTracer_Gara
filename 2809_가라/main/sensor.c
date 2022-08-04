@@ -300,7 +300,10 @@ void SENSOR_MAXMIN()
 			else;
 		}
 	}
-	else			{ VFDPrintf("SAVE  %2u", save_sw);	DELAY_US(SW_DELAY);	save_maxmin_rom(); }
+	else			{ VFDPrintf("SAVE  %2u", save_sw);	DELAY_US(SW_DELAY); }
+
+	save_maxmin_rom();
+	
 	DELAY_US(300000);
 }
 

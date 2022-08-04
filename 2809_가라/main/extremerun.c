@@ -82,6 +82,53 @@ void xHANDLE()
 		xCONTROL(OFF, &HanPID, KP_RATIO_IQ17, PID_Kp_IQ17);
 }
 
+void err_mark(Uint16 *cnt)
+{
+	TRACKINFO *p_track = &Search[*cnt];
+
+	volatile _iq15 dist = _IQ15(0.0);
+
+	if(*cnt)
+	{
+		dist = ((long)(p_track - 1)->Distance_U32) << 15;
+		if((dist + _IQ15(HEIGHT_SEEN)) < XRUN_DIST_IQ15)
+		{
+			if(p_track->TurnDir_U32 & STRAIGHT)
+			{
+				//TxPrintf("%ld\n", XRUN_DIST_IQ15 >> 15);
+				dist += ((long)p_track->Distance_U32) << 15;
+				dist -= XRUN_DIST_IQ15;
+					
+				VEL_COMPUTE(dist << 1, _IQ17(0.0), (LMotor.NextVelocity_IQ17 >> 1) + (RMotor.NextVelocity_IQ17 >> 1), p_track->Jerk_IQ14, &p_track->Velo_IQ17);
+						
+				DECEL_DIST_COMPUTE(p_track->Velo_IQ17, p_track->VeloOut_IQ17, &p_track->DecelDistance_IQ17, &p_track->Decel_IQ14);
+			
+				MOVE_TO_MOVE( dist << 2, p_track->DecelDistance_IQ17, p_track->Velo_IQ17, p_track->VeloOut_IQ17, p_track->Jerk_IQ14, p_track->Decel_IQ14 );
+					
+				if(*cnt > MARK_U16_CNT)		ERROR_U16_FLAG = ON;
+				else						(*cnt)++;
+				
+				LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
+				CROSS_PLUS_U32 = 0;
+			}
+			else
+			{
+				dist += ((long)p_track->Distance_U32) << 15;
+				dist -= XRUN_DIST_IQ15;
+				
+				MOVE_TO_MOVE( dist << 2, p_track->DecelDistance_IQ17, p_track->Velo_IQ17, p_track->VeloOut_IQ17, p_track->Jerk_IQ14, p_track->Decel_IQ14 );
+					
+				if(*cnt > MARK_U16_CNT)		ERROR_U16_FLAG = ON;
+				else						(*cnt)++;
+				
+				LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
+				CROSS_PLUS_U32 = 0;
+			}
+		}
+			//TxPrintf("%u\n", *cnt);
+	}
+}
+
 static void xCONTROL(Uint16 mode, HANDLEPID *p_hd, _iq17 ratio, volatile _iq17 kp_min)
 {
 	volatile _iq17 kp_max = PID_Kp_IQ17;
@@ -166,6 +213,46 @@ static void xSTRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 		LINE->Jerk_IQ14 = ((long)JERK_SHORT_U32) << 14;
 	}
 
+	high_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloIn_IQ17 : LINE->VeloOut_IQ17;
+	low_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloOut_IQ17 : LINE->VeloIn_IQ17;
+
+	m_dist = ((long)LINE->Distance_U32) << 17;
+
+	// When enter-velocity accelerated to escape-velocity, compute the distance required
+	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, &LINE->MotorDistance_IQ17, &LINE->Decel_IQ14);
+				
+	// If compute-distance is more than total-track-distance
+	if(LINE->MotorDistance_IQ17 >= m_dist) 	 //빼야할 구간이 실제 거리보다 클 경우 -> 재계산 필요!!!
+	{
+		// decel-distance substitute total-track-distance
+		LINE->DecelDistance_IQ17 = m_dist;
+		VEL_COMPUTE(m_dist, _IQ17(0.0), low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+
+		if(LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17)	LINE->VeloIn_IQ17 = LINE->Velo_IQ17;
+		else										LINE->VeloOut_IQ17 = LINE->Velo_IQ17;
+		
+		if(!cnt)	LINE->VeloIn_IQ17 = _IQ17(0.0);
+	}
+	else 
+	{
+		/*
+		m_dist = _IQ17mpy(((long)LINE->Distance_U32) << 17, _IQ17div(_IQ17(1.0),_IQ17(3.0)));
+
+		if(LINE->MotorDistance_IQ17 < m_dist)
+			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, m_dist, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+		else
+			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+		*/
+		m_dist = m_dist >> 1;
+
+		VEL_COMPUTE(m_dist, LINE->MotorDistance_IQ17 >> 1, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+		
+		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
+
+		if(LINE->DecelDistance_IQ17 > m_dist)
+			LINE->DecelDistance_IQ17 = m_dist;
+	}
+
 	do
 	{
 		if(((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 2)->TurnDir_U32 & TURN_TH_45))		//연속턴 직 사 사 직 | 직 사 90 직 
@@ -180,41 +267,10 @@ static void xSTRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 				LINE->Kp_UpDown_IQ17 = Kp_SHORT_S44S_IQ17;
 			else
 				LINE->Kp_UpDown_IQ17 = Kp_DOWN_IQ17;
+
+			LINE->Velo_IQ17 = LINE->VeloOut_IQ17;
 		}
 	} while(0); 
-
-	high_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloIn_IQ17 : LINE->VeloOut_IQ17;
-	low_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloOut_IQ17 : LINE->VeloIn_IQ17;	
-
-	// When enter-velocity accelerated to escape-velocity, compute the distance required
-	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, &LINE->MotorDistance_IQ17, &LINE->Decel_IQ14);
-				
-	// If compute-distance is more than total-track-distance
-	if(LINE->MotorDistance_IQ17 >= ((long)LINE->Distance_U32) << 17) 	 //빼야할 구간이 실제 거리보다 클 경우 -> 재계산 필요!!!
-	{
-		// decel-distance substitute total-track-distance
-		LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 17;
-		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, _IQ17(0.0), low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-
-		if(LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17)	LINE->VeloIn_IQ17 = LINE->Velo_IQ17;
-		else										LINE->VeloOut_IQ17 = LINE->Velo_IQ17;
-		
-		if(!cnt)	LINE->VeloIn_IQ17 = _IQ17(0.0);
-	}
-	else 
-	{
-		m_dist = _IQ17mpy(((long)LINE->Distance_U32) << 17, _IQ17div(_IQ17(1.0),_IQ17(3.0)));
-
-		if(LINE->MotorDistance_IQ17 < m_dist)
-			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, m_dist, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-		else
-			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-		
-		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
-
-		if(LINE->DecelDistance_IQ17 > (((long)LINE->Distance_U32) << 16))
-			LINE->DecelDistance_IQ17 = ((long)LINE->Distance_U32) << 16;
-	}
 }
 
 static void x45_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
@@ -270,6 +326,8 @@ static void x45_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 				xCONTINOUS_VEL_COMPUTE(LINE, x45_vel, ((long)LINE->Distance_U32) << 16, PID_Kp_IQ17);
 			else if(!(LINE->TurnDir_U32 & TURN_DOWN))
 				xCONTINOUS_VEL_COMPUTE(LINE, x45_vel, ((long)LINE->Distance_U32) << 16, Kp_SHARP_TURN_IQ17);
+			else if((LINE - 1)->TurnDir_U32 & STRAIGHT)
+				xCONTINOUS_VEL_COMPUTE(LINE, x45_vel, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
 			else
 				xCONTINOUS_VEL_COMPUTE(LINE, x45_vel, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
 		}
@@ -444,6 +502,7 @@ static void xCONTINOUS_VEL_COMPUTE(TRACKINFO *LINE, volatile _iq17 max_vel, vola
 	if(LINE->Velo_IQ17 > max_vel)		LINE->Velo_IQ17 = max_vel;
 
 	//LINE->VeloIn_IQ17 = (LINE - 1)->VeloOut_IQ17 ? LINE->Velo_IQ17 : (LINE - 1)->VeloOut_IQ17;
-	LINE->VeloIn_IQ17 = LINE->Velo_IQ17;
+	//LINE->VeloIn_IQ17 = LINE->Velo_IQ17;
+	LINE->VeloIn_IQ17 = (LINE - 1)->VeloOut_IQ17 ? (LINE - 1)->VeloOut_IQ17 : LINE->Velo_IQ17;
 }
 
