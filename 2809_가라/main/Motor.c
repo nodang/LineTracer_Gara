@@ -120,12 +120,22 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 {	
 	StopCpuTimer2();
 
-	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
+	if(((RMotor.NextVelocity_IQ17 >> 1) + (LMotor.NextVelocity_IQ17 >> 1)) < (((long)MOTOR_SPEED_U32) << 17))
+	{
+		RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = ((long)MOTOR_SPEED_U32) << 17;
+		RMotor.Jerk_IQ14 = LMotor.Jerk_IQ14 = _IQ14div(((long)JERK_U32) << 14, _IQ14(TEN_THOUSAND));
+	}
+	else
+	{
+		RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = target_velocity;
+		RMotor.Jerk_IQ14 = LMotor.Jerk_IQ14 = _IQ14div(jerk, _IQ14(TEN_THOUSAND));
+	}
+
 	RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = decel_velocity;
 	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = decel_distance;
 	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;	
 
-	RMotor.Jerk_IQ14 = LMotor.Jerk_IQ14 = _IQ14div(jerk, _IQ14(TEN_THOUSAND));
+	//RMotor.Jerk_IQ14 = LMotor.Jerk_IQ14 = _IQ14div(jerk, _IQ14(TEN_THOUSAND));
 	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = decel_acc;
 	
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
