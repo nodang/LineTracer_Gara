@@ -50,9 +50,9 @@ extern "C" {
 // 1  = highest priority
 // ...
 // 16 = lowest priority
-#define	INT1PL      2        // Group1 Interrupts (PIEIER1)
-#define	INT2PL      1        // Group2 Interrupts (PIEIER2)
-#define	INT3PL      4        // Group3 Interrupts (PIEIER3)
+#define	INT1PL      1        // Group1 Interrupts (PIEIER1)
+#define	INT2PL      3        // Group2 Interrupts (PIEIER2)
+#define	INT3PL      2        // Group3 Interrupts (PIEIER3)
 #define	INT4PL      2        // Group4 Interrupts (PIEIER4)
 #define	INT5PL      2        // Group5 Interrupts (PIEIER5)
 #define	INT6PL      3        // Group6 Interrupts (PIEIER6)
@@ -105,7 +105,7 @@ extern "C" {
 #define	G11PL       7        // SEQ1INT     (ADC)
 #define	G12PL       6        // SEQ2INT     (ADC)
 #define	G13PL       0        // reserved
-#define	G14PL       1        // XINT1       (External)
+#define	G14PL       4        // XINT1       (External)
 #define	G15PL       3        // XINT2       (External)
 #define	G16PL       2        // ADCINT      (ADC)
 #define	G17PL       1        // TINT0       (CPU Timer 0)
@@ -120,12 +120,12 @@ extern "C" {
 #define	G27PL       0        // reserved
 #define	G28PL       0        // reserved
 
-#define	G31PL       4        // EPWM1_INT   (ePWM1 Int)
-#define	G32PL       1        // EPWM2_INT   (ePWM2 Int)
-#define	G33PL       1        // EPWM3_INT   (ePWM3 Int)
-#define	G34PL       2        // EPWM4_INT   (ePWM4 Int)
-#define	G35PL       2        // EPWM5_INT   (ePWM5 Int)
-#define	G36PL       1        // EPWM6_INT   (ePWM6 Int)
+#define	G31PL       1        // EPWM1_INT   (ePWM1 Int)
+#define	G32PL       3        // EPWM2_INT   (ePWM2 Int)
+#define	G33PL       2        // EPWM3_INT   (ePWM3 Int)
+#define	G34PL       4        // EPWM4_INT   (ePWM4 Int)
+#define	G35PL       5        // EPWM5_INT   (ePWM5 Int)
+#define	G36PL       6        // EPWM6_INT   (ePWM6 Int)
 #define	G37PL       0        // reserved
 #define	G38PL       0        // reserved
 

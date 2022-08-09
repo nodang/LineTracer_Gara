@@ -16,10 +16,28 @@
 #include "DSP280x_Device.h"     // DSP280x Headerfile Include File
 #include "DSP280x_Examples.h"   // DSP280x Examples Include File
 
+void Init_GLOBAL()
+{
+ 	TIME_INDEX_U32 = 0;
+	STOP_TIME_INDEX_U32 = 0;
+
+	MARK_U16_CNT = 0;
+	
+	SECOND_MARK_U16_CNT = 0;
+	
+	THIRD_MARK_U16_CNT = 0;
+	XRUN_DIST_IQ15 = 0;
+	
+	ERROR_U16_FLAG = OFF;
+	CROSS_PLUS_SEARCH_U32 = 0;
+	CROSS_PLUS_U32 = 0;
+}
+
 void Init_RUN()
 {
 	Init_SENSOR();
 	Init_MOTOR();
+	Init_GLOBAL();
 	//HandleAccel_IQ17 = _IQ(0.0000333);
 	//HandleDecel_IQ17 = _IQ(0.000250);
 											// 1500 ABLE								// IDONTKNOW																		//1750 impossible
@@ -65,24 +83,15 @@ void Init_RUN()
 
 	//2300  254					298	 kp = 0.9
 	//2400  						 kp = 0.5		0.6 물방울 죽음
-	
-	TIME_INDEX_U32 = 0;
-	STOP_TIME_INDEX_U32 = 0;
 
+	//가라 17
+	//2200	285					325	 kp = 1.0		3차 간신히 kp = 0.75에서
+	//2100	300					430	 kp = 1.0 		ratio도 1.0에 맞춤 == 21
+	
 	memset((void *)&HanPID,0x00,sizeof(HANDLEPID));
 	memset((void *)Search,0x00,sizeof(TRACKINFO)*256);
 
-	MARK_U16_CNT = 0;
-	
-	SECOND_MARK_U16_CNT = 0;
-	
-	THIRD_MARK_U16_CNT = 0;
-	XRUN_DIST_IQ15 = 0;
-	SHIFT_DIST_IQ17 = _IQ17(0.0);
-	
-	ERROR_U16_FLAG = OFF;
-	CROSS_PLUS_SEARCH_U32 = 0;
-	CROSS_PLUS_U32 = 0;
+	HanPID.Kp_val_IQ17 = PID_Kp_IQ17;
 
 	GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 
@@ -110,6 +119,8 @@ void RUN(Uint16 number)
 		{
 			Flag.Extrem_U16 = ON;
 			if(xTURN_DIVISION_FUNC())	{ VFDPrintf("dvsERROR");	return; }
+
+			StartCpuTimer2();
 		}
 		else
 			return;
@@ -130,13 +141,6 @@ void RUN(Uint16 number)
 
 	while(1)
 	{
-		//TxPrintf("%5ld, %5ld, %5lf, %5ld, %5ld, %4u\n", LMotor.NextAccel_IQ16 >> 16, LMotor.FinalVelo_IQ17 >> 17, _IQ16toF(LMotor.Jerk_IQ16), LMotor.NextVelocity_IQ17 >> 17, LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV);
-		//TxPrintf("%5ld %4u %2ld\n", (int32)(SenAdc.Position_IQ10 >> 10), LINE_OUT_U16, RMotor.RolEach_IQ26 >> 26);
-		//TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld %4ld %4ld %u %u\n", LMotor.MaxTargetAcc_IQ17 >> 17, LMotor.NextAccel_IQ17 >> 17, LMotor.AccActable_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, LMotor.HandleVelo_IQ17 >> 17, RMotor.HandleVelo_IQ17 >> 17, LMotor.FinalVelo_IQ17 >> 17, RMotor.FinalVelo_IQ17 >> 17, EPwm2Regs.TBCTL.bit.CLKDIV, EPwm1Regs.TBCTL.bit.CLKDIV);
-		//TxPrintf("%5ld %5lf %5ld %5ld  %4ld %4ld %4ld %4ld\n", LMotor.PrdNext_IQ14 >> 7, _IQ17toF(_IQ17div(HanPID.Pos_PID_IQ17, HanPID.Pos_PID_IQ17 - _IQ17(12000))), LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17, LMotor.HandleVelo_IQ17 >> 17, RMotor.HandleVelo_IQ17 >> 17, LMotor.FinalVelo_IQ17 >> 17, RMotor.FinalVelo_IQ17 >> 17);
-		//TxPrintf("%d %d\n", EPwm1Regs.TBSTS.bit.CTRDIR, EPwm1Regs.TBCTR);
-		//TxPrintf("%lf %lf\n", _IQ15toF(SenAdc.Theta_IQ15),  _IQ15toF(RMotor.CurveDist_IQ15));
-		//TxPrintf("%lf\n", _IQ15toF(_IQ15mpy(SenAdc.Theta_IQ15, _IQ15(57.295))));
 #if 0
 		//TxPrintf("%6lf,%6lf\n", _IQ17toF(LMotor.NextVelocity_IQ17), _IQ17toF(RMotor.NextAccel_IQ16));
 		TxPrintf("%6lf,%6lf\n", _IQ17toF(_IQ17div(STEP_10000D_IQ17, LMotor.PrdNextTranSecon_IQ17)), _IQ17toF(_IQ17div(STEP_10000D_IQ17, RMotor.PrdNextTranSecon_IQ17)));
@@ -146,7 +150,13 @@ void RUN(Uint16 number)
 		//TxPrintf("%6ld %d %6ld %d\n", LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV, RMotor.PrdNext_IQ14 >> 14, EPwm1Regs.TBCTL.bit.CLKDIV);
 #if 0
 		TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld\n", 
-				 LMotor.AccelLimit_IQ16 >> 16, LMotor.NextAccel_IQ16 >> 16, LMotor.NextVelocity_IQ17 >> 17, LMotor.TargetVel_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17);
+				 LMotor.AccelLimit_IQ14 >> 14, LMotor.NextAccel_IQ14 >> 14, LMotor.NextVelocity_IQ17 >> 17, LMotor.TargetVel_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17);
+#endif
+
+#if 0
+		//TxPrintf("%lf %lf\n", _IQ17toF(LMotor.NextVelocity_IQ17), _IQ17toF(LMotor.TargetVel_IQ17));
+		TxPrintf("%lf %lf %lf %lf\n", _IQ17toF(LMotor.DecelDistance_IQ17), _IQ15toF(LMotor.ErrorDistance_IQ17), _IQ17toF(LMotor.NextVelocity_IQ17), _IQ17toF(LMotor.TargetVel_IQ17));
+		//TxPrintf("%lf %lf\n", _IQ17toF(LMotor.DecelDistance_IQ17), _IQ17toF(LMotor.ErrorDistance_IQ17));
 #endif
 		
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
@@ -157,12 +167,12 @@ void RUN(Uint16 number)
 		TURN_DECIDE(&LMark, &RMark);
 
 		XRUN_DIST_IQ15 = (LMotor.GoneDistance_IQ15 >> 1) + (RMotor.GoneDistance_IQ15 >> 1);
+	
+		if(Flag.Extrem_U16)			err_mark(&THIRD_MARK_U16_CNT);
+		else if(Flag.Fast_U16)		err_mark(&SECOND_MARK_U16_CNT);
 
 		if(END_STOP() || LINE_OUT_STOP())		
 			return;
-
-		if(Flag.Extrem_U16)			err_mark(&THIRD_MARK_U16_CNT);
-		else if(Flag.Fast_U16)		err_mark(&SECOND_MARK_U16_CNT);
 
 		if(ERROR_U16_FLAG)
 		{	
@@ -176,11 +186,11 @@ void RUN(Uint16 number)
 
 void LINE_INFO(TURNMARK *mark)
 {
-	Search[MARK_U16_CNT].StepCnt_U32 = (LMotor.StepCntFlag_U32 + RMotor.StepCntFlag_U32) >> 1;
+	Search[MARK_U16_CNT].StepCnt_U32 = 0;
 	Search[MARK_U16_CNT].Distance_R_U32 = (Uint32)(RMotor.GoneDistance_IQ15 >> 15);
 	Search[MARK_U16_CNT].Distance_L_U32 = (Uint32)(LMotor.GoneDistance_IQ15 >> 15);
 	Search[MARK_U16_CNT].Distance_U32 = (Search[MARK_U16_CNT].Distance_L_U32 + Search[MARK_U16_CNT].Distance_R_U32) >> 1;
-	LMotor.StepCntFlag_U32 = RMotor.StepCntFlag_U32 = 0;
+	
 	LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
 	
 	if(mark == NULL)

@@ -56,6 +56,36 @@ void InitEPWM(volatile struct EPWM_REGS *pPWM)
 	pPWM->ETSEL.all = 0;
 	pPWM->ETPS.all = 0;
 
+
+//===========================================================================
+// Release Date: August 08, 2022
+// This part is added by maze 25th hojin
+//===========================================================================
+	pPWM->ETSEL.bit.INTSEL = 1;
+	/*
+	ePWM interrupt selection options
+
+	000	Rsvd
+	001	TBCTR == 0x0000
+	010	TBBCTR == TBRPD
+	011	Rsvd
+	100	TBCTR == CMPA, up-count
+	101	TBCTR == CMPA, down-count
+	110	TBCTR == CMPB, up-count
+	111	TBCTR == CMPB, down-count
+	*/
+	pPWM->ETPS.bit.INTPRD = 1;
+	/*
+	ePWM interrupt counter register, determine how many events need to occur interrrupt
+	
+	00	Disable the interrupt event counter
+	01	Generate an interrupt on the first event
+	10	" second event
+	11	" third event
+	*/
+//===========================================================================
+
+
 	pPWM->CMPA.half.CMPA = 0;
 	pPWM->CMPB = 0;
 

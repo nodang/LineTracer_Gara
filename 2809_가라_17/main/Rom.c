@@ -320,8 +320,7 @@ void load_velocity_rom()
 	x90_SPEED_U32 |= ( ( load_rom[ j++ ] & 0xff ) << 8 );
 
 	TxPrintf("MOTOR: %4lu | END: %4lu | SECOND: %4lu\n", MOTOR_SPEED_U32, END_SPEED_U32, SECOND_MAX_SPEED_U32);
-	TxPrintf("x45: %4lu | xs4s: %4lu | xs44s: %4lu\n", x45_SPEED_U32, xS4S_SPEED_U32, xS44S_SPEED_U32);
-	TxPrintf("x90: %4lu\n", x90_SPEED_U32);
+	TxPrintf("x45: %4lu | xs4s: %4lu | xs44s: %4lu | x90: %4lu\n", x45_SPEED_U32, xS4S_SPEED_U32, xS44S_SPEED_U32, x90_SPEED_U32);
 }
 
 void save_accel_rom()
@@ -400,15 +399,15 @@ void load_sensitive_rom()
 
 }
 
-#define HANDLE_SIZE		12
+#define HANDLE_SIZE		14
 
 void save_handle_rom()
 {
 	int32 j = 0;
 	Uint16 save_rom[ HANDLE_SIZE ] = {0,};
 
-	save_rom[ j++ ] = ( (int16)RATIO_I32 >> 0 ) & 0xff;
-	save_rom[ j++ ] = ( (int16)RATIO_I32 >> 8 ) & 0xff;
+	save_rom[ j++ ] = ( (int16)D_RATIO_I32 >> 0 ) & 0xff;
+	save_rom[ j++ ] = ( (int16)D_RATIO_I32 >> 8 ) & 0xff;
 	
 	save_rom[ j++ ] = ( (int16)ACCEL_COEF_I32 >> 0 ) & 0xff;
 	save_rom[ j++ ] = ( (int16)ACCEL_COEF_I32 >> 8 ) & 0xff;
@@ -425,6 +424,9 @@ void save_handle_rom()
 	save_rom[ j++ ] = ( (Uint16)SHARP_KP_U32 >> 0 ) & 0xff;
 	save_rom[ j++ ] = ( (Uint16)SHARP_KP_U32 >> 8 ) & 0xff;
 
+	save_rom[ j++ ] = ( (int16)U_RATIO_I32 >> 0 ) & 0xff;
+	save_rom[ j++ ] = ( (int16)U_RATIO_I32 >> 8 ) & 0xff;
+
 	SpiWriteRom( ( Uint16 )HANDLE_PAGE, 0, HANDLE_SIZE, save_rom );
 }
 
@@ -435,8 +437,8 @@ void load_handle_rom()
 	
 	SpiReadRom( ( Uint16 )HANDLE_PAGE, 0, HANDLE_SIZE, load_rom );
 
-	RATIO_I32 = (int16)( ( load_rom[ j++ ] & 0xff ) << 0 );
-	RATIO_I32 |= (int16)( ( load_rom[ j++ ] & 0xff ) << 8 );
+	D_RATIO_I32 = (int16)( ( load_rom[ j++ ] & 0xff ) << 0 );
+	D_RATIO_I32 |= (int16)( ( load_rom[ j++ ] & 0xff ) << 8 );
 	
 	ACCEL_COEF_I32 = (int16)( ( load_rom[ j++ ] & 0xff ) << 0 );
 	ACCEL_COEF_I32 |= (int16)( ( load_rom[ j++ ] & 0xff ) << 8 );
@@ -453,8 +455,11 @@ void load_handle_rom()
 	SHARP_KP_U32 = (Uint16)( ( load_rom[ j++ ] & 0xff ) << 0 );
 	SHARP_KP_U32 |= (Uint16)( ( load_rom[ j++ ] & 0xff ) << 8 );
 
-	TxPrintf("DownKp: %4lu | SharpKp: %4lu | S44S KP: %4ld | RATIO: %4ld | ACCEL: %4ld | DECEL: %4ld\n", 
-			 Down_Kp_U32, SHARP_KP_U32, S44S_KP_U32, RATIO_I32, ACCEL_COEF_I32, DECEL_COEF_I32);
+	U_RATIO_I32 = (int16)( ( load_rom[ j++ ] & 0xff ) << 0 );
+	U_RATIO_I32 |= (int16)( ( load_rom[ j++ ] & 0xff ) << 8 );
+
+	TxPrintf("DownKp: %4lu | SharpKp: %4lu | S44S KP: %4ld | D_RATIO: %4ld | U_RATIO: %4ld | ACCEL: %4ld | DECEL: %4ld\n", 
+			 Down_Kp_U32, SHARP_KP_U32, S44S_KP_U32, D_RATIO_I32, U_RATIO_I32, ACCEL_COEF_I32, DECEL_COEF_I32);
 }
 
 #define PID_SIZE 	4

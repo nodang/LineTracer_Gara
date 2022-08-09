@@ -245,21 +245,26 @@ static void HAN()
 			else if(!SW_L)	{ DELAY_US(62500);	DECEL_COEF_I32--; }
 			break;
 		case 2:
-			VFDPrintf("RTO %+4ld", (int32)RATIO_I32);
-			if(!SW_R)	{ DELAY_US(62500);	RATIO_I32++; }
-			else if(!SW_L)	{ DELAY_US(62500);	RATIO_I32--; }
+			VFDPrintf("DRTO%+4ld", (int32)D_RATIO_I32);
+			if(!SW_R)	{ DELAY_US(62500);	D_RATIO_I32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	D_RATIO_I32--; }
 			break;
 		case 3:
+			VFDPrintf("URTO%+4ld", (int32)U_RATIO_I32);
+			if(!SW_R)	{ DELAY_US(62500);	U_RATIO_I32++; }
+			else if(!SW_L)	{ DELAY_US(62500);	U_RATIO_I32--; }
+			break;
+		case 4:
 			VFDPrintf("DownKp%2lu", Down_Kp_U32);
 			if(!SW_R)	{ DELAY_US(62500);	Down_Kp_U32++; }
 			else if(!SW_L)	{ DELAY_US(62500);	Down_Kp_U32--; }
 			break;
-		case 4:
+		case 5:
 			VFDPrintf("SharKp%2lu", SHARP_KP_U32);
 			if(!SW_R)	{ DELAY_US(62500);	SHARP_KP_U32++; }
 			else if(!SW_L)	{ DELAY_US(62500);	SHARP_KP_U32--; }
 			break;
-		case 5:
+		case 6:
 			VFDPrintf("s44sKp%2lu", S44S_KP_U32);
 			if(!SW_R)	{ DELAY_US(62500);	S44S_KP_U32++; }
 			else if(!SW_L)	{ DELAY_US(62500);	S44S_KP_U32--; }
@@ -268,7 +273,7 @@ static void HAN()
 		if(!SW_D)	
 		{ 
 			DELAY_US(SW_DELAY); 
-			if(m_sw_cnt < 5)	m_sw_cnt++;
+			if(m_sw_cnt < 6)	m_sw_cnt++;
 			else				m_sw_cnt = 0;	
 		}
 	}
@@ -280,7 +285,7 @@ static void hMOTtest()
 	//VFDPrintf("        ");
 	Uint16 pid_sw_cnt = 0;
 	
-	StartCpuTimer2();
+	StartCpuTimer0();
 	SciaRegs.SCICTL2.bit.RXBKINTENA = ON;
 
 	Flag.Sensor_U16 = ON;
@@ -289,6 +294,9 @@ static void hMOTtest()
 	{
 		TxPrintf("H: %lf  |  P: %.4lf  |  D: %.5lf\n", _IQ17toF(HanPID.Pos_PID_IQ17), _IQ17toF(PID_Kp_IQ17), _IQ17toF(PID_Kd_IQ17));
 		//TxPrintf("%lf,%.4lf,%.5lf\n", _IQ17toF(HanPID.Pos_PID_IQ17), _IQ17toF(HanPID.Kp_IQ17), _IQ17toF(HanPID.Kd_IQ17));
+
+		HanPID.Kp_val_IQ17 = PID_Kp_IQ17;
+		HanPID.Kd_val_IQ17 = PID_Kd_IQ17;
 		
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
@@ -313,7 +321,7 @@ static void hMOTtest()
 		}
 
 	}
-	StopCpuTimer2();
+	StopCpuTimer0();
 	SciaRegs.SCICTL2.bit.RXBKINTENA = OFF;
 	
 	Flag.Sensor_U16 = OFF;
@@ -368,7 +376,7 @@ void MENU_PA()		// 포인터배열 메뉴
 		{	
 			DELAY_US(SW_DELAY);
 
-			if(MENU_U16_CNT == 0) 	{	WhatMAXMIN();	StartCpuTimer2();	}
+			if(MENU_U16_CNT == 0) 	{	WhatMAXMIN();	StartCpuTimer0();	}
 
 			botmenu_u16_cnt = 1;		
 			while(SW_U)
@@ -380,7 +388,7 @@ void MENU_PA()		// 포인터배열 메뉴
 				else if(MENU_U16_CNT == 1)		botMENU_SW(&botmenu_u16_cnt, mot_each, 1);
 				else if(MENU_U16_CNT == 2)		botMENU_SW(&botmenu_u16_cnt, run_each, 1);
 			}
-			StopCpuTimer2();
+			StopCpuTimer0();
 			Flag.Sensor_U16 = OFF;
 			GpioDataRegs.GPACLEAR.all = SENall;
 			DELAY_US(SW_DELAY);

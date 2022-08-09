@@ -81,6 +81,7 @@ void main(void)
 
 	StopCpuTimer0();
 	StopCpuTimer2();
+	STOP_PWM_ISR();
 
 	Init_SENSOR();
 	Init_MOTOR();

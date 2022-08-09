@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Mon Aug 08 03:11:39 2022                 *
+;* Date/Time created: Tue Aug 09 21:13:49 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -9,8 +9,8 @@ DW$CU	.dwtag  DW_TAG_compile_unit
 	.dwattr DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v4.1.3 Copyright (c) 1996-2006 Texas Instruments Incorporated")
 	.dwattr DW$CU, DW_AT_stmt_list(0x00)
 	.dwattr DW$CU, DW_AT_TI_VERSION(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI39210 C:\Users\노호진\AppData\Local\Temp\TI3924 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI3922 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI3926 --object_file DSP280x_EPwm.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI13210 C:\Users\노호진\AppData\Local\Temp\TI1324 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI1322 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI1326 --object_file DSP280x_EPwm.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_InitEPWM
 
@@ -62,10 +62,12 @@ _InitEPWM:
 ;*** 55	-----------------------    (*pPWM).TZEINT.all = 0u;
 ;*** 56	-----------------------    (*pPWM).ETSEL.all = 0u;
 ;*** 57	-----------------------    (*pPWM).ETPS.all = 0u;
-;*** 59	-----------------------    (*pPWM).CMPA.half.CMPA = 0u;
-;*** 60	-----------------------    (*pPWM).CMPB = 0u;
-;*** 62	-----------------------    (*pPWM).TBPRD = 20000u;
-;*** 62	-----------------------    return;
+;*** 64	-----------------------    *((volatile struct _ETSEL_BITS *)pPWM+25L) = *((volatile struct _ETSEL_BITS *)pPWM+25L)&0xfff8u|1u;
+;*** 77	-----------------------    *((volatile struct _ETPS_BITS *)pPWM+26L) = *((volatile struct _ETPS_BITS *)pPWM+26L)&0xfffcu|1u;
+;*** 89	-----------------------    (*pPWM).CMPA.half.CMPA = 0u;
+;*** 90	-----------------------    (*pPWM).CMPB = 0u;
+;*** 92	-----------------------    (*pPWM).TBPRD = 20000u;
+;*** 92	-----------------------    return;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -75,7 +77,7 @@ DW$2	.dwtag  DW_TAG_formal_parameter, DW_AT_name("pPWM"), DW_AT_symbol_name("_pP
 	.dwattr DW$2, DW_AT_location[DW_OP_reg12]
 ;* AR4   assigned to _pPWM
 DW$3	.dwtag  DW_TAG_variable, DW_AT_name("pPWM"), DW_AT_symbol_name("_pPWM")
-	.dwattr DW$3, DW_AT_type(*DW$T$86)
+	.dwattr DW$3, DW_AT_type(*DW$T$90)
 	.dwattr DW$3, DW_AT_location[DW_OP_reg12]
 	.dwpsn	"DSP280x_EPwm.c",30,2
         AND       AL,*+XAR4[0],#0x3fff  ; |30| 
@@ -144,19 +146,29 @@ DW$3	.dwtag  DW_TAG_variable, DW_AT_name("pPWM"), DW_AT_symbol_name("_pPWM")
 	.dwpsn	"DSP280x_EPwm.c",57,2
         MOVB      XAR0,#26              ; |57| 
         MOV       *+XAR4[AR0],#0        ; |57| 
-	.dwpsn	"DSP280x_EPwm.c",59,2
-        MOVB      XAR0,#9               ; |59| 
-        MOV       *+XAR4[AR0],#0        ; |59| 
-	.dwpsn	"DSP280x_EPwm.c",60,2
-        MOVB      XAR0,#10              ; |60| 
-        MOV       *+XAR4[AR0],#0        ; |60| 
-	.dwpsn	"DSP280x_EPwm.c",62,2
-        MOV       *+XAR4[5],#20000      ; |62| 
-	.dwpsn	"DSP280x_EPwm.c",63,1
+	.dwpsn	"DSP280x_EPwm.c",64,2
+        MOVB      XAR0,#25              ; |64| 
+        AND       AL,*+XAR4[AR0],#0xfff8 ; |64| 
+        ORB       AL,#0x01              ; |64| 
+        MOV       *+XAR4[AR0],AL        ; |64| 
+	.dwpsn	"DSP280x_EPwm.c",77,2
+        MOVB      XAR0,#26              ; |77| 
+        AND       AL,*+XAR4[AR0],#0xfffc ; |77| 
+        ORB       AL,#0x01              ; |77| 
+        MOV       *+XAR4[AR0],AL        ; |77| 
+	.dwpsn	"DSP280x_EPwm.c",89,2
+        MOVB      XAR0,#9               ; |89| 
+        MOV       *+XAR4[AR0],#0        ; |89| 
+	.dwpsn	"DSP280x_EPwm.c",90,2
+        MOVB      XAR0,#10              ; |90| 
+        MOV       *+XAR4[AR0],#0        ; |90| 
+	.dwpsn	"DSP280x_EPwm.c",92,2
+        MOV       *+XAR4[5],#20000      ; |92| 
+	.dwpsn	"DSP280x_EPwm.c",93,1
         LRETR
         ; return occurs
 	.dwattr DW$1, DW_AT_end_file("DSP280x_EPwm.c")
-	.dwattr DW$1, DW_AT_end_line(0x3f)
+	.dwattr DW$1, DW_AT_end_line(0x5d)
 	.dwattr DW$1, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$1
@@ -175,8 +187,8 @@ DW$T$67	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$66)
 	.dwattr DW$T$67, DW_AT_address_class(0x16)
 DW$5	.dwtag  DW_TAG_far_type
 	.dwattr DW$5, DW_AT_type(*DW$T$67)
-DW$T$86	.dwtag  DW_TAG_const_type
-	.dwattr DW$T$86, DW_AT_type(*DW$5)
+DW$T$90	.dwtag  DW_TAG_const_type
+	.dwattr DW$T$90, DW_AT_type(*DW$5)
 DW$6	.dwtag  DW_TAG_far_type
 	.dwattr DW$6, DW_AT_type(*DW$T$65)
 DW$T$66	.dwtag  DW_TAG_volatile_type

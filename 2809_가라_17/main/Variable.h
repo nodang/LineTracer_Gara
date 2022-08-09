@@ -37,8 +37,21 @@
 
 #define SW_DELAY	125000
 #define PI			3.1415927
-#define MOTOR_TIMER_RPD			(float32)0.000500		// 500us
-#define SENSOR_TIMER_RPD		(float32)0.000025		// 25us
+#define SENSOR_TIMER_RPD	(float32)0.000025		// 25us
+#define CONTROL_TIMER_RPD	(float32)0.000500		// 500us
+
+#define L_PWM	EPwm1Regs
+#define R_PWM	EPwm3Regs
+
+#define START_PWM_ISR()		do{								\
+								L_PWM.ETSEL.bit.INTEN = 1;	\
+								R_PWM.ETSEL.bit.INTEN = 1;	\
+							}while(0);
+
+#define STOP_PWM_ISR()		do{								\
+								L_PWM.ETSEL.bit.INTEN = 0;	\
+								R_PWM.ETSEL.bit.INTEN = 0;	\
+							}while(0);
 
 __VARIABLE_EXT__ Uint16 MENU_U16_CNT;
 
@@ -132,8 +145,10 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define MAX_VELO_IQ17		_IQ17(4500.0)
 #define MIN_VELO_IQ17		_IQ17(10.0)	//_IQ17(100.0)
 
-#define MAX_ACC_IQ17		_IQ17(11500.0)	// _IQ17(6000.0)
-#define MIN_ACC_IQ17		_IQ17(5700.0)	//_IQ17(3000.0)
+#define MAX_ACC_IQ17		_IQ17(10000.0)	// _IQ17(6000.0)
+#define MIN_ACC_IQ17		_IQ17(4000.0)	//_IQ17(3000.0)
+
+#define MAX_ACC_IQ14		_IQ14(10000.0)
 
 #define ACC_GRADIENT_IQ17	_IQ17div(MAX_ACC_IQ17 - MIN_ACC_IQ17, MAX_VELO_IQ17 - MIN_VELO_IQ17)
 
@@ -151,8 +166,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define	STEP_10000D_IQ17	_IQ17(8246.680715)
 //#define	STEP_10000D_IQ15	_IQ15(8246.680715)
 
-#define	HEIGHT_ME			300.0	//		208.0	//292.7		//300.0		// 약 255mm
-#define HEIGHT_SEEN			250.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 센서 체크중임		// sensor between motor weight center
+#define	HEIGHT_ME			250.0	//		208.0	//292.7		//300.0		// 약 255mm
+#define HEIGHT_SEEN			230.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 센서 체크중임		// sensor between motor weight center
 #define	HEIGHT_REARdiv2		74.3	//148.63	//80.0
 
 #define CLK_DIVISION_CONSTANT		7	// 4 // 2
@@ -162,30 +177,19 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define MOTOR_PERIOD_MINIMUM		18840.0		// vel = 4600
 #define	MOTOR_PERIOD_MINIMUMdiv10	1.8840	
 
-
-//#define MOTOR_ResetEnable		0x00000022		/*GPIO1,5 	0000 0000 0000 0000  0000 0000 0010 0010  */ 
 #define MOTOR_ResetEnable		0x00000044		/*GPIO2,6 	0000 0000 0000 0000  0000 0000 0100 0100  */ 
 
 #define MOTOR_DIR_BLANK			(GpioDataRegs.GPADAT.all & 0xffffffdd)
-
-//#define MOTOR_DIR				(MOTOR_DIR_BLANK | 0x00000020)		
-// GPIO1 = off,GPIO5 = on		/*0000 0000 0000 0000  0000 0000 0010 0000  */ 
-//#define MOTOR_DIR_REV			(MOTOR_DIR_BLANK | 0x00000002)		
-// GPIO1 = on,GPIO5 = off		/*0000 0000 0000 0000  0000 0000 0000 0010  */ 
 
 #define MOTOR_DIR				(MOTOR_DIR_BLANK | 0x00000002)		
 // GPIO1 = on,GPIO5 = off		/*0000 0000 0000 0000  0000 0000 0000 0010  */ 
 #define MOTOR_DIR_REV			(MOTOR_DIR_BLANK | 0x00000020)		
 // GPIO1 = off,GPIO5 = on		/*0000 0000 0000 0000  0000 0000 0010 0000  */ 
 
+#define	CPUTIMER_0_PRD			CpuTimer0Regs.PRD.all
+#define	CPUTIMER_2_PRD			CpuTimer2Regs.PRD.all
 
-#define	CPUTIMER_0_RPD			CpuTimer0Regs.PRD.all
-#define	CPUTIMER_2_RPD			CpuTimer2Regs.PRD.all
-
-#define CPUTIMER_2_PRDdiv10000_IQ14		_IQ14div(((long)CPUTIMER_2_RPD) << 14, _IQ14(TEN_THOUSAND))
-#define CPUTIMER_2_PRDdiv10000_IQ15		_IQ15div(((long)CPUTIMER_2_RPD) << 15, _IQ15(TEN_THOUSAND))
-#define CPUTIMER_2_PRDdiv10000_IQ16		_IQ16div(((long)CPUTIMER_2_RPD) << 16, _IQ16(TEN_THOUSAND))
-#define CPUTIMER_2_PRDdiv10000_IQ17		_IQ17div(((long)CPUTIMER_2_RPD) << 17, _IQ17(TEN_THOUSAND))
+#define CPUTIMER_2_PRDdiv10000_IQ17		(_IQ15div(((long)CPUTIMER_2_PRD) << 15, _IQ15(10000.0)) << 2)
 
 #define STOP_VEL_IQ15(A)		(_IQ17div(A, _IQ17(100.0)) >> 2)
 #define STOP_ACC_IQ14(B)		(_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15(B), STOP_VEL_IQ15(B)), _IQ15(HEIGHT_SEEN - 60.0)), _IQ15(10000.0)) >> 2)
@@ -201,8 +205,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define Kp_SHARP_TURN_IQ17		_IQ17mpy(_IQ17(0.01), ((long)SHARP_KP_U32) << 17)
 
 //#define KP_RATIO_IQ17			_IQ17(0.014)
-#define KP_RATIO_IQ17			_IQ17mpy(_IQ17(0.0001), RATIO_I32 << 17)
-
+#define KP_U_RATIO_IQ17			_IQ17mpy(_IQ17(0.0001), U_RATIO_I32 << 17)
+#define KP_D_RATIO_IQ17			_IQ17mpy(_IQ17(0.0001), D_RATIO_I32 << 17)
 
 typedef volatile struct
 {
@@ -222,7 +226,10 @@ typedef volatile struct
 	
 	Uint16	DecelFlag_U16;
 //------------------------------------------------------------------------------------//
-	_iq7	PrdNext_IQ14;
+	Uint16	PwmTBPRD_U16;
+	_iq17	PwmTBPRDdiv10000_IQ17;
+
+	_iq14	PrdNext_IQ14;
 	_iq17	PrdNextTranSecon_IQ17;
 	
 	_iq17	RolEachStep_IQ17;
@@ -234,9 +241,6 @@ typedef volatile struct
 	_iq14	Jerk_IQ14;
 
 	_iq17	TargetHandle_IQ17;
-	//_iq17	FinalVelo_IQ17;
-
-	Uint32	StepCntFlag_U32;
 }MOTORCTRL;
 
 __VARIABLE_EXT__ MOTORCTRL	RMotor, LMotor;
@@ -258,10 +262,11 @@ __VARIABLE_EXT__ Uint32	x90_SPEED_U32;
 
 __VARIABLE_EXT__ int32	ACCEL_COEF_I32;
 __VARIABLE_EXT__ int32	DECEL_COEF_I32;
-__VARIABLE_EXT__ int32	RATIO_I32;
+__VARIABLE_EXT__ int32	U_RATIO_I32;
+__VARIABLE_EXT__ int32	D_RATIO_I32;
 __VARIABLE_EXT__ Uint32	Down_Kp_U32;
-__VARIABLE_EXT__ int32	S44S_KP_U32;
-__VARIABLE_EXT__ int32	SHARP_KP_U32;
+__VARIABLE_EXT__ Uint32	S44S_KP_U32;
+__VARIABLE_EXT__ Uint32	SHARP_KP_U32;
 
 //__VARIABLE_EXT__ Uint32	HANDLE_ACCEL_U32;
 
@@ -305,9 +310,6 @@ __VARIABLE_EXT__ volatile	Uint32	STOP_TIME_INDEX_U32;
 
 __VARIABLE_EXT__ _iq15	CROSS_DISTANCE_IQ15;
 __VARIABLE_EXT__ _iq15	XRUN_DIST_IQ15;
-__VARIABLE_EXT__ _iq17	SHIFT_DIST_IQ17;
-
-
 
 //-------------------------------------------------------------------------------------------------------------------------------//
 // SEARCH VAR & FAST
