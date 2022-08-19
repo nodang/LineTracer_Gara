@@ -18,8 +18,6 @@
 
 static void TURN_COMPUTE(TRACKINFO *LINE, Uint16 cnt);
 static void _TURN_COMPUTE_(TRACKINFO *LINE, volatile Uint32 l_dist, volatile Uint32 h_dist);
-//static int32 COMPUTE_RADIUS(volatile Uint32 l_dist, volatile Uint32 h_dist);
-static int32 COMPUTE_THETA(volatile Uint32 l_dist, volatile Uint32 h_dist);
 static void LINE_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 static void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 
@@ -112,8 +110,6 @@ void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 
 	
 	tar_vel = _IQ17sqrt(_IQ17mpy(cur_vel, cur_vel) + (_IQ17mpy(dist, tar_acc) << 1));
 
-	//TxPrintf("%lf %lf %lf %lf\n", _IQ17toF(cur_vel), _IQ17toF(cur_acc), _IQ17toF(tar_vel), _IQ17toF(tar_acc));
-	
 	if(tar_vel > _IQ17(10.0))	tar_vel = _IQ17(10.0);
 
 	*vel = _IQ17mpy(tar_vel, _IQ17(1000.0));
@@ -184,81 +180,26 @@ static void TURN_COMPUTE(TRACKINFO *LINE, Uint16 cnt)
 	}
 }
 
-static void _TURN_COMPUTE_(TRACKINFO *LINE, volatile Uint32 l_dist, volatile Uint32 h_dist)
-{
-	int32 turn_radius = 0, turn_theta = 0;
+#define	TURN_45_25		200
+#define	TURN_45_35		280
+#define	TURN_45_45		360
+#define	TURN_45_55		440
 
-	turn_theta = COMPUTE_THETA(l_dist, h_dist);
+#define	TURN_90_25		400
+#define	TURN_90_35		550
+#define	TURN_90_45		710
+#define	TURN_90_55		870
 
-	if(turn_theta <= TURN_45T)
-	{
-		LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_45);
-		turn_theta = TURN_45T;
-	}
-	else if(turn_theta <= TURN_90T)
-	{
-		LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_90);
-		turn_theta = TURN_90T;
-	}
-	else if(turn_theta <= TURN_180T)
-	{
-		LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_180);
-		turn_theta = TURN_180T;
-	}
-	else if(turn_theta <= TURN_270T)
-	{
-		LINE->TurnDir_U32 = (LINE->TurnWay_U32 | TURN_TH_270);
-		turn_theta = TURN_270T;
-	}
-	else
-	{
-		LINE->TurnDir_U32 = (LINE->TurnWay_U32 | LARGE_TURN);
-		turn_theta = 360;
-	}
-	
-	//turn_radius = COMPUTE_RADIUS(l_dist, h_dist);
-	turn_radius = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, turn_theta << 15), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
-				
-	if(turn_radius <= TURN_25R)
-	{
-		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_25);
-		turn_radius = TURN_25R;
-	}
-	else if(turn_radius <= TURN_35R)
-	{
-		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_35);
-		turn_radius = TURN_35R;
-	}
-	else if(turn_radius <= TURN_45R)
-	{
-		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_45);
-		turn_radius = TURN_45R;
-	}
-	else
-	{
-		LINE->TurnDir_U32 = (LINE->TurnDir_U32 | TURN_R_55);
-		turn_radius = TURN_55R;
-	}
-	
-	if(Flag.TxFlag_U16)
-		TxPrintf("Angle: %4ld        Radius: %4ld		", turn_theta, turn_radius);
-}
-/*
-static int32 COMPUTE_RADIUS(volatile Uint32 l_dist, volatile Uint32 h_dist)
-{
-	volatile int32 r = 0;
-	volatile _iq15 nume1, nume2, denom;
+#define	TURN_180_25		790
+#define	TURN_180_35		1100
+#define	TURN_180_45		1420
+#define	TURN_180_55		1730
 
-	nume1 = _IQ15div(((long)l_dist) << 15, _IQ15(100.0));
-	nume2 = (((long)h_dist) + _IQ1(HEIGHT_REARdiv2)) << 15;
-	
-	denom = _IQ15div(((long)h_dist) << 15, _IQ15(100.0));
+#define	TURN_270_25		1180
+#define	TURN_270_35		1650
+#define	TURN_270_45		2130
+#define	TURN_270_55		2560
 
-	r = _IQ15div(_IQ15mpy(nume1, nume2), denom) >> 15;
-
-	return r;
-}
-*/
 static int32 COMPUTE_THETA(volatile Uint32 l_dist, volatile Uint32 h_dist)
 {
 	volatile int32 th = 0;
@@ -268,6 +209,31 @@ static int32 COMPUTE_THETA(volatile Uint32 l_dist, volatile Uint32 h_dist)
 	th = _IQ15mpy(th, _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
 
 	return th;
+}
+
+static void _TURN_COMPUTE_(TRACKINFO *LINE, volatile Uint32 l_dist, volatile Uint32 h_dist)
+{
+	int32 turn_radius = 0, turn_theta = 0;
+
+	turn_theta = COMPUTE_THETA(l_dist, h_dist);
+	
+	LINE->TurnDir_U32 = LINE->TurnWay_U32;
+
+	if(turn_theta <= TURN_45T)			{	LINE->TurnDir_U32 |= TURN_TH_45;	turn_theta = TURN_45T;	}
+	else if(turn_theta <= TURN_90T)		{	LINE->TurnDir_U32 |= TURN_TH_90;	turn_theta = TURN_90T;	}
+	else if(turn_theta <= TURN_180T)	{	LINE->TurnDir_U32 |= TURN_TH_180;	turn_theta = TURN_180T;	}
+	else if(turn_theta <= TURN_270T)	{	LINE->TurnDir_U32 |= TURN_TH_270;	turn_theta = TURN_270T;	}
+	else								{	LINE->TurnDir_U32 |= LARGE_TURN;	turn_theta = 360;		}
+	
+	turn_radius = _IQ15mpy(_IQ15div(((long)LINE->Distance_U32) << 15, turn_theta << 15), _IQ15div(_IQ15(180.0), _IQ15(PI))) >> 15;
+					
+	if(turn_radius <= TURN_25R)			{	LINE->TurnDir_U32 |= TURN_R_25;		turn_radius = TURN_25R;	}
+	else if(turn_radius <= TURN_35R)	{	LINE->TurnDir_U32 |= TURN_R_35;		turn_radius = TURN_35R;	}
+	else if(turn_radius <= TURN_45R)	{	LINE->TurnDir_U32 |= TURN_R_45;		turn_radius = TURN_45R;	}
+	else								{	LINE->TurnDir_U32 |= TURN_R_55;		turn_radius = TURN_55R;	}
+	
+	if(Flag.TxFlag_U16)
+		TxPrintf("Angle: %4ld        Radius: %4ld		", turn_theta, turn_radius);
 }
 
 static void LINE_DIVISION(TRACKINFO *LINE, Uint16 cnt)

@@ -87,6 +87,10 @@ void Init_RUN()
 	//가라 17
 	//2200	285					325	 kp = 1.0		3차 간신히 kp = 0.75에서
 	//2100	300					430	 kp = 1.0 		ratio도 1.0에 맞춤 == 21
+	//2300 	200					420
+	//2200	144					240
+	//2100	300					350
+	//2300	144					285
 	
 	memset((void *)&HanPID,0x00,sizeof(HANDLEPID));
 	memset((void *)Search,0x00,sizeof(TRACKINFO)*256);
@@ -177,8 +181,6 @@ void RUN(Uint16 number)
 		if(ERROR_U16_FLAG)
 		{	
 			MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
-			Flag.Fast_U16 = OFF;
-			Flag.Extrem_U16 = OFF;
 			ERROR_U16_FLAG = OFF;
 		}
 	} 
@@ -189,9 +191,10 @@ void LINE_INFO(TURNMARK *mark)
 	Search[MARK_U16_CNT].StepCnt_U32 = 0;
 	Search[MARK_U16_CNT].Distance_R_U32 = (Uint32)(RMotor.GoneDistance_IQ15 >> 15);
 	Search[MARK_U16_CNT].Distance_L_U32 = (Uint32)(LMotor.GoneDistance_IQ15 >> 15);
-	Search[MARK_U16_CNT].Distance_U32 = (Search[MARK_U16_CNT].Distance_L_U32 + Search[MARK_U16_CNT].Distance_R_U32) >> 1;
-	
+
 	LMotor.GoneDistance_IQ15 = RMotor.GoneDistance_IQ15 = _IQ15(0.0);
+	
+	Search[MARK_U16_CNT].Distance_U32 = (Search[MARK_U16_CNT].Distance_L_U32 + Search[MARK_U16_CNT].Distance_R_U32) >> 1;
 	
 	if(mark == NULL)
 	{
@@ -303,4 +306,93 @@ void LINE_PRINTF()
 	DELAY_US(SW_DELAY);
 }
 
+void time_attack()
+{
+	Uint16 cnt = 0, turn_cnt;
+	Uint32 t, timee[5] = { 0, };
 
+	load_line_info();
+	turn_cnt = MARK_U16_CNT;
+
+	Init_RUN();
+
+	cnt = 0;
+	while(1)
+	{
+		VFDPrintf("%u|%1lu%1lu%1lu.%1lu%1lu", cnt, timee[4], timee[3], timee[2], timee[1], timee[0]);
+
+		if(!SW_D)
+		{
+			DELAY_US(SW_DELAY);
+			break;
+		}
+		else if(!SW_U)
+		{
+			DELAY_US(SW_DELAY);
+			if(timee[cnt] > 8)	timee[cnt] = 0;
+			else 				timee[cnt]++;
+		}
+		else if(!SW_R)
+		{
+			DELAY_US(SW_DELAY);
+			if(cnt > 0)			cnt--;
+		}
+		else if(!SW_L)
+		{
+			DELAY_US(SW_DELAY);
+			if(cnt < 4)			cnt++;
+		}
+	}
+
+	t = timee[4] * 10000 + timee[3] * 1000 + timee[2] * 100 + timee[1] * 10 + timee[0];
+	if(t > 16000)	t = 16000;
+
+	t = t*20;
+
+	DELAY_US(1000000);
+	VFDPrintf("        ");
+
+	Flag.Search_U16 = ON;
+	
+	Flag.Sensor_U16 = ON;
+	Flag.Motor_U16 = ON;
+		
+	MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0), _IQ17(2000.0), _IQ17(2000.0), ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
+
+	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+
+	while(1)
+	{		
+		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
+
+		LMark.TurnmarkDistance_IQ17 = RMark.TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17 >> 1) + (LMotor.TurnMarkCheckDistance_IQ17 >> 1);
+	
+		TURN_DECIDE(&RMark, &LMark);
+		TURN_DECIDE(&LMark, &RMark);
+
+		if(turn_cnt == MARK_U16_CNT)
+		{
+			MOVE_TO_END(_IQ17(0.0));
+
+			while(1)
+			{
+				if(t - 2000 < TIME_INDEX_U32)
+				{
+					GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+					
+					MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0), _IQ17(2000.0), _IQ17(2000.0), ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
+					turn_cnt = 0;
+					break;
+				}
+				else if((RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17))
+				{
+					GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
+				}
+				else
+					POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
+			}
+		}
+		if(END_STOP() || LINE_OUT_STOP())		
+			return;
+	} 	
+}

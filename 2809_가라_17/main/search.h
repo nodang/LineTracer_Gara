@@ -20,6 +20,7 @@ extern void Init_RUN();
 extern void RUN(Uint16 number);
 extern void LINE_INFO(TURNMARK * mark);
 extern void LINE_PRINTF();
+extern void time_attack();
 
 #endif
 

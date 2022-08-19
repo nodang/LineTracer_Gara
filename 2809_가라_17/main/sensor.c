@@ -122,11 +122,6 @@ interrupt void SENSOR_ISR()
 	
 		AdcRegs.ADCTRL2.bit.SOC_SEQ1 = 1;		// ADC interrupt Start
 	}
-
-	if(Flag.MoveState_U16)
-		TIME_INDEX_U32++;
-	if(Flag.STOP)
-		STOP_TIME_INDEX_U32++;
 }
 
 interrupt void ADC_ISR()  
@@ -191,7 +186,7 @@ interrupt void ADC_ISR()
 
 	// SENSOR CHANGE
 	if(SENSOR_COUNT < 7)		SENSOR_COUNT++;
-	else					{	SENSOR_COUNT = 0; 	/* StopCpuTimer0(); */	}
+	else					{	SENSOR_COUNT = 0; 	StopCpuTimer0();	}
 }
 
 void SENSOR_MAXMIN()
@@ -348,9 +343,17 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 									(pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
 			}
 /*
-			else if((Flag.Fast_U16 & SECOND_MARK_U16_CNT) || (Flag.Extrem_U16 & THIRD_MARK_U16_CNT))
+			else if(Flag.Fast_U16 & SECOND_MARK_U16_CNT)
 			{
 				if(CROSS_PLUS_U32 < Search[SECOND_MARK_U16_CNT - 1].CrossPlus_U32)
+				{
+					pS->Position_IQ10 =	(pS->Position_IQ10 > _IQ10(MAX_STRAIGHT)) ? _IQ10(MAX_STRAIGHT) :
+										(pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
+				}
+			}
+			else if(Flag.Extrem_U16 & THIRD_MARK_U16_CNT)
+			{
+				if(CROSS_PLUS_U32 < Search[THIRD_MARK_U16_CNT - 1].CrossPlus_U32)
 				{
 					pS->Position_IQ10 =	(pS->Position_IQ10 > _IQ10(MAX_STRAIGHT)) ? _IQ10(MAX_STRAIGHT) :
 										(pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
@@ -408,7 +411,9 @@ void HANDLE()
 	HanPID.Pos_P_IQ17 = _IQ17mpyIQX(HanPID.Kp_val_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
 	HanPID.Pos_D_IQ17 = _IQ17mpyIQX(HanPID.Kd_val_IQ17, 17, HanPID.Pos_Err_IQ10[0], 10);
 
-	HanPID.Pos_PID_IQ17 = _IQ17div((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17), _IQ17(1000.0));
+	//HanPID.Pos_PID_IQ17 = _IQ17div((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17), _IQ17(1000.0));
+	//HanPID.Pos_PID_IQ17 = _IQ17mpy((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17), _IQ17(0.001));
+	HanPID.Pos_PID_IQ17 = _IQ17mpy(HanPID.Pos_P_IQ17, _IQ17(0.001));
 
 	if(GpioDataRegs.GPADAT.bit.GPIO5)
 		HanPID.Pos_PID_IQ17 = -HanPID.Pos_PID_IQ17;

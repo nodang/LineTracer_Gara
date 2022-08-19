@@ -145,8 +145,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define MAX_VELO_IQ17		_IQ17(4500.0)
 #define MIN_VELO_IQ17		_IQ17(10.0)	//_IQ17(100.0)
 
-#define MAX_ACC_IQ17		_IQ17(10000.0)	// _IQ17(6000.0)
-#define MIN_ACC_IQ17		_IQ17(4000.0)	//_IQ17(3000.0)
+#define MAX_ACC_IQ17		_IQ17(8000.0)	// _IQ17(6000.0)
+#define MIN_ACC_IQ17		_IQ17(3000.0)	//_IQ17(4000.0)	//_IQ17(3000.0)
 
 #define MAX_ACC_IQ14		_IQ14(10000.0)
 
@@ -166,12 +166,12 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define	STEP_10000D_IQ17	_IQ17(8246.680715)
 //#define	STEP_10000D_IQ15	_IQ15(8246.680715)
 
-#define	HEIGHT_ME			250.0	//		208.0	//292.7		//300.0		// 약 255mm
-#define HEIGHT_SEEN			230.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 센서 체크중임		// sensor between motor weight center
+#define	HEIGHT_ME			270.0	//		208.0	//292.7		//300.0		// 약 255mm
+#define HEIGHT_SEEN			250.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 센서 체크중임		// sensor between motor weight center
 #define	HEIGHT_REARdiv2		74.3	//148.63	//80.0
 
 #define CLK_DIVISION_CONSTANT		7	// 4 // 2
-#define	MOTOR_PERIOD_MAXIMUM		65534.0		// clk = 7 -> vel = 9.83 mm/s // clk = 4 -> vel = 79.77 mm/s
+#define	MOTOR_PERIOD_MAXIMUM		65535.0		// clk = 7 -> vel = 9.83 mm/s // clk = 4 -> vel = 79.77 mm/s
 #define	MOTOR_PERIOD_MAXIMUMdiv10	6.5535		// System minium clock is 10 ns
 //#define	MOTOR_PERIOD_MINIMUM		16384.0		// clk = 0 -> vel = 5168 mm/s
 #define MOTOR_PERIOD_MINIMUM		18840.0		// vel = 4600
@@ -191,11 +191,15 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 
 #define CPUTIMER_2_PRDdiv10000_IQ17		(_IQ15div(((long)CPUTIMER_2_PRD) << 15, _IQ15(10000.0)) << 2)
 
-#define STOP_VEL_IQ15(A)		(_IQ17div(A, _IQ17(100.0)) >> 2)
+//#define STOP_VEL_IQ15(A)		(_IQ17div(A, _IQ17(100.0)) >> 2)
+#define STOP_VEL_IQ15(A)		(_IQ17mpy(A, _IQ17(0.01)) >> 2)
 #define STOP_ACC_IQ14(B)		(_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15(B), STOP_VEL_IQ15(B)), _IQ15(HEIGHT_SEEN - 60.0)), _IQ15(10000.0)) >> 2)
+
 // 2800 이상 overflow 발생
-#define	HANDLE_ACCmpy1000_IQ17	_IQ17div(ACCEL_COEF_I32 << 17, _IQ17(TEN_THOUSAND))	//ACC_DEC_POINT_COEF_I32 << 17)
-#define	HANDLE_DECmpy1000_IQ17	_IQ17div(DECEL_COEF_I32 << 17, _IQ17(1000.0))
+//#define	HANDLE_ACCmpy1000_IQ17	_IQ17div(ACCEL_COEF_I32 << 17, _IQ17(TEN_THOUSAND))	//ACC_DEC_POINT_COEF_I32 << 17)
+//#define	HANDLE_DECmpy1000_IQ17	_IQ17div(DECEL_COEF_I32 << 17, _IQ17(1000.0))
+#define	HANDLE_ACCmpy1000_IQ17	_IQ17mpy(ACCEL_COEF_I32 << 17, _IQ17(0.0001))	//ACC_DEC_POINT_COEF_I32 << 17)
+#define	HANDLE_DECmpy1000_IQ17	_IQ17mpy(DECEL_COEF_I32 << 17, _IQ17(0.001))
 
 #define PID_Kp_IQ17				_IQ17mpy(_IQ17(0.01), ((long)PID_Kp_U32) << 17)
 #define PID_Kd_IQ17				_IQ17mpy(_IQ17(0.001), ((long)PID_Kd_U32) << 17)
@@ -342,6 +346,7 @@ __VARIABLE_EXT__ _iq15	XRUN_DIST_IQ15;
 #define	SHORT_DIST		300
 #define	MID_DIST		700
 #define	LONG_DIST		1500
+
 #define	TURN_45_DIST	235
 #define	TURN_90_DIST	400
 #define	TURN_180_DIST	700

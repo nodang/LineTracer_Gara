@@ -285,7 +285,7 @@ static void hMOTtest()
 	//VFDPrintf("        ");
 	Uint16 pid_sw_cnt = 0;
 	
-	StartCpuTimer0();
+	StartCpuTimer2();
 	SciaRegs.SCICTL2.bit.RXBKINTENA = ON;
 
 	Flag.Sensor_U16 = ON;
@@ -321,7 +321,7 @@ static void hMOTtest()
 		}
 
 	}
-	StopCpuTimer0();
+	StopCpuTimer2();
 	SciaRegs.SCICTL2.bit.RXBKINTENA = OFF;
 	
 	Flag.Sensor_U16 = OFF;
@@ -335,11 +335,12 @@ static void hMOTtest()
 static void SEARCH()		{	RUN(1);	while(SW_U);	DELAY_US(SW_DELAY);		}
 static void FAST()		{	RUN(2);	while(SW_U);	DELAY_US(SW_DELAY);		}
 static void EXTREM()		{	RUN(3);	while(SW_U);	DELAY_US(SW_DELAY);		}
+static void TMAT()		{	time_attack();	while(SW_U);	DELAY_US(SW_DELAY);		}
 static void MAP()			{	LINE_PRINTF();	}
 
 #define sen_each 5
 #define mot_each 4
-#define run_each 4
+#define run_each 5
 
 void MENU_PA()		// 포인터배열 메뉴
 {	
@@ -347,11 +348,11 @@ void MENU_PA()		// 포인터배열 메뉴
 	
 	void (*SENmenu[sen_each])() = { MAXMIN, POS, ARROW, ADC, senVAL }; 
 	void (*MOTmenu[mot_each])() = { VEL, ACC, HAN, hMOTtest }; 
-	void (*RUNmenu[run_each])() = { SEARCH, FAST, EXTREM, MAP };
+	void (*RUNmenu[run_each])() = { SEARCH, FAST, EXTREM, TMAT, MAP };
 
 	const char *SENchar[sen_each +1] = { "SENSOR  ", "MAX||MIN", "POSITION", "ARROW   ", "ADC     ", "senVALUE" };
 	const char *MOTchar[mot_each +1] = { "MOTOR   ", "VELOCITY", "ACCEL   ", "HAN_COEF", "hMOTtest" };
-	const char *RUNchar[run_each +1] = { "RUN     ", "SEARCH  ", "2ND RACE", "3TH RACE", "mapCHECK" };
+	const char *RUNchar[run_each +1] = { "RUN     ", "SEARCH  ", "2ND RACE", "3TH RACE", "TmAttack", "mapCHECK" };
 
 	void (**MENUvoid[3])(); 	//= { SENmenu, MOTmenu, RUNmenu };
 	const char **MENUchar[3];	// = { SENchar, MOTchar, RUNchar };
@@ -376,7 +377,7 @@ void MENU_PA()		// 포인터배열 메뉴
 		{	
 			DELAY_US(SW_DELAY);
 
-			if(MENU_U16_CNT == 0) 	{	WhatMAXMIN();	StartCpuTimer0();	}
+			if(MENU_U16_CNT == 0) 	{	WhatMAXMIN();	StartCpuTimer2();	}
 
 			botmenu_u16_cnt = 1;		
 			while(SW_U)
@@ -388,7 +389,7 @@ void MENU_PA()		// 포인터배열 메뉴
 				else if(MENU_U16_CNT == 1)		botMENU_SW(&botmenu_u16_cnt, mot_each, 1);
 				else if(MENU_U16_CNT == 2)		botMENU_SW(&botmenu_u16_cnt, run_each, 1);
 			}
-			StopCpuTimer0();
+			StopCpuTimer2();
 			Flag.Sensor_U16 = OFF;
 			GpioDataRegs.GPACLEAR.all = SENall;
 			DELAY_US(SW_DELAY);
