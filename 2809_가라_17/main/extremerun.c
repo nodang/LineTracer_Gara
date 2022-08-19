@@ -562,7 +562,10 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 		}
 		else if((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90))		// 연속 45 | 90
 		{
-			if((LINE - 1)->TurnDir_U32 & STRAIGHT)
+			if(LINE->Distance_U32 < 120)				
+				xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+			
+			else if((LINE - 1)->TurnDir_U32 & STRAIGHT)
 				xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
 			
 			else if(((LINE + 1)->Distance_U32 > TURN_90_DIST) || (((LINE + 1)->TurnDir_U32 | LINE->TurnDir_U32) & (TURN_R_45 | TURN_R_55)))
@@ -581,8 +584,15 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 			else
 				LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17;
 		}
+
+		if((LINE - 1)->DownFlag_U16 && LINE->DownFlag_U16 && 
+		   (LINE->Kp_UpDown_IQ17 > (LINE - 1)->Kp_UpDown_IQ17) && (LINE->Kp_UpDown_IQ17 > Kp_SHARP_TURN_IQ17))
+			LINE->DownFlag_U16 = OFF;
 	}
 }
+
+// 90도는 포지션 푸는걸로 해결 3차 안됨
+// 90도는 무조건 시프트
 
 static void x90_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 {
@@ -595,44 +605,25 @@ static void x90_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	xtest_DIVISION((LINE + 1), (cnt + 1));
 
 	LINE->VeloIn_IQ17 = TURN_VEL;
-	LINE->Kp_UpDown_IQ17 = Kp_SHARP_TURN_IQ17;
+	LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
 
 	m_dist = (LINE + 1)->Distance_U32 > MID_DIST ? ((long)(LINE + 1)->Distance_U32) << 15 : ((long)(LINE + 1)->Distance_U32) << 16;
 	
 	if(((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 2)->TurnDir_U32 & STRAIGHT))			// (4)4s 탈출
-	{
-		LINE->DownFlag_U16 = ON;
+		xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, _IQ17(0.0), PID_Kp_IQ17);
 
-		xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHARP_TURN_IQ17);
-	}
 	else if(((LINE - 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))		// 4(4)s 탈출
-	{
-		LINE->DownFlag_U16 = OFF;
-		LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
-
 		xVEL_COMPUTE(LINE, LINE + 1, X90_VEL, TURN_VEL, m_dist);
-	}
+
 	else if((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90))
 	{
-		if((LINE - 1)->TurnDir_U32 & STRAIGHT)
-			xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
-		
-		else
+		if((LINE - 1)->DownFlag_U16)
 			xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHARP_TURN_IQ17);
-	}
-	else if(!((LINE + 1)->TurnDir_U32 & STRAIGHT))
-	{
-		LINE->DownFlag_U16 = ON;
-		LINE->Kp_UpDown_IQ17 = Kp_SHORT_S44S_IQ17;
-		
-		LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17;
+		else
+			xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, _IQ17(0.0), PID_Kp_IQ17);
 	}
 	else
-	{
-		LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
-		
 		LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17;
-	}
 }
 
 
