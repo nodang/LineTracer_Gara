@@ -43,7 +43,7 @@ void Init_MotorCtrl(MOTORCTRL *pM)
 	pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10);
 }
 
-Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
+inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 {
 	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17) 
 	{
@@ -153,6 +153,8 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 	START_PWM_ISR();
 }
 
+#define limit_dec	15000.0
+
 void MOVE_TO_END(_iq17 distance)
 {
 	STOP_PWM_ISR();
@@ -170,31 +172,14 @@ void MOVE_TO_END(_iq17 distance)
 
 	// 2000 일때 최대 정지 가속도
 	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = STOP_ACC_IQ14((RMotor.NextVelocity_IQ17 >> 1) + (LMotor.NextVelocity_IQ17 >> 1));
+
+	if((RMotor.DecelAccel_IQ14 > _IQ14(limit_dec)) || (LMotor.DecelAccel_IQ14 > _IQ14(limit_dec)))
+		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(limit_dec);
+	
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
 	StartCpuTimer2();
 	START_PWM_ISR();
-}
-
-void SECOND_DECEL_VALUE()
-{
-	if(RMotor.DecelFlag_U16 || LMotor.DecelFlag_U16)
-	{
-		if(RMotor.DecelDistance_IQ17 > RMotor.ErrorDistance_IQ17)
-		{
-			RMotor.TargetVel_IQ17 = RMotor.DecelVelocity_IQ17;
-			LMotor.TargetVel_IQ17 = LMotor.DecelVelocity_IQ17;
-
-			RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = OFF;
-		}
-		else if(LMotor.DecelDistance_IQ17 > LMotor.ErrorDistance_IQ17)
-		{
-			RMotor.TargetVel_IQ17 = RMotor.DecelVelocity_IQ17;
-			LMotor.TargetVel_IQ17 = LMotor.DecelVelocity_IQ17;
-
-			RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = OFF;
-		}
-	}
 }
 
 interrupt void LMOTOR_ISR()
@@ -254,16 +239,15 @@ interrupt void CONTROL_ISR()
 	if(THIRD_MARK_U16_CNT)
 	{
 		cnt = ((int16)THIRD_MARK_U16_CNT) - 1;
-			
+		
 		if(Search[cnt].DownFlag_U16)			//짧은 연속 턴
 		{
 			LED_L_ON;		LED_R_ON;
 			xCONTROL(ON, &HanPID, KP_D_RATIO_IQ17, Search[cnt].Kp_UpDown_IQ17);
 		}
 		else if(Search[cnt].s44sFlag_U16)	//직진 - 45도 - 45도 - 직진 에서 진입직진이 짧은 직진이 아닐 경우
-		{
-			gone_dist = (LMotor.GoneDistance_IQ15 >> 1) + (RMotor.GoneDistance_IQ15 >> 1);
-			
+		{			
+			gone_dist = (LMotor.GoneDistance_IQ15 + RMotor.GoneDistance_IQ15) >> 1;
 			if(gone_dist > (((long)Search[cnt].Distance_U32) << 15) - _IQ15(HEIGHT_SEEN))
 			{
 				LED_L_ON;		LED_R_ON;
@@ -274,10 +258,61 @@ interrupt void CONTROL_ISR()
 		}  
 		else
 			xCONTROL(OFF, &HanPID, KP_U_RATIO_IQ17, Search[cnt].Kp_UpDown_IQ17);
+/*
+		if(SenAdc.PositionShift_IQ10 != Search[cnt].TargetPosition_IQ10)
+		{
+			SenAdc.PositionShift_IQ10 += _IQ17mpy(Search[cnt].PositionRatio_IQ10 << 7, (LMotor.RolEachStep_IQ17 + RMotor.RolEachStep_IQ17) >> 1) >> 7;
+
+			if(Search[cnt].TargetPosition_IQ10 < _IQ10(0.0))
+			{
+				if(SenAdc.PositionShift_IQ10 < Search[cnt].TargetPosition_IQ10)
+					SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
+			}
+			else //if(SenAdc.TargetPosition_IQ10 > _IQ10(0.0))
+			{
+				if(SenAdc.PositionShift_IQ10 > Search[cnt].TargetPosition_IQ10)
+					SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
+			}
+		}
+*/
+		if(SenAdc.PositionShift_IQ10 < Search[cnt].TargetPosition_IQ10)
+		{
+			SenAdc.PositionShift_IQ10 += _IQ17mpy(Search[cnt].PositionRatio_IQ10 << 7, (LMotor.RolEachStep_IQ17 + RMotor.RolEachStep_IQ17) >> 1) >> 7;
+
+			if(SenAdc.PositionShift_IQ10 > Search[cnt].TargetPosition_IQ10)
+				SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
+		}
+		else if(SenAdc.PositionShift_IQ10 > Search[cnt].TargetPosition_IQ10)
+		{
+			SenAdc.PositionShift_IQ10 -= _IQ17mpy(Search[cnt].PositionRatio_IQ10 << 7, (LMotor.RolEachStep_IQ17 + RMotor.RolEachStep_IQ17) >> 1) >> 7;
+
+			if(SenAdc.PositionShift_IQ10 < Search[cnt].TargetPosition_IQ10)
+				SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
+		}
+		else
+			SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
 	}
 
 	if(Flag.Motor_U16 && (Flag.Fast_U16 || Flag.Extrem_U16))
-		SECOND_DECEL_VALUE();
+	{
+		if(RMotor.DecelFlag_U16 || LMotor.DecelFlag_U16)
+		{
+			if(RMotor.DecelDistance_IQ17 > RMotor.ErrorDistance_IQ17)
+			{
+				RMotor.TargetVel_IQ17 = RMotor.DecelVelocity_IQ17;
+				LMotor.TargetVel_IQ17 = LMotor.DecelVelocity_IQ17;
+
+				RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = OFF;
+			}
+			else if(LMotor.DecelDistance_IQ17 > LMotor.ErrorDistance_IQ17)
+			{
+				RMotor.TargetVel_IQ17 = RMotor.DecelVelocity_IQ17;
+				LMotor.TargetVel_IQ17 = LMotor.DecelVelocity_IQ17;
+
+				RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = OFF;
+			}
+		}
+	}
 
 	if(Flag.MoveState_U16)
 		TIME_INDEX_U32++;

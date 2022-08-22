@@ -107,7 +107,8 @@ typedef	struct {
 	volatile Uint16	Div127_U16[16];
 
 	volatile _iq10	Position_IQ10,
-					PositionTemporary_IQ10;
+					PositionTemporary_IQ10,
+					PositionShift_IQ10;
 	
 	volatile Uint16	AdcValue_U16[16];
 	volatile _iq17	MaxminusMin_IQ17[16];
@@ -148,7 +149,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define MAX_ACC_IQ17		_IQ17(8000.0)	// _IQ17(6000.0)
 #define MIN_ACC_IQ17		_IQ17(3000.0)	//_IQ17(4000.0)	//_IQ17(3000.0)
 
-#define MAX_ACC_IQ14		_IQ14(10000.0)
+#define MAX_ACC_IQ14		(MAX_ACC_IQ17 >> 3)
+#define MIN_ACC_IQ14		(MIN_ACC_IQ17 >> 3)
 
 #define ACC_GRADIENT_IQ17	_IQ17div(MAX_ACC_IQ17 - MIN_ACC_IQ17, MAX_VELO_IQ17 - MIN_VELO_IQ17)
 
@@ -376,8 +378,12 @@ typedef struct
 //---------------------------------------------
 	volatile _iq17	Kp_UpDown_IQ17;
 
+	volatile _iq10	TargetPosition_IQ10,
+					PositionRatio_IQ10;
+
 	volatile Uint16	DownFlag_U16:1;
 	volatile Uint16	s44sFlag_U16:1;
+	volatile Uint16	BlindFlag_U16:1;
 }TRACKINFO;
 
 __VARIABLE_EXT__ TRACKINFO	Search[256];

@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Sat Aug 06 16:05:29 2022                 *
+;* Date/Time created: Sun Aug 21 13:33:16 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -254,8 +254,8 @@ DW$67	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$67, DW_AT_type(*DW$T$108)
 	.dwattr DW$67, DW_AT_declaration(0x01)
 	.dwattr DW$67, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI25210 C:\Users\노호진\AppData\Local\Temp\TI2524 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI2522 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI2526 --object_file extremerun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI87610 C:\Users\노호진\AppData\Local\Temp\TI8764 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI8762 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI8766 --object_file extremerun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 
 DW$68	.dwtag  DW_TAG_subprogram, DW_AT_name("xCONTINOUS_VEL_COMPUTE"), DW_AT_symbol_name("_xCONTINOUS_VEL_COMPUTE$0")
@@ -274,7 +274,7 @@ DW$68	.dwtag  DW_TAG_subprogram, DW_AT_name("xCONTINOUS_VEL_COMPUTE"), DW_AT_sym
 ;* FUNCTION ENVIRONMENT                                        *
 ;*                                                             *
 ;* FUNCTION PROPERTIES                                         *
-;*                            6 Parameter,  4 Auto,  4 SOE     *
+;*                            6 Parameter,  6 Auto,  2 SOE     *
 ;***************************************************************
 
 
@@ -286,6 +286,7 @@ DW$68	.dwtag  DW_TAG_subprogram, DW_AT_name("xCONTINOUS_VEL_COMPUTE"), DW_AT_sym
 _xCONTINOUS_VEL_COMPUTE$0:
 ;*** 486	-----------------------    max_vel = max_vel;
 ;*** 486	-----------------------    m_dist = m_dist;
+;*** 486	-----------------------    kp_min = kp_min;
 ;*** 487	-----------------------    (*LINE).Kp_UpDown_IQ17 = kp_min;
 ;*** 489	-----------------------    if ( kp_min == __IQmpy(1310L, PID_Kp_U32<<17, 17) ) goto g3;
 	.dwcfa	0x1d, -2
@@ -294,10 +295,7 @@ _xCONTINOUS_VEL_COMPUTE$0:
         MOVL      *SP++,XAR1
 	.dwcfa	0x80, 7, 2
 	.dwcfa	0x1d, -4
-        MOVL      *SP++,XAR3
-	.dwcfa	0x80, 11, 4
-	.dwcfa	0x1d, -6
-        ADDB      SP,#10
+        ADDB      SP,#12
 	.dwcfa	0x1d, -16
 ;* AR4   assigned to _LINE
 DW$69	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
@@ -313,11 +311,14 @@ DW$71	.dwtag  DW_TAG_formal_parameter, DW_AT_name("m_dist"), DW_AT_symbol_name("
 DW$72	.dwtag  DW_TAG_formal_parameter, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
 	.dwattr DW$72, DW_AT_type(*DW$T$22)
 	.dwattr DW$72, DW_AT_location[DW_OP_breg20 -20]
-DW$73	.dwtag  DW_TAG_unspecified_parameters
-;* AR6   assigned to _m_dist
+;* AR6   assigned to _kp_min
+DW$73	.dwtag  DW_TAG_variable, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
+	.dwattr DW$73, DW_AT_type(*DW$T$90)
+	.dwattr DW$73, DW_AT_location[DW_OP_reg16]
+;* AR7   assigned to _m_dist
 DW$74	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
 	.dwattr DW$74, DW_AT_type(*DW$T$90)
-	.dwattr DW$74, DW_AT_location[DW_OP_reg16]
+	.dwattr DW$74, DW_AT_location[DW_OP_reg18]
 ;* AL    assigned to _max_vel
 DW$75	.dwtag  DW_TAG_variable, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
 	.dwattr DW$75, DW_AT_type(*DW$T$90)
@@ -330,16 +331,16 @@ DW$76	.dwtag  DW_TAG_variable, DW_AT_name("v$2"), DW_AT_symbol_name("v$2")
 DW$77	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
 	.dwattr DW$77, DW_AT_type(*DW$T$12)
 	.dwattr DW$77, DW_AT_location[DW_OP_reg0]
-;* AR3   assigned to _LINE
+;* AR1   assigned to _LINE
 DW$78	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
 	.dwattr DW$78, DW_AT_type(*DW$T$107)
-	.dwattr DW$78, DW_AT_location[DW_OP_reg10]
+	.dwattr DW$78, DW_AT_location[DW_OP_reg6]
 ;* AR6   assigned to S$1
 DW$79	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
 	.dwattr DW$79, DW_AT_type(*DW$T$12)
 	.dwattr DW$79, DW_AT_location[DW_OP_reg16]
-;* AR4   assigned to K$31
-DW$80	.dwtag  DW_TAG_variable, DW_AT_name("K$31"), DW_AT_symbol_name("K$31")
+;* AR4   assigned to K$32
+DW$80	.dwtag  DW_TAG_variable, DW_AT_name("K$32"), DW_AT_symbol_name("K$32")
 	.dwattr DW$80, DW_AT_type(*DW$T$100)
 	.dwattr DW$80, DW_AT_location[DW_OP_reg12]
 DW$81	.dwtag  DW_TAG_variable, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
@@ -348,14 +349,19 @@ DW$81	.dwtag  DW_TAG_variable, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_ve
 DW$82	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
 	.dwattr DW$82, DW_AT_type(*DW$T$22)
 	.dwattr DW$82, DW_AT_location[DW_OP_breg20 -10]
-        MOVL      XAR6,*-SP[18]         ; |486| 
-        MOVL      XAR3,XAR4             ; |486| 
+DW$83	.dwtag  DW_TAG_variable, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
+	.dwattr DW$83, DW_AT_type(*DW$T$22)
+	.dwattr DW$83, DW_AT_location[DW_OP_breg20 -12]
+        MOVL      XAR6,*-SP[20]         ; |486| 
+        MOVL      XAR7,*-SP[18]         ; |486| 
+        MOVL      XAR1,XAR4             ; |486| 
         MOVL      *-SP[8],ACC           ; |486| 
-        MOVL      *-SP[10],XAR6         ; |486| 
+        MOVL      *-SP[10],XAR7         ; |486| 
+        MOVL      *-SP[12],XAR6         ; |486| 
 	.dwpsn	"extremerun.c",487,2
-        MOVB      XAR1,#28              ; |487| 
-        MOVL      ACC,*-SP[20]          ; |487| 
-        MOVL      *+XAR3[AR1],ACC       ; |487| 
+        MOVB      XAR0,#28              ; |487| 
+        MOVL      ACC,*-SP[12]          ; |487| 
+        MOVL      *+XAR1[AR0],ACC       ; |487| 
 	.dwpsn	"extremerun.c",489,2
         MOVW      DP,#_PID_Kp_U32
         MOV       T,#17                 ; |489| 
@@ -366,14 +372,14 @@ DW$82	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist"
         IMPYL     P,XT,ACC              ; |489| 
         QMPYL     ACC,XT,ACC            ; |489| 
         LSL64     ACC:P,#15             ; |489| 
-        CMPL      ACC,*-SP[20]          ; |489| 
+        CMPL      ACC,*-SP[12]          ; |489| 
         BF        L1,EQ                 ; |489| 
         ; branchcc occurs ; |489| 
 ;*** 492	-----------------------    *((volatile unsigned * const)LINE+30) |= 1u;
 ;*** 492	-----------------------    goto g4;
 	.dwpsn	"extremerun.c",492,3
         MOVB      ACC,#30
-        ADDL      ACC,XAR3
+        ADDL      ACC,XAR1
         MOVL      XAR4,ACC              ; |492| 
         OR        *+XAR4[0],#0x0001     ; |492| 
         BF        L2,UNC                ; |492| 
@@ -383,7 +389,7 @@ L1:
 ;*** 490	-----------------------    *((volatile unsigned * const)LINE+30) &= 0xfffeu;
 	.dwpsn	"extremerun.c",490,3
         MOVB      ACC,#30
-        ADDL      ACC,XAR3
+        ADDL      ACC,XAR1
         MOVL      XAR4,ACC              ; |490| 
         AND       *+XAR4[0],#0xfffe     ; |490| 
 L2:    
@@ -395,44 +401,44 @@ L2:
 ;*** 498	-----------------------    if ( v$2 <= max_vel ) goto g6;
 	.dwpsn	"extremerun.c",494,2
         MOVB      XAR0,#48              ; |494| 
-        MOVL      ACC,*+XAR3[AR0]       ; |494| 
+        MOVL      ACC,*+XAR1[AR0]       ; |494| 
         MOVB      XAR0,#18              ; |494| 
-        MOVL      *+XAR3[AR0],ACC       ; |494| 
+        MOVL      *+XAR1[AR0],ACC       ; |494| 
 	.dwpsn	"extremerun.c",495,2
         MOVL      XAR6,*-SP[10]         ; |495| 
         MOVL      *-SP[2],XAR6          ; |495| 
         MOVB      XAR0,#24              ; |495| 
         MOVL      *-SP[4],ACC           ; |495| 
         MOV       T,#17                 ; |495| 
-        MOVL      ACC,*+XAR3[AR0]       ; |495| 
+        MOVL      ACC,*+XAR1[AR0]       ; |495| 
         MOVL      *-SP[6],ACC           ; |495| 
-        MOVL      ACC,*+XAR3[4]         ; |495| 
+        MOVL      ACC,*+XAR1[4]         ; |495| 
         LSLL      ACC,T                 ; |495| 
         MOVL      XAR6,ACC              ; |495| 
         MOVB      ACC,#14
-        ADDL      ACC,XAR3
+        ADDL      ACC,XAR1
         MOVL      XAR4,ACC              ; |495| 
         MOVL      ACC,XAR6              ; |495| 
         LCR       #_VEL_COMPUTE         ; |495| 
         ; call occurs [#_VEL_COMPUTE] ; |495| 
 	.dwpsn	"extremerun.c",496,2
         MOVB      XAR0,#18              ; |496| 
-        MOVL      ACC,*+XAR3[AR0]       ; |496| 
+        MOVL      ACC,*+XAR1[AR0]       ; |496| 
         MOVL      *-SP[2],ACC           ; |496| 
         MOVB      ACC,#20
-        ADDL      ACC,XAR3
+        ADDL      ACC,XAR1
         MOVB      XAR0,#14              ; |496| 
         MOVL      XAR4,ACC              ; |496| 
-        MOVL      XAR6,*+XAR3[AR0]      ; |496| 
+        MOVL      XAR6,*+XAR1[AR0]      ; |496| 
         MOVB      ACC,#26
-        ADDL      ACC,XAR3
+        ADDL      ACC,XAR1
         MOVL      XAR5,ACC              ; |496| 
         MOVL      ACC,XAR6              ; |496| 
         LCR       #_DECEL_DIST_COMPUTE  ; |496| 
         ; call occurs [#_DECEL_DIST_COMPUTE] ; |496| 
 	.dwpsn	"extremerun.c",498,2
         MOVB      XAR0,#14              ; |498| 
-        MOVL      XAR6,*+XAR3[AR0]      ; |498| 
+        MOVL      XAR6,*+XAR1[AR0]      ; |498| 
         MOVL      ACC,XAR6
         CMPL      ACC,*-SP[8]           ; |498| 
         BF        L3,LEQ                ; |498| 
@@ -440,13 +446,13 @@ L2:
 ;*** 498	-----------------------    (*LINE).Velo_IQ17 = v$2 = max_vel;
 	.dwpsn	"extremerun.c",498,33
         MOVL      XAR6,*-SP[8]          ; |498| 
-        MOVL      *+XAR3[AR0],XAR6      ; |498| 
+        MOVL      *+XAR1[AR0],XAR6      ; |498| 
 L3:    
 ;***	-----------------------g6:
-;*** 502	-----------------------    K$31 = (long * const)LINE-14L;
-;*** 502	-----------------------    (*K$31 != 0L) ? (S$1 = *K$31) : (S$1 = v$2);
+;*** 502	-----------------------    K$32 = (long * const)LINE-14L;
+;*** 502	-----------------------    (*K$32 != 0L) ? (S$1 = *K$32) : (S$1 = v$2);
 	.dwpsn	"extremerun.c",502,2
-        MOVL      XAR4,XAR3             ; |502| 
+        MOVL      XAR4,XAR1             ; |502| 
         SUBB      XAR4,#14              ; |502| 
         MOVL      ACC,*+XAR4[0]         ; |502| 
         BF        L4,EQ                 ; |502| 
@@ -456,13 +462,10 @@ L4:
 ;*** 502	-----------------------    (*LINE).VeloIn_IQ17 = S$1;
 ;*** 502	-----------------------    return;
         MOVB      XAR0,#16              ; |502| 
-        MOVL      *+XAR3[AR0],XAR6      ; |502| 
+        MOVL      *+XAR1[AR0],XAR6      ; |502| 
 	.dwpsn	"extremerun.c",503,1
-        SUBB      SP,#10
-	.dwcfa	0x1d, -6
-        MOVL      XAR3,*--SP
+        SUBB      SP,#12
 	.dwcfa	0x1d, -4
-	.dwcfa	0xc0, 11
         MOVL      XAR1,*--SP
 	.dwcfa	0x1d, -2
 	.dwcfa	0xc0, 7
@@ -476,12 +479,12 @@ L4:
 
 	.sect	".text"
 
-DW$83	.dwtag  DW_TAG_subprogram, DW_AT_name("x90_TURN_DIVISION"), DW_AT_symbol_name("_x90_TURN_DIVISION$0")
-	.dwattr DW$83, DW_AT_low_pc(_x90_TURN_DIVISION$0)
-	.dwattr DW$83, DW_AT_high_pc(0x00)
-	.dwattr DW$83, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$83, DW_AT_begin_line(0x16e)
-	.dwattr DW$83, DW_AT_begin_column(0x0d)
+DW$84	.dwtag  DW_TAG_subprogram, DW_AT_name("x90_TURN_DIVISION"), DW_AT_symbol_name("_x90_TURN_DIVISION$0")
+	.dwattr DW$84, DW_AT_low_pc(_x90_TURN_DIVISION$0)
+	.dwattr DW$84, DW_AT_high_pc(0x00)
+	.dwattr DW$84, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$84, DW_AT_begin_line(0x16e)
+	.dwattr DW$84, DW_AT_begin_column(0x0d)
 	.dwpsn	"extremerun.c",367,1
 
 	.dwfde DW$CIE
@@ -523,34 +526,34 @@ _x90_TURN_DIVISION$0:
         ADDB      SP,#10
 	.dwcfa	0x1d, -16
 ;* AR4   assigned to _LINE
-DW$84	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$84, DW_AT_type(*DW$T$61)
-	.dwattr DW$84, DW_AT_location[DW_OP_reg12]
+DW$85	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$85, DW_AT_type(*DW$T$61)
+	.dwattr DW$85, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _cnt
-DW$85	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$85, DW_AT_type(*DW$T$23)
-	.dwattr DW$85, DW_AT_location[DW_OP_reg0]
-;* AL    assigned to v$1
-DW$86	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
-	.dwattr DW$86, DW_AT_type(*DW$T$12)
+DW$86	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$86, DW_AT_type(*DW$T$23)
 	.dwattr DW$86, DW_AT_location[DW_OP_reg0]
+;* AL    assigned to v$1
+DW$87	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
+	.dwattr DW$87, DW_AT_type(*DW$T$12)
+	.dwattr DW$87, DW_AT_location[DW_OP_reg0]
 ;* AR1   assigned to _cnt
-DW$87	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$87, DW_AT_type(*DW$T$84)
-	.dwattr DW$87, DW_AT_location[DW_OP_reg6]
+DW$88	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$88, DW_AT_type(*DW$T$84)
+	.dwattr DW$88, DW_AT_location[DW_OP_reg6]
 ;* AR2   assigned to _LINE
-DW$88	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$88, DW_AT_type(*DW$T$107)
-	.dwattr DW$88, DW_AT_location[DW_OP_reg8]
-DW$89	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
-	.dwattr DW$89, DW_AT_type(*DW$T$22)
-	.dwattr DW$89, DW_AT_location[DW_OP_breg20 -6]
-DW$90	.dwtag  DW_TAG_variable, DW_AT_name("x90_vel"), DW_AT_symbol_name("_x90_vel")
+DW$89	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$89, DW_AT_type(*DW$T$107)
+	.dwattr DW$89, DW_AT_location[DW_OP_reg8]
+DW$90	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
 	.dwattr DW$90, DW_AT_type(*DW$T$22)
-	.dwattr DW$90, DW_AT_location[DW_OP_breg20 -8]
-DW$91	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
+	.dwattr DW$90, DW_AT_location[DW_OP_breg20 -6]
+DW$91	.dwtag  DW_TAG_variable, DW_AT_name("x90_vel"), DW_AT_symbol_name("_x90_vel")
 	.dwattr DW$91, DW_AT_type(*DW$T$22)
-	.dwattr DW$91, DW_AT_location[DW_OP_breg20 -10]
+	.dwattr DW$91, DW_AT_location[DW_OP_breg20 -8]
+DW$92	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
+	.dwattr DW$92, DW_AT_type(*DW$T$22)
+	.dwattr DW$92, DW_AT_location[DW_OP_breg20 -10]
         MOVL      XAR2,XAR4             ; |367| 
         MOVZ      AR1,AL                ; |367| 
 	.dwpsn	"extremerun.c",368,17
@@ -668,20 +671,20 @@ L5:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$83, DW_AT_end_file("extremerun.c")
-	.dwattr DW$83, DW_AT_end_line(0x181)
-	.dwattr DW$83, DW_AT_end_column(0x01)
+	.dwattr DW$84, DW_AT_end_file("extremerun.c")
+	.dwattr DW$84, DW_AT_end_line(0x181)
+	.dwattr DW$84, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$83
+	.dwendtag DW$84
 
 	.sect	".text"
 
-DW$92	.dwtag  DW_TAG_subprogram, DW_AT_name("xVEL_COMPUTE"), DW_AT_symbol_name("_xVEL_COMPUTE$0")
-	.dwattr DW$92, DW_AT_low_pc(_xVEL_COMPUTE$0)
-	.dwattr DW$92, DW_AT_high_pc(0x00)
-	.dwattr DW$92, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$92, DW_AT_begin_line(0x1d2)
-	.dwattr DW$92, DW_AT_begin_column(0x0d)
+DW$93	.dwtag  DW_TAG_subprogram, DW_AT_name("xVEL_COMPUTE"), DW_AT_symbol_name("_xVEL_COMPUTE$0")
+	.dwattr DW$93, DW_AT_low_pc(_xVEL_COMPUTE$0)
+	.dwattr DW$93, DW_AT_high_pc(0x00)
+	.dwattr DW$93, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$93, DW_AT_begin_line(0x1d2)
+	.dwattr DW$93, DW_AT_begin_column(0x0d)
 	.dwpsn	"extremerun.c",467,1
 
 	.dwfde DW$CIE
@@ -723,66 +726,66 @@ _xVEL_COMPUTE$0:
         ADDB      SP,#46
 	.dwcfa	0x1d, -52
 ;* AR4   assigned to _curL
-DW$93	.dwtag  DW_TAG_formal_parameter, DW_AT_name("curL"), DW_AT_symbol_name("_curL")
-	.dwattr DW$93, DW_AT_type(*DW$T$61)
-	.dwattr DW$93, DW_AT_location[DW_OP_reg12]
-;* AR5   assigned to _nextL
-DW$94	.dwtag  DW_TAG_formal_parameter, DW_AT_name("nextL"), DW_AT_symbol_name("_nextL")
+DW$94	.dwtag  DW_TAG_formal_parameter, DW_AT_name("curL"), DW_AT_symbol_name("_curL")
 	.dwattr DW$94, DW_AT_type(*DW$T$61)
-	.dwattr DW$94, DW_AT_location[DW_OP_reg14]
+	.dwattr DW$94, DW_AT_location[DW_OP_reg12]
+;* AR5   assigned to _nextL
+DW$95	.dwtag  DW_TAG_formal_parameter, DW_AT_name("nextL"), DW_AT_symbol_name("_nextL")
+	.dwattr DW$95, DW_AT_type(*DW$T$61)
+	.dwattr DW$95, DW_AT_location[DW_OP_reg14]
 ;* AL    assigned to _max_vel
-DW$95	.dwtag  DW_TAG_formal_parameter, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
-	.dwattr DW$95, DW_AT_type(*DW$T$22)
-	.dwattr DW$95, DW_AT_location[DW_OP_reg0]
-DW$96	.dwtag  DW_TAG_formal_parameter, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
+DW$96	.dwtag  DW_TAG_formal_parameter, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
 	.dwattr DW$96, DW_AT_type(*DW$T$22)
-	.dwattr DW$96, DW_AT_location[DW_OP_breg20 -54]
-DW$97	.dwtag  DW_TAG_formal_parameter, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
+	.dwattr DW$96, DW_AT_location[DW_OP_reg0]
+DW$97	.dwtag  DW_TAG_formal_parameter, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
 	.dwattr DW$97, DW_AT_type(*DW$T$22)
-	.dwattr DW$97, DW_AT_location[DW_OP_breg20 -56]
+	.dwattr DW$97, DW_AT_location[DW_OP_breg20 -54]
+DW$98	.dwtag  DW_TAG_formal_parameter, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
+	.dwattr DW$98, DW_AT_type(*DW$T$22)
+	.dwattr DW$98, DW_AT_location[DW_OP_breg20 -56]
 ;* AL    assigned to C$1
-DW$98	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$98, DW_AT_type(*DW$T$12)
-	.dwattr DW$98, DW_AT_location[DW_OP_reg0]
+DW$99	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$99, DW_AT_type(*DW$T$12)
+	.dwattr DW$99, DW_AT_location[DW_OP_reg0]
 ;* AR6   assigned to _m_dist
-DW$99	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
-	.dwattr DW$99, DW_AT_type(*DW$T$90)
-	.dwattr DW$99, DW_AT_location[DW_OP_reg16]
-;* AR7   assigned to _turn_vel
-DW$100	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
+DW$100	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
 	.dwattr DW$100, DW_AT_type(*DW$T$90)
-	.dwattr DW$100, DW_AT_location[DW_OP_reg18]
-;* AL    assigned to _max_vel
-DW$101	.dwtag  DW_TAG_variable, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
+	.dwattr DW$100, DW_AT_location[DW_OP_reg16]
+;* AR7   assigned to _turn_vel
+DW$101	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
 	.dwattr DW$101, DW_AT_type(*DW$T$90)
-	.dwattr DW$101, DW_AT_location[DW_OP_reg0]
-;* AL    assigned to v$2
-DW$102	.dwtag  DW_TAG_variable, DW_AT_name("v$2"), DW_AT_symbol_name("v$2")
-	.dwattr DW$102, DW_AT_type(*DW$T$12)
+	.dwattr DW$101, DW_AT_location[DW_OP_reg18]
+;* AL    assigned to _max_vel
+DW$102	.dwtag  DW_TAG_variable, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
+	.dwattr DW$102, DW_AT_type(*DW$T$90)
 	.dwattr DW$102, DW_AT_location[DW_OP_reg0]
+;* AL    assigned to v$2
+DW$103	.dwtag  DW_TAG_variable, DW_AT_name("v$2"), DW_AT_symbol_name("v$2")
+	.dwattr DW$103, DW_AT_type(*DW$T$12)
+	.dwattr DW$103, DW_AT_location[DW_OP_reg0]
 ;* AR3   assigned to _nextL
-DW$103	.dwtag  DW_TAG_variable, DW_AT_name("nextL"), DW_AT_symbol_name("_nextL")
-	.dwattr DW$103, DW_AT_type(*DW$T$107)
-	.dwattr DW$103, DW_AT_location[DW_OP_reg10]
-;* AR1   assigned to _curL
-DW$104	.dwtag  DW_TAG_variable, DW_AT_name("curL"), DW_AT_symbol_name("_curL")
+DW$104	.dwtag  DW_TAG_variable, DW_AT_name("nextL"), DW_AT_symbol_name("_nextL")
 	.dwattr DW$104, DW_AT_type(*DW$T$107)
-	.dwattr DW$104, DW_AT_location[DW_OP_reg6]
-DW$105	.dwtag  DW_TAG_variable, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
-	.dwattr DW$105, DW_AT_type(*DW$T$22)
-	.dwattr DW$105, DW_AT_location[DW_OP_breg20 -8]
-DW$106	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
+	.dwattr DW$104, DW_AT_location[DW_OP_reg10]
+;* AR1   assigned to _curL
+DW$105	.dwtag  DW_TAG_variable, DW_AT_name("curL"), DW_AT_symbol_name("_curL")
+	.dwattr DW$105, DW_AT_type(*DW$T$107)
+	.dwattr DW$105, DW_AT_location[DW_OP_reg6]
+DW$106	.dwtag  DW_TAG_variable, DW_AT_name("max_vel"), DW_AT_symbol_name("_max_vel")
 	.dwattr DW$106, DW_AT_type(*DW$T$22)
-	.dwattr DW$106, DW_AT_location[DW_OP_breg20 -10]
-DW$107	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
+	.dwattr DW$106, DW_AT_location[DW_OP_breg20 -8]
+DW$107	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
 	.dwattr DW$107, DW_AT_type(*DW$T$22)
-	.dwattr DW$107, DW_AT_location[DW_OP_breg20 -12]
-DW$108	.dwtag  DW_TAG_variable, DW_AT_name("cpy_info"), DW_AT_symbol_name("_cpy_info")
-	.dwattr DW$108, DW_AT_type(*DW$T$60)
-	.dwattr DW$108, DW_AT_location[DW_OP_breg20 -44]
-DW$109	.dwtag  DW_TAG_variable, DW_AT_name("low_vel"), DW_AT_symbol_name("_low_vel")
-	.dwattr DW$109, DW_AT_type(*DW$T$22)
-	.dwattr DW$109, DW_AT_location[DW_OP_breg20 -46]
+	.dwattr DW$107, DW_AT_location[DW_OP_breg20 -10]
+DW$108	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
+	.dwattr DW$108, DW_AT_type(*DW$T$22)
+	.dwattr DW$108, DW_AT_location[DW_OP_breg20 -12]
+DW$109	.dwtag  DW_TAG_variable, DW_AT_name("cpy_info"), DW_AT_symbol_name("_cpy_info")
+	.dwattr DW$109, DW_AT_type(*DW$T$60)
+	.dwattr DW$109, DW_AT_location[DW_OP_breg20 -44]
+DW$110	.dwtag  DW_TAG_variable, DW_AT_name("low_vel"), DW_AT_symbol_name("_low_vel")
+	.dwattr DW$110, DW_AT_type(*DW$T$22)
+	.dwattr DW$110, DW_AT_location[DW_OP_breg20 -46]
         MOVL      XAR6,*-SP[56]         ; |467| 
         MOVL      XAR7,*-SP[54]         ; |467| 
         MOVL      XAR1,XAR4             ; |467| 
@@ -876,20 +879,20 @@ L8:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$92, DW_AT_end_file("extremerun.c")
-	.dwattr DW$92, DW_AT_end_line(0x1e3)
-	.dwattr DW$92, DW_AT_end_column(0x01)
+	.dwattr DW$93, DW_AT_end_file("extremerun.c")
+	.dwattr DW$93, DW_AT_end_line(0x1e3)
+	.dwattr DW$93, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$92
+	.dwendtag DW$93
 
 	.sect	".text"
 
-DW$110	.dwtag  DW_TAG_subprogram, DW_AT_name("x45_TURN_DIVISION"), DW_AT_symbol_name("_x45_TURN_DIVISION$0")
-	.dwattr DW$110, DW_AT_low_pc(_x45_TURN_DIVISION$0)
-	.dwattr DW$110, DW_AT_high_pc(0x00)
-	.dwattr DW$110, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$110, DW_AT_begin_line(0x10b)
-	.dwattr DW$110, DW_AT_begin_column(0x0d)
+DW$111	.dwtag  DW_TAG_subprogram, DW_AT_name("x45_TURN_DIVISION"), DW_AT_symbol_name("_x45_TURN_DIVISION$0")
+	.dwattr DW$111, DW_AT_low_pc(_x45_TURN_DIVISION$0)
+	.dwattr DW$111, DW_AT_high_pc(0x00)
+	.dwattr DW$111, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$111, DW_AT_begin_line(0x10b)
+	.dwattr DW$111, DW_AT_begin_column(0x0d)
 	.dwpsn	"extremerun.c",268,1
 
 	.dwfde DW$CIE
@@ -935,67 +938,67 @@ _x45_TURN_DIVISION$0:
         ADDB      SP,#16
 	.dwcfa	0x1d, -22
 ;* AR4   assigned to _LINE
-DW$111	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$111, DW_AT_type(*DW$T$61)
-	.dwattr DW$111, DW_AT_location[DW_OP_reg12]
+DW$112	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$112, DW_AT_type(*DW$T$61)
+	.dwattr DW$112, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _cnt
-DW$112	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$112, DW_AT_type(*DW$T$23)
-	.dwattr DW$112, DW_AT_location[DW_OP_reg0]
+DW$113	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$113, DW_AT_type(*DW$T$23)
+	.dwattr DW$113, DW_AT_location[DW_OP_reg0]
 ;* AR7   assigned to v$1
-DW$113	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
-	.dwattr DW$113, DW_AT_type(*DW$T$12)
-	.dwattr DW$113, DW_AT_location[DW_OP_reg18]
+DW$114	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
+	.dwattr DW$114, DW_AT_type(*DW$T$12)
+	.dwattr DW$114, DW_AT_location[DW_OP_reg18]
 ;* AR6   assigned to _cnt
-DW$114	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$114, DW_AT_type(*DW$T$84)
-	.dwattr DW$114, DW_AT_location[DW_OP_reg16]
+DW$115	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$115, DW_AT_type(*DW$T$84)
+	.dwattr DW$115, DW_AT_location[DW_OP_reg16]
 ;* AR1   assigned to _LINE
-DW$115	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$115, DW_AT_type(*DW$T$107)
-	.dwattr DW$115, DW_AT_location[DW_OP_reg6]
+DW$116	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$116, DW_AT_type(*DW$T$107)
+	.dwattr DW$116, DW_AT_location[DW_OP_reg6]
 ;* AL    assigned to S$1
-DW$116	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
-	.dwattr DW$116, DW_AT_type(*DW$T$12)
-	.dwattr DW$116, DW_AT_location[DW_OP_reg0]
-;* XT    assigned to U$53
-DW$117	.dwtag  DW_TAG_variable, DW_AT_name("U$53"), DW_AT_symbol_name("U$53")
+DW$117	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
 	.dwattr DW$117, DW_AT_type(*DW$T$12)
-	.dwattr DW$117, DW_AT_location[DW_OP_reg21]
+	.dwattr DW$117, DW_AT_location[DW_OP_reg0]
+;* XT    assigned to U$53
+DW$118	.dwtag  DW_TAG_variable, DW_AT_name("U$53"), DW_AT_symbol_name("U$53")
+	.dwattr DW$118, DW_AT_type(*DW$T$12)
+	.dwattr DW$118, DW_AT_location[DW_OP_reg21]
 ;* AR2   assigned to K$21
-DW$118	.dwtag  DW_TAG_variable, DW_AT_name("K$21"), DW_AT_symbol_name("K$21")
-	.dwattr DW$118, DW_AT_type(*DW$T$61)
-	.dwattr DW$118, DW_AT_location[DW_OP_reg8]
+DW$119	.dwtag  DW_TAG_variable, DW_AT_name("K$21"), DW_AT_symbol_name("K$21")
+	.dwattr DW$119, DW_AT_type(*DW$T$61)
+	.dwattr DW$119, DW_AT_location[DW_OP_reg8]
 ;* AR6   assigned to U$46
-DW$119	.dwtag  DW_TAG_variable, DW_AT_name("U$46"), DW_AT_symbol_name("U$46")
-	.dwattr DW$119, DW_AT_type(*DW$T$13)
-	.dwattr DW$119, DW_AT_location[DW_OP_reg16]
+DW$120	.dwtag  DW_TAG_variable, DW_AT_name("U$46"), DW_AT_symbol_name("U$46")
+	.dwattr DW$120, DW_AT_type(*DW$T$13)
+	.dwattr DW$120, DW_AT_location[DW_OP_reg16]
 ;* AR5   assigned to K$38
-DW$120	.dwtag  DW_TAG_variable, DW_AT_name("K$38"), DW_AT_symbol_name("K$38")
-	.dwattr DW$120, DW_AT_type(*DW$T$103)
-	.dwattr DW$120, DW_AT_location[DW_OP_reg14]
+DW$121	.dwtag  DW_TAG_variable, DW_AT_name("K$38"), DW_AT_symbol_name("K$38")
+	.dwattr DW$121, DW_AT_type(*DW$T$103)
+	.dwattr DW$121, DW_AT_location[DW_OP_reg14]
 ;* AR6   assigned to U$40
-DW$121	.dwtag  DW_TAG_variable, DW_AT_name("U$40"), DW_AT_symbol_name("U$40")
-	.dwattr DW$121, DW_AT_type(*DW$T$13)
-	.dwattr DW$121, DW_AT_location[DW_OP_reg16]
-DW$122	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
-	.dwattr DW$122, DW_AT_type(*DW$T$22)
-	.dwattr DW$122, DW_AT_location[DW_OP_breg20 -6]
-DW$123	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
+DW$122	.dwtag  DW_TAG_variable, DW_AT_name("U$40"), DW_AT_symbol_name("U$40")
+	.dwattr DW$122, DW_AT_type(*DW$T$13)
+	.dwattr DW$122, DW_AT_location[DW_OP_reg16]
+DW$123	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
 	.dwattr DW$123, DW_AT_type(*DW$T$22)
-	.dwattr DW$123, DW_AT_location[DW_OP_breg20 -8]
-DW$124	.dwtag  DW_TAG_variable, DW_AT_name("x45_vel"), DW_AT_symbol_name("_x45_vel")
+	.dwattr DW$123, DW_AT_location[DW_OP_breg20 -6]
+DW$124	.dwtag  DW_TAG_variable, DW_AT_name("turn_vel"), DW_AT_symbol_name("_turn_vel")
 	.dwattr DW$124, DW_AT_type(*DW$T$22)
-	.dwattr DW$124, DW_AT_location[DW_OP_breg20 -10]
-DW$125	.dwtag  DW_TAG_variable, DW_AT_name("xs4s_vel"), DW_AT_symbol_name("_xs4s_vel")
+	.dwattr DW$124, DW_AT_location[DW_OP_breg20 -8]
+DW$125	.dwtag  DW_TAG_variable, DW_AT_name("x45_vel"), DW_AT_symbol_name("_x45_vel")
 	.dwattr DW$125, DW_AT_type(*DW$T$22)
-	.dwattr DW$125, DW_AT_location[DW_OP_breg20 -12]
-DW$126	.dwtag  DW_TAG_variable, DW_AT_name("xs44s_vel"), DW_AT_symbol_name("_xs44s_vel")
+	.dwattr DW$125, DW_AT_location[DW_OP_breg20 -10]
+DW$126	.dwtag  DW_TAG_variable, DW_AT_name("xs4s_vel"), DW_AT_symbol_name("_xs4s_vel")
 	.dwattr DW$126, DW_AT_type(*DW$T$22)
-	.dwattr DW$126, DW_AT_location[DW_OP_breg20 -14]
-DW$127	.dwtag  DW_TAG_variable, DW_AT_name("x90_vel"), DW_AT_symbol_name("_x90_vel")
+	.dwattr DW$126, DW_AT_location[DW_OP_breg20 -12]
+DW$127	.dwtag  DW_TAG_variable, DW_AT_name("xs44s_vel"), DW_AT_symbol_name("_xs44s_vel")
 	.dwattr DW$127, DW_AT_type(*DW$T$22)
-	.dwattr DW$127, DW_AT_location[DW_OP_breg20 -16]
+	.dwattr DW$127, DW_AT_location[DW_OP_breg20 -14]
+DW$128	.dwtag  DW_TAG_variable, DW_AT_name("x90_vel"), DW_AT_symbol_name("_x90_vel")
+	.dwattr DW$128, DW_AT_type(*DW$T$22)
+	.dwattr DW$128, DW_AT_location[DW_OP_breg20 -16]
         MOVL      XAR1,XAR4             ; |268| 
         MOVZ      AR6,AL                ; |268| 
 	.dwpsn	"extremerun.c",269,17
@@ -1545,20 +1548,20 @@ L24:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$110, DW_AT_end_file("extremerun.c")
-	.dwattr DW$110, DW_AT_end_line(0x16c)
-	.dwattr DW$110, DW_AT_end_column(0x01)
+	.dwattr DW$111, DW_AT_end_file("extremerun.c")
+	.dwattr DW$111, DW_AT_end_line(0x16c)
+	.dwattr DW$111, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$110
+	.dwendtag DW$111
 
 	.sect	".text"
 
-DW$128	.dwtag  DW_TAG_subprogram, DW_AT_name("xSTRAIGHT_DIVISION"), DW_AT_symbol_name("_xSTRAIGHT_DIVISION$0")
-	.dwattr DW$128, DW_AT_low_pc(_xSTRAIGHT_DIVISION$0)
-	.dwattr DW$128, DW_AT_high_pc(0x00)
-	.dwattr DW$128, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$128, DW_AT_begin_line(0x9e)
-	.dwattr DW$128, DW_AT_begin_column(0x0d)
+DW$129	.dwtag  DW_TAG_subprogram, DW_AT_name("xSTRAIGHT_DIVISION"), DW_AT_symbol_name("_xSTRAIGHT_DIVISION$0")
+	.dwattr DW$129, DW_AT_low_pc(_xSTRAIGHT_DIVISION$0)
+	.dwattr DW$129, DW_AT_high_pc(0x00)
+	.dwattr DW$129, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$129, DW_AT_begin_line(0x9e)
+	.dwattr DW$129, DW_AT_begin_column(0x0d)
 	.dwpsn	"extremerun.c",159,1
 
 	.dwfde DW$CIE
@@ -1599,66 +1602,66 @@ _xSTRAIGHT_DIVISION$0:
         ADDB      SP,#12
 	.dwcfa	0x1d, -20
 ;* AR4   assigned to _LINE
-DW$129	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$129, DW_AT_type(*DW$T$61)
-	.dwattr DW$129, DW_AT_location[DW_OP_reg12]
+DW$130	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$130, DW_AT_type(*DW$T$61)
+	.dwattr DW$130, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _cnt
-DW$130	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$130, DW_AT_type(*DW$T$23)
-	.dwattr DW$130, DW_AT_location[DW_OP_reg0]
+DW$131	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$131, DW_AT_type(*DW$T$23)
+	.dwattr DW$131, DW_AT_location[DW_OP_reg0]
 ;* AR6   assigned to C$3
-DW$131	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
-	.dwattr DW$131, DW_AT_type(*DW$T$12)
-	.dwattr DW$131, DW_AT_location[DW_OP_reg16]
-;* AR6   assigned to v$5
-DW$132	.dwtag  DW_TAG_variable, DW_AT_name("v$5"), DW_AT_symbol_name("v$5")
+DW$132	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
 	.dwattr DW$132, DW_AT_type(*DW$T$12)
 	.dwattr DW$132, DW_AT_location[DW_OP_reg16]
+;* AR6   assigned to v$5
+DW$133	.dwtag  DW_TAG_variable, DW_AT_name("v$5"), DW_AT_symbol_name("v$5")
+	.dwattr DW$133, DW_AT_type(*DW$T$12)
+	.dwattr DW$133, DW_AT_location[DW_OP_reg16]
 ;* PL    assigned to v$3
-DW$133	.dwtag  DW_TAG_variable, DW_AT_name("v$3"), DW_AT_symbol_name("v$3")
-	.dwattr DW$133, DW_AT_type(*DW$T$13)
-	.dwattr DW$133, DW_AT_location[DW_OP_reg2]
+DW$134	.dwtag  DW_TAG_variable, DW_AT_name("v$3"), DW_AT_symbol_name("v$3")
+	.dwattr DW$134, DW_AT_type(*DW$T$13)
+	.dwattr DW$134, DW_AT_location[DW_OP_reg2]
 ;* AR7   assigned to v$2
-DW$134	.dwtag  DW_TAG_variable, DW_AT_name("v$2"), DW_AT_symbol_name("v$2")
-	.dwattr DW$134, DW_AT_type(*DW$T$12)
-	.dwattr DW$134, DW_AT_location[DW_OP_reg18]
-;* AR6   assigned to v$1
-DW$135	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
+DW$135	.dwtag  DW_TAG_variable, DW_AT_name("v$2"), DW_AT_symbol_name("v$2")
 	.dwattr DW$135, DW_AT_type(*DW$T$12)
-	.dwattr DW$135, DW_AT_location[DW_OP_reg16]
+	.dwattr DW$135, DW_AT_location[DW_OP_reg18]
+;* AR6   assigned to v$1
+DW$136	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
+	.dwattr DW$136, DW_AT_type(*DW$T$12)
+	.dwattr DW$136, DW_AT_location[DW_OP_reg16]
 ;* AR1   assigned to _cnt
-DW$136	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$136, DW_AT_type(*DW$T$84)
-	.dwattr DW$136, DW_AT_location[DW_OP_reg6]
+DW$137	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$137, DW_AT_type(*DW$T$84)
+	.dwattr DW$137, DW_AT_location[DW_OP_reg6]
 ;* AR2   assigned to _LINE
-DW$137	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$137, DW_AT_type(*DW$T$107)
-	.dwattr DW$137, DW_AT_location[DW_OP_reg8]
+DW$138	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$138, DW_AT_type(*DW$T$107)
+	.dwattr DW$138, DW_AT_location[DW_OP_reg8]
 ;* AL    assigned to S$2
-DW$138	.dwtag  DW_TAG_variable, DW_AT_name("S$2"), DW_AT_symbol_name("S$2")
-	.dwattr DW$138, DW_AT_type(*DW$T$12)
-	.dwattr DW$138, DW_AT_location[DW_OP_reg0]
-;* AL    assigned to S$1
-DW$139	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
+DW$139	.dwtag  DW_TAG_variable, DW_AT_name("S$2"), DW_AT_symbol_name("S$2")
 	.dwattr DW$139, DW_AT_type(*DW$T$12)
 	.dwattr DW$139, DW_AT_location[DW_OP_reg0]
+;* AL    assigned to S$1
+DW$140	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
+	.dwattr DW$140, DW_AT_type(*DW$T$12)
+	.dwattr DW$140, DW_AT_location[DW_OP_reg0]
 ;* AR3   assigned to K$67
-DW$140	.dwtag  DW_TAG_variable, DW_AT_name("K$67"), DW_AT_symbol_name("K$67")
-	.dwattr DW$140, DW_AT_type(*DW$T$100)
-	.dwattr DW$140, DW_AT_location[DW_OP_reg10]
-;* AR4   assigned to K$13
-DW$141	.dwtag  DW_TAG_variable, DW_AT_name("K$13"), DW_AT_symbol_name("K$13")
+DW$141	.dwtag  DW_TAG_variable, DW_AT_name("K$67"), DW_AT_symbol_name("K$67")
 	.dwattr DW$141, DW_AT_type(*DW$T$100)
-	.dwattr DW$141, DW_AT_location[DW_OP_reg12]
-DW$142	.dwtag  DW_TAG_variable, DW_AT_name("high_vel"), DW_AT_symbol_name("_high_vel")
-	.dwattr DW$142, DW_AT_type(*DW$T$22)
-	.dwattr DW$142, DW_AT_location[DW_OP_breg20 -8]
-DW$143	.dwtag  DW_TAG_variable, DW_AT_name("low_vel"), DW_AT_symbol_name("_low_vel")
+	.dwattr DW$141, DW_AT_location[DW_OP_reg10]
+;* AR4   assigned to K$13
+DW$142	.dwtag  DW_TAG_variable, DW_AT_name("K$13"), DW_AT_symbol_name("K$13")
+	.dwattr DW$142, DW_AT_type(*DW$T$100)
+	.dwattr DW$142, DW_AT_location[DW_OP_reg12]
+DW$143	.dwtag  DW_TAG_variable, DW_AT_name("high_vel"), DW_AT_symbol_name("_high_vel")
 	.dwattr DW$143, DW_AT_type(*DW$T$22)
-	.dwattr DW$143, DW_AT_location[DW_OP_breg20 -10]
-DW$144	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
+	.dwattr DW$143, DW_AT_location[DW_OP_breg20 -8]
+DW$144	.dwtag  DW_TAG_variable, DW_AT_name("low_vel"), DW_AT_symbol_name("_low_vel")
 	.dwattr DW$144, DW_AT_type(*DW$T$22)
-	.dwattr DW$144, DW_AT_location[DW_OP_breg20 -12]
+	.dwattr DW$144, DW_AT_location[DW_OP_breg20 -10]
+DW$145	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
+	.dwattr DW$145, DW_AT_type(*DW$T$22)
+	.dwattr DW$145, DW_AT_location[DW_OP_breg20 -12]
         MOVL      XAR2,XAR4             ; |159| 
         MOVZ      AR1,AL                ; |159| 
 	.dwpsn	"extremerun.c",160,17
@@ -2131,20 +2134,20 @@ L45:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$128, DW_AT_end_file("extremerun.c")
-	.dwattr DW$128, DW_AT_end_line(0x109)
-	.dwattr DW$128, DW_AT_end_column(0x01)
+	.dwattr DW$129, DW_AT_end_file("extremerun.c")
+	.dwattr DW$129, DW_AT_end_line(0x109)
+	.dwattr DW$129, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$128
+	.dwendtag DW$129
 
 	.sect	".text"
 
-DW$145	.dwtag  DW_TAG_subprogram, DW_AT_name("xLINE_DIVISION"), DW_AT_symbol_name("_xLINE_DIVISION$0")
-	.dwattr DW$145, DW_AT_low_pc(_xLINE_DIVISION$0)
-	.dwattr DW$145, DW_AT_high_pc(0x00)
-	.dwattr DW$145, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$145, DW_AT_begin_line(0x8c)
-	.dwattr DW$145, DW_AT_begin_column(0x0d)
+DW$146	.dwtag  DW_TAG_subprogram, DW_AT_name("xLINE_DIVISION"), DW_AT_symbol_name("_xLINE_DIVISION$0")
+	.dwattr DW$146, DW_AT_low_pc(_xLINE_DIVISION$0)
+	.dwattr DW$146, DW_AT_high_pc(0x00)
+	.dwattr DW$146, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$146, DW_AT_begin_line(0x8c)
+	.dwattr DW$146, DW_AT_begin_column(0x0d)
 	.dwpsn	"extremerun.c",141,1
 
 	.dwfde DW$CIE
@@ -2176,25 +2179,25 @@ _xLINE_DIVISION$0:
         ADDB      SP,#2
 	.dwcfa	0x1d, -6
 ;* AR4   assigned to _LINE
-DW$146	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$146, DW_AT_type(*DW$T$61)
-	.dwattr DW$146, DW_AT_location[DW_OP_reg12]
+DW$147	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$147, DW_AT_type(*DW$T$61)
+	.dwattr DW$147, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _cnt
-DW$147	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$147, DW_AT_type(*DW$T$23)
-	.dwattr DW$147, DW_AT_location[DW_OP_reg0]
+DW$148	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$148, DW_AT_type(*DW$T$23)
+	.dwattr DW$148, DW_AT_location[DW_OP_reg0]
 ;* AR7   assigned to C$1
-DW$148	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$148, DW_AT_type(*DW$T$13)
-	.dwattr DW$148, DW_AT_location[DW_OP_reg18]
+DW$149	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$149, DW_AT_type(*DW$T$13)
+	.dwattr DW$149, DW_AT_location[DW_OP_reg18]
 ;* AR6   assigned to _cnt
-DW$149	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$149, DW_AT_type(*DW$T$84)
-	.dwattr DW$149, DW_AT_location[DW_OP_reg16]
+DW$150	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$150, DW_AT_type(*DW$T$84)
+	.dwattr DW$150, DW_AT_location[DW_OP_reg16]
 ;* AR1   assigned to _LINE
-DW$150	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$150, DW_AT_type(*DW$T$107)
-	.dwattr DW$150, DW_AT_location[DW_OP_reg6]
+DW$151	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$151, DW_AT_type(*DW$T$107)
+	.dwattr DW$151, DW_AT_location[DW_OP_reg6]
         MOVL      XAR1,XAR4             ; |141| 
         MOVZ      AR6,AL                ; |141| 
 	.dwpsn	"extremerun.c",142,2
@@ -2318,21 +2321,21 @@ L49:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$145, DW_AT_end_file("extremerun.c")
-	.dwattr DW$145, DW_AT_end_line(0x9c)
-	.dwattr DW$145, DW_AT_end_column(0x01)
+	.dwattr DW$146, DW_AT_end_file("extremerun.c")
+	.dwattr DW$146, DW_AT_end_line(0x9c)
+	.dwattr DW$146, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$145
+	.dwendtag DW$146
 
 	.sect	".text"
 	.global	_xTURN_DIVISION_FUNC
 
-DW$151	.dwtag  DW_TAG_subprogram, DW_AT_name("xTURN_DIVISION_FUNC"), DW_AT_symbol_name("_xTURN_DIVISION_FUNC")
-	.dwattr DW$151, DW_AT_low_pc(_xTURN_DIVISION_FUNC)
-	.dwattr DW$151, DW_AT_high_pc(0x00)
-	.dwattr DW$151, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$151, DW_AT_begin_line(0x24)
-	.dwattr DW$151, DW_AT_begin_column(0x08)
+DW$152	.dwtag  DW_TAG_subprogram, DW_AT_name("xTURN_DIVISION_FUNC"), DW_AT_symbol_name("_xTURN_DIVISION_FUNC")
+	.dwattr DW$152, DW_AT_low_pc(_xTURN_DIVISION_FUNC)
+	.dwattr DW$152, DW_AT_high_pc(0x00)
+	.dwattr DW$152, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$152, DW_AT_begin_line(0x24)
+	.dwattr DW$152, DW_AT_begin_column(0x08)
 	.dwpsn	"extremerun.c",37,1
 
 	.dwfde DW$CIE
@@ -2371,21 +2374,21 @@ _xTURN_DIVISION_FUNC:
         ADDB      SP,#22
 	.dwcfa	0x1d, -30
 ;* AR6   assigned to C$2
-DW$152	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
-	.dwattr DW$152, DW_AT_type(*DW$T$13)
-	.dwattr DW$152, DW_AT_location[DW_OP_reg16]
+DW$153	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
+	.dwattr DW$153, DW_AT_type(*DW$T$13)
+	.dwattr DW$153, DW_AT_location[DW_OP_reg16]
 ;* AR1   assigned to S$1
-DW$153	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
-	.dwattr DW$153, DW_AT_type(*DW$T$10)
-	.dwattr DW$153, DW_AT_location[DW_OP_reg6]
+DW$154	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
+	.dwattr DW$154, DW_AT_type(*DW$T$10)
+	.dwattr DW$154, DW_AT_location[DW_OP_reg6]
 ;* AR3   assigned to _cnt
-DW$154	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$154, DW_AT_type(*DW$T$23)
-	.dwattr DW$154, DW_AT_location[DW_OP_reg10]
+DW$155	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$155, DW_AT_type(*DW$T$23)
+	.dwattr DW$155, DW_AT_location[DW_OP_reg10]
 ;* AR2   assigned to U$7
-DW$155	.dwtag  DW_TAG_variable, DW_AT_name("U$7"), DW_AT_symbol_name("U$7")
-	.dwattr DW$155, DW_AT_type(*DW$T$110)
-	.dwattr DW$155, DW_AT_location[DW_OP_reg8]
+DW$156	.dwtag  DW_TAG_variable, DW_AT_name("U$7"), DW_AT_symbol_name("U$7")
+	.dwattr DW$156, DW_AT_type(*DW$T$110)
+	.dwattr DW$156, DW_AT_location[DW_OP_reg8]
         MOVL      XAR4,#_Search
         MOVL      XAR2,XAR4
 	.dwpsn	"extremerun.c",38,9
@@ -2529,53 +2532,53 @@ DW$L$_xTURN_DIVISION_FUNC$9$E:
         LRETR
         ; return occurs
 
-DW$156	.dwtag  DW_TAG_loop
-	.dwattr DW$156, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\extremerun.asm:L50:1:1659769529")
-	.dwattr DW$156, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$156, DW_AT_begin_line(0x28)
-	.dwattr DW$156, DW_AT_end_line(0x35)
-DW$157	.dwtag  DW_TAG_loop_range
-	.dwattr DW$157, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$2$B)
-	.dwattr DW$157, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$2$E)
+DW$157	.dwtag  DW_TAG_loop
+	.dwattr DW$157, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라\main\extremerun.asm:L50:1:1661056396")
+	.dwattr DW$157, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$157, DW_AT_begin_line(0x28)
+	.dwattr DW$157, DW_AT_end_line(0x35)
 DW$158	.dwtag  DW_TAG_loop_range
-	.dwattr DW$158, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$5$B)
-	.dwattr DW$158, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$5$E)
+	.dwattr DW$158, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$2$B)
+	.dwattr DW$158, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$2$E)
 DW$159	.dwtag  DW_TAG_loop_range
-	.dwattr DW$159, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$3$B)
-	.dwattr DW$159, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$3$E)
+	.dwattr DW$159, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$5$B)
+	.dwattr DW$159, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$5$E)
 DW$160	.dwtag  DW_TAG_loop_range
-	.dwattr DW$160, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$4$B)
-	.dwattr DW$160, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$4$E)
+	.dwattr DW$160, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$3$B)
+	.dwattr DW$160, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$3$E)
 DW$161	.dwtag  DW_TAG_loop_range
-	.dwattr DW$161, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$6$B)
-	.dwattr DW$161, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$6$E)
+	.dwattr DW$161, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$4$B)
+	.dwattr DW$161, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$4$E)
 DW$162	.dwtag  DW_TAG_loop_range
-	.dwattr DW$162, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$7$B)
-	.dwattr DW$162, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$7$E)
+	.dwattr DW$162, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$6$B)
+	.dwattr DW$162, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$6$E)
 DW$163	.dwtag  DW_TAG_loop_range
-	.dwattr DW$163, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$8$B)
-	.dwattr DW$163, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$8$E)
+	.dwattr DW$163, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$7$B)
+	.dwattr DW$163, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$7$E)
 DW$164	.dwtag  DW_TAG_loop_range
-	.dwattr DW$164, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$9$B)
-	.dwattr DW$164, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$9$E)
-	.dwendtag DW$156
+	.dwattr DW$164, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$8$B)
+	.dwattr DW$164, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$8$E)
+DW$165	.dwtag  DW_TAG_loop_range
+	.dwattr DW$165, DW_AT_low_pc(DW$L$_xTURN_DIVISION_FUNC$9$B)
+	.dwattr DW$165, DW_AT_high_pc(DW$L$_xTURN_DIVISION_FUNC$9$E)
+	.dwendtag DW$157
 
-	.dwattr DW$151, DW_AT_end_file("extremerun.c")
-	.dwattr DW$151, DW_AT_end_line(0x37)
-	.dwattr DW$151, DW_AT_end_column(0x01)
+	.dwattr DW$152, DW_AT_end_file("extremerun.c")
+	.dwattr DW$152, DW_AT_end_line(0x37)
+	.dwattr DW$152, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$151
+	.dwendtag DW$152
 
 ***	Parameter deleted: ratio == __IQmpy(13L, RATIO_I32*131072L, 17);
 ***	Parameter deleted: p_hd == &HanPID;
 	.sect	".text"
 
-DW$165	.dwtag  DW_TAG_subprogram, DW_AT_name("xCONTROL"), DW_AT_symbol_name("_xCONTROL$0")
-	.dwattr DW$165, DW_AT_low_pc(_xCONTROL$0)
-	.dwattr DW$165, DW_AT_high_pc(0x00)
-	.dwattr DW$165, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$165, DW_AT_begin_line(0x78)
-	.dwattr DW$165, DW_AT_begin_column(0x0d)
+DW$166	.dwtag  DW_TAG_subprogram, DW_AT_name("xCONTROL"), DW_AT_symbol_name("_xCONTROL$0")
+	.dwattr DW$166, DW_AT_low_pc(_xCONTROL$0)
+	.dwattr DW$166, DW_AT_high_pc(0x00)
+	.dwattr DW$166, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$166, DW_AT_begin_line(0x78)
+	.dwattr DW$166, DW_AT_begin_column(0x0d)
 	.dwpsn	"extremerun.c",121,1
 
 	.dwfde DW$CIE
@@ -2606,31 +2609,31 @@ _xCONTROL$0:
         ADDB      SP,#4
 	.dwcfa	0x1d, -6
 ;* AR4   assigned to _mode
-DW$166	.dwtag  DW_TAG_formal_parameter, DW_AT_name("mode"), DW_AT_symbol_name("_mode")
-	.dwattr DW$166, DW_AT_type(*DW$T$23)
-	.dwattr DW$166, DW_AT_location[DW_OP_reg12]
+DW$167	.dwtag  DW_TAG_formal_parameter, DW_AT_name("mode"), DW_AT_symbol_name("_mode")
+	.dwattr DW$167, DW_AT_type(*DW$T$23)
+	.dwattr DW$167, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to _kp_min
-DW$167	.dwtag  DW_TAG_formal_parameter, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
-	.dwattr DW$167, DW_AT_type(*DW$T$22)
-	.dwattr DW$167, DW_AT_location[DW_OP_reg0]
-;* AL    assigned to _kp_min
-DW$168	.dwtag  DW_TAG_variable, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
-	.dwattr DW$168, DW_AT_type(*DW$T$90)
+DW$168	.dwtag  DW_TAG_formal_parameter, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
+	.dwattr DW$168, DW_AT_type(*DW$T$22)
 	.dwattr DW$168, DW_AT_location[DW_OP_reg0]
+;* AL    assigned to _kp_min
+DW$169	.dwtag  DW_TAG_variable, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
+	.dwattr DW$169, DW_AT_type(*DW$T$90)
+	.dwattr DW$169, DW_AT_location[DW_OP_reg0]
 ;* AR6   assigned to _ratio
-DW$169	.dwtag  DW_TAG_variable, DW_AT_name("ratio"), DW_AT_symbol_name("_ratio")
-	.dwattr DW$169, DW_AT_type(*DW$T$20)
-	.dwattr DW$169, DW_AT_location[DW_OP_reg16]
+DW$170	.dwtag  DW_TAG_variable, DW_AT_name("ratio"), DW_AT_symbol_name("_ratio")
+	.dwattr DW$170, DW_AT_type(*DW$T$20)
+	.dwattr DW$170, DW_AT_location[DW_OP_reg16]
 ;* AR4   assigned to _mode
-DW$170	.dwtag  DW_TAG_variable, DW_AT_name("mode"), DW_AT_symbol_name("_mode")
-	.dwattr DW$170, DW_AT_type(*DW$T$84)
-	.dwattr DW$170, DW_AT_location[DW_OP_reg12]
-DW$171	.dwtag  DW_TAG_variable, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
-	.dwattr DW$171, DW_AT_type(*DW$T$22)
-	.dwattr DW$171, DW_AT_location[DW_OP_breg20 -2]
-DW$172	.dwtag  DW_TAG_variable, DW_AT_name("kp_max"), DW_AT_symbol_name("_kp_max")
+DW$171	.dwtag  DW_TAG_variable, DW_AT_name("mode"), DW_AT_symbol_name("_mode")
+	.dwattr DW$171, DW_AT_type(*DW$T$84)
+	.dwattr DW$171, DW_AT_location[DW_OP_reg12]
+DW$172	.dwtag  DW_TAG_variable, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
 	.dwattr DW$172, DW_AT_type(*DW$T$22)
-	.dwattr DW$172, DW_AT_location[DW_OP_breg20 -4]
+	.dwattr DW$172, DW_AT_location[DW_OP_breg20 -2]
+DW$173	.dwtag  DW_TAG_variable, DW_AT_name("kp_max"), DW_AT_symbol_name("_kp_max")
+	.dwattr DW$173, DW_AT_type(*DW$T$22)
+	.dwattr DW$173, DW_AT_location[DW_OP_breg20 -4]
         MOVB      XAR5,#17              ; |121| 
         MOVW      DP,#_RATIO_I32
         MOVB      XAR6,#13
@@ -2711,21 +2714,21 @@ L56:
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
-	.dwattr DW$165, DW_AT_end_file("extremerun.c")
-	.dwattr DW$165, DW_AT_end_line(0x8a)
-	.dwattr DW$165, DW_AT_end_column(0x01)
+	.dwattr DW$166, DW_AT_end_file("extremerun.c")
+	.dwattr DW$166, DW_AT_end_line(0x8a)
+	.dwattr DW$166, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$165
+	.dwendtag DW$166
 
 	.sect	".text"
 	.global	_xHANDLE
 
-DW$173	.dwtag  DW_TAG_subprogram, DW_AT_name("xHANDLE"), DW_AT_symbol_name("_xHANDLE")
-	.dwattr DW$173, DW_AT_low_pc(_xHANDLE)
-	.dwattr DW$173, DW_AT_high_pc(0x00)
-	.dwattr DW$173, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$173, DW_AT_begin_line(0x39)
-	.dwattr DW$173, DW_AT_begin_column(0x06)
+DW$174	.dwtag  DW_TAG_subprogram, DW_AT_name("xHANDLE"), DW_AT_symbol_name("_xHANDLE")
+	.dwattr DW$174, DW_AT_low_pc(_xHANDLE)
+	.dwattr DW$174, DW_AT_high_pc(0x00)
+	.dwattr DW$174, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$174, DW_AT_begin_line(0x39)
+	.dwattr DW$174, DW_AT_begin_column(0x06)
 	.dwpsn	"extremerun.c",58,1
 
 	.dwfde DW$CIE
@@ -2754,20 +2757,20 @@ _xHANDLE:
         ADDB      SP,#2
 	.dwcfa	0x1d, -4
 ;* AR5   assigned to S$2
-DW$174	.dwtag  DW_TAG_variable, DW_AT_name("S$2"), DW_AT_symbol_name("S$2")
-	.dwattr DW$174, DW_AT_type(*DW$T$110)
-	.dwattr DW$174, DW_AT_location[DW_OP_reg14]
-;* AR5   assigned to S$1
-DW$175	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
+DW$175	.dwtag  DW_TAG_variable, DW_AT_name("S$2"), DW_AT_symbol_name("S$2")
 	.dwattr DW$175, DW_AT_type(*DW$T$110)
 	.dwattr DW$175, DW_AT_location[DW_OP_reg14]
-;* AR4   assigned to K$9
-DW$176	.dwtag  DW_TAG_variable, DW_AT_name("K$9"), DW_AT_symbol_name("K$9")
+;* AR5   assigned to S$1
+DW$176	.dwtag  DW_TAG_variable, DW_AT_name("S$1"), DW_AT_symbol_name("S$1")
 	.dwattr DW$176, DW_AT_type(*DW$T$110)
-	.dwattr DW$176, DW_AT_location[DW_OP_reg12]
-DW$177	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$177, DW_AT_type(*DW$T$78)
-	.dwattr DW$177, DW_AT_location[DW_OP_breg20 -1]
+	.dwattr DW$176, DW_AT_location[DW_OP_reg14]
+;* AR4   assigned to K$9
+DW$177	.dwtag  DW_TAG_variable, DW_AT_name("K$9"), DW_AT_symbol_name("K$9")
+	.dwattr DW$177, DW_AT_type(*DW$T$110)
+	.dwattr DW$177, DW_AT_location[DW_OP_reg12]
+DW$178	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$178, DW_AT_type(*DW$T$78)
+	.dwattr DW$178, DW_AT_location[DW_OP_breg20 -1]
 	.dwpsn	"extremerun.c",59,17
         MOVW      DP,#_THIRD_MARK_U16_CNT
         MOV       AL,@_THIRD_MARK_U16_CNT ; |59| 
@@ -2871,21 +2874,21 @@ L60:
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
-	.dwattr DW$173, DW_AT_end_file("extremerun.c")
-	.dwattr DW$173, DW_AT_end_line(0x53)
-	.dwattr DW$173, DW_AT_end_column(0x01)
+	.dwattr DW$174, DW_AT_end_file("extremerun.c")
+	.dwattr DW$174, DW_AT_end_line(0x53)
+	.dwattr DW$174, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$173
+	.dwendtag DW$174
 
 	.sect	".text"
 	.global	_err_mark
 
-DW$178	.dwtag  DW_TAG_subprogram, DW_AT_name("err_mark"), DW_AT_symbol_name("_err_mark")
-	.dwattr DW$178, DW_AT_low_pc(_err_mark)
-	.dwattr DW$178, DW_AT_high_pc(0x00)
-	.dwattr DW$178, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$178, DW_AT_begin_line(0x55)
-	.dwattr DW$178, DW_AT_begin_column(0x06)
+DW$179	.dwtag  DW_TAG_subprogram, DW_AT_name("err_mark"), DW_AT_symbol_name("_err_mark")
+	.dwattr DW$179, DW_AT_low_pc(_err_mark)
+	.dwattr DW$179, DW_AT_high_pc(0x00)
+	.dwattr DW$179, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$179, DW_AT_begin_line(0x55)
+	.dwattr DW$179, DW_AT_begin_column(0x06)
 	.dwpsn	"extremerun.c",86,1
 
 	.dwfde DW$CIE
@@ -2924,36 +2927,36 @@ _err_mark:
         ADDB      SP,#12
 	.dwcfa	0x1d, -18
 ;* AR4   assigned to _cnt
-DW$179	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$179, DW_AT_type(*DW$T$64)
-	.dwattr DW$179, DW_AT_location[DW_OP_reg12]
+DW$180	.dwtag  DW_TAG_formal_parameter, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$180, DW_AT_type(*DW$T$64)
+	.dwattr DW$180, DW_AT_location[DW_OP_reg12]
 ;* AL    assigned to C$1
-DW$180	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
-	.dwattr DW$180, DW_AT_type(*DW$T$11)
-	.dwattr DW$180, DW_AT_location[DW_OP_reg0]
+DW$181	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
+	.dwattr DW$181, DW_AT_type(*DW$T$11)
+	.dwattr DW$181, DW_AT_location[DW_OP_reg0]
 ;* AR7   assigned to C$2
-DW$181	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
-	.dwattr DW$181, DW_AT_type(*DW$T$12)
-	.dwattr DW$181, DW_AT_location[DW_OP_reg18]
+DW$182	.dwtag  DW_TAG_variable, DW_AT_name("C$2"), DW_AT_symbol_name("C$2")
+	.dwattr DW$182, DW_AT_type(*DW$T$12)
+	.dwattr DW$182, DW_AT_location[DW_OP_reg18]
 ;* AR6   assigned to C$3
-DW$182	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
-	.dwattr DW$182, DW_AT_type(*DW$T$11)
-	.dwattr DW$182, DW_AT_location[DW_OP_reg16]
+DW$183	.dwtag  DW_TAG_variable, DW_AT_name("C$3"), DW_AT_symbol_name("C$3")
+	.dwattr DW$183, DW_AT_type(*DW$T$11)
+	.dwattr DW$183, DW_AT_location[DW_OP_reg16]
 ;* AR1   assigned to _p_track
-DW$183	.dwtag  DW_TAG_variable, DW_AT_name("p_track"), DW_AT_symbol_name("_p_track")
-	.dwattr DW$183, DW_AT_type(*DW$T$61)
-	.dwattr DW$183, DW_AT_location[DW_OP_reg6]
+DW$184	.dwtag  DW_TAG_variable, DW_AT_name("p_track"), DW_AT_symbol_name("_p_track")
+	.dwattr DW$184, DW_AT_type(*DW$T$61)
+	.dwattr DW$184, DW_AT_location[DW_OP_reg6]
 ;* AR2   assigned to _cnt
-DW$184	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
-	.dwattr DW$184, DW_AT_type(*DW$T$82)
-	.dwattr DW$184, DW_AT_location[DW_OP_reg8]
+DW$185	.dwtag  DW_TAG_variable, DW_AT_name("cnt"), DW_AT_symbol_name("_cnt")
+	.dwattr DW$185, DW_AT_type(*DW$T$82)
+	.dwattr DW$185, DW_AT_location[DW_OP_reg8]
 ;* AR4   assigned to K$6
-DW$185	.dwtag  DW_TAG_variable, DW_AT_name("K$6"), DW_AT_symbol_name("K$6")
-	.dwattr DW$185, DW_AT_type(*DW$T$110)
-	.dwattr DW$185, DW_AT_location[DW_OP_reg12]
-DW$186	.dwtag  DW_TAG_variable, DW_AT_name("dist"), DW_AT_symbol_name("_dist")
-	.dwattr DW$186, DW_AT_type(*DW$T$91)
-	.dwattr DW$186, DW_AT_location[DW_OP_breg20 -12]
+DW$186	.dwtag  DW_TAG_variable, DW_AT_name("K$6"), DW_AT_symbol_name("K$6")
+	.dwattr DW$186, DW_AT_type(*DW$T$110)
+	.dwattr DW$186, DW_AT_location[DW_OP_reg12]
+DW$187	.dwtag  DW_TAG_variable, DW_AT_name("dist"), DW_AT_symbol_name("_dist")
+	.dwattr DW$187, DW_AT_type(*DW$T$91)
+	.dwattr DW$187, DW_AT_location[DW_OP_breg20 -12]
         MOVL      XAR2,XAR4             ; |86| 
 	.dwpsn	"extremerun.c",87,13
         MOVZ      AR6,*+XAR2[0]         ; |87| 
@@ -3120,21 +3123,21 @@ L64:
 	.dwcfa	0xc0, 7
         LRETR
         ; return occurs
-	.dwattr DW$178, DW_AT_end_file("extremerun.c")
-	.dwattr DW$178, DW_AT_end_line(0x76)
-	.dwattr DW$178, DW_AT_end_column(0x01)
+	.dwattr DW$179, DW_AT_end_file("extremerun.c")
+	.dwattr DW$179, DW_AT_end_line(0x76)
+	.dwattr DW$179, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$178
+	.dwendtag DW$179
 
 	.sect	".text"
 	.global	_LINE_THIRD
 
-DW$187	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_THIRD"), DW_AT_symbol_name("_LINE_THIRD")
-	.dwattr DW$187, DW_AT_low_pc(_LINE_THIRD)
-	.dwattr DW$187, DW_AT_high_pc(0x00)
-	.dwattr DW$187, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$187, DW_AT_begin_line(0x19)
-	.dwattr DW$187, DW_AT_begin_column(0x06)
+DW$188	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_THIRD"), DW_AT_symbol_name("_LINE_THIRD")
+	.dwattr DW$188, DW_AT_low_pc(_LINE_THIRD)
+	.dwattr DW$188, DW_AT_high_pc(0x00)
+	.dwattr DW$188, DW_AT_begin_file("extremerun.c")
+	.dwattr DW$188, DW_AT_begin_line(0x19)
+	.dwattr DW$188, DW_AT_begin_column(0x06)
 	.dwpsn	"extremerun.c",26,1
 
 	.dwfde DW$CIE
@@ -3163,13 +3166,13 @@ _LINE_THIRD:
         ADDB      SP,#10
 	.dwcfa	0x1d, -12
 ;* AR4   assigned to _LINE
-DW$188	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$188, DW_AT_type(*DW$T$61)
-	.dwattr DW$188, DW_AT_location[DW_OP_reg12]
-;* AR4   assigned to _LINE
-DW$189	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
-	.dwattr DW$189, DW_AT_type(*DW$T$107)
+DW$189	.dwtag  DW_TAG_formal_parameter, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$189, DW_AT_type(*DW$T$61)
 	.dwattr DW$189, DW_AT_location[DW_OP_reg12]
+;* AR4   assigned to _LINE
+DW$190	.dwtag  DW_TAG_variable, DW_AT_name("LINE"), DW_AT_symbol_name("_LINE")
+	.dwattr DW$190, DW_AT_type(*DW$T$107)
+	.dwattr DW$190, DW_AT_location[DW_OP_reg12]
 	.dwpsn	"extremerun.c",27,2
         MOVB      XAR0,#20              ; |27| 
         MOVL      ACC,*+XAR4[AR0]       ; |27| 
@@ -3230,11 +3233,11 @@ L66:
 	.dwcfa	0x1d, -2
         LRETR
         ; return occurs
-	.dwattr DW$187, DW_AT_end_file("extremerun.c")
-	.dwattr DW$187, DW_AT_end_line(0x22)
-	.dwattr DW$187, DW_AT_end_column(0x01)
+	.dwattr DW$188, DW_AT_end_file("extremerun.c")
+	.dwattr DW$188, DW_AT_end_line(0x22)
+	.dwattr DW$188, DW_AT_end_column(0x01)
 	.dwendentry
-	.dwendtag DW$187
+	.dwendtag DW$188
 
 ;***************************************************************
 ;* FAR STRINGS                                                 *
@@ -3293,17 +3296,17 @@ DW$T$3	.dwtag  DW_TAG_pointer_type
 
 DW$T$42	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$3)
 	.dwattr DW$T$42, DW_AT_language(DW_LANG_C)
-DW$190	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$3)
-DW$191	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$40)
-DW$192	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$41)
+DW$191	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$3)
+DW$192	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$40)
+DW$193	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$41)
 	.dwendtag DW$T$42
 
 
 DW$T$44	.dwtag  DW_TAG_subroutine_type, DW_AT_type(*DW$T$3)
 	.dwattr DW$T$44, DW_AT_language(DW_LANG_C)
-DW$193	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$3)
-DW$194	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$10)
-DW$195	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$41)
+DW$194	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$3)
+DW$195	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$10)
+DW$196	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$41)
 	.dwendtag DW$T$44
 
 DW$T$40	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$39)
@@ -3311,44 +3314,44 @@ DW$T$40	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$39)
 
 DW$T$49	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$49, DW_AT_language(DW_LANG_C)
-DW$196	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$48)
-DW$197	.dwtag  DW_TAG_unspecified_parameters
+DW$197	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$48)
+DW$198	.dwtag  DW_TAG_unspecified_parameters
 	.dwendtag DW$T$49
 
 
 DW$T$51	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$51, DW_AT_language(DW_LANG_C)
-DW$198	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$20)
 DW$199	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$20)
 DW$200	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$20)
 DW$201	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$20)
-DW$202	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$21)
+DW$202	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$20)
 DW$203	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$21)
+DW$204	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$21)
 	.dwendtag DW$T$51
 
 
 DW$T$56	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$56, DW_AT_language(DW_LANG_C)
-DW$204	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 DW$205	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
-DW$206	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$53)
-DW$207	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$55)
+DW$206	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
+DW$207	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$53)
+DW$208	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$55)
 	.dwendtag DW$T$56
 
 
 DW$T$58	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$58, DW_AT_language(DW_LANG_C)
-DW$208	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 DW$209	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 DW$210	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
-DW$211	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$54)
-DW$212	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$53)
+DW$211	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
+DW$212	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$54)
+DW$213	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$53)
 	.dwendtag DW$T$58
 
 
 DW$T$62	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$62, DW_AT_language(DW_LANG_C)
-DW$213	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
+DW$214	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
 	.dwendtag DW$T$62
 
 
@@ -3357,43 +3360,42 @@ DW$T$63	.dwtag  DW_TAG_subroutine_type
 
 DW$T$65	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$65, DW_AT_language(DW_LANG_C)
-DW$214	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$64)
+DW$215	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$64)
 	.dwendtag DW$T$65
 
 
 DW$T$68	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$68, DW_AT_language(DW_LANG_C)
-DW$215	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$23)
-DW$216	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$67)
-DW$217	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$20)
-DW$218	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
+DW$216	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$23)
+DW$217	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$67)
+DW$218	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$20)
+DW$219	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 	.dwendtag DW$T$68
 
 
 DW$T$70	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$70, DW_AT_language(DW_LANG_C)
-DW$219	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
-DW$220	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$23)
+DW$220	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
+DW$221	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$23)
 	.dwendtag DW$T$70
 
 
 DW$T$72	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$72, DW_AT_language(DW_LANG_C)
-DW$221	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
 DW$222	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
-DW$223	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
+DW$223	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
 DW$224	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 DW$225	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
+DW$226	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 	.dwendtag DW$T$72
 
 
 DW$T$74	.dwtag  DW_TAG_subroutine_type
 	.dwattr DW$T$74, DW_AT_language(DW_LANG_C)
-DW$226	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
-DW$227	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
+DW$227	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$61)
 DW$228	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 DW$229	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
-DW$230	.dwtag  DW_TAG_unspecified_parameters
+DW$230	.dwtag  DW_TAG_formal_parameter, DW_AT_type(*DW$T$22)
 	.dwendtag DW$T$74
 
 DW$T$10	.dwtag  DW_TAG_base_type, DW_AT_name("int")
@@ -4088,11 +4090,11 @@ DW$358	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
 	.dwendtag DW$T$31
 
 
-	.dwattr DW$187, DW_AT_external(0x01)
-	.dwattr DW$178, DW_AT_external(0x01)
-	.dwattr DW$173, DW_AT_external(0x01)
-	.dwattr DW$151, DW_AT_external(0x01)
-	.dwattr DW$151, DW_AT_type(*DW$T$23)
+	.dwattr DW$188, DW_AT_external(0x01)
+	.dwattr DW$179, DW_AT_external(0x01)
+	.dwattr DW$174, DW_AT_external(0x01)
+	.dwattr DW$152, DW_AT_external(0x01)
+	.dwattr DW$152, DW_AT_type(*DW$T$23)
 	.dwattr DW$CU, DW_AT_language(DW_LANG_C)
 
 ;***************************************************************

@@ -162,7 +162,7 @@ void RUN(Uint16 number)
 		TxPrintf("%lf %lf %lf %lf\n", _IQ17toF(LMotor.DecelDistance_IQ17), _IQ15toF(LMotor.ErrorDistance_IQ17), _IQ17toF(LMotor.NextVelocity_IQ17), _IQ17toF(LMotor.TargetVel_IQ17));
 		//TxPrintf("%lf %lf\n", _IQ17toF(LMotor.DecelDistance_IQ17), _IQ17toF(LMotor.ErrorDistance_IQ17));
 #endif
-		
+
 		POSITION_COMPUTE(&SenAdc, POSITION_WEIGHT_I32, &SENSOR_STATE_U16_CNT, &SENSOR_ENABLE);
 
 		LMark.TurnmarkDistance_IQ17 = RMark.TurnmarkDistance_IQ17 = (RMotor.TurnMarkCheckDistance_IQ17 >> 1) + (LMotor.TurnMarkCheckDistance_IQ17 >> 1);

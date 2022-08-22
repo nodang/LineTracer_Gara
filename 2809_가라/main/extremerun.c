@@ -13,7 +13,7 @@ static void x90_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 //static void x180_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 //static void x270_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 static void xVEL_COMPUTE(TRACKINFO *curL, TRACKINFO *nextL, volatile _iq17 max_vel, volatile _iq17 turn_vel, volatile _iq17 m_dist);
-static void xCONTINOUS_VEL_COMPUTE(TRACKINFO *LINE, volatile _iq17 max_vel, volatile _iq17 m_dist, volatile _iq17 kp_min, ...);
+static void xCONTINOUS_VEL_COMPUTE(TRACKINFO *LINE, volatile _iq17 max_vel, volatile _iq17 m_dist, volatile _iq17 kp_min);
 
 
 volatile int32 right_table[] = 
@@ -482,7 +482,7 @@ static void xVEL_COMPUTE(TRACKINFO *curL, TRACKINFO *nextL, volatile _iq17 max_v
 	curL->Velo_IQ17 = curL->VeloOut_IQ17 = curL->VeloIn_IQ17;
 }
 
-static void xCONTINOUS_VEL_COMPUTE(TRACKINFO *LINE, volatile _iq17 max_vel, volatile _iq17 m_dist, volatile _iq17 kp_min, ...)
+static void xCONTINOUS_VEL_COMPUTE(TRACKINFO *LINE, volatile _iq17 max_vel, volatile _iq17 m_dist, volatile _iq17 kp_min)
 {
 	LINE->Kp_UpDown_IQ17 = kp_min;
 

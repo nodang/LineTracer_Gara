@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Fri Aug 19 21:59:30 2022                 *
+;* Date/Time created: Mon Aug 22 13:33:48 2022                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -266,8 +266,8 @@ DW$73	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$73, DW_AT_type(*DW$T$186)
 	.dwattr DW$73, DW_AT_declaration(0x01)
 	.dwattr DW$73, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI56810 C:\Users\노호진\AppData\Local\Temp\TI5684 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI5682 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI5686 --object_file search.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI06010 C:\Users\노호진\AppData\Local\Temp\TI0604 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI0602 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI0606 --object_file search.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_Init_GLOBAL
 
@@ -380,7 +380,7 @@ _Init_RUN:
 ;*** 39	-----------------------    Init_MOTOR();
 ;*** 40	-----------------------    Init_GLOBAL();
 ;*** 95	-----------------------    memset(&HanPID, 0, 20uL);
-;*** 96	-----------------------    memset(&Search, 0, 8192uL);
+;*** 96	-----------------------    memset(&Search, 0, 9216uL);
 ;*** 98	-----------------------    HanPID.Kp_val_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
 ;*** 100	-----------------------    GpioDataRegs.GPACLEAR.all = 68uL;
 ;*** 102	-----------------------    *&EPwm3Regs;
@@ -409,7 +409,7 @@ _Init_RUN:
 	.dwpsn	"search.c",96,2
         MOVB      XAR5,#0
         MOVL      XAR4,#_Search         ; |96| 
-        MOV       ACC,#1 << 13
+        MOV       ACC,#9 << 10
         LCR       #_memset              ; |96| 
         ; call occurs [#_memset] ; |96| 
 	.dwpsn	"search.c",98,2
@@ -1001,7 +1001,7 @@ L12:
         ; return occurs
 
 DW$90	.dwtag  DW_TAG_loop
-	.dwattr DW$90, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L7:1:1660913970")
+	.dwattr DW$90, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L7:1:1661142828")
 	.dwattr DW$90, DW_AT_begin_file("search.c")
 	.dwattr DW$90, DW_AT_begin_line(0x16c)
 	.dwattr DW$90, DW_AT_end_line(0x18d)
@@ -1022,7 +1022,7 @@ DW$95	.dwtag  DW_TAG_loop_range
 	.dwattr DW$95, DW_AT_high_pc(DW$L$_time_attack$25$E)
 
 DW$96	.dwtag  DW_TAG_loop
-	.dwattr DW$96, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L10:2:1660913970")
+	.dwattr DW$96, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L10:2:1661142828")
 	.dwattr DW$96, DW_AT_begin_file("search.c")
 	.dwattr DW$96, DW_AT_begin_line(0x183)
 	.dwattr DW$96, DW_AT_end_line(0x188)
@@ -1047,7 +1047,7 @@ DW$101	.dwtag  DW_TAG_loop_range
 
 
 DW$102	.dwtag  DW_TAG_loop
-	.dwattr DW$102, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L5:1:1660913970")
+	.dwattr DW$102, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L5:1:1661142828")
 	.dwattr DW$102, DW_AT_begin_file("search.c")
 	.dwattr DW$102, DW_AT_begin_line(0x142)
 	.dwattr DW$102, DW_AT_end_line(0x157)
@@ -1536,7 +1536,7 @@ L22:
         ; return occurs
 
 DW$129	.dwtag  DW_TAG_loop
-	.dwattr DW$129, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L19:1:1660913970")
+	.dwattr DW$129, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L19:1:1661142828")
 	.dwattr DW$129, DW_AT_begin_file("search.c")
 	.dwattr DW$129, DW_AT_begin_line(0xa6)
 	.dwattr DW$129, DW_AT_end_line(0xb8)
@@ -1783,12 +1783,12 @@ DW$L$_LINE_PRINTF$13$B:
 DW$L$_LINE_PRINTF$13$E:
 DW$L$_LINE_PRINTF$14$B:
 ;***	-----------------------g13:
-;*** 282	-----------------------    U$17 = ((long)map_U16_cnt<<5)+&Search;
+;*** 282	-----------------------    U$17 = &Search[(long)map_U16_cnt];
 ;*** 282	-----------------------    switch ( (*U$17).TurnWay_U32 ) {case 1uL: goto g14;, case 2uL: goto g14;, case 4uL: goto g14;, case 4096uL: goto g14;, case 8192uL: goto g14;, DEFAULT goto g18};
 	.dwpsn	"search.c",282,4
-        MOVU      ACC,*-SP[7]
+        MOV       T,#36                 ; |282| 
         MOVL      XAR5,#_Search         ; |282| 
-        LSL       ACC,5                 ; |282| 
+        MPYXU     ACC,T,*-SP[7]         ; |282| 
         ADDL      XAR5,ACC
         MOVL      XAR6,*+XAR5[6]        ; |282| 
         MOVB      XAR7,#1
@@ -1838,12 +1838,12 @@ DW$L$_LINE_PRINTF$18$E:
 L30:    
 DW$L$_LINE_PRINTF$19$B:
 ;***	-----------------------g15:
-;*** 267	-----------------------    U$17 = ((long)map_U16_cnt<<5)+&Search;
+;*** 267	-----------------------    U$17 = &Search[(long)map_U16_cnt];
 ;*** 267	-----------------------    switch ( (*U$17).TurnWay_U32 ) {case 1uL: goto g16;, case 2uL: goto g16;, case 4uL: goto g16;, case 4096uL: goto g16;, case 8192uL: goto g16;, DEFAULT goto g18};
 	.dwpsn	"search.c",267,4
-        MOVU      ACC,*-SP[7]
+        MOV       T,#36                 ; |267| 
         MOVL      XAR4,#_Search         ; |267| 
-        LSL       ACC,5                 ; |267| 
+        MPYXU     ACC,T,*-SP[7]         ; |267| 
         ADDL      XAR4,ACC
         MOVL      XAR6,*+XAR4[6]        ; |267| 
         MOVB      XAR7,#1
@@ -1892,11 +1892,11 @@ DW$L$_LINE_PRINTF$23$E:
 L32:    
 DW$L$_LINE_PRINTF$24$B:
 ;***	-----------------------g17:
-;*** 244	-----------------------    switch ( (*(((long)map_U16_cnt<<5)+&Search)).TurnWay_U32 ) {case 1uL: goto g23;, case 2uL: goto g22;, case 4uL: goto g21;, case 4096uL: goto g20;, case 8192uL: goto g19;, DEFAULT goto g18};
+;*** 244	-----------------------    switch ( (Search[(long)map_U16_cnt]).TurnWay_U32 ) {case 1uL: goto g23;, case 2uL: goto g22;, case 4uL: goto g21;, case 4096uL: goto g20;, case 8192uL: goto g19;, DEFAULT goto g18};
 	.dwpsn	"search.c",244,4
-        MOVU      ACC,*-SP[7]
+        MOV       T,#36                 ; |244| 
         MOVL      XAR4,#_Search+6       ; |244| 
-        LSL       ACC,5                 ; |244| 
+        MPYXU     ACC,T,*-SP[7]         ; |244| 
         ADDL      XAR4,ACC
         MOVL      XAR6,*+XAR4[0]        ; |244| 
         MOVB      ACC,#4
@@ -2123,7 +2123,7 @@ L44:
         ; return occurs
 
 DW$145	.dwtag  DW_TAG_loop
-	.dwattr DW$145, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L28:1:1660913970")
+	.dwattr DW$145, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L28:1:1661142828")
 	.dwattr DW$145, DW_AT_begin_file("search.c")
 	.dwattr DW$145, DW_AT_begin_line(0xef)
 	.dwattr DW$145, DW_AT_end_line(0x131)
@@ -2230,7 +2230,7 @@ DW$178	.dwtag  DW_TAG_loop_range
 
 
 DW$179	.dwtag  DW_TAG_loop
-	.dwattr DW$179, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L25:1:1660913970")
+	.dwattr DW$179, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\search.asm:L25:1:1661142828")
 	.dwattr DW$179, DW_AT_begin_file("search.c")
 	.dwattr DW$179, DW_AT_begin_line(0xdf)
 	.dwattr DW$179, DW_AT_end_line(0xe3)
@@ -2287,7 +2287,7 @@ DW$185	.dwtag  DW_TAG_subprogram, DW_AT_name("LINE_INFO"), DW_AT_symbol_name("_L
 ;***************************************************************
 _LINE_INFO:
 ;*** 191	-----------------------    K$7 = &Search[0];
-;*** 191	-----------------------    C$2 = ((long)MARK_U16_CNT<<5)+K$7;
+;*** 191	-----------------------    C$2 = &K$7[(long)MARK_U16_CNT];
 ;*** 191	-----------------------    (*C$2).StepCnt_U32 = 0uL;
 ;*** 192	-----------------------    (*C$2).Distance_R_U32 = RMotor.GoneDistance_IQ15>>15;
 ;*** 193	-----------------------    (*C$2).Distance_L_U32 = LMotor.GoneDistance_IQ15>>15;
@@ -2333,12 +2333,13 @@ DW$193	.dwtag  DW_TAG_variable, DW_AT_name("K$7"), DW_AT_symbol_name("K$7")
 	.dwattr DW$193, DW_AT_type(*DW$T$188)
 	.dwattr DW$193, DW_AT_location[DW_OP_reg14]
 	.dwpsn	"search.c",191,2
-        MOVL      XAR5,#_Search         ; |191| 
-        MOVL      XAR6,XAR5             ; |191| 
         MOVW      DP,#_MARK_U16_CNT
-        MOVU      ACC,@_MARK_U16_CNT
-        LSL       ACC,5                 ; |191| 
-        ADDL      XAR6,ACC
+        MOV       T,#36                 ; |191| 
+        MOVL      XAR5,#_Search         ; |191| 
+        MPYXU     P,T,@_MARK_U16_CNT    ; |191| 
+        MOVL      ACC,XAR5              ; |191| 
+        ADDL      ACC,P
+        MOVL      XAR6,ACC              ; |191| 
         MOVB      XAR0,#12              ; |191| 
         MOVB      ACC,#0
         MOVL      *+XAR6[AR0],ACC       ; |191| 
@@ -2410,21 +2411,22 @@ L46:
 L47:    
         MOVB      XAR6,#4
 L48:    
-;*** 208	-----------------------    U$8 = ((long)MARK_U16_CNT<<5)+K$7;
+;*** 208	-----------------------    U$8 = &K$7[(long)MARK_U16_CNT];
 ;*** 208	-----------------------    (*U$8).TurnWay_U32 = S$1;
-;*** 209	-----------------------    if ( MARK_U16_CNT == 0u || S$1 != (*(((long)(MARK_U16_CNT-1u)<<5)+K$7)).TurnWay_U32 ) goto g7;
-        MOVL      XAR4,XAR5             ; |208| 
-        MOVU      ACC,@_MARK_U16_CNT
-        LSL       ACC,5                 ; |208| 
-        ADDL      XAR4,ACC
+;*** 209	-----------------------    if ( MARK_U16_CNT == 0u || S$1 != (K$7[(long)(MARK_U16_CNT-1u)]).TurnWay_U32 ) goto g7;
+        MOV       T,#36                 ; |208| 
+        MPYXU     P,T,@_MARK_U16_CNT    ; |208| 
+        MOVL      ACC,XAR5              ; |208| 
+        ADDL      ACC,P
+        MOVL      XAR4,ACC              ; |208| 
         MOVL      *+XAR4[6],XAR6        ; |208| 
 	.dwpsn	"search.c",209,3
         MOV       AL,@_MARK_U16_CNT     ; |209| 
         BF        L49,EQ                ; |209| 
         ; branchcc occurs ; |209| 
+        MOV       T,#36                 ; |209| 
         ADDB      AL,#-1
-        MOVU      ACC,AL
-        LSL       ACC,5                 ; |209| 
+        MPYXU     ACC,T,AL              ; |209| 
         ADDL      XAR5,ACC
         MOVL      ACC,XAR6              ; |209| 
         CMPL      ACC,*+XAR5[6]         ; |209| 
@@ -2733,7 +2735,7 @@ DW$T$183	.dwtag  DW_TAG_typedef, DW_AT_name("BITFLAG"), DW_AT_type(*DW$T$182)
 
 DW$T$186	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$185)
 	.dwattr DW$T$186, DW_AT_language(DW_LANG_C)
-	.dwattr DW$T$186, DW_AT_byte_size(0x2000)
+	.dwattr DW$T$186, DW_AT_byte_size(0x2400)
 DW$229	.dwtag  DW_TAG_subrange_type
 	.dwattr DW$229, DW_AT_upper_bound(0xff)
 	.dwendtag DW$T$186
@@ -2773,7 +2775,7 @@ DW$T$153	.dwtag  DW_TAG_const_type
 	.dwattr DW$T$153, DW_AT_type(*DW$233)
 
 DW$T$27	.dwtag  DW_TAG_structure_type
-	.dwattr DW$T$27, DW_AT_byte_size(0x76)
+	.dwattr DW$T$27, DW_AT_byte_size(0x78)
 DW$234	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
 	.dwattr DW$234, DW_AT_name("Position_U16_CNT"), DW_AT_symbol_name("_Position_U16_CNT")
 	.dwattr DW$234, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
@@ -2802,332 +2804,349 @@ DW$240	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
 	.dwattr DW$240, DW_AT_name("PositionTemporary_IQ10"), DW_AT_symbol_name("_PositionTemporary_IQ10")
 	.dwattr DW$240, DW_AT_data_member_location[DW_OP_plus_uconst 0x44]
 	.dwattr DW$240, DW_AT_accessibility(DW_ACCESS_public)
-DW$241	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
-	.dwattr DW$241, DW_AT_name("AdcValue_U16"), DW_AT_symbol_name("_AdcValue_U16")
+DW$241	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
+	.dwattr DW$241, DW_AT_name("PositionShift_IQ10"), DW_AT_symbol_name("_PositionShift_IQ10")
 	.dwattr DW$241, DW_AT_data_member_location[DW_OP_plus_uconst 0x46]
 	.dwattr DW$241, DW_AT_accessibility(DW_ACCESS_public)
-DW$242	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$26)
-	.dwattr DW$242, DW_AT_name("MaxminusMin_IQ17"), DW_AT_symbol_name("_MaxminusMin_IQ17")
-	.dwattr DW$242, DW_AT_data_member_location[DW_OP_plus_uconst 0x56]
+DW$242	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$21)
+	.dwattr DW$242, DW_AT_name("AdcValue_U16"), DW_AT_symbol_name("_AdcValue_U16")
+	.dwattr DW$242, DW_AT_data_member_location[DW_OP_plus_uconst 0x48]
 	.dwattr DW$242, DW_AT_accessibility(DW_ACCESS_public)
+DW$243	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$26)
+	.dwattr DW$243, DW_AT_name("MaxminusMin_IQ17"), DW_AT_symbol_name("_MaxminusMin_IQ17")
+	.dwattr DW$243, DW_AT_data_member_location[DW_OP_plus_uconst 0x58]
+	.dwattr DW$243, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$27
 
-DW$243	.dwtag  DW_TAG_far_type
-	.dwattr DW$243, DW_AT_type(*DW$T$28)
+DW$244	.dwtag  DW_TAG_far_type
+	.dwattr DW$244, DW_AT_type(*DW$T$28)
 DW$T$119	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$119, DW_AT_type(*DW$243)
+	.dwattr DW$T$119, DW_AT_type(*DW$244)
 
 DW$T$35	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$35, DW_AT_name("GPIO_DATA_REGS")
 	.dwattr DW$T$35, DW_AT_byte_size(0x20)
-DW$244	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$31)
-	.dwattr DW$244, DW_AT_name("GPADAT"), DW_AT_symbol_name("_GPADAT")
-	.dwattr DW$244, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$244, DW_AT_accessibility(DW_ACCESS_public)
 DW$245	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$31)
-	.dwattr DW$245, DW_AT_name("GPASET"), DW_AT_symbol_name("_GPASET")
-	.dwattr DW$245, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
+	.dwattr DW$245, DW_AT_name("GPADAT"), DW_AT_symbol_name("_GPADAT")
+	.dwattr DW$245, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$245, DW_AT_accessibility(DW_ACCESS_public)
 DW$246	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$31)
-	.dwattr DW$246, DW_AT_name("GPACLEAR"), DW_AT_symbol_name("_GPACLEAR")
-	.dwattr DW$246, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
+	.dwattr DW$246, DW_AT_name("GPASET"), DW_AT_symbol_name("_GPASET")
+	.dwattr DW$246, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
 	.dwattr DW$246, DW_AT_accessibility(DW_ACCESS_public)
 DW$247	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$31)
-	.dwattr DW$247, DW_AT_name("GPATOGGLE"), DW_AT_symbol_name("_GPATOGGLE")
-	.dwattr DW$247, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
+	.dwattr DW$247, DW_AT_name("GPACLEAR"), DW_AT_symbol_name("_GPACLEAR")
+	.dwattr DW$247, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
 	.dwattr DW$247, DW_AT_accessibility(DW_ACCESS_public)
-DW$248	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$33)
-	.dwattr DW$248, DW_AT_name("GPBDAT"), DW_AT_symbol_name("_GPBDAT")
-	.dwattr DW$248, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
+DW$248	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$31)
+	.dwattr DW$248, DW_AT_name("GPATOGGLE"), DW_AT_symbol_name("_GPATOGGLE")
+	.dwattr DW$248, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
 	.dwattr DW$248, DW_AT_accessibility(DW_ACCESS_public)
 DW$249	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$33)
-	.dwattr DW$249, DW_AT_name("GPBSET"), DW_AT_symbol_name("_GPBSET")
-	.dwattr DW$249, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
+	.dwattr DW$249, DW_AT_name("GPBDAT"), DW_AT_symbol_name("_GPBDAT")
+	.dwattr DW$249, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
 	.dwattr DW$249, DW_AT_accessibility(DW_ACCESS_public)
 DW$250	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$33)
-	.dwattr DW$250, DW_AT_name("GPBCLEAR"), DW_AT_symbol_name("_GPBCLEAR")
-	.dwattr DW$250, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
+	.dwattr DW$250, DW_AT_name("GPBSET"), DW_AT_symbol_name("_GPBSET")
+	.dwattr DW$250, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
 	.dwattr DW$250, DW_AT_accessibility(DW_ACCESS_public)
 DW$251	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$33)
-	.dwattr DW$251, DW_AT_name("GPBTOGGLE"), DW_AT_symbol_name("_GPBTOGGLE")
-	.dwattr DW$251, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
+	.dwattr DW$251, DW_AT_name("GPBCLEAR"), DW_AT_symbol_name("_GPBCLEAR")
+	.dwattr DW$251, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
 	.dwattr DW$251, DW_AT_accessibility(DW_ACCESS_public)
-DW$252	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$34)
-	.dwattr DW$252, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$252, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
+DW$252	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$33)
+	.dwattr DW$252, DW_AT_name("GPBTOGGLE"), DW_AT_symbol_name("_GPBTOGGLE")
+	.dwattr DW$252, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
 	.dwattr DW$252, DW_AT_accessibility(DW_ACCESS_public)
+DW$253	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$34)
+	.dwattr DW$253, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$253, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
+	.dwattr DW$253, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$35
 
 
 DW$T$46	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$46, DW_AT_name("CPUTIMER_REGS")
 	.dwattr DW$T$46, DW_AT_byte_size(0x08)
-DW$253	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$37)
-	.dwattr DW$253, DW_AT_name("TIM"), DW_AT_symbol_name("_TIM")
-	.dwattr DW$253, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$253, DW_AT_accessibility(DW_ACCESS_public)
-DW$254	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$39)
-	.dwattr DW$254, DW_AT_name("PRD"), DW_AT_symbol_name("_PRD")
-	.dwattr DW$254, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
+DW$254	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$37)
+	.dwattr DW$254, DW_AT_name("TIM"), DW_AT_symbol_name("_TIM")
+	.dwattr DW$254, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$254, DW_AT_accessibility(DW_ACCESS_public)
-DW$255	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$41)
-	.dwattr DW$255, DW_AT_name("TCR"), DW_AT_symbol_name("_TCR")
-	.dwattr DW$255, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
+DW$255	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$39)
+	.dwattr DW$255, DW_AT_name("PRD"), DW_AT_symbol_name("_PRD")
+	.dwattr DW$255, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
 	.dwattr DW$255, DW_AT_accessibility(DW_ACCESS_public)
-DW$256	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$256, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$256, DW_AT_data_member_location[DW_OP_plus_uconst 0x5]
+DW$256	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$41)
+	.dwattr DW$256, DW_AT_name("TCR"), DW_AT_symbol_name("_TCR")
+	.dwattr DW$256, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
 	.dwattr DW$256, DW_AT_accessibility(DW_ACCESS_public)
-DW$257	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$43)
-	.dwattr DW$257, DW_AT_name("TPR"), DW_AT_symbol_name("_TPR")
-	.dwattr DW$257, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
+DW$257	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$257, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$257, DW_AT_data_member_location[DW_OP_plus_uconst 0x5]
 	.dwattr DW$257, DW_AT_accessibility(DW_ACCESS_public)
-DW$258	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$45)
-	.dwattr DW$258, DW_AT_name("TPRH"), DW_AT_symbol_name("_TPRH")
-	.dwattr DW$258, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+DW$258	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$43)
+	.dwattr DW$258, DW_AT_name("TPR"), DW_AT_symbol_name("_TPR")
+	.dwattr DW$258, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
 	.dwattr DW$258, DW_AT_accessibility(DW_ACCESS_public)
+DW$259	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$45)
+	.dwattr DW$259, DW_AT_name("TPRH"), DW_AT_symbol_name("_TPRH")
+	.dwattr DW$259, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+	.dwattr DW$259, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$46
 
 
 DW$T$91	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$91, DW_AT_name("EPWM_REGS")
 	.dwattr DW$T$91, DW_AT_byte_size(0x22)
-DW$259	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$48)
-	.dwattr DW$259, DW_AT_name("TBCTL"), DW_AT_symbol_name("_TBCTL")
-	.dwattr DW$259, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$259, DW_AT_accessibility(DW_ACCESS_public)
-DW$260	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$50)
-	.dwattr DW$260, DW_AT_name("TBSTS"), DW_AT_symbol_name("_TBSTS")
-	.dwattr DW$260, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+DW$260	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$48)
+	.dwattr DW$260, DW_AT_name("TBCTL"), DW_AT_symbol_name("_TBCTL")
+	.dwattr DW$260, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$260, DW_AT_accessibility(DW_ACCESS_public)
-DW$261	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$52)
-	.dwattr DW$261, DW_AT_name("TBPHS"), DW_AT_symbol_name("_TBPHS")
-	.dwattr DW$261, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
+DW$261	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$50)
+	.dwattr DW$261, DW_AT_name("TBSTS"), DW_AT_symbol_name("_TBSTS")
+	.dwattr DW$261, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$261, DW_AT_accessibility(DW_ACCESS_public)
-DW$262	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$262, DW_AT_name("TBCTR"), DW_AT_symbol_name("_TBCTR")
-	.dwattr DW$262, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
+DW$262	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$52)
+	.dwattr DW$262, DW_AT_name("TBPHS"), DW_AT_symbol_name("_TBPHS")
+	.dwattr DW$262, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
 	.dwattr DW$262, DW_AT_accessibility(DW_ACCESS_public)
 DW$263	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$263, DW_AT_name("TBPRD"), DW_AT_symbol_name("_TBPRD")
-	.dwattr DW$263, DW_AT_data_member_location[DW_OP_plus_uconst 0x5]
+	.dwattr DW$263, DW_AT_name("TBCTR"), DW_AT_symbol_name("_TBCTR")
+	.dwattr DW$263, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
 	.dwattr DW$263, DW_AT_accessibility(DW_ACCESS_public)
 DW$264	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$264, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$264, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
+	.dwattr DW$264, DW_AT_name("TBPRD"), DW_AT_symbol_name("_TBPRD")
+	.dwattr DW$264, DW_AT_data_member_location[DW_OP_plus_uconst 0x5]
 	.dwattr DW$264, DW_AT_accessibility(DW_ACCESS_public)
-DW$265	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$54)
-	.dwattr DW$265, DW_AT_name("CMPCTL"), DW_AT_symbol_name("_CMPCTL")
-	.dwattr DW$265, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+DW$265	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$265, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$265, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
 	.dwattr DW$265, DW_AT_accessibility(DW_ACCESS_public)
-DW$266	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$56)
-	.dwattr DW$266, DW_AT_name("CMPA"), DW_AT_symbol_name("_CMPA")
-	.dwattr DW$266, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
+DW$266	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$54)
+	.dwattr DW$266, DW_AT_name("CMPCTL"), DW_AT_symbol_name("_CMPCTL")
+	.dwattr DW$266, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
 	.dwattr DW$266, DW_AT_accessibility(DW_ACCESS_public)
-DW$267	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$267, DW_AT_name("CMPB"), DW_AT_symbol_name("_CMPB")
-	.dwattr DW$267, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
+DW$267	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$56)
+	.dwattr DW$267, DW_AT_name("CMPA"), DW_AT_symbol_name("_CMPA")
+	.dwattr DW$267, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
 	.dwattr DW$267, DW_AT_accessibility(DW_ACCESS_public)
-DW$268	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$58)
-	.dwattr DW$268, DW_AT_name("AQCTLA"), DW_AT_symbol_name("_AQCTLA")
-	.dwattr DW$268, DW_AT_data_member_location[DW_OP_plus_uconst 0xb]
+DW$268	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$268, DW_AT_name("CMPB"), DW_AT_symbol_name("_CMPB")
+	.dwattr DW$268, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
 	.dwattr DW$268, DW_AT_accessibility(DW_ACCESS_public)
 DW$269	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$58)
-	.dwattr DW$269, DW_AT_name("AQCTLB"), DW_AT_symbol_name("_AQCTLB")
-	.dwattr DW$269, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
+	.dwattr DW$269, DW_AT_name("AQCTLA"), DW_AT_symbol_name("_AQCTLA")
+	.dwattr DW$269, DW_AT_data_member_location[DW_OP_plus_uconst 0xb]
 	.dwattr DW$269, DW_AT_accessibility(DW_ACCESS_public)
-DW$270	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$60)
-	.dwattr DW$270, DW_AT_name("AQSFRC"), DW_AT_symbol_name("_AQSFRC")
-	.dwattr DW$270, DW_AT_data_member_location[DW_OP_plus_uconst 0xd]
+DW$270	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$58)
+	.dwattr DW$270, DW_AT_name("AQCTLB"), DW_AT_symbol_name("_AQCTLB")
+	.dwattr DW$270, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
 	.dwattr DW$270, DW_AT_accessibility(DW_ACCESS_public)
-DW$271	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$62)
-	.dwattr DW$271, DW_AT_name("AQCSFRC"), DW_AT_symbol_name("_AQCSFRC")
-	.dwattr DW$271, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
+DW$271	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$60)
+	.dwattr DW$271, DW_AT_name("AQSFRC"), DW_AT_symbol_name("_AQSFRC")
+	.dwattr DW$271, DW_AT_data_member_location[DW_OP_plus_uconst 0xd]
 	.dwattr DW$271, DW_AT_accessibility(DW_ACCESS_public)
-DW$272	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$64)
-	.dwattr DW$272, DW_AT_name("DBCTL"), DW_AT_symbol_name("_DBCTL")
-	.dwattr DW$272, DW_AT_data_member_location[DW_OP_plus_uconst 0xf]
+DW$272	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$62)
+	.dwattr DW$272, DW_AT_name("AQCSFRC"), DW_AT_symbol_name("_AQCSFRC")
+	.dwattr DW$272, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
 	.dwattr DW$272, DW_AT_accessibility(DW_ACCESS_public)
-DW$273	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$273, DW_AT_name("DBRED"), DW_AT_symbol_name("_DBRED")
-	.dwattr DW$273, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
+DW$273	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$64)
+	.dwattr DW$273, DW_AT_name("DBCTL"), DW_AT_symbol_name("_DBCTL")
+	.dwattr DW$273, DW_AT_data_member_location[DW_OP_plus_uconst 0xf]
 	.dwattr DW$273, DW_AT_accessibility(DW_ACCESS_public)
 DW$274	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$274, DW_AT_name("DBFED"), DW_AT_symbol_name("_DBFED")
-	.dwattr DW$274, DW_AT_data_member_location[DW_OP_plus_uconst 0x11]
+	.dwattr DW$274, DW_AT_name("DBRED"), DW_AT_symbol_name("_DBRED")
+	.dwattr DW$274, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
 	.dwattr DW$274, DW_AT_accessibility(DW_ACCESS_public)
-DW$275	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$66)
-	.dwattr DW$275, DW_AT_name("TZSEL"), DW_AT_symbol_name("_TZSEL")
-	.dwattr DW$275, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
+DW$275	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$275, DW_AT_name("DBFED"), DW_AT_symbol_name("_DBFED")
+	.dwattr DW$275, DW_AT_data_member_location[DW_OP_plus_uconst 0x11]
 	.dwattr DW$275, DW_AT_accessibility(DW_ACCESS_public)
-DW$276	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$276, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$276, DW_AT_data_member_location[DW_OP_plus_uconst 0x13]
+DW$276	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$66)
+	.dwattr DW$276, DW_AT_name("TZSEL"), DW_AT_symbol_name("_TZSEL")
+	.dwattr DW$276, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
 	.dwattr DW$276, DW_AT_accessibility(DW_ACCESS_public)
-DW$277	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$68)
-	.dwattr DW$277, DW_AT_name("TZCTL"), DW_AT_symbol_name("_TZCTL")
-	.dwattr DW$277, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
+DW$277	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$277, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$277, DW_AT_data_member_location[DW_OP_plus_uconst 0x13]
 	.dwattr DW$277, DW_AT_accessibility(DW_ACCESS_public)
-DW$278	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$70)
-	.dwattr DW$278, DW_AT_name("TZEINT"), DW_AT_symbol_name("_TZEINT")
-	.dwattr DW$278, DW_AT_data_member_location[DW_OP_plus_uconst 0x15]
+DW$278	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$68)
+	.dwattr DW$278, DW_AT_name("TZCTL"), DW_AT_symbol_name("_TZCTL")
+	.dwattr DW$278, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
 	.dwattr DW$278, DW_AT_accessibility(DW_ACCESS_public)
-DW$279	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$72)
-	.dwattr DW$279, DW_AT_name("TZFLG"), DW_AT_symbol_name("_TZFLG")
-	.dwattr DW$279, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
+DW$279	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$70)
+	.dwattr DW$279, DW_AT_name("TZEINT"), DW_AT_symbol_name("_TZEINT")
+	.dwattr DW$279, DW_AT_data_member_location[DW_OP_plus_uconst 0x15]
 	.dwattr DW$279, DW_AT_accessibility(DW_ACCESS_public)
-DW$280	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$74)
-	.dwattr DW$280, DW_AT_name("TZCLR"), DW_AT_symbol_name("_TZCLR")
-	.dwattr DW$280, DW_AT_data_member_location[DW_OP_plus_uconst 0x17]
+DW$280	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$72)
+	.dwattr DW$280, DW_AT_name("TZFLG"), DW_AT_symbol_name("_TZFLG")
+	.dwattr DW$280, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
 	.dwattr DW$280, DW_AT_accessibility(DW_ACCESS_public)
-DW$281	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$76)
-	.dwattr DW$281, DW_AT_name("TZFRC"), DW_AT_symbol_name("_TZFRC")
-	.dwattr DW$281, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
+DW$281	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$74)
+	.dwattr DW$281, DW_AT_name("TZCLR"), DW_AT_symbol_name("_TZCLR")
+	.dwattr DW$281, DW_AT_data_member_location[DW_OP_plus_uconst 0x17]
 	.dwattr DW$281, DW_AT_accessibility(DW_ACCESS_public)
-DW$282	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$78)
-	.dwattr DW$282, DW_AT_name("ETSEL"), DW_AT_symbol_name("_ETSEL")
-	.dwattr DW$282, DW_AT_data_member_location[DW_OP_plus_uconst 0x19]
+DW$282	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$76)
+	.dwattr DW$282, DW_AT_name("TZFRC"), DW_AT_symbol_name("_TZFRC")
+	.dwattr DW$282, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
 	.dwattr DW$282, DW_AT_accessibility(DW_ACCESS_public)
-DW$283	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$80)
-	.dwattr DW$283, DW_AT_name("ETPS"), DW_AT_symbol_name("_ETPS")
-	.dwattr DW$283, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
+DW$283	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$78)
+	.dwattr DW$283, DW_AT_name("ETSEL"), DW_AT_symbol_name("_ETSEL")
+	.dwattr DW$283, DW_AT_data_member_location[DW_OP_plus_uconst 0x19]
 	.dwattr DW$283, DW_AT_accessibility(DW_ACCESS_public)
-DW$284	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$82)
-	.dwattr DW$284, DW_AT_name("ETFLG"), DW_AT_symbol_name("_ETFLG")
-	.dwattr DW$284, DW_AT_data_member_location[DW_OP_plus_uconst 0x1b]
+DW$284	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$80)
+	.dwattr DW$284, DW_AT_name("ETPS"), DW_AT_symbol_name("_ETPS")
+	.dwattr DW$284, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
 	.dwattr DW$284, DW_AT_accessibility(DW_ACCESS_public)
-DW$285	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$84)
-	.dwattr DW$285, DW_AT_name("ETCLR"), DW_AT_symbol_name("_ETCLR")
-	.dwattr DW$285, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
+DW$285	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$82)
+	.dwattr DW$285, DW_AT_name("ETFLG"), DW_AT_symbol_name("_ETFLG")
+	.dwattr DW$285, DW_AT_data_member_location[DW_OP_plus_uconst 0x1b]
 	.dwattr DW$285, DW_AT_accessibility(DW_ACCESS_public)
-DW$286	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$86)
-	.dwattr DW$286, DW_AT_name("ETFRC"), DW_AT_symbol_name("_ETFRC")
-	.dwattr DW$286, DW_AT_data_member_location[DW_OP_plus_uconst 0x1d]
+DW$286	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$84)
+	.dwattr DW$286, DW_AT_name("ETCLR"), DW_AT_symbol_name("_ETCLR")
+	.dwattr DW$286, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
 	.dwattr DW$286, DW_AT_accessibility(DW_ACCESS_public)
-DW$287	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$88)
-	.dwattr DW$287, DW_AT_name("PCCTL"), DW_AT_symbol_name("_PCCTL")
-	.dwattr DW$287, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
+DW$287	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$86)
+	.dwattr DW$287, DW_AT_name("ETFRC"), DW_AT_symbol_name("_ETFRC")
+	.dwattr DW$287, DW_AT_data_member_location[DW_OP_plus_uconst 0x1d]
 	.dwattr DW$287, DW_AT_accessibility(DW_ACCESS_public)
-DW$288	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$288, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
-	.dwattr DW$288, DW_AT_data_member_location[DW_OP_plus_uconst 0x1f]
+DW$288	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$88)
+	.dwattr DW$288, DW_AT_name("PCCTL"), DW_AT_symbol_name("_PCCTL")
+	.dwattr DW$288, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
 	.dwattr DW$288, DW_AT_accessibility(DW_ACCESS_public)
-DW$289	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$90)
-	.dwattr DW$289, DW_AT_name("HRCNFG"), DW_AT_symbol_name("_HRCNFG")
-	.dwattr DW$289, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
+DW$289	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$289, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
+	.dwattr DW$289, DW_AT_data_member_location[DW_OP_plus_uconst 0x1f]
 	.dwattr DW$289, DW_AT_accessibility(DW_ACCESS_public)
+DW$290	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$90)
+	.dwattr DW$290, DW_AT_name("HRCNFG"), DW_AT_symbol_name("_HRCNFG")
+	.dwattr DW$290, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
+	.dwattr DW$290, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$91
 
 
 DW$T$93	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$93, DW_AT_byte_size(0x14)
-DW$290	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$290, DW_AT_name("Pos_PID_IQ17"), DW_AT_symbol_name("_Pos_PID_IQ17")
-	.dwattr DW$290, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$290, DW_AT_accessibility(DW_ACCESS_public)
 DW$291	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$291, DW_AT_name("Pos_P_IQ17"), DW_AT_symbol_name("_Pos_P_IQ17")
-	.dwattr DW$291, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
+	.dwattr DW$291, DW_AT_name("Pos_PID_IQ17"), DW_AT_symbol_name("_Pos_PID_IQ17")
+	.dwattr DW$291, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$291, DW_AT_accessibility(DW_ACCESS_public)
 DW$292	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$292, DW_AT_name("Pos_D_IQ17"), DW_AT_symbol_name("_Pos_D_IQ17")
-	.dwattr DW$292, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
+	.dwattr DW$292, DW_AT_name("Pos_P_IQ17"), DW_AT_symbol_name("_Pos_P_IQ17")
+	.dwattr DW$292, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
 	.dwattr DW$292, DW_AT_accessibility(DW_ACCESS_public)
-DW$293	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$92)
-	.dwattr DW$293, DW_AT_name("Pos_Err_IQ10"), DW_AT_symbol_name("_Pos_Err_IQ10")
-	.dwattr DW$293, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
+DW$293	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$293, DW_AT_name("Pos_D_IQ17"), DW_AT_symbol_name("_Pos_D_IQ17")
+	.dwattr DW$293, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
 	.dwattr DW$293, DW_AT_accessibility(DW_ACCESS_public)
-DW$294	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$294, DW_AT_name("Kp_val_IQ17"), DW_AT_symbol_name("_Kp_val_IQ17")
-	.dwattr DW$294, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
+DW$294	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$92)
+	.dwattr DW$294, DW_AT_name("Pos_Err_IQ10"), DW_AT_symbol_name("_Pos_Err_IQ10")
+	.dwattr DW$294, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
 	.dwattr DW$294, DW_AT_accessibility(DW_ACCESS_public)
 DW$295	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$295, DW_AT_name("Kd_val_IQ17"), DW_AT_symbol_name("_Kd_val_IQ17")
-	.dwattr DW$295, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
+	.dwattr DW$295, DW_AT_name("Kp_val_IQ17"), DW_AT_symbol_name("_Kp_val_IQ17")
+	.dwattr DW$295, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
 	.dwattr DW$295, DW_AT_accessibility(DW_ACCESS_public)
+DW$296	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$296, DW_AT_name("Kd_val_IQ17"), DW_AT_symbol_name("_Kd_val_IQ17")
+	.dwattr DW$296, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
+	.dwattr DW$296, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$93
 
-DW$296	.dwtag  DW_TAG_far_type
-	.dwattr DW$296, DW_AT_type(*DW$T$96)
-DW$T$179	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$179, DW_AT_type(*DW$296)
 DW$297	.dwtag  DW_TAG_far_type
-	.dwattr DW$297, DW_AT_type(*DW$T$97)
+	.dwattr DW$297, DW_AT_type(*DW$T$96)
+DW$T$179	.dwtag  DW_TAG_volatile_type
+	.dwattr DW$T$179, DW_AT_type(*DW$297)
+DW$298	.dwtag  DW_TAG_far_type
+	.dwattr DW$298, DW_AT_type(*DW$T$97)
 DW$T$182	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$182, DW_AT_type(*DW$297)
+	.dwattr DW$T$182, DW_AT_type(*DW$298)
 
 DW$T$98	.dwtag  DW_TAG_structure_type
-	.dwattr DW$T$98, DW_AT_byte_size(0x20)
-DW$298	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$298, DW_AT_name("Distance_R_U32"), DW_AT_symbol_name("_Distance_R_U32")
-	.dwattr DW$298, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$298, DW_AT_accessibility(DW_ACCESS_public)
+	.dwattr DW$T$98, DW_AT_byte_size(0x24)
 DW$299	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$299, DW_AT_name("Distance_L_U32"), DW_AT_symbol_name("_Distance_L_U32")
-	.dwattr DW$299, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
+	.dwattr DW$299, DW_AT_name("Distance_R_U32"), DW_AT_symbol_name("_Distance_R_U32")
+	.dwattr DW$299, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$299, DW_AT_accessibility(DW_ACCESS_public)
 DW$300	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$300, DW_AT_name("Distance_U32"), DW_AT_symbol_name("_Distance_U32")
-	.dwattr DW$300, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
+	.dwattr DW$300, DW_AT_name("Distance_L_U32"), DW_AT_symbol_name("_Distance_L_U32")
+	.dwattr DW$300, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
 	.dwattr DW$300, DW_AT_accessibility(DW_ACCESS_public)
 DW$301	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$301, DW_AT_name("TurnWay_U32"), DW_AT_symbol_name("_TurnWay_U32")
-	.dwattr DW$301, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
+	.dwattr DW$301, DW_AT_name("Distance_U32"), DW_AT_symbol_name("_Distance_U32")
+	.dwattr DW$301, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
 	.dwattr DW$301, DW_AT_accessibility(DW_ACCESS_public)
 DW$302	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$302, DW_AT_name("TurnDir_U32"), DW_AT_symbol_name("_TurnDir_U32")
-	.dwattr DW$302, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
+	.dwattr DW$302, DW_AT_name("TurnWay_U32"), DW_AT_symbol_name("_TurnWay_U32")
+	.dwattr DW$302, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
 	.dwattr DW$302, DW_AT_accessibility(DW_ACCESS_public)
 DW$303	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$303, DW_AT_name("CrossPlus_U32"), DW_AT_symbol_name("_CrossPlus_U32")
-	.dwattr DW$303, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
+	.dwattr DW$303, DW_AT_name("TurnDir_U32"), DW_AT_symbol_name("_TurnDir_U32")
+	.dwattr DW$303, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
 	.dwattr DW$303, DW_AT_accessibility(DW_ACCESS_public)
 DW$304	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$304, DW_AT_name("StepCnt_U32"), DW_AT_symbol_name("_StepCnt_U32")
-	.dwattr DW$304, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
+	.dwattr DW$304, DW_AT_name("CrossPlus_U32"), DW_AT_symbol_name("_CrossPlus_U32")
+	.dwattr DW$304, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
 	.dwattr DW$304, DW_AT_accessibility(DW_ACCESS_public)
-DW$305	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$305, DW_AT_name("Velo_IQ17"), DW_AT_symbol_name("_Velo_IQ17")
-	.dwattr DW$305, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
+DW$305	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
+	.dwattr DW$305, DW_AT_name("StepCnt_U32"), DW_AT_symbol_name("_StepCnt_U32")
+	.dwattr DW$305, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
 	.dwattr DW$305, DW_AT_accessibility(DW_ACCESS_public)
 DW$306	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$306, DW_AT_name("VeloIn_IQ17"), DW_AT_symbol_name("_VeloIn_IQ17")
-	.dwattr DW$306, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
+	.dwattr DW$306, DW_AT_name("Velo_IQ17"), DW_AT_symbol_name("_Velo_IQ17")
+	.dwattr DW$306, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
 	.dwattr DW$306, DW_AT_accessibility(DW_ACCESS_public)
 DW$307	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$307, DW_AT_name("VeloOut_IQ17"), DW_AT_symbol_name("_VeloOut_IQ17")
-	.dwattr DW$307, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
+	.dwattr DW$307, DW_AT_name("VeloIn_IQ17"), DW_AT_symbol_name("_VeloIn_IQ17")
+	.dwattr DW$307, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
 	.dwattr DW$307, DW_AT_accessibility(DW_ACCESS_public)
 DW$308	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$308, DW_AT_name("DecelDistance_IQ17"), DW_AT_symbol_name("_DecelDistance_IQ17")
-	.dwattr DW$308, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
+	.dwattr DW$308, DW_AT_name("VeloOut_IQ17"), DW_AT_symbol_name("_VeloOut_IQ17")
+	.dwattr DW$308, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
 	.dwattr DW$308, DW_AT_accessibility(DW_ACCESS_public)
 DW$309	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$309, DW_AT_name("MotorDistance_IQ17"), DW_AT_symbol_name("_MotorDistance_IQ17")
-	.dwattr DW$309, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
+	.dwattr DW$309, DW_AT_name("DecelDistance_IQ17"), DW_AT_symbol_name("_DecelDistance_IQ17")
+	.dwattr DW$309, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
 	.dwattr DW$309, DW_AT_accessibility(DW_ACCESS_public)
-DW$310	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
-	.dwattr DW$310, DW_AT_name("Jerk_IQ14"), DW_AT_symbol_name("_Jerk_IQ14")
-	.dwattr DW$310, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
+DW$310	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$310, DW_AT_name("MotorDistance_IQ17"), DW_AT_symbol_name("_MotorDistance_IQ17")
+	.dwattr DW$310, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
 	.dwattr DW$310, DW_AT_accessibility(DW_ACCESS_public)
 DW$311	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
-	.dwattr DW$311, DW_AT_name("Decel_IQ14"), DW_AT_symbol_name("_Decel_IQ14")
-	.dwattr DW$311, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
+	.dwattr DW$311, DW_AT_name("Jerk_IQ14"), DW_AT_symbol_name("_Jerk_IQ14")
+	.dwattr DW$311, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
 	.dwattr DW$311, DW_AT_accessibility(DW_ACCESS_public)
-DW$312	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$25)
-	.dwattr DW$312, DW_AT_name("Kp_UpDown_IQ17"), DW_AT_symbol_name("_Kp_UpDown_IQ17")
-	.dwattr DW$312, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
+DW$312	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
+	.dwattr DW$312, DW_AT_name("Decel_IQ14"), DW_AT_symbol_name("_Decel_IQ14")
+	.dwattr DW$312, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
 	.dwattr DW$312, DW_AT_accessibility(DW_ACCESS_public)
-DW$313	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$313, DW_AT_name("DownFlag_U16"), DW_AT_symbol_name("_DownFlag_U16")
-	.dwattr DW$313, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$313, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
+DW$313	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$25)
+	.dwattr DW$313, DW_AT_name("Kp_UpDown_IQ17"), DW_AT_symbol_name("_Kp_UpDown_IQ17")
+	.dwattr DW$313, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
 	.dwattr DW$313, DW_AT_accessibility(DW_ACCESS_public)
-DW$314	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
-	.dwattr DW$314, DW_AT_name("s44sFlag_U16"), DW_AT_symbol_name("_s44sFlag_U16")
-	.dwattr DW$314, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+DW$314	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
+	.dwattr DW$314, DW_AT_name("TargetPosition_IQ10"), DW_AT_symbol_name("_TargetPosition_IQ10")
 	.dwattr DW$314, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
 	.dwattr DW$314, DW_AT_accessibility(DW_ACCESS_public)
+DW$315	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$23)
+	.dwattr DW$315, DW_AT_name("PositionRatio_IQ10"), DW_AT_symbol_name("_PositionRatio_IQ10")
+	.dwattr DW$315, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
+	.dwattr DW$315, DW_AT_accessibility(DW_ACCESS_public)
+DW$316	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$316, DW_AT_name("DownFlag_U16"), DW_AT_symbol_name("_DownFlag_U16")
+	.dwattr DW$316, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
+	.dwattr DW$316, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
+	.dwattr DW$316, DW_AT_accessibility(DW_ACCESS_public)
+DW$317	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$317, DW_AT_name("s44sFlag_U16"), DW_AT_symbol_name("_s44sFlag_U16")
+	.dwattr DW$317, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$317, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
+	.dwattr DW$317, DW_AT_accessibility(DW_ACCESS_public)
+DW$318	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$20)
+	.dwattr DW$318, DW_AT_name("BlindFlag_U16"), DW_AT_symbol_name("_BlindFlag_U16")
+	.dwattr DW$318, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$318, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
+	.dwattr DW$318, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$98
 
 DW$T$185	.dwtag  DW_TAG_typedef, DW_AT_name("TRACKINFO"), DW_AT_type(*DW$T$98)
@@ -3137,1364 +3156,1338 @@ DW$T$102	.dwtag  DW_TAG_base_type, DW_AT_name("signed char")
 	.dwattr DW$T$102, DW_AT_byte_size(0x01)
 DW$T$190	.dwtag  DW_TAG_pointer_type, DW_AT_type(*DW$T$189)
 	.dwattr DW$T$190, DW_AT_address_class(0x16)
-DW$315	.dwtag  DW_TAG_far_type
-	.dwattr DW$315, DW_AT_type(*DW$T$190)
+DW$319	.dwtag  DW_TAG_far_type
+	.dwattr DW$319, DW_AT_type(*DW$T$190)
 DW$T$192	.dwtag  DW_TAG_const_type
-	.dwattr DW$T$192, DW_AT_type(*DW$315)
+	.dwattr DW$T$192, DW_AT_type(*DW$319)
 
 DW$T$21	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$20)
 	.dwattr DW$T$21, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$21, DW_AT_byte_size(0x10)
-DW$316	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$316, DW_AT_upper_bound(0x0f)
+DW$320	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$320, DW_AT_upper_bound(0x0f)
 	.dwendtag DW$T$21
 
 
 DW$T$34	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$19)
 	.dwattr DW$T$34, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$34, DW_AT_byte_size(0x10)
-DW$317	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$317, DW_AT_upper_bound(0x0f)
+DW$321	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$321, DW_AT_upper_bound(0x0f)
 	.dwendtag DW$T$34
 
-DW$318	.dwtag  DW_TAG_far_type
-	.dwattr DW$318, DW_AT_type(*DW$T$22)
+DW$322	.dwtag  DW_TAG_far_type
+	.dwattr DW$322, DW_AT_type(*DW$T$22)
 DW$T$23	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$23, DW_AT_type(*DW$318)
+	.dwattr DW$T$23, DW_AT_type(*DW$322)
 
 DW$T$92	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$22)
 	.dwattr DW$T$92, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$92, DW_AT_byte_size(0x0a)
-DW$319	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$319, DW_AT_upper_bound(0x04)
+DW$323	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$323, DW_AT_upper_bound(0x04)
 	.dwendtag DW$T$92
 
-DW$320	.dwtag  DW_TAG_far_type
-	.dwattr DW$320, DW_AT_type(*DW$T$24)
+DW$324	.dwtag  DW_TAG_far_type
+	.dwattr DW$324, DW_AT_type(*DW$T$24)
 DW$T$25	.dwtag  DW_TAG_volatile_type
-	.dwattr DW$T$25, DW_AT_type(*DW$320)
+	.dwattr DW$T$25, DW_AT_type(*DW$324)
 
 DW$T$26	.dwtag  DW_TAG_array_type, DW_AT_type(*DW$T$25)
 	.dwattr DW$T$26, DW_AT_language(DW_LANG_C)
 	.dwattr DW$T$26, DW_AT_byte_size(0x20)
-DW$321	.dwtag  DW_TAG_subrange_type
-	.dwattr DW$321, DW_AT_upper_bound(0x0f)
+DW$325	.dwtag  DW_TAG_subrange_type
+	.dwattr DW$325, DW_AT_upper_bound(0x0f)
 	.dwendtag DW$T$26
 
 
 DW$T$28	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$28, DW_AT_byte_size(0x08)
-DW$322	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$322, DW_AT_name("TurnmarkDistance_IQ17"), DW_AT_symbol_name("_TurnmarkDistance_IQ17")
-	.dwattr DW$322, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$322, DW_AT_accessibility(DW_ACCESS_public)
-DW$323	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$323, DW_AT_name("LimitDistance_IQ17"), DW_AT_symbol_name("_LimitDistance_IQ17")
-	.dwattr DW$323, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
-	.dwattr DW$323, DW_AT_accessibility(DW_ACCESS_public)
-DW$324	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$324, DW_AT_name("coef_IQ17"), DW_AT_symbol_name("_coef_IQ17")
-	.dwattr DW$324, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
-	.dwattr DW$324, DW_AT_accessibility(DW_ACCESS_public)
-DW$325	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$325, DW_AT_name("MarkEnable_U16"), DW_AT_symbol_name("_MarkEnable_U16")
-	.dwattr DW$325, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
-	.dwattr DW$325, DW_AT_accessibility(DW_ACCESS_public)
-DW$326	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$326, DW_AT_name("TurnFlag_U16"), DW_AT_symbol_name("_TurnFlag_U16")
-	.dwattr DW$326, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$326, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+DW$326	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$326, DW_AT_name("TurnmarkDistance_IQ17"), DW_AT_symbol_name("_TurnmarkDistance_IQ17")
+	.dwattr DW$326, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$326, DW_AT_accessibility(DW_ACCESS_public)
-DW$327	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$327, DW_AT_name("SingleFlag_U16"), DW_AT_symbol_name("_SingleFlag_U16")
-	.dwattr DW$327, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$327, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+DW$327	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$327, DW_AT_name("LimitDistance_IQ17"), DW_AT_symbol_name("_LimitDistance_IQ17")
+	.dwattr DW$327, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
 	.dwattr DW$327, DW_AT_accessibility(DW_ACCESS_public)
-DW$328	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$328, DW_AT_name("CrossMark_U16"), DW_AT_symbol_name("_CrossMark_U16")
-	.dwattr DW$328, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$328, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+DW$328	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$328, DW_AT_name("coef_IQ17"), DW_AT_symbol_name("_coef_IQ17")
+	.dwattr DW$328, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
 	.dwattr DW$328, DW_AT_accessibility(DW_ACCESS_public)
+DW$329	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$329, DW_AT_name("MarkEnable_U16"), DW_AT_symbol_name("_MarkEnable_U16")
+	.dwattr DW$329, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
+	.dwattr DW$329, DW_AT_accessibility(DW_ACCESS_public)
+DW$330	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$330, DW_AT_name("TurnFlag_U16"), DW_AT_symbol_name("_TurnFlag_U16")
+	.dwattr DW$330, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
+	.dwattr DW$330, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+	.dwattr DW$330, DW_AT_accessibility(DW_ACCESS_public)
+DW$331	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$331, DW_AT_name("SingleFlag_U16"), DW_AT_symbol_name("_SingleFlag_U16")
+	.dwattr DW$331, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$331, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+	.dwattr DW$331, DW_AT_accessibility(DW_ACCESS_public)
+DW$332	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$332, DW_AT_name("CrossMark_U16"), DW_AT_symbol_name("_CrossMark_U16")
+	.dwattr DW$332, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$332, DW_AT_data_member_location[DW_OP_plus_uconst 0x7]
+	.dwattr DW$332, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$28
 
 
 DW$T$31	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$31, DW_AT_name("GPADAT_REG")
 	.dwattr DW$T$31, DW_AT_byte_size(0x02)
-DW$329	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$329, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$329, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$329, DW_AT_accessibility(DW_ACCESS_public)
-DW$330	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$29)
-	.dwattr DW$330, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$330, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$330, DW_AT_accessibility(DW_ACCESS_public)
+DW$333	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
+	.dwattr DW$333, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$333, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$333, DW_AT_accessibility(DW_ACCESS_public)
+DW$334	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$29)
+	.dwattr DW$334, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$334, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$334, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$31
 
 
 DW$T$33	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$33, DW_AT_name("GPBDAT_REG")
 	.dwattr DW$T$33, DW_AT_byte_size(0x02)
-DW$331	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$331, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$331, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$331, DW_AT_accessibility(DW_ACCESS_public)
-DW$332	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$32)
-	.dwattr DW$332, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$332, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$332, DW_AT_accessibility(DW_ACCESS_public)
+DW$335	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
+	.dwattr DW$335, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$335, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$335, DW_AT_accessibility(DW_ACCESS_public)
+DW$336	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$32)
+	.dwattr DW$336, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$336, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$336, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$33
 
 
 DW$T$37	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$37, DW_AT_name("TIM_GROUP")
 	.dwattr DW$T$37, DW_AT_byte_size(0x02)
-DW$333	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$333, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$333, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$333, DW_AT_accessibility(DW_ACCESS_public)
-DW$334	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$36)
-	.dwattr DW$334, DW_AT_name("half"), DW_AT_symbol_name("_half")
-	.dwattr DW$334, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$334, DW_AT_accessibility(DW_ACCESS_public)
+DW$337	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
+	.dwattr DW$337, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$337, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$337, DW_AT_accessibility(DW_ACCESS_public)
+DW$338	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$36)
+	.dwattr DW$338, DW_AT_name("half"), DW_AT_symbol_name("_half")
+	.dwattr DW$338, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$338, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$37
 
 
 DW$T$39	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$39, DW_AT_name("PRD_GROUP")
 	.dwattr DW$T$39, DW_AT_byte_size(0x02)
-DW$335	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$335, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$335, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$335, DW_AT_accessibility(DW_ACCESS_public)
-DW$336	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$38)
-	.dwattr DW$336, DW_AT_name("half"), DW_AT_symbol_name("_half")
-	.dwattr DW$336, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$336, DW_AT_accessibility(DW_ACCESS_public)
+DW$339	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
+	.dwattr DW$339, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$339, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$339, DW_AT_accessibility(DW_ACCESS_public)
+DW$340	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$38)
+	.dwattr DW$340, DW_AT_name("half"), DW_AT_symbol_name("_half")
+	.dwattr DW$340, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$340, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$39
 
 
 DW$T$41	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$41, DW_AT_name("TCR_REG")
 	.dwattr DW$T$41, DW_AT_byte_size(0x01)
-DW$337	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$337, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$337, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$337, DW_AT_accessibility(DW_ACCESS_public)
-DW$338	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$40)
-	.dwattr DW$338, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$338, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$338, DW_AT_accessibility(DW_ACCESS_public)
+DW$341	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$341, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$341, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$341, DW_AT_accessibility(DW_ACCESS_public)
+DW$342	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$40)
+	.dwattr DW$342, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$342, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$342, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$41
 
 
 DW$T$43	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$43, DW_AT_name("TPR_REG")
 	.dwattr DW$T$43, DW_AT_byte_size(0x01)
-DW$339	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$339, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$339, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$339, DW_AT_accessibility(DW_ACCESS_public)
-DW$340	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$42)
-	.dwattr DW$340, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$340, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$340, DW_AT_accessibility(DW_ACCESS_public)
+DW$343	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$343, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$343, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$343, DW_AT_accessibility(DW_ACCESS_public)
+DW$344	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$42)
+	.dwattr DW$344, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$344, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$344, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$43
 
 
 DW$T$45	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$45, DW_AT_name("TPRH_REG")
 	.dwattr DW$T$45, DW_AT_byte_size(0x01)
-DW$341	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$341, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$341, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$341, DW_AT_accessibility(DW_ACCESS_public)
-DW$342	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$44)
-	.dwattr DW$342, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$342, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$342, DW_AT_accessibility(DW_ACCESS_public)
+DW$345	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$345, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$345, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$345, DW_AT_accessibility(DW_ACCESS_public)
+DW$346	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$44)
+	.dwattr DW$346, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$346, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$346, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$45
 
 
 DW$T$48	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$48, DW_AT_name("TBCTL_REG")
 	.dwattr DW$T$48, DW_AT_byte_size(0x01)
-DW$343	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$343, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$343, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$343, DW_AT_accessibility(DW_ACCESS_public)
-DW$344	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$47)
-	.dwattr DW$344, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$344, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$344, DW_AT_accessibility(DW_ACCESS_public)
+DW$347	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$347, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$347, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$347, DW_AT_accessibility(DW_ACCESS_public)
+DW$348	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$47)
+	.dwattr DW$348, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$348, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$348, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$48
 
 
 DW$T$50	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$50, DW_AT_name("TBSTS_REG")
 	.dwattr DW$T$50, DW_AT_byte_size(0x01)
-DW$345	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$345, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$345, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$345, DW_AT_accessibility(DW_ACCESS_public)
-DW$346	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$49)
-	.dwattr DW$346, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$346, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$346, DW_AT_accessibility(DW_ACCESS_public)
+DW$349	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$349, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$349, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$349, DW_AT_accessibility(DW_ACCESS_public)
+DW$350	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$49)
+	.dwattr DW$350, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$350, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$350, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$50
 
 
 DW$T$52	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$52, DW_AT_name("TBPHS_HRPWM_GROUP")
 	.dwattr DW$T$52, DW_AT_byte_size(0x02)
-DW$347	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$347, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$347, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$347, DW_AT_accessibility(DW_ACCESS_public)
-DW$348	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$51)
-	.dwattr DW$348, DW_AT_name("half"), DW_AT_symbol_name("_half")
-	.dwattr DW$348, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$348, DW_AT_accessibility(DW_ACCESS_public)
+DW$351	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
+	.dwattr DW$351, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$351, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$351, DW_AT_accessibility(DW_ACCESS_public)
+DW$352	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$51)
+	.dwattr DW$352, DW_AT_name("half"), DW_AT_symbol_name("_half")
+	.dwattr DW$352, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$352, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$52
 
 
 DW$T$54	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$54, DW_AT_name("CMPCTL_REG")
 	.dwattr DW$T$54, DW_AT_byte_size(0x01)
-DW$349	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$349, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$349, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$349, DW_AT_accessibility(DW_ACCESS_public)
-DW$350	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$53)
-	.dwattr DW$350, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$350, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$350, DW_AT_accessibility(DW_ACCESS_public)
+DW$353	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$353, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$353, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$353, DW_AT_accessibility(DW_ACCESS_public)
+DW$354	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$53)
+	.dwattr DW$354, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$354, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$354, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$54
 
 
 DW$T$56	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$56, DW_AT_name("CMPA_HRPWM_GROUP")
 	.dwattr DW$T$56, DW_AT_byte_size(0x02)
-DW$351	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
-	.dwattr DW$351, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$351, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$351, DW_AT_accessibility(DW_ACCESS_public)
-DW$352	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$55)
-	.dwattr DW$352, DW_AT_name("half"), DW_AT_symbol_name("_half")
-	.dwattr DW$352, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$352, DW_AT_accessibility(DW_ACCESS_public)
+DW$355	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$30)
+	.dwattr DW$355, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$355, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$355, DW_AT_accessibility(DW_ACCESS_public)
+DW$356	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$55)
+	.dwattr DW$356, DW_AT_name("half"), DW_AT_symbol_name("_half")
+	.dwattr DW$356, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$356, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$56
 
 
 DW$T$58	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$58, DW_AT_name("AQCTL_REG")
 	.dwattr DW$T$58, DW_AT_byte_size(0x01)
-DW$353	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$353, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$353, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$353, DW_AT_accessibility(DW_ACCESS_public)
-DW$354	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$57)
-	.dwattr DW$354, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$354, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$354, DW_AT_accessibility(DW_ACCESS_public)
+DW$357	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$357, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$357, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$357, DW_AT_accessibility(DW_ACCESS_public)
+DW$358	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$57)
+	.dwattr DW$358, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$358, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$358, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$58
 
 
 DW$T$60	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$60, DW_AT_name("AQSFRC_REG")
 	.dwattr DW$T$60, DW_AT_byte_size(0x01)
-DW$355	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$355, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$355, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$355, DW_AT_accessibility(DW_ACCESS_public)
-DW$356	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$59)
-	.dwattr DW$356, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$356, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$356, DW_AT_accessibility(DW_ACCESS_public)
+DW$359	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$359, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$359, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$359, DW_AT_accessibility(DW_ACCESS_public)
+DW$360	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$59)
+	.dwattr DW$360, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$360, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$360, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$60
 
 
 DW$T$62	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$62, DW_AT_name("AQCSFRC_REG")
 	.dwattr DW$T$62, DW_AT_byte_size(0x01)
-DW$357	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$357, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$357, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$357, DW_AT_accessibility(DW_ACCESS_public)
-DW$358	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$61)
-	.dwattr DW$358, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$358, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$358, DW_AT_accessibility(DW_ACCESS_public)
+DW$361	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$361, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$361, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$361, DW_AT_accessibility(DW_ACCESS_public)
+DW$362	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$61)
+	.dwattr DW$362, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$362, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$362, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$62
 
 
 DW$T$64	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$64, DW_AT_name("DBCTL_REG")
 	.dwattr DW$T$64, DW_AT_byte_size(0x01)
-DW$359	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$359, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$359, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$359, DW_AT_accessibility(DW_ACCESS_public)
-DW$360	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$63)
-	.dwattr DW$360, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$360, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$360, DW_AT_accessibility(DW_ACCESS_public)
+DW$363	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$363, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$363, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$363, DW_AT_accessibility(DW_ACCESS_public)
+DW$364	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$63)
+	.dwattr DW$364, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$364, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$364, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$64
 
 
 DW$T$66	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$66, DW_AT_name("TZSEL_REG")
 	.dwattr DW$T$66, DW_AT_byte_size(0x01)
-DW$361	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$361, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$361, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$361, DW_AT_accessibility(DW_ACCESS_public)
-DW$362	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$65)
-	.dwattr DW$362, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$362, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$362, DW_AT_accessibility(DW_ACCESS_public)
+DW$365	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$365, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$365, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$365, DW_AT_accessibility(DW_ACCESS_public)
+DW$366	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$65)
+	.dwattr DW$366, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$366, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$366, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$66
 
 
 DW$T$68	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$68, DW_AT_name("TZCTL_REG")
 	.dwattr DW$T$68, DW_AT_byte_size(0x01)
-DW$363	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$363, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$363, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$363, DW_AT_accessibility(DW_ACCESS_public)
-DW$364	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$67)
-	.dwattr DW$364, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$364, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$364, DW_AT_accessibility(DW_ACCESS_public)
+DW$367	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$367, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$367, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$367, DW_AT_accessibility(DW_ACCESS_public)
+DW$368	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$67)
+	.dwattr DW$368, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$368, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$368, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$68
 
 
 DW$T$70	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$70, DW_AT_name("TZEINT_REG")
 	.dwattr DW$T$70, DW_AT_byte_size(0x01)
-DW$365	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$365, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$365, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$365, DW_AT_accessibility(DW_ACCESS_public)
-DW$366	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$69)
-	.dwattr DW$366, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$366, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$366, DW_AT_accessibility(DW_ACCESS_public)
+DW$369	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$369, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$369, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$369, DW_AT_accessibility(DW_ACCESS_public)
+DW$370	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$69)
+	.dwattr DW$370, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$370, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$370, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$70
 
 
 DW$T$72	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$72, DW_AT_name("TZFLG_REG")
 	.dwattr DW$T$72, DW_AT_byte_size(0x01)
-DW$367	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$367, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$367, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$367, DW_AT_accessibility(DW_ACCESS_public)
-DW$368	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$71)
-	.dwattr DW$368, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$368, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$368, DW_AT_accessibility(DW_ACCESS_public)
+DW$371	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$371, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$371, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$371, DW_AT_accessibility(DW_ACCESS_public)
+DW$372	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$71)
+	.dwattr DW$372, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$372, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$372, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$72
 
 
 DW$T$74	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$74, DW_AT_name("TZCLR_REG")
 	.dwattr DW$T$74, DW_AT_byte_size(0x01)
-DW$369	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$369, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$369, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$369, DW_AT_accessibility(DW_ACCESS_public)
-DW$370	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$73)
-	.dwattr DW$370, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$370, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$370, DW_AT_accessibility(DW_ACCESS_public)
+DW$373	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$373, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$373, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$373, DW_AT_accessibility(DW_ACCESS_public)
+DW$374	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$73)
+	.dwattr DW$374, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$374, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$374, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$74
 
 
 DW$T$76	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$76, DW_AT_name("TZFRC_REG")
 	.dwattr DW$T$76, DW_AT_byte_size(0x01)
-DW$371	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$371, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$371, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$371, DW_AT_accessibility(DW_ACCESS_public)
-DW$372	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$75)
-	.dwattr DW$372, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$372, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$372, DW_AT_accessibility(DW_ACCESS_public)
+DW$375	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$375, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$375, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$375, DW_AT_accessibility(DW_ACCESS_public)
+DW$376	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$75)
+	.dwattr DW$376, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$376, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$376, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$76
 
 
 DW$T$78	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$78, DW_AT_name("ETSEL_REG")
 	.dwattr DW$T$78, DW_AT_byte_size(0x01)
-DW$373	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$373, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$373, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$373, DW_AT_accessibility(DW_ACCESS_public)
-DW$374	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$77)
-	.dwattr DW$374, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$374, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$374, DW_AT_accessibility(DW_ACCESS_public)
+DW$377	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$377, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$377, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$377, DW_AT_accessibility(DW_ACCESS_public)
+DW$378	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$77)
+	.dwattr DW$378, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$378, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$378, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$78
 
 
 DW$T$80	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$80, DW_AT_name("ETPS_REG")
 	.dwattr DW$T$80, DW_AT_byte_size(0x01)
-DW$375	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$375, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$375, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$375, DW_AT_accessibility(DW_ACCESS_public)
-DW$376	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$79)
-	.dwattr DW$376, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$376, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$376, DW_AT_accessibility(DW_ACCESS_public)
+DW$379	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$379, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$379, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$379, DW_AT_accessibility(DW_ACCESS_public)
+DW$380	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$79)
+	.dwattr DW$380, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$380, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$380, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$80
 
 
 DW$T$82	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$82, DW_AT_name("ETFLG_REG")
 	.dwattr DW$T$82, DW_AT_byte_size(0x01)
-DW$377	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$377, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$377, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$377, DW_AT_accessibility(DW_ACCESS_public)
-DW$378	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$81)
-	.dwattr DW$378, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$378, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$378, DW_AT_accessibility(DW_ACCESS_public)
+DW$381	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$381, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$381, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$381, DW_AT_accessibility(DW_ACCESS_public)
+DW$382	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$81)
+	.dwattr DW$382, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$382, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$382, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$82
 
 
 DW$T$84	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$84, DW_AT_name("ETCLR_REG")
 	.dwattr DW$T$84, DW_AT_byte_size(0x01)
-DW$379	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$379, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$379, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$379, DW_AT_accessibility(DW_ACCESS_public)
-DW$380	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$83)
-	.dwattr DW$380, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$380, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$380, DW_AT_accessibility(DW_ACCESS_public)
+DW$383	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$383, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$383, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$383, DW_AT_accessibility(DW_ACCESS_public)
+DW$384	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$83)
+	.dwattr DW$384, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$384, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$384, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$84
 
 
 DW$T$86	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$86, DW_AT_name("ETFRC_REG")
 	.dwattr DW$T$86, DW_AT_byte_size(0x01)
-DW$381	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$381, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$381, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$381, DW_AT_accessibility(DW_ACCESS_public)
-DW$382	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$85)
-	.dwattr DW$382, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$382, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$382, DW_AT_accessibility(DW_ACCESS_public)
+DW$385	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$385, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$385, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$385, DW_AT_accessibility(DW_ACCESS_public)
+DW$386	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$85)
+	.dwattr DW$386, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$386, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$386, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$86
 
 
 DW$T$88	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$88, DW_AT_name("PCCTL_REG")
 	.dwattr DW$T$88, DW_AT_byte_size(0x01)
-DW$383	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$383, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$383, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$383, DW_AT_accessibility(DW_ACCESS_public)
-DW$384	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$87)
-	.dwattr DW$384, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$384, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$384, DW_AT_accessibility(DW_ACCESS_public)
+DW$387	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$387, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$387, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$387, DW_AT_accessibility(DW_ACCESS_public)
+DW$388	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$87)
+	.dwattr DW$388, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$388, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$388, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$88
 
 
 DW$T$90	.dwtag  DW_TAG_union_type
 	.dwattr DW$T$90, DW_AT_name("HRCNFG_REG")
 	.dwattr DW$T$90, DW_AT_byte_size(0x01)
-DW$385	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$385, DW_AT_name("all"), DW_AT_symbol_name("_all")
-	.dwattr DW$385, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$385, DW_AT_accessibility(DW_ACCESS_public)
-DW$386	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$89)
-	.dwattr DW$386, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
-	.dwattr DW$386, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$386, DW_AT_accessibility(DW_ACCESS_public)
+DW$389	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$389, DW_AT_name("all"), DW_AT_symbol_name("_all")
+	.dwattr DW$389, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$389, DW_AT_accessibility(DW_ACCESS_public)
+DW$390	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$89)
+	.dwattr DW$390, DW_AT_name("bit"), DW_AT_symbol_name("_bit")
+	.dwattr DW$390, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$390, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$90
 
 
 DW$T$96	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$96, DW_AT_byte_size(0x28)
-DW$387	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$387, DW_AT_name("TargetVel_IQ17"), DW_AT_symbol_name("_TargetVel_IQ17")
-	.dwattr DW$387, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$387, DW_AT_accessibility(DW_ACCESS_public)
-DW$388	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$388, DW_AT_name("NextVelocity_IQ17"), DW_AT_symbol_name("_NextVelocity_IQ17")
-	.dwattr DW$388, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
-	.dwattr DW$388, DW_AT_accessibility(DW_ACCESS_public)
-DW$389	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$389, DW_AT_name("HandleVelo_IQ17"), DW_AT_symbol_name("_HandleVelo_IQ17")
-	.dwattr DW$389, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
-	.dwattr DW$389, DW_AT_accessibility(DW_ACCESS_public)
-DW$390	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$390, DW_AT_name("DecelVelocity_IQ17"), DW_AT_symbol_name("_DecelVelocity_IQ17")
-	.dwattr DW$390, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
-	.dwattr DW$390, DW_AT_accessibility(DW_ACCESS_public)
 DW$391	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$391, DW_AT_name("TurnMarkCheckDistance_IQ17"), DW_AT_symbol_name("_TurnMarkCheckDistance_IQ17")
-	.dwattr DW$391, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
+	.dwattr DW$391, DW_AT_name("TargetVel_IQ17"), DW_AT_symbol_name("_TargetVel_IQ17")
+	.dwattr DW$391, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$391, DW_AT_accessibility(DW_ACCESS_public)
-DW$392	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$94)
-	.dwattr DW$392, DW_AT_name("GoneDistance_IQ15"), DW_AT_symbol_name("_GoneDistance_IQ15")
-	.dwattr DW$392, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
+DW$392	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$392, DW_AT_name("NextVelocity_IQ17"), DW_AT_symbol_name("_NextVelocity_IQ17")
+	.dwattr DW$392, DW_AT_data_member_location[DW_OP_plus_uconst 0x2]
 	.dwattr DW$392, DW_AT_accessibility(DW_ACCESS_public)
-DW$393	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$94)
-	.dwattr DW$393, DW_AT_name("CrossCheckDistance_IQ15"), DW_AT_symbol_name("_CrossCheckDistance_IQ15")
-	.dwattr DW$393, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
+DW$393	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$393, DW_AT_name("HandleVelo_IQ17"), DW_AT_symbol_name("_HandleVelo_IQ17")
+	.dwattr DW$393, DW_AT_data_member_location[DW_OP_plus_uconst 0x4]
 	.dwattr DW$393, DW_AT_accessibility(DW_ACCESS_public)
 DW$394	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$394, DW_AT_name("DecelDistance_IQ17"), DW_AT_symbol_name("_DecelDistance_IQ17")
-	.dwattr DW$394, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
+	.dwattr DW$394, DW_AT_name("DecelVelocity_IQ17"), DW_AT_symbol_name("_DecelVelocity_IQ17")
+	.dwattr DW$394, DW_AT_data_member_location[DW_OP_plus_uconst 0x6]
 	.dwattr DW$394, DW_AT_accessibility(DW_ACCESS_public)
 DW$395	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$395, DW_AT_name("ErrorDistance_IQ17"), DW_AT_symbol_name("_ErrorDistance_IQ17")
-	.dwattr DW$395, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
+	.dwattr DW$395, DW_AT_name("TurnMarkCheckDistance_IQ17"), DW_AT_symbol_name("_TurnMarkCheckDistance_IQ17")
+	.dwattr DW$395, DW_AT_data_member_location[DW_OP_plus_uconst 0x8]
 	.dwattr DW$395, DW_AT_accessibility(DW_ACCESS_public)
-DW$396	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$396, DW_AT_name("UserDistance_IQ17"), DW_AT_symbol_name("_UserDistance_IQ17")
-	.dwattr DW$396, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
+DW$396	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$94)
+	.dwattr DW$396, DW_AT_name("GoneDistance_IQ15"), DW_AT_symbol_name("_GoneDistance_IQ15")
+	.dwattr DW$396, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
 	.dwattr DW$396, DW_AT_accessibility(DW_ACCESS_public)
-DW$397	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$397, DW_AT_name("DecelFlag_U16"), DW_AT_symbol_name("_DecelFlag_U16")
-	.dwattr DW$397, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
+DW$397	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$94)
+	.dwattr DW$397, DW_AT_name("CrossCheckDistance_IQ15"), DW_AT_symbol_name("_CrossCheckDistance_IQ15")
+	.dwattr DW$397, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
 	.dwattr DW$397, DW_AT_accessibility(DW_ACCESS_public)
-DW$398	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$398, DW_AT_name("PwmTBPRD_U16"), DW_AT_symbol_name("_PwmTBPRD_U16")
-	.dwattr DW$398, DW_AT_data_member_location[DW_OP_plus_uconst 0x15]
+DW$398	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$398, DW_AT_name("DecelDistance_IQ17"), DW_AT_symbol_name("_DecelDistance_IQ17")
+	.dwattr DW$398, DW_AT_data_member_location[DW_OP_plus_uconst 0xe]
 	.dwattr DW$398, DW_AT_accessibility(DW_ACCESS_public)
 DW$399	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$399, DW_AT_name("PwmTBPRDdiv10000_IQ17"), DW_AT_symbol_name("_PwmTBPRDdiv10000_IQ17")
-	.dwattr DW$399, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
+	.dwattr DW$399, DW_AT_name("ErrorDistance_IQ17"), DW_AT_symbol_name("_ErrorDistance_IQ17")
+	.dwattr DW$399, DW_AT_data_member_location[DW_OP_plus_uconst 0x10]
 	.dwattr DW$399, DW_AT_accessibility(DW_ACCESS_public)
-DW$400	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
-	.dwattr DW$400, DW_AT_name("PrdNext_IQ14"), DW_AT_symbol_name("_PrdNext_IQ14")
-	.dwattr DW$400, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
+DW$400	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$400, DW_AT_name("UserDistance_IQ17"), DW_AT_symbol_name("_UserDistance_IQ17")
+	.dwattr DW$400, DW_AT_data_member_location[DW_OP_plus_uconst 0x12]
 	.dwattr DW$400, DW_AT_accessibility(DW_ACCESS_public)
-DW$401	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$401, DW_AT_name("PrdNextTranSecon_IQ17"), DW_AT_symbol_name("_PrdNextTranSecon_IQ17")
-	.dwattr DW$401, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
+DW$401	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$401, DW_AT_name("DecelFlag_U16"), DW_AT_symbol_name("_DecelFlag_U16")
+	.dwattr DW$401, DW_AT_data_member_location[DW_OP_plus_uconst 0x14]
 	.dwattr DW$401, DW_AT_accessibility(DW_ACCESS_public)
-DW$402	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$402, DW_AT_name("RolEachStep_IQ17"), DW_AT_symbol_name("_RolEachStep_IQ17")
-	.dwattr DW$402, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
+DW$402	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$402, DW_AT_name("PwmTBPRD_U16"), DW_AT_symbol_name("_PwmTBPRD_U16")
+	.dwattr DW$402, DW_AT_data_member_location[DW_OP_plus_uconst 0x15]
 	.dwattr DW$402, DW_AT_accessibility(DW_ACCESS_public)
-DW$403	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
-	.dwattr DW$403, DW_AT_name("NextAccel_IQ14"), DW_AT_symbol_name("_NextAccel_IQ14")
-	.dwattr DW$403, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
+DW$403	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$403, DW_AT_name("PwmTBPRDdiv10000_IQ17"), DW_AT_symbol_name("_PwmTBPRDdiv10000_IQ17")
+	.dwattr DW$403, DW_AT_data_member_location[DW_OP_plus_uconst 0x16]
 	.dwattr DW$403, DW_AT_accessibility(DW_ACCESS_public)
 DW$404	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
-	.dwattr DW$404, DW_AT_name("AccelLimit_IQ14"), DW_AT_symbol_name("_AccelLimit_IQ14")
-	.dwattr DW$404, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
+	.dwattr DW$404, DW_AT_name("PrdNext_IQ14"), DW_AT_symbol_name("_PrdNext_IQ14")
+	.dwattr DW$404, DW_AT_data_member_location[DW_OP_plus_uconst 0x18]
 	.dwattr DW$404, DW_AT_accessibility(DW_ACCESS_public)
-DW$405	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
-	.dwattr DW$405, DW_AT_name("DecelAccel_IQ14"), DW_AT_symbol_name("_DecelAccel_IQ14")
-	.dwattr DW$405, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
+DW$405	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$405, DW_AT_name("PrdNextTranSecon_IQ17"), DW_AT_symbol_name("_PrdNextTranSecon_IQ17")
+	.dwattr DW$405, DW_AT_data_member_location[DW_OP_plus_uconst 0x1a]
 	.dwattr DW$405, DW_AT_accessibility(DW_ACCESS_public)
-DW$406	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
-	.dwattr DW$406, DW_AT_name("Jerk_IQ14"), DW_AT_symbol_name("_Jerk_IQ14")
-	.dwattr DW$406, DW_AT_data_member_location[DW_OP_plus_uconst 0x24]
+DW$406	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$406, DW_AT_name("RolEachStep_IQ17"), DW_AT_symbol_name("_RolEachStep_IQ17")
+	.dwattr DW$406, DW_AT_data_member_location[DW_OP_plus_uconst 0x1c]
 	.dwattr DW$406, DW_AT_accessibility(DW_ACCESS_public)
-DW$407	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
-	.dwattr DW$407, DW_AT_name("TargetHandle_IQ17"), DW_AT_symbol_name("_TargetHandle_IQ17")
-	.dwattr DW$407, DW_AT_data_member_location[DW_OP_plus_uconst 0x26]
+DW$407	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
+	.dwattr DW$407, DW_AT_name("NextAccel_IQ14"), DW_AT_symbol_name("_NextAccel_IQ14")
+	.dwattr DW$407, DW_AT_data_member_location[DW_OP_plus_uconst 0x1e]
 	.dwattr DW$407, DW_AT_accessibility(DW_ACCESS_public)
+DW$408	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
+	.dwattr DW$408, DW_AT_name("AccelLimit_IQ14"), DW_AT_symbol_name("_AccelLimit_IQ14")
+	.dwattr DW$408, DW_AT_data_member_location[DW_OP_plus_uconst 0x20]
+	.dwattr DW$408, DW_AT_accessibility(DW_ACCESS_public)
+DW$409	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
+	.dwattr DW$409, DW_AT_name("DecelAccel_IQ14"), DW_AT_symbol_name("_DecelAccel_IQ14")
+	.dwattr DW$409, DW_AT_data_member_location[DW_OP_plus_uconst 0x22]
+	.dwattr DW$409, DW_AT_accessibility(DW_ACCESS_public)
+DW$410	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$95)
+	.dwattr DW$410, DW_AT_name("Jerk_IQ14"), DW_AT_symbol_name("_Jerk_IQ14")
+	.dwattr DW$410, DW_AT_data_member_location[DW_OP_plus_uconst 0x24]
+	.dwattr DW$410, DW_AT_accessibility(DW_ACCESS_public)
+DW$411	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$24)
+	.dwattr DW$411, DW_AT_name("TargetHandle_IQ17"), DW_AT_symbol_name("_TargetHandle_IQ17")
+	.dwattr DW$411, DW_AT_data_member_location[DW_OP_plus_uconst 0x26]
+	.dwattr DW$411, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$96
 
 
 DW$T$97	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$97, DW_AT_byte_size(0x01)
-DW$408	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$408, DW_AT_name("MoveState_U16"), DW_AT_symbol_name("_MoveState_U16")
-	.dwattr DW$408, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$408, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$408, DW_AT_accessibility(DW_ACCESS_public)
-DW$409	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$409, DW_AT_name("Motor_U16"), DW_AT_symbol_name("_Motor_U16")
-	.dwattr DW$409, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$409, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$409, DW_AT_accessibility(DW_ACCESS_public)
-DW$410	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$410, DW_AT_name("Sensor_U16"), DW_AT_symbol_name("_Sensor_U16")
-	.dwattr DW$410, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$410, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$410, DW_AT_accessibility(DW_ACCESS_public)
-DW$411	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$411, DW_AT_name("Cross"), DW_AT_symbol_name("_Cross")
-	.dwattr DW$411, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$411, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$411, DW_AT_accessibility(DW_ACCESS_public)
 DW$412	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$412, DW_AT_name("CrossFlag_U16"), DW_AT_symbol_name("_CrossFlag_U16")
-	.dwattr DW$412, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
+	.dwattr DW$412, DW_AT_name("MoveState_U16"), DW_AT_symbol_name("_MoveState_U16")
+	.dwattr DW$412, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$412, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$412, DW_AT_accessibility(DW_ACCESS_public)
 DW$413	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$413, DW_AT_name("STOP"), DW_AT_symbol_name("_STOP")
-	.dwattr DW$413, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
+	.dwattr DW$413, DW_AT_name("Motor_U16"), DW_AT_symbol_name("_Motor_U16")
+	.dwattr DW$413, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
 	.dwattr DW$413, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$413, DW_AT_accessibility(DW_ACCESS_public)
 DW$414	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$414, DW_AT_name("Search_U16"), DW_AT_symbol_name("_Search_U16")
-	.dwattr DW$414, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
+	.dwattr DW$414, DW_AT_name("Sensor_U16"), DW_AT_symbol_name("_Sensor_U16")
+	.dwattr DW$414, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
 	.dwattr DW$414, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$414, DW_AT_accessibility(DW_ACCESS_public)
 DW$415	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$415, DW_AT_name("Fast_U16"), DW_AT_symbol_name("_Fast_U16")
-	.dwattr DW$415, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
+	.dwattr DW$415, DW_AT_name("Cross"), DW_AT_symbol_name("_Cross")
+	.dwattr DW$415, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
 	.dwattr DW$415, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$415, DW_AT_accessibility(DW_ACCESS_public)
 DW$416	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$416, DW_AT_name("Extrem_U16"), DW_AT_symbol_name("_Extrem_U16")
-	.dwattr DW$416, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
+	.dwattr DW$416, DW_AT_name("CrossFlag_U16"), DW_AT_symbol_name("_CrossFlag_U16")
+	.dwattr DW$416, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
 	.dwattr DW$416, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$416, DW_AT_accessibility(DW_ACCESS_public)
 DW$417	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$417, DW_AT_name("TxFlag_U16"), DW_AT_symbol_name("_TxFlag_U16")
-	.dwattr DW$417, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
+	.dwattr DW$417, DW_AT_name("STOP"), DW_AT_symbol_name("_STOP")
+	.dwattr DW$417, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
 	.dwattr DW$417, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$417, DW_AT_accessibility(DW_ACCESS_public)
+DW$418	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$418, DW_AT_name("Search_U16"), DW_AT_symbol_name("_Search_U16")
+	.dwattr DW$418, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
+	.dwattr DW$418, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$418, DW_AT_accessibility(DW_ACCESS_public)
+DW$419	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$419, DW_AT_name("Fast_U16"), DW_AT_symbol_name("_Fast_U16")
+	.dwattr DW$419, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
+	.dwattr DW$419, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$419, DW_AT_accessibility(DW_ACCESS_public)
+DW$420	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$420, DW_AT_name("Extrem_U16"), DW_AT_symbol_name("_Extrem_U16")
+	.dwattr DW$420, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
+	.dwattr DW$420, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$420, DW_AT_accessibility(DW_ACCESS_public)
+DW$421	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$421, DW_AT_name("TxFlag_U16"), DW_AT_symbol_name("_TxFlag_U16")
+	.dwattr DW$421, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
+	.dwattr DW$421, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$421, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$97
 
-DW$418	.dwtag  DW_TAG_far_type
-	.dwattr DW$418, DW_AT_type(*DW$T$102)
+DW$422	.dwtag  DW_TAG_far_type
+	.dwattr DW$422, DW_AT_type(*DW$T$102)
 DW$T$189	.dwtag  DW_TAG_const_type
-	.dwattr DW$T$189, DW_AT_type(*DW$418)
+	.dwattr DW$T$189, DW_AT_type(*DW$422)
 DW$T$22	.dwtag  DW_TAG_typedef, DW_AT_name("_iq10"), DW_AT_type(*DW$T$12)
 	.dwattr DW$T$22, DW_AT_language(DW_LANG_C)
 
 DW$T$29	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$29, DW_AT_name("GPADAT_BITS")
 	.dwattr DW$T$29, DW_AT_byte_size(0x02)
-DW$419	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$419, DW_AT_name("GPIO0"), DW_AT_symbol_name("_GPIO0")
-	.dwattr DW$419, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$419, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$419, DW_AT_accessibility(DW_ACCESS_public)
-DW$420	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$420, DW_AT_name("GPIO1"), DW_AT_symbol_name("_GPIO1")
-	.dwattr DW$420, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$420, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$420, DW_AT_accessibility(DW_ACCESS_public)
-DW$421	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$421, DW_AT_name("GPIO2"), DW_AT_symbol_name("_GPIO2")
-	.dwattr DW$421, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$421, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$421, DW_AT_accessibility(DW_ACCESS_public)
-DW$422	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$422, DW_AT_name("GPIO3"), DW_AT_symbol_name("_GPIO3")
-	.dwattr DW$422, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$422, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$422, DW_AT_accessibility(DW_ACCESS_public)
 DW$423	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$423, DW_AT_name("GPIO4"), DW_AT_symbol_name("_GPIO4")
-	.dwattr DW$423, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
+	.dwattr DW$423, DW_AT_name("GPIO0"), DW_AT_symbol_name("_GPIO0")
+	.dwattr DW$423, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$423, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$423, DW_AT_accessibility(DW_ACCESS_public)
 DW$424	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$424, DW_AT_name("GPIO5"), DW_AT_symbol_name("_GPIO5")
-	.dwattr DW$424, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
+	.dwattr DW$424, DW_AT_name("GPIO1"), DW_AT_symbol_name("_GPIO1")
+	.dwattr DW$424, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
 	.dwattr DW$424, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$424, DW_AT_accessibility(DW_ACCESS_public)
 DW$425	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$425, DW_AT_name("GPIO6"), DW_AT_symbol_name("_GPIO6")
-	.dwattr DW$425, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
+	.dwattr DW$425, DW_AT_name("GPIO2"), DW_AT_symbol_name("_GPIO2")
+	.dwattr DW$425, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
 	.dwattr DW$425, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$425, DW_AT_accessibility(DW_ACCESS_public)
 DW$426	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$426, DW_AT_name("GPIO7"), DW_AT_symbol_name("_GPIO7")
-	.dwattr DW$426, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
+	.dwattr DW$426, DW_AT_name("GPIO3"), DW_AT_symbol_name("_GPIO3")
+	.dwattr DW$426, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
 	.dwattr DW$426, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$426, DW_AT_accessibility(DW_ACCESS_public)
 DW$427	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$427, DW_AT_name("GPIO8"), DW_AT_symbol_name("_GPIO8")
-	.dwattr DW$427, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
+	.dwattr DW$427, DW_AT_name("GPIO4"), DW_AT_symbol_name("_GPIO4")
+	.dwattr DW$427, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
 	.dwattr DW$427, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$427, DW_AT_accessibility(DW_ACCESS_public)
 DW$428	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$428, DW_AT_name("GPIO9"), DW_AT_symbol_name("_GPIO9")
-	.dwattr DW$428, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
+	.dwattr DW$428, DW_AT_name("GPIO5"), DW_AT_symbol_name("_GPIO5")
+	.dwattr DW$428, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
 	.dwattr DW$428, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$428, DW_AT_accessibility(DW_ACCESS_public)
 DW$429	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$429, DW_AT_name("GPIO10"), DW_AT_symbol_name("_GPIO10")
-	.dwattr DW$429, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
+	.dwattr DW$429, DW_AT_name("GPIO6"), DW_AT_symbol_name("_GPIO6")
+	.dwattr DW$429, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
 	.dwattr DW$429, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$429, DW_AT_accessibility(DW_ACCESS_public)
 DW$430	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$430, DW_AT_name("GPIO11"), DW_AT_symbol_name("_GPIO11")
-	.dwattr DW$430, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$430, DW_AT_name("GPIO7"), DW_AT_symbol_name("_GPIO7")
+	.dwattr DW$430, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
 	.dwattr DW$430, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$430, DW_AT_accessibility(DW_ACCESS_public)
 DW$431	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$431, DW_AT_name("GPIO12"), DW_AT_symbol_name("_GPIO12")
-	.dwattr DW$431, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x01)
+	.dwattr DW$431, DW_AT_name("GPIO8"), DW_AT_symbol_name("_GPIO8")
+	.dwattr DW$431, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
 	.dwattr DW$431, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$431, DW_AT_accessibility(DW_ACCESS_public)
 DW$432	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$432, DW_AT_name("GPIO13"), DW_AT_symbol_name("_GPIO13")
-	.dwattr DW$432, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$432, DW_AT_name("GPIO9"), DW_AT_symbol_name("_GPIO9")
+	.dwattr DW$432, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
 	.dwattr DW$432, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$432, DW_AT_accessibility(DW_ACCESS_public)
 DW$433	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$433, DW_AT_name("GPIO14"), DW_AT_symbol_name("_GPIO14")
-	.dwattr DW$433, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x01)
+	.dwattr DW$433, DW_AT_name("GPIO10"), DW_AT_symbol_name("_GPIO10")
+	.dwattr DW$433, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
 	.dwattr DW$433, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$433, DW_AT_accessibility(DW_ACCESS_public)
 DW$434	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$434, DW_AT_name("GPIO15"), DW_AT_symbol_name("_GPIO15")
-	.dwattr DW$434, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$434, DW_AT_name("GPIO11"), DW_AT_symbol_name("_GPIO11")
+	.dwattr DW$434, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
 	.dwattr DW$434, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$434, DW_AT_accessibility(DW_ACCESS_public)
 DW$435	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$435, DW_AT_name("GPIO16"), DW_AT_symbol_name("_GPIO16")
-	.dwattr DW$435, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$435, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$435, DW_AT_name("GPIO12"), DW_AT_symbol_name("_GPIO12")
+	.dwattr DW$435, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x01)
+	.dwattr DW$435, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$435, DW_AT_accessibility(DW_ACCESS_public)
 DW$436	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$436, DW_AT_name("GPIO17"), DW_AT_symbol_name("_GPIO17")
-	.dwattr DW$436, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$436, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$436, DW_AT_name("GPIO13"), DW_AT_symbol_name("_GPIO13")
+	.dwattr DW$436, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$436, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$436, DW_AT_accessibility(DW_ACCESS_public)
 DW$437	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$437, DW_AT_name("GPIO18"), DW_AT_symbol_name("_GPIO18")
-	.dwattr DW$437, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$437, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$437, DW_AT_name("GPIO14"), DW_AT_symbol_name("_GPIO14")
+	.dwattr DW$437, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x01)
+	.dwattr DW$437, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$437, DW_AT_accessibility(DW_ACCESS_public)
 DW$438	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$438, DW_AT_name("GPIO19"), DW_AT_symbol_name("_GPIO19")
-	.dwattr DW$438, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$438, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$438, DW_AT_name("GPIO15"), DW_AT_symbol_name("_GPIO15")
+	.dwattr DW$438, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$438, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$438, DW_AT_accessibility(DW_ACCESS_public)
 DW$439	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$439, DW_AT_name("GPIO20"), DW_AT_symbol_name("_GPIO20")
-	.dwattr DW$439, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
+	.dwattr DW$439, DW_AT_name("GPIO16"), DW_AT_symbol_name("_GPIO16")
+	.dwattr DW$439, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$439, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$439, DW_AT_accessibility(DW_ACCESS_public)
 DW$440	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$440, DW_AT_name("GPIO21"), DW_AT_symbol_name("_GPIO21")
-	.dwattr DW$440, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
+	.dwattr DW$440, DW_AT_name("GPIO17"), DW_AT_symbol_name("_GPIO17")
+	.dwattr DW$440, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
 	.dwattr DW$440, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$440, DW_AT_accessibility(DW_ACCESS_public)
 DW$441	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$441, DW_AT_name("GPIO22"), DW_AT_symbol_name("_GPIO22")
-	.dwattr DW$441, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
+	.dwattr DW$441, DW_AT_name("GPIO18"), DW_AT_symbol_name("_GPIO18")
+	.dwattr DW$441, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
 	.dwattr DW$441, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$441, DW_AT_accessibility(DW_ACCESS_public)
 DW$442	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$442, DW_AT_name("GPIO23"), DW_AT_symbol_name("_GPIO23")
-	.dwattr DW$442, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
+	.dwattr DW$442, DW_AT_name("GPIO19"), DW_AT_symbol_name("_GPIO19")
+	.dwattr DW$442, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
 	.dwattr DW$442, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$442, DW_AT_accessibility(DW_ACCESS_public)
 DW$443	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$443, DW_AT_name("GPIO24"), DW_AT_symbol_name("_GPIO24")
-	.dwattr DW$443, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
+	.dwattr DW$443, DW_AT_name("GPIO20"), DW_AT_symbol_name("_GPIO20")
+	.dwattr DW$443, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
 	.dwattr DW$443, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$443, DW_AT_accessibility(DW_ACCESS_public)
 DW$444	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$444, DW_AT_name("GPIO25"), DW_AT_symbol_name("_GPIO25")
-	.dwattr DW$444, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
+	.dwattr DW$444, DW_AT_name("GPIO21"), DW_AT_symbol_name("_GPIO21")
+	.dwattr DW$444, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
 	.dwattr DW$444, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$444, DW_AT_accessibility(DW_ACCESS_public)
 DW$445	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$445, DW_AT_name("GPIO26"), DW_AT_symbol_name("_GPIO26")
-	.dwattr DW$445, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
+	.dwattr DW$445, DW_AT_name("GPIO22"), DW_AT_symbol_name("_GPIO22")
+	.dwattr DW$445, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
 	.dwattr DW$445, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$445, DW_AT_accessibility(DW_ACCESS_public)
 DW$446	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$446, DW_AT_name("GPIO27"), DW_AT_symbol_name("_GPIO27")
-	.dwattr DW$446, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$446, DW_AT_name("GPIO23"), DW_AT_symbol_name("_GPIO23")
+	.dwattr DW$446, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
 	.dwattr DW$446, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$446, DW_AT_accessibility(DW_ACCESS_public)
 DW$447	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$447, DW_AT_name("GPIO28"), DW_AT_symbol_name("_GPIO28")
-	.dwattr DW$447, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x01)
+	.dwattr DW$447, DW_AT_name("GPIO24"), DW_AT_symbol_name("_GPIO24")
+	.dwattr DW$447, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
 	.dwattr DW$447, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$447, DW_AT_accessibility(DW_ACCESS_public)
 DW$448	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$448, DW_AT_name("GPIO29"), DW_AT_symbol_name("_GPIO29")
-	.dwattr DW$448, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$448, DW_AT_name("GPIO25"), DW_AT_symbol_name("_GPIO25")
+	.dwattr DW$448, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
 	.dwattr DW$448, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$448, DW_AT_accessibility(DW_ACCESS_public)
 DW$449	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$449, DW_AT_name("GPIO30"), DW_AT_symbol_name("_GPIO30")
-	.dwattr DW$449, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x01)
+	.dwattr DW$449, DW_AT_name("GPIO26"), DW_AT_symbol_name("_GPIO26")
+	.dwattr DW$449, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
 	.dwattr DW$449, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$449, DW_AT_accessibility(DW_ACCESS_public)
 DW$450	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$450, DW_AT_name("GPIO31"), DW_AT_symbol_name("_GPIO31")
-	.dwattr DW$450, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$450, DW_AT_name("GPIO27"), DW_AT_symbol_name("_GPIO27")
+	.dwattr DW$450, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
 	.dwattr DW$450, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
 	.dwattr DW$450, DW_AT_accessibility(DW_ACCESS_public)
+DW$451	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$451, DW_AT_name("GPIO28"), DW_AT_symbol_name("_GPIO28")
+	.dwattr DW$451, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x01)
+	.dwattr DW$451, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$451, DW_AT_accessibility(DW_ACCESS_public)
+DW$452	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$452, DW_AT_name("GPIO29"), DW_AT_symbol_name("_GPIO29")
+	.dwattr DW$452, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$452, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$452, DW_AT_accessibility(DW_ACCESS_public)
+DW$453	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$453, DW_AT_name("GPIO30"), DW_AT_symbol_name("_GPIO30")
+	.dwattr DW$453, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x01)
+	.dwattr DW$453, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$453, DW_AT_accessibility(DW_ACCESS_public)
+DW$454	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$454, DW_AT_name("GPIO31"), DW_AT_symbol_name("_GPIO31")
+	.dwattr DW$454, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$454, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$454, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$29
 
 
 DW$T$32	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$32, DW_AT_name("GPBDAT_BITS")
 	.dwattr DW$T$32, DW_AT_byte_size(0x02)
-DW$451	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$451, DW_AT_name("GPIO32"), DW_AT_symbol_name("_GPIO32")
-	.dwattr DW$451, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$451, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$451, DW_AT_accessibility(DW_ACCESS_public)
-DW$452	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$452, DW_AT_name("GPIO33"), DW_AT_symbol_name("_GPIO33")
-	.dwattr DW$452, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$452, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$452, DW_AT_accessibility(DW_ACCESS_public)
-DW$453	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$453, DW_AT_name("GPIO34"), DW_AT_symbol_name("_GPIO34")
-	.dwattr DW$453, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$453, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$453, DW_AT_accessibility(DW_ACCESS_public)
-DW$454	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$454, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$454, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$454, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$454, DW_AT_accessibility(DW_ACCESS_public)
 DW$455	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$455, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$455, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$455, DW_AT_name("GPIO32"), DW_AT_symbol_name("_GPIO32")
+	.dwattr DW$455, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$455, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$455, DW_AT_accessibility(DW_ACCESS_public)
 DW$456	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$456, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
-	.dwattr DW$456, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x10)
-	.dwattr DW$456, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$456, DW_AT_name("GPIO33"), DW_AT_symbol_name("_GPIO33")
+	.dwattr DW$456, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$456, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$456, DW_AT_accessibility(DW_ACCESS_public)
+DW$457	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$457, DW_AT_name("GPIO34"), DW_AT_symbol_name("_GPIO34")
+	.dwattr DW$457, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$457, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$457, DW_AT_accessibility(DW_ACCESS_public)
+DW$458	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$458, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$458, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
+	.dwattr DW$458, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$458, DW_AT_accessibility(DW_ACCESS_public)
+DW$459	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$459, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$459, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$459, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$459, DW_AT_accessibility(DW_ACCESS_public)
+DW$460	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$460, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
+	.dwattr DW$460, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x10)
+	.dwattr DW$460, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$460, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$32
 
 
 DW$T$36	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$36, DW_AT_name("TIM_REG")
 	.dwattr DW$T$36, DW_AT_byte_size(0x02)
-DW$457	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$457, DW_AT_name("LSW"), DW_AT_symbol_name("_LSW")
-	.dwattr DW$457, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$457, DW_AT_accessibility(DW_ACCESS_public)
-DW$458	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$458, DW_AT_name("MSW"), DW_AT_symbol_name("_MSW")
-	.dwattr DW$458, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
-	.dwattr DW$458, DW_AT_accessibility(DW_ACCESS_public)
+DW$461	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$461, DW_AT_name("LSW"), DW_AT_symbol_name("_LSW")
+	.dwattr DW$461, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$461, DW_AT_accessibility(DW_ACCESS_public)
+DW$462	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$462, DW_AT_name("MSW"), DW_AT_symbol_name("_MSW")
+	.dwattr DW$462, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$462, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$36
 
 
 DW$T$38	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$38, DW_AT_name("PRD_REG")
 	.dwattr DW$T$38, DW_AT_byte_size(0x02)
-DW$459	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$459, DW_AT_name("LSW"), DW_AT_symbol_name("_LSW")
-	.dwattr DW$459, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$459, DW_AT_accessibility(DW_ACCESS_public)
-DW$460	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$460, DW_AT_name("MSW"), DW_AT_symbol_name("_MSW")
-	.dwattr DW$460, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
-	.dwattr DW$460, DW_AT_accessibility(DW_ACCESS_public)
+DW$463	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$463, DW_AT_name("LSW"), DW_AT_symbol_name("_LSW")
+	.dwattr DW$463, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$463, DW_AT_accessibility(DW_ACCESS_public)
+DW$464	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$464, DW_AT_name("MSW"), DW_AT_symbol_name("_MSW")
+	.dwattr DW$464, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$464, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$38
 
 
 DW$T$40	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$40, DW_AT_name("TCR_BITS")
 	.dwattr DW$T$40, DW_AT_byte_size(0x01)
-DW$461	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$461, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$461, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x04)
-	.dwattr DW$461, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$461, DW_AT_accessibility(DW_ACCESS_public)
-DW$462	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$462, DW_AT_name("TSS"), DW_AT_symbol_name("_TSS")
-	.dwattr DW$462, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
-	.dwattr DW$462, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$462, DW_AT_accessibility(DW_ACCESS_public)
-DW$463	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$463, DW_AT_name("TRB"), DW_AT_symbol_name("_TRB")
-	.dwattr DW$463, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
-	.dwattr DW$463, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$463, DW_AT_accessibility(DW_ACCESS_public)
-DW$464	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$464, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$464, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x04)
-	.dwattr DW$464, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$464, DW_AT_accessibility(DW_ACCESS_public)
 DW$465	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$465, DW_AT_name("SOFT"), DW_AT_symbol_name("_SOFT")
-	.dwattr DW$465, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
+	.dwattr DW$465, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$465, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x04)
 	.dwattr DW$465, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$465, DW_AT_accessibility(DW_ACCESS_public)
 DW$466	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$466, DW_AT_name("FREE"), DW_AT_symbol_name("_FREE")
-	.dwattr DW$466, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$466, DW_AT_name("TSS"), DW_AT_symbol_name("_TSS")
+	.dwattr DW$466, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
 	.dwattr DW$466, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$466, DW_AT_accessibility(DW_ACCESS_public)
 DW$467	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$467, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
-	.dwattr DW$467, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x02)
+	.dwattr DW$467, DW_AT_name("TRB"), DW_AT_symbol_name("_TRB")
+	.dwattr DW$467, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
 	.dwattr DW$467, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$467, DW_AT_accessibility(DW_ACCESS_public)
 DW$468	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$468, DW_AT_name("TIE"), DW_AT_symbol_name("_TIE")
-	.dwattr DW$468, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x01)
+	.dwattr DW$468, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$468, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x04)
 	.dwattr DW$468, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$468, DW_AT_accessibility(DW_ACCESS_public)
 DW$469	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$469, DW_AT_name("TIF"), DW_AT_symbol_name("_TIF")
-	.dwattr DW$469, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$469, DW_AT_name("SOFT"), DW_AT_symbol_name("_SOFT")
+	.dwattr DW$469, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
 	.dwattr DW$469, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$469, DW_AT_accessibility(DW_ACCESS_public)
+DW$470	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$470, DW_AT_name("FREE"), DW_AT_symbol_name("_FREE")
+	.dwattr DW$470, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$470, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$470, DW_AT_accessibility(DW_ACCESS_public)
+DW$471	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$471, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
+	.dwattr DW$471, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x02)
+	.dwattr DW$471, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$471, DW_AT_accessibility(DW_ACCESS_public)
+DW$472	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$472, DW_AT_name("TIE"), DW_AT_symbol_name("_TIE")
+	.dwattr DW$472, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x01)
+	.dwattr DW$472, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$472, DW_AT_accessibility(DW_ACCESS_public)
+DW$473	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$473, DW_AT_name("TIF"), DW_AT_symbol_name("_TIF")
+	.dwattr DW$473, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$473, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$473, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$40
 
 
 DW$T$42	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$42, DW_AT_name("TPR_BITS")
 	.dwattr DW$T$42, DW_AT_byte_size(0x01)
-DW$470	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$470, DW_AT_name("TDDR"), DW_AT_symbol_name("_TDDR")
-	.dwattr DW$470, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x08)
-	.dwattr DW$470, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$470, DW_AT_accessibility(DW_ACCESS_public)
-DW$471	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$471, DW_AT_name("PSC"), DW_AT_symbol_name("_PSC")
-	.dwattr DW$471, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x08)
-	.dwattr DW$471, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$471, DW_AT_accessibility(DW_ACCESS_public)
+DW$474	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$474, DW_AT_name("TDDR"), DW_AT_symbol_name("_TDDR")
+	.dwattr DW$474, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x08)
+	.dwattr DW$474, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$474, DW_AT_accessibility(DW_ACCESS_public)
+DW$475	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$475, DW_AT_name("PSC"), DW_AT_symbol_name("_PSC")
+	.dwattr DW$475, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x08)
+	.dwattr DW$475, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$475, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$42
 
 
 DW$T$44	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$44, DW_AT_name("TPRH_BITS")
 	.dwattr DW$T$44, DW_AT_byte_size(0x01)
-DW$472	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$472, DW_AT_name("TDDRH"), DW_AT_symbol_name("_TDDRH")
-	.dwattr DW$472, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x08)
-	.dwattr DW$472, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$472, DW_AT_accessibility(DW_ACCESS_public)
-DW$473	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$473, DW_AT_name("PSCH"), DW_AT_symbol_name("_PSCH")
-	.dwattr DW$473, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x08)
-	.dwattr DW$473, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$473, DW_AT_accessibility(DW_ACCESS_public)
+DW$476	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$476, DW_AT_name("TDDRH"), DW_AT_symbol_name("_TDDRH")
+	.dwattr DW$476, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x08)
+	.dwattr DW$476, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$476, DW_AT_accessibility(DW_ACCESS_public)
+DW$477	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$477, DW_AT_name("PSCH"), DW_AT_symbol_name("_PSCH")
+	.dwattr DW$477, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x08)
+	.dwattr DW$477, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$477, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$44
 
 
 DW$T$47	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$47, DW_AT_name("TBCTL_BITS")
 	.dwattr DW$T$47, DW_AT_byte_size(0x01)
-DW$474	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$474, DW_AT_name("CTRMODE"), DW_AT_symbol_name("_CTRMODE")
-	.dwattr DW$474, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$474, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$474, DW_AT_accessibility(DW_ACCESS_public)
-DW$475	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$475, DW_AT_name("PHSEN"), DW_AT_symbol_name("_PHSEN")
-	.dwattr DW$475, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$475, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$475, DW_AT_accessibility(DW_ACCESS_public)
-DW$476	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$476, DW_AT_name("PRDLD"), DW_AT_symbol_name("_PRDLD")
-	.dwattr DW$476, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$476, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$476, DW_AT_accessibility(DW_ACCESS_public)
-DW$477	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$477, DW_AT_name("SYNCOSEL"), DW_AT_symbol_name("_SYNCOSEL")
-	.dwattr DW$477, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x02)
-	.dwattr DW$477, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$477, DW_AT_accessibility(DW_ACCESS_public)
 DW$478	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$478, DW_AT_name("SWFSYNC"), DW_AT_symbol_name("_SWFSYNC")
-	.dwattr DW$478, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
+	.dwattr DW$478, DW_AT_name("CTRMODE"), DW_AT_symbol_name("_CTRMODE")
+	.dwattr DW$478, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
 	.dwattr DW$478, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$478, DW_AT_accessibility(DW_ACCESS_public)
 DW$479	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$479, DW_AT_name("HSPCLKDIV"), DW_AT_symbol_name("_HSPCLKDIV")
-	.dwattr DW$479, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x03)
+	.dwattr DW$479, DW_AT_name("PHSEN"), DW_AT_symbol_name("_PHSEN")
+	.dwattr DW$479, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
 	.dwattr DW$479, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$479, DW_AT_accessibility(DW_ACCESS_public)
 DW$480	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$480, DW_AT_name("CLKDIV"), DW_AT_symbol_name("_CLKDIV")
-	.dwattr DW$480, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x03)
+	.dwattr DW$480, DW_AT_name("PRDLD"), DW_AT_symbol_name("_PRDLD")
+	.dwattr DW$480, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
 	.dwattr DW$480, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$480, DW_AT_accessibility(DW_ACCESS_public)
 DW$481	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$481, DW_AT_name("PHSDIR"), DW_AT_symbol_name("_PHSDIR")
-	.dwattr DW$481, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$481, DW_AT_name("SYNCOSEL"), DW_AT_symbol_name("_SYNCOSEL")
+	.dwattr DW$481, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x02)
 	.dwattr DW$481, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$481, DW_AT_accessibility(DW_ACCESS_public)
 DW$482	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$482, DW_AT_name("FREE_SOFT"), DW_AT_symbol_name("_FREE_SOFT")
-	.dwattr DW$482, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x02)
+	.dwattr DW$482, DW_AT_name("SWFSYNC"), DW_AT_symbol_name("_SWFSYNC")
+	.dwattr DW$482, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
 	.dwattr DW$482, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$482, DW_AT_accessibility(DW_ACCESS_public)
+DW$483	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$483, DW_AT_name("HSPCLKDIV"), DW_AT_symbol_name("_HSPCLKDIV")
+	.dwattr DW$483, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x03)
+	.dwattr DW$483, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$483, DW_AT_accessibility(DW_ACCESS_public)
+DW$484	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$484, DW_AT_name("CLKDIV"), DW_AT_symbol_name("_CLKDIV")
+	.dwattr DW$484, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x03)
+	.dwattr DW$484, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$484, DW_AT_accessibility(DW_ACCESS_public)
+DW$485	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$485, DW_AT_name("PHSDIR"), DW_AT_symbol_name("_PHSDIR")
+	.dwattr DW$485, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$485, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$485, DW_AT_accessibility(DW_ACCESS_public)
+DW$486	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$486, DW_AT_name("FREE_SOFT"), DW_AT_symbol_name("_FREE_SOFT")
+	.dwattr DW$486, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x02)
+	.dwattr DW$486, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$486, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$47
 
 
 DW$T$49	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$49, DW_AT_name("TBSTS_BITS")
 	.dwattr DW$T$49, DW_AT_byte_size(0x01)
-DW$483	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$483, DW_AT_name("CTRDIR"), DW_AT_symbol_name("_CTRDIR")
-	.dwattr DW$483, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$483, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$483, DW_AT_accessibility(DW_ACCESS_public)
-DW$484	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$484, DW_AT_name("SYNCI"), DW_AT_symbol_name("_SYNCI")
-	.dwattr DW$484, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$484, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$484, DW_AT_accessibility(DW_ACCESS_public)
-DW$485	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$485, DW_AT_name("CTRMAX"), DW_AT_symbol_name("_CTRMAX")
-	.dwattr DW$485, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$485, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$485, DW_AT_accessibility(DW_ACCESS_public)
-DW$486	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$486, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$486, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0d)
-	.dwattr DW$486, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$486, DW_AT_accessibility(DW_ACCESS_public)
+DW$487	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$487, DW_AT_name("CTRDIR"), DW_AT_symbol_name("_CTRDIR")
+	.dwattr DW$487, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
+	.dwattr DW$487, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$487, DW_AT_accessibility(DW_ACCESS_public)
+DW$488	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$488, DW_AT_name("SYNCI"), DW_AT_symbol_name("_SYNCI")
+	.dwattr DW$488, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$488, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$488, DW_AT_accessibility(DW_ACCESS_public)
+DW$489	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$489, DW_AT_name("CTRMAX"), DW_AT_symbol_name("_CTRMAX")
+	.dwattr DW$489, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$489, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$489, DW_AT_accessibility(DW_ACCESS_public)
+DW$490	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$490, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$490, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0d)
+	.dwattr DW$490, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$490, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$49
 
 
 DW$T$51	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$51, DW_AT_name("TBPHS_HRPWM_REG")
 	.dwattr DW$T$51, DW_AT_byte_size(0x02)
-DW$487	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$487, DW_AT_name("TBPHSHR"), DW_AT_symbol_name("_TBPHSHR")
-	.dwattr DW$487, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$487, DW_AT_accessibility(DW_ACCESS_public)
-DW$488	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$488, DW_AT_name("TBPHS"), DW_AT_symbol_name("_TBPHS")
-	.dwattr DW$488, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
-	.dwattr DW$488, DW_AT_accessibility(DW_ACCESS_public)
+DW$491	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$491, DW_AT_name("TBPHSHR"), DW_AT_symbol_name("_TBPHSHR")
+	.dwattr DW$491, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$491, DW_AT_accessibility(DW_ACCESS_public)
+DW$492	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$492, DW_AT_name("TBPHS"), DW_AT_symbol_name("_TBPHS")
+	.dwattr DW$492, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$492, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$51
 
 
 DW$T$53	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$53, DW_AT_name("CMPCTL_BITS")
 	.dwattr DW$T$53, DW_AT_byte_size(0x01)
-DW$489	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$489, DW_AT_name("LOADAMODE"), DW_AT_symbol_name("_LOADAMODE")
-	.dwattr DW$489, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$489, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$489, DW_AT_accessibility(DW_ACCESS_public)
-DW$490	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$490, DW_AT_name("LOADBMODE"), DW_AT_symbol_name("_LOADBMODE")
-	.dwattr DW$490, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
-	.dwattr DW$490, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$490, DW_AT_accessibility(DW_ACCESS_public)
-DW$491	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$491, DW_AT_name("SHDWAMODE"), DW_AT_symbol_name("_SHDWAMODE")
-	.dwattr DW$491, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
-	.dwattr DW$491, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$491, DW_AT_accessibility(DW_ACCESS_public)
-DW$492	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$492, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$492, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
-	.dwattr DW$492, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$492, DW_AT_accessibility(DW_ACCESS_public)
 DW$493	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$493, DW_AT_name("SHDWBMODE"), DW_AT_symbol_name("_SHDWBMODE")
-	.dwattr DW$493, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
+	.dwattr DW$493, DW_AT_name("LOADAMODE"), DW_AT_symbol_name("_LOADAMODE")
+	.dwattr DW$493, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
 	.dwattr DW$493, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$493, DW_AT_accessibility(DW_ACCESS_public)
 DW$494	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$494, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$494, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
+	.dwattr DW$494, DW_AT_name("LOADBMODE"), DW_AT_symbol_name("_LOADBMODE")
+	.dwattr DW$494, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
 	.dwattr DW$494, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$494, DW_AT_accessibility(DW_ACCESS_public)
 DW$495	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$495, DW_AT_name("SHDWAFULL"), DW_AT_symbol_name("_SHDWAFULL")
-	.dwattr DW$495, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
+	.dwattr DW$495, DW_AT_name("SHDWAMODE"), DW_AT_symbol_name("_SHDWAMODE")
+	.dwattr DW$495, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
 	.dwattr DW$495, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$495, DW_AT_accessibility(DW_ACCESS_public)
 DW$496	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$496, DW_AT_name("SHDWBFULL"), DW_AT_symbol_name("_SHDWBFULL")
-	.dwattr DW$496, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
+	.dwattr DW$496, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$496, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
 	.dwattr DW$496, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$496, DW_AT_accessibility(DW_ACCESS_public)
 DW$497	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$497, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
-	.dwattr DW$497, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x06)
+	.dwattr DW$497, DW_AT_name("SHDWBMODE"), DW_AT_symbol_name("_SHDWBMODE")
+	.dwattr DW$497, DW_AT_bit_offset(0x09), DW_AT_bit_size(0x01)
 	.dwattr DW$497, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$497, DW_AT_accessibility(DW_ACCESS_public)
+DW$498	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$498, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$498, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x01)
+	.dwattr DW$498, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$498, DW_AT_accessibility(DW_ACCESS_public)
+DW$499	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$499, DW_AT_name("SHDWAFULL"), DW_AT_symbol_name("_SHDWAFULL")
+	.dwattr DW$499, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
+	.dwattr DW$499, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$499, DW_AT_accessibility(DW_ACCESS_public)
+DW$500	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$500, DW_AT_name("SHDWBFULL"), DW_AT_symbol_name("_SHDWBFULL")
+	.dwattr DW$500, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
+	.dwattr DW$500, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$500, DW_AT_accessibility(DW_ACCESS_public)
+DW$501	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$501, DW_AT_name("rsvd3"), DW_AT_symbol_name("_rsvd3")
+	.dwattr DW$501, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x06)
+	.dwattr DW$501, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$501, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$53
 
 
 DW$T$55	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$55, DW_AT_name("CMPA_HRPWM_REG")
 	.dwattr DW$T$55, DW_AT_byte_size(0x02)
-DW$498	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$498, DW_AT_name("CMPAHR"), DW_AT_symbol_name("_CMPAHR")
-	.dwattr DW$498, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$498, DW_AT_accessibility(DW_ACCESS_public)
-DW$499	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$499, DW_AT_name("CMPA"), DW_AT_symbol_name("_CMPA")
-	.dwattr DW$499, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
-	.dwattr DW$499, DW_AT_accessibility(DW_ACCESS_public)
+DW$502	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$502, DW_AT_name("CMPAHR"), DW_AT_symbol_name("_CMPAHR")
+	.dwattr DW$502, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$502, DW_AT_accessibility(DW_ACCESS_public)
+DW$503	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$503, DW_AT_name("CMPA"), DW_AT_symbol_name("_CMPA")
+	.dwattr DW$503, DW_AT_data_member_location[DW_OP_plus_uconst 0x1]
+	.dwattr DW$503, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$55
 
 
 DW$T$57	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$57, DW_AT_name("AQCTL_BITS")
 	.dwattr DW$T$57, DW_AT_byte_size(0x01)
-DW$500	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$500, DW_AT_name("ZRO"), DW_AT_symbol_name("_ZRO")
-	.dwattr DW$500, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$500, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$500, DW_AT_accessibility(DW_ACCESS_public)
-DW$501	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$501, DW_AT_name("PRD"), DW_AT_symbol_name("_PRD")
-	.dwattr DW$501, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
-	.dwattr DW$501, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$501, DW_AT_accessibility(DW_ACCESS_public)
-DW$502	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$502, DW_AT_name("CAU"), DW_AT_symbol_name("_CAU")
-	.dwattr DW$502, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x02)
-	.dwattr DW$502, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$502, DW_AT_accessibility(DW_ACCESS_public)
-DW$503	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$503, DW_AT_name("CAD"), DW_AT_symbol_name("_CAD")
-	.dwattr DW$503, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x02)
-	.dwattr DW$503, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$503, DW_AT_accessibility(DW_ACCESS_public)
 DW$504	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$504, DW_AT_name("CBU"), DW_AT_symbol_name("_CBU")
-	.dwattr DW$504, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x02)
+	.dwattr DW$504, DW_AT_name("ZRO"), DW_AT_symbol_name("_ZRO")
+	.dwattr DW$504, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
 	.dwattr DW$504, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$504, DW_AT_accessibility(DW_ACCESS_public)
 DW$505	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$505, DW_AT_name("CBD"), DW_AT_symbol_name("_CBD")
-	.dwattr DW$505, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x02)
+	.dwattr DW$505, DW_AT_name("PRD"), DW_AT_symbol_name("_PRD")
+	.dwattr DW$505, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
 	.dwattr DW$505, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$505, DW_AT_accessibility(DW_ACCESS_public)
 DW$506	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$506, DW_AT_name("rsvd"), DW_AT_symbol_name("_rsvd")
-	.dwattr DW$506, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x04)
+	.dwattr DW$506, DW_AT_name("CAU"), DW_AT_symbol_name("_CAU")
+	.dwattr DW$506, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x02)
 	.dwattr DW$506, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$506, DW_AT_accessibility(DW_ACCESS_public)
+DW$507	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$507, DW_AT_name("CAD"), DW_AT_symbol_name("_CAD")
+	.dwattr DW$507, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x02)
+	.dwattr DW$507, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$507, DW_AT_accessibility(DW_ACCESS_public)
+DW$508	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$508, DW_AT_name("CBU"), DW_AT_symbol_name("_CBU")
+	.dwattr DW$508, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x02)
+	.dwattr DW$508, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$508, DW_AT_accessibility(DW_ACCESS_public)
+DW$509	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$509, DW_AT_name("CBD"), DW_AT_symbol_name("_CBD")
+	.dwattr DW$509, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x02)
+	.dwattr DW$509, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$509, DW_AT_accessibility(DW_ACCESS_public)
+DW$510	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$510, DW_AT_name("rsvd"), DW_AT_symbol_name("_rsvd")
+	.dwattr DW$510, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x04)
+	.dwattr DW$510, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$510, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$57
 
 
 DW$T$59	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$59, DW_AT_name("AQSFRC_BITS")
 	.dwattr DW$T$59, DW_AT_byte_size(0x01)
-DW$507	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$507, DW_AT_name("ACTSFA"), DW_AT_symbol_name("_ACTSFA")
-	.dwattr DW$507, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$507, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$507, DW_AT_accessibility(DW_ACCESS_public)
-DW$508	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$508, DW_AT_name("OTSFA"), DW_AT_symbol_name("_OTSFA")
-	.dwattr DW$508, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$508, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$508, DW_AT_accessibility(DW_ACCESS_public)
-DW$509	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$509, DW_AT_name("ACTSFB"), DW_AT_symbol_name("_ACTSFB")
-	.dwattr DW$509, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x02)
-	.dwattr DW$509, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$509, DW_AT_accessibility(DW_ACCESS_public)
-DW$510	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$510, DW_AT_name("OTSFB"), DW_AT_symbol_name("_OTSFB")
-	.dwattr DW$510, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
-	.dwattr DW$510, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$510, DW_AT_accessibility(DW_ACCESS_public)
 DW$511	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$511, DW_AT_name("RLDCSF"), DW_AT_symbol_name("_RLDCSF")
-	.dwattr DW$511, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x02)
+	.dwattr DW$511, DW_AT_name("ACTSFA"), DW_AT_symbol_name("_ACTSFA")
+	.dwattr DW$511, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
 	.dwattr DW$511, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$511, DW_AT_accessibility(DW_ACCESS_public)
 DW$512	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$512, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$512, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x08)
+	.dwattr DW$512, DW_AT_name("OTSFA"), DW_AT_symbol_name("_OTSFA")
+	.dwattr DW$512, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
 	.dwattr DW$512, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$512, DW_AT_accessibility(DW_ACCESS_public)
+DW$513	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$513, DW_AT_name("ACTSFB"), DW_AT_symbol_name("_ACTSFB")
+	.dwattr DW$513, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x02)
+	.dwattr DW$513, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$513, DW_AT_accessibility(DW_ACCESS_public)
+DW$514	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$514, DW_AT_name("OTSFB"), DW_AT_symbol_name("_OTSFB")
+	.dwattr DW$514, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
+	.dwattr DW$514, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$514, DW_AT_accessibility(DW_ACCESS_public)
+DW$515	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$515, DW_AT_name("RLDCSF"), DW_AT_symbol_name("_RLDCSF")
+	.dwattr DW$515, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x02)
+	.dwattr DW$515, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$515, DW_AT_accessibility(DW_ACCESS_public)
+DW$516	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$516, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$516, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x08)
+	.dwattr DW$516, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$516, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$59
 
 
 DW$T$61	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$61, DW_AT_name("AQCSFRC_BITS")
 	.dwattr DW$T$61, DW_AT_byte_size(0x01)
-DW$513	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$513, DW_AT_name("CSFA"), DW_AT_symbol_name("_CSFA")
-	.dwattr DW$513, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$513, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$513, DW_AT_accessibility(DW_ACCESS_public)
-DW$514	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$514, DW_AT_name("CSFB"), DW_AT_symbol_name("_CSFB")
-	.dwattr DW$514, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
-	.dwattr DW$514, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$514, DW_AT_accessibility(DW_ACCESS_public)
-DW$515	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$515, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$515, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
-	.dwattr DW$515, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$515, DW_AT_accessibility(DW_ACCESS_public)
+DW$517	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$517, DW_AT_name("CSFA"), DW_AT_symbol_name("_CSFA")
+	.dwattr DW$517, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
+	.dwattr DW$517, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$517, DW_AT_accessibility(DW_ACCESS_public)
+DW$518	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$518, DW_AT_name("CSFB"), DW_AT_symbol_name("_CSFB")
+	.dwattr DW$518, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
+	.dwattr DW$518, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$518, DW_AT_accessibility(DW_ACCESS_public)
+DW$519	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$519, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$519, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$519, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$519, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$61
 
 
 DW$T$63	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$63, DW_AT_name("DBCTL_BITS")
 	.dwattr DW$T$63, DW_AT_byte_size(0x01)
-DW$516	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$516, DW_AT_name("OUT_MODE"), DW_AT_symbol_name("_OUT_MODE")
-	.dwattr DW$516, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$516, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$516, DW_AT_accessibility(DW_ACCESS_public)
-DW$517	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$517, DW_AT_name("POLSEL"), DW_AT_symbol_name("_POLSEL")
-	.dwattr DW$517, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
-	.dwattr DW$517, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$517, DW_AT_accessibility(DW_ACCESS_public)
-DW$518	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$518, DW_AT_name("IN_MODE"), DW_AT_symbol_name("_IN_MODE")
-	.dwattr DW$518, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x02)
-	.dwattr DW$518, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$518, DW_AT_accessibility(DW_ACCESS_public)
-DW$519	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$519, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$519, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0a)
-	.dwattr DW$519, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$519, DW_AT_accessibility(DW_ACCESS_public)
+DW$520	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$520, DW_AT_name("OUT_MODE"), DW_AT_symbol_name("_OUT_MODE")
+	.dwattr DW$520, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
+	.dwattr DW$520, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$520, DW_AT_accessibility(DW_ACCESS_public)
+DW$521	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$521, DW_AT_name("POLSEL"), DW_AT_symbol_name("_POLSEL")
+	.dwattr DW$521, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
+	.dwattr DW$521, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$521, DW_AT_accessibility(DW_ACCESS_public)
+DW$522	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$522, DW_AT_name("IN_MODE"), DW_AT_symbol_name("_IN_MODE")
+	.dwattr DW$522, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x02)
+	.dwattr DW$522, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$522, DW_AT_accessibility(DW_ACCESS_public)
+DW$523	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$523, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$523, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0a)
+	.dwattr DW$523, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$523, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$63
 
 
 DW$T$65	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$65, DW_AT_name("TZSEL_BITS")
 	.dwattr DW$T$65, DW_AT_byte_size(0x01)
-DW$520	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$520, DW_AT_name("CBC1"), DW_AT_symbol_name("_CBC1")
-	.dwattr DW$520, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$520, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$520, DW_AT_accessibility(DW_ACCESS_public)
-DW$521	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$521, DW_AT_name("CBC2"), DW_AT_symbol_name("_CBC2")
-	.dwattr DW$521, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$521, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$521, DW_AT_accessibility(DW_ACCESS_public)
-DW$522	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$522, DW_AT_name("CBC3"), DW_AT_symbol_name("_CBC3")
-	.dwattr DW$522, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$522, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$522, DW_AT_accessibility(DW_ACCESS_public)
-DW$523	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$523, DW_AT_name("CBC4"), DW_AT_symbol_name("_CBC4")
-	.dwattr DW$523, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$523, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$523, DW_AT_accessibility(DW_ACCESS_public)
 DW$524	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$524, DW_AT_name("CBC5"), DW_AT_symbol_name("_CBC5")
-	.dwattr DW$524, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
+	.dwattr DW$524, DW_AT_name("CBC1"), DW_AT_symbol_name("_CBC1")
+	.dwattr DW$524, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$524, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$524, DW_AT_accessibility(DW_ACCESS_public)
 DW$525	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$525, DW_AT_name("CBC6"), DW_AT_symbol_name("_CBC6")
-	.dwattr DW$525, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
+	.dwattr DW$525, DW_AT_name("CBC2"), DW_AT_symbol_name("_CBC2")
+	.dwattr DW$525, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
 	.dwattr DW$525, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$525, DW_AT_accessibility(DW_ACCESS_public)
 DW$526	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$526, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$526, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x02)
+	.dwattr DW$526, DW_AT_name("CBC3"), DW_AT_symbol_name("_CBC3")
+	.dwattr DW$526, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
 	.dwattr DW$526, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$526, DW_AT_accessibility(DW_ACCESS_public)
 DW$527	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$527, DW_AT_name("OSHT1"), DW_AT_symbol_name("_OSHT1")
-	.dwattr DW$527, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
+	.dwattr DW$527, DW_AT_name("CBC4"), DW_AT_symbol_name("_CBC4")
+	.dwattr DW$527, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
 	.dwattr DW$527, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$527, DW_AT_accessibility(DW_ACCESS_public)
 DW$528	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$528, DW_AT_name("OSHT2"), DW_AT_symbol_name("_OSHT2")
-	.dwattr DW$528, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
+	.dwattr DW$528, DW_AT_name("CBC5"), DW_AT_symbol_name("_CBC5")
+	.dwattr DW$528, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x01)
 	.dwattr DW$528, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$528, DW_AT_accessibility(DW_ACCESS_public)
 DW$529	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$529, DW_AT_name("OSHT3"), DW_AT_symbol_name("_OSHT3")
-	.dwattr DW$529, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
+	.dwattr DW$529, DW_AT_name("CBC6"), DW_AT_symbol_name("_CBC6")
+	.dwattr DW$529, DW_AT_bit_offset(0x0a), DW_AT_bit_size(0x01)
 	.dwattr DW$529, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$529, DW_AT_accessibility(DW_ACCESS_public)
 DW$530	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$530, DW_AT_name("OSHT4"), DW_AT_symbol_name("_OSHT4")
-	.dwattr DW$530, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$530, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$530, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x02)
 	.dwattr DW$530, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$530, DW_AT_accessibility(DW_ACCESS_public)
 DW$531	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$531, DW_AT_name("OSHT5"), DW_AT_symbol_name("_OSHT5")
-	.dwattr DW$531, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x01)
+	.dwattr DW$531, DW_AT_name("OSHT1"), DW_AT_symbol_name("_OSHT1")
+	.dwattr DW$531, DW_AT_bit_offset(0x07), DW_AT_bit_size(0x01)
 	.dwattr DW$531, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$531, DW_AT_accessibility(DW_ACCESS_public)
 DW$532	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$532, DW_AT_name("OSHT6"), DW_AT_symbol_name("_OSHT6")
-	.dwattr DW$532, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$532, DW_AT_name("OSHT2"), DW_AT_symbol_name("_OSHT2")
+	.dwattr DW$532, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
 	.dwattr DW$532, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$532, DW_AT_accessibility(DW_ACCESS_public)
 DW$533	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$533, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$533, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x02)
+	.dwattr DW$533, DW_AT_name("OSHT3"), DW_AT_symbol_name("_OSHT3")
+	.dwattr DW$533, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
 	.dwattr DW$533, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$533, DW_AT_accessibility(DW_ACCESS_public)
+DW$534	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$534, DW_AT_name("OSHT4"), DW_AT_symbol_name("_OSHT4")
+	.dwattr DW$534, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$534, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$534, DW_AT_accessibility(DW_ACCESS_public)
+DW$535	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$535, DW_AT_name("OSHT5"), DW_AT_symbol_name("_OSHT5")
+	.dwattr DW$535, DW_AT_bit_offset(0x03), DW_AT_bit_size(0x01)
+	.dwattr DW$535, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$535, DW_AT_accessibility(DW_ACCESS_public)
+DW$536	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$536, DW_AT_name("OSHT6"), DW_AT_symbol_name("_OSHT6")
+	.dwattr DW$536, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x01)
+	.dwattr DW$536, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$536, DW_AT_accessibility(DW_ACCESS_public)
+DW$537	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$537, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$537, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x02)
+	.dwattr DW$537, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$537, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$65
 
 
 DW$T$67	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$67, DW_AT_name("TZCTL_BITS")
 	.dwattr DW$T$67, DW_AT_byte_size(0x01)
-DW$534	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$534, DW_AT_name("TZA"), DW_AT_symbol_name("_TZA")
-	.dwattr DW$534, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$534, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$534, DW_AT_accessibility(DW_ACCESS_public)
-DW$535	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$535, DW_AT_name("TZB"), DW_AT_symbol_name("_TZB")
-	.dwattr DW$535, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
-	.dwattr DW$535, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$535, DW_AT_accessibility(DW_ACCESS_public)
-DW$536	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$536, DW_AT_name("rsvd"), DW_AT_symbol_name("_rsvd")
-	.dwattr DW$536, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
-	.dwattr DW$536, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$536, DW_AT_accessibility(DW_ACCESS_public)
+DW$538	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$538, DW_AT_name("TZA"), DW_AT_symbol_name("_TZA")
+	.dwattr DW$538, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
+	.dwattr DW$538, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$538, DW_AT_accessibility(DW_ACCESS_public)
+DW$539	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$539, DW_AT_name("TZB"), DW_AT_symbol_name("_TZB")
+	.dwattr DW$539, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
+	.dwattr DW$539, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$539, DW_AT_accessibility(DW_ACCESS_public)
+DW$540	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$540, DW_AT_name("rsvd"), DW_AT_symbol_name("_rsvd")
+	.dwattr DW$540, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$540, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$540, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$67
 
 
 DW$T$69	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$69, DW_AT_name("TZEINT_BITS")
 	.dwattr DW$T$69, DW_AT_byte_size(0x01)
-DW$537	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$537, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$537, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$537, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$537, DW_AT_accessibility(DW_ACCESS_public)
-DW$538	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$538, DW_AT_name("CBC"), DW_AT_symbol_name("_CBC")
-	.dwattr DW$538, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$538, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$538, DW_AT_accessibility(DW_ACCESS_public)
-DW$539	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$539, DW_AT_name("OST"), DW_AT_symbol_name("_OST")
-	.dwattr DW$539, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$539, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$539, DW_AT_accessibility(DW_ACCESS_public)
-DW$540	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$540, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$540, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0d)
-	.dwattr DW$540, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$540, DW_AT_accessibility(DW_ACCESS_public)
-	.dwendtag DW$T$69
-
-
-DW$T$71	.dwtag  DW_TAG_structure_type
-	.dwattr DW$T$71, DW_AT_name("TZFLG_BITS")
-	.dwattr DW$T$71, DW_AT_byte_size(0x01)
 DW$541	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$541, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
+	.dwattr DW$541, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
 	.dwattr DW$541, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$541, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$541, DW_AT_accessibility(DW_ACCESS_public)
@@ -4513,12 +4506,12 @@ DW$544	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
 	.dwattr DW$544, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0d)
 	.dwattr DW$544, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$544, DW_AT_accessibility(DW_ACCESS_public)
-	.dwendtag DW$T$71
+	.dwendtag DW$T$69
 
 
-DW$T$73	.dwtag  DW_TAG_structure_type
-	.dwattr DW$T$73, DW_AT_name("TZCLR_BITS")
-	.dwattr DW$T$73, DW_AT_byte_size(0x01)
+DW$T$71	.dwtag  DW_TAG_structure_type
+	.dwattr DW$T$71, DW_AT_name("TZFLG_BITS")
+	.dwattr DW$T$71, DW_AT_byte_size(0x01)
 DW$545	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
 	.dwattr DW$545, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
 	.dwattr DW$545, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
@@ -4539,14 +4532,14 @@ DW$548	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
 	.dwattr DW$548, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0d)
 	.dwattr DW$548, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$548, DW_AT_accessibility(DW_ACCESS_public)
-	.dwendtag DW$T$73
+	.dwendtag DW$T$71
 
 
-DW$T$75	.dwtag  DW_TAG_structure_type
-	.dwattr DW$T$75, DW_AT_name("TZFRC_BITS")
-	.dwattr DW$T$75, DW_AT_byte_size(0x01)
+DW$T$73	.dwtag  DW_TAG_structure_type
+	.dwattr DW$T$73, DW_AT_name("TZCLR_BITS")
+	.dwattr DW$T$73, DW_AT_byte_size(0x01)
 DW$549	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$549, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$549, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
 	.dwattr DW$549, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$549, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$549, DW_AT_accessibility(DW_ACCESS_public)
@@ -4565,238 +4558,264 @@ DW$552	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
 	.dwattr DW$552, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0d)
 	.dwattr DW$552, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$552, DW_AT_accessibility(DW_ACCESS_public)
+	.dwendtag DW$T$73
+
+
+DW$T$75	.dwtag  DW_TAG_structure_type
+	.dwattr DW$T$75, DW_AT_name("TZFRC_BITS")
+	.dwattr DW$T$75, DW_AT_byte_size(0x01)
+DW$553	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$553, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$553, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
+	.dwattr DW$553, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$553, DW_AT_accessibility(DW_ACCESS_public)
+DW$554	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$554, DW_AT_name("CBC"), DW_AT_symbol_name("_CBC")
+	.dwattr DW$554, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$554, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$554, DW_AT_accessibility(DW_ACCESS_public)
+DW$555	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$555, DW_AT_name("OST"), DW_AT_symbol_name("_OST")
+	.dwattr DW$555, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$555, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$555, DW_AT_accessibility(DW_ACCESS_public)
+DW$556	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$556, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$556, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0d)
+	.dwattr DW$556, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$556, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$75
 
 
 DW$T$77	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$77, DW_AT_name("ETSEL_BITS")
 	.dwattr DW$T$77, DW_AT_byte_size(0x01)
-DW$553	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$553, DW_AT_name("INTSEL"), DW_AT_symbol_name("_INTSEL")
-	.dwattr DW$553, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x03)
-	.dwattr DW$553, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$553, DW_AT_accessibility(DW_ACCESS_public)
-DW$554	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$554, DW_AT_name("INTEN"), DW_AT_symbol_name("_INTEN")
-	.dwattr DW$554, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$554, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$554, DW_AT_accessibility(DW_ACCESS_public)
-DW$555	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$555, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$555, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x04)
-	.dwattr DW$555, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$555, DW_AT_accessibility(DW_ACCESS_public)
-DW$556	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$556, DW_AT_name("SOCASEL"), DW_AT_symbol_name("_SOCASEL")
-	.dwattr DW$556, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x03)
-	.dwattr DW$556, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$556, DW_AT_accessibility(DW_ACCESS_public)
 DW$557	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$557, DW_AT_name("SOCAEN"), DW_AT_symbol_name("_SOCAEN")
-	.dwattr DW$557, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$557, DW_AT_name("INTSEL"), DW_AT_symbol_name("_INTSEL")
+	.dwattr DW$557, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x03)
 	.dwattr DW$557, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$557, DW_AT_accessibility(DW_ACCESS_public)
 DW$558	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$558, DW_AT_name("SOCBSEL"), DW_AT_symbol_name("_SOCBSEL")
-	.dwattr DW$558, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x03)
+	.dwattr DW$558, DW_AT_name("INTEN"), DW_AT_symbol_name("_INTEN")
+	.dwattr DW$558, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
 	.dwattr DW$558, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$558, DW_AT_accessibility(DW_ACCESS_public)
 DW$559	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$559, DW_AT_name("SOCBEN"), DW_AT_symbol_name("_SOCBEN")
-	.dwattr DW$559, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$559, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$559, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x04)
 	.dwattr DW$559, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$559, DW_AT_accessibility(DW_ACCESS_public)
+DW$560	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$560, DW_AT_name("SOCASEL"), DW_AT_symbol_name("_SOCASEL")
+	.dwattr DW$560, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x03)
+	.dwattr DW$560, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$560, DW_AT_accessibility(DW_ACCESS_public)
+DW$561	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$561, DW_AT_name("SOCAEN"), DW_AT_symbol_name("_SOCAEN")
+	.dwattr DW$561, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x01)
+	.dwattr DW$561, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$561, DW_AT_accessibility(DW_ACCESS_public)
+DW$562	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$562, DW_AT_name("SOCBSEL"), DW_AT_symbol_name("_SOCBSEL")
+	.dwattr DW$562, DW_AT_bit_offset(0x01), DW_AT_bit_size(0x03)
+	.dwattr DW$562, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$562, DW_AT_accessibility(DW_ACCESS_public)
+DW$563	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$563, DW_AT_name("SOCBEN"), DW_AT_symbol_name("_SOCBEN")
+	.dwattr DW$563, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x01)
+	.dwattr DW$563, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$563, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$77
 
 
 DW$T$79	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$79, DW_AT_name("ETPS_BITS")
 	.dwattr DW$T$79, DW_AT_byte_size(0x01)
-DW$560	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$560, DW_AT_name("INTPRD"), DW_AT_symbol_name("_INTPRD")
-	.dwattr DW$560, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$560, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$560, DW_AT_accessibility(DW_ACCESS_public)
-DW$561	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$561, DW_AT_name("INTCNT"), DW_AT_symbol_name("_INTCNT")
-	.dwattr DW$561, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
-	.dwattr DW$561, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$561, DW_AT_accessibility(DW_ACCESS_public)
-DW$562	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$562, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$562, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x04)
-	.dwattr DW$562, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$562, DW_AT_accessibility(DW_ACCESS_public)
-DW$563	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$563, DW_AT_name("SOCAPRD"), DW_AT_symbol_name("_SOCAPRD")
-	.dwattr DW$563, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x02)
-	.dwattr DW$563, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$563, DW_AT_accessibility(DW_ACCESS_public)
 DW$564	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$564, DW_AT_name("SOCACNT"), DW_AT_symbol_name("_SOCACNT")
-	.dwattr DW$564, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x02)
+	.dwattr DW$564, DW_AT_name("INTPRD"), DW_AT_symbol_name("_INTPRD")
+	.dwattr DW$564, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
 	.dwattr DW$564, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$564, DW_AT_accessibility(DW_ACCESS_public)
 DW$565	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$565, DW_AT_name("SOCBPRD"), DW_AT_symbol_name("_SOCBPRD")
-	.dwattr DW$565, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x02)
+	.dwattr DW$565, DW_AT_name("INTCNT"), DW_AT_symbol_name("_INTCNT")
+	.dwattr DW$565, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x02)
 	.dwattr DW$565, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$565, DW_AT_accessibility(DW_ACCESS_public)
 DW$566	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$566, DW_AT_name("SOCBCNT"), DW_AT_symbol_name("_SOCBCNT")
-	.dwattr DW$566, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x02)
+	.dwattr DW$566, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$566, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x04)
 	.dwattr DW$566, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$566, DW_AT_accessibility(DW_ACCESS_public)
+DW$567	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$567, DW_AT_name("SOCAPRD"), DW_AT_symbol_name("_SOCAPRD")
+	.dwattr DW$567, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x02)
+	.dwattr DW$567, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$567, DW_AT_accessibility(DW_ACCESS_public)
+DW$568	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$568, DW_AT_name("SOCACNT"), DW_AT_symbol_name("_SOCACNT")
+	.dwattr DW$568, DW_AT_bit_offset(0x04), DW_AT_bit_size(0x02)
+	.dwattr DW$568, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$568, DW_AT_accessibility(DW_ACCESS_public)
+DW$569	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$569, DW_AT_name("SOCBPRD"), DW_AT_symbol_name("_SOCBPRD")
+	.dwattr DW$569, DW_AT_bit_offset(0x02), DW_AT_bit_size(0x02)
+	.dwattr DW$569, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$569, DW_AT_accessibility(DW_ACCESS_public)
+DW$570	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$570, DW_AT_name("SOCBCNT"), DW_AT_symbol_name("_SOCBCNT")
+	.dwattr DW$570, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x02)
+	.dwattr DW$570, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$570, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$79
 
 
 DW$T$81	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$81, DW_AT_name("ETFLG_BITS")
 	.dwattr DW$T$81, DW_AT_byte_size(0x01)
-DW$567	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$567, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
-	.dwattr DW$567, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$567, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$567, DW_AT_accessibility(DW_ACCESS_public)
-DW$568	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$568, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$568, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$568, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$568, DW_AT_accessibility(DW_ACCESS_public)
-DW$569	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$569, DW_AT_name("SOCA"), DW_AT_symbol_name("_SOCA")
-	.dwattr DW$569, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$569, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$569, DW_AT_accessibility(DW_ACCESS_public)
-DW$570	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$570, DW_AT_name("SOCB"), DW_AT_symbol_name("_SOCB")
-	.dwattr DW$570, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$570, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$570, DW_AT_accessibility(DW_ACCESS_public)
 DW$571	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$571, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$571, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$571, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
+	.dwattr DW$571, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$571, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$571, DW_AT_accessibility(DW_ACCESS_public)
+DW$572	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$572, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$572, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$572, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$572, DW_AT_accessibility(DW_ACCESS_public)
+DW$573	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$573, DW_AT_name("SOCA"), DW_AT_symbol_name("_SOCA")
+	.dwattr DW$573, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$573, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$573, DW_AT_accessibility(DW_ACCESS_public)
+DW$574	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$574, DW_AT_name("SOCB"), DW_AT_symbol_name("_SOCB")
+	.dwattr DW$574, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
+	.dwattr DW$574, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$574, DW_AT_accessibility(DW_ACCESS_public)
+DW$575	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$575, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$575, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$575, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$575, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$81
 
 
 DW$T$83	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$83, DW_AT_name("ETCLR_BITS")
 	.dwattr DW$T$83, DW_AT_byte_size(0x01)
-DW$572	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$572, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
-	.dwattr DW$572, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$572, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$572, DW_AT_accessibility(DW_ACCESS_public)
-DW$573	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$573, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$573, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$573, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$573, DW_AT_accessibility(DW_ACCESS_public)
-DW$574	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$574, DW_AT_name("SOCA"), DW_AT_symbol_name("_SOCA")
-	.dwattr DW$574, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$574, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$574, DW_AT_accessibility(DW_ACCESS_public)
-DW$575	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$575, DW_AT_name("SOCB"), DW_AT_symbol_name("_SOCB")
-	.dwattr DW$575, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$575, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$575, DW_AT_accessibility(DW_ACCESS_public)
 DW$576	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$576, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$576, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$576, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
+	.dwattr DW$576, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$576, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$576, DW_AT_accessibility(DW_ACCESS_public)
+DW$577	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$577, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$577, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$577, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$577, DW_AT_accessibility(DW_ACCESS_public)
+DW$578	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$578, DW_AT_name("SOCA"), DW_AT_symbol_name("_SOCA")
+	.dwattr DW$578, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$578, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$578, DW_AT_accessibility(DW_ACCESS_public)
+DW$579	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$579, DW_AT_name("SOCB"), DW_AT_symbol_name("_SOCB")
+	.dwattr DW$579, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
+	.dwattr DW$579, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$579, DW_AT_accessibility(DW_ACCESS_public)
+DW$580	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$580, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$580, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$580, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$580, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$83
 
 
 DW$T$85	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$85, DW_AT_name("ETFRC_BITS")
 	.dwattr DW$T$85, DW_AT_byte_size(0x01)
-DW$577	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$577, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
-	.dwattr DW$577, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$577, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$577, DW_AT_accessibility(DW_ACCESS_public)
-DW$578	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$578, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$578, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
-	.dwattr DW$578, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$578, DW_AT_accessibility(DW_ACCESS_public)
-DW$579	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$579, DW_AT_name("SOCA"), DW_AT_symbol_name("_SOCA")
-	.dwattr DW$579, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$579, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$579, DW_AT_accessibility(DW_ACCESS_public)
-DW$580	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$580, DW_AT_name("SOCB"), DW_AT_symbol_name("_SOCB")
-	.dwattr DW$580, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$580, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$580, DW_AT_accessibility(DW_ACCESS_public)
 DW$581	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$581, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
-	.dwattr DW$581, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$581, DW_AT_name("INT"), DW_AT_symbol_name("_INT")
+	.dwattr DW$581, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$581, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$581, DW_AT_accessibility(DW_ACCESS_public)
+DW$582	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$582, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$582, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x01)
+	.dwattr DW$582, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$582, DW_AT_accessibility(DW_ACCESS_public)
+DW$583	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$583, DW_AT_name("SOCA"), DW_AT_symbol_name("_SOCA")
+	.dwattr DW$583, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$583, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$583, DW_AT_accessibility(DW_ACCESS_public)
+DW$584	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$584, DW_AT_name("SOCB"), DW_AT_symbol_name("_SOCB")
+	.dwattr DW$584, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
+	.dwattr DW$584, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$584, DW_AT_accessibility(DW_ACCESS_public)
+DW$585	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$585, DW_AT_name("rsvd2"), DW_AT_symbol_name("_rsvd2")
+	.dwattr DW$585, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$585, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$585, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$85
 
 
 DW$T$87	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$87, DW_AT_name("PCCTL_BITS")
 	.dwattr DW$T$87, DW_AT_byte_size(0x01)
-DW$582	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$582, DW_AT_name("CHPEN"), DW_AT_symbol_name("_CHPEN")
-	.dwattr DW$582, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
-	.dwattr DW$582, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$582, DW_AT_accessibility(DW_ACCESS_public)
-DW$583	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$583, DW_AT_name("OSHTWTH"), DW_AT_symbol_name("_OSHTWTH")
-	.dwattr DW$583, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x04)
-	.dwattr DW$583, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$583, DW_AT_accessibility(DW_ACCESS_public)
-DW$584	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$584, DW_AT_name("CHPFREQ"), DW_AT_symbol_name("_CHPFREQ")
-	.dwattr DW$584, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x03)
-	.dwattr DW$584, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$584, DW_AT_accessibility(DW_ACCESS_public)
-DW$585	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$585, DW_AT_name("CHPDUTY"), DW_AT_symbol_name("_CHPDUTY")
-	.dwattr DW$585, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x03)
-	.dwattr DW$585, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$585, DW_AT_accessibility(DW_ACCESS_public)
 DW$586	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$586, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$586, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x05)
+	.dwattr DW$586, DW_AT_name("CHPEN"), DW_AT_symbol_name("_CHPEN")
+	.dwattr DW$586, DW_AT_bit_offset(0x0f), DW_AT_bit_size(0x01)
 	.dwattr DW$586, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$586, DW_AT_accessibility(DW_ACCESS_public)
+DW$587	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$587, DW_AT_name("OSHTWTH"), DW_AT_symbol_name("_OSHTWTH")
+	.dwattr DW$587, DW_AT_bit_offset(0x0b), DW_AT_bit_size(0x04)
+	.dwattr DW$587, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$587, DW_AT_accessibility(DW_ACCESS_public)
+DW$588	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$588, DW_AT_name("CHPFREQ"), DW_AT_symbol_name("_CHPFREQ")
+	.dwattr DW$588, DW_AT_bit_offset(0x08), DW_AT_bit_size(0x03)
+	.dwattr DW$588, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$588, DW_AT_accessibility(DW_ACCESS_public)
+DW$589	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$589, DW_AT_name("CHPDUTY"), DW_AT_symbol_name("_CHPDUTY")
+	.dwattr DW$589, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x03)
+	.dwattr DW$589, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$589, DW_AT_accessibility(DW_ACCESS_public)
+DW$590	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$590, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$590, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x05)
+	.dwattr DW$590, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$590, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$87
 
 
 DW$T$89	.dwtag  DW_TAG_structure_type
 	.dwattr DW$T$89, DW_AT_name("HRCNFG_BITS")
 	.dwattr DW$T$89, DW_AT_byte_size(0x01)
-DW$587	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$587, DW_AT_name("EDGMODE"), DW_AT_symbol_name("_EDGMODE")
-	.dwattr DW$587, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
-	.dwattr DW$587, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$587, DW_AT_accessibility(DW_ACCESS_public)
-DW$588	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$588, DW_AT_name("CTLMODE"), DW_AT_symbol_name("_CTLMODE")
-	.dwattr DW$588, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
-	.dwattr DW$588, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$588, DW_AT_accessibility(DW_ACCESS_public)
-DW$589	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$589, DW_AT_name("HRLOAD"), DW_AT_symbol_name("_HRLOAD")
-	.dwattr DW$589, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
-	.dwattr DW$589, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$589, DW_AT_accessibility(DW_ACCESS_public)
-DW$590	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
-	.dwattr DW$590, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
-	.dwattr DW$590, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
-	.dwattr DW$590, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
-	.dwattr DW$590, DW_AT_accessibility(DW_ACCESS_public)
+DW$591	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$591, DW_AT_name("EDGMODE"), DW_AT_symbol_name("_EDGMODE")
+	.dwattr DW$591, DW_AT_bit_offset(0x0e), DW_AT_bit_size(0x02)
+	.dwattr DW$591, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$591, DW_AT_accessibility(DW_ACCESS_public)
+DW$592	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$592, DW_AT_name("CTLMODE"), DW_AT_symbol_name("_CTLMODE")
+	.dwattr DW$592, DW_AT_bit_offset(0x0d), DW_AT_bit_size(0x01)
+	.dwattr DW$592, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$592, DW_AT_accessibility(DW_ACCESS_public)
+DW$593	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$593, DW_AT_name("HRLOAD"), DW_AT_symbol_name("_HRLOAD")
+	.dwattr DW$593, DW_AT_bit_offset(0x0c), DW_AT_bit_size(0x01)
+	.dwattr DW$593, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$593, DW_AT_accessibility(DW_ACCESS_public)
+DW$594	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$19)
+	.dwattr DW$594, DW_AT_name("rsvd1"), DW_AT_symbol_name("_rsvd1")
+	.dwattr DW$594, DW_AT_bit_offset(0x00), DW_AT_bit_size(0x0c)
+	.dwattr DW$594, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$594, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$89
 
 
@@ -4860,87 +4879,87 @@ DW$CIE	.dwcie 1, 40
 ;* DWARF REGISTER MAP                                          *
 ;***************************************************************
 
-DW$591	.dwtag  DW_TAG_assign_register, DW_AT_name("AL")
-	.dwattr DW$591, DW_AT_location[DW_OP_reg0]
-DW$592	.dwtag  DW_TAG_assign_register, DW_AT_name("AH")
-	.dwattr DW$592, DW_AT_location[DW_OP_reg1]
-DW$593	.dwtag  DW_TAG_assign_register, DW_AT_name("PL")
-	.dwattr DW$593, DW_AT_location[DW_OP_reg2]
-DW$594	.dwtag  DW_TAG_assign_register, DW_AT_name("PH")
-	.dwattr DW$594, DW_AT_location[DW_OP_reg3]
-DW$595	.dwtag  DW_TAG_assign_register, DW_AT_name("AR0")
-	.dwattr DW$595, DW_AT_location[DW_OP_reg4]
-DW$596	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR0")
-	.dwattr DW$596, DW_AT_location[DW_OP_reg5]
-DW$597	.dwtag  DW_TAG_assign_register, DW_AT_name("AR1")
-	.dwattr DW$597, DW_AT_location[DW_OP_reg6]
-DW$598	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR1")
-	.dwattr DW$598, DW_AT_location[DW_OP_reg7]
-DW$599	.dwtag  DW_TAG_assign_register, DW_AT_name("AR2")
-	.dwattr DW$599, DW_AT_location[DW_OP_reg8]
-DW$600	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR2")
-	.dwattr DW$600, DW_AT_location[DW_OP_reg9]
-DW$601	.dwtag  DW_TAG_assign_register, DW_AT_name("AR3")
-	.dwattr DW$601, DW_AT_location[DW_OP_reg10]
-DW$602	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR3")
-	.dwattr DW$602, DW_AT_location[DW_OP_reg11]
-DW$603	.dwtag  DW_TAG_assign_register, DW_AT_name("AR4")
-	.dwattr DW$603, DW_AT_location[DW_OP_reg12]
-DW$604	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR4")
-	.dwattr DW$604, DW_AT_location[DW_OP_reg13]
-DW$605	.dwtag  DW_TAG_assign_register, DW_AT_name("AR5")
-	.dwattr DW$605, DW_AT_location[DW_OP_reg14]
-DW$606	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR5")
-	.dwattr DW$606, DW_AT_location[DW_OP_reg15]
-DW$607	.dwtag  DW_TAG_assign_register, DW_AT_name("AR6")
-	.dwattr DW$607, DW_AT_location[DW_OP_reg16]
-DW$608	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR6")
-	.dwattr DW$608, DW_AT_location[DW_OP_reg17]
-DW$609	.dwtag  DW_TAG_assign_register, DW_AT_name("AR7")
-	.dwattr DW$609, DW_AT_location[DW_OP_reg18]
-DW$610	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR7")
-	.dwattr DW$610, DW_AT_location[DW_OP_reg19]
-DW$611	.dwtag  DW_TAG_assign_register, DW_AT_name("SP")
-	.dwattr DW$611, DW_AT_location[DW_OP_reg20]
-DW$612	.dwtag  DW_TAG_assign_register, DW_AT_name("XT")
-	.dwattr DW$612, DW_AT_location[DW_OP_reg21]
-DW$613	.dwtag  DW_TAG_assign_register, DW_AT_name("T")
-	.dwattr DW$613, DW_AT_location[DW_OP_reg22]
-DW$614	.dwtag  DW_TAG_assign_register, DW_AT_name("ST0")
-	.dwattr DW$614, DW_AT_location[DW_OP_reg23]
-DW$615	.dwtag  DW_TAG_assign_register, DW_AT_name("ST1")
-	.dwattr DW$615, DW_AT_location[DW_OP_reg24]
-DW$616	.dwtag  DW_TAG_assign_register, DW_AT_name("PC")
-	.dwattr DW$616, DW_AT_location[DW_OP_reg25]
-DW$617	.dwtag  DW_TAG_assign_register, DW_AT_name("RPC")
-	.dwattr DW$617, DW_AT_location[DW_OP_reg26]
-DW$618	.dwtag  DW_TAG_assign_register, DW_AT_name("FP")
-	.dwattr DW$618, DW_AT_location[DW_OP_reg27]
-DW$619	.dwtag  DW_TAG_assign_register, DW_AT_name("DP")
-	.dwattr DW$619, DW_AT_location[DW_OP_reg28]
-DW$620	.dwtag  DW_TAG_assign_register, DW_AT_name("SXM")
-	.dwattr DW$620, DW_AT_location[DW_OP_reg29]
-DW$621	.dwtag  DW_TAG_assign_register, DW_AT_name("PM")
-	.dwattr DW$621, DW_AT_location[DW_OP_reg30]
-DW$622	.dwtag  DW_TAG_assign_register, DW_AT_name("OVM")
-	.dwattr DW$622, DW_AT_location[DW_OP_reg31]
-DW$623	.dwtag  DW_TAG_assign_register, DW_AT_name("PAGE0")
-	.dwattr DW$623, DW_AT_location[DW_OP_regx 0x20]
-DW$624	.dwtag  DW_TAG_assign_register, DW_AT_name("AMODE")
-	.dwattr DW$624, DW_AT_location[DW_OP_regx 0x21]
-DW$625	.dwtag  DW_TAG_assign_register, DW_AT_name("IFR")
-	.dwattr DW$625, DW_AT_location[DW_OP_regx 0x22]
-DW$626	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
-	.dwattr DW$626, DW_AT_location[DW_OP_regx 0x23]
-DW$627	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
-	.dwattr DW$627, DW_AT_location[DW_OP_regx 0x24]
-DW$628	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDO")
-	.dwattr DW$628, DW_AT_location[DW_OP_regx 0x25]
-DW$629	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDOH")
-	.dwattr DW$629, DW_AT_location[DW_OP_regx 0x26]
-DW$630	.dwtag  DW_TAG_assign_register, DW_AT_name("VOL")
-	.dwattr DW$630, DW_AT_location[DW_OP_regx 0x27]
-DW$631	.dwtag  DW_TAG_assign_register, DW_AT_name("CIE_RETA")
-	.dwattr DW$631, DW_AT_location[DW_OP_regx 0x28]
+DW$595	.dwtag  DW_TAG_assign_register, DW_AT_name("AL")
+	.dwattr DW$595, DW_AT_location[DW_OP_reg0]
+DW$596	.dwtag  DW_TAG_assign_register, DW_AT_name("AH")
+	.dwattr DW$596, DW_AT_location[DW_OP_reg1]
+DW$597	.dwtag  DW_TAG_assign_register, DW_AT_name("PL")
+	.dwattr DW$597, DW_AT_location[DW_OP_reg2]
+DW$598	.dwtag  DW_TAG_assign_register, DW_AT_name("PH")
+	.dwattr DW$598, DW_AT_location[DW_OP_reg3]
+DW$599	.dwtag  DW_TAG_assign_register, DW_AT_name("AR0")
+	.dwattr DW$599, DW_AT_location[DW_OP_reg4]
+DW$600	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR0")
+	.dwattr DW$600, DW_AT_location[DW_OP_reg5]
+DW$601	.dwtag  DW_TAG_assign_register, DW_AT_name("AR1")
+	.dwattr DW$601, DW_AT_location[DW_OP_reg6]
+DW$602	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR1")
+	.dwattr DW$602, DW_AT_location[DW_OP_reg7]
+DW$603	.dwtag  DW_TAG_assign_register, DW_AT_name("AR2")
+	.dwattr DW$603, DW_AT_location[DW_OP_reg8]
+DW$604	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR2")
+	.dwattr DW$604, DW_AT_location[DW_OP_reg9]
+DW$605	.dwtag  DW_TAG_assign_register, DW_AT_name("AR3")
+	.dwattr DW$605, DW_AT_location[DW_OP_reg10]
+DW$606	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR3")
+	.dwattr DW$606, DW_AT_location[DW_OP_reg11]
+DW$607	.dwtag  DW_TAG_assign_register, DW_AT_name("AR4")
+	.dwattr DW$607, DW_AT_location[DW_OP_reg12]
+DW$608	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR4")
+	.dwattr DW$608, DW_AT_location[DW_OP_reg13]
+DW$609	.dwtag  DW_TAG_assign_register, DW_AT_name("AR5")
+	.dwattr DW$609, DW_AT_location[DW_OP_reg14]
+DW$610	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR5")
+	.dwattr DW$610, DW_AT_location[DW_OP_reg15]
+DW$611	.dwtag  DW_TAG_assign_register, DW_AT_name("AR6")
+	.dwattr DW$611, DW_AT_location[DW_OP_reg16]
+DW$612	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR6")
+	.dwattr DW$612, DW_AT_location[DW_OP_reg17]
+DW$613	.dwtag  DW_TAG_assign_register, DW_AT_name("AR7")
+	.dwattr DW$613, DW_AT_location[DW_OP_reg18]
+DW$614	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR7")
+	.dwattr DW$614, DW_AT_location[DW_OP_reg19]
+DW$615	.dwtag  DW_TAG_assign_register, DW_AT_name("SP")
+	.dwattr DW$615, DW_AT_location[DW_OP_reg20]
+DW$616	.dwtag  DW_TAG_assign_register, DW_AT_name("XT")
+	.dwattr DW$616, DW_AT_location[DW_OP_reg21]
+DW$617	.dwtag  DW_TAG_assign_register, DW_AT_name("T")
+	.dwattr DW$617, DW_AT_location[DW_OP_reg22]
+DW$618	.dwtag  DW_TAG_assign_register, DW_AT_name("ST0")
+	.dwattr DW$618, DW_AT_location[DW_OP_reg23]
+DW$619	.dwtag  DW_TAG_assign_register, DW_AT_name("ST1")
+	.dwattr DW$619, DW_AT_location[DW_OP_reg24]
+DW$620	.dwtag  DW_TAG_assign_register, DW_AT_name("PC")
+	.dwattr DW$620, DW_AT_location[DW_OP_reg25]
+DW$621	.dwtag  DW_TAG_assign_register, DW_AT_name("RPC")
+	.dwattr DW$621, DW_AT_location[DW_OP_reg26]
+DW$622	.dwtag  DW_TAG_assign_register, DW_AT_name("FP")
+	.dwattr DW$622, DW_AT_location[DW_OP_reg27]
+DW$623	.dwtag  DW_TAG_assign_register, DW_AT_name("DP")
+	.dwattr DW$623, DW_AT_location[DW_OP_reg28]
+DW$624	.dwtag  DW_TAG_assign_register, DW_AT_name("SXM")
+	.dwattr DW$624, DW_AT_location[DW_OP_reg29]
+DW$625	.dwtag  DW_TAG_assign_register, DW_AT_name("PM")
+	.dwattr DW$625, DW_AT_location[DW_OP_reg30]
+DW$626	.dwtag  DW_TAG_assign_register, DW_AT_name("OVM")
+	.dwattr DW$626, DW_AT_location[DW_OP_reg31]
+DW$627	.dwtag  DW_TAG_assign_register, DW_AT_name("PAGE0")
+	.dwattr DW$627, DW_AT_location[DW_OP_regx 0x20]
+DW$628	.dwtag  DW_TAG_assign_register, DW_AT_name("AMODE")
+	.dwattr DW$628, DW_AT_location[DW_OP_regx 0x21]
+DW$629	.dwtag  DW_TAG_assign_register, DW_AT_name("IFR")
+	.dwattr DW$629, DW_AT_location[DW_OP_regx 0x22]
+DW$630	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
+	.dwattr DW$630, DW_AT_location[DW_OP_regx 0x23]
+DW$631	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
+	.dwattr DW$631, DW_AT_location[DW_OP_regx 0x24]
+DW$632	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDO")
+	.dwattr DW$632, DW_AT_location[DW_OP_regx 0x25]
+DW$633	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDOH")
+	.dwattr DW$633, DW_AT_location[DW_OP_regx 0x26]
+DW$634	.dwtag  DW_TAG_assign_register, DW_AT_name("VOL")
+	.dwattr DW$634, DW_AT_location[DW_OP_regx 0x27]
+DW$635	.dwtag  DW_TAG_assign_register, DW_AT_name("CIE_RETA")
+	.dwattr DW$635, DW_AT_location[DW_OP_regx 0x28]
 	.dwendtag DW$CU
 

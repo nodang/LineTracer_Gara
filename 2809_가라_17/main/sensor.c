@@ -18,7 +18,7 @@
 #include "Main.h"
 #include "Sensor.h"
 
-#define MAX_POSITION	14500
+#define MAX_POSITION	12000
 #define MAX_STRAIGHT	1000
 
 #define MIN_MAXMIN		1024.0
@@ -77,6 +77,7 @@ void Init_SENSOR()
 	SenAdc.Position_U16_CNT = 6;
 	SenAdc.Position_IQ10 = _IQ10(0.0);
 	SenAdc.PositionTemporary_IQ10 = _IQ10(0.0);
+	SenAdc.PositionShift_IQ10 = _IQ10(0.0);
 
 	
 	// POSITION WEIGHT		D * 10 um
@@ -327,44 +328,19 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 		sum_mpy_wd_iq8 += _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT + 1))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT + 1]) << 8);
 		sum_mpy_wd_iq8 += _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT + 2))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT + 2]) << 8);
 		sum_mpy_wd_iq8 += _IQ8mpy(((long)(*(pA + pS->Position_U16_CNT + 3))) << 8, ((long)pS->Div127_U16[pS->Position_U16_CNT + 3]) << 8);	
-
-		//TxPrintf("%ld\n",sum_mpy_wd_iq8 >> 10);
-
+		
 		pS->Position_IQ10 = _IQ8div(sum_mpy_wd_iq8, ((long)sum_127div_u16) << 8) << 2;
 		
-		if(pS->Position_IQ10 > _IQ10(MAX_POSITION))			pS->Position_IQ10 = _IQ10(MAX_POSITION);
-		else if(pS->Position_IQ10 < _IQ10(-MAX_POSITION))	pS->Position_IQ10 = _IQ10(-MAX_POSITION);
+		if(pS->Position_IQ10 > _IQ10(MAX_POSITION)) 			pS->Position_IQ10 = _IQ10(MAX_POSITION);
+		else if(pS->Position_IQ10 < _IQ10(-MAX_POSITION))		pS->Position_IQ10 = _IQ10(-MAX_POSITION);
 
-		if(Flag.Cross)
-		{
-			if(Flag.Search_U16)
-			{
-				pS->Position_IQ10 =	(pS->Position_IQ10 > _IQ10(MAX_STRAIGHT)) ? _IQ10(MAX_STRAIGHT) :
-									(pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
-			}
-/*
-			else if(Flag.Fast_U16 & SECOND_MARK_U16_CNT)
-			{
-				if(CROSS_PLUS_U32 < Search[SECOND_MARK_U16_CNT - 1].CrossPlus_U32)
-				{
-					pS->Position_IQ10 =	(pS->Position_IQ10 > _IQ10(MAX_STRAIGHT)) ? _IQ10(MAX_STRAIGHT) :
-										(pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
-				}
-			}
-			else if(Flag.Extrem_U16 & THIRD_MARK_U16_CNT)
-			{
-				if(CROSS_PLUS_U32 < Search[THIRD_MARK_U16_CNT - 1].CrossPlus_U32)
-				{
-					pS->Position_IQ10 =	(pS->Position_IQ10 > _IQ10(MAX_STRAIGHT)) ? _IQ10(MAX_STRAIGHT) :
-										(pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
-				}
-			}
-*/
-		}
-
-		pS->PositionTemporary_IQ10 = pS->Position_IQ10; //(pS->PositionTemporary_IQ10 + pS->Position_IQ10) >> 1;
+		if(Flag.Search_U16 && Flag.Cross)
+			pS->PositionTemporary_IQ10 = (pS->Position_IQ10 > _IQ10(MAX_STRAIGHT)) ? _IQ10(MAX_STRAIGHT) :
+										 (pS->Position_IQ10 < _IQ10(-MAX_STRAIGHT)) ? _IQ10(-MAX_STRAIGHT) : pS->Position_IQ10;
+		else
+			pS->PositionTemporary_IQ10 = pS->Position_IQ10;
 		
-		cur_position_i32	= pS->PositionTemporary_IQ10 >> 10;
+		cur_position_i32 = pS->Position_IQ10 >> 10;
 		
 		if((cur_position_i32 > *(pA + 0)))		{ pS->Position_U16_CNT = 0;		*state = 8;	*enable = RIGHT_ENABLE; }
 		else if(cur_position_i32 < *(pA + 15))	{ pS->Position_U16_CNT = 12;	*state = 8;	*enable = LEFT_ENABLE; }
@@ -393,7 +369,7 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 		else									{ pS->Position_U16_CNT = 6;		*state = 0;	*enable = 0x0000;	}
 	}
 	else		LINE_OUT_U16++;
-	
+
 	HANDLE();
 }
 
@@ -402,7 +378,7 @@ void HANDLE()
 	HanPID.Pos_Err_IQ10[4] = HanPID.Pos_Err_IQ10[3];
 	HanPID.Pos_Err_IQ10[3] = HanPID.Pos_Err_IQ10[2];
 	HanPID.Pos_Err_IQ10[2] = HanPID.Pos_Err_IQ10[1];
-	HanPID.Pos_Err_IQ10[1] = SenAdc.PositionTemporary_IQ10;
+	HanPID.Pos_Err_IQ10[1] = SenAdc.PositionTemporary_IQ10 + SenAdc.PositionShift_IQ10;
 	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[2] - HanPID.Pos_Err_IQ10[1];
 
 	//HanPID.Pos_P_IQ17 = _IQ17mpyIQX(PID_Kp_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
