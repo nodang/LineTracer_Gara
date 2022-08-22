@@ -426,8 +426,6 @@ static void xLINE_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	}
 }
 
-#define S44S_STRAIGHT_DIST		500
-
 static void xSTR_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 {
 	volatile _iq17 high_vel = _IQ17(0.0);
@@ -493,7 +491,7 @@ static void xSTR_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 			LINE->Kp_UpDown_IQ17 = (LINE + 1)->Kp_UpDown_IQ17;
 			LINE->BlindFlag_U16 = ON;
 		
-			if(LINE->Distance_U32 < S44S_STRAIGHT_DIST)			LINE->DownFlag_U16 = ON;
+			if(LINE->Distance_U32 < HEIGHT_2SEEN)			LINE->DownFlag_U16 = ON;
 			else												LINE->s44sFlag_U16 = ON;
 		}
 	} while(0); 
@@ -511,7 +509,7 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 
 	if(((LINE - 1)->TurnDir_U32 & STRAIGHT) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))		// s4s
 		xVEL_COMPUTE(LINE, LINE + 1, XS4S_VEL, TURN_VEL, m_dist);
-
+	
 	else
 	{
 		LINE->VeloIn_IQ17 = TURN_VEL;
@@ -645,9 +643,9 @@ static void xtest_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	}
 }
 
-#define shift_45_25		4
-#define shift_45_35		6
-#define shift_45_30		5
+#define shift_45_25		3
+#define shift_45_35		5
+#define shift_45_30		4
 
 static void xshift_division(TRACKINFO *LINE, Uint16 cnt)
 {
@@ -655,54 +653,64 @@ static void xshift_division(TRACKINFO *LINE, Uint16 cnt)
 	
 	if(LINE->BlindFlag_U16)
 	{
-		if((LINE->TurnDir_U32 & STRAIGHT) && (LINE->s44sFlag_U16 || LINE->DownFlag_U16))
+		if(LINE->TurnDir_U32 & STRAIGHT)
 		{
-			if(((LINE + 1)->TurnDir_U32 & TURN_R_25) && ((LINE + 2)->TurnDir_U32 & TURN_R_25))
-				shift_cnt = shift_45_25;
+			if((LINE + 1)->BlindFlag_U16)
+			{
+				if(((LINE + 1)->TurnDir_U32 & TURN_R_25) && ((LINE + 2)->TurnDir_U32 & TURN_R_25))
+					shift_cnt = shift_45_25;
 
-			else if(((LINE + 1)->TurnDir_U32 & TURN_R_35) && ((LINE + 2)->TurnDir_U32 & TURN_R_35))
-				shift_cnt = shift_45_35;
+				else if(((LINE + 1)->TurnDir_U32 & TURN_R_35) && ((LINE + 2)->TurnDir_U32 & TURN_R_35))
+					shift_cnt = shift_45_35;
 
-			else if(((LINE + 1)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)) && ((LINE + 2)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)))
-				shift_cnt = shift_45_30;
+				else if(((LINE + 1)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)) && ((LINE + 2)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)))
+					shift_cnt = shift_45_30;
+			}
+			else
+				shift_cnt = 3;
 
-
-			LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
-
-			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
-		}
-		else if(LINE->TurnDir_U32 & STRAIGHT)
-		{
-			LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt + 1] : right_table[shift_cnt + 1];
-
-			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+			if(LINE->Distance_U32 > HEIGHT_2SEEN)
+			{
+				LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
+				
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+			}
+			else
+			{
+				LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt + 1] : right_table[shift_cnt + 1];
+				
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+			}
 		}
 		else
 		{
 			xshift_division(LINE + 1, cnt + 1);
 
-			if((LINE - 1)->TurnDir_U32 & STRAIGHT)
+			if((LINE + 1)->TurnDir_U32 & STRAIGHT)
 			{
-				LINE->TargetPosition_IQ10 = -((LINE - 1)->TargetPosition_IQ10);
+				//다음 곡선이랑 방향이 다르면 포지션을 0
+				if(LINE->TurnWay_U32 & (LINE + 2)->TurnWay_U32)		LINE->TargetPosition_IQ10 = -((LINE - 2)->TargetPosition_IQ10);
+				else												LINE->TargetPosition_IQ10 = _IQ10(0.0);
 
-				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 + (LINE + 1)->Distance_U32)) << 9);
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 2)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)((LINE - 1)->Distance_U32 + LINE->Distance_U32)) << 10);
 			}
 			else
 			{
-				LINE->TargetPosition_IQ10 = (LINE - 1)->TargetPosition_IQ10;
-				LINE->PositionRatio_IQ10 = (LINE - 1)->PositionRatio_IQ10;
+				LINE->TargetPosition_IQ10 = (LINE + 1)->TargetPosition_IQ10;
+				LINE->PositionRatio_IQ10 = (LINE + 1)->PositionRatio_IQ10;
 			}
 		}
-
 	}
 	else if((LINE - 1)->BlindFlag_U16)
 	{
-		LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+		if(LINE->Distance_U32 > HEIGHT_2SEEN)
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+		else
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
 	}
-	else
-	{
+
+	if(!(LINE->PositionRatio_IQ10))
 		LINE->PositionRatio_IQ10 = _IQ10(2.5);
-	}
 }
 
 /*

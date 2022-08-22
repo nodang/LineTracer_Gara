@@ -170,6 +170,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 
 #define	HEIGHT_ME			270.0	//		208.0	//292.7		//300.0		// 약 255mm
 #define HEIGHT_SEEN			250.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 센서 체크중임		// sensor between motor weight center
+#define HEIGHT_2SEEN		500.0
 #define	HEIGHT_REARdiv2		74.3	//148.63	//80.0
 
 #define CLK_DIVISION_CONSTANT		7	// 4 // 2
