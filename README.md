@@ -31,3 +31,16 @@ Line-follower with Stepper-Motor, which belongs Robot-Research-Society of MAZE f
 해당 영상은 2배속입니다.
 
 ![](./image/2차.gif)
+
+
+# 2022 시립대 1차 주행 - 가라_2017
+
+해당 영상은 1배속입니다.
+
+![](./image/2022시립대본선1차.gif)
+
+# 2022 시립대 3차 주행 - 가라_2017
+
+해당 영상은 1배속입니다.
+
+![](./image/2022시립대본선3차.gif)
