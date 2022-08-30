@@ -27,6 +27,7 @@ void Init_GLOBAL()
 	
 	THIRD_MARK_U16_CNT = 0;
 	XRUN_DIST_IQ15 = 0;
+	SHIFT_LEVEL = 0;
 	
 	ERROR_U16_FLAG = OFF;
 	CROSS_PLUS_SEARCH_U32 = 0;
@@ -220,7 +221,7 @@ void LINE_PRINTF()
 	load_line_info();
 
 	VFDPrintf("<-2  3->");
-	while(SW_L&SW_R)
+	while(!Flag.Fast_U16 && !Flag.Extrem_U16)
 	{
 		if(!SW_L)		{	Flag.Fast_U16 = ON;		TxPrintf("\n\nSECOND_LINE_INFO\n\n");		}
 		else if(!SW_R)	{	Flag.Extrem_U16 = ON;	TxPrintf("\n\nTHIRD_LINE_INFO\n\n");		}

@@ -5,6 +5,11 @@
 
 #define TURN_DOWN 	(TURN_R_25 | TURN_R_35)
 
+#define shift_45_25		3
+#define shift_45_35		5
+#define shift_45_30		4
+#define shift_s4s		2
+
 #define TURN_VEL	(((long)MOTOR_SPEED_U32) << 17)
 #define X45_VEL		(((long)x45_SPEED_U32) << 17)
 #define XS4S_VEL	(((long)(MOTOR_SPEED_U32 + xS4S_SPEED_U32)) << 17)
@@ -24,7 +29,7 @@ volatile _iq10 left_table[] =
 //static void xCONTROL(Uint16 mode, HANDLEPID *p_hd, _iq17 ratio, volatile _iq17 kp_min);
 static void xLINE_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 static void xtest_DIVISION(TRACKINFO *LINE, Uint16 cnt);
-static void xshift_division(TRACKINFO *LINE, Uint16 cnt);
+//static void xshift_division(TRACKINFO *LINE, Uint16 cnt);
 
 //static void x180_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt);
 //static void x270_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt);
@@ -46,7 +51,7 @@ Uint16 xTURN_DIVISION_FUNC()
 {
 	Uint16 cnt = 0, flag = 0;
 
-	while(SW_D)
+	while(SW_U)
 	{
 		VFDPrintf("flag  %2u", flag);
 		if(!SW_R)		
@@ -81,13 +86,36 @@ Uint16 xTURN_DIVISION_FUNC()
 
 	if(flag == 1)
 	{
+		SHIFT_LEVEL = 0;
+/*
+		while(SW_D)
+		{
+			VFDPrintf("level  %1lu", SHIFT_LEVEL);
+			if(!SW_L)		
+			{	
+				if(SHIFT_LEVEL > 0)
+					SHIFT_LEVEL--;
+				DELAY_US(SW_DELAY);
+			}
+			else if(!SW_R)
+			{
+				if(SHIFT_LEVEL < 8)
+					SHIFT_LEVEL++;
+				DELAY_US(SW_DELAY);
+			}
+		}
+*/	
+		VFDPrintf(" Ready? ");
+		while(SW_D);
+		
 		for(cnt = 0; cnt <= MARK_U16_CNT; cnt++)
 		{
-			xshift_division(&Search[cnt], cnt);
+			//xshift_division(&Search[cnt], cnt);
 
 			if(Flag.TxFlag_U16)
-				TxPrintf("CNT: %3u  bld: %u  tarpos: %6ld  pos_r: %lf\n", 
-						 cnt,  Search[cnt].BlindFlag_U16, Search[cnt].TargetPosition_IQ10 >> 10, _IQ10toF(Search[cnt].PositionRatio_IQ10));
+				TxPrintf("CNT: %3u  DIR: %2c  bld: %u  tarpos: %6ld  pos_r: %lf\n", 
+						 cnt, Search[cnt].TurnDir_U32 & STRAIGHT ? 'S' : (Search[cnt].TurnDir_U32 & RIGHT_TURN ? 'R' : 'L'),
+						 Search[cnt].BlindFlag_U16, Search[cnt].TargetPosition_IQ10 >> 10, _IQ10toF(Search[cnt].PositionRatio_IQ10));
 		}
 	}
 	return 0;
@@ -131,19 +159,31 @@ void err_mark(Uint16 *cnt)
 		if((dist + _IQ15(HEIGHT_SEEN)) < XRUN_DIST_IQ15)
 		{
 			BUZ_ON;
-			
+		
 			dist += ((long)p_track->Distance_U32) << 15;
 			dist -= XRUN_DIST_IQ15;
-				
+/*				
 			if(p_track->TurnDir_U32 & STRAIGHT)
 			{
-				VEL_COMPUTE(dist << 1, _IQ17(0.0), (LMotor.NextVelocity_IQ17 >> 1) + (RMotor.NextVelocity_IQ17 >> 1), p_track->Jerk_IQ14, &p_track->Velo_IQ17);
-				DECEL_DIST_COMPUTE(p_track->Velo_IQ17, p_track->VeloOut_IQ17, &p_track->DecelDistance_IQ17, &p_track->Decel_IQ14);
+				DECEL_DIST_COMPUTE((LMotor.NextVelocity_IQ17 >> 1) + (RMotor.NextVelocity_IQ17 >> 1), p_track->VeloOut_IQ17, &p_track->DecelDistance_IQ17, &p_track->Decel_IQ14);
+
+				if(p_track->DecelDistance_IQ17 >= dist)			
+				{
+					p_track->Velo_IQ17 = p_track->VeloOut_IQ17;
+					p_track->DecelDistance_IQ17 = dist;
+				}
+				else
+				{
+					VEL_COMPUTE(dist << 1, p_track->DecelDistance_IQ17 >> 1, (LMotor.NextVelocity_IQ17 >> 1) + (RMotor.NextVelocity_IQ17 >> 1), p_track->Jerk_IQ14, &p_track->Velo_IQ17);
+					DECEL_DIST_COMPUTE(p_track->Velo_IQ17, p_track->VeloOut_IQ17, &p_track->DecelDistance_IQ17, &p_track->Decel_IQ14);
+				}
 				
 				MOVE_TO_MOVE( dist << 2, p_track->DecelDistance_IQ17, p_track->Velo_IQ17, p_track->VeloOut_IQ17, p_track->Jerk_IQ14, p_track->Decel_IQ14 );
 			}
 			else
 				MOVE_TO_MOVE( dist << 2, p_track->DecelDistance_IQ17, ((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, p_track->Jerk_IQ14, p_track->Decel_IQ14 );
+*/
+			MOVE_TO_MOVE( dist << 2, p_track->DecelDistance_IQ17, ((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, p_track->Jerk_IQ14, p_track->Decel_IQ14 );
 
 			if(*cnt > MARK_U16_CNT)		ERROR_U16_FLAG = ON;
 			else						(*cnt)++;
@@ -252,14 +292,9 @@ static void xSTRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 		else
 			VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 		*/
-		m_dist = m_dist >> 1;
 
-		VEL_COMPUTE(m_dist, LINE->MotorDistance_IQ17 >> 1, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-		
+		VEL_COMPUTE(m_dist >> 1, LINE->MotorDistance_IQ17 >> 1, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
-
-		if(LINE->DecelDistance_IQ17 > m_dist)
-			LINE->DecelDistance_IQ17 = m_dist;
 	}
 
 	do
@@ -403,8 +438,11 @@ static void x90_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	if(((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 1)->TurnDir_U32 & TURN_DOWN))
 	{
 		xLINE_DIVISION((LINE + 1), (cnt + 1));
-		
-		xCONTINOUS_VEL_COMPUTE(LINE, x90_vel, _IQ17(0.0), Kp_SHARP_TURN_IQ17);
+
+		if((LINE + 1)->DownFlag_U16)
+			xCONTINOUS_VEL_COMPUTE(LINE, x90_vel, _IQ17(0.0), Kp_SHARP_TURN_IQ17);
+		else
+			xCONTINOUS_VEL_COMPUTE(LINE, x90_vel, _IQ17(0.0), PID_Kp_IQ17);
 	}
 }
 
@@ -428,6 +466,8 @@ static void xLINE_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 
 static void xSTR_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 {
+	volatile Uint16 shift_cnt = 0;	//SHIFT_LEVEL;
+
 	volatile _iq17 high_vel = _IQ17(0.0);
 	volatile _iq17 low_vel = _IQ17(0.0);
 	volatile _iq17 dist = _IQ17(0.0);
@@ -484,21 +524,55 @@ static void xSTR_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
 	}
 
-	do
-	{
-		if(((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 2)->TurnDir_U32 & TURN_TH_45))		//연속턴 직 사 사 직 | 직 사 90 직 
-		{	
-			LINE->Kp_UpDown_IQ17 = (LINE + 1)->Kp_UpDown_IQ17;
-			LINE->BlindFlag_U16 = ON;
-		
-			if(LINE->Distance_U32 < HEIGHT_2SEEN)			LINE->DownFlag_U16 = ON;
-			else												LINE->s44sFlag_U16 = ON;
+	//position shift
+	if(((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 2)->TurnDir_U32 & TURN_TH_45))		//연속턴 직 사 사 직 | 직 사 90 직 
+	{	
+		LINE->Kp_UpDown_IQ17 = (LINE + 1)->Kp_UpDown_IQ17;
+		LINE->BlindFlag_U16 = ON;
+	
+		if(LINE->Distance_U32 < HEIGHT_2SEEN)			LINE->DownFlag_U16 = ON;
+		else											LINE->s44sFlag_U16 = ON;
+
+		if((LINE + 3)->TurnDir_U32 & STRAIGHT)
+		{
+			if(((LINE + 1)->TurnDir_U32 & TURN_R_25) && ((LINE + 2)->TurnDir_U32 & TURN_R_25))
+				shift_cnt = shift_45_25;
+
+			else if(((LINE + 1)->TurnDir_U32 & TURN_R_35) && ((LINE + 2)->TurnDir_U32 & TURN_R_35))
+				shift_cnt = shift_45_35;
+
+			else if(((LINE + 1)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)) && ((LINE + 2)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)))
+				shift_cnt = shift_45_30;
 		}
-	} while(0); 
+		
+		if(LINE->Distance_U32 > HEIGHT_2SEEN)		LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
+		else										LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt + 1] : right_table[shift_cnt + 1];
+	}
+	else
+	{
+		//if(((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 2)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 3)->TurnDir_U32 & STRAIGHT))
+		if(((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 2)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 3)->TurnDir_U32 & STRAIGHT))
+			shift_cnt = 4;
+
+		else if(((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 2)->TurnDir_U32 & STRAIGHT))
+			shift_cnt = shift_s4s;
+
+		LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
+	}
+
+	if(cnt)
+	{
+		if(LINE->Distance_U32 > HEIGHT_2SEEN)
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+		
+		else
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+	}
 }
 
 static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
-{	
+{		
+	volatile Uint16 shift_cnt = 0;	//SHIFT_LEVEL;
 	volatile _iq17 m_dist = 0.0;
 
 	LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
@@ -508,8 +582,11 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	xtest_DIVISION((LINE + 1), (cnt + 1));
 
 	if(((LINE - 1)->TurnDir_U32 & STRAIGHT) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))		// s4s
+	{
 		xVEL_COMPUTE(LINE, LINE + 1, XS4S_VEL, TURN_VEL, m_dist);
-	
+
+		LINE->TargetPosition_IQ10 = (LINE - 1)->TargetPosition_IQ10;
+	}
 	else
 	{
 		LINE->VeloIn_IQ17 = TURN_VEL;
@@ -517,72 +594,113 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 
 		m_dist = (LINE + 1)->Distance_U32 > MID_DIST ? ((long)(LINE + 1)->Distance_U32) << 15 : ((long)(LINE + 1)->Distance_U32) << 16;
 
-		if(((LINE - 1)->TurnDir_U32 & STRAIGHT) && ((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 2)->TurnDir_U32 & STRAIGHT))	// s(4)4s
+		do
 		{
-			// s44(s) 의 직선이 275보다 작으면 날개가 다른 라인에 닿지 않음
-			if(LINE->TurnDir_U32 & TURN_DOWN)
-				LINE->BlindFlag_U16 = ON;
-			
-			xCONTINOUS_VEL_COMPUTE(LINE, XS44S_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
-		}
-		else if(((LINE - 2)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))	//s4(4)s
-		{
-			LINE->DownFlag_U16 = ON;
-
-			if(LINE->TurnDir_U32 & TURN_DOWN)
-				LINE->BlindFlag_U16 = ON;
-
-			xVEL_COMPUTE(LINE, LINE + 1, XS44S_VEL, TURN_VEL, m_dist);
-		}
-		else if(((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 2)->TurnDir_U32 & STRAIGHT))		// (4)4s 탈출
-		{
-			LINE->DownFlag_U16 = ON;
-
-			if(((LINE + 1)->Distance_U32 > TURN_90_DIST) || (((LINE + 1)->TurnDir_U32 | LINE->TurnDir_U32) & (TURN_R_45 | TURN_R_55)))
-				xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
-			else
-				xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
-
-			if((LINE + 1)->Distance_U32 + (LINE + 2)->Distance_U32 < MID_DIST)
-				LINE->Kp_UpDown_IQ17 = Kp_SHORT_S44S_IQ17;
-		}
-		else if(((LINE - 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))		// 4(4)s 탈출
-		{
-			LINE->DownFlag_U16 = OFF;
-			LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
-
-			xVEL_COMPUTE(LINE, LINE + 1, X45_VEL, TURN_VEL, m_dist);
-
-			if((LINE + 1)->Distance_U32 > MID_DIST)
+			if(((LINE - 1)->TurnDir_U32 & STRAIGHT) && ((LINE + 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 2)->TurnDir_U32 & STRAIGHT))	// s(4)4s
 			{
 				LINE->DownFlag_U16 = ON;
-				LINE->Kp_UpDown_IQ17 = Kp_DOWN_IQ17;
-			}
-		}
-		else if((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90))		// 연속 45 | 90
-		{
-			if(LINE->Distance_U32 < 120)				
-				xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
-			
-			else if((LINE - 1)->TurnDir_U32 & STRAIGHT)
-				xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
-			
-			else if(((LINE + 1)->Distance_U32 > TURN_90_DIST) || (((LINE + 1)->TurnDir_U32 | LINE->TurnDir_U32) & (TURN_R_45 | TURN_R_55)))
-				xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHARP_TURN_IQ17);
-			
-			else
-				xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
-		}
-		else
-		{
-			LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
+				// s44(s) 의 직선이 275보다 작으면 날개가 다른 라인에 닿지 않음
+				if(LINE->TurnDir_U32 & TURN_DOWN)
+					LINE->BlindFlag_U16 = ON;
 
-			if((LINE + 1)->TurnDir_U32 & STRAIGHT)
-				xVEL_COMPUTE(LINE, LINE + 1, TURN_VEL, TURN_VEL, m_dist);
-			
+				LINE->TargetPosition_IQ10 = (LINE + 1)->TargetPosition_IQ10;
+				LINE->PositionRatio_IQ10 = (LINE + 1)->PositionRatio_IQ10;
+
+				if((LINE->TurnDir_U32 | (LINE + 1)->TurnDir_U32) & (TURN_R_45 | TURN_R_55))
+					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, PID_Kp_IQ17);
+				else
+					xCONTINOUS_VEL_COMPUTE(LINE, XS44S_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+
+				break;
+			}
+			else if(((LINE - 2)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))	//s4(4)s
+			{
+				LINE->DownFlag_U16 = ON;
+
+				if(LINE->TurnDir_U32 & TURN_DOWN)
+					LINE->BlindFlag_U16 = ON;
+
+				//다음 곡선이랑 방향이 다르면 포지션을 0
+				if(LINE->TurnWay_U32 & (LINE + 2)->TurnWay_U32)		LINE->TargetPosition_IQ10 = -((LINE - 2)->TargetPosition_IQ10);
+				else												LINE->TargetPosition_IQ10 = _IQ10(0.0);
+
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 2)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)((LINE - 1)->Distance_U32 + LINE->Distance_U32)) << 10);
+
+				if((LINE->TurnDir_U32 | (LINE + 1)->TurnDir_U32) & (TURN_R_45 | TURN_R_55))
+				{
+					LINE->DownFlag_U16 = OFF;
+					LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
+					xVEL_COMPUTE(LINE, LINE + 1, X90_VEL, TURN_VEL, m_dist);
+				}
+				else
+					xVEL_COMPUTE(LINE, LINE + 1, XS44S_VEL, TURN_VEL, m_dist);
+				//xCONTINOUS_VEL_COMPUTE(LINE, XS44S_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+
+				break;
+			}
+			else if(((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 2)->TurnDir_U32 & STRAIGHT))		// (4)4s 탈출
+			{
+				LINE->DownFlag_U16 = ON;
+
+				if(((LINE + 1)->Distance_U32 > TURN_90_DIST) || (((LINE + 1)->TurnDir_U32 | LINE->TurnDir_U32) & (TURN_R_45 | TURN_R_55)))
+					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
+				else
+					xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+
+				if((LINE + 1)->Distance_U32 + (LINE + 2)->Distance_U32 < MID_DIST)
+					LINE->Kp_UpDown_IQ17 = Kp_SHORT_S44S_IQ17;
+			}
+			else if(((LINE - 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))		// 4(4)s 탈출
+			{
+				LINE->DownFlag_U16 = OFF;
+				LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
+
+				xVEL_COMPUTE(LINE, LINE + 1, X45_VEL, TURN_VEL, m_dist);
+
+				if((LINE + 1)->Distance_U32 > MID_DIST)
+				{
+					LINE->DownFlag_U16 = ON;
+					LINE->Kp_UpDown_IQ17 = Kp_DOWN_IQ17;
+				}
+			}
+			else if((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90))		// 연속 45 | 90
+			{
+				if(LINE->Distance_U32 < 120)				
+					xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+				
+				else if((LINE - 1)->TurnDir_U32 & STRAIGHT)
+					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
+				
+				else if(((LINE + 1)->Distance_U32 > TURN_90_DIST) || (((LINE + 1)->TurnDir_U32 | LINE->TurnDir_U32) & (TURN_R_45 | TURN_R_55)))
+					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHARP_TURN_IQ17);
+				
+				else
+					xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+			}
 			else
-				LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17;
+			{
+				LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
+
+				if((LINE + 1)->TurnDir_U32 & STRAIGHT)
+					xVEL_COMPUTE(LINE, LINE + 1, TURN_VEL, TURN_VEL, m_dist);
+				
+				else
+					LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17;
+			}
+
+			//if(((LINE - 2)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))
+			if(((LINE - 2)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))
+			{
+				shift_cnt = 4;
+				LINE->TargetPosition_IQ10 = LINE->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
+			}
+
+			if(LINE->Distance_U32 > HEIGHT_2SEEN)
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+			else
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
 		}
+		while(0);
 
 		if((LINE - 1)->DownFlag_U16 && LINE->DownFlag_U16 && 
 		   (LINE->Kp_UpDown_IQ17 > (LINE - 1)->Kp_UpDown_IQ17) && (LINE->Kp_UpDown_IQ17 > Kp_SHARP_TURN_IQ17))
@@ -594,7 +712,8 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 // 90도는 무조건 시프트
 
 static void x90_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
-{
+{	
+	volatile Uint16 shift_cnt = 0;	//SHIFT_LEVEL;
 	volatile _iq17 m_dist = 0.0;
 	
 	LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
@@ -623,6 +742,19 @@ static void x90_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	}
 	else
 		LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17;
+
+	//if(((LINE - 2)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))
+		
+	if(((LINE - 2)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->TurnDir_U32 & TURN_TH_45) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))
+	{
+		shift_cnt = 4;
+		LINE->TargetPosition_IQ10 = LINE->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
+	}
+
+	if(LINE->Distance_U32 > HEIGHT_2SEEN)
+		LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+	else
+		LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
 }
 
 static void xtest_DIVISION(TRACKINFO *LINE, Uint16 cnt)
@@ -641,15 +773,17 @@ static void xtest_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 
 		LINE->Decel_IQ14 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, LINE->Velo_IQ17)) >> 3;
 	}
+
+	if(LINE->PositionRatio_IQ10 < _IQ10(1.0))
+		LINE->PositionRatio_IQ10 = _IQ10(1.0);
 }
 
-#define shift_45_25		3
-#define shift_45_35		5
-#define shift_45_30		4
-
+#if 0
 static void xshift_division(TRACKINFO *LINE, Uint16 cnt)
 {
-	Uint16 shift_cnt = 0;
+	Uint16 shift_cnt = 0;	//SHIFT_LEVEL;
+
+	if(!cnt) 	return;
 	
 	if(LINE->BlindFlag_U16)
 	{
@@ -666,20 +800,18 @@ static void xshift_division(TRACKINFO *LINE, Uint16 cnt)
 				else if(((LINE + 1)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)) && ((LINE + 2)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)))
 					shift_cnt = shift_45_30;
 			}
-			else
-				shift_cnt = 3;
 
 			if(LINE->Distance_U32 > HEIGHT_2SEEN)
 			{
 				LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
 				
-				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
 			}
 			else
 			{
 				LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt + 1] : right_table[shift_cnt + 1];
 				
-				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
 			}
 		}
 		else
@@ -701,18 +833,61 @@ static void xshift_division(TRACKINFO *LINE, Uint16 cnt)
 			}
 		}
 	}
-	else if((LINE - 1)->BlindFlag_U16)
+	else if(LINE->TurnDir_U32 & STRAIGHT)
 	{
+		if(((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 2)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 3)->TurnDir_U32 & STRAIGHT))
+			shift_cnt = 4;
+
+		LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
+
 		if(LINE->Distance_U32 > HEIGHT_2SEEN)
-			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+		
 		else
-			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
 	}
+	else if(LINE->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90))
+	{
+		xshift_division(LINE + 1, cnt + 1);
+		
+		if(((LINE - 2)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90)) && ((LINE + 1)->TurnDir_U32 & STRAIGHT))
+		{
+			shift_cnt = 4;
+			LINE->TargetPosition_IQ10 = LINE->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
+		}
 
-	if(!(LINE->PositionRatio_IQ10))
-		LINE->PositionRatio_IQ10 = _IQ10(2.5);
+		if(LINE->Distance_U32 > HEIGHT_2SEEN)
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+		
+		else
+			LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+	}
+/*
+	else if(!(LINE->TurnDir_U32 & TURN_TH_45))
+	{
+		if(LINE->TurnDir_U32 & END_LINE)	LINE->TargetPosition_IQ10 = _IQ10(0.0);
+		else								LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & STRAIGHT 	? _IQ10(0.0) 			:
+																		(LINE + 1)->TurnDir_U32 & LEFT_TURN ? left_table[shift_cnt] : right_table[shift_cnt];
+		if(cnt)
+		{
+			if(LINE->Distance_U32 > HEIGHT_2SEEN)
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+			else
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs((LINE - 1)->TargetPosition_IQ10 - LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+		}
+		else
+		{
+			if(LINE->Distance_U32 > HEIGHT_2SEEN)
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)(LINE->Distance_U32 - HEIGHT_SEEN)) << 10);
+			else
+				LINE->PositionRatio_IQ10 = _IQ10div(_IQ10abs(LINE->TargetPosition_IQ10), ((long)LINE->Distance_U32) << 10);
+		}
+	}
+*/
+	if(LINE->PositionRatio_IQ10 < _IQ10(1.0))
+		LINE->PositionRatio_IQ10 = _IQ10(1.0);
 }
-
+#endif
 /*
 static void x90_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 {
@@ -802,7 +977,7 @@ static void xVEL_COMPUTE(TRACKINFO *curL, TRACKINFO *nextL, volatile _iq17 max_v
 
 	low_vel = cpy_info.VeloIn_IQ17 < cpy_info.VeloOut_IQ17 ? cpy_info.VeloIn_IQ17 : cpy_info.VeloOut_IQ17;
 	
-	VEL_COMPUTE(((long)cpy_info.Distance_U32) << 17, m_dist, low_vel, cpy_info.Jerk_IQ14, &cpy_info.Velo_IQ17);
+	VEL_COMPUTE(((long)cpy_info.Distance_U32) << 16, m_dist >> 1, low_vel, cpy_info.Jerk_IQ14, &cpy_info.Velo_IQ17);
 /*
 	if(cpy_info.Velo_IQ17 > max_vel)			curL->VeloIn_IQ17 = max_vel;
 	else if(cpy_info.Velo_IQ17 < turn_vel)		curL->VeloIn_IQ17 = turn_vel;

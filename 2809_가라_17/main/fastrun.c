@@ -254,7 +254,7 @@ static void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 {
 	volatile _iq17 high_vel = _IQ17(0.0);
 	volatile _iq17 low_vel = _IQ17(0.0);
-	volatile _iq17 m_dist = _IQ17(0.0);
+	volatile _iq17 dist = _IQ17(0.0);
 	
 	LINE->VeloIn_IQ17 = cnt > 0 ? (LINE - 1)->VeloOut_IQ17 : _IQ17(0.0);
 
@@ -285,38 +285,28 @@ static void STRAIGHT_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	high_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloIn_IQ17 : LINE->VeloOut_IQ17;
 	low_vel = (LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17) ? LINE->VeloOut_IQ17 : LINE->VeloIn_IQ17;
 
-	m_dist = ((long)LINE->Distance_U32) << 17;
+	dist = ((long)LINE->Distance_U32) << 17;
 
 	// When enter-velocity accelerated to escape-velocity, compute the distance required
 	DECEL_DIST_COMPUTE(LINE->VeloIn_IQ17, LINE->VeloOut_IQ17, &LINE->MotorDistance_IQ17, &LINE->Decel_IQ14);
 
 	// If compute-distance is more than total-track-distance
-	if(LINE->MotorDistance_IQ17 >= m_dist) {
-
+	if(LINE->MotorDistance_IQ17 >= dist)
+	{
 		// decel-distance substitute total-track-distance
-		LINE->DecelDistance_IQ17 = m_dist;
+		LINE->DecelDistance_IQ17 = dist;
 
-		VEL_COMPUTE(m_dist, _IQ17(0.0), low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
+		VEL_COMPUTE(dist, _IQ17(0.0), low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 
 		if(LINE->VeloIn_IQ17 > LINE->VeloOut_IQ17)	LINE->VeloIn_IQ17 = LINE->Velo_IQ17;
 		else										LINE->VeloOut_IQ17 = LINE->Velo_IQ17;
 		
 		if(!cnt)	LINE->VeloIn_IQ17 = _IQ17(0.0);
 	}
-	else {
-		m_dist = m_dist >> 1;
-		
-		VEL_COMPUTE(m_dist, LINE->MotorDistance_IQ17 >> 1, low_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-		
+	else 
+	{
+		VEL_COMPUTE(dist >> 1, LINE->MotorDistance_IQ17 >> 1, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);	
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
-
-		if(LINE->DecelDistance_IQ17 > m_dist)
-			LINE->DecelDistance_IQ17 = m_dist;
-		
-		/*
-		VEL_COMPUTE(((long)LINE->Distance_U32) << 17, LINE->MotorDistance_IQ17, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
-		*/
 	}
 }
 
