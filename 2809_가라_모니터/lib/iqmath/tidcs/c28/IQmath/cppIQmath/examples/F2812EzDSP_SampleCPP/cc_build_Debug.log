@@ -1,0 +1,7 @@
+--------------------------  IQsampleCPP.pjt - Debug  --------------------------
+"C:\ti\c2000\cgtools\bin\cl2000" -gw -k -q -pe -al -as -o3 -fr"C:/tidcs/c28/IQmath/cppIQmath/examples/F2812EzDSP_SampleCPP/Debug" -i"../../include" -d"_DEBUG" -d"LARGE_MODEL" -mf -ml -mn -mt -v28 -@"Debug.lkf" "IQsample.cpp"
+
+"C:\ti\c2000\cgtools\bin\cl2000" -@"Debug.lkf"
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

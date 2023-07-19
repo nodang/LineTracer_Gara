@@ -1,0 +1,3 @@
+---- .cinit Matches (2 in 2 files) ----
+F2808.cmd (main):   .cinit              : > USERFLASH   PAGE = 0
+Flash.asm (main):	.sect	".cinit"

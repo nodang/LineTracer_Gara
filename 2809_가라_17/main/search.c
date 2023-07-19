@@ -27,7 +27,6 @@ void Init_GLOBAL()
 	
 	THIRD_MARK_U16_CNT = 0;
 	XRUN_DIST_IQ15 = 0;
-	SHIFT_LEVEL = 0;
 	
 	ERROR_U16_FLAG = OFF;
 	CROSS_PLUS_SEARCH_U32 = 0;
@@ -132,7 +131,7 @@ void RUN(Uint16 number)
 	}
 	else 
 		Flag.Search_U16 = ON;
-	
+
 	VFDPrintf((char *)table[number]);
 	DELAY_US(1000000);
 	VFDPrintf("        ");

@@ -286,9 +286,6 @@ __VARIABLE_EXT__ Uint32	PID_Kp_U32;
 __VARIABLE_EXT__ Uint32	PID_Kd_U32;
 // And here.
 
-__VARIABLE_EXT__ Uint32	SHIFT_LEVEL;
-
-
 typedef volatile struct
 {
 	Uint16	MoveState_U16:1;
