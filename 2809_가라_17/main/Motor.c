@@ -188,9 +188,6 @@ interrupt void LMOTOR_ISR()
 
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 	
-	IER &= MINT3;
-	EINT;
-
 	L_PWM.ETCLR.bit.INT = 1;
 
 	if(Flag.Motor_U16)
@@ -211,9 +208,6 @@ interrupt void RMOTOR_ISR()
 
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 
-	IER &= MINT3;
-	EINT;
-
 	R_PWM.ETCLR.bit.INT = 1;
 
 	if(Flag.Motor_U16)
@@ -232,9 +226,6 @@ interrupt void CONTROL_ISR()
 {
 	volatile int16 cnt;
 	volatile _iq15 gone_dist;
-	
-	IER &= MINT14;
-	EINT;
 
 	if(THIRD_MARK_U16_CNT)
 	{
@@ -258,23 +249,7 @@ interrupt void CONTROL_ISR()
 		}  
 		else
 			xCONTROL(OFF, &HanPID, KP_U_RATIO_IQ17, Search[cnt].Kp_UpDown_IQ17);
-/*
-		if(SenAdc.PositionShift_IQ10 != Search[cnt].TargetPosition_IQ10)
-		{
-			SenAdc.PositionShift_IQ10 += _IQ17mpy(Search[cnt].PositionRatio_IQ10 << 7, (LMotor.RolEachStep_IQ17 + RMotor.RolEachStep_IQ17) >> 1) >> 7;
 
-			if(Search[cnt].TargetPosition_IQ10 < _IQ10(0.0))
-			{
-				if(SenAdc.PositionShift_IQ10 < Search[cnt].TargetPosition_IQ10)
-					SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
-			}
-			else //if(SenAdc.TargetPosition_IQ10 > _IQ10(0.0))
-			{
-				if(SenAdc.PositionShift_IQ10 > Search[cnt].TargetPosition_IQ10)
-					SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
-			}
-		}
-*/
 		if(SenAdc.PositionShift_IQ10 < Search[cnt].TargetPosition_IQ10)
 		{
 			SenAdc.PositionShift_IQ10 += _IQ17mpy(Search[cnt].PositionRatio_IQ10 << 7, (LMotor.RolEachStep_IQ17 + RMotor.RolEachStep_IQ17) >> 1) >> 7;
@@ -293,6 +268,7 @@ interrupt void CONTROL_ISR()
 			SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
 	}
 
+	// second and third's accel & decel
 	if(Flag.Motor_U16 && (Flag.Fast_U16 || Flag.Extrem_U16))
 	{
 		if(RMotor.DecelFlag_U16 || LMotor.DecelFlag_U16)

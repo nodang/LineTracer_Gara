@@ -18,6 +18,8 @@
 #include "Main.h"
 #include "Sensor.h"
 
+#define MAX_PID		12.0
+
 #define MAX_POSITION	12000
 #define MAX_STRAIGHT	1000
 
@@ -108,9 +110,6 @@ void Init_SENSOR()
 interrupt void SENSOR_ISR() 
 {
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
-
-	IER &= MINT1;
-	EINT;
 
 	if(Flag.Sensor_U16)	
 	{
@@ -381,18 +380,16 @@ void HANDLE()
 	HanPID.Pos_Err_IQ10[1] = SenAdc.PositionTemporary_IQ10 + SenAdc.PositionShift_IQ10;
 	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[2] - HanPID.Pos_Err_IQ10[1];
 
-	//HanPID.Pos_P_IQ17 = _IQ17mpyIQX(PID_Kp_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
-	//HanPID.Pos_D_IQ17 = _IQ17mpyIQX(PID_Kd_IQ17, 17, HanPID.Pos_Err_IQ10[0], 10);
-	
 	HanPID.Pos_P_IQ17 = _IQ17mpyIQX(HanPID.Kp_val_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
-	HanPID.Pos_D_IQ17 = _IQ17mpyIQX(HanPID.Kd_val_IQ17, 17, HanPID.Pos_Err_IQ10[0], 10);
+	//HanPID.Pos_D_IQ17 = _IQ17mpy(HanPID.Kd_val_IQ17, HanPID.Pos_Err_IQ17[0]);
 
-	//HanPID.Pos_PID_IQ17 = _IQ17div((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17), _IQ17(1000.0));
-	//HanPID.Pos_PID_IQ17 = _IQ17mpy((HanPID.Pos_P_IQ17 + HanPID.Pos_D_IQ17), _IQ17(0.001));
 	HanPID.Pos_PID_IQ17 = _IQ17mpy(HanPID.Pos_P_IQ17, _IQ17(0.001));
+	
+	if(HanPID.Pos_PID_IQ17 > _IQ17(MAX_PID))			HanPID.Pos_PID_IQ17 = _IQ17(MAX_PID);
+	else if(HanPID.Pos_PID_IQ17 < _IQ17(-MAX_PID))		HanPID.Pos_PID_IQ17 = _IQ17(-MAX_PID);
 
-	if(GpioDataRegs.GPADAT.bit.GPIO5)
-		HanPID.Pos_PID_IQ17 = -HanPID.Pos_PID_IQ17;
+	//if(GpioDataRegs.GPADAT.bit.GPIO5)
+	//		HanPID.Pos_PID_IQ17 = -HanPID.Pos_PID_IQ17;
 
 	if(HanPID.Pos_PID_IQ17 > _IQ17(0.0))			// Right curve
 	{

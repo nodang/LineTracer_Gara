@@ -99,19 +99,19 @@ __VARIABLE_EXT__ Uint16 MENU_U16_CNT;
 
 #define LINE_OUT	777
 
-typedef	struct {
-	volatile Uint16	Position_U16_CNT;
-	volatile Uint16	Adc_U16[16];
-	volatile Uint16	Max_U16[16];							// Don't Reset, it loaded
-	volatile Uint16	Min_U16[16];							// Don't Reset, it loaded
-	volatile Uint16	Div127_U16[16];
+typedef volatile struct {
+	Uint16	Position_U16_CNT,
+			Adc_U16[16],
+			Max_U16[16],							// Don't Reset, it loaded
+			Min_U16[16],							// Don't Reset, it loaded
+			Div127_U16[16],
+			AdcValue_U16[16];
 
-	volatile _iq10	Position_IQ10,
-					PositionTemporary_IQ10,
-					PositionShift_IQ10;
-	
-	volatile Uint16	AdcValue_U16[16];
-	volatile _iq17	MaxminusMin_IQ17[16];
+	_iq10	Position_IQ10,
+			PositionTemporary_IQ10,
+			PositionShift_IQ10;
+
+	_iq17	MaxminusMin_IQ17[16];
 }SENSORADC;
 
 __VARIABLE_EXT__ SENSORADC	SenAdc;
@@ -128,15 +128,15 @@ __VARIABLE_EXT__ int32	POSITION_WEIGHT_I32[16];
 
 __VARIABLE_EXT__ Uint16	SENSOR_SENSITIVE_U16;		// Don't Reset, it loaded
 
-typedef struct {
-	_iq17	Pos_PID_IQ17;
-	_iq17	Pos_P_IQ17;
-	_iq17	Pos_D_IQ17;
-
+typedef volatile struct {
+	_iq17	Pos_PID_IQ17,
+			Pos_P_IQ17,
+			Pos_D_IQ17;
+	
 	_iq10	Pos_Err_IQ10[5];
 //----------------------------------//
-	_iq17	Kp_val_IQ17;
-	_iq17	Kd_val_IQ17;
+	_iq17	Kp_val_IQ17,
+			Kd_val_IQ17;
 }HANDLEPID;
 
 __VARIABLE_EXT__ HANDLEPID	HanPID;

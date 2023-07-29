@@ -35,9 +35,6 @@ void Init_GLOBAL()
 
 void Init_RUN()
 {
-	Init_SENSOR();
-	Init_MOTOR();
-	Init_GLOBAL();
 	//HandleAccel_IQ17 = _IQ(0.0000333);
 	//HandleDecel_IQ17 = _IQ(0.000250);
 											// 1500 ABLE								// IDONTKNOW																		//1750 impossible
@@ -91,11 +88,48 @@ void Init_RUN()
 	//2200	144					240
 	//2100	300					350
 	//2300	144					285
+
+	//-----------------------------------------------------//
+	//	 COEF SAVE
+	/*
+	SENSOR_SENSITIVE_U16 = 35;
+
+	MOTOR_SPEED_U32 = 2000;
+	END_SPEED_U32 = 1900;
+	SECOND_MAX_SPEED_U32 = 4000;
+	
+	x45_SPEED_U32 = 4000;
+	xS4S_SPEED_U32 = 2400;
+	xS44S_SPEED_U32 = 4000;
+	x90_SPEED_U32 = 2200;
+	
+	JERK_U32 = 8000;
+	JERK_LONG_U32 = 20000;
+	JERK_MIDDLE_U32 = 50000;
+	JERK_SHORT_U32 = 30000;
+	
+	ACCEL_COEF_I32 = 144;
+	DECEL_COEF_I32 = 285;
+	
+	D_RATIO_I32 = 24;
+	U_RATIO_I32 = 24;
+	
+	Down_Kp_U32 = 5;
+	SHARP_KP_U32 = 30;
+	S44S_KP_U32 = 72;
+	
+	PID_Kp_U32 = 100;
+	PID_Kd_U32 = 0;
+	*/
+
+	Init_SENSOR();
+	Init_MOTOR();
+	Init_GLOBAL();
 	
 	memset((void *)&HanPID,0x00,sizeof(HANDLEPID));
 	memset((void *)Search,0x00,sizeof(TRACKINFO)*256);
 
-	HanPID.Kp_val_IQ17 = PID_Kp_IQ17;
+	HanPID.Kp_val_IQ17 = PID_Kp_IQ17;	
 
 	GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 
@@ -171,7 +205,8 @@ void RUN(Uint16 number)
 		TURN_DECIDE(&LMark, &RMark);
 
 		XRUN_DIST_IQ15 = (LMotor.GoneDistance_IQ15 >> 1) + (RMotor.GoneDistance_IQ15 >> 1);
-	
+
+		// turnmark err º¹±¸
 		if(Flag.Extrem_U16)			err_mark(&THIRD_MARK_U16_CNT);
 		else if(Flag.Fast_U16)		err_mark(&SECOND_MARK_U16_CNT);
 

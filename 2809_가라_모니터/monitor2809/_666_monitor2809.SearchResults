@@ -1,3 +1,17 @@
----- .cinit Matches (2 in 2 files) ----
-F2808.cmd (main):   .cinit              : > USERFLASH   PAGE = 0
-Flash.asm (main):	.sect	".cinit"
+---- FlashStatus Matches (17 in 3 files) ----
+Flash.asm (main):	.global	_FlashStatus
+Flash.asm (main):_FlashStatus:	.usect	".ebss",4,1,1
+Flash.asm (main):DW$26	.dwtag  DW_TAG_variable, DW_AT_name("FlashStatus"), DW_AT_symbol_name("_FlashStatus")
+Flash.asm (main):	.dwattr DW$26, DW_AT_location[DW_OP_addr _FlashStatus]
+Flash.asm (main):;*** 59	-----------------------    if ( !(Status = Flash2809_Erase(14u, &FlashStatus)) ) goto g4;
+Flash.asm (main):        MOVL      XAR4,#_FlashStatus    ; |59| 
+Flash.asm (main):;*** 59	-----------------------    if ( !(Status = Flash2809_Erase(14u, &FlashStatus)) ) goto g4;  // [10]
+Flash.asm (main):        MOVL      XAR4,#_FlashStatus    ; |59| 
+Flash.asm (main):;*** 101	-----------------------    if ( !(Status = Flash2809_Erase(DeleteSector, &FlashStatus)) ) goto g10;
+Flash.asm (main):        MOVL      XAR4,#_FlashStatus    ; |101| 
+Flash.c (flash):FLASH_ST FlashStatus;
+Flash.c (flash):	Status = Flash_Erase((SECTORB | SECTORC | SECTORD), &FlashStatus);
+Flash.c (flash):	Status = Flash_Erase(DeleteSector, &FlashStatus);
+Flash.c (main):FLASH_ST FlashStatus;
+Flash.c (main):	Status = Flash_Erase((SECTORB | SECTORC | SECTORD), &FlashStatus);
+Flash.c (main):	Status = Flash_Erase(DeleteSector, &FlashStatus);

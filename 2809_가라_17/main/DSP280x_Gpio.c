@@ -25,22 +25,22 @@ void InitGpio(void)
 {
    EALLOW;
 /*
-//   IO0 	- RIGHT_MOTOR_A_
+//   IO0 	- R_PWM
 	GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;		dir	1			
-//   IO1 	- RIGHT_MOTOR_A^
+//   IO1 	- R_DIR
 	GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 0;		dir	1			  
-//   IO2 	-  RIGHT_MOTOR_B
+//   IO2 	- R_ENA
 	GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 0;		dir	1
-//   IO3 	- RIGHT_MOTOR_B^
+//   IO3 	- 
 	GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 0; 	dir 1
 	
-//   IO4 	- LEFT_MOTOR_A
+//   IO4 	- L_PWM
 	GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;		dir	1
-//   IO5 	- LEFT_MOTOR_A^
+//   IO5 	- L_DIR
 	GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;		dir	1
-//   IO6 	- LEFT_MOTOR_B
+//   IO6 	- L_ENA
 	GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 0;		dir	1
-//   IO7 	- LEFT_MOTOR_B^
+//   IO7 	- 
 	GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 0;		dir	1
 	
 //   IO8 	- SENSOR_LED0
