@@ -111,6 +111,11 @@ interrupt void SENSOR_ISR()
 {
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 
+	// 중요함 현재 실행중인 인터럽트 그룹이 우선적으로 실행되도록 함
+	// 자세한 내용은 https://software-dl.ti.com/C2000/docs/c28x_interrupt_nesting/html/index.html 참고
+	IER &= MINT1;
+	EINT;
+
 	if(Flag.Sensor_U16)	
 	{
 		GpioDataRegs.GPASET.all = sensor_prog[SENSOR_COUNT];
@@ -319,6 +324,7 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 
 	if(sum_127div_u16)
 	{	
+		// start-end 후에 호출되는 것과 라인아웃을 구별
 		if(LINE_OUT_U16 < LINE_OUT)		LINE_OUT_U16 = 0;
 
 		CROSS_CHECK();
