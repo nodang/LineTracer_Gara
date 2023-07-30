@@ -298,6 +298,7 @@ typedef volatile struct
 	Uint16	Fast_U16:1;
 	Uint16	Extrem_U16:1;
 	Uint16	TxFlag_U16:1;
+	Uint16	line_out_flag:1;
 }BITFLAG;
 
 __VARIABLE_EXT__ BITFLAG	Flag;

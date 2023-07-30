@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Sun Jul 30 04:23:57 2023                 *
+;* Date/Time created: Mon Jul 31 05:02:30 2023                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -142,8 +142,8 @@ DW$42	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$42, DW_AT_type(*DW$T$85)
 	.dwattr DW$42, DW_AT_declaration(0x01)
 	.dwattr DW$42, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI06010 C:\Users\노호진\AppData\Local\Temp\TI0604 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI0602 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI0606 --object_file fastrun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI59610 C:\Users\노호진\AppData\Local\Temp\TI5964 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI5962 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI5966 --object_file fastrun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_cubeRoot
 
@@ -295,7 +295,7 @@ L4:
         ; return occurs
 
 DW$48	.dwtag  DW_TAG_loop
-	.dwattr DW$48, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L3:1:1690658637")
+	.dwattr DW$48, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L3:1:1690747350")
 	.dwattr DW$48, DW_AT_begin_file("fastrun.c")
 	.dwattr DW$48, DW_AT_begin_line(0x99)
 	.dwattr DW$48, DW_AT_end_line(0x99)
@@ -306,7 +306,7 @@ DW$49	.dwtag  DW_TAG_loop_range
 
 
 DW$50	.dwtag  DW_TAG_loop
-	.dwattr DW$50, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L1:1:1690658637")
+	.dwattr DW$50, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L1:1:1690747350")
 	.dwattr DW$50, DW_AT_begin_file("fastrun.c")
 	.dwattr DW$50, DW_AT_begin_line(0x98)
 	.dwattr DW$50, DW_AT_end_line(0x98)
@@ -1548,7 +1548,7 @@ DW$L$_TURN_DIVISION_FUNC$9$E:
         ; return occurs
 
 DW$111	.dwtag  DW_TAG_loop
-	.dwattr DW$111, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L25:1:1690658637")
+	.dwattr DW$111, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L25:1:1690747350")
 	.dwattr DW$111, DW_AT_begin_file("fastrun.c")
 	.dwattr DW$111, DW_AT_begin_line(0x3a)
 	.dwattr DW$111, DW_AT_end_line(0x45)
@@ -2289,7 +2289,7 @@ L48:
         ; return occurs
 
 DW$149	.dwtag  DW_TAG_loop
-	.dwattr DW$149, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L40:1:1690658637")
+	.dwattr DW$149, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\fastrun.asm:L40:1:1690747350")
 	.dwattr DW$149, DW_AT_begin_file("fastrun.c")
 	.dwattr DW$149, DW_AT_begin_line(0x27)
 	.dwattr DW$149, DW_AT_end_line(0x32)
@@ -2929,6 +2929,11 @@ DW$263	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$25)
 	.dwattr DW$263, DW_AT_bit_offset(0x06), DW_AT_bit_size(0x01)
 	.dwattr DW$263, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
 	.dwattr DW$263, DW_AT_accessibility(DW_ACCESS_public)
+DW$264	.dwtag  DW_TAG_member, DW_AT_type(*DW$T$25)
+	.dwattr DW$264, DW_AT_name("line_out_flag"), DW_AT_symbol_name("_line_out_flag")
+	.dwattr DW$264, DW_AT_bit_offset(0x05), DW_AT_bit_size(0x01)
+	.dwattr DW$264, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
+	.dwattr DW$264, DW_AT_accessibility(DW_ACCESS_public)
 	.dwendtag DW$T$30
 
 DW$T$23	.dwtag  DW_TAG_typedef, DW_AT_name("_iq10"), DW_AT_type(*DW$T$12)
@@ -3000,87 +3005,87 @@ DW$CIE	.dwcie 1, 40
 ;* DWARF REGISTER MAP                                          *
 ;***************************************************************
 
-DW$264	.dwtag  DW_TAG_assign_register, DW_AT_name("AL")
-	.dwattr DW$264, DW_AT_location[DW_OP_reg0]
-DW$265	.dwtag  DW_TAG_assign_register, DW_AT_name("AH")
-	.dwattr DW$265, DW_AT_location[DW_OP_reg1]
-DW$266	.dwtag  DW_TAG_assign_register, DW_AT_name("PL")
-	.dwattr DW$266, DW_AT_location[DW_OP_reg2]
-DW$267	.dwtag  DW_TAG_assign_register, DW_AT_name("PH")
-	.dwattr DW$267, DW_AT_location[DW_OP_reg3]
-DW$268	.dwtag  DW_TAG_assign_register, DW_AT_name("AR0")
-	.dwattr DW$268, DW_AT_location[DW_OP_reg4]
-DW$269	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR0")
-	.dwattr DW$269, DW_AT_location[DW_OP_reg5]
-DW$270	.dwtag  DW_TAG_assign_register, DW_AT_name("AR1")
-	.dwattr DW$270, DW_AT_location[DW_OP_reg6]
-DW$271	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR1")
-	.dwattr DW$271, DW_AT_location[DW_OP_reg7]
-DW$272	.dwtag  DW_TAG_assign_register, DW_AT_name("AR2")
-	.dwattr DW$272, DW_AT_location[DW_OP_reg8]
-DW$273	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR2")
-	.dwattr DW$273, DW_AT_location[DW_OP_reg9]
-DW$274	.dwtag  DW_TAG_assign_register, DW_AT_name("AR3")
-	.dwattr DW$274, DW_AT_location[DW_OP_reg10]
-DW$275	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR3")
-	.dwattr DW$275, DW_AT_location[DW_OP_reg11]
-DW$276	.dwtag  DW_TAG_assign_register, DW_AT_name("AR4")
-	.dwattr DW$276, DW_AT_location[DW_OP_reg12]
-DW$277	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR4")
-	.dwattr DW$277, DW_AT_location[DW_OP_reg13]
-DW$278	.dwtag  DW_TAG_assign_register, DW_AT_name("AR5")
-	.dwattr DW$278, DW_AT_location[DW_OP_reg14]
-DW$279	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR5")
-	.dwattr DW$279, DW_AT_location[DW_OP_reg15]
-DW$280	.dwtag  DW_TAG_assign_register, DW_AT_name("AR6")
-	.dwattr DW$280, DW_AT_location[DW_OP_reg16]
-DW$281	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR6")
-	.dwattr DW$281, DW_AT_location[DW_OP_reg17]
-DW$282	.dwtag  DW_TAG_assign_register, DW_AT_name("AR7")
-	.dwattr DW$282, DW_AT_location[DW_OP_reg18]
-DW$283	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR7")
-	.dwattr DW$283, DW_AT_location[DW_OP_reg19]
-DW$284	.dwtag  DW_TAG_assign_register, DW_AT_name("SP")
-	.dwattr DW$284, DW_AT_location[DW_OP_reg20]
-DW$285	.dwtag  DW_TAG_assign_register, DW_AT_name("XT")
-	.dwattr DW$285, DW_AT_location[DW_OP_reg21]
-DW$286	.dwtag  DW_TAG_assign_register, DW_AT_name("T")
-	.dwattr DW$286, DW_AT_location[DW_OP_reg22]
-DW$287	.dwtag  DW_TAG_assign_register, DW_AT_name("ST0")
-	.dwattr DW$287, DW_AT_location[DW_OP_reg23]
-DW$288	.dwtag  DW_TAG_assign_register, DW_AT_name("ST1")
-	.dwattr DW$288, DW_AT_location[DW_OP_reg24]
-DW$289	.dwtag  DW_TAG_assign_register, DW_AT_name("PC")
-	.dwattr DW$289, DW_AT_location[DW_OP_reg25]
-DW$290	.dwtag  DW_TAG_assign_register, DW_AT_name("RPC")
-	.dwattr DW$290, DW_AT_location[DW_OP_reg26]
-DW$291	.dwtag  DW_TAG_assign_register, DW_AT_name("FP")
-	.dwattr DW$291, DW_AT_location[DW_OP_reg27]
-DW$292	.dwtag  DW_TAG_assign_register, DW_AT_name("DP")
-	.dwattr DW$292, DW_AT_location[DW_OP_reg28]
-DW$293	.dwtag  DW_TAG_assign_register, DW_AT_name("SXM")
-	.dwattr DW$293, DW_AT_location[DW_OP_reg29]
-DW$294	.dwtag  DW_TAG_assign_register, DW_AT_name("PM")
-	.dwattr DW$294, DW_AT_location[DW_OP_reg30]
-DW$295	.dwtag  DW_TAG_assign_register, DW_AT_name("OVM")
-	.dwattr DW$295, DW_AT_location[DW_OP_reg31]
-DW$296	.dwtag  DW_TAG_assign_register, DW_AT_name("PAGE0")
-	.dwattr DW$296, DW_AT_location[DW_OP_regx 0x20]
-DW$297	.dwtag  DW_TAG_assign_register, DW_AT_name("AMODE")
-	.dwattr DW$297, DW_AT_location[DW_OP_regx 0x21]
-DW$298	.dwtag  DW_TAG_assign_register, DW_AT_name("IFR")
-	.dwattr DW$298, DW_AT_location[DW_OP_regx 0x22]
-DW$299	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
-	.dwattr DW$299, DW_AT_location[DW_OP_regx 0x23]
+DW$265	.dwtag  DW_TAG_assign_register, DW_AT_name("AL")
+	.dwattr DW$265, DW_AT_location[DW_OP_reg0]
+DW$266	.dwtag  DW_TAG_assign_register, DW_AT_name("AH")
+	.dwattr DW$266, DW_AT_location[DW_OP_reg1]
+DW$267	.dwtag  DW_TAG_assign_register, DW_AT_name("PL")
+	.dwattr DW$267, DW_AT_location[DW_OP_reg2]
+DW$268	.dwtag  DW_TAG_assign_register, DW_AT_name("PH")
+	.dwattr DW$268, DW_AT_location[DW_OP_reg3]
+DW$269	.dwtag  DW_TAG_assign_register, DW_AT_name("AR0")
+	.dwattr DW$269, DW_AT_location[DW_OP_reg4]
+DW$270	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR0")
+	.dwattr DW$270, DW_AT_location[DW_OP_reg5]
+DW$271	.dwtag  DW_TAG_assign_register, DW_AT_name("AR1")
+	.dwattr DW$271, DW_AT_location[DW_OP_reg6]
+DW$272	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR1")
+	.dwattr DW$272, DW_AT_location[DW_OP_reg7]
+DW$273	.dwtag  DW_TAG_assign_register, DW_AT_name("AR2")
+	.dwattr DW$273, DW_AT_location[DW_OP_reg8]
+DW$274	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR2")
+	.dwattr DW$274, DW_AT_location[DW_OP_reg9]
+DW$275	.dwtag  DW_TAG_assign_register, DW_AT_name("AR3")
+	.dwattr DW$275, DW_AT_location[DW_OP_reg10]
+DW$276	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR3")
+	.dwattr DW$276, DW_AT_location[DW_OP_reg11]
+DW$277	.dwtag  DW_TAG_assign_register, DW_AT_name("AR4")
+	.dwattr DW$277, DW_AT_location[DW_OP_reg12]
+DW$278	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR4")
+	.dwattr DW$278, DW_AT_location[DW_OP_reg13]
+DW$279	.dwtag  DW_TAG_assign_register, DW_AT_name("AR5")
+	.dwattr DW$279, DW_AT_location[DW_OP_reg14]
+DW$280	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR5")
+	.dwattr DW$280, DW_AT_location[DW_OP_reg15]
+DW$281	.dwtag  DW_TAG_assign_register, DW_AT_name("AR6")
+	.dwattr DW$281, DW_AT_location[DW_OP_reg16]
+DW$282	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR6")
+	.dwattr DW$282, DW_AT_location[DW_OP_reg17]
+DW$283	.dwtag  DW_TAG_assign_register, DW_AT_name("AR7")
+	.dwattr DW$283, DW_AT_location[DW_OP_reg18]
+DW$284	.dwtag  DW_TAG_assign_register, DW_AT_name("XAR7")
+	.dwattr DW$284, DW_AT_location[DW_OP_reg19]
+DW$285	.dwtag  DW_TAG_assign_register, DW_AT_name("SP")
+	.dwattr DW$285, DW_AT_location[DW_OP_reg20]
+DW$286	.dwtag  DW_TAG_assign_register, DW_AT_name("XT")
+	.dwattr DW$286, DW_AT_location[DW_OP_reg21]
+DW$287	.dwtag  DW_TAG_assign_register, DW_AT_name("T")
+	.dwattr DW$287, DW_AT_location[DW_OP_reg22]
+DW$288	.dwtag  DW_TAG_assign_register, DW_AT_name("ST0")
+	.dwattr DW$288, DW_AT_location[DW_OP_reg23]
+DW$289	.dwtag  DW_TAG_assign_register, DW_AT_name("ST1")
+	.dwattr DW$289, DW_AT_location[DW_OP_reg24]
+DW$290	.dwtag  DW_TAG_assign_register, DW_AT_name("PC")
+	.dwattr DW$290, DW_AT_location[DW_OP_reg25]
+DW$291	.dwtag  DW_TAG_assign_register, DW_AT_name("RPC")
+	.dwattr DW$291, DW_AT_location[DW_OP_reg26]
+DW$292	.dwtag  DW_TAG_assign_register, DW_AT_name("FP")
+	.dwattr DW$292, DW_AT_location[DW_OP_reg27]
+DW$293	.dwtag  DW_TAG_assign_register, DW_AT_name("DP")
+	.dwattr DW$293, DW_AT_location[DW_OP_reg28]
+DW$294	.dwtag  DW_TAG_assign_register, DW_AT_name("SXM")
+	.dwattr DW$294, DW_AT_location[DW_OP_reg29]
+DW$295	.dwtag  DW_TAG_assign_register, DW_AT_name("PM")
+	.dwattr DW$295, DW_AT_location[DW_OP_reg30]
+DW$296	.dwtag  DW_TAG_assign_register, DW_AT_name("OVM")
+	.dwattr DW$296, DW_AT_location[DW_OP_reg31]
+DW$297	.dwtag  DW_TAG_assign_register, DW_AT_name("PAGE0")
+	.dwattr DW$297, DW_AT_location[DW_OP_regx 0x20]
+DW$298	.dwtag  DW_TAG_assign_register, DW_AT_name("AMODE")
+	.dwattr DW$298, DW_AT_location[DW_OP_regx 0x21]
+DW$299	.dwtag  DW_TAG_assign_register, DW_AT_name("IFR")
+	.dwattr DW$299, DW_AT_location[DW_OP_regx 0x22]
 DW$300	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
-	.dwattr DW$300, DW_AT_location[DW_OP_regx 0x24]
-DW$301	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDO")
-	.dwattr DW$301, DW_AT_location[DW_OP_regx 0x25]
-DW$302	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDOH")
-	.dwattr DW$302, DW_AT_location[DW_OP_regx 0x26]
-DW$303	.dwtag  DW_TAG_assign_register, DW_AT_name("VOL")
-	.dwattr DW$303, DW_AT_location[DW_OP_regx 0x27]
-DW$304	.dwtag  DW_TAG_assign_register, DW_AT_name("CIE_RETA")
-	.dwattr DW$304, DW_AT_location[DW_OP_regx 0x28]
+	.dwattr DW$300, DW_AT_location[DW_OP_regx 0x23]
+DW$301	.dwtag  DW_TAG_assign_register, DW_AT_name("IER")
+	.dwattr DW$301, DW_AT_location[DW_OP_regx 0x24]
+DW$302	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDO")
+	.dwattr DW$302, DW_AT_location[DW_OP_regx 0x25]
+DW$303	.dwtag  DW_TAG_assign_register, DW_AT_name("PSEUDOH")
+	.dwattr DW$303, DW_AT_location[DW_OP_regx 0x26]
+DW$304	.dwtag  DW_TAG_assign_register, DW_AT_name("VOL")
+	.dwattr DW$304, DW_AT_location[DW_OP_regx 0x27]
+DW$305	.dwtag  DW_TAG_assign_register, DW_AT_name("CIE_RETA")
+	.dwattr DW$305, DW_AT_location[DW_OP_regx 0x28]
 	.dwendtag DW$CU
 

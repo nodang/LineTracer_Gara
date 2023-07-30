@@ -325,7 +325,7 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 	if(sum_127div_u16)
 	{	
 		// start-end 후에 호출되는 것과 라인아웃을 구별
-		if(LINE_OUT_U16 < LINE_OUT)		LINE_OUT_U16 = 0;
+		if(LINE_OUT_U16 < LINE_OUT)		Flag.line_out_flag = OFF;
 
 		CROSS_CHECK();
 		
@@ -373,20 +373,35 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 		
 		else									{ pS->Position_U16_CNT = 6;		*state = 0;	*enable = 0x0000;	}
 	}
-	else		LINE_OUT_U16++;
+	else		Flag.line_out_flag = ON;
 
-	HANDLE();
+	//HANDLE();
 }
+
+/* position PID */
+#define	F_dt						0.0005
+#define	F_cut						80.0
+#define	W_cut						(4.0 * 3.14 * F_cut)	// 1005.3096491487338363080458826494
+
+#define	PID_Kb						0.2008486426648		//(W_cut *  F_dt) / (2.0 + W_cut * F_dt)
+#define	PID_Ka						-0.598302714670		//(W_cut *  F_dt - 2.0) / (2.0 + W_cut * F_dt)
 
 void HANDLE()
 {
+	// IIR Filter
+	static _iq15	IIR_puted	= _IQ15(0.0),
+					IIR_puting	= _IQ15(0.0);
+
+	IIR_puted = IIR_puting;
+	IIR_puting = (SenAdc.PositionTemporary_IQ10 + SenAdc.PositionShift_IQ10) << 5;
+
 	HanPID.Pos_Err_IQ10[4] = HanPID.Pos_Err_IQ10[3];
 	HanPID.Pos_Err_IQ10[3] = HanPID.Pos_Err_IQ10[2];
 	HanPID.Pos_Err_IQ10[2] = HanPID.Pos_Err_IQ10[1];
-	HanPID.Pos_Err_IQ10[1] = SenAdc.PositionTemporary_IQ10 + SenAdc.PositionShift_IQ10;
+	HanPID.Pos_Err_IQ10[1] = _IQ17mpyIQX(_IQ30(PID_Kb), 30, IIR_puted + IIR_puting, 15) - _IQ17mpyIQX(_IQ30(PID_Ka), 30, HanPID.Pos_Err_IQ10[2], 17);
 	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[2] - HanPID.Pos_Err_IQ10[1];
 
-	HanPID.Pos_P_IQ17 = _IQ17mpyIQX(HanPID.Kp_val_IQ17, 17, HanPID.Pos_Err_IQ10[1], 10);
+	HanPID.Pos_P_IQ17 = _IQ17mpy(HanPID.Kp_val_IQ17, HanPID.Pos_Err_IQ10[1]);
 	//HanPID.Pos_D_IQ17 = _IQ17mpy(HanPID.Kd_val_IQ17, HanPID.Pos_Err_IQ17[0]);
 
 	HanPID.Pos_PID_IQ17 = _IQ17mpy(HanPID.Pos_P_IQ17, _IQ17(0.001));

@@ -41,6 +41,8 @@ void Init_MotorCtrl(MOTORCTRL *pM)
 {
 	pM->PrdNext_IQ14 	= _IQ14(MOTOR_PERIOD_MAXIMUM);
 	pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10);
+
+	pM->TargetHandle_IQ17 = _IQ17(1.0);	
 }
 
 inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
@@ -236,6 +238,8 @@ interrupt void CONTROL_ISR()
 	IER &= MINT14;
 	EINT;
 
+	HANDLE();
+
 	if(THIRD_MARK_U16_CNT)
 	{
 		cnt = ((int16)THIRD_MARK_U16_CNT) - 1;
@@ -303,6 +307,11 @@ interrupt void CONTROL_ISR()
 		TIME_INDEX_U32++;
 	if(Flag.STOP)
 		STOP_TIME_INDEX_U32++;
+	
+	if(Flag.line_out_flag)
+		LINE_OUT_U16++;
+	else
+		LINE_OUT_U16 = 0;
 
 	StartCpuTimer0();
 }
@@ -362,7 +371,7 @@ Uint16 END_STOP()
 
 Uint16 LINE_OUT_STOP()
 {
-	if(LINE_OUT_U16 < 300)
+	if(LINE_OUT_U16 < 50)
 		return 0;
 
 	LINE_OUT_U16 = LINE_OUT;			// 300보다 큰 숫자를 넣음으로서 라인 아웃 처리됨을 알림
