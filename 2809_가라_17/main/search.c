@@ -188,6 +188,7 @@ void RUN(Uint16 number)
 #endif
 		//TxPrintf("CNT: %u    KP: %lf\n",THIRD_MARK_U16_CNT, _IQ17toF(HanPID.Kp_val_IQ17));
 		//TxPrintf("%6ld %d %6ld %d\n", LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV, RMotor.PrdNext_IQ14 >> 14, EPwm1Regs.TBCTL.bit.CLKDIV);
+		//TxPrintf("%5.4lf  %5.4lf\n",_IQtoF(LMotor.TargetHandle_IQ17),_IQtoF(RMotor.TargetHandle_IQ17));
 #if 0
 		TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld\n", 
 				 LMotor.AccelLimit_IQ14 >> 14, LMotor.NextAccel_IQ14 >> 14, LMotor.NextVelocity_IQ17 >> 17, LMotor.TargetVel_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17);

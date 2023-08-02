@@ -381,10 +381,12 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 /* position PID */
 #define	F_dt						0.0005
 #define	F_cut						80.0
-#define	W_cut						(4.0 * 3.14 * F_cut)	// 1005.3096491487338363080458826494
+#define	W_cut						(4.0 * PI * F_cut)	// 1005.3096491487338363080458826494
 
 #define	PID_Kb						0.2008486426648		//(W_cut *  F_dt) / (2.0 + W_cut * F_dt)
 #define	PID_Ka						-0.598302714670		//(W_cut *  F_dt - 2.0) / (2.0 + W_cut * F_dt)
+
+#define PI_HANDLE					47.123889803846
 
 void HANDLE()
 {
@@ -415,18 +417,27 @@ void HANDLE()
 	if(HanPID.Pos_PID_IQ17 > _IQ17(0.0))			// Right curve
 	{
 		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
-		LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
+		RMotor.TargetHandle_IQ17 = _IQ17mpy(RMotor.TargetHandle_IQ17, RMotor.TargetHandle_IQ17);
 
-		if(LMotor.TargetHandle_IQ17 < _IQ17(0.0))
-			LMotor.TargetHandle_IQ17 = _IQ17(0.0);
+		LMotor.TargetHandle_IQ17 = -_IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+		LMotor.TargetHandle_IQ17 = _IQ17div(LMotor.TargetHandle_IQ17 - _IQ17(1.0), (LMotor.TargetHandle_IQ17 << 1) - _IQ17(1.0));
+	
+		//LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
+
+		//if(LMotor.TargetHandle_IQ17 < _IQ17(0.0))
+		//	LMotor.TargetHandle_IQ17 = _IQ17(0.0);
 	}
 	else if(HanPID.Pos_PID_IQ17 < _IQ10(0.0))		// left curve
-	{
-		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
+	{	
+		RMotor.TargetHandle_IQ17 = _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+		RMotor.TargetHandle_IQ17 = _IQ17div(RMotor.TargetHandle_IQ17 - _IQ17(1.0), (RMotor.TargetHandle_IQ17 << 1) - _IQ17(1.0));
+		
+		//RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
 		LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+		LMotor.TargetHandle_IQ17 = _IQ17mpy(LMotor.TargetHandle_IQ17, LMotor.TargetHandle_IQ17);
 
-		if(RMotor.TargetHandle_IQ17 < _IQ17(0.0))
-			RMotor.TargetHandle_IQ17 = _IQ17(0.0);
+		//if(RMotor.TargetHandle_IQ17 < _IQ17(0.0))
+		//	RMotor.TargetHandle_IQ17 = _IQ17(0.0);
 	}
 	else											// Straight
 	{

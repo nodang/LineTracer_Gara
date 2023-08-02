@@ -64,10 +64,7 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 		if(pM->NextAccel_IQ14 > pM->AccelLimit_IQ14)
 			pM->NextAccel_IQ14 = pM->AccelLimit_IQ14;
 
-		if(pM->NextVelocity_IQ17 < MIN_VELO_IQ17)
-			pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
-		else
-			pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
+		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{
@@ -84,13 +81,10 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 		if(pM->NextAccel_IQ14 > _IQ14(0.0))
 			pM->NextAccel_IQ14 = _IQ14(0.0);
 
-		if(pM->NextVelocity_IQ17 < MIN_VELO_IQ17)
-			pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk;
-		else
-			pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
+		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-	
+
 	pM->PrdNext_IQ14 	= _IQ17mpy(pM->PrdNextTranSecon_IQ17, pM->TargetHandle_IQ17);
 
 	while(pM->PrdNext_IQ14 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
@@ -200,10 +194,11 @@ interrupt void LMOTOR_ISR()
 		LMotor.PwmTBPRD_U16 = L_PWM.TBPRD;
 		
 		clk = MOTOR_MOTION_VALUE(&LMotor, L_PWM.TBCTL.bit.CLKDIV);
-		
-		L_PWM.TBCTL.bit.CLKDIV = clk;	
+
+		L_PWM.TBCTL.bit.CLKDIV = clk;
 		L_PWM.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
 		L_PWM.CMPA.half.CMPA = (Uint16)(LMotor.PrdNext_IQ14 >> 15);
+
 	}
 }
 
