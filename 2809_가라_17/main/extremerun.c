@@ -5,7 +5,7 @@
 
 #define TURN_DOWN 	(TURN_R_25 | TURN_R_35)
 
-#define shift_45_25		3
+#define shift_45_25		4
 #define shift_45_35		5
 #define shift_45_30		4
 #define shift_s4s		2
@@ -477,6 +477,8 @@ static void xSTR_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 			else if(((LINE + 1)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)) && ((LINE + 2)->TurnDir_U32 & (TURN_R_25 | TURN_R_35)))
 				shift_cnt = shift_45_30;
 		}
+		
+		//LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
 
 		// 왜 짧은데 더 많이 해야하냐 : 시프트하는 충분한 거리가 없어서 빠르게 시프트를 하기위해
 		if(LINE->Distance_U32 > HEIGHT_2SEEN)	LINE->TargetPosition_IQ10 = (LINE + 1)->TurnDir_U32 & LEFT_TURN ?  left_table[shift_cnt] : right_table[shift_cnt];
@@ -544,7 +546,12 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 				if((LINE->TurnDir_U32 | (LINE + 1)->TurnDir_U32) & (TURN_R_45 | TURN_R_55))
 					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, PID_Kp_IQ17);
 				else
-					xCONTINOUS_VEL_COMPUTE(LINE, XS44S_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+				{
+					if((LINE - 1)->s44sFlag_U16)
+						xCONTINOUS_VEL_COMPUTE(LINE, XS44S_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
+					else
+						xCONTINOUS_VEL_COMPUTE(LINE, XS44S_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
+				}
 
 				break;
 			}
@@ -568,7 +575,12 @@ static void x45_test_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 					xVEL_COMPUTE(LINE, LINE + 1, X90_VEL, TURN_VEL, m_dist);
 				}
 				else
+				{
+					if(!((LINE - 2)->s44sFlag_U16))
+						LINE->Kp_UpDown_IQ17 = Kp_SHORT_S44S_IQ17;
+
 					xVEL_COMPUTE(LINE, LINE + 1, XS44S_VEL, TURN_VEL, m_dist);
+				}
 				//xCONTINOUS_VEL_COMPUTE(LINE, XS44S_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
 
 				break;
@@ -705,6 +717,15 @@ static void xtest_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	//else if(LINE->TurnDir_U32 & TURN_TH_90)	x90_test_DIVISION(LINE, cnt);
 	//else if(LINE->TurnDir_U32 & TURN_TH_180)	x180_TURN_DIVISION(LINE, cnt);
 	//else if(LINE->TurnDir_U32 & TURN_TH_270)	x270_TURN_DIVISION(LINE, cnt);
+	else if((LINE->TurnDir_U32 & TURN_TH_270) && (LINE->TurnDir_U32 & (TURN_R_35 | TURN_R_45 | TURN_R_55)))
+	{
+		LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
+		
+		LINE->VeloIn_IQ17 = LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = ((long)xS4S_SPEED_U32) << 17;
+		LINE->Jerk_IQ14 = ((long)JERK_U32) << 14;
+
+		LINE->Decel_IQ14 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, LINE->Velo_IQ17)) >> 3;
+	}
 	else
 	{
 		LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
