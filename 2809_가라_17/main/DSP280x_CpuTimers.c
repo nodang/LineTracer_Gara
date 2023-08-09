@@ -128,8 +128,8 @@ void Init_ISR(void)
  	PieVectTable.TINT2	=	&CONTROL_ISR;	// motor interrupt
 	PieVectTable.ADCINT =	&ADC_ISR;		// ADC interrupt
 
-	PieVectTable.EPWM1_INT = &LMOTOR_ISR;	//ePWM1 interrupt
-	PieVectTable.EPWM3_INT = &RMOTOR_ISR;	//ePWM3 interrupt
+	PieVectTable.EPWM1_INT = &RMOTOR_ISR;	//ePWM1 interrupt
+	PieVectTable.EPWM3_INT = &LMOTOR_ISR;	//ePWM3 interrupt
 
 	PieVectTable.SCIRXINTA = &SCIA_ISR;		//SCIA interrupt
 

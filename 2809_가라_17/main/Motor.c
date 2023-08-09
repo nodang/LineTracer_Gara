@@ -63,8 +63,6 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 		if(pM->NextAccel_IQ14 > pM->AccelLimit_IQ14)
 			pM->NextAccel_IQ14 = pM->AccelLimit_IQ14;
-
-		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{
@@ -80,41 +78,44 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 		if(pM->NextAccel_IQ14 > _IQ14(0.0))
 			pM->NextAccel_IQ14 = _IQ14(0.0);
-
-		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	pM->PrdNext_IQ14 	= _IQ17mpy(pM->PrdNextTranSecon_IQ17, pM->TargetHandle_IQ17);
+	pM->PrdNextTranSecon_IQ17 = _IQ17mpy(pM->NextVelocity_IQ17, pM->TargetHandle_IQ17);
 
-	while(pM->PrdNext_IQ14 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
+	if(pM->PrdNextTranSecon_IQ17 > MAX_VELO_IQ17)	pM->PrdNextTranSecon_IQ17 = MAX_VELO_IQ17;
+	else if(pM->PrdNextTranSecon_IQ17 < MIN_VELO_IQ17)	pM->PrdNextTranSecon_IQ17 = MIN_VELO_IQ17;
+	
+	pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->PrdNextTranSecon_IQ17);
+
+	while(pM->PrdNextTranSecon_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
 	{
 		if(clk > 0)
 		{
 			clk--;
-			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;
+			pM->PrdNextTranSecon_IQ17 = pM->PrdNextTranSecon_IQ17 << 1;
 		}
 		else
 		{
-			pM->PrdNext_IQ14 = _IQ17(MOTOR_PERIOD_MINIMUMdiv10);
+			pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MINIMUMdiv10);
 			break;
 		}
 	}
-	while(pM->PrdNext_IQ14 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
+	while(pM->PrdNextTranSecon_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
 	{
 		if(clk < CLK_DIVISION_CONSTANT)
 		{
 			clk++;
-			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;
+			pM->PrdNextTranSecon_IQ17 = pM->PrdNextTranSecon_IQ17 >> 1;
 		}
 		else
 		{
-			pM->PrdNext_IQ14 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << CLK_DIVISION_CONSTANT;
+			pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << CLK_DIVISION_CONSTANT;
 			break;
 		}
 	}
 		
-	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNext_IQ14, 17);
+	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNextTranSecon_IQ17, 17);
 
 	pM->RolEachStep_IQ17			= _IQ17mpy(STEP_D_IQ17, _IQ17div(CPUTIMER_2_PRDdiv10000_IQ17, pM->PrdNextTranSecon_IQ17));
 	pM->TurnMarkCheckDistance_IQ17 	+= pM->TurnMarkCheckDistance_IQ17 > _IQ17(16380.0) ? _IQ17(0.0) : STEP_D_IQ17;
@@ -430,7 +431,7 @@ void SHUTDOWN()
 			STOP_PWM_ISR();
 
 			Flag.Motor_U16 = OFF;
-			GpioDataRegs.GPADAT.all = MOTOR_DIR_REV;
+			//GpioDataRegs.GPADAT.all = MOTOR_DIR_REV;
 			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
 			
 			STOP_TIME_INDEX_U32 = 0;

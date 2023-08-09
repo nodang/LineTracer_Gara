@@ -153,12 +153,12 @@ void RUN(Uint16 number)
 		if(number == 2)
 		{
 			Flag.Fast_U16 = ON;
-			if(TURN_DIVISION_FUNC())	{ VFDPrintf("dvsERROR");	return; }
+			TURN_DIVISION_FUNC();
 		}
 		else if(number == 3)
 		{
 			Flag.Extrem_U16 = ON;
-			if(xTURN_DIVISION_FUNC())	{ VFDPrintf("dvsERROR");	return; }
+			xTURN_DIVISION_FUNC();
 
 			StartCpuTimer2();
 		}

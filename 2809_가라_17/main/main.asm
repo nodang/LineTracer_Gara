@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Thu Aug 03 23:16:42 2023                 *
+;* Date/Time created: Wed Aug 09 18:00:14 2023                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -429,8 +429,8 @@ DW$83	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$83, DW_AT_location[DW_OP_addr _Search]
 	.dwattr DW$83, DW_AT_type(*DW$T$141)
 	.dwattr DW$83, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI90410 C:\Users\노호진\AppData\Local\Temp\TI9044 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI9042 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI9046 --object_file main.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI10010 C:\Users\노호진\AppData\Local\Temp\TI1004 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI1002 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI1006 --object_file main.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_System_Init
 
@@ -671,8 +671,8 @@ _main:
 ;*** 62	-----------------------    load_pid_rom();  // [21]
 ;*** 62	-----------------------    *(&CpuTimer0Regs+4L) |= 0x10u;  // [21]
 ;*** 83	-----------------------    *(&CpuTimer2Regs+4L) |= 0x10u;
-;***  	-----------------------    *(&EPwm1Regs+25L) &= 0xfff7u;
-;*** 84	-----------------------    *(&EPwm3Regs+25L) &= 0xfff7u;
+;***  	-----------------------    *(&EPwm3Regs+25L) &= 0xfff7u;
+;*** 84	-----------------------    *(&EPwm1Regs+25L) &= 0xfff7u;
 ;*** 86	-----------------------    Init_SENSOR();
 ;*** 87	-----------------------    Init_MOTOR();
 ;*** 89	-----------------------    MENU_PA();
@@ -718,11 +718,11 @@ _main:
 	.dwpsn	"main.c",83,2
         MOVW      DP,#_CpuTimer2Regs+4
         OR        @_CpuTimer2Regs+4,#0x0010 ; |83| 
-        MOVW      DP,#_EPwm1Regs+25
-        AND       @_EPwm1Regs+25,#0xfff7
-	.dwpsn	"main.c",84,2
         MOVW      DP,#_EPwm3Regs+25
-        AND       @_EPwm3Regs+25,#0xfff7 ; |84| 
+        AND       @_EPwm3Regs+25,#0xfff7
+	.dwpsn	"main.c",84,2
+        MOVW      DP,#_EPwm1Regs+25
+        AND       @_EPwm1Regs+25,#0xfff7 ; |84| 
 	.dwpsn	"main.c",86,2
         LCR       #_Init_SENSOR         ; |86| 
         ; call occurs [#_Init_SENSOR] ; |86| 
@@ -812,7 +812,7 @@ L2:
         ; return occurs
 
 DW$90	.dwtag  DW_TAG_loop
-	.dwattr DW$90, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\main.asm:L1:1:1691072202")
+	.dwattr DW$90, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\main.asm:L1:1:1691571614")
 	.dwattr DW$90, DW_AT_begin_file("main.c")
 	.dwattr DW$90, DW_AT_begin_line(0x5e)
 	.dwattr DW$90, DW_AT_end_line(0x63)

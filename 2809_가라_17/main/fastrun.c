@@ -51,7 +51,7 @@ Uint16 TURN_COMPUTE_FUNC()
 	return 0;
 }
 
-Uint16 TURN_DIVISION_FUNC()
+void TURN_DIVISION_FUNC()
 {
 	Uint16 cnt = 0;
 
@@ -67,7 +67,6 @@ Uint16 TURN_DIVISION_FUNC()
 					 Search[cnt].Distance_U32, Search[cnt].DecelDistance_IQ17 >> 17, Search[cnt].MotorDistance_IQ17 >> 17);
 		}
 	}
-	return 0;
 }
 
 void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _iq17 *decel_dist, volatile _iq14 *decel)

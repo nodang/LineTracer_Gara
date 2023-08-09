@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Thu Aug 03 23:16:40 2023                 *
+;* Date/Time created: Wed Aug 09 18:00:12 2023                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -71,8 +71,8 @@ DW$14	.dwtag  DW_TAG_variable, DW_AT_name("PieVectTable"), DW_AT_symbol_name("_P
 	.dwattr DW$14, DW_AT_type(*DW$T$47)
 	.dwattr DW$14, DW_AT_declaration(0x01)
 	.dwattr DW$14, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI67210 C:\Users\노호진\AppData\Local\Temp\TI6724 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI6722 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI6726 --object_file DSP280x_CpuTimers.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI87610 C:\Users\노호진\AppData\Local\Temp\TI8764 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI8762 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI8766 --object_file DSP280x_CpuTimers.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 	.global	_ConfigCpuTimer
 
@@ -231,8 +231,8 @@ _Init_ISR:
 ;*** 127	-----------------------    PieVectTable.TINT0 = &SENSOR_ISR;
 ;*** 128	-----------------------    PieVectTable.TINT2 = &CONTROL_ISR;
 ;*** 129	-----------------------    PieVectTable.ADCINT = &ADC_ISR;
-;*** 131	-----------------------    PieVectTable.EPWM1_INT = &LMOTOR_ISR;
-;*** 132	-----------------------    PieVectTable.EPWM3_INT = &RMOTOR_ISR;
+;*** 131	-----------------------    PieVectTable.EPWM1_INT = &RMOTOR_ISR;
+;*** 132	-----------------------    PieVectTable.EPWM3_INT = &LMOTOR_ISR;
 ;*** 134	-----------------------    PieVectTable.SCIRXINTA = &SCIA_ISR;
 ;*** 136	-----------------------    asm(" EDIS");
 ;*** 138	-----------------------    IER |= 0x2001u;
@@ -275,10 +275,10 @@ DW$23	.dwtag  DW_TAG_variable, DW_AT_name("C$1"), DW_AT_symbol_name("C$1")
         MOVL      XAR4,#_ADC_ISR        ; |129| 
         MOVL      @_PieVectTable+74,XAR4 ; |129| 
 	.dwpsn	"DSP280x_CpuTimers.c",131,2
-        MOVL      XAR4,#_LMOTOR_ISR     ; |131| 
+        MOVL      XAR4,#_RMOTOR_ISR     ; |131| 
         MOVL      @_PieVectTable+96,XAR4 ; |131| 
 	.dwpsn	"DSP280x_CpuTimers.c",132,2
-        MOVL      XAR4,#_RMOTOR_ISR     ; |132| 
+        MOVL      XAR4,#_LMOTOR_ISR     ; |132| 
         MOVL      @_PieVectTable+100,XAR4 ; |132| 
 	.dwpsn	"DSP280x_CpuTimers.c",134,2
         MOVW      DP,#_PieVectTable+192
