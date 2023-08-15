@@ -143,16 +143,24 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 
 //-------------------------------------------------------------------------------------------------------------------------------//
 // MOTOR VAR   A B  A_ B_
-#define MAX_VELO_IQ17		_IQ17(4500.0)
-#define MIN_VELO_IQ17		_IQ17(10.0)	//_IQ17(100.0)
 
-#define MAX_ACC_IQ17		_IQ17(8000.0)	// _IQ17(6000.0)
-#define MIN_ACC_IQ17		_IQ17(3000.0)	//_IQ17(4000.0)	//_IQ17(3000.0)
+#define MAX_VELO	4500.0
+#define MIN_VELO	10.0
 
-#define MAX_ACC_IQ14		(MAX_ACC_IQ17 >> 3)
-#define MIN_ACC_IQ14		(MIN_ACC_IQ17 >> 3)
+#define MAX_VELO_IQ17		_IQ17(MAX_VELO)
+#define MIN_VELO_IQ17		_IQ17(MIN_VELO)	//_IQ17(100.0)
 
-#define ACC_GRADIENT_IQ17	_IQ17div(MAX_ACC_IQ17 - MIN_ACC_IQ17, MAX_VELO_IQ17 - MIN_VELO_IQ17)
+#define MAX_ACC		8000.0
+#define MIN_ACC		3000.0
+
+#define MAX_ACC_IQ17		_IQ17(MAX_ACC)	// _IQ17(6000.0)
+//#define MIN_ACC_IQ17		_IQ17(MIN_ACC)	//_IQ17(4000.0)	//_IQ17(3000.0)
+
+#define MAX_ACC_IQ14		_IQ14(MAX_ACC)
+#define MIN_ACC_IQ14		_IQ14(MIN_ACC)
+
+#define ACC_GRADIENT		1.113585746102449888641425389755	//((MAX_ACC - MIN_ACC)/(MAX_VELO - MIN_VELO))
+#define ACC_GRADIENT_IQ17	_IQ17(ACC_GRADIENT)					//_IQ17div(MAX_ACC_IQ17 - MIN_ACC_IQ17, MAX_VELO_IQ17 - MIN_VELO_IQ17)
 
 #define	TEN_THOUSAND		10000.0
 
@@ -173,10 +181,10 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define	STEP_10000D_IQ17	_IQ17(8246.680715)
 //#define	STEP_10000D_IQ15	_IQ15(8246.680715)
 
-#define	HEIGHT_ME			270.0	//270.0	//		208.0	//292.7		//300.0		// 약 255mm
-#define HEIGHT_SEEN			270.0	//250.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 
+#define	HEIGHT_ME			260.0	//270.0	//		208.0	//292.7		//300.0		// 약 255mm
+#define HEIGHT_SEEN			250.0	//250.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 
 // sensor between motor weight center
-#define HEIGHT_2SEEN		540.0	//500.0
+#define HEIGHT_2SEEN		500.0	//500.0
 #define	HEIGHT_REARdiv2		74.3	//148.63	//80.0
 
 #define CLK_DIVISION_CONSTANT		7	// 4 // 2
@@ -198,11 +206,11 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	CPUTIMER_0_PRD			CpuTimer0Regs.PRD.all
 #define	CPUTIMER_2_PRD			CpuTimer2Regs.PRD.all
 
-#define CPUTIMER_2_PRDdiv10000_IQ17		(_IQ15div(((long)CPUTIMER_2_PRD) << 15, _IQ15(10000.0)) << 2)
+#define CPUTIMER_2_PRDdiv10000mpySTEP_IQ17		_IQ17(4.01338)		//_IQ17(5.0)		//(_IQ15div(((long)CPUTIMER_2_PRD) << 15, _IQ15(10000.0)) << 2)
 
 //#define STOP_VEL_IQ15(A)		(_IQ17div(A, _IQ17(100.0)) >> 2)
-#define STOP_VEL_IQ15(A)		(_IQ17mpy(A, _IQ17(0.01)) >> 2)
-#define STOP_ACC_IQ14(B)		(_IQ15mpy(_IQ15div(_IQ15mpy(STOP_VEL_IQ15(B), STOP_VEL_IQ15(B)), _IQ15(HEIGHT_SEEN - 65.0)), _IQ15(10000.0)) >> 2)
+#define STOP_VEL_IQ17(A)		_IQ17mpy(A, _IQ17(0.01))
+#define STOP_ACC_IQ14(B)		(_IQ14mpyIQX(_IQ17div(_IQ17mpy(STOP_VEL_IQ17(B), STOP_VEL_IQ17(B)), _IQ17(HEIGHT_SEEN - 65.0)), 17, _IQ14(10000.0), 14) >> 1)
 
 // 2800 이상 overflow 발생
 //#define	HANDLE_ACCmpy1000_IQ17	_IQ17div(ACCEL_COEF_I32 << 17, _IQ17(TEN_THOUSAND))	//ACC_DEC_POINT_COEF_I32 << 17)
@@ -239,7 +247,6 @@ typedef volatile struct
 	
 	Uint16	DecelFlag_U16;
 //------------------------------------------------------------------------------------//
-	Uint16	PwmTBPRD_U16;
 	_iq17	PwmTBPRDdiv10000_IQ17;
 
 	_iq14	PrdNext_IQ14;

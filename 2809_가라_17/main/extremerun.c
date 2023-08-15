@@ -68,9 +68,6 @@ void xTURN_DIVISION_FUNC()
 					 cnt, Search[cnt].TurnDir_U32 & STRAIGHT ? 'S' : (Search[cnt].TurnDir_U32 & RIGHT_TURN ? 'R' : 'L'),
 					 Search[cnt].BlindFlag_U16, Search[cnt].TargetPosition_IQ10 >> 10, _IQ10toF(Search[cnt].PositionRatio_IQ10));
 	}
-
-	VFDPrintf(" Ready? ");
-	while(SW_D);
 }
 
 void err_mark(Uint16 *cnt)
@@ -329,13 +326,7 @@ static void x45_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 				LINE->DownFlag_U16 = OFF;
 				LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
 
-				xVEL_COMPUTE(LINE, LINE + 1, X45_VEL, TURN_VEL, m_dist);
-
-				if((LINE + 1)->Distance_U32 > MID_DIST)
-				{
-					LINE->DownFlag_U16 = ON;
-					LINE->Kp_UpDown_IQ17 = Kp_DOWN_IQ17;
-				}
+				xVEL_COMPUTE(LINE, LINE + 1, X90_VEL, TURN_VEL, m_dist);
 			}
 			//else if((LINE + 1)->TurnDir_U32 & (TURN_TH_45 | TURN_TH_90))		// 연속 45 | 90
 			else if((LINE + 1)->TurnDir_U32 & TURN_TH_45)		// 연속 45
@@ -442,10 +433,10 @@ static void xTURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	//else if(LINE->TurnDir_U32 & TURN_TH_90)	x90_TURN_DIVISION(LINE, cnt);
 	//else if(LINE->TurnDir_U32 & TURN_TH_180)	x180_TURN_DIVISION(LINE, cnt);
 	//else if(LINE->TurnDir_U32 & TURN_TH_270)	x270_TURN_DIVISION(LINE, cnt);
-	else if((LINE->TurnDir_U32 & TURN_TH_270) && (LINE->TurnDir_U32 & (TURN_R_35 | TURN_R_45 | TURN_R_55)))
+	else if((LINE->TurnDir_U32 & TURN_TH_270) && (LINE->TurnDir_U32 & (TURN_R_35 | TURN_R_45 | TURN_R_55)) && (LINE + 1)->TurnDir_U32 & STRAIGHT)
 	{
 		LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
-		
+
 		LINE->VeloIn_IQ17 = LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = ((long)xS4S_SPEED_U32) << 17;
 		LINE->Jerk_IQ14 = ((long)JERK_U32) << 14;
 
@@ -575,85 +566,7 @@ static void xshift_division(TRACKINFO *LINE, Uint16 cnt)
 		LINE->PositionRatio_IQ10 = _IQ10(1.0);
 }
 #endif
-/*
-static void x90_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
-{
-	Uint16 shift = 0;
-	
-	volatile _iq17 m_dist = 0.0;
-	volatile _iq17 x90_vel = ((long)MOTOR_SPEED_U32) << 17;
 
-	LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
-	LINE->Jerk_IQ14 = ((long)JERK_U32) << 14;
-
-	LINE->VeloIn_IQ17 = x90_vel;
-	LINE->Velo_IQ17 = LINE->VeloOut_IQ17 = LINE->VeloIn_IQ17;
-
-	LINE->ShiftBefore_IQ17 = LINE->TurnDir_U32 & RIGHT_TURN ? right_table[shift] << 17 : left_table[shift] << 17;
-
-	if((LINE + 1)->TurnDir_U32 & STRAIGHT)
-	{
-		do
-		{
-			if(((LINE - 1)->TurnDir_U32 & STRAIGHT) && ((LINE - 1)->Distance_U32 > MID_DIST))
-				break;
-						
-			xLINE_DIVISION((LINE + 1), (cnt + 1));
-
-			if(((LINE - 1)->TurnDir_U32 & TURN_TH_90) && ((LINE - 2)->TurnDir_U32 & TURN_TH_90))
-			{
-				LINE->Kp_UpDown_IQ17 = Kp_DOWN_IQ17;
-				LINE->DownFlag_U16 = ON;
-			}
-			else
-			{
-				LINE->Kp_UpDown_IQ17 = PID_Kp_IQ17;
-				LINE->DownFlag_U16 = OFF;
-			}
-			LINE->VeloIn_IQ17 = x90_vel;
-			LINE->VeloOut_IQ17 = LINE->Velo_IQ17 = LINE->VeloIn_IQ17;
-		} 
-		while(0);
-
-		LINE->ShiftAfter_IQ17 = LINE->ShiftBefore_IQ17;
-	}
-	else
-	{
-		if(((LINE + 1)->TurnDir_U32 & TURN_TH_90) && ((LINE - 1)->TurnDir_U32 & TURN_TH_90))
-		{
-			xLINE_DIVISION((LINE + 1), (cnt + 1));
-			xCONTINOUS_VEL_COMPUTE(LINE, x90_vel, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
-
-			if((LINE - 1)->TurnDir_U32 & STRAIGHT)
-			{
-				LINE->s44sFlag_U16 = OFF;
-				LINE->DownFlag_U16 = OFF;
-
-				LINE->VeloIn_IQ17 = x90_vel;
-				LINE->VeloOut_IQ17 = LINE->Velo_IQ17 = LINE->VeloIn_IQ17;
-			}
-			else if((LINE + 1)->TurnDir_U32 & TURN_TH_180)
-			{
-				LINE->VeloIn_IQ17 = x90_vel;
-				LINE->VeloOut_IQ17 = LINE->Velo_IQ17 = LINE->VeloIn_IQ17;
-			}
-		}
-		
-		LINE->ShiftBefore_IQ17 = (LINE + 1)->TurnDir_U32 & RIGHT_TURN ? right_table[shift] << 17 : left_table[shift] << 17;
-	}
-
-	LINE->ShiftDistLimit_IQ17 = ((long)LINE->Distance_U32) << 16;
-}
-*/
-/*
-static void x180_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
-{
-}
-
-static void x270_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
-{
-}
-*/
 static void xVEL_COMPUTE(TRACKINFO *curL, TRACKINFO *nextL, volatile _iq17 max_vel, volatile _iq17 turn_vel, volatile _iq17 m_dist)
 {
 	TRACKINFO cpy_info;

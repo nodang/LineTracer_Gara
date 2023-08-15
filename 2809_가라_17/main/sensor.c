@@ -167,7 +167,7 @@ interrupt void ADC_ISR()
 	// DIV 127
 	// MAX OR MIN OVER CASE SET 
 	// ELSE CASE SET	//(NOW_VALUE / STANDARD_VALUE) * 127.0
-	if(SenAdc.Adc_U16[SENSOR_COUNT] > SenAdc.Max_U16[SENSOR_COUNT])		SenAdc.Div127_U16[SENSOR_COUNT] = 127;
+	if(SenAdc.Adc_U16[SENSOR_COUNT] > SenAdc.Max_U16[SENSOR_COUNT])			SenAdc.Div127_U16[SENSOR_COUNT] = 127;
 	else if(SenAdc.Adc_U16[SENSOR_COUNT] < SenAdc.Min_U16[SENSOR_COUNT])	SenAdc.Div127_U16[SENSOR_COUNT] = 0;
 	else	
 	{
@@ -175,7 +175,7 @@ interrupt void ADC_ISR()
 		SenAdc.Div127_U16[SENSOR_COUNT] = (Uint16)(_IQ17mpy(_IQ17div(((long)SenAdc.AdcValue_U16[SENSOR_COUNT]) << 17,	SenAdc.MaxminusMin_IQ17[SENSOR_COUNT]),	_IQ17(127.0)) >> 17);
 	}
 	
-	if(SenAdc.Adc_U16[SENSOR_COUNT + 8] > SenAdc.Max_U16[SENSOR_COUNT + 8])		SenAdc.Div127_U16[SENSOR_COUNT + 8] = 127;
+	if(SenAdc.Adc_U16[SENSOR_COUNT + 8] > SenAdc.Max_U16[SENSOR_COUNT + 8])			SenAdc.Div127_U16[SENSOR_COUNT + 8] = 127;
 	else if(SenAdc.Adc_U16[SENSOR_COUNT + 8] < SenAdc.Min_U16[SENSOR_COUNT + 8])	SenAdc.Div127_U16[SENSOR_COUNT + 8] = 0;
 	else	
 	{
@@ -386,44 +386,41 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 void HANDLE()
 {
 	// IIR Filter
-	static _iq15	IIR_puted	= _IQ15(0.0),
-					IIR_puting	= _IQ15(0.0);
+	static _iq10	IIR_puted	= _IQ10(0.0),
+					IIR_puting	= _IQ10(0.0);
 
 	IIR_puted = IIR_puting;
-	IIR_puting = (SenAdc.PositionTemporary_IQ10 + SenAdc.PositionShift_IQ10) << 5;
+	IIR_puting = SenAdc.PositionTemporary_IQ10 + SenAdc.PositionShift_IQ10;
 
 	HanPID.Pos_Err_IQ10[4] = HanPID.Pos_Err_IQ10[3];
 	HanPID.Pos_Err_IQ10[3] = HanPID.Pos_Err_IQ10[2];
 	HanPID.Pos_Err_IQ10[2] = HanPID.Pos_Err_IQ10[1];
-	HanPID.Pos_Err_IQ10[1] = _IQ17mpyIQX(_IQ30(PID_Kb), 30, IIR_puted + IIR_puting, 15) - _IQ17mpyIQX(_IQ30(PID_Ka), 30, HanPID.Pos_Err_IQ10[2], 17);
-	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[2] - HanPID.Pos_Err_IQ10[1];
+	HanPID.Pos_Err_IQ10[1] = _IQ17mpyIQX(_IQ30(PID_Kb), 30, IIR_puted + IIR_puting, 10) - _IQ17mpyIQX(_IQ30(PID_Ka), 30, HanPID.Pos_Err_IQ10[2], 17);
+	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[1] - HanPID.Pos_Err_IQ10[2];
 
 	HanPID.Pos_P_IQ17 = _IQ17mpy(HanPID.Kp_val_IQ17, HanPID.Pos_Err_IQ10[1]);
-	//HanPID.Pos_D_IQ17 = _IQ17mpy(HanPID.Kd_val_IQ17, HanPID.Pos_Err_IQ17[0]);
+	//HanPID.Pos_D_IQ17 = _IQ17mpy(HanPID.Kd_val_IQ17, HanPID.Pos_Err_IQ10[0]);
 
 	HanPID.Pos_PID_IQ17 = _IQ17mpy(HanPID.Pos_P_IQ17, _IQ17(0.001));
 	
 	if(HanPID.Pos_PID_IQ17 > _IQ17(MAX_PID))			HanPID.Pos_PID_IQ17 = _IQ17(MAX_PID);
 	else if(HanPID.Pos_PID_IQ17 < _IQ17(-MAX_PID))		HanPID.Pos_PID_IQ17 = _IQ17(-MAX_PID);
 
-	//if(GpioDataRegs.GPADAT.bit.GPIO5)
-	//		HanPID.Pos_PID_IQ17 = -HanPID.Pos_PID_IQ17;
-
 	if(HanPID.Pos_PID_IQ17 > _IQ17(0.0))			// Right curve
 	{
-		RMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
-		LMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
-
-		if(RMotor.TargetHandle_IQ17 < _IQ17(0.0))
-			RMotor.TargetHandle_IQ17 = _IQ17(0.0);
-	}
-	else if(HanPID.Pos_PID_IQ17 < _IQ10(0.0))		// left curve
-	{	
-		RMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
-		LMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+		LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
 
 		if(LMotor.TargetHandle_IQ17 < _IQ17(0.0))
 			LMotor.TargetHandle_IQ17 = _IQ17(0.0);
+	}
+	else if(HanPID.Pos_PID_IQ17 < _IQ10(0.0))		// left curve
+	{	
+		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
+		LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
+
+		if(RMotor.TargetHandle_IQ17 < _IQ17(0.0))
+			RMotor.TargetHandle_IQ17 = _IQ17(0.0);
 	}
 	else											// Straight
 	{

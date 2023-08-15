@@ -49,7 +49,7 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 {
 	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17) 
 	{
-		pM->PwmTBPRDdiv10000_IQ17 = _IQ15div(((long)pM->PwmTBPRD_U16) << 15, _IQ15(TEN_THOUSAND)) << 2;
+		pM->PwmTBPRDdiv10000_IQ17 = _IQ14div(pM->PrdNext_IQ14, _IQ14(TEN_THOUSAND)) << 3;
 		pM->PwmTBPRDdiv10000_IQ17 = pM->PwmTBPRDdiv10000_IQ17 << clk;
 	
 		pM->NextVelocity_IQ17 += _IQ17mpy(_IQ14div(pM->NextAccel_IQ14, _IQ14(TEN_THOUSAND)) << 3, pM->PwmTBPRDdiv10000_IQ17);
@@ -63,10 +63,12 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 		if(pM->NextAccel_IQ14 > pM->AccelLimit_IQ14)
 			pM->NextAccel_IQ14 = pM->AccelLimit_IQ14;
+
+		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{
-		pM->PwmTBPRDdiv10000_IQ17 = _IQ15div(((long)pM->PwmTBPRD_U16) << 15, _IQ15(TEN_THOUSAND)) << 2;
+		pM->PwmTBPRDdiv10000_IQ17 = _IQ14div(pM->PrdNext_IQ14, _IQ14(TEN_THOUSAND)) << 3;
 		pM->PwmTBPRDdiv10000_IQ17 = pM->PwmTBPRDdiv10000_IQ17 << clk;
 		
 		pM->NextVelocity_IQ17 -= _IQ17mpy(_IQ14div(pM->DecelAccel_IQ14, _IQ14(TEN_THOUSAND)) << 3, pM->PwmTBPRDdiv10000_IQ17);
@@ -78,46 +80,47 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 		if(pM->NextAccel_IQ14 > _IQ14(0.0))
 			pM->NextAccel_IQ14 = _IQ14(0.0);
+
+		pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->NextVelocity_IQ17);
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	pM->PrdNextTranSecon_IQ17 = _IQ17mpy(pM->NextVelocity_IQ17, pM->TargetHandle_IQ17);
+	//pM->PrdNextTranSecon_IQ17 = _IQ17div(_IQ17(2000.0), pM->TargetHandle_IQ17) + pM->NextVelocity_IQ17 - _IQ17(2000.0);
+	//pM->PrdNext_IQ14 = _IQ17div(STEP_10000D_IQ17, pM->PrdNextTranSecon_IQ17);
 
-	if(pM->PrdNextTranSecon_IQ17 > MAX_VELO_IQ17)	pM->PrdNextTranSecon_IQ17 = MAX_VELO_IQ17;
-	else if(pM->PrdNextTranSecon_IQ17 < MIN_VELO_IQ17)	pM->PrdNextTranSecon_IQ17 = MIN_VELO_IQ17;
-	
-	pM->PrdNextTranSecon_IQ17 = _IQ17div(STEP_10000D_IQ17, pM->PrdNextTranSecon_IQ17);
+	pM->PrdNext_IQ14 = _IQ17mpy(pM->PrdNextTranSecon_IQ17, pM->TargetHandle_IQ17);
+	pM->RolEachStep_IQ17 = _IQ17div(CPUTIMER_2_PRDdiv10000mpySTEP_IQ17, pM->PrdNext_IQ14);
 
-	while(pM->PrdNextTranSecon_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
+	while(pM->PrdNext_IQ14 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
 	{
 		if(clk > 0)
 		{
 			clk--;
-			pM->PrdNextTranSecon_IQ17 = pM->PrdNextTranSecon_IQ17 << 1;
+			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;
 		}
 		else
 		{
-			pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MINIMUMdiv10);
+			pM->PrdNext_IQ14 = _IQ17(MOTOR_PERIOD_MINIMUMdiv10);
 			break;
 		}
 	}
-	while(pM->PrdNextTranSecon_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
+	while(pM->PrdNext_IQ14 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
 	{
 		if(clk < CLK_DIVISION_CONSTANT)
 		{
 			clk++;
-			pM->PrdNextTranSecon_IQ17 = pM->PrdNextTranSecon_IQ17 >> 1;
+			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;
 		}
 		else
 		{
-			pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << CLK_DIVISION_CONSTANT;
+			pM->PrdNext_IQ14 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << CLK_DIVISION_CONSTANT;
 			break;
 		}
 	}
 		
-	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNextTranSecon_IQ17, 17);
+	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNext_IQ14, 17);
 
-	pM->RolEachStep_IQ17			= _IQ17mpy(STEP_D_IQ17, _IQ17div(CPUTIMER_2_PRDdiv10000_IQ17, pM->PrdNextTranSecon_IQ17));
+	//pM->RolEachStep_IQ17			= _IQ17mpy(STEP_D_IQ17, _IQ17div(CPUTIMER_2_PRDdiv10000_IQ17, pM->PrdNextTranSecon_IQ17));
 	pM->TurnMarkCheckDistance_IQ17 	+= pM->TurnMarkCheckDistance_IQ17 > _IQ17(16380.0) ? _IQ17(0.0) : STEP_D_IQ17;
 	pM->CrossCheckDistance_IQ15		+= pM->CrossCheckDistance_IQ15 > _IQ15(32760.0) ? _IQ15(0.0) : STEP_D_IQ15;
 	pM->GoneDistance_IQ15			+= pM->GoneDistance_IQ15 > _IQ15(16380.0) ? _IQ15(0.0) : STEP_D_IQ15;			// IQ17 셈 과정에 포함됨으로 16380으로 제한
@@ -150,7 +153,8 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 	START_PWM_ISR();
 }
 
-#define limit_dec	15000.0
+#define LIMIT_DEC	15000.0
+#define MIN_DEC		2000.0
 
 void MOVE_TO_END(_iq17 distance)
 {
@@ -159,7 +163,7 @@ void MOVE_TO_END(_iq17 distance)
 	
 	RMotor.TargetVel_IQ17 = LMotor.TargetVel_IQ17 = _IQ17(0.0);
 	RMotor.DecelVelocity_IQ17 = LMotor.DecelVelocity_IQ17 = _IQ17(0.0);
-	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 = distance;
+	RMotor.DecelDistance_IQ17 = LMotor.DecelDistance_IQ17 =  _IQ17(HEIGHT_SEEN - 65.0);
 	RMotor.UserDistance_IQ17 = LMotor.UserDistance_IQ17 = distance;
 
 	RMotor.ErrorDistance_IQ17 = RMotor.UserDistance_IQ17;
@@ -169,9 +173,11 @@ void MOVE_TO_END(_iq17 distance)
 
 	// 2000 일때 최대 정지 가속도
 	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = STOP_ACC_IQ14((RMotor.NextVelocity_IQ17 >> 1) + (LMotor.NextVelocity_IQ17 >> 1));
-
-	if((RMotor.DecelAccel_IQ14 > _IQ14(limit_dec)) || (LMotor.DecelAccel_IQ14 > _IQ14(limit_dec)))
-		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(limit_dec);
+	
+	if(RMotor.DecelAccel_IQ14 < _IQ14(MIN_DEC) || (LMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)))
+		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(MIN_DEC);
+	else if((RMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)) || (LMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)))
+		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(LIMIT_DEC);
 	
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
@@ -192,7 +198,7 @@ interrupt void LMOTOR_ISR()
 
 	if(Flag.Motor_U16)
 	{
-		LMotor.PwmTBPRD_U16 = L_PWM.TBPRD;
+		//LMotor.PwmTBPRD_U16 = L_PWM.TBPRD;
 		
 		clk = MOTOR_MOTION_VALUE(&LMotor, L_PWM.TBCTL.bit.CLKDIV);
 
@@ -216,7 +222,7 @@ interrupt void RMOTOR_ISR()
 
 	if(Flag.Motor_U16)
 	{
-		RMotor.PwmTBPRD_U16 = R_PWM.TBPRD;
+		//RMotor.PwmTBPRD_U16 = R_PWM.TBPRD;
 	
 		clk = MOTOR_MOTION_VALUE(&RMotor, R_PWM.TBCTL.bit.CLKDIV);
 		

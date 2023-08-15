@@ -107,7 +107,7 @@ void Init_RUN()
 	
 	JERK_U32 = 8000;
 	JERK_LONG_U32 = 20000;
-	JERK_MIDDLE_U32 = 50000;
+	JERK_MIDDLE_U32 = 25000;
 	JERK_SHORT_U32 = 30000;
 	
 	ACCEL_COEF_I32 = 144;
@@ -148,7 +148,11 @@ void RUN(Uint16 number)
 	if(number != 1)	
 	{
 		load_line_info();
-		if(TURN_COMPUTE_FUNC())		{ VFDPrintf("cptERROR");	return; }
+		if(TURN_COMPUTE_FUNC())
+		{
+			VFDPrintf("cptERROR");
+			return;
+		}
 		
 		if(number == 2)
 		{
@@ -174,10 +178,10 @@ void RUN(Uint16 number)
 	
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
-	
-	MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
 
 	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+	
+	MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ14 );
 
 	while(1)
 	{
@@ -186,15 +190,13 @@ void RUN(Uint16 number)
 		TxPrintf("%6lf,%6lf\n", _IQ17toF(_IQ17div(STEP_10000D_IQ17, LMotor.PrdNextTranSecon_IQ17)), _IQ17toF(_IQ17div(STEP_10000D_IQ17, RMotor.PrdNextTranSecon_IQ17)));
 		//TxPrintf("%6lf,%6lf\n", _IQ17toF(_IQ17div(STEP_10000D_IQ17, LMotor.PrdNextTranSecon_IQ17)), _IQ17toF(_IQ17div(LMotor.FinalVelo_IQ17, LMotor.TargetHandle_IQ17)));
 #endif
+		//TxPrintf("%lf\n",_IQ17toF(HanPID.Pos_PID_IQ17));
 		//TxPrintf("CNT: %u    KP: %lf\n",THIRD_MARK_U16_CNT, _IQ17toF(HanPID.Kp_val_IQ17));
 		//TxPrintf("%6ld %d %6ld %d\n", LMotor.PrdNext_IQ14 >> 14, EPwm3Regs.TBCTL.bit.CLKDIV, RMotor.PrdNext_IQ14 >> 14, EPwm1Regs.TBCTL.bit.CLKDIV);
 		//TxPrintf("%5.4lf  %5.4lf\n",_IQtoF(LMotor.TargetHandle_IQ17),_IQtoF(RMotor.TargetHandle_IQ17));
 #if 0
 		TxPrintf("%5ld %5ld %5ld %5ld  %4ld %4ld\n", 
 				 LMotor.AccelLimit_IQ14 >> 14, LMotor.NextAccel_IQ14 >> 14, LMotor.NextVelocity_IQ17 >> 17, LMotor.TargetVel_IQ17 >> 17, LMotor.TargetHandle_IQ17 >> 17, RMotor.TargetHandle_IQ17 >> 17);
-#endif
-
-#if 0
 		//TxPrintf("%lf %lf\n", _IQ17toF(LMotor.NextVelocity_IQ17), _IQ17toF(LMotor.TargetVel_IQ17));
 		TxPrintf("%lf %lf %lf %lf\n", _IQ17toF(LMotor.DecelDistance_IQ17), _IQ15toF(LMotor.ErrorDistance_IQ17), _IQ17toF(LMotor.NextVelocity_IQ17), _IQ17toF(LMotor.TargetVel_IQ17));
 		//TxPrintf("%lf %lf\n", _IQ17toF(LMotor.DecelDistance_IQ17), _IQ17toF(LMotor.ErrorDistance_IQ17));
@@ -218,7 +220,7 @@ void RUN(Uint16 number)
 
 		if(ERROR_U16_FLAG)
 		{	
-			MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
+			MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ14 );
 			ERROR_U16_FLAG = OFF;
 		}
 	} 
@@ -346,11 +348,34 @@ void LINE_PRINTF()
 
 void time_attack()
 {
-	Uint16 cnt = 0, turn_cnt;
-	Uint32 t, timee[5] = { 0, };
+	Uint16 cnt, turn_cnt;
+	Uint32 t, timee[5] = { 0, }, cur = 0;
 
-	load_line_info();
-	turn_cnt = MARK_U16_CNT;
+	//load_line_info();
+
+	turn_cnt = 1;
+	while(1)
+	{
+		VFDPrintf("cnt: %3u", turn_cnt);
+
+		if(!SW_D)
+		{
+			DELAY_US(SW_DELAY);
+			break;
+		}
+		else if(!SW_R)
+		{
+			DELAY_US(62500);
+			if(turn_cnt > 1)	turn_cnt--;
+			else				turn_cnt = 200;
+		}
+		else if(!SW_L)
+		{
+			DELAY_US(62500);
+			if(turn_cnt < 200)	turn_cnt++;
+			else				turn_cnt = 0;
+		}
+	}
 
 	Init_RUN();
 
@@ -394,10 +419,10 @@ void time_attack()
 	
 	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
-		
-	MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0), _IQ17(2000.0), _IQ17(2000.0), ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
 
 	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+		
+	MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ14 );
 
 	while(1)
 	{		
@@ -411,19 +436,28 @@ void time_attack()
 		if(turn_cnt == MARK_U16_CNT)
 		{
 			MOVE_TO_END(_IQ17(0.0));
-
+			cur = TIME_INDEX_U32;
+			
 			while(1)
 			{
 				if(t - 2000 < TIME_INDEX_U32)
-				{
+				{	
 					GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
+					Flag.Motor_U16 = ON;
 					
-					MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0), _IQ17(2000.0), _IQ17(2000.0), ((long)JERK_U32) << 14, MIN_ACC_IQ17 >> 3 );
+					MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ14 );
+					
 					turn_cnt = 0;
 					break;
 				}
 				else if((RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17))
 				{
+					Flag.Motor_U16 = OFF;
+					EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
+
+					cur += 1000;
+					while(cur > TIME_INDEX_U32);
+
 					GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 				}
 				else
@@ -434,3 +468,4 @@ void time_attack()
 			return;
 	} 	
 }
+
