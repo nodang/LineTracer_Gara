@@ -43,8 +43,10 @@ void Init_MotorCtrl(MOTORCTRL *pM)
 	pM->TargetHandle_IQ17 = _IQ17(1.0);	
 }
 
-Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
+inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM, volatile struct EPWM_REGS *pEPWM)
 {
+	Uint16 clk = pEPWM->TBCTL.bit.CLKDIV;
+
 	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17) 
 	{
 		pM->NextVelocity_IQ17 += _IQ17mpy(_IQ14div(pM->NextAccel_IQ14, _IQ14(TEN_THOUSAND)) << 3, pM->PwmTBPRDdiv10000_IQ17);
@@ -84,14 +86,18 @@ Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 	pM->RolEachStep_IQ17 = _IQ17div(CPUTIMER_2_PRDdiv10000mpySTEP_IQ17, pM->PwmTBPRDdiv10000_IQ17);
 
-	while(pM->PwmTBPRDdiv10000_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
-	{
-		if(clk > 0)		clk--;
-	}
-	while(pM->PwmTBPRDdiv10000_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
-	{
-		if(clk < CLK_DIVISION_CONSTANT)		clk++;
-	}
+	if(pM->PwmTBPRDdiv10000_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
+		while(pM->PwmTBPRDdiv10000_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
+		{
+			if(clk > 0)		clk--;
+			else			break;
+		}
+	if(pM->PwmTBPRDdiv10000_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
+		while(pM->PwmTBPRDdiv10000_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
+		{
+			if(clk < CLK_DIVISION_CONSTANT)		clk++;
+			else								break;
+		}
 	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PwmTBPRDdiv10000_IQ17, 17);
 
 	//pM->RolEachStep_IQ17			= _IQ17mpy(STEP_D_IQ17, _IQ17div(CPUTIMER_2_PRDdiv10000_IQ17, pM->PrdNextTranSecon_IQ17));
@@ -102,7 +108,9 @@ Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	pM->ErrorDistance_IQ17 = pM->UserDistance_IQ17 - (pM->GoneDistance_IQ15 << 2);
 	pM->ErrorDistance_IQ17 = pM->ErrorDistance_IQ17 < _IQ17(0.0) ? _IQ17(0.0) : pM->ErrorDistance_IQ17;
 
-	return clk;
+	pEPWM->TBCTL.bit.CLKDIV = clk;
+	pEPWM->TBPRD = (Uint16)(pM->PrdNext_IQ14 >> 14);
+	pEPWM->CMPA.half.CMPA = pEPWM->TBPRD >> 1;
 }
 
 void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _iq17 decel_velocity, _iq14 jerk, _iq14 decel_acc)
@@ -148,7 +156,7 @@ void MOVE_TO_END(_iq17 distance)
 	// 2000 일때 최대 정지 가속도
 	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = STOP_ACC_IQ14((RMotor.NextVelocity_IQ17 >> 1) + (LMotor.NextVelocity_IQ17 >> 1));
 	
-	if(RMotor.DecelAccel_IQ14 < _IQ14(MIN_DEC) || (LMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)))
+	if(RMotor.DecelAccel_IQ14 < _IQ14(MIN_DEC) || (LMotor.DecelAccel_IQ14 < _IQ14(MIN_DEC)))
 		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(MIN_DEC);
 	else if((RMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)) || (LMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)))
 		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(LIMIT_DEC);
@@ -170,9 +178,7 @@ interrupt void LMOTOR_ISR()
 
 	if(Flag.Motor_U16)
 	{
-		L_PWM.TBCTL.bit.CLKDIV = MOTOR_MOTION_VALUE(&LMotor, L_PWM.TBCTL.bit.CLKDIV);
-		L_PWM.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
-		L_PWM.CMPA.half.CMPA = L_PWM.TBPRD >> 1;
+		MOTOR_MOTION_VALUE(&LMotor, &L_PWM);
 	}
 }
 
@@ -187,9 +193,7 @@ interrupt void RMOTOR_ISR()
 
 	if(Flag.Motor_U16)
 	{
-		R_PWM.TBCTL.bit.CLKDIV = MOTOR_MOTION_VALUE(&RMotor, R_PWM.TBCTL.bit.CLKDIV);
-		R_PWM.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		R_PWM.CMPA.half.CMPA = R_PWM.TBPRD >> 1;
+		MOTOR_MOTION_VALUE(&RMotor, &R_PWM);
 	}
 }
 
@@ -201,8 +205,7 @@ interrupt void CONTROL_ISR()
 	IER &= MINT14;
 	EINT;
 
-	HANDLE();
-
+	// third
 	if(THIRD_MARK_U16_CNT)
 	{
 		cnt = ((int16)THIRD_MARK_U16_CNT) - 1;
@@ -243,6 +246,8 @@ interrupt void CONTROL_ISR()
 		else
 			SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
 	}
+
+	HANDLE();
 
 	// second and third's accel & decel
 	if(Flag.Motor_U16 && (Flag.Fast_U16 || Flag.Extrem_U16))
