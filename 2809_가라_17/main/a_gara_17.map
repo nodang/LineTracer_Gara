@@ -18,12 +18,12 @@ OUTPUT TRANSLATION MAP
    OUTPUT FILES: a_gara_17.hex [b0..b15]
 
    CONTENTS: 003e8000..003e8001   codestart Data Width=2   
-             003e8002..003ec825   .text Data Width=2   
-             003ec826..003edece   .econst Data Width=2   
-             003edecf..003ee14e   VFD_FONT Data Width=2   
-             003ee14f..003ee31b   IQmath Data Width=2   
-             003ee31c..003ee3b8   .cinit Data Width=2   
-             003ee3b9..003ee3db   ramfuncs Data Width=2   
+             003e8002..003ec84b   .text Data Width=2   
+             003ec84c..003edef4   .econst Data Width=2   
+             003edef5..003ee174   VFD_FONT Data Width=2   
+             003ee175..003ee341   IQmath Data Width=2   
+             003ee342..003ee3de   .cinit Data Width=2   
+             003ee3df..003ee401   ramfuncs Data Width=2   
 
 --------------------------------------------------------------------------------
 00000000..003fffff  Page=1  Memory Width=16  ROM Width=16  "*DEFAULT PAGE 1*"
