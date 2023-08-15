@@ -56,7 +56,7 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM, volatile struct EPWM_REGS *pEPWM)
 
 		pM->AccelLimit_IQ14 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 3;
 		
-		pM->NextAccel_IQ14 += _IQ14mpy(_IQ14abs(pM->Jerk_IQ14), pM->PwmTBPRDdiv10000_IQ17 >> 3);
+		pM->NextAccel_IQ14 += _IQ14mpy(pM->Jerk_IQ14, pM->PwmTBPRDdiv10000_IQ17 >> 3);
 
 		if(pM->NextAccel_IQ14 > pM->AccelLimit_IQ14)
 			pM->NextAccel_IQ14 = pM->AccelLimit_IQ14;
@@ -65,7 +65,7 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM, volatile struct EPWM_REGS *pEPWM)
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{
-		pM->NextVelocity_IQ17 -= _IQ17mpy(_IQ14div(pM->DecelAccel_IQ14, _IQ14(TEN_THOUSAND)) << 3, pM->PwmTBPRDdiv10000_IQ17);
+		pM->NextVelocity_IQ17 -= _IQ17mpyIQX(pM->DecelAccel_IQ14, 14, pM->PwmTBPRDdiv10000_IQ17, 17);
 
 		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)
 			pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
@@ -128,7 +128,7 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 	RMotor.ErrorDistance_IQ17 = RMotor.UserDistance_IQ17;
 	LMotor.ErrorDistance_IQ17 = LMotor.UserDistance_IQ17;
 
-	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = decel_acc;
+	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14div(decel_acc, _IQ14(TEN_THOUSAND));
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
 	StartCpuTimer2();
@@ -160,6 +160,9 @@ void MOVE_TO_END(_iq17 distance)
 		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(MIN_DEC);
 	else if((RMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)) || (LMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)))
 		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(LIMIT_DEC);
+
+	RMotor.DecelAccel_IQ14 = _IQ14div(RMotor.DecelAccel_IQ14, _IQ14(TEN_THOUSAND));
+	LMotor.DecelAccel_IQ14 = _IQ14div(LMotor.DecelAccel_IQ14, _IQ14(TEN_THOUSAND));
 	
 	RMotor.DecelFlag_U16 = LMotor.DecelFlag_U16 = ON;
 
