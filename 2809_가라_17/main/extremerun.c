@@ -335,7 +335,7 @@ static void x45_TURN_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 					xCONTINOUS_VEL_COMPUTE(LINE, X45_VEL, ((long)LINE->Distance_U32) << 16, Kp_DOWN_IQ17);
 				
 				else if((LINE - 1)->TurnDir_U32 & STRAIGHT)
-					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHORT_S44S_IQ17);
+					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHARP_TURN_IQ17);
 				
 				else if(((LINE + 1)->Distance_U32 > TURN_90_DIST) || (((LINE + 1)->TurnDir_U32 | LINE->TurnDir_U32) & (TURN_R_45 | TURN_R_55)))
 					xCONTINOUS_VEL_COMPUTE(LINE, X90_VEL, ((long)LINE->Distance_U32) << 16, Kp_SHARP_TURN_IQ17);
