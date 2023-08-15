@@ -191,8 +191,8 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define	MOTOR_PERIOD_MAXIMUM		65535.0		// clk = 7 -> vel = 9.83 mm/s // clk = 4 -> vel = 79.77 mm/s
 #define	MOTOR_PERIOD_MAXIMUMdiv10	6.5535		// System minium clock is 10 ns
 //#define	MOTOR_PERIOD_MINIMUM		16384.0		// clk = 0 -> vel = 5168 mm/s
-#define MOTOR_PERIOD_MINIMUM		18840.0		// vel = 4600
-#define	MOTOR_PERIOD_MINIMUMdiv10	1.8840	
+#define MOTOR_PERIOD_MINIMUM		17777.0		// vel = 4500
+#define	MOTOR_PERIOD_MINIMUMdiv10	1.7777	
 
 #define MOTOR_ResetEnable		0x00000044		/*GPIO2,6 	0000 0000 0000 0000  0000 0000 0100 0100  */ 
 

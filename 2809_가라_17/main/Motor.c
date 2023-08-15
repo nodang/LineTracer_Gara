@@ -39,19 +39,14 @@ void Init_MOTOR()
 
 void Init_MotorCtrl(MOTORCTRL *pM)
 {
-	pM->PrdNext_IQ14 	= _IQ14(MOTOR_PERIOD_MAXIMUM);
-	pM->PrdNextTranSecon_IQ17 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10);
-
+	pM->PwmTBPRDdiv10000_IQ17 = _IQ24(MOTOR_PERIOD_MAXIMUMdiv10);
 	pM->TargetHandle_IQ17 = _IQ17(1.0);	
 }
 
-inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
+Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 {
 	if(pM->NextVelocity_IQ17 < pM->TargetVel_IQ17) 
 	{
-		pM->PwmTBPRDdiv10000_IQ17 = _IQ14div(pM->PrdNext_IQ14, _IQ14(TEN_THOUSAND)) << 3;
-		pM->PwmTBPRDdiv10000_IQ17 = pM->PwmTBPRDdiv10000_IQ17 << clk;
-	
 		pM->NextVelocity_IQ17 += _IQ17mpy(_IQ14div(pM->NextAccel_IQ14, _IQ14(TEN_THOUSAND)) << 3, pM->PwmTBPRDdiv10000_IQ17);
 
 		if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)
@@ -68,9 +63,6 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	}
 	else if(pM->NextVelocity_IQ17 > pM->TargetVel_IQ17)
 	{
-		pM->PwmTBPRDdiv10000_IQ17 = _IQ14div(pM->PrdNext_IQ14, _IQ14(TEN_THOUSAND)) << 3;
-		pM->PwmTBPRDdiv10000_IQ17 = pM->PwmTBPRDdiv10000_IQ17 << clk;
-		
 		pM->NextVelocity_IQ17 -= _IQ17mpy(_IQ14div(pM->DecelAccel_IQ14, _IQ14(TEN_THOUSAND)) << 3, pM->PwmTBPRDdiv10000_IQ17);
 
 		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)
@@ -85,40 +77,22 @@ inline Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	//pM->PrdNextTranSecon_IQ17 = _IQ17div(_IQ17(2000.0), pM->TargetHandle_IQ17) + pM->NextVelocity_IQ17 - _IQ17(2000.0);
-	//pM->PrdNext_IQ14 = _IQ17div(STEP_10000D_IQ17, pM->PrdNextTranSecon_IQ17);
+	pM->PwmTBPRDdiv10000_IQ17 = _IQ17mpy(pM->PrdNextTranSecon_IQ17, pM->TargetHandle_IQ17);
 
-	pM->PrdNext_IQ14 = _IQ17mpy(pM->PrdNextTranSecon_IQ17, pM->TargetHandle_IQ17);
-	pM->RolEachStep_IQ17 = _IQ17div(CPUTIMER_2_PRDdiv10000mpySTEP_IQ17, pM->PrdNext_IQ14);
+	if(pM->PwmTBPRDdiv10000_IQ17 <_IQ17(MOTOR_PERIOD_MINIMUMdiv10))			pM->PwmTBPRDdiv10000_IQ17 =_IQ17(MOTOR_PERIOD_MINIMUMdiv10);
+	else if(pM->PwmTBPRDdiv10000_IQ17 >_IQ24(MOTOR_PERIOD_MAXIMUMdiv10))	pM->PwmTBPRDdiv10000_IQ17 =_IQ24(MOTOR_PERIOD_MAXIMUMdiv10);
 
-	while(pM->PrdNext_IQ14 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
+	pM->RolEachStep_IQ17 = _IQ17div(CPUTIMER_2_PRDdiv10000mpySTEP_IQ17, pM->PwmTBPRDdiv10000_IQ17);
+
+	if(pM->PwmTBPRDdiv10000_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
 	{
-		if(clk > 0)
-		{
-			clk--;
-			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 << 1;
-		}
-		else
-		{
-			pM->PrdNext_IQ14 = _IQ17(MOTOR_PERIOD_MINIMUMdiv10);
-			break;
-		}
+		if(clk > 0)		clk--;
 	}
-	while(pM->PrdNext_IQ14 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
+	else if(pM->PwmTBPRDdiv10000_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
 	{
-		if(clk < CLK_DIVISION_CONSTANT)
-		{
-			clk++;
-			pM->PrdNext_IQ14 = pM->PrdNext_IQ14 >> 1;
-		}
-		else
-		{
-			pM->PrdNext_IQ14 = _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << CLK_DIVISION_CONSTANT;
-			break;
-		}
+		if(clk < CLK_DIVISION_CONSTANT)		clk++;
 	}
-		
-	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PrdNext_IQ14, 17);
+	pM->PrdNext_IQ14 = _IQ14mpyIQX(_IQ13(TEN_THOUSAND) >> clk, 13, pM->PwmTBPRDdiv10000_IQ17, 17);
 
 	//pM->RolEachStep_IQ17			= _IQ17mpy(STEP_D_IQ17, _IQ17div(CPUTIMER_2_PRDdiv10000_IQ17, pM->PrdNextTranSecon_IQ17));
 	pM->TurnMarkCheckDistance_IQ17 	+= pM->TurnMarkCheckDistance_IQ17 > _IQ17(16380.0) ? _IQ17(0.0) : STEP_D_IQ17;
@@ -187,8 +161,6 @@ void MOVE_TO_END(_iq17 distance)
 
 interrupt void LMOTOR_ISR()
 {
-	Uint16 clk;
-
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 
 	IER &= MINT3;
@@ -198,21 +170,14 @@ interrupt void LMOTOR_ISR()
 
 	if(Flag.Motor_U16)
 	{
-		//LMotor.PwmTBPRD_U16 = L_PWM.TBPRD;
-		
-		clk = MOTOR_MOTION_VALUE(&LMotor, L_PWM.TBCTL.bit.CLKDIV);
-
-		L_PWM.TBCTL.bit.CLKDIV = clk;
+		L_PWM.TBCTL.bit.CLKDIV = MOTOR_MOTION_VALUE(&LMotor, L_PWM.TBCTL.bit.CLKDIV);
 		L_PWM.TBPRD = (Uint16)(LMotor.PrdNext_IQ14 >> 14);
-		L_PWM.CMPA.half.CMPA = (Uint16)(LMotor.PrdNext_IQ14 >> 15);
-
+		L_PWM.CMPA.half.CMPA = L_PWM.TBPRD >> 1;
 	}
 }
 
 interrupt void RMOTOR_ISR()
 {
-	Uint16 clk;
-
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 
 	IER &= MINT3;
@@ -222,13 +187,9 @@ interrupt void RMOTOR_ISR()
 
 	if(Flag.Motor_U16)
 	{
-		//RMotor.PwmTBPRD_U16 = R_PWM.TBPRD;
-	
-		clk = MOTOR_MOTION_VALUE(&RMotor, R_PWM.TBCTL.bit.CLKDIV);
-		
-		R_PWM.TBCTL.bit.CLKDIV = clk;
+		R_PWM.TBCTL.bit.CLKDIV = MOTOR_MOTION_VALUE(&RMotor, R_PWM.TBCTL.bit.CLKDIV);
 		R_PWM.TBPRD = (Uint16)(RMotor.PrdNext_IQ14 >> 14);
-		R_PWM.CMPA.half.CMPA = (Uint16)(RMotor.PrdNext_IQ14 >> 15);
+		R_PWM.CMPA.half.CMPA = R_PWM.TBPRD >> 1;
 	}
 }
 
@@ -437,9 +398,7 @@ void SHUTDOWN()
 			STOP_PWM_ISR();
 
 			Flag.Motor_U16 = OFF;
-			//GpioDataRegs.GPADAT.all = MOTOR_DIR_REV;
 			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
-			
 			STOP_TIME_INDEX_U32 = 0;
 			
 			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 1000));		
@@ -447,7 +406,7 @@ void SHUTDOWN()
 
 			StopCpuTimer2();
 			StopCpuTimer0();
-			
+
 			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
 			LED_R_OFF;
