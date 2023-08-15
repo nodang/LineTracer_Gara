@@ -84,11 +84,11 @@ Uint16 MOTOR_MOTION_VALUE(MOTORCTRL *pM, Uint16 clk)
 
 	pM->RolEachStep_IQ17 = _IQ17div(CPUTIMER_2_PRDdiv10000mpySTEP_IQ17, pM->PwmTBPRDdiv10000_IQ17);
 
-	if(pM->PwmTBPRDdiv10000_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
+	while(pM->PwmTBPRDdiv10000_IQ17 < _IQ17(MOTOR_PERIOD_MINIMUMdiv10) << clk)
 	{
 		if(clk > 0)		clk--;
 	}
-	else if(pM->PwmTBPRDdiv10000_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
+	while(pM->PwmTBPRDdiv10000_IQ17 > _IQ17(MOTOR_PERIOD_MAXIMUMdiv10) << clk)
 	{
 		if(clk < CLK_DIVISION_CONSTANT)		clk++;
 	}
