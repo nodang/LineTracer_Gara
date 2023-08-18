@@ -1,6 +1,6 @@
 ;***************************************************************
 ;* TMS320C2000 C/C++ Codegen                         PC v4.1.3 *
-;* Date/Time created: Tue Aug 15 22:01:23 2023                 *
+;* Date/Time created: Sat Aug 19 05:02:42 2023                 *
 ;***************************************************************
 	.compiler_opts --mem_model:code=flat --mem_model:data=large --silicon_version=28 
 FP	.set	XAR2
@@ -254,17 +254,17 @@ DW$68	.dwtag  DW_TAG_variable, DW_AT_name("Search"), DW_AT_symbol_name("_Search"
 	.dwattr DW$68, DW_AT_type(*DW$T$104)
 	.dwattr DW$68, DW_AT_declaration(0x01)
 	.dwattr DW$68, DW_AT_external(0x01)
-;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI21610 C:\Users\노호진\AppData\Local\Temp\TI2164 
-;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI2162 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI2166 --object_file extremerun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
+;	..\Compiler\bin\opt2000.exe C:\Users\노호진\AppData\Local\Temp\TI67210 C:\Users\노호진\AppData\Local\Temp\TI6724 
+;	..\Compiler\bin\ac2000.exe --keep_unneeded_types -D_INLINE -DLARGE_MODEL -I..\include --version=28 --keep_unneeded_types --mem_model:code=flat --mem_model:data=large -m --i_output_file C:\Users\노호진\AppData\Local\Temp\TI6722 --template_info_file C:\Users\노호진\AppData\Local\Temp\TI6726 --object_file extremerun.obj --embed_opts 10 --call_assumptions=0 --mem_model:code=flat --mem_model:data=large --opt_for_speed --opt_level=3 --optimizer_comments --optimizer_interlist --program_level_compile 
 	.sect	".text"
 
 DW$69	.dwtag  DW_TAG_subprogram, DW_AT_name("xVEL_COMPUTE"), DW_AT_symbol_name("_xVEL_COMPUTE$0")
 	.dwattr DW$69, DW_AT_low_pc(_xVEL_COMPUTE$0)
 	.dwattr DW$69, DW_AT_high_pc(0x00)
 	.dwattr DW$69, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$69, DW_AT_begin_line(0x23a)
+	.dwattr DW$69, DW_AT_begin_line(0x237)
 	.dwattr DW$69, DW_AT_begin_column(0x0d)
-	.dwpsn	"extremerun.c",571,1
+	.dwpsn	"extremerun.c",568,1
 
 	.dwfde DW$CIE
 
@@ -284,15 +284,15 @@ DW$69	.dwtag  DW_TAG_subprogram, DW_AT_name("xVEL_COMPUTE"), DW_AT_symbol_name("
 ;*                                                             *
 ;***************************************************************
 _xVEL_COMPUTE$0:
-;*** 571	-----------------------    max_vel = max_vel;
-;*** 571	-----------------------    turn_vel = turn_vel;
-;*** 571	-----------------------    m_dist = m_dist;
-;*** 575	-----------------------    memset(&cpy_info, 0, 36uL);
-;*** 576	-----------------------    memmove(&cpy_info, (const void * const)nextL, 36uL);
-;*** 578	-----------------------    low_vel = __lmin(cpy_info.VeloIn_IQ17, cpy_info.VeloOut_IQ17);
-;*** 580	-----------------------    VEL_COMPUTE(cpy_info.Distance_U32<<16, m_dist>>1, low_vel, cpy_info.Jerk_IQ14, &cpy_info+14L);
-;*** 588	-----------------------    C$1 = cpy_info.Velo_IQ17;
-;*** 588	-----------------------    (C$1 > max_vel) ? (v$2 = max_vel) : (v$2 = (C$1 < turn_vel) ? turn_vel : C$1);
+;*** 568	-----------------------    max_vel = max_vel;
+;*** 568	-----------------------    turn_vel = turn_vel;
+;*** 568	-----------------------    m_dist = m_dist;
+;*** 572	-----------------------    memset(&cpy_info, 0, 36uL);
+;*** 573	-----------------------    memmove(&cpy_info, (const void * const)nextL, 36uL);
+;*** 575	-----------------------    low_vel = __lmin(cpy_info.VeloIn_IQ17, cpy_info.VeloOut_IQ17);
+;*** 577	-----------------------    VEL_COMPUTE(cpy_info.Distance_U32<<16, m_dist>>1, low_vel, cpy_info.Jerk_IQ14, &cpy_info+14L);
+;*** 585	-----------------------    C$1 = cpy_info.Velo_IQ17;
+;*** 585	-----------------------    (C$1 > max_vel) ? (v$2 = max_vel) : (v$2 = (C$1 < turn_vel) ? turn_vel : C$1);
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -370,71 +370,71 @@ DW$85	.dwtag  DW_TAG_variable, DW_AT_name("cpy_info"), DW_AT_symbol_name("_cpy_i
 DW$86	.dwtag  DW_TAG_variable, DW_AT_name("low_vel"), DW_AT_symbol_name("_low_vel")
 	.dwattr DW$86, DW_AT_type(*DW$T$22)
 	.dwattr DW$86, DW_AT_location[DW_OP_breg20 -50]
-        MOVL      XAR6,*+FP[0]          ; |571| 
-        MOVL      XAR7,*+FP[2]          ; |571| 
-        MOVL      *-SP[8],ACC           ; |571| 
-        MOVL      XAR1,XAR4             ; |571| 
-        MOVL      *-SP[10],XAR7         ; |571| 
-        MOVL      *-SP[12],XAR6         ; |571| 
-        MOVL      XAR3,XAR5             ; |571| 
-	.dwpsn	"extremerun.c",575,2
-        MOVZ      AR4,SP                ; |575| 
+        MOVL      XAR6,*+FP[0]          ; |568| 
+        MOVL      XAR7,*+FP[2]          ; |568| 
+        MOVL      *-SP[8],ACC           ; |568| 
+        MOVL      XAR1,XAR4             ; |568| 
+        MOVL      *-SP[10],XAR7         ; |568| 
+        MOVL      *-SP[12],XAR6         ; |568| 
+        MOVL      XAR3,XAR5             ; |568| 
+	.dwpsn	"extremerun.c",572,2
+        MOVZ      AR4,SP                ; |572| 
         MOVB      XAR5,#0
         MOVB      ACC,#36
-        SUBB      XAR4,#48              ; |575| 
-        LCR       #_memset              ; |575| 
-        ; call occurs [#_memset] ; |575| 
-	.dwpsn	"extremerun.c",576,2
-        MOVZ      AR4,SP                ; |576| 
-        MOVL      XAR5,XAR3             ; |576| 
+        SUBB      XAR4,#48              ; |572| 
+        LCR       #_memset              ; |572| 
+        ; call occurs [#_memset] ; |572| 
+	.dwpsn	"extremerun.c",573,2
+        MOVZ      AR4,SP                ; |573| 
+        MOVL      XAR5,XAR3             ; |573| 
         MOVB      ACC,#36
-        SUBB      XAR4,#48              ; |576| 
-        LCR       #_memmove             ; |576| 
-        ; call occurs [#_memmove] ; |576| 
-	.dwpsn	"extremerun.c",578,2
-        MOVL      ACC,*-SP[30]          ; |578| 
-        MINL      ACC,*-SP[32]          ; |578| 
-        MOVL      *-SP[50],ACC          ; |578| 
-	.dwpsn	"extremerun.c",580,2
+        SUBB      XAR4,#48              ; |573| 
+        LCR       #_memmove             ; |573| 
+        ; call occurs [#_memmove] ; |573| 
+	.dwpsn	"extremerun.c",575,2
+        MOVL      ACC,*-SP[30]          ; |575| 
+        MINL      ACC,*-SP[32]          ; |575| 
+        MOVL      *-SP[50],ACC          ; |575| 
+	.dwpsn	"extremerun.c",577,2
         SETC      SXM
-        MOVL      ACC,*-SP[12]          ; |580| 
-        SFR       ACC,1                 ; |580| 
-        MOVL      *-SP[2],ACC           ; |580| 
-        MOVL      ACC,*-SP[50]          ; |580| 
-        MOVL      *-SP[4],ACC           ; |580| 
-        MOVZ      AR4,SP                ; |580| 
-        MOVL      ACC,*-SP[24]          ; |580| 
-        MOVL      *-SP[6],ACC           ; |580| 
-        MOVL      ACC,*-SP[44]          ; |580| 
-        SUBB      XAR4,#34              ; |580| 
-        LSL       ACC,16                ; |580| 
-        LCR       #_VEL_COMPUTE         ; |580| 
-        ; call occurs [#_VEL_COMPUTE] ; |580| 
-	.dwpsn	"extremerun.c",588,2
-        MOVL      ACC,*-SP[34]          ; |588| 
-        CMPL      ACC,*-SP[8]           ; |588| 
-        BF        L1,LEQ                ; |588| 
-        ; branchcc occurs ; |588| 
-        MOVL      ACC,*-SP[8]           ; |588| 
-        BF        L2,UNC                ; |588| 
-        ; branch occurs ; |588| 
+        MOVL      ACC,*-SP[12]          ; |577| 
+        SFR       ACC,1                 ; |577| 
+        MOVL      *-SP[2],ACC           ; |577| 
+        MOVL      ACC,*-SP[50]          ; |577| 
+        MOVL      *-SP[4],ACC           ; |577| 
+        MOVZ      AR4,SP                ; |577| 
+        MOVL      ACC,*-SP[24]          ; |577| 
+        MOVL      *-SP[6],ACC           ; |577| 
+        MOVL      ACC,*-SP[44]          ; |577| 
+        SUBB      XAR4,#34              ; |577| 
+        LSL       ACC,16                ; |577| 
+        LCR       #_VEL_COMPUTE         ; |577| 
+        ; call occurs [#_VEL_COMPUTE] ; |577| 
+	.dwpsn	"extremerun.c",585,2
+        MOVL      ACC,*-SP[34]          ; |585| 
+        CMPL      ACC,*-SP[8]           ; |585| 
+        BF        L1,LEQ                ; |585| 
+        ; branchcc occurs ; |585| 
+        MOVL      ACC,*-SP[8]           ; |585| 
+        BF        L2,UNC                ; |585| 
+        ; branch occurs ; |585| 
 L1:    
-        CMPL      ACC,*-SP[10]          ; |588| 
-        BF        L2,GEQ                ; |588| 
-        ; branchcc occurs ; |588| 
-        MOVL      ACC,*-SP[10]          ; |588| 
+        CMPL      ACC,*-SP[10]          ; |585| 
+        BF        L2,GEQ                ; |585| 
+        ; branchcc occurs ; |585| 
+        MOVL      ACC,*-SP[10]          ; |585| 
 L2:    
-;*** 588	-----------------------    (*curL).VeloIn_IQ17 = (*curL).Velo_IQ17 = (*curL).VeloOut_IQ17 = v$2;
-;*** 592	-----------------------    return;
-	.dwpsn	"extremerun.c",588,37
-        MOVB      XAR0,#18              ; |588| 
-        MOVL      *+XAR1[AR0],ACC       ; |588| 
-        MOVB      XAR0,#14              ; |588| 
-        MOVL      *+XAR1[AR0],ACC       ; |588| 
-        MOVB      XAR0,#16              ; |588| 
-        MOVL      *+XAR1[AR0],ACC       ; |588| 
-	.dwpsn	"extremerun.c",592,2
-	.dwpsn	"extremerun.c",593,1
+;*** 585	-----------------------    (*curL).VeloIn_IQ17 = (*curL).Velo_IQ17 = (*curL).VeloOut_IQ17 = v$2;
+;*** 589	-----------------------    return;
+	.dwpsn	"extremerun.c",585,37
+        MOVB      XAR0,#18              ; |585| 
+        MOVL      *+XAR1[AR0],ACC       ; |585| 
+        MOVB      XAR0,#14              ; |585| 
+        MOVL      *+XAR1[AR0],ACC       ; |585| 
+        MOVB      XAR0,#16              ; |585| 
+        MOVL      *+XAR1[AR0],ACC       ; |585| 
+	.dwpsn	"extremerun.c",589,2
+	.dwpsn	"extremerun.c",590,1
         SUBB      SP,#50
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -449,7 +449,7 @@ L2:
         LRETR
         ; return occurs
 	.dwattr DW$69, DW_AT_end_file("extremerun.c")
-	.dwattr DW$69, DW_AT_end_line(0x251)
+	.dwattr DW$69, DW_AT_end_line(0x24e)
 	.dwattr DW$69, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$69
@@ -460,9 +460,9 @@ DW$87	.dwtag  DW_TAG_subprogram, DW_AT_name("xCONTINOUS_VEL_COMPUTE"), DW_AT_sym
 	.dwattr DW$87, DW_AT_low_pc(_xCONTINOUS_VEL_COMPUTE$0)
 	.dwattr DW$87, DW_AT_high_pc(0x00)
 	.dwattr DW$87, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$87, DW_AT_begin_line(0x253)
+	.dwattr DW$87, DW_AT_begin_line(0x250)
 	.dwattr DW$87, DW_AT_begin_column(0x0d)
-	.dwpsn	"extremerun.c",596,1
+	.dwpsn	"extremerun.c",593,1
 
 	.dwfde DW$CIE
 
@@ -482,11 +482,11 @@ DW$87	.dwtag  DW_TAG_subprogram, DW_AT_name("xCONTINOUS_VEL_COMPUTE"), DW_AT_sym
 ;*                                                             *
 ;***************************************************************
 _xCONTINOUS_VEL_COMPUTE$0:
-;*** 596	-----------------------    max_vel = max_vel;
-;*** 596	-----------------------    m_dist = m_dist;
-;*** 596	-----------------------    kp_min = kp_min;
-;*** 597	-----------------------    (*LINE).Kp_UpDown_IQ17 = kp_min;
-;*** 599	-----------------------    if ( kp_min == __IQmpy(1310L, PID_Kp_U32<<17, 17) ) goto g3;
+;*** 593	-----------------------    max_vel = max_vel;
+;*** 593	-----------------------    m_dist = m_dist;
+;*** 593	-----------------------    kp_min = kp_min;
+;*** 594	-----------------------    (*LINE).Kp_UpDown_IQ17 = kp_min;
+;*** 596	-----------------------    if ( kp_min == __IQmpy(1310L, PID_Kp_U32<<17, 17) ) goto g3;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -542,107 +542,107 @@ DW$99	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist"
 DW$100	.dwtag  DW_TAG_variable, DW_AT_name("kp_min"), DW_AT_symbol_name("_kp_min")
 	.dwattr DW$100, DW_AT_type(*DW$T$22)
 	.dwattr DW$100, DW_AT_location[DW_OP_breg20 -12]
-        MOVL      XAR6,*-SP[20]         ; |596| 
-        MOVL      XAR7,*-SP[18]         ; |596| 
-        MOVL      XAR1,XAR4             ; |596| 
-        MOVL      *-SP[8],ACC           ; |596| 
-        MOVL      *-SP[10],XAR7         ; |596| 
-        MOVL      *-SP[12],XAR6         ; |596| 
-	.dwpsn	"extremerun.c",597,2
-        MOVB      XAR0,#28              ; |597| 
-        MOVL      ACC,*-SP[12]          ; |597| 
-        MOVL      *+XAR1[AR0],ACC       ; |597| 
-	.dwpsn	"extremerun.c",599,2
+        MOVL      XAR6,*-SP[20]         ; |593| 
+        MOVL      XAR7,*-SP[18]         ; |593| 
+        MOVL      XAR1,XAR4             ; |593| 
+        MOVL      *-SP[8],ACC           ; |593| 
+        MOVL      *-SP[10],XAR7         ; |593| 
+        MOVL      *-SP[12],XAR6         ; |593| 
+	.dwpsn	"extremerun.c",594,2
+        MOVB      XAR0,#28              ; |594| 
+        MOVL      ACC,*-SP[12]          ; |594| 
+        MOVL      *+XAR1[AR0],ACC       ; |594| 
+	.dwpsn	"extremerun.c",596,2
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |599| 
-        MOVL      ACC,@_PID_Kp_U32      ; |599| 
-        MOVL      XAR4,#1310            ; |599| 
-        LSLL      ACC,T                 ; |599| 
-        MOVL      XT,XAR4               ; |599| 
-        IMPYL     P,XT,ACC              ; |599| 
-        QMPYL     ACC,XT,ACC            ; |599| 
-        LSL64     ACC:P,#15             ; |599| 
-        CMPL      ACC,*-SP[12]          ; |599| 
-        BF        L3,EQ                 ; |599| 
-        ; branchcc occurs ; |599| 
-;*** 602	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
-;*** 602	-----------------------    goto g4;
-	.dwpsn	"extremerun.c",602,3
+        MOV       T,#17                 ; |596| 
+        MOVL      ACC,@_PID_Kp_U32      ; |596| 
+        MOVL      XAR4,#1310            ; |596| 
+        LSLL      ACC,T                 ; |596| 
+        MOVL      XT,XAR4               ; |596| 
+        IMPYL     P,XT,ACC              ; |596| 
+        QMPYL     ACC,XT,ACC            ; |596| 
+        LSL64     ACC:P,#15             ; |596| 
+        CMPL      ACC,*-SP[12]          ; |596| 
+        BF        L3,EQ                 ; |596| 
+        ; branchcc occurs ; |596| 
+;*** 599	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
+;*** 599	-----------------------    goto g4;
+	.dwpsn	"extremerun.c",599,3
         MOVB      ACC,#34
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |602| 
-        OR        *+XAR4[0],#0x0001     ; |602| 
-        BF        L4,UNC                ; |602| 
-        ; branch occurs ; |602| 
+        MOVL      XAR4,ACC              ; |599| 
+        OR        *+XAR4[0],#0x0001     ; |599| 
+        BF        L4,UNC                ; |599| 
+        ; branch occurs ; |599| 
 L3:    
 ;***	-----------------------g3:
-;*** 600	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
-	.dwpsn	"extremerun.c",600,3
+;*** 597	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
+	.dwpsn	"extremerun.c",597,3
         MOVB      ACC,#34
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |600| 
-        AND       *+XAR4[0],#0xfffe     ; |600| 
+        MOVL      XAR4,ACC              ; |597| 
+        AND       *+XAR4[0],#0xfffe     ; |597| 
 L4:    
 ;***	-----------------------g4:
-;*** 604	-----------------------    (*LINE).VeloOut_IQ17 = v$1 = *((long * const)LINE+52L);
-;*** 605	-----------------------    VEL_COMPUTE((*LINE).Distance_U32<<17, m_dist, v$1, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
-;*** 606	-----------------------    DECEL_DIST_COMPUTE((*LINE).Velo_IQ17, (*LINE).VeloOut_IQ17, (long * const)LINE+20L, (long * const)LINE+26L);
-;*** 608	-----------------------    v$2 = (*LINE).Velo_IQ17;
-;*** 608	-----------------------    if ( v$2 <= max_vel ) goto g6;
-	.dwpsn	"extremerun.c",604,2
-        MOVB      XAR0,#52              ; |604| 
-        MOVL      ACC,*+XAR1[AR0]       ; |604| 
-        MOVB      XAR0,#18              ; |604| 
-        MOVL      *+XAR1[AR0],ACC       ; |604| 
-	.dwpsn	"extremerun.c",605,2
-        MOVL      XAR6,*-SP[10]         ; |605| 
-        MOVL      *-SP[2],XAR6          ; |605| 
-        MOVB      XAR0,#24              ; |605| 
-        MOVL      *-SP[4],ACC           ; |605| 
-        MOV       T,#17                 ; |605| 
-        MOVL      ACC,*+XAR1[AR0]       ; |605| 
-        MOVL      *-SP[6],ACC           ; |605| 
-        MOVL      ACC,*+XAR1[4]         ; |605| 
-        LSLL      ACC,T                 ; |605| 
-        MOVL      XAR6,ACC              ; |605| 
+;*** 601	-----------------------    (*LINE).VeloOut_IQ17 = v$1 = *((long * const)LINE+52L);
+;*** 602	-----------------------    VEL_COMPUTE((*LINE).Distance_U32<<17, m_dist, v$1, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
+;*** 603	-----------------------    DECEL_DIST_COMPUTE((*LINE).Velo_IQ17, (*LINE).VeloOut_IQ17, (long * const)LINE+20L, (long * const)LINE+26L);
+;*** 605	-----------------------    v$2 = (*LINE).Velo_IQ17;
+;*** 605	-----------------------    if ( v$2 <= max_vel ) goto g6;
+	.dwpsn	"extremerun.c",601,2
+        MOVB      XAR0,#52              ; |601| 
+        MOVL      ACC,*+XAR1[AR0]       ; |601| 
+        MOVB      XAR0,#18              ; |601| 
+        MOVL      *+XAR1[AR0],ACC       ; |601| 
+	.dwpsn	"extremerun.c",602,2
+        MOVL      XAR6,*-SP[10]         ; |602| 
+        MOVL      *-SP[2],XAR6          ; |602| 
+        MOVB      XAR0,#24              ; |602| 
+        MOVL      *-SP[4],ACC           ; |602| 
+        MOV       T,#17                 ; |602| 
+        MOVL      ACC,*+XAR1[AR0]       ; |602| 
+        MOVL      *-SP[6],ACC           ; |602| 
+        MOVL      ACC,*+XAR1[4]         ; |602| 
+        LSLL      ACC,T                 ; |602| 
+        MOVL      XAR6,ACC              ; |602| 
         MOVB      ACC,#14
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |605| 
-        MOVL      ACC,XAR6              ; |605| 
-        LCR       #_VEL_COMPUTE         ; |605| 
-        ; call occurs [#_VEL_COMPUTE] ; |605| 
-	.dwpsn	"extremerun.c",606,2
-        MOVB      XAR0,#18              ; |606| 
-        MOVL      ACC,*+XAR1[AR0]       ; |606| 
-        MOVL      *-SP[2],ACC           ; |606| 
+        MOVL      XAR4,ACC              ; |602| 
+        MOVL      ACC,XAR6              ; |602| 
+        LCR       #_VEL_COMPUTE         ; |602| 
+        ; call occurs [#_VEL_COMPUTE] ; |602| 
+	.dwpsn	"extremerun.c",603,2
+        MOVB      XAR0,#18              ; |603| 
+        MOVL      ACC,*+XAR1[AR0]       ; |603| 
+        MOVL      *-SP[2],ACC           ; |603| 
         MOVB      ACC,#20
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |606| 
+        MOVL      XAR4,ACC              ; |603| 
         MOVB      ACC,#26
         ADDL      ACC,XAR1
-        MOVL      XAR5,ACC              ; |606| 
-        MOVB      XAR0,#14              ; |606| 
-        MOVL      ACC,*+XAR1[AR0]       ; |606| 
-        LCR       #_DECEL_DIST_COMPUTE  ; |606| 
-        ; call occurs [#_DECEL_DIST_COMPUTE] ; |606| 
-	.dwpsn	"extremerun.c",608,2
-        MOVB      XAR0,#14              ; |608| 
-        MOVL      ACC,*+XAR1[AR0]       ; |608| 
-        CMPL      ACC,*-SP[8]           ; |608| 
-        BF        L5,LEQ                ; |608| 
-        ; branchcc occurs ; |608| 
-;*** 608	-----------------------    (*LINE).Velo_IQ17 = v$2 = max_vel;
-	.dwpsn	"extremerun.c",608,33
-        MOVL      ACC,*-SP[8]           ; |608| 
-        MOVL      *+XAR1[AR0],ACC       ; |608| 
+        MOVL      XAR5,ACC              ; |603| 
+        MOVB      XAR0,#14              ; |603| 
+        MOVL      ACC,*+XAR1[AR0]       ; |603| 
+        LCR       #_DECEL_DIST_COMPUTE  ; |603| 
+        ; call occurs [#_DECEL_DIST_COMPUTE] ; |603| 
+	.dwpsn	"extremerun.c",605,2
+        MOVB      XAR0,#14              ; |605| 
+        MOVL      ACC,*+XAR1[AR0]       ; |605| 
+        CMPL      ACC,*-SP[8]           ; |605| 
+        BF        L5,LEQ                ; |605| 
+        ; branchcc occurs ; |605| 
+;*** 605	-----------------------    (*LINE).Velo_IQ17 = v$2 = max_vel;
+	.dwpsn	"extremerun.c",605,33
+        MOVL      ACC,*-SP[8]           ; |605| 
+        MOVL      *+XAR1[AR0],ACC       ; |605| 
 L5:    
 ;***	-----------------------g6:
-;*** 611	-----------------------    (*LINE).VeloIn_IQ17 = v$2;
-;*** 611	-----------------------    return;
-	.dwpsn	"extremerun.c",611,2
-        MOVB      XAR0,#16              ; |611| 
-        MOVL      *+XAR1[AR0],ACC       ; |611| 
-	.dwpsn	"extremerun.c",613,1
+;*** 608	-----------------------    (*LINE).VeloIn_IQ17 = v$2;
+;*** 608	-----------------------    return;
+	.dwpsn	"extremerun.c",608,2
+        MOVB      XAR0,#16              ; |608| 
+        MOVL      *+XAR1[AR0],ACC       ; |608| 
+	.dwpsn	"extremerun.c",610,1
         SUBB      SP,#12
 	.dwcfa	0x1d, -4
         MOVL      XAR1,*--SP
@@ -651,7 +651,7 @@ L5:
         LRETR
         ; return occurs
 	.dwattr DW$87, DW_AT_end_file("extremerun.c")
-	.dwattr DW$87, DW_AT_end_line(0x265)
+	.dwattr DW$87, DW_AT_end_line(0x262)
 	.dwattr DW$87, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$87
@@ -662,9 +662,9 @@ DW$101	.dwtag  DW_TAG_subprogram, DW_AT_name("x45_TURN_DIVISION"), DW_AT_symbol_
 	.dwattr DW$101, DW_AT_low_pc(_x45_TURN_DIVISION$0)
 	.dwattr DW$101, DW_AT_high_pc(0x00)
 	.dwattr DW$101, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$101, DW_AT_begin_line(0xe8)
+	.dwattr DW$101, DW_AT_begin_line(0xe5)
 	.dwattr DW$101, DW_AT_begin_column(0x0d)
-	.dwpsn	"extremerun.c",233,1
+	.dwpsn	"extremerun.c",230,1
 
 	.dwfde DW$CIE
 
@@ -684,15 +684,15 @@ DW$101	.dwtag  DW_TAG_subprogram, DW_AT_name("x45_TURN_DIVISION"), DW_AT_symbol_
 ;*                                                             *
 ;***************************************************************
 _x45_TURN_DIVISION$0:
-;*** 234	-----------------------    shift_cnt = 0u;
-;*** 235	-----------------------    m_dist = 0L;
-;*** 237	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
-;*** 238	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
-;*** 239	-----------------------    (*LINE).Decel_IQ14 = 1048576000L-__IQmpy(145959L, MOTOR_SPEED_U32<<17, 17)>>3;
-;*** 241	-----------------------    K$26 = &LINE[1];
-;*** 241	-----------------------    xTURN_DIVISION(K$26, cnt+1u);
-;*** 243	-----------------------    K$28 = (unsigned long * const)LINE-28L;
-;*** 243	-----------------------    if ( !((int)((U$30 = *K$28&1uL)^1uL) || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL)) ) goto g46;
+;*** 231	-----------------------    shift_cnt = 0u;
+;*** 232	-----------------------    m_dist = 0L;
+;*** 234	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
+;*** 235	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
+;*** 236	-----------------------    (*LINE).Decel_IQ14 = 1048576000L-__IQmpy(145959L, MOTOR_SPEED_U32<<17, 17)>>3;
+;*** 238	-----------------------    K$26 = &LINE[1];
+;*** 238	-----------------------    xTURN_DIVISION(K$26, cnt+1u);
+;*** 240	-----------------------    K$28 = (unsigned long * const)LINE-28L;
+;*** 240	-----------------------    if ( !((int)((U$30 = *K$28&1uL)^1uL) || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL)) ) goto g46;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -779,116 +779,116 @@ DW$119	.dwtag  DW_TAG_variable, DW_AT_name("shift_cnt"), DW_AT_symbol_name("_shi
 DW$120	.dwtag  DW_TAG_variable, DW_AT_name("m_dist"), DW_AT_symbol_name("_m_dist")
 	.dwattr DW$120, DW_AT_type(*DW$T$22)
 	.dwattr DW$120, DW_AT_location[DW_OP_breg20 -8]
-        MOVL      XAR2,XAR4             ; |233| 
-        MOVZ      AR6,AL                ; |233| 
-	.dwpsn	"extremerun.c",234,18
-        MOV       *-SP[5],#0            ; |234| 
-	.dwpsn	"extremerun.c",235,17
+        MOVL      XAR2,XAR4             ; |230| 
+        MOVZ      AR6,AL                ; |230| 
+	.dwpsn	"extremerun.c",231,18
+        MOV       *-SP[5],#0            ; |231| 
+	.dwpsn	"extremerun.c",232,17
         MOVB      ACC,#0
-        MOVL      *-SP[8],ACC           ; |235| 
-	.dwpsn	"extremerun.c",237,2
+        MOVL      *-SP[8],ACC           ; |232| 
+	.dwpsn	"extremerun.c",234,2
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |237| 
-        MOVL      ACC,@_PID_Kp_U32      ; |237| 
-        MOVL      XAR4,#1310            ; |237| 
-        LSLL      ACC,T                 ; |237| 
-        MOVL      XT,XAR4               ; |237| 
-        IMPYL     P,XT,ACC              ; |237| 
-        QMPYL     ACC,XT,ACC            ; |237| 
-        MOVB      XAR0,#28              ; |237| 
-        LSL64     ACC:P,#15             ; |237| 
-        MOVL      *+XAR2[AR0],ACC       ; |237| 
-	.dwpsn	"extremerun.c",238,2
+        MOV       T,#17                 ; |234| 
+        MOVL      ACC,@_PID_Kp_U32      ; |234| 
+        MOVL      XAR4,#1310            ; |234| 
+        LSLL      ACC,T                 ; |234| 
+        MOVL      XT,XAR4               ; |234| 
+        IMPYL     P,XT,ACC              ; |234| 
+        QMPYL     ACC,XT,ACC            ; |234| 
+        MOVB      XAR0,#28              ; |234| 
+        LSL64     ACC:P,#15             ; |234| 
+        MOVL      *+XAR2[AR0],ACC       ; |234| 
+	.dwpsn	"extremerun.c",235,2
         MOVW      DP,#_JERK_U32
-        MOVL      ACC,@_JERK_U32        ; |238| 
-        MOVB      XAR0,#24              ; |238| 
-        LSL       ACC,14                ; |238| 
-        MOVL      *+XAR2[AR0],ACC       ; |238| 
-	.dwpsn	"extremerun.c",239,2
+        MOVL      ACC,@_JERK_U32        ; |235| 
+        MOVB      XAR0,#24              ; |235| 
+        LSL       ACC,14                ; |235| 
+        MOVL      *+XAR2[AR0],ACC       ; |235| 
+	.dwpsn	"extremerun.c",236,2
         MOVW      DP,#_MOTOR_SPEED_U32
-        MOV       T,#17                 ; |239| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |239| 
-        MOVL      XAR4,#145959          ; |239| 
-        LSLL      ACC,T                 ; |239| 
-        MOVL      XT,XAR4               ; |239| 
-        IMPYL     P,XT,ACC              ; |239| 
-        QMPYL     ACC,XT,ACC            ; |239| 
-        LSL64     ACC:P,#15             ; |239| 
-        MOVL      XAR7,ACC              ; |239| 
+        MOV       T,#17                 ; |236| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |236| 
+        MOVL      XAR4,#145959          ; |236| 
+        LSLL      ACC,T                 ; |236| 
+        MOVL      XT,XAR4               ; |236| 
+        IMPYL     P,XT,ACC              ; |236| 
+        QMPYL     ACC,XT,ACC            ; |236| 
+        LSL64     ACC:P,#15             ; |236| 
+        MOVL      XAR7,ACC              ; |236| 
         MOV       ACC,#32000 << 15
         SETC      SXM
         SUBL      ACC,XAR7
-        MOVB      XAR0,#26              ; |239| 
-        SFR       ACC,3                 ; |239| 
-        MOVL      *+XAR2[AR0],ACC       ; |239| 
-	.dwpsn	"extremerun.c",241,2
+        MOVB      XAR0,#26              ; |236| 
+        SFR       ACC,3                 ; |236| 
+        MOVL      *+XAR2[AR0],ACC       ; |236| 
+	.dwpsn	"extremerun.c",238,2
         MOVB      ACC,#36
         ADDL      ACC,XAR2
-        MOVL      *-SP[10],ACC          ; |241| 
-        MOVL      XAR4,*-SP[10]         ; |241| 
-        MOVB      AL,#1                 ; |241| 
-        ADD       AL,AR6                ; |241| 
-        LCR       #_xTURN_DIVISION$0    ; |241| 
-        ; call occurs [#_xTURN_DIVISION$0] ; |241| 
-	.dwpsn	"extremerun.c",243,2
-        MOVL      XAR3,XAR2             ; |243| 
-        SUBB      XAR3,#28              ; |243| 
-        MOVL      ACC,*+XAR3[0]         ; |243| 
-        ANDB      AL,#0x01              ; |243| 
+        MOVL      *-SP[10],ACC          ; |238| 
+        MOVL      XAR4,*-SP[10]         ; |238| 
+        MOVB      AL,#1                 ; |238| 
+        ADD       AL,AR6                ; |238| 
+        LCR       #_xTURN_DIVISION$0    ; |238| 
+        ; call occurs [#_xTURN_DIVISION$0] ; |238| 
+	.dwpsn	"extremerun.c",240,2
+        MOVL      XAR3,XAR2             ; |240| 
+        SUBB      XAR3,#28              ; |240| 
+        MOVL      ACC,*+XAR3[0]         ; |240| 
+        ANDB      AL,#0x01              ; |240| 
         MOVB      AH,#0
-        MOVL      XAR5,ACC              ; |243| 
-        XORB      AL,#0x01              ; |243| 
-        BF        L6,NEQ                ; |243| 
-        ; branchcc occurs ; |243| 
-        MOVB      XAR0,#44              ; |243| 
-        MOV       AL,*+XAR2[AR0]        ; |243| 
-        NOT       AL                    ; |243| 
-        MOVZ      AR6,AL                ; |243| 
+        MOVL      XAR5,ACC              ; |240| 
+        XORB      AL,#0x01              ; |240| 
+        BF        L6,NEQ                ; |240| 
+        ; branchcc occurs ; |240| 
+        MOVB      XAR0,#44              ; |240| 
+        MOV       AL,*+XAR2[AR0]        ; |240| 
+        NOT       AL                    ; |240| 
+        MOVZ      AR6,AL                ; |240| 
         MOVB      ACC,#1
-        AND       ACC,AR6               ; |243| 
-        BF        L34,EQ                ; |243| 
-        ; branchcc occurs ; |243| 
+        AND       ACC,AR6               ; |240| 
+        BF        L34,EQ                ; |240| 
+        ; branchcc occurs ; |240| 
 L6:    
-;*** 251	-----------------------    (*LINE).VeloIn_IQ17 = v$1 = U$16 = MOTOR_SPEED_U32<<17;
-;*** 252	-----------------------    (*LINE).Kp_UpDown_IQ17 = U$43 = __IQmpy(1310L, Down_Kp_U32<<17, 17);
-;*** 254	-----------------------    (*((unsigned long * const)LINE+40L) > 700uL) ? (S$2 = *((unsigned long * const)LINE+40L)<<15) : (S$2 = *((unsigned long * const)LINE+40L)<<16);
-	.dwpsn	"extremerun.c",251,3
+;*** 248	-----------------------    (*LINE).VeloIn_IQ17 = v$1 = U$16 = MOTOR_SPEED_U32<<17;
+;*** 249	-----------------------    (*LINE).Kp_UpDown_IQ17 = U$43 = __IQmpy(1310L, Down_Kp_U32<<17, 17);
+;*** 251	-----------------------    (*((unsigned long * const)LINE+40L) > 700uL) ? (S$2 = *((unsigned long * const)LINE+40L)<<15) : (S$2 = *((unsigned long * const)LINE+40L)<<16);
+	.dwpsn	"extremerun.c",248,3
         MOVW      DP,#_MOTOR_SPEED_U32
-        MOV       T,#17                 ; |251| 
-        MOVB      XAR0,#16              ; |251| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |251| 
-        LSLL      ACC,T                 ; |251| 
-        MOVL      *+XAR2[AR0],ACC       ; |251| 
-        MOVL      XAR6,ACC              ; |251| 
-	.dwpsn	"extremerun.c",252,3
+        MOV       T,#17                 ; |248| 
+        MOVB      XAR0,#16              ; |248| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |248| 
+        LSLL      ACC,T                 ; |248| 
+        MOVL      *+XAR2[AR0],ACC       ; |248| 
+        MOVL      XAR6,ACC              ; |248| 
+	.dwpsn	"extremerun.c",249,3
         MOVW      DP,#_Down_Kp_U32
-        MOVL      ACC,@_Down_Kp_U32     ; |252| 
-        MOVL      XAR4,#1310            ; |252| 
-        LSLL      ACC,T                 ; |252| 
-        MOVL      XT,XAR4               ; |252| 
-        IMPYL     P,XT,ACC              ; |252| 
-        MOVB      XAR0,#28              ; |252| 
-        QMPYL     ACC,XT,ACC            ; |252| 
-        LSL64     ACC:P,#15             ; |252| 
-        MOVL      *+XAR2[AR0],ACC       ; |252| 
-        MOVL      XAR7,ACC              ; |252| 
-	.dwpsn	"extremerun.c",254,3
-        MOVB      XAR0,#40              ; |254| 
-        MOV       ACC,#700              ; |254| 
-        CMPL      ACC,*+XAR2[AR0]       ; |254| 
-        BF        L7,HIS                ; |254| 
-        ; branchcc occurs ; |254| 
-        MOVL      ACC,*+XAR2[AR0]       ; |254| 
-        LSL       ACC,15                ; |254| 
-        BF        L8,UNC                ; |254| 
-        ; branch occurs ; |254| 
+        MOVL      ACC,@_Down_Kp_U32     ; |249| 
+        MOVL      XAR4,#1310            ; |249| 
+        LSLL      ACC,T                 ; |249| 
+        MOVL      XT,XAR4               ; |249| 
+        IMPYL     P,XT,ACC              ; |249| 
+        MOVB      XAR0,#28              ; |249| 
+        QMPYL     ACC,XT,ACC            ; |249| 
+        LSL64     ACC:P,#15             ; |249| 
+        MOVL      *+XAR2[AR0],ACC       ; |249| 
+        MOVL      XAR7,ACC              ; |249| 
+	.dwpsn	"extremerun.c",251,3
+        MOVB      XAR0,#40              ; |251| 
+        MOV       ACC,#700              ; |251| 
+        CMPL      ACC,*+XAR2[AR0]       ; |251| 
+        BF        L7,HIS                ; |251| 
+        ; branchcc occurs ; |251| 
+        MOVL      ACC,*+XAR2[AR0]       ; |251| 
+        LSL       ACC,15                ; |251| 
+        BF        L8,UNC                ; |251| 
+        ; branch occurs ; |251| 
 L7:    
-        MOVL      ACC,*+XAR2[AR0]       ; |254| 
-        LSL       ACC,16                ; |254| 
+        MOVL      ACC,*+XAR2[AR0]       ; |251| 
+        LSL       ACC,16                ; |251| 
 L8:    
-;*** 254	-----------------------    m_dist = S$2;
+;*** 251	-----------------------    m_dist = S$2;
 ;***  	-----------------------    if ( !(U$30 && *((unsigned long * const)LINE+44L)&0x10uL && (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+80L)&1uL) == 0) ) goto g10;
-        MOVL      *-SP[8],ACC           ; |254| 
+        MOVL      *-SP[8],ACC           ; |251| 
         MOVL      ACC,XAR5
         BF        L12,EQ
         ; branchcc occurs
@@ -907,793 +907,793 @@ L8:
         AND       ACC,PL
         BF        L12,NEQ
         ; branchcc occurs
-;*** 260	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
-;*** 262	-----------------------    v$3 = (*LINE).TurnDir_U32;
-;*** 262	-----------------------    if ( (v$3&0x300uL) == 0uL ) goto g5;
-	.dwpsn	"extremerun.c",260,5
+;*** 257	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
+;*** 259	-----------------------    v$3 = (*LINE).TurnDir_U32;
+;*** 259	-----------------------    if ( (v$3&0x300uL) == 0uL ) goto g5;
+	.dwpsn	"extremerun.c",257,5
+        MOVB      ACC,#34
+        ADDL      ACC,XAR2
+        MOVL      XAR4,ACC              ; |257| 
+        OR        *+XAR4[0],#0x0001     ; |257| 
+	.dwpsn	"extremerun.c",259,5
+        MOVB      XAR0,#8               ; |259| 
+        MOVL      P,*+XAR2[AR0]         ; |259| 
+        MOVL      XAR4,#768             ; |259| 
+        MOVL      *-SP[10],XAR4         ; |259| 
+        MOV       AL,*-SP[10]           ; |259| 
+        AND       AL,PL                 ; |259| 
+        MOV       *-SP[10],AL           ; |259| 
+        MOV       AL,*-SP[9]            ; |259| 
+        AND       AL,PH                 ; |259| 
+        MOV       *-SP[9],AL            ; |259| 
+        MOVL      ACC,*-SP[10]          ; |259| 
+        BF        L9,EQ                 ; |259| 
+        ; branchcc occurs ; |259| 
+;*** 260	-----------------------    *((volatile unsigned * const)LINE+34) |= 4u;
+	.dwpsn	"extremerun.c",260,6
         MOVB      ACC,#34
         ADDL      ACC,XAR2
         MOVL      XAR4,ACC              ; |260| 
-        OR        *+XAR4[0],#0x0001     ; |260| 
-	.dwpsn	"extremerun.c",262,5
-        MOVB      XAR0,#8               ; |262| 
-        MOVL      P,*+XAR2[AR0]         ; |262| 
-        MOVL      XAR4,#768             ; |262| 
-        MOVL      *-SP[10],XAR4         ; |262| 
-        MOV       AL,*-SP[10]           ; |262| 
-        AND       AL,PL                 ; |262| 
-        MOV       *-SP[10],AL           ; |262| 
-        MOV       AL,*-SP[9]            ; |262| 
-        AND       AL,PH                 ; |262| 
-        MOV       *-SP[9],AL            ; |262| 
-        MOVL      ACC,*-SP[10]          ; |262| 
-        BF        L9,EQ                 ; |262| 
-        ; branchcc occurs ; |262| 
-;*** 263	-----------------------    *((volatile unsigned * const)LINE+34) |= 4u;
-	.dwpsn	"extremerun.c",263,6
-        MOVB      ACC,#34
-        ADDL      ACC,XAR2
-        MOVL      XAR4,ACC              ; |263| 
-        OR        *+XAR4[0],#0x0004     ; |263| 
+        OR        *+XAR4[0],#0x0004     ; |260| 
 L9:    
 ;***	-----------------------g5:
-;*** 265	-----------------------    (*LINE).TargetPosition_IQ10 = *((volatile long * const)LINE+66L);
-;*** 266	-----------------------    (*LINE).PositionRatio_IQ10 = *((volatile long * const)LINE+68L);
-;*** 268	-----------------------    if ( ((unsigned)v$3|(unsigned)*((unsigned long * const)LINE+44L))&0xc00u ) goto g9;
+;*** 262	-----------------------    (*LINE).TargetPosition_IQ10 = *((volatile long * const)LINE+66L);
+;*** 263	-----------------------    (*LINE).PositionRatio_IQ10 = *((volatile long * const)LINE+68L);
+;*** 265	-----------------------    if ( ((unsigned)v$3|(unsigned)*((unsigned long * const)LINE+44L))&0xc00u ) goto g9;
+	.dwpsn	"extremerun.c",262,5
+        MOVB      XAR0,#66              ; |262| 
+        MOVL      ACC,*+XAR2[AR0]       ; |262| 
+        MOVB      XAR0,#30              ; |262| 
+        MOVL      *+XAR2[AR0],ACC       ; |262| 
+	.dwpsn	"extremerun.c",263,5
+        MOVB      XAR0,#68              ; |263| 
+        MOVL      ACC,*+XAR2[AR0]       ; |263| 
+        MOVB      XAR0,#32              ; |263| 
+        MOVL      *+XAR2[AR0],ACC       ; |263| 
 	.dwpsn	"extremerun.c",265,5
-        MOVB      XAR0,#66              ; |265| 
-        MOVL      ACC,*+XAR2[AR0]       ; |265| 
-        MOVB      XAR0,#30              ; |265| 
-        MOVL      *+XAR2[AR0],ACC       ; |265| 
-	.dwpsn	"extremerun.c",266,5
-        MOVB      XAR0,#68              ; |266| 
-        MOVL      ACC,*+XAR2[AR0]       ; |266| 
-        MOVB      XAR0,#32              ; |266| 
-        MOVL      *+XAR2[AR0],ACC       ; |266| 
-	.dwpsn	"extremerun.c",268,5
-        MOV       AL,PL                 ; |268| 
-        MOVB      XAR0,#44              ; |268| 
-        OR        AL,*+XAR2[AR0]        ; |268| 
-        AND       AL,AL,#0x0c00         ; |268| 
-        BF        L11,NEQ               ; |268| 
-        ; branchcc occurs ; |268| 
-;*** 272	-----------------------    if ( ((volatile unsigned *)LINE)[-2]&2u ) goto g8;
-	.dwpsn	"extremerun.c",272,6
-        MOVL      XAR4,XAR2             ; |272| 
-        SUBB      XAR4,#2               ; |272| 
-        TBIT      *+XAR4[0],#1          ; |272| 
-        BF        L10,TC                ; |272| 
-        ; branchcc occurs ; |272| 
-;*** 275	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, xS44S_SPEED_U32<<17, (*LINE).Distance_U32<<16, __IQmpy(1310L, S44S_KP_U32<<17, 17));
-;*** 275	-----------------------    goto g41;
-	.dwpsn	"extremerun.c",275,7
-        MOVL      ACC,*+XAR2[4]         ; |275| 
+        MOV       AL,PL                 ; |265| 
+        MOVB      XAR0,#44              ; |265| 
+        OR        AL,*+XAR2[AR0]        ; |265| 
+        AND       AL,AL,#0x0c00         ; |265| 
+        BF        L11,NEQ               ; |265| 
+        ; branchcc occurs ; |265| 
+;*** 269	-----------------------    if ( ((volatile unsigned *)LINE)[-2]&2u ) goto g8;
+	.dwpsn	"extremerun.c",269,6
+        MOVL      XAR4,XAR2             ; |269| 
+        SUBB      XAR4,#2               ; |269| 
+        TBIT      *+XAR4[0],#1          ; |269| 
+        BF        L10,TC                ; |269| 
+        ; branchcc occurs ; |269| 
+;*** 272	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, xS44S_SPEED_U32<<17, (*LINE).Distance_U32<<16, __IQmpy(1310L, S44S_KP_U32<<17, 17));
+;*** 272	-----------------------    goto g41;
+	.dwpsn	"extremerun.c",272,7
+        MOVL      ACC,*+XAR2[4]         ; |272| 
         MOVW      DP,#_S44S_KP_U32
-        MOV       T,#17                 ; |275| 
-        MOVL      XAR4,#1310            ; |275| 
-        LSL       ACC,16                ; |275| 
-        MOVL      *-SP[2],ACC           ; |275| 
-        MOVL      ACC,@_S44S_KP_U32     ; |275| 
-        LSLL      ACC,T                 ; |275| 
-        MOVL      XT,XAR4               ; |275| 
-        IMPYL     P,XT,ACC              ; |275| 
-        QMPYL     ACC,XT,ACC            ; |275| 
-        LSL64     ACC:P,#15             ; |275| 
+        MOV       T,#17                 ; |272| 
+        MOVL      XAR4,#1310            ; |272| 
+        LSL       ACC,16                ; |272| 
+        MOVL      *-SP[2],ACC           ; |272| 
+        MOVL      ACC,@_S44S_KP_U32     ; |272| 
+        LSLL      ACC,T                 ; |272| 
+        MOVL      XT,XAR4               ; |272| 
+        IMPYL     P,XT,ACC              ; |272| 
+        QMPYL     ACC,XT,ACC            ; |272| 
+        LSL64     ACC:P,#15             ; |272| 
         MOVW      DP,#_xS44S_SPEED_U32
-        MOVL      *-SP[4],ACC           ; |275| 
-        MOV       T,#17                 ; |275| 
-        MOVL      XAR4,XAR2             ; |275| 
-        MOVL      ACC,@_xS44S_SPEED_U32 ; |275| 
-        LSLL      ACC,T                 ; |275| 
-        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |275| 
-        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |275| 
-        BF        L33,UNC               ; |275| 
-        ; branch occurs ; |275| 
+        MOVL      *-SP[4],ACC           ; |272| 
+        MOV       T,#17                 ; |272| 
+        MOVL      XAR4,XAR2             ; |272| 
+        MOVL      ACC,@_xS44S_SPEED_U32 ; |272| 
+        LSLL      ACC,T                 ; |272| 
+        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |272| 
+        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |272| 
+        BF        L33,UNC               ; |272| 
+        ; branch occurs ; |272| 
 L10:    
 ;***	-----------------------g8:
-;*** 273	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, xS44S_SPEED_U32<<17, (*LINE).Distance_U32<<16, U$43);
-;*** 273	-----------------------    goto g41;
-	.dwpsn	"extremerun.c",273,7
-        MOVL      ACC,*+XAR2[4]         ; |273| 
+;*** 270	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, xS44S_SPEED_U32<<17, (*LINE).Distance_U32<<16, U$43);
+;*** 270	-----------------------    goto g41;
+	.dwpsn	"extremerun.c",270,7
+        MOVL      ACC,*+XAR2[4]         ; |270| 
         MOVW      DP,#_xS44S_SPEED_U32
-        MOV       T,#17                 ; |273| 
-        LSL       ACC,16                ; |273| 
-        MOVL      XAR4,XAR2             ; |273| 
-        MOVL      *-SP[2],ACC           ; |273| 
-        MOVL      ACC,@_xS44S_SPEED_U32 ; |273| 
-        MOVL      *-SP[4],XAR7          ; |273| 
-        LSLL      ACC,T                 ; |273| 
-        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |273| 
-        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |273| 
-        BF        L33,UNC               ; |273| 
-        ; branch occurs ; |273| 
+        MOV       T,#17                 ; |270| 
+        LSL       ACC,16                ; |270| 
+        MOVL      XAR4,XAR2             ; |270| 
+        MOVL      *-SP[2],ACC           ; |270| 
+        MOVL      ACC,@_xS44S_SPEED_U32 ; |270| 
+        MOVL      *-SP[4],XAR7          ; |270| 
+        LSLL      ACC,T                 ; |270| 
+        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |270| 
+        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |270| 
+        BF        L33,UNC               ; |270| 
+        ; branch occurs ; |270| 
 L11:    
 ;***	-----------------------g9:
-;*** 269	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x90_SPEED_U32<<17, (*LINE).Distance_U32<<16, __IQmpy(1310L, PID_Kp_U32<<17, 17));
-;*** 269	-----------------------    goto g41;
-	.dwpsn	"extremerun.c",269,6
-        MOVL      ACC,*+XAR2[4]         ; |269| 
+;*** 266	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x90_SPEED_U32<<17, (*LINE).Distance_U32<<16, __IQmpy(1310L, PID_Kp_U32<<17, 17));
+;*** 266	-----------------------    goto g41;
+	.dwpsn	"extremerun.c",266,6
+        MOVL      ACC,*+XAR2[4]         ; |266| 
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |269| 
-        MOVL      XAR4,#1310            ; |269| 
-        LSL       ACC,16                ; |269| 
-        MOVL      *-SP[2],ACC           ; |269| 
-        MOVL      ACC,@_PID_Kp_U32      ; |269| 
-        LSLL      ACC,T                 ; |269| 
-        MOVL      XT,XAR4               ; |269| 
-        IMPYL     P,XT,ACC              ; |269| 
-        QMPYL     ACC,XT,ACC            ; |269| 
-        LSL64     ACC:P,#15             ; |269| 
+        MOV       T,#17                 ; |266| 
+        MOVL      XAR4,#1310            ; |266| 
+        LSL       ACC,16                ; |266| 
+        MOVL      *-SP[2],ACC           ; |266| 
+        MOVL      ACC,@_PID_Kp_U32      ; |266| 
+        LSLL      ACC,T                 ; |266| 
+        MOVL      XT,XAR4               ; |266| 
+        IMPYL     P,XT,ACC              ; |266| 
+        QMPYL     ACC,XT,ACC            ; |266| 
+        LSL64     ACC:P,#15             ; |266| 
         MOVW      DP,#_x90_SPEED_U32
-        MOVL      *-SP[4],ACC           ; |269| 
-        MOV       T,#17                 ; |269| 
-        MOVL      XAR4,XAR2             ; |269| 
-        MOVL      ACC,@_x90_SPEED_U32   ; |269| 
-        LSLL      ACC,T                 ; |269| 
-        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |269| 
-        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |269| 
-        BF        L33,UNC               ; |269| 
-        ; branch occurs ; |269| 
+        MOVL      *-SP[4],ACC           ; |266| 
+        MOV       T,#17                 ; |266| 
+        MOVL      XAR4,XAR2             ; |266| 
+        MOVL      ACC,@_x90_SPEED_U32   ; |266| 
+        LSLL      ACC,T                 ; |266| 
+        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |266| 
+        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |266| 
+        BF        L33,UNC               ; |266| 
+        ; branch occurs ; |266| 
 L12:    
 ;***	-----------------------g10:
-;*** 280	-----------------------    K$66 = (unsigned long * const)LINE-64L;
-;*** 280	-----------------------    if ( (int)((unsigned long)~(unsigned)*K$66&1uL) || (*K$28&0x10uL) == 0uL || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) ) goto g21;
-	.dwpsn	"extremerun.c",280,9
-        MOVL      ACC,XAR2              ; |280| 
-        SUBB      ACC,#64               ; |280| 
-        MOVL      *-SP[12],ACC          ; |280| 
+;*** 277	-----------------------    K$66 = (unsigned long * const)LINE-64L;
+;*** 277	-----------------------    if ( (int)((unsigned long)~(unsigned)*K$66&1uL) || (*K$28&0x10uL) == 0uL || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) ) goto g21;
+	.dwpsn	"extremerun.c",277,9
+        MOVL      ACC,XAR2              ; |277| 
+        SUBB      ACC,#64               ; |277| 
+        MOVL      *-SP[12],ACC          ; |277| 
         MOVL      XAR4,*-SP[12]
-        MOV       AL,*+XAR4[0]          ; |280| 
-        NOT       AL                    ; |280| 
-        MOV       PL,AL                 ; |280| 
+        MOV       AL,*+XAR4[0]          ; |277| 
+        NOT       AL                    ; |277| 
+        MOV       PL,AL                 ; |277| 
         MOVB      ACC,#1
-        AND       ACC,PL                ; |280| 
-        BF        L18,NEQ               ; |280| 
-        ; branchcc occurs ; |280| 
-        MOVL      ACC,*+XAR3[0]         ; |280| 
-        ANDB      AL,#0x10              ; |280| 
+        AND       ACC,PL                ; |277| 
+        BF        L18,NEQ               ; |277| 
+        ; branchcc occurs ; |277| 
+        MOVL      ACC,*+XAR3[0]         ; |277| 
+        ANDB      AL,#0x10              ; |277| 
         MOVB      AH,#0
-        TEST      ACC                   ; |280| 
-        BF        L18,EQ                ; |280| 
-        ; branchcc occurs ; |280| 
-        MOVB      XAR0,#44              ; |280| 
-        MOV       AL,*+XAR2[AR0]        ; |280| 
-        NOT       AL                    ; |280| 
-        MOV       PL,AL                 ; |280| 
+        TEST      ACC                   ; |277| 
+        BF        L18,EQ                ; |277| 
+        ; branchcc occurs ; |277| 
+        MOVB      XAR0,#44              ; |277| 
+        MOV       AL,*+XAR2[AR0]        ; |277| 
+        NOT       AL                    ; |277| 
+        MOV       PL,AL                 ; |277| 
         MOVB      ACC,#1
-        AND       ACC,PL                ; |280| 
-        BF        L18,NEQ               ; |280| 
-        ; branchcc occurs ; |280| 
-;*** 282	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
-;*** 284	-----------------------    if ( ((*LINE).TurnDir_U32&0x300uL) == 0uL ) goto g13;
-	.dwpsn	"extremerun.c",282,5
+        AND       ACC,PL                ; |277| 
+        BF        L18,NEQ               ; |277| 
+        ; branchcc occurs ; |277| 
+;*** 279	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
+;*** 281	-----------------------    if ( ((*LINE).TurnDir_U32&0x300uL) == 0uL ) goto g13;
+	.dwpsn	"extremerun.c",279,5
+        MOVB      ACC,#34
+        ADDL      ACC,XAR2
+        MOVL      XAR4,ACC              ; |279| 
+        OR        *+XAR4[0],#0x0001     ; |279| 
+	.dwpsn	"extremerun.c",281,5
+        MOVB      XAR0,#8               ; |281| 
+        MOVL      ACC,*+XAR2[AR0]       ; |281| 
+        AND       AL,#0x0300            ; |281| 
+        MOVB      AH,#0
+        TEST      ACC                   ; |281| 
+        BF        L13,EQ                ; |281| 
+        ; branchcc occurs ; |281| 
+;*** 282	-----------------------    *((volatile unsigned * const)LINE+34) |= 4u;
+	.dwpsn	"extremerun.c",282,6
         MOVB      ACC,#34
         ADDL      ACC,XAR2
         MOVL      XAR4,ACC              ; |282| 
-        OR        *+XAR4[0],#0x0001     ; |282| 
-	.dwpsn	"extremerun.c",284,5
-        MOVB      XAR0,#8               ; |284| 
-        MOVL      ACC,*+XAR2[AR0]       ; |284| 
-        AND       AL,#0x0300            ; |284| 
-        MOVB      AH,#0
-        TEST      ACC                   ; |284| 
-        BF        L13,EQ                ; |284| 
-        ; branchcc occurs ; |284| 
-;*** 285	-----------------------    *((volatile unsigned * const)LINE+34) |= 4u;
-	.dwpsn	"extremerun.c",285,6
-        MOVB      ACC,#34
-        ADDL      ACC,XAR2
-        MOVL      XAR4,ACC              ; |285| 
-        OR        *+XAR4[0],#0x0004     ; |285| 
+        OR        *+XAR4[0],#0x0004     ; |282| 
 L13:    
 ;***	-----------------------g13:
-;*** 288	-----------------------    if ( (*LINE).TurnWay_U32&*((unsigned long * const)LINE+78L) ) goto g15;
-	.dwpsn	"extremerun.c",288,5
-        MOVB      XAR0,#78              ; |288| 
-        MOVL      ACC,*+XAR2[AR0]       ; |288| 
-        AND       AL,*+XAR2[6]          ; |288| 
-        AND       AH,*+XAR2[7]          ; |288| 
-        TEST      ACC                   ; |288| 
-        BF        L14,NEQ               ; |288| 
-        ; branchcc occurs ; |288| 
-;*** 289	-----------------------    (*LINE).TargetPosition_IQ10 = 0L;
-;*** 289	-----------------------    goto g16;
-	.dwpsn	"extremerun.c",289,21
+;*** 285	-----------------------    if ( (*LINE).TurnWay_U32&*((unsigned long * const)LINE+78L) ) goto g15;
+	.dwpsn	"extremerun.c",285,5
+        MOVB      XAR0,#78              ; |285| 
+        MOVL      ACC,*+XAR2[AR0]       ; |285| 
+        AND       AL,*+XAR2[6]          ; |285| 
+        AND       AH,*+XAR2[7]          ; |285| 
+        TEST      ACC                   ; |285| 
+        BF        L14,NEQ               ; |285| 
+        ; branchcc occurs ; |285| 
+;*** 286	-----------------------    (*LINE).TargetPosition_IQ10 = 0L;
+;*** 286	-----------------------    goto g16;
+	.dwpsn	"extremerun.c",286,21
         MOVB      ACC,#0
-        MOVB      XAR0,#30              ; |289| 
-        MOVL      *+XAR2[AR0],ACC       ; |289| 
-        BF        L15,UNC               ; |289| 
-        ; branch occurs ; |289| 
+        MOVB      XAR0,#30              ; |286| 
+        MOVL      *+XAR2[AR0],ACC       ; |286| 
+        BF        L15,UNC               ; |286| 
+        ; branch occurs ; |286| 
 L14:    
 ;***	-----------------------g15:
-;*** 288	-----------------------    (*LINE).TargetPosition_IQ10 = -*((volatile long * const)LINE-42L);
-	.dwpsn	"extremerun.c",288,54
-        MOVL      XAR4,XAR2             ; |288| 
-        MOVB      XAR0,#30              ; |288| 
-        SUBB      XAR4,#42              ; |288| 
-        MOVL      ACC,*+XAR4[0]         ; |288| 
-        NEG       ACC                   ; |288| 
-        MOVL      *+XAR2[AR0],ACC       ; |288| 
+;*** 285	-----------------------    (*LINE).TargetPosition_IQ10 = -*((volatile long * const)LINE-42L);
+	.dwpsn	"extremerun.c",285,54
+        MOVL      XAR4,XAR2             ; |285| 
+        MOVB      XAR0,#30              ; |285| 
+        SUBB      XAR4,#42              ; |285| 
+        MOVL      ACC,*+XAR4[0]         ; |285| 
+        NEG       ACC                   ; |285| 
+        MOVL      *+XAR2[AR0],ACC       ; |285| 
 L15:    
 ;***	-----------------------g16:
-;*** 291	-----------------------    C$3 = (volatile long * const)LINE-42L;
-;*** 291	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*C$3-(*LINE).TargetPosition_IQ10), *((unsigned long * const)LINE-32L)+(*LINE).Distance_U32<<10);
-;*** 293	-----------------------    if ( ((unsigned)(*LINE).TurnDir_U32|(unsigned)*((unsigned long * const)LINE+44L))&0xc00u ) goto g20;
-	.dwpsn	"extremerun.c",291,5
-        MOVL      XAR4,XAR2             ; |291| 
-        MOVL      XAR3,XAR2             ; |291| 
-        MOVL      ACC,*+XAR2[4]         ; |291| 
-        SUBB      XAR4,#32              ; |291| 
-        ADDL      ACC,*+XAR4[0]         ; |291| 
-        SUBB      XAR3,#42              ; |291| 
-        LSL       ACC,10                ; |291| 
-        MOVL      *-SP[2],ACC           ; |291| 
-        MOVL      ACC,*+XAR3[0]         ; |291| 
-        SUBL      ACC,*+XAR2[AR0]       ; |291| 
-        ABS       ACC                   ; |291| 
-        LCR       #__IQ10div            ; |291| 
-        ; call occurs [#__IQ10div] ; |291| 
-        MOVB      XAR0,#32              ; |291| 
-        MOVL      *+XAR2[AR0],ACC       ; |291| 
-	.dwpsn	"extremerun.c",293,5
-        MOVB      XAR1,#44              ; |293| 
-        MOVB      XAR0,#8               ; |293| 
-        MOV       AL,*+XAR2[AR1]        ; |293| 
-        OR        AL,*+XAR2[AR0]        ; |293| 
-        AND       AL,AL,#0x0c00         ; |293| 
-        BF        L17,NEQ               ; |293| 
-        ; branchcc occurs ; |293| 
-;*** 301	-----------------------    if ( ((volatile unsigned *)C$3)[4]&2u ) goto g19;
-	.dwpsn	"extremerun.c",301,6
-        TBIT      *+XAR3[4],#1          ; |301| 
-        BF        L16,TC                ; |301| 
-        ; branchcc occurs ; |301| 
-;*** 302	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, S44S_KP_U32<<17, 17);
-	.dwpsn	"extremerun.c",302,7
+;*** 288	-----------------------    C$3 = (volatile long * const)LINE-42L;
+;*** 288	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*C$3-(*LINE).TargetPosition_IQ10), *((unsigned long * const)LINE-32L)+(*LINE).Distance_U32<<10);
+;*** 290	-----------------------    if ( ((unsigned)(*LINE).TurnDir_U32|(unsigned)*((unsigned long * const)LINE+44L))&0xc00u ) goto g20;
+	.dwpsn	"extremerun.c",288,5
+        MOVL      XAR4,XAR2             ; |288| 
+        MOVL      XAR3,XAR2             ; |288| 
+        MOVL      ACC,*+XAR2[4]         ; |288| 
+        SUBB      XAR4,#32              ; |288| 
+        ADDL      ACC,*+XAR4[0]         ; |288| 
+        SUBB      XAR3,#42              ; |288| 
+        LSL       ACC,10                ; |288| 
+        MOVL      *-SP[2],ACC           ; |288| 
+        MOVL      ACC,*+XAR3[0]         ; |288| 
+        SUBL      ACC,*+XAR2[AR0]       ; |288| 
+        ABS       ACC                   ; |288| 
+        LCR       #__IQ10div            ; |288| 
+        ; call occurs [#__IQ10div] ; |288| 
+        MOVB      XAR0,#32              ; |288| 
+        MOVL      *+XAR2[AR0],ACC       ; |288| 
+	.dwpsn	"extremerun.c",290,5
+        MOVB      XAR1,#44              ; |290| 
+        MOVB      XAR0,#8               ; |290| 
+        MOV       AL,*+XAR2[AR1]        ; |290| 
+        OR        AL,*+XAR2[AR0]        ; |290| 
+        AND       AL,AL,#0x0c00         ; |290| 
+        BF        L17,NEQ               ; |290| 
+        ; branchcc occurs ; |290| 
+;*** 298	-----------------------    if ( ((volatile unsigned *)C$3)[4]&2u ) goto g19;
+	.dwpsn	"extremerun.c",298,6
+        TBIT      *+XAR3[4],#1          ; |298| 
+        BF        L16,TC                ; |298| 
+        ; branchcc occurs ; |298| 
+;*** 299	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, S44S_KP_U32<<17, 17);
+	.dwpsn	"extremerun.c",299,7
         MOVW      DP,#_S44S_KP_U32
-        MOV       T,#17                 ; |302| 
-        MOVL      XAR4,#1310            ; |302| 
-        MOVL      ACC,@_S44S_KP_U32     ; |302| 
-        MOVB      XAR0,#28              ; |302| 
-        LSLL      ACC,T                 ; |302| 
-        MOVL      XT,XAR4               ; |302| 
-        IMPYL     P,XT,ACC              ; |302| 
-        QMPYL     ACC,XT,ACC            ; |302| 
-        LSL64     ACC:P,#15             ; |302| 
-        MOVL      *+XAR2[AR0],ACC       ; |302| 
+        MOV       T,#17                 ; |299| 
+        MOVL      XAR4,#1310            ; |299| 
+        MOVL      ACC,@_S44S_KP_U32     ; |299| 
+        MOVB      XAR0,#28              ; |299| 
+        LSLL      ACC,T                 ; |299| 
+        MOVL      XT,XAR4               ; |299| 
+        IMPYL     P,XT,ACC              ; |299| 
+        QMPYL     ACC,XT,ACC            ; |299| 
+        LSL64     ACC:P,#15             ; |299| 
+        MOVL      *+XAR2[AR0],ACC       ; |299| 
 L16:    
 ;***	-----------------------g19:
-;*** 304	-----------------------    xVEL_COMPUTE(LINE, K$26, xS44S_SPEED_U32<<17, MOTOR_SPEED_U32<<17, m_dist);
-;*** 304	-----------------------    goto g41;
-	.dwpsn	"extremerun.c",304,6
+;*** 301	-----------------------    xVEL_COMPUTE(LINE, K$26, xS44S_SPEED_U32<<17, MOTOR_SPEED_U32<<17, m_dist);
+;*** 301	-----------------------    goto g41;
+	.dwpsn	"extremerun.c",301,6
         MOVW      DP,#_MOTOR_SPEED_U32
-        MOV       T,#17                 ; |304| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |304| 
-        LSLL      ACC,T                 ; |304| 
-        MOVL      XAR4,XAR2             ; |304| 
-        MOVL      *-SP[2],ACC           ; |304| 
+        MOV       T,#17                 ; |301| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |301| 
+        LSLL      ACC,T                 ; |301| 
+        MOVL      XAR4,XAR2             ; |301| 
+        MOVL      *-SP[2],ACC           ; |301| 
         MOVW      DP,#_xS44S_SPEED_U32
-        MOVL      ACC,*-SP[8]           ; |304| 
-        MOVL      *-SP[4],ACC           ; |304| 
-        MOVL      XAR5,*-SP[10]         ; |304| 
-        MOVL      ACC,@_xS44S_SPEED_U32 ; |304| 
-        LSLL      ACC,T                 ; |304| 
-        LCR       #_xVEL_COMPUTE$0      ; |304| 
-        ; call occurs [#_xVEL_COMPUTE$0] ; |304| 
-        BF        L33,UNC               ; |304| 
-        ; branch occurs ; |304| 
+        MOVL      ACC,*-SP[8]           ; |301| 
+        MOVL      *-SP[4],ACC           ; |301| 
+        MOVL      XAR5,*-SP[10]         ; |301| 
+        MOVL      ACC,@_xS44S_SPEED_U32 ; |301| 
+        LSLL      ACC,T                 ; |301| 
+        LCR       #_xVEL_COMPUTE$0      ; |301| 
+        ; call occurs [#_xVEL_COMPUTE$0] ; |301| 
+        BF        L33,UNC               ; |301| 
+        ; branch occurs ; |301| 
 L17:    
 ;***	-----------------------g20:
-;*** 295	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
-;*** 296	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
-;*** 297	-----------------------    xVEL_COMPUTE(LINE, K$26, x90_SPEED_U32<<17, MOTOR_SPEED_U32<<17, m_dist);
-;*** 298	-----------------------    goto g41;
-	.dwpsn	"extremerun.c",295,6
+;*** 292	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
+;*** 293	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
+;*** 294	-----------------------    xVEL_COMPUTE(LINE, K$26, x90_SPEED_U32<<17, MOTOR_SPEED_U32<<17, m_dist);
+;*** 295	-----------------------    goto g41;
+	.dwpsn	"extremerun.c",292,6
         MOVB      ACC,#34
         ADDL      ACC,XAR2
-        MOVL      XAR4,ACC              ; |295| 
-        AND       *+XAR4[0],#0xfffe     ; |295| 
-	.dwpsn	"extremerun.c",296,6
+        MOVL      XAR4,ACC              ; |292| 
+        AND       *+XAR4[0],#0xfffe     ; |292| 
+	.dwpsn	"extremerun.c",293,6
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |296| 
-        MOVL      ACC,@_PID_Kp_U32      ; |296| 
-        MOVL      XAR4,#1310            ; |296| 
-        LSLL      ACC,T                 ; |296| 
-        MOVL      XT,XAR4               ; |296| 
-        IMPYL     P,XT,ACC              ; |296| 
-        MOVB      XAR0,#28              ; |296| 
-        QMPYL     ACC,XT,ACC            ; |296| 
-        LSL64     ACC:P,#15             ; |296| 
-        MOVL      *+XAR2[AR0],ACC       ; |296| 
-	.dwpsn	"extremerun.c",297,6
+        MOV       T,#17                 ; |293| 
+        MOVL      ACC,@_PID_Kp_U32      ; |293| 
+        MOVL      XAR4,#1310            ; |293| 
+        LSLL      ACC,T                 ; |293| 
+        MOVL      XT,XAR4               ; |293| 
+        IMPYL     P,XT,ACC              ; |293| 
+        MOVB      XAR0,#28              ; |293| 
+        QMPYL     ACC,XT,ACC            ; |293| 
+        LSL64     ACC:P,#15             ; |293| 
+        MOVL      *+XAR2[AR0],ACC       ; |293| 
+	.dwpsn	"extremerun.c",294,6
         MOVW      DP,#_MOTOR_SPEED_U32
-        MOV       T,#17                 ; |297| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |297| 
-        LSLL      ACC,T                 ; |297| 
-        MOVL      *-SP[2],ACC           ; |297| 
-        MOVL      ACC,*-SP[8]           ; |297| 
-        MOVL      *-SP[4],ACC           ; |297| 
+        MOV       T,#17                 ; |294| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |294| 
+        LSLL      ACC,T                 ; |294| 
+        MOVL      *-SP[2],ACC           ; |294| 
+        MOVL      ACC,*-SP[8]           ; |294| 
+        MOVL      *-SP[4],ACC           ; |294| 
         MOVW      DP,#_x90_SPEED_U32
-        MOVL      XAR4,XAR2             ; |297| 
-        MOVL      XAR5,*-SP[10]         ; |297| 
-        MOVL      ACC,@_x90_SPEED_U32   ; |297| 
-        LSLL      ACC,T                 ; |297| 
-        LCR       #_xVEL_COMPUTE$0      ; |297| 
-        ; call occurs [#_xVEL_COMPUTE$0] ; |297| 
-	.dwpsn	"extremerun.c",298,5
-        BF        L33,UNC               ; |298| 
-        ; branch occurs ; |298| 
+        MOVL      XAR4,XAR2             ; |294| 
+        MOVL      XAR5,*-SP[10]         ; |294| 
+        MOVL      ACC,@_x90_SPEED_U32   ; |294| 
+        LSLL      ACC,T                 ; |294| 
+        LCR       #_xVEL_COMPUTE$0      ; |294| 
+        ; call occurs [#_xVEL_COMPUTE$0] ; |294| 
+	.dwpsn	"extremerun.c",295,5
+        BF        L33,UNC               ; |295| 
+        ; branch occurs ; |295| 
 L18:    
 ;***	-----------------------g21:
-;*** 311	-----------------------    if ( (U$56 = *((unsigned long * const)LINE+44L)&0x10uL) == 0uL || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+80L)&1uL) ) goto g27;
-	.dwpsn	"extremerun.c",311,9
-        MOVB      XAR0,#44              ; |311| 
-        MOVL      ACC,*+XAR2[AR0]       ; |311| 
-        ANDB      AL,#0x10              ; |311| 
+;*** 308	-----------------------    if ( (U$56 = *((unsigned long * const)LINE+44L)&0x10uL) == 0uL || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+80L)&1uL) ) goto g27;
+	.dwpsn	"extremerun.c",308,9
+        MOVB      XAR0,#44              ; |308| 
+        MOVL      ACC,*+XAR2[AR0]       ; |308| 
+        ANDB      AL,#0x10              ; |308| 
         MOVB      AH,#0
-        TEST      ACC                   ; |311| 
-        MOVL      XAR4,ACC              ; |311| 
-        BF        L21,EQ                ; |311| 
-        ; branchcc occurs ; |311| 
-        MOVB      XAR0,#80              ; |311| 
-        MOV       AL,*+XAR2[AR0]        ; |311| 
-        NOT       AL                    ; |311| 
-        MOV       PL,AL                 ; |311| 
+        TEST      ACC                   ; |308| 
+        MOVL      XAR4,ACC              ; |308| 
+        BF        L21,EQ                ; |308| 
+        ; branchcc occurs ; |308| 
+        MOVB      XAR0,#80              ; |308| 
+        MOV       AL,*+XAR2[AR0]        ; |308| 
+        NOT       AL                    ; |308| 
+        MOV       PL,AL                 ; |308| 
         MOVB      ACC,#1
-        AND       ACC,PL                ; |311| 
-        BF        L21,NEQ               ; |311| 
-        ; branchcc occurs ; |311| 
-;*** 313	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
-;*** 315	-----------------------    if ( *((unsigned long * const)LINE+40L) > 400uL || (((unsigned)*((unsigned long * const)LINE+44L)|(unsigned)(*LINE).TurnDir_U32)&0xc00u) != 0uL ) goto g24;
-	.dwpsn	"extremerun.c",313,5
+        AND       ACC,PL                ; |308| 
+        BF        L21,NEQ               ; |308| 
+        ; branchcc occurs ; |308| 
+;*** 310	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
+;*** 312	-----------------------    if ( *((unsigned long * const)LINE+40L) > 400uL || (((unsigned)*((unsigned long * const)LINE+44L)|(unsigned)(*LINE).TurnDir_U32)&0xc00u) != 0uL ) goto g24;
+	.dwpsn	"extremerun.c",310,5
         MOVB      ACC,#34
         ADDL      ACC,XAR2
-        MOVL      XAR4,ACC              ; |313| 
-        OR        *+XAR4[0],#0x0001     ; |313| 
-	.dwpsn	"extremerun.c",315,5
-        MOVB      XAR0,#40              ; |315| 
-        MOV       ACC,#400              ; |315| 
-        CMPL      ACC,*+XAR2[AR0]       ; |315| 
-        BF        L19,LO                ; |315| 
-        ; branchcc occurs ; |315| 
-        MOVB      XAR1,#8               ; |315| 
-        MOVB      XAR0,#44              ; |315| 
-        MOV       AL,*+XAR2[AR1]        ; |315| 
-        OR        AL,*+XAR2[AR0]        ; |315| 
-        AND       AL,AL,#0x0c00         ; |315| 
-        BF        L19,NEQ               ; |315| 
-        ; branchcc occurs ; |315| 
-;*** 318	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x45_SPEED_U32<<17, (*LINE).Distance_U32<<16, U$43);
-;*** 318	-----------------------    goto g25;
-	.dwpsn	"extremerun.c",318,6
-        MOVL      ACC,*+XAR2[4]         ; |318| 
+        MOVL      XAR4,ACC              ; |310| 
+        OR        *+XAR4[0],#0x0001     ; |310| 
+	.dwpsn	"extremerun.c",312,5
+        MOVB      XAR0,#40              ; |312| 
+        MOV       ACC,#400              ; |312| 
+        CMPL      ACC,*+XAR2[AR0]       ; |312| 
+        BF        L19,LO                ; |312| 
+        ; branchcc occurs ; |312| 
+        MOVB      XAR1,#8               ; |312| 
+        MOVB      XAR0,#44              ; |312| 
+        MOV       AL,*+XAR2[AR1]        ; |312| 
+        OR        AL,*+XAR2[AR0]        ; |312| 
+        AND       AL,AL,#0x0c00         ; |312| 
+        BF        L19,NEQ               ; |312| 
+        ; branchcc occurs ; |312| 
+;*** 315	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x45_SPEED_U32<<17, (*LINE).Distance_U32<<16, U$43);
+;*** 315	-----------------------    goto g25;
+	.dwpsn	"extremerun.c",315,6
+        MOVL      ACC,*+XAR2[4]         ; |315| 
         MOVW      DP,#_x45_SPEED_U32
-        MOV       T,#17                 ; |318| 
-        LSL       ACC,16                ; |318| 
-        MOVL      XAR4,XAR2             ; |318| 
-        MOVL      *-SP[2],ACC           ; |318| 
-        MOVL      ACC,@_x45_SPEED_U32   ; |318| 
-        MOVL      *-SP[4],XAR7          ; |318| 
-        LSLL      ACC,T                 ; |318| 
-        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |318| 
-        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |318| 
-        BF        L20,UNC               ; |318| 
-        ; branch occurs ; |318| 
+        MOV       T,#17                 ; |315| 
+        LSL       ACC,16                ; |315| 
+        MOVL      XAR4,XAR2             ; |315| 
+        MOVL      *-SP[2],ACC           ; |315| 
+        MOVL      ACC,@_x45_SPEED_U32   ; |315| 
+        MOVL      *-SP[4],XAR7          ; |315| 
+        LSLL      ACC,T                 ; |315| 
+        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |315| 
+        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |315| 
+        BF        L20,UNC               ; |315| 
+        ; branch occurs ; |315| 
 L19:    
 ;***	-----------------------g24:
-;*** 316	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x90_SPEED_U32<<17, (*LINE).Distance_U32<<16, __IQmpy(1310L, S44S_KP_U32<<17, 17));
-	.dwpsn	"extremerun.c",316,6
-        MOVL      ACC,*+XAR2[4]         ; |316| 
+;*** 313	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x90_SPEED_U32<<17, (*LINE).Distance_U32<<16, __IQmpy(1310L, S44S_KP_U32<<17, 17));
+	.dwpsn	"extremerun.c",313,6
+        MOVL      ACC,*+XAR2[4]         ; |313| 
         MOVW      DP,#_S44S_KP_U32
-        MOV       T,#17                 ; |316| 
-        MOVL      XAR4,#1310            ; |316| 
-        LSL       ACC,16                ; |316| 
-        MOVL      *-SP[2],ACC           ; |316| 
-        MOVL      ACC,@_S44S_KP_U32     ; |316| 
-        LSLL      ACC,T                 ; |316| 
-        MOVL      XT,XAR4               ; |316| 
-        IMPYL     P,XT,ACC              ; |316| 
-        QMPYL     ACC,XT,ACC            ; |316| 
-        LSL64     ACC:P,#15             ; |316| 
+        MOV       T,#17                 ; |313| 
+        MOVL      XAR4,#1310            ; |313| 
+        LSL       ACC,16                ; |313| 
+        MOVL      *-SP[2],ACC           ; |313| 
+        MOVL      ACC,@_S44S_KP_U32     ; |313| 
+        LSLL      ACC,T                 ; |313| 
+        MOVL      XT,XAR4               ; |313| 
+        IMPYL     P,XT,ACC              ; |313| 
+        QMPYL     ACC,XT,ACC            ; |313| 
+        LSL64     ACC:P,#15             ; |313| 
         MOVW      DP,#_x90_SPEED_U32
-        MOVL      *-SP[4],ACC           ; |316| 
-        MOV       T,#17                 ; |316| 
-        MOVL      XAR4,XAR2             ; |316| 
-        MOVL      ACC,@_x90_SPEED_U32   ; |316| 
-        LSLL      ACC,T                 ; |316| 
-        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |316| 
-        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |316| 
+        MOVL      *-SP[4],ACC           ; |313| 
+        MOV       T,#17                 ; |313| 
+        MOVL      XAR4,XAR2             ; |313| 
+        MOVL      ACC,@_x90_SPEED_U32   ; |313| 
+        LSLL      ACC,T                 ; |313| 
+        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |313| 
+        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |313| 
 L20:    
 ;***	-----------------------g25:
-;*** 316	-----------------------    if ( *((unsigned long * const)LINE+40L)+*((unsigned long * const)LINE+76L) >= 700uL ) goto g36;
-        MOVB      XAR0,#76              ; |316| 
-        MOVL      ACC,*+XAR2[AR0]       ; |316| 
-        MOVL      XAR4,#700             ; |316| 
-        MOVB      XAR0,#40              ; |316| 
-        ADDL      ACC,*+XAR2[AR0]       ; |316| 
-        CMPL      ACC,XAR4              ; |316| 
-        BF        L28,HIS               ; |316| 
-        ; branchcc occurs ; |316| 
-;*** 321	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, S44S_KP_U32<<17, 17);
-;*** 321	-----------------------    goto g36;
-	.dwpsn	"extremerun.c",321,6
+;*** 313	-----------------------    if ( *((unsigned long * const)LINE+40L)+*((unsigned long * const)LINE+76L) >= 700uL ) goto g36;
+        MOVB      XAR0,#76              ; |313| 
+        MOVL      ACC,*+XAR2[AR0]       ; |313| 
+        MOVL      XAR4,#700             ; |313| 
+        MOVB      XAR0,#40              ; |313| 
+        ADDL      ACC,*+XAR2[AR0]       ; |313| 
+        CMPL      ACC,XAR4              ; |313| 
+        BF        L28,HIS               ; |313| 
+        ; branchcc occurs ; |313| 
+;*** 318	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, S44S_KP_U32<<17, 17);
+;*** 318	-----------------------    goto g36;
+	.dwpsn	"extremerun.c",318,6
         MOVW      DP,#_S44S_KP_U32
-        MOV       T,#17                 ; |321| 
-        MOVL      XAR4,#1310            ; |321| 
-        MOVL      ACC,@_S44S_KP_U32     ; |321| 
-        MOVB      XAR0,#28              ; |321| 
-        LSLL      ACC,T                 ; |321| 
-        MOVL      XT,XAR4               ; |321| 
-        IMPYL     P,XT,ACC              ; |321| 
-        QMPYL     ACC,XT,ACC            ; |321| 
-        LSL64     ACC:P,#15             ; |321| 
-        MOVL      *+XAR2[AR0],ACC       ; |321| 
-        BF        L28,UNC               ; |321| 
-        ; branch occurs ; |321| 
+        MOV       T,#17                 ; |318| 
+        MOVL      XAR4,#1310            ; |318| 
+        MOVL      ACC,@_S44S_KP_U32     ; |318| 
+        MOVB      XAR0,#28              ; |318| 
+        LSLL      ACC,T                 ; |318| 
+        MOVL      XT,XAR4               ; |318| 
+        IMPYL     P,XT,ACC              ; |318| 
+        QMPYL     ACC,XT,ACC            ; |318| 
+        LSL64     ACC:P,#15             ; |318| 
+        MOVL      *+XAR2[AR0],ACC       ; |318| 
+        BF        L28,UNC               ; |318| 
+        ; branch occurs ; |318| 
 L21:    
 ;***	-----------------------g27:
-;*** 324	-----------------------    if ( (*K$28&0x10uL) != 0uL && (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) == 0 ) goto g35;
-	.dwpsn	"extremerun.c",324,9
-        MOVL      ACC,*+XAR3[0]         ; |324| 
-        ANDB      AL,#0x10              ; |324| 
+;*** 321	-----------------------    if ( (*K$28&0x10uL) != 0uL && (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) == 0 ) goto g35;
+	.dwpsn	"extremerun.c",321,9
+        MOVL      ACC,*+XAR3[0]         ; |321| 
+        ANDB      AL,#0x10              ; |321| 
         MOVB      AH,#0
-        TEST      ACC                   ; |324| 
-        BF        L22,EQ                ; |324| 
-        ; branchcc occurs ; |324| 
-        MOVB      XAR0,#44              ; |324| 
-        MOV       AL,*+XAR2[AR0]        ; |324| 
-        NOT       AL                    ; |324| 
-        MOV       PL,AL                 ; |324| 
+        TEST      ACC                   ; |321| 
+        BF        L22,EQ                ; |321| 
+        ; branchcc occurs ; |321| 
+        MOVB      XAR0,#44              ; |321| 
+        MOV       AL,*+XAR2[AR0]        ; |321| 
+        NOT       AL                    ; |321| 
+        MOV       PL,AL                 ; |321| 
         MOVB      ACC,#1
-        AND       ACC,PL                ; |324| 
-        BF        L27,EQ                ; |324| 
-        ; branchcc occurs ; |324| 
+        AND       ACC,PL                ; |321| 
+        BF        L27,EQ                ; |321| 
+        ; branchcc occurs ; |321| 
 L22:    
-;*** 332	-----------------------    if ( U$56 ) goto g32;
-	.dwpsn	"extremerun.c",332,9
+;*** 329	-----------------------    if ( U$56 ) goto g32;
+	.dwpsn	"extremerun.c",329,9
         MOVL      ACC,XAR4
-        BF        L24,NEQ               ; |332| 
-        ; branchcc occurs ; |332| 
-;*** 348	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
-;*** 350	-----------------------    if ( !(int)((unsigned long)((unsigned)*((unsigned long * const)LINE+44L)^0xffffu)&1uL) ) goto g31;
-	.dwpsn	"extremerun.c",348,5
+        BF        L24,NEQ               ; |329| 
+        ; branchcc occurs ; |329| 
+;*** 345	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
+;*** 347	-----------------------    if ( !(int)((unsigned long)((unsigned)*((unsigned long * const)LINE+44L)^0xffffu)&1uL) ) goto g31;
+	.dwpsn	"extremerun.c",345,5
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |348| 
-        MOVL      XAR4,#1310            ; |348| 
-        MOVL      ACC,@_PID_Kp_U32      ; |348| 
-        MOVB      XAR0,#28              ; |348| 
-        LSLL      ACC,T                 ; |348| 
-        MOVL      XT,XAR4               ; |348| 
-        IMPYL     P,XT,ACC              ; |348| 
-        QMPYL     ACC,XT,ACC            ; |348| 
-        LSL64     ACC:P,#15             ; |348| 
-        MOVL      *+XAR2[AR0],ACC       ; |348| 
-	.dwpsn	"extremerun.c",350,5
-        MOVB      XAR0,#44              ; |350| 
-        MOVZ      AR7,*+XAR2[AR0]       ; |350| 
-        XOR       AR7,#0xffff           ; |350| 
+        MOV       T,#17                 ; |345| 
+        MOVL      XAR4,#1310            ; |345| 
+        MOVL      ACC,@_PID_Kp_U32      ; |345| 
+        MOVB      XAR0,#28              ; |345| 
+        LSLL      ACC,T                 ; |345| 
+        MOVL      XT,XAR4               ; |345| 
+        IMPYL     P,XT,ACC              ; |345| 
+        QMPYL     ACC,XT,ACC            ; |345| 
+        LSL64     ACC:P,#15             ; |345| 
+        MOVL      *+XAR2[AR0],ACC       ; |345| 
+	.dwpsn	"extremerun.c",347,5
+        MOVB      XAR0,#44              ; |347| 
+        MOVZ      AR7,*+XAR2[AR0]       ; |347| 
+        XOR       AR7,#0xffff           ; |347| 
         MOVB      ACC,#1
-        AND       ACC,AR7               ; |350| 
-        BF        L23,EQ                ; |350| 
-        ; branchcc occurs ; |350| 
-;*** 354	-----------------------    (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = v$1;
-;*** 354	-----------------------    goto g36;
-	.dwpsn	"extremerun.c",354,6
-        MOVB      XAR0,#18              ; |354| 
-        MOVL      *+XAR2[AR0],XAR6      ; |354| 
-        MOVB      XAR0,#14              ; |354| 
-        MOVL      *+XAR2[AR0],XAR6      ; |354| 
-        BF        L28,UNC               ; |354| 
-        ; branch occurs ; |354| 
-L23:    
-;***	-----------------------g31:
-;*** 351	-----------------------    xVEL_COMPUTE(LINE, K$26, U$16, U$16, m_dist);
+        AND       ACC,AR7               ; |347| 
+        BF        L23,EQ                ; |347| 
+        ; branchcc occurs ; |347| 
+;*** 351	-----------------------    (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = v$1;
 ;*** 351	-----------------------    goto g36;
 	.dwpsn	"extremerun.c",351,6
-        MOVL      *-SP[2],XAR6          ; |351| 
-        MOVL      ACC,*-SP[8]           ; |351| 
-        MOVL      XAR4,XAR2             ; |351| 
-        MOVL      *-SP[4],ACC           ; |351| 
-        MOVL      XAR5,*-SP[10]         ; |351| 
-        MOVL      ACC,XAR6              ; |351| 
-        LCR       #_xVEL_COMPUTE$0      ; |351| 
-        ; call occurs [#_xVEL_COMPUTE$0] ; |351| 
+        MOVB      XAR0,#18              ; |351| 
+        MOVL      *+XAR2[AR0],XAR6      ; |351| 
+        MOVB      XAR0,#14              ; |351| 
+        MOVL      *+XAR2[AR0],XAR6      ; |351| 
         BF        L28,UNC               ; |351| 
         ; branch occurs ; |351| 
+L23:    
+;***	-----------------------g31:
+;*** 348	-----------------------    xVEL_COMPUTE(LINE, K$26, U$16, U$16, m_dist);
+;*** 348	-----------------------    goto g36;
+	.dwpsn	"extremerun.c",348,6
+        MOVL      *-SP[2],XAR6          ; |348| 
+        MOVL      ACC,*-SP[8]           ; |348| 
+        MOVL      XAR4,XAR2             ; |348| 
+        MOVL      *-SP[4],ACC           ; |348| 
+        MOVL      XAR5,*-SP[10]         ; |348| 
+        MOVL      ACC,XAR6              ; |348| 
+        LCR       #_xVEL_COMPUTE$0      ; |348| 
+        ; call occurs [#_xVEL_COMPUTE$0] ; |348| 
+        BF        L28,UNC               ; |348| 
+        ; branch occurs ; |348| 
 L24:    
 ;***	-----------------------g32:
-;*** 334	-----------------------    if ( (v$2 = (*LINE).Distance_U32) < 120uL || U$30 == 0uL && *((unsigned long * const)LINE+40L) <= 400uL && (((unsigned)*((unsigned long * const)LINE+44L)|(unsigned)(*LINE).TurnDir_U32)&0xc00u) == 0uL ) goto g34;
-	.dwpsn	"extremerun.c",334,5
-        MOVL      XAR6,*+XAR2[4]        ; |334| 
+;*** 331	-----------------------    if ( (v$2 = (*LINE).Distance_U32) < 120uL || U$30 == 0uL && *((unsigned long * const)LINE+40L) <= 400uL && (((unsigned)*((unsigned long * const)LINE+44L)|(unsigned)(*LINE).TurnDir_U32)&0xc00u) == 0uL ) goto g34;
+	.dwpsn	"extremerun.c",331,5
+        MOVL      XAR6,*+XAR2[4]        ; |331| 
         MOVB      ACC,#120
-        CMPL      ACC,XAR6              ; |334| 
-        BF        L26,HI                ; |334| 
-        ; branchcc occurs ; |334| 
+        CMPL      ACC,XAR6              ; |331| 
+        BF        L26,HI                ; |331| 
+        ; branchcc occurs ; |331| 
         MOVL      ACC,XAR5
-        BF        L25,NEQ               ; |334| 
-        ; branchcc occurs ; |334| 
-        MOV       ACC,#400              ; |334| 
-        MOVB      XAR0,#40              ; |334| 
-        CMPL      ACC,*+XAR2[AR0]       ; |334| 
-        BF        L25,LO                ; |334| 
-        ; branchcc occurs ; |334| 
-        MOVB      XAR1,#8               ; |334| 
-        MOVB      XAR0,#44              ; |334| 
-        MOV       AL,*+XAR2[AR1]        ; |334| 
-        OR        AL,*+XAR2[AR0]        ; |334| 
-        AND       AL,AL,#0x0c00         ; |334| 
-        BF        L26,EQ                ; |334| 
-        ; branchcc occurs ; |334| 
+        BF        L25,NEQ               ; |331| 
+        ; branchcc occurs ; |331| 
+        MOV       ACC,#400              ; |331| 
+        MOVB      XAR0,#40              ; |331| 
+        CMPL      ACC,*+XAR2[AR0]       ; |331| 
+        BF        L25,LO                ; |331| 
+        ; branchcc occurs ; |331| 
+        MOVB      XAR1,#8               ; |331| 
+        MOVB      XAR0,#44              ; |331| 
+        MOV       AL,*+XAR2[AR1]        ; |331| 
+        OR        AL,*+XAR2[AR0]        ; |331| 
+        AND       AL,AL,#0x0c00         ; |331| 
+        BF        L26,EQ                ; |331| 
+        ; branchcc occurs ; |331| 
 L25:    
-;*** 338	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x90_SPEED_U32<<17, v$2<<16, __IQmpy(1310L, SHARP_KP_U32<<17, 17));
-;*** 338	-----------------------    goto g36;
-	.dwpsn	"extremerun.c",338,6
-        MOVL      ACC,XAR6              ; |338| 
-        MOVW      DP,#_SHARP_KP_U32
-        MOV       T,#17                 ; |338| 
-        MOVL      XAR4,#1310            ; |338| 
-        LSL       ACC,16                ; |338| 
-        MOVL      *-SP[2],ACC           ; |338| 
-        MOVL      ACC,@_SHARP_KP_U32    ; |338| 
-        LSLL      ACC,T                 ; |338| 
-        MOVL      XT,XAR4               ; |338| 
-        IMPYL     P,XT,ACC              ; |338| 
-        QMPYL     ACC,XT,ACC            ; |338| 
-        LSL64     ACC:P,#15             ; |338| 
-        MOVW      DP,#_x90_SPEED_U32
-        MOVL      *-SP[4],ACC           ; |338| 
-        MOV       T,#17                 ; |338| 
-        MOVL      XAR4,XAR2             ; |338| 
-        MOVL      ACC,@_x90_SPEED_U32   ; |338| 
-        LSLL      ACC,T                 ; |338| 
-        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |338| 
-        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |338| 
-        BF        L28,UNC               ; |338| 
-        ; branch occurs ; |338| 
-L26:    
-;***	-----------------------g34:
-;*** 335	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x45_SPEED_U32<<17, v$2<<16, U$43);
+;*** 335	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x90_SPEED_U32<<17, v$2<<16, __IQmpy(1310L, SHARP_KP_U32<<17, 17));
 ;*** 335	-----------------------    goto g36;
 	.dwpsn	"extremerun.c",335,6
         MOVL      ACC,XAR6              ; |335| 
-        MOVW      DP,#_x45_SPEED_U32
+        MOVW      DP,#_SHARP_KP_U32
         MOV       T,#17                 ; |335| 
+        MOVL      XAR4,#1310            ; |335| 
         LSL       ACC,16                ; |335| 
-        MOVL      XAR4,XAR2             ; |335| 
         MOVL      *-SP[2],ACC           ; |335| 
-        MOVL      ACC,@_x45_SPEED_U32   ; |335| 
-        MOVL      *-SP[4],XAR7          ; |335| 
+        MOVL      ACC,@_SHARP_KP_U32    ; |335| 
+        LSLL      ACC,T                 ; |335| 
+        MOVL      XT,XAR4               ; |335| 
+        IMPYL     P,XT,ACC              ; |335| 
+        QMPYL     ACC,XT,ACC            ; |335| 
+        LSL64     ACC:P,#15             ; |335| 
+        MOVW      DP,#_x90_SPEED_U32
+        MOVL      *-SP[4],ACC           ; |335| 
+        MOV       T,#17                 ; |335| 
+        MOVL      XAR4,XAR2             ; |335| 
+        MOVL      ACC,@_x90_SPEED_U32   ; |335| 
         LSLL      ACC,T                 ; |335| 
         LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |335| 
         ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |335| 
         BF        L28,UNC               ; |335| 
         ; branch occurs ; |335| 
+L26:    
+;***	-----------------------g34:
+;*** 332	-----------------------    xCONTINOUS_VEL_COMPUTE(LINE, x45_SPEED_U32<<17, v$2<<16, U$43);
+;*** 332	-----------------------    goto g36;
+	.dwpsn	"extremerun.c",332,6
+        MOVL      ACC,XAR6              ; |332| 
+        MOVW      DP,#_x45_SPEED_U32
+        MOV       T,#17                 ; |332| 
+        LSL       ACC,16                ; |332| 
+        MOVL      XAR4,XAR2             ; |332| 
+        MOVL      *-SP[2],ACC           ; |332| 
+        MOVL      ACC,@_x45_SPEED_U32   ; |332| 
+        MOVL      *-SP[4],XAR7          ; |332| 
+        LSLL      ACC,T                 ; |332| 
+        LCR       #_xCONTINOUS_VEL_COMPUTE$0 ; |332| 
+        ; call occurs [#_xCONTINOUS_VEL_COMPUTE$0] ; |332| 
+        BF        L28,UNC               ; |332| 
+        ; branch occurs ; |332| 
 L27:    
 ;***	-----------------------g35:
-;*** 326	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
-;*** 327	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
-;*** 329	-----------------------    xVEL_COMPUTE(LINE, K$26, x90_SPEED_U32<<17, U$16, m_dist);
-	.dwpsn	"extremerun.c",326,5
+;*** 323	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
+;*** 324	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
+;*** 326	-----------------------    xVEL_COMPUTE(LINE, K$26, x90_SPEED_U32<<17, U$16, m_dist);
+	.dwpsn	"extremerun.c",323,5
         MOVB      ACC,#34
         ADDL      ACC,XAR2
-        MOVL      XAR4,ACC              ; |326| 
-        AND       *+XAR4[0],#0xfffe     ; |326| 
-	.dwpsn	"extremerun.c",327,5
+        MOVL      XAR4,ACC              ; |323| 
+        AND       *+XAR4[0],#0xfffe     ; |323| 
+	.dwpsn	"extremerun.c",324,5
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |327| 
-        MOVL      ACC,@_PID_Kp_U32      ; |327| 
-        MOVL      XAR4,#1310            ; |327| 
-        LSLL      ACC,T                 ; |327| 
-        MOVL      XT,XAR4               ; |327| 
-        IMPYL     P,XT,ACC              ; |327| 
-        MOVB      XAR0,#28              ; |327| 
-        QMPYL     ACC,XT,ACC            ; |327| 
-        LSL64     ACC:P,#15             ; |327| 
-        MOVL      *+XAR2[AR0],ACC       ; |327| 
-	.dwpsn	"extremerun.c",329,5
-        MOVL      *-SP[2],XAR6          ; |329| 
-        MOVL      ACC,*-SP[8]           ; |329| 
-        MOVL      *-SP[4],ACC           ; |329| 
+        MOV       T,#17                 ; |324| 
+        MOVL      ACC,@_PID_Kp_U32      ; |324| 
+        MOVL      XAR4,#1310            ; |324| 
+        LSLL      ACC,T                 ; |324| 
+        MOVL      XT,XAR4               ; |324| 
+        IMPYL     P,XT,ACC              ; |324| 
+        MOVB      XAR0,#28              ; |324| 
+        QMPYL     ACC,XT,ACC            ; |324| 
+        LSL64     ACC:P,#15             ; |324| 
+        MOVL      *+XAR2[AR0],ACC       ; |324| 
+	.dwpsn	"extremerun.c",326,5
+        MOVL      *-SP[2],XAR6          ; |326| 
+        MOVL      ACC,*-SP[8]           ; |326| 
+        MOVL      *-SP[4],ACC           ; |326| 
         MOVW      DP,#_x90_SPEED_U32
-        MOV       T,#17                 ; |329| 
-        MOVL      XAR5,*-SP[10]         ; |329| 
-        MOVL      XAR4,XAR2             ; |329| 
-        MOVL      ACC,@_x90_SPEED_U32   ; |329| 
-        LSLL      ACC,T                 ; |329| 
-        LCR       #_xVEL_COMPUTE$0      ; |329| 
-        ; call occurs [#_xVEL_COMPUTE$0] ; |329| 
+        MOV       T,#17                 ; |326| 
+        MOVL      XAR5,*-SP[10]         ; |326| 
+        MOVL      XAR4,XAR2             ; |326| 
+        MOVL      ACC,@_x90_SPEED_U32   ; |326| 
+        LSLL      ACC,T                 ; |326| 
+        LCR       #_xVEL_COMPUTE$0      ; |326| 
+        ; call occurs [#_xVEL_COMPUTE$0] ; |326| 
 L28:    
 ;***	-----------------------g36:
-;*** 358	-----------------------    if ( (int)((unsigned long)~(unsigned)*K$66&1uL) || (*K$28&0x10uL) == 0uL || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) ) goto g38;
-	.dwpsn	"extremerun.c",358,4
+;*** 355	-----------------------    if ( (int)((unsigned long)~(unsigned)*K$66&1uL) || (*K$28&0x10uL) == 0uL || (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) ) goto g38;
+	.dwpsn	"extremerun.c",355,4
         MOVL      XAR4,*-SP[12]
-        MOV       AL,*+XAR4[0]          ; |358| 
-        NOT       AL                    ; |358| 
-        MOVZ      AR6,AL                ; |358| 
+        MOV       AL,*+XAR4[0]          ; |355| 
+        NOT       AL                    ; |355| 
+        MOVZ      AR6,AL                ; |355| 
         MOVB      ACC,#1
-        AND       ACC,AR6               ; |358| 
-        BF        L31,NEQ               ; |358| 
-        ; branchcc occurs ; |358| 
-        MOVL      ACC,*+XAR3[0]         ; |358| 
-        ANDB      AL,#0x10              ; |358| 
+        AND       ACC,AR6               ; |355| 
+        BF        L31,NEQ               ; |355| 
+        ; branchcc occurs ; |355| 
+        MOVL      ACC,*+XAR3[0]         ; |355| 
+        ANDB      AL,#0x10              ; |355| 
+        MOVB      AH,#0
+        TEST      ACC                   ; |355| 
+        BF        L31,EQ                ; |355| 
+        ; branchcc occurs ; |355| 
+        MOVB      XAR0,#44              ; |355| 
+        MOV       AL,*+XAR2[AR0]        ; |355| 
+        NOT       AL                    ; |355| 
+        MOVZ      AR6,AL                ; |355| 
+        MOVB      ACC,#1
+        AND       ACC,AR6               ; |355| 
+        BF        L31,NEQ               ; |355| 
+        ; branchcc occurs ; |355| 
+;*** 357	-----------------------    shift_cnt = 4u;
+;*** 358	-----------------------    (((*LINE).TurnDir_U32&2uL) != 0uL) ? (S$1 = left_table[(long)shift_cnt]) : (S$1 = right_table[(long)shift_cnt]);
+	.dwpsn	"extremerun.c",357,5
+        MOV       *-SP[5],#4            ; |357| 
+	.dwpsn	"extremerun.c",358,5
+        MOVB      XAR0,#8               ; |358| 
+        MOVL      ACC,*+XAR2[AR0]       ; |358| 
+        ANDB      AL,#0x02              ; |358| 
         MOVB      AH,#0
         TEST      ACC                   ; |358| 
-        BF        L31,EQ                ; |358| 
+        BF        L29,EQ                ; |358| 
         ; branchcc occurs ; |358| 
-        MOVB      XAR0,#44              ; |358| 
-        MOV       AL,*+XAR2[AR0]        ; |358| 
-        NOT       AL                    ; |358| 
-        MOVZ      AR6,AL                ; |358| 
-        MOVB      ACC,#1
-        AND       ACC,AR6               ; |358| 
-        BF        L31,NEQ               ; |358| 
-        ; branchcc occurs ; |358| 
-;*** 360	-----------------------    shift_cnt = 4u;
-;*** 361	-----------------------    (((*LINE).TurnDir_U32&2uL) != 0uL) ? (S$1 = left_table[(long)shift_cnt]) : (S$1 = right_table[(long)shift_cnt]);
-	.dwpsn	"extremerun.c",360,5
-        MOV       *-SP[5],#4            ; |360| 
-	.dwpsn	"extremerun.c",361,5
-        MOVB      XAR0,#8               ; |361| 
-        MOVL      ACC,*+XAR2[AR0]       ; |361| 
-        ANDB      AL,#0x02              ; |361| 
-        MOVB      AH,#0
-        TEST      ACC                   ; |361| 
-        BF        L29,EQ                ; |361| 
-        ; branchcc occurs ; |361| 
         MOVU      ACC,*-SP[5]
-        MOVL      XAR4,#_left_table     ; |361| 
-        LSL       ACC,1                 ; |361| 
+        MOVL      XAR4,#_left_table     ; |358| 
+        LSL       ACC,1                 ; |358| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |361| 
-        BF        L30,UNC               ; |361| 
-        ; branch occurs ; |361| 
+        MOVL      ACC,*+XAR4[0]         ; |358| 
+        BF        L30,UNC               ; |358| 
+        ; branch occurs ; |358| 
 L29:    
         MOVU      ACC,*-SP[5]
-        MOVL      XAR4,#_right_table    ; |361| 
-        LSL       ACC,1                 ; |361| 
+        MOVL      XAR4,#_right_table    ; |358| 
+        LSL       ACC,1                 ; |358| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |361| 
+        MOVL      ACC,*+XAR4[0]         ; |358| 
 L30:    
-;*** 361	-----------------------    (*LINE).TargetPosition_IQ10 = S$1;
-        MOVB      XAR0,#30              ; |361| 
-        MOVL      *+XAR2[AR0],ACC       ; |361| 
+;*** 358	-----------------------    (*LINE).TargetPosition_IQ10 = S$1;
+        MOVB      XAR0,#30              ; |358| 
+        MOVL      *+XAR2[AR0],ACC       ; |358| 
 L31:    
 ;***	-----------------------g38:
-;*** 364	-----------------------    v$2 = (*LINE).Distance_U32;
-;*** 364	-----------------------    if ( (float)v$2 > 500.0F ) goto g40;
-	.dwpsn	"extremerun.c",364,4
-        MOVL      XAR1,*+XAR2[4]        ; |364| 
-        MOVL      ACC,XAR1              ; |364| 
-        LCR       #UL$$TOFS             ; |364| 
-        ; call occurs [#UL$$TOFS] ; |364| 
-        MOVL      XAR6,ACC              ; |364| 
+;*** 361	-----------------------    v$2 = (*LINE).Distance_U32;
+;*** 361	-----------------------    if ( (float)v$2 > 440.0F ) goto g40;
+	.dwpsn	"extremerun.c",361,4
+        MOVL      XAR1,*+XAR2[4]        ; |361| 
+        MOVL      ACC,XAR1              ; |361| 
+        LCR       #UL$$TOFS             ; |361| 
+        ; call occurs [#UL$$TOFS] ; |361| 
+        MOVL      XAR6,ACC              ; |361| 
         MOV       AL,#0
-        MOV       AH,#17402
-        MOVL      *-SP[2],ACC           ; |364| 
-        MOVL      ACC,XAR6              ; |364| 
-        LCR       #FS$$CMP              ; |364| 
-        ; call occurs [#FS$$CMP] ; |364| 
-        CMPB      AL,#0                 ; |364| 
-        BF        L32,GT                ; |364| 
-        ; branchcc occurs ; |364| 
-;*** 367	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), 256000L);
-;*** 367	-----------------------    goto g41;
-	.dwpsn	"extremerun.c",367,5
-        MOVL      XAR4,#256000          ; |367| 
-        MOVL      *-SP[2],XAR4          ; |367| 
-        MOVL      XAR4,XAR2             ; |367| 
-        MOVB      XAR0,#30              ; |367| 
-        SUBB      XAR4,#6               ; |367| 
-        MOVL      ACC,*+XAR4[0]         ; |367| 
-        SUBL      ACC,*+XAR2[AR0]       ; |367| 
-        ABS       ACC                   ; |367| 
-        LCR       #__IQ10div            ; |367| 
-        ; call occurs [#__IQ10div] ; |367| 
-        MOVB      XAR0,#32              ; |367| 
-        MOVL      *+XAR2[AR0],ACC       ; |367| 
-        BF        L33,UNC               ; |367| 
-        ; branch occurs ; |367| 
+        MOV       AH,#17372
+        MOVL      *-SP[2],ACC           ; |361| 
+        MOVL      ACC,XAR6              ; |361| 
+        LCR       #FS$$CMP              ; |361| 
+        ; call occurs [#FS$$CMP] ; |361| 
+        CMPB      AL,#0                 ; |361| 
+        BF        L32,GT                ; |361| 
+        ; branchcc occurs ; |361| 
+;*** 364	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), 225280L);
+;*** 364	-----------------------    goto g41;
+	.dwpsn	"extremerun.c",364,5
+        MOVL      XAR4,#225280          ; |364| 
+        MOVL      *-SP[2],XAR4          ; |364| 
+        MOVL      XAR4,XAR2             ; |364| 
+        MOVB      XAR0,#30              ; |364| 
+        SUBB      XAR4,#6               ; |364| 
+        MOVL      ACC,*+XAR4[0]         ; |364| 
+        SUBL      ACC,*+XAR2[AR0]       ; |364| 
+        ABS       ACC                   ; |364| 
+        LCR       #__IQ10div            ; |364| 
+        ; call occurs [#__IQ10div] ; |364| 
+        MOVB      XAR0,#32              ; |364| 
+        MOVL      *+XAR2[AR0],ACC       ; |364| 
+        BF        L33,UNC               ; |364| 
+        ; branch occurs ; |364| 
 L32:    
 ;***	-----------------------g40:
-;*** 365	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), (long)((float)v$2-250.0F)<<10);
-	.dwpsn	"extremerun.c",365,5
-        MOVL      ACC,XAR1              ; |365| 
-        LCR       #UL$$TOFS             ; |365| 
-        ; call occurs [#UL$$TOFS] ; |365| 
-        MOVL      XAR6,ACC              ; |365| 
+;*** 362	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), (long)((float)v$2-220.0F)<<10);
+	.dwpsn	"extremerun.c",362,5
+        MOVL      ACC,XAR1              ; |362| 
+        LCR       #UL$$TOFS             ; |362| 
+        ; call occurs [#UL$$TOFS] ; |362| 
+        MOVL      XAR6,ACC              ; |362| 
         MOV       AL,#0
-        MOV       AH,#17274
-        MOVL      *-SP[2],ACC           ; |365| 
-        MOVL      ACC,XAR6              ; |365| 
-        LCR       #FS$$SUB              ; |365| 
-        ; call occurs [#FS$$SUB] ; |365| 
-        LCR       #FS$$TOL              ; |365| 
-        ; call occurs [#FS$$TOL] ; |365| 
-        MOVL      XAR4,XAR2             ; |365| 
-        LSL       ACC,10                ; |365| 
-        MOVL      *-SP[2],ACC           ; |365| 
-        SUBB      XAR4,#6               ; |365| 
-        MOVB      XAR0,#30              ; |365| 
-        MOVL      ACC,*+XAR4[0]         ; |365| 
-        SUBL      ACC,*+XAR2[AR0]       ; |365| 
-        ABS       ACC                   ; |365| 
-        LCR       #__IQ10div            ; |365| 
-        ; call occurs [#__IQ10div] ; |365| 
-        MOVB      XAR0,#32              ; |365| 
-        MOVL      *+XAR2[AR0],ACC       ; |365| 
+        MOV       AH,#17244
+        MOVL      *-SP[2],ACC           ; |362| 
+        MOVL      ACC,XAR6              ; |362| 
+        LCR       #FS$$SUB              ; |362| 
+        ; call occurs [#FS$$SUB] ; |362| 
+        LCR       #FS$$TOL              ; |362| 
+        ; call occurs [#FS$$TOL] ; |362| 
+        MOVL      XAR4,XAR2             ; |362| 
+        LSL       ACC,10                ; |362| 
+        MOVL      *-SP[2],ACC           ; |362| 
+        SUBB      XAR4,#6               ; |362| 
+        MOVB      XAR0,#30              ; |362| 
+        MOVL      ACC,*+XAR4[0]         ; |362| 
+        SUBL      ACC,*+XAR2[AR0]       ; |362| 
+        ABS       ACC                   ; |362| 
+        LCR       #__IQ10div            ; |362| 
+        ; call occurs [#__IQ10div] ; |362| 
+        MOVB      XAR0,#32              ; |362| 
+        MOVL      *+XAR2[AR0],ACC       ; |362| 
 L33:    
 ;***	-----------------------g41:
-;*** 372	-----------------------    if ( !(((volatile unsigned *)LINE)[-2]&1u) ) goto g47;
-	.dwpsn	"extremerun.c",372,3
-        MOVL      XAR4,XAR2             ; |372| 
-        SUBB      XAR4,#2               ; |372| 
-        TBIT      *+XAR4[0],#0          ; |372| 
-        BF        L35,NTC               ; |372| 
-        ; branchcc occurs ; |372| 
-;*** 372	-----------------------    if ( !(*((volatile unsigned * const)LINE+34)&1u) ) goto g47;
-        MOVB      XAR0,#34              ; |372| 
-        TBIT      *+XAR2[AR0],#0        ; |372| 
-        BF        L35,NTC               ; |372| 
-        ; branchcc occurs ; |372| 
-;*** 372	-----------------------    if ( (*LINE).Kp_UpDown_IQ17 <= *((volatile long * const)LINE-8L) ) goto g47;
-        MOVL      XAR4,XAR2             ; |372| 
-        MOVB      XAR0,#28              ; |372| 
-        SUBB      XAR4,#8               ; |372| 
-        MOVL      ACC,*+XAR4[0]         ; |372| 
-        CMPL      ACC,*+XAR2[AR0]       ; |372| 
-        BF        L35,GEQ               ; |372| 
-        ; branchcc occurs ; |372| 
-;*** 372	-----------------------    if ( (*LINE).Kp_UpDown_IQ17 <= __IQmpy(1310L, SHARP_KP_U32<<17, 17) ) goto g47;
+;*** 369	-----------------------    if ( !(((volatile unsigned *)LINE)[-2]&1u) ) goto g47;
+	.dwpsn	"extremerun.c",369,3
+        MOVL      XAR4,XAR2             ; |369| 
+        SUBB      XAR4,#2               ; |369| 
+        TBIT      *+XAR4[0],#0          ; |369| 
+        BF        L35,NTC               ; |369| 
+        ; branchcc occurs ; |369| 
+;*** 369	-----------------------    if ( !(*((volatile unsigned * const)LINE+34)&1u) ) goto g47;
+        MOVB      XAR0,#34              ; |369| 
+        TBIT      *+XAR2[AR0],#0        ; |369| 
+        BF        L35,NTC               ; |369| 
+        ; branchcc occurs ; |369| 
+;*** 369	-----------------------    if ( (*LINE).Kp_UpDown_IQ17 <= *((volatile long * const)LINE-8L) ) goto g47;
+        MOVL      XAR4,XAR2             ; |369| 
+        MOVB      XAR0,#28              ; |369| 
+        SUBB      XAR4,#8               ; |369| 
+        MOVL      ACC,*+XAR4[0]         ; |369| 
+        CMPL      ACC,*+XAR2[AR0]       ; |369| 
+        BF        L35,GEQ               ; |369| 
+        ; branchcc occurs ; |369| 
+;*** 369	-----------------------    if ( (*LINE).Kp_UpDown_IQ17 <= __IQmpy(1310L, SHARP_KP_U32<<17, 17) ) goto g47;
         MOVW      DP,#_SHARP_KP_U32
-        MOV       T,#17                 ; |372| 
-        MOVL      XAR4,#1310            ; |372| 
-        MOVL      ACC,@_SHARP_KP_U32    ; |372| 
-        LSLL      ACC,T                 ; |372| 
-        MOVL      XT,XAR4               ; |372| 
-        IMPYL     P,XT,ACC              ; |372| 
-        QMPYL     ACC,XT,ACC            ; |372| 
-        LSL64     ACC:P,#15             ; |372| 
-        CMPL      ACC,*+XAR2[AR0]       ; |372| 
-        BF        L35,GEQ               ; |372| 
-        ; branchcc occurs ; |372| 
-;*** 374	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
-;*** 374	-----------------------    goto g47;
-	.dwpsn	"extremerun.c",374,4
+        MOV       T,#17                 ; |369| 
+        MOVL      XAR4,#1310            ; |369| 
+        MOVL      ACC,@_SHARP_KP_U32    ; |369| 
+        LSLL      ACC,T                 ; |369| 
+        MOVL      XT,XAR4               ; |369| 
+        IMPYL     P,XT,ACC              ; |369| 
+        QMPYL     ACC,XT,ACC            ; |369| 
+        LSL64     ACC:P,#15             ; |369| 
+        CMPL      ACC,*+XAR2[AR0]       ; |369| 
+        BF        L35,GEQ               ; |369| 
+        ; branchcc occurs ; |369| 
+;*** 371	-----------------------    *((volatile unsigned * const)LINE+34) &= 0xfffeu;
+;*** 371	-----------------------    goto g47;
+	.dwpsn	"extremerun.c",371,4
         MOVB      ACC,#34
         ADDL      ACC,XAR2
-        MOVL      XAR4,ACC              ; |374| 
-        AND       *+XAR4[0],#0xfffe     ; |374| 
-        BF        L35,UNC               ; |374| 
-        ; branch occurs ; |374| 
+        MOVL      XAR4,ACC              ; |371| 
+        AND       *+XAR4[0],#0xfffe     ; |371| 
+        BF        L35,UNC               ; |371| 
+        ; branch occurs ; |371| 
 L34:    
 ;***	-----------------------g46:
-;*** 245	-----------------------    xVEL_COMPUTE(LINE, K$26, xS4S_SPEED_U32<<17, MOTOR_SPEED_U32<<17, m_dist);
-;*** 247	-----------------------    (*LINE).TargetPosition_IQ10 = *((volatile long * const)LINE-6L);
+;*** 242	-----------------------    xVEL_COMPUTE(LINE, K$26, xS4S_SPEED_U32<<17, MOTOR_SPEED_U32<<17, m_dist);
+;*** 244	-----------------------    (*LINE).TargetPosition_IQ10 = *((volatile long * const)LINE-6L);
 ;***	-----------------------g47:
 ;***  	-----------------------    return;
-	.dwpsn	"extremerun.c",245,3
+	.dwpsn	"extremerun.c",242,3
         MOVW      DP,#_MOTOR_SPEED_U32
-        MOV       T,#17                 ; |245| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |245| 
-        LSLL      ACC,T                 ; |245| 
-        MOVL      XAR4,XAR2             ; |245| 
-        MOVL      *-SP[2],ACC           ; |245| 
+        MOV       T,#17                 ; |242| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |242| 
+        LSLL      ACC,T                 ; |242| 
+        MOVL      XAR4,XAR2             ; |242| 
+        MOVL      *-SP[2],ACC           ; |242| 
         MOVW      DP,#_xS4S_SPEED_U32
-        MOVL      ACC,*-SP[8]           ; |245| 
-        MOVL      *-SP[4],ACC           ; |245| 
-        MOVL      XAR5,*-SP[10]         ; |245| 
-        MOVL      ACC,@_xS4S_SPEED_U32  ; |245| 
-        LSLL      ACC,T                 ; |245| 
-        LCR       #_xVEL_COMPUTE$0      ; |245| 
-        ; call occurs [#_xVEL_COMPUTE$0] ; |245| 
-	.dwpsn	"extremerun.c",247,3
-        MOVL      XAR4,XAR2             ; |247| 
-        SUBB      XAR4,#6               ; |247| 
-        MOVL      ACC,*+XAR4[0]         ; |247| 
-        MOVB      XAR0,#30              ; |247| 
-        MOVL      *+XAR2[AR0],ACC       ; |247| 
+        MOVL      ACC,*-SP[8]           ; |242| 
+        MOVL      *-SP[4],ACC           ; |242| 
+        MOVL      XAR5,*-SP[10]         ; |242| 
+        MOVL      ACC,@_xS4S_SPEED_U32  ; |242| 
+        LSLL      ACC,T                 ; |242| 
+        LCR       #_xVEL_COMPUTE$0      ; |242| 
+        ; call occurs [#_xVEL_COMPUTE$0] ; |242| 
+	.dwpsn	"extremerun.c",244,3
+        MOVL      XAR4,XAR2             ; |244| 
+        SUBB      XAR4,#6               ; |244| 
+        MOVL      ACC,*+XAR4[0]         ; |244| 
+        MOVB      XAR0,#30              ; |244| 
+        MOVL      *+XAR2[AR0],ACC       ; |244| 
 L35:    
-	.dwpsn	"extremerun.c",376,1
+	.dwpsn	"extremerun.c",373,1
         SUBB      SP,#12
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -1708,7 +1708,7 @@ L35:
         LRETR
         ; return occurs
 	.dwattr DW$101, DW_AT_end_file("extremerun.c")
-	.dwattr DW$101, DW_AT_end_line(0x178)
+	.dwattr DW$101, DW_AT_end_line(0x175)
 	.dwattr DW$101, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$101
@@ -1816,10 +1816,10 @@ DW$134	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
 DW$135	.dwtag  DW_TAG_variable, DW_AT_name("v$2"), DW_AT_symbol_name("v$2")
 	.dwattr DW$135, DW_AT_type(*DW$T$12)
 	.dwattr DW$135, DW_AT_location[DW_OP_reg18]
-;* AR6   assigned to v$4
+;* AL    assigned to v$4
 DW$136	.dwtag  DW_TAG_variable, DW_AT_name("v$4"), DW_AT_symbol_name("v$4")
 	.dwattr DW$136, DW_AT_type(*DW$T$12)
-	.dwattr DW$136, DW_AT_location[DW_OP_reg16]
+	.dwattr DW$136, DW_AT_location[DW_OP_reg0]
 ;* AR6   assigned to v$5
 DW$137	.dwtag  DW_TAG_variable, DW_AT_name("v$5"), DW_AT_symbol_name("v$5")
 	.dwattr DW$137, DW_AT_type(*DW$T$12)
@@ -2066,8 +2066,7 @@ L47:
         ; call occurs [#_DECEL_DIST_COMPUTE] ; |161| 
 	.dwpsn	"extremerun.c",163,2
         MOVB      XAR0,#22              ; |163| 
-        MOVL      XAR6,*+XAR1[AR0]      ; |163| 
-        MOVL      ACC,XAR6
+        MOVL      ACC,*+XAR1[AR0]       ; |163| 
         CMPL      ACC,*-SP[14]          ; |163| 
         BF        L51,LT                ; |163| 
         ; branchcc occurs ; |163| 
@@ -2142,138 +2141,135 @@ L50:
         ; branch occurs
 L51:    
 ;***	-----------------------g18:
-;*** 175	-----------------------    dist = dist>>1;
-;*** 177	-----------------------    VEL_COMPUTE(dist, v$4>>1, high_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
-;*** 179	-----------------------    DECEL_DIST_COMPUTE((*LINE).Velo_IQ17, (*LINE).VeloOut_IQ17, (long * const)LINE+20L, K$67);
+;*** 175	-----------------------    VEL_COMPUTE(dist>>1, v$4>>1, high_vel, (*LINE).Jerk_IQ14, (long * const)LINE+14L);
+;*** 176	-----------------------    DECEL_DIST_COMPUTE((*LINE).Velo_IQ17, (*LINE).VeloOut_IQ17, (long * const)LINE+20L, K$67);
 	.dwpsn	"extremerun.c",175,3
         SETC      SXM
+        SFR       ACC,1                 ; |175| 
+        MOVB      XAR0,#24              ; |175| 
+        MOVL      *-SP[2],ACC           ; |175| 
+        MOVL      ACC,*-SP[10]          ; |175| 
+        MOVL      *-SP[4],ACC           ; |175| 
+        MOVL      ACC,*+XAR1[AR0]       ; |175| 
+        MOVL      *-SP[6],ACC           ; |175| 
         MOVL      ACC,*-SP[14]          ; |175| 
         SFR       ACC,1                 ; |175| 
-        MOVL      *-SP[14],ACC          ; |175| 
-	.dwpsn	"extremerun.c",177,3
-        MOVL      ACC,XAR6
-        SFR       ACC,1                 ; |177| 
-        MOVL      *-SP[2],ACC           ; |177| 
-        MOVB      XAR0,#24              ; |177| 
-        MOVL      ACC,*-SP[10]          ; |177| 
-        MOVL      *-SP[4],ACC           ; |177| 
-        MOVL      ACC,*+XAR1[AR0]       ; |177| 
-        MOVL      *-SP[6],ACC           ; |177| 
+        MOVL      XAR6,ACC              ; |175| 
         MOVB      ACC,#14
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |177| 
-        MOVL      ACC,*-SP[14]          ; |177| 
-        LCR       #_VEL_COMPUTE         ; |177| 
-        ; call occurs [#_VEL_COMPUTE] ; |177| 
-	.dwpsn	"extremerun.c",179,3
-        MOVB      XAR0,#18              ; |179| 
-        MOVL      ACC,*+XAR1[AR0]       ; |179| 
-        MOVL      *-SP[2],ACC           ; |179| 
+        MOVL      XAR4,ACC              ; |175| 
+        MOVL      ACC,XAR6              ; |175| 
+        LCR       #_VEL_COMPUTE         ; |175| 
+        ; call occurs [#_VEL_COMPUTE] ; |175| 
+	.dwpsn	"extremerun.c",176,3
+        MOVB      XAR0,#18              ; |176| 
+        MOVL      ACC,*+XAR1[AR0]       ; |176| 
+        MOVL      *-SP[2],ACC           ; |176| 
         MOVB      ACC,#20
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |179| 
-        MOVL      XAR5,XAR2             ; |179| 
-        MOVB      XAR0,#14              ; |179| 
-        MOVL      ACC,*+XAR1[AR0]       ; |179| 
-        LCR       #_DECEL_DIST_COMPUTE  ; |179| 
-        ; call occurs [#_DECEL_DIST_COMPUTE] ; |179| 
+        MOVL      XAR4,ACC              ; |176| 
+        MOVL      XAR5,XAR2             ; |176| 
+        MOVB      XAR0,#14              ; |176| 
+        MOVL      ACC,*+XAR1[AR0]       ; |176| 
+        LCR       #_DECEL_DIST_COMPUTE  ; |176| 
+        ; call occurs [#_DECEL_DIST_COMPUTE] ; |176| 
 L52:    
 ;***	-----------------------g19:
-;*** 183	-----------------------    if ( (*((unsigned long * const)LINE+44L)&0x10uL) == 0uL ) goto g25;
-	.dwpsn	"extremerun.c",183,2
-        MOVB      XAR0,#44              ; |183| 
-        MOVL      ACC,*+XAR1[AR0]       ; |183| 
-        ANDB      AL,#0x10              ; |183| 
+;*** 180	-----------------------    if ( (*((unsigned long * const)LINE+44L)&0x10uL) == 0uL ) goto g25;
+	.dwpsn	"extremerun.c",180,2
+        MOVB      XAR0,#44              ; |180| 
+        MOVL      ACC,*+XAR1[AR0]       ; |180| 
+        ANDB      AL,#0x10              ; |180| 
         MOVB      AH,#0
-        TEST      ACC                   ; |183| 
-        BF        L55,EQ                ; |183| 
-        ; branchcc occurs ; |183| 
-;*** 183	-----------------------    if ( *((unsigned long * const)LINE+80L)&0x10uL ) goto g27;
-        MOVB      XAR0,#80              ; |183| 
-        MOVL      ACC,*+XAR1[AR0]       ; |183| 
-        ANDB      AL,#0x10              ; |183| 
+        TEST      ACC                   ; |180| 
+        BF        L55,EQ                ; |180| 
+        ; branchcc occurs ; |180| 
+;*** 180	-----------------------    if ( *((unsigned long * const)LINE+80L)&0x10uL ) goto g27;
+        MOVB      XAR0,#80              ; |180| 
+        MOVL      ACC,*+XAR1[AR0]       ; |180| 
+        ANDB      AL,#0x10              ; |180| 
         MOVB      AH,#0
-        TEST      ACC                   ; |183| 
-        BF        L58,NEQ               ; |183| 
-        ; branchcc occurs ; |183| 
-;*** 212	-----------------------    if ( (*((unsigned long * const)LINE+80L)&0x30uL) != 0uL && (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+116L)&1uL) == 0 ) goto g24;
-	.dwpsn	"extremerun.c",212,3
+        TEST      ACC                   ; |180| 
+        BF        L58,NEQ               ; |180| 
+        ; branchcc occurs ; |180| 
+;*** 209	-----------------------    if ( (*((unsigned long * const)LINE+80L)&0x30uL) != 0uL && (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+116L)&1uL) == 0 ) goto g24;
+	.dwpsn	"extremerun.c",209,3
+        MOVL      ACC,*+XAR1[AR0]       ; |209| 
+        ANDB      AL,#0x30              ; |209| 
+        MOVB      AH,#0
+        TEST      ACC                   ; |209| 
+        BF        L53,EQ                ; |209| 
+        ; branchcc occurs ; |209| 
+        MOVB      XAR0,#116             ; |209| 
+        MOV       AL,*+XAR1[AR0]        ; |209| 
+        NOT       AL                    ; |209| 
+        MOVZ      AR6,AL                ; |209| 
+        MOVB      ACC,#1
+        AND       ACC,AR6               ; |209| 
+        BF        L54,EQ                ; |209| 
+        ; branchcc occurs ; |209| 
+L53:    
+;*** 212	-----------------------    if ( (*((unsigned long * const)LINE+80L)&1uL) == 0uL ) goto g25;
+	.dwpsn	"extremerun.c",212,8
+        MOVB      XAR0,#80              ; |212| 
         MOVL      ACC,*+XAR1[AR0]       ; |212| 
-        ANDB      AL,#0x30              ; |212| 
+        ANDB      AL,#0x01              ; |212| 
         MOVB      AH,#0
         TEST      ACC                   ; |212| 
-        BF        L53,EQ                ; |212| 
+        BF        L55,EQ                ; |212| 
         ; branchcc occurs ; |212| 
-        MOVB      XAR0,#116             ; |212| 
-        MOV       AL,*+XAR1[AR0]        ; |212| 
-        NOT       AL                    ; |212| 
-        MOVZ      AR6,AL                ; |212| 
-        MOVB      ACC,#1
-        AND       ACC,AR6               ; |212| 
-        BF        L54,EQ                ; |212| 
-        ; branchcc occurs ; |212| 
-L53:    
-;*** 215	-----------------------    if ( (*((unsigned long * const)LINE+80L)&1uL) == 0uL ) goto g25;
-	.dwpsn	"extremerun.c",215,8
-        MOVB      XAR0,#80              ; |215| 
-        MOVL      ACC,*+XAR1[AR0]       ; |215| 
-        ANDB      AL,#0x01              ; |215| 
-        MOVB      AH,#0
-        TEST      ACC                   ; |215| 
-        BF        L55,EQ                ; |215| 
-        ; branchcc occurs ; |215| 
-;*** 216	-----------------------    shift_cnt = 2u;
-;*** 216	-----------------------    goto g25;
-	.dwpsn	"extremerun.c",216,4
-        MOV       *-SP[7],#2            ; |216| 
-        BF        L55,UNC               ; |216| 
-        ; branch occurs ; |216| 
+;*** 213	-----------------------    shift_cnt = 2u;
+;*** 213	-----------------------    goto g25;
+	.dwpsn	"extremerun.c",213,4
+        MOV       *-SP[7],#2            ; |213| 
+        BF        L55,UNC               ; |213| 
+        ; branch occurs ; |213| 
 L54:    
 ;***	-----------------------g24:
-;*** 213	-----------------------    shift_cnt = 4u;
-	.dwpsn	"extremerun.c",213,4
-        MOV       *-SP[7],#4            ; |213| 
+;*** 210	-----------------------    shift_cnt = 4u;
+	.dwpsn	"extremerun.c",210,4
+        MOV       *-SP[7],#4            ; |210| 
 L55:    
 ;***	-----------------------g25:
-;*** 218	-----------------------    ((*((unsigned long * const)LINE+44L)&2uL) != 0uL) ? (S$1 = left_table[(long)shift_cnt]) : (S$1 = right_table[(long)shift_cnt]);
-	.dwpsn	"extremerun.c",218,3
-        MOVB      XAR0,#44              ; |218| 
-        MOVL      ACC,*+XAR1[AR0]       ; |218| 
-        ANDB      AL,#0x02              ; |218| 
+;*** 215	-----------------------    ((*((unsigned long * const)LINE+44L)&2uL) != 0uL) ? (S$1 = left_table[(long)shift_cnt]) : (S$1 = right_table[(long)shift_cnt]);
+	.dwpsn	"extremerun.c",215,3
+        MOVB      XAR0,#44              ; |215| 
+        MOVL      ACC,*+XAR1[AR0]       ; |215| 
+        ANDB      AL,#0x02              ; |215| 
         MOVB      AH,#0
-        TEST      ACC                   ; |218| 
-        BF        L56,EQ                ; |218| 
-        ; branchcc occurs ; |218| 
+        TEST      ACC                   ; |215| 
+        BF        L56,EQ                ; |215| 
+        ; branchcc occurs ; |215| 
         MOVU      ACC,*-SP[7]
-        MOVL      XAR4,#_left_table     ; |218| 
-        LSL       ACC,1                 ; |218| 
+        MOVL      XAR4,#_left_table     ; |215| 
+        LSL       ACC,1                 ; |215| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |218| 
-        BF        L57,UNC               ; |218| 
-        ; branch occurs ; |218| 
+        MOVL      ACC,*+XAR4[0]         ; |215| 
+        BF        L57,UNC               ; |215| 
+        ; branch occurs ; |215| 
 L56:    
         MOVU      ACC,*-SP[7]
-        MOVL      XAR4,#_right_table    ; |218| 
-        LSL       ACC,1                 ; |218| 
+        MOVL      XAR4,#_right_table    ; |215| 
+        LSL       ACC,1                 ; |215| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |218| 
+        MOVL      ACC,*+XAR4[0]         ; |215| 
 L57:    
-;*** 218	-----------------------    (*LINE).TargetPosition_IQ10 = S$1;
-;*** 218	-----------------------    if ( !cnt ) goto g43;
-        MOVB      XAR0,#30              ; |218| 
-        MOVL      *+XAR1[AR0],ACC       ; |218| 
+;*** 215	-----------------------    (*LINE).TargetPosition_IQ10 = S$1;
+;*** 215	-----------------------    if ( !cnt ) goto g43;
+        MOVB      XAR0,#30              ; |215| 
+        MOVL      *+XAR1[AR0],ACC       ; |215| 
         MOV       AL,*-SP[15]
-        BF        L74,EQ                ; |218| 
-        ; branchcc occurs ; |218| 
+        BF        L74,EQ                ; |215| 
+        ; branchcc occurs ; |215| 
 ;***  	-----------------------    v$3 = (*LINE).Distance_U32;
-;***  	-----------------------    if ( (float)v$3 <= 500.0F ) goto g41;
+;***  	-----------------------    if ( (float)v$3 <= 440.0F ) goto g41;
         MOVL      XAR3,*+XAR1[4]
         MOVL      ACC,XAR3
         LCR       #UL$$TOFS
         ; call occurs [#UL$$TOFS]
         MOVL      XAR6,ACC
         MOV       AL,#0
-        MOV       AH,#17402
+        MOV       AH,#17372
         MOVL      *-SP[2],ACC
         MOVL      ACC,XAR6
         LCR       #FS$$CMP
@@ -2286,266 +2282,234 @@ L57:
         ; branch occurs
 L58:    
 ;***	-----------------------g27:
-;*** 185	-----------------------    (*LINE).Kp_UpDown_IQ17 = *((volatile long * const)LINE+64L);
-;*** 186	-----------------------    *((volatile unsigned * const)LINE+34) |= 4u;
-;*** 188	-----------------------    v$3 = (*LINE).Distance_U32;
-;*** 188	-----------------------    if ( (float)v$3 < 500.0F ) goto g29;
+;*** 182	-----------------------    (*LINE).Kp_UpDown_IQ17 = *((volatile long * const)LINE+64L);
+;*** 183	-----------------------    *((volatile unsigned * const)LINE+34) |= 4u;
+;*** 185	-----------------------    v$3 = (*LINE).Distance_U32;
+;*** 185	-----------------------    if ( (float)v$3 < 440.0F ) goto g29;
+	.dwpsn	"extremerun.c",182,3
+        MOVB      XAR0,#64              ; |182| 
+        MOVL      ACC,*+XAR1[AR0]       ; |182| 
+        MOVB      XAR0,#28              ; |182| 
+        MOVL      *+XAR1[AR0],ACC       ; |182| 
+	.dwpsn	"extremerun.c",183,3
+        MOVB      ACC,#34
+        ADDL      ACC,XAR1
+        MOVL      XAR4,ACC              ; |183| 
+        OR        *+XAR4[0],#0x0004     ; |183| 
 	.dwpsn	"extremerun.c",185,3
-        MOVB      XAR0,#64              ; |185| 
-        MOVL      ACC,*+XAR1[AR0]       ; |185| 
-        MOVB      XAR0,#28              ; |185| 
-        MOVL      *+XAR1[AR0],ACC       ; |185| 
-	.dwpsn	"extremerun.c",186,3
+        MOVL      XAR3,*+XAR1[4]        ; |185| 
+        MOVL      ACC,XAR3              ; |185| 
+        LCR       #UL$$TOFS             ; |185| 
+        ; call occurs [#UL$$TOFS] ; |185| 
+        MOVL      XAR6,ACC              ; |185| 
+        MOV       AL,#0
+        MOV       AH,#17372
+        MOVL      *-SP[2],ACC           ; |185| 
+        MOVL      ACC,XAR6              ; |185| 
+        LCR       #FS$$CMP              ; |185| 
+        ; call occurs [#FS$$CMP] ; |185| 
+        CMPB      AL,#0                 ; |185| 
+        BF        L59,LT                ; |185| 
+        ; branchcc occurs ; |185| 
+;*** 186	-----------------------    *((volatile unsigned * const)LINE+34) |= 2u;
+;*** 186	-----------------------    goto g30;
+	.dwpsn	"extremerun.c",186,18
         MOVB      ACC,#34
         ADDL      ACC,XAR1
         MOVL      XAR4,ACC              ; |186| 
-        OR        *+XAR4[0],#0x0004     ; |186| 
-	.dwpsn	"extremerun.c",188,3
-        MOVL      XAR3,*+XAR1[4]        ; |188| 
-        MOVL      ACC,XAR3              ; |188| 
-        LCR       #UL$$TOFS             ; |188| 
-        ; call occurs [#UL$$TOFS] ; |188| 
-        MOVL      XAR6,ACC              ; |188| 
-        MOV       AL,#0
-        MOV       AH,#17402
-        MOVL      *-SP[2],ACC           ; |188| 
-        MOVL      ACC,XAR6              ; |188| 
-        LCR       #FS$$CMP              ; |188| 
-        ; call occurs [#FS$$CMP] ; |188| 
-        CMPB      AL,#0                 ; |188| 
-        BF        L59,LT                ; |188| 
-        ; branchcc occurs ; |188| 
-;*** 189	-----------------------    *((volatile unsigned * const)LINE+34) |= 2u;
-;*** 189	-----------------------    goto g30;
-	.dwpsn	"extremerun.c",189,18
-        MOVB      ACC,#34
-        ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |189| 
-        OR        *+XAR4[0],#0x0002     ; |189| 
-        BF        L60,UNC               ; |189| 
-        ; branch occurs ; |189| 
+        OR        *+XAR4[0],#0x0002     ; |186| 
+        BF        L60,UNC               ; |186| 
+        ; branch occurs ; |186| 
 L59:    
 ;***	-----------------------g29:
-;*** 188	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
-	.dwpsn	"extremerun.c",188,43
+;*** 185	-----------------------    *((volatile unsigned * const)LINE+34) |= 1u;
+	.dwpsn	"extremerun.c",185,43
         MOVB      ACC,#34
         ADDL      ACC,XAR1
-        MOVL      XAR4,ACC              ; |188| 
-        OR        *+XAR4[0],#0x0001     ; |188| 
+        MOVL      XAR4,ACC              ; |185| 
+        OR        *+XAR4[0],#0x0001     ; |185| 
 L60:    
 ;***	-----------------------g30:
-;*** 188	-----------------------    if ( (*((unsigned long * const)LINE+116L)&1uL) == 0uL ) goto g36;
-        MOVB      XAR0,#116             ; |188| 
-        MOVL      ACC,*+XAR1[AR0]       ; |188| 
-        ANDB      AL,#0x01              ; |188| 
+;*** 185	-----------------------    if ( (*((unsigned long * const)LINE+116L)&1uL) == 0uL ) goto g36;
+        MOVB      XAR0,#116             ; |185| 
+        MOVL      ACC,*+XAR1[AR0]       ; |185| 
+        ANDB      AL,#0x01              ; |185| 
         MOVB      AH,#0
-        TEST      ACC                   ; |188| 
-        BF        L65,EQ                ; |188| 
-        ; branchcc occurs ; |188| 
-;*** 193	-----------------------    if ( *((unsigned long * const)LINE+44L)&0x100uL && *((unsigned long * const)LINE+80L)&0x100uL ) goto g35;
-	.dwpsn	"extremerun.c",193,4
+        TEST      ACC                   ; |185| 
+        BF        L65,EQ                ; |185| 
+        ; branchcc occurs ; |185| 
+;*** 190	-----------------------    if ( *((unsigned long * const)LINE+44L)&0x100uL && *((unsigned long * const)LINE+80L)&0x100uL ) goto g35;
+	.dwpsn	"extremerun.c",190,4
+        MOVB      XAR0,#44              ; |190| 
+        MOVL      ACC,*+XAR1[AR0]       ; |190| 
+        AND       AL,#0x0100            ; |190| 
+        MOVB      AH,#0
+        TEST      ACC                   ; |190| 
+        BF        L61,EQ                ; |190| 
+        ; branchcc occurs ; |190| 
+        MOVB      XAR0,#80              ; |190| 
+        MOVL      ACC,*+XAR1[AR0]       ; |190| 
+        AND       AL,#0x0100            ; |190| 
+        MOVB      AH,#0
+        TEST      ACC                   ; |190| 
+        BF        L64,NEQ               ; |190| 
+        ; branchcc occurs ; |190| 
+L61:    
+;*** 193	-----------------------    if ( *((unsigned long * const)LINE+44L)&0x200uL && *((unsigned long * const)LINE+80L)&0x200uL ) goto g34;
+	.dwpsn	"extremerun.c",193,9
         MOVB      XAR0,#44              ; |193| 
         MOVL      ACC,*+XAR1[AR0]       ; |193| 
-        AND       AL,#0x0100            ; |193| 
+        AND       AL,#0x0200            ; |193| 
         MOVB      AH,#0
         TEST      ACC                   ; |193| 
-        BF        L61,EQ                ; |193| 
+        BF        L62,EQ                ; |193| 
         ; branchcc occurs ; |193| 
         MOVB      XAR0,#80              ; |193| 
         MOVL      ACC,*+XAR1[AR0]       ; |193| 
-        AND       AL,#0x0100            ; |193| 
+        AND       AL,#0x0200            ; |193| 
         MOVB      AH,#0
         TEST      ACC                   ; |193| 
-        BF        L64,NEQ               ; |193| 
+        BF        L63,NEQ               ; |193| 
         ; branchcc occurs ; |193| 
-L61:    
-;*** 196	-----------------------    if ( *((unsigned long * const)LINE+44L)&0x200uL && *((unsigned long * const)LINE+80L)&0x200uL ) goto g34;
+L62:    
+;*** 196	-----------------------    if ( *((unsigned long * const)LINE+44L)&0x300uL && *((unsigned long * const)LINE+80L)&0x300uL ) goto g35;
 	.dwpsn	"extremerun.c",196,9
         MOVB      XAR0,#44              ; |196| 
         MOVL      ACC,*+XAR1[AR0]       ; |196| 
-        AND       AL,#0x0200            ; |196| 
+        AND       AL,#0x0300            ; |196| 
         MOVB      AH,#0
         TEST      ACC                   ; |196| 
-        BF        L62,EQ                ; |196| 
+        BF        L65,EQ                ; |196| 
         ; branchcc occurs ; |196| 
         MOVB      XAR0,#80              ; |196| 
         MOVL      ACC,*+XAR1[AR0]       ; |196| 
-        AND       AL,#0x0200            ; |196| 
+        AND       AL,#0x0300            ; |196| 
         MOVB      AH,#0
         TEST      ACC                   ; |196| 
-        BF        L63,NEQ               ; |196| 
+        BF        L64,NEQ               ; |196| 
         ; branchcc occurs ; |196| 
-L62:    
-;*** 199	-----------------------    if ( *((unsigned long * const)LINE+44L)&0x300uL && *((unsigned long * const)LINE+80L)&0x300uL ) goto g35;
-	.dwpsn	"extremerun.c",199,9
-        MOVB      XAR0,#44              ; |199| 
-        MOVL      ACC,*+XAR1[AR0]       ; |199| 
-        AND       AL,#0x0300            ; |199| 
-        MOVB      AH,#0
-        TEST      ACC                   ; |199| 
-        BF        L65,EQ                ; |199| 
-        ; branchcc occurs ; |199| 
-        MOVB      XAR0,#80              ; |199| 
-        MOVL      ACC,*+XAR1[AR0]       ; |199| 
-        AND       AL,#0x0300            ; |199| 
-        MOVB      AH,#0
-        TEST      ACC                   ; |199| 
-        BF        L64,NEQ               ; |199| 
-        ; branchcc occurs ; |199| 
-;*** 199	-----------------------    goto g36;
-        BF        L65,UNC               ; |199| 
-        ; branch occurs ; |199| 
+;*** 196	-----------------------    goto g36;
+        BF        L65,UNC               ; |196| 
+        ; branch occurs ; |196| 
 L63:    
 ;***	-----------------------g34:
-;*** 197	-----------------------    shift_cnt = 5u;
-;*** 197	-----------------------    goto g36;
-	.dwpsn	"extremerun.c",197,5
-        MOV       *-SP[7],#5            ; |197| 
-        BF        L65,UNC               ; |197| 
-        ; branch occurs ; |197| 
+;*** 194	-----------------------    shift_cnt = 5u;
+;*** 194	-----------------------    goto g36;
+	.dwpsn	"extremerun.c",194,5
+        MOV       *-SP[7],#5            ; |194| 
+        BF        L65,UNC               ; |194| 
+        ; branch occurs ; |194| 
 L64:    
 ;***	-----------------------g35:
-;*** 194	-----------------------    shift_cnt = 4u;
-	.dwpsn	"extremerun.c",194,5
-        MOV       *-SP[7],#4            ; |194| 
+;*** 191	-----------------------    shift_cnt = 4u;
+	.dwpsn	"extremerun.c",191,5
+        MOV       *-SP[7],#4            ; |191| 
 L65:    
 ;***	-----------------------g36:
-;*** 206	-----------------------    U$146 = (float)v$3;
-;*** 206	-----------------------    if ( U$146 > 500.0F ) goto g38;
-	.dwpsn	"extremerun.c",206,3
-        MOVL      ACC,XAR3              ; |206| 
-        LCR       #UL$$TOFS             ; |206| 
-        ; call occurs [#UL$$TOFS] ; |206| 
-        MOVL      XAR2,ACC              ; |206| 
+;*** 203	-----------------------    U$146 = (float)v$3;
+;*** 203	-----------------------    if ( U$146 > 440.0F ) goto g38;
+	.dwpsn	"extremerun.c",203,3
+        MOVL      ACC,XAR3              ; |203| 
+        LCR       #UL$$TOFS             ; |203| 
+        ; call occurs [#UL$$TOFS] ; |203| 
+        MOVL      XAR2,ACC              ; |203| 
         MOV       AL,#0
-        MOV       AH,#17402
-        MOVL      *-SP[2],ACC           ; |206| 
-        MOVL      ACC,XAR2              ; |206| 
-        LCR       #FS$$CMP              ; |206| 
-        ; call occurs [#FS$$CMP] ; |206| 
-        CMPB      AL,#0                 ; |206| 
-        BF        L68,GT                ; |206| 
-        ; branchcc occurs ; |206| 
-;*** 207	-----------------------    ((*((unsigned long * const)LINE+44L)&2uL) != 0uL) ? (S$2 = left_table[(long)(shift_cnt+1u)]) : (S$2 = right_table[(long)(shift_cnt+1u)]);
-	.dwpsn	"extremerun.c",207,16
-        MOVB      XAR0,#44              ; |207| 
-        MOVL      ACC,*+XAR1[AR0]       ; |207| 
-        ANDB      AL,#0x02              ; |207| 
+        MOV       AH,#17372
+        MOVL      *-SP[2],ACC           ; |203| 
+        MOVL      ACC,XAR2              ; |203| 
+        LCR       #FS$$CMP              ; |203| 
+        ; call occurs [#FS$$CMP] ; |203| 
+        CMPB      AL,#0                 ; |203| 
+        BF        L68,GT                ; |203| 
+        ; branchcc occurs ; |203| 
+;*** 204	-----------------------    ((*((unsigned long * const)LINE+44L)&2uL) != 0uL) ? (S$2 = left_table[(long)(shift_cnt+1u)]) : (S$2 = right_table[(long)(shift_cnt+1u)]);
+	.dwpsn	"extremerun.c",204,16
+        MOVB      XAR0,#44              ; |204| 
+        MOVL      ACC,*+XAR1[AR0]       ; |204| 
+        ANDB      AL,#0x02              ; |204| 
         MOVB      AH,#0
-        TEST      ACC                   ; |207| 
-        BF        L66,EQ                ; |207| 
-        ; branchcc occurs ; |207| 
-        MOV       AL,*-SP[7]            ; |207| 
-        ADDB      AL,#1                 ; |207| 
-        MOVL      XAR4,#_left_table     ; |207| 
+        TEST      ACC                   ; |204| 
+        BF        L66,EQ                ; |204| 
+        ; branchcc occurs ; |204| 
+        MOV       AL,*-SP[7]            ; |204| 
+        ADDB      AL,#1                 ; |204| 
+        MOVL      XAR4,#_left_table     ; |204| 
         MOVU      ACC,AL
-        LSL       ACC,1                 ; |207| 
+        LSL       ACC,1                 ; |204| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |207| 
-        BF        L67,UNC               ; |207| 
-        ; branch occurs ; |207| 
+        MOVL      ACC,*+XAR4[0]         ; |204| 
+        BF        L67,UNC               ; |204| 
+        ; branch occurs ; |204| 
 L66:    
-        MOV       AL,*-SP[7]            ; |207| 
-        ADDB      AL,#1                 ; |207| 
-        MOVL      XAR4,#_right_table    ; |207| 
+        MOV       AL,*-SP[7]            ; |204| 
+        ADDB      AL,#1                 ; |204| 
+        MOVL      XAR4,#_right_table    ; |204| 
         MOVU      ACC,AL
-        LSL       ACC,1                 ; |207| 
+        LSL       ACC,1                 ; |204| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |207| 
+        MOVL      ACC,*+XAR4[0]         ; |204| 
 L67:    
-;*** 207	-----------------------    (*LINE).TargetPosition_IQ10 = S$2;
-;*** 207	-----------------------    goto g39;
-        MOVB      XAR0,#30              ; |207| 
-        MOVL      *+XAR1[AR0],ACC       ; |207| 
-        BF        L71,UNC               ; |207| 
-        ; branch occurs ; |207| 
+;*** 204	-----------------------    (*LINE).TargetPosition_IQ10 = S$2;
+;*** 204	-----------------------    goto g39;
+        MOVB      XAR0,#30              ; |204| 
+        MOVL      *+XAR1[AR0],ACC       ; |204| 
+        BF        L71,UNC               ; |204| 
+        ; branch occurs ; |204| 
 L68:    
 ;***	-----------------------g38:
-;*** 206	-----------------------    ((*((unsigned long * const)LINE+44L)&2uL) != 0uL) ? (S$3 = left_table[(long)shift_cnt]) : (S$3 = right_table[(long)shift_cnt]);
-	.dwpsn	"extremerun.c",206,41
-        MOVB      XAR0,#44              ; |206| 
-        MOVL      ACC,*+XAR1[AR0]       ; |206| 
-        ANDB      AL,#0x02              ; |206| 
+;*** 203	-----------------------    ((*((unsigned long * const)LINE+44L)&2uL) != 0uL) ? (S$3 = left_table[(long)shift_cnt]) : (S$3 = right_table[(long)shift_cnt]);
+	.dwpsn	"extremerun.c",203,41
+        MOVB      XAR0,#44              ; |203| 
+        MOVL      ACC,*+XAR1[AR0]       ; |203| 
+        ANDB      AL,#0x02              ; |203| 
         MOVB      AH,#0
-        TEST      ACC                   ; |206| 
-        BF        L69,EQ                ; |206| 
-        ; branchcc occurs ; |206| 
+        TEST      ACC                   ; |203| 
+        BF        L69,EQ                ; |203| 
+        ; branchcc occurs ; |203| 
         MOVU      ACC,*-SP[7]
-        MOVL      XAR4,#_left_table     ; |206| 
-        LSL       ACC,1                 ; |206| 
+        MOVL      XAR4,#_left_table     ; |203| 
+        LSL       ACC,1                 ; |203| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |206| 
-        BF        L70,UNC               ; |206| 
-        ; branch occurs ; |206| 
+        MOVL      ACC,*+XAR4[0]         ; |203| 
+        BF        L70,UNC               ; |203| 
+        ; branch occurs ; |203| 
 L69:    
         MOVU      ACC,*-SP[7]
-        MOVL      XAR4,#_right_table    ; |206| 
-        LSL       ACC,1                 ; |206| 
+        MOVL      XAR4,#_right_table    ; |203| 
+        LSL       ACC,1                 ; |203| 
         ADDL      XAR4,ACC
-        MOVL      ACC,*+XAR4[0]         ; |206| 
+        MOVL      ACC,*+XAR4[0]         ; |203| 
 L70:    
-;*** 206	-----------------------    (*LINE).TargetPosition_IQ10 = S$3;
-        MOVB      XAR0,#30              ; |206| 
-        MOVL      *+XAR1[AR0],ACC       ; |206| 
+;*** 203	-----------------------    (*LINE).TargetPosition_IQ10 = S$3;
+        MOVB      XAR0,#30              ; |203| 
+        MOVL      *+XAR1[AR0],ACC       ; |203| 
 L71:    
 ;***	-----------------------g39:
-;*** 206	-----------------------    if ( !cnt ) goto g43;
+;*** 203	-----------------------    if ( !cnt ) goto g43;
         MOV       AL,*-SP[15]
-        BF        L74,EQ                ; |206| 
-        ; branchcc occurs ; |206| 
-;*** 223	-----------------------    if ( U$146 > 500.0F ) goto g42;
-	.dwpsn	"extremerun.c",223,3
+        BF        L74,EQ                ; |203| 
+        ; branchcc occurs ; |203| 
+;*** 220	-----------------------    if ( U$146 > 440.0F ) goto g42;
+	.dwpsn	"extremerun.c",220,3
         MOV       AL,#0
-        MOV       AH,#17402
-        MOVL      *-SP[2],ACC           ; |223| 
-        MOVL      ACC,XAR2              ; |223| 
-        LCR       #FS$$CMP              ; |223| 
-        ; call occurs [#FS$$CMP] ; |223| 
-        CMPB      AL,#0                 ; |223| 
-        BF        L73,GT                ; |223| 
-        ; branchcc occurs ; |223| 
+        MOV       AH,#17372
+        MOVL      *-SP[2],ACC           ; |220| 
+        MOVL      ACC,XAR2              ; |220| 
+        LCR       #FS$$CMP              ; |220| 
+        ; call occurs [#FS$$CMP] ; |220| 
+        CMPB      AL,#0                 ; |220| 
+        BF        L73,GT                ; |220| 
+        ; branchcc occurs ; |220| 
 L72:    
 ;***	-----------------------g41:
-;*** 227	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), 256000L);
-;*** 227	-----------------------    goto g43;
-	.dwpsn	"extremerun.c",227,4
-        MOVL      XAR4,#256000          ; |227| 
-        MOVL      *-SP[2],XAR4          ; |227| 
-        MOVL      XAR4,XAR1             ; |227| 
-        MOVB      XAR0,#30              ; |227| 
-        SUBB      XAR4,#6               ; |227| 
-        MOVL      ACC,*+XAR4[0]         ; |227| 
-        SUBL      ACC,*+XAR1[AR0]       ; |227| 
-        ABS       ACC                   ; |227| 
-        LCR       #__IQ10div            ; |227| 
-        ; call occurs [#__IQ10div] ; |227| 
-        MOVB      XAR0,#32              ; |227| 
-        MOVL      *+XAR1[AR0],ACC       ; |227| 
-        BF        L74,UNC               ; |227| 
-        ; branch occurs ; |227| 
-L73:    
-;***	-----------------------g42:
-;*** 224	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), (long)((float)v$3-250.0F)<<10);
-;***	-----------------------g43:
-;***  	-----------------------    return;
+;*** 224	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), 225280L);
+;*** 224	-----------------------    goto g43;
 	.dwpsn	"extremerun.c",224,4
-        MOVL      ACC,XAR3              ; |224| 
-        LCR       #UL$$TOFS             ; |224| 
-        ; call occurs [#UL$$TOFS] ; |224| 
-        MOVL      XAR6,ACC              ; |224| 
-        MOV       AL,#0
-        MOV       AH,#17274
-        MOVL      *-SP[2],ACC           ; |224| 
-        MOVL      ACC,XAR6              ; |224| 
-        LCR       #FS$$SUB              ; |224| 
-        ; call occurs [#FS$$SUB] ; |224| 
-        LCR       #FS$$TOL              ; |224| 
-        ; call occurs [#FS$$TOL] ; |224| 
+        MOVL      XAR4,#225280          ; |224| 
+        MOVL      *-SP[2],XAR4          ; |224| 
         MOVL      XAR4,XAR1             ; |224| 
-        LSL       ACC,10                ; |224| 
-        MOVL      *-SP[2],ACC           ; |224| 
-        SUBB      XAR4,#6               ; |224| 
         MOVB      XAR0,#30              ; |224| 
+        SUBB      XAR4,#6               ; |224| 
         MOVL      ACC,*+XAR4[0]         ; |224| 
         SUBL      ACC,*+XAR1[AR0]       ; |224| 
         ABS       ACC                   ; |224| 
@@ -2553,8 +2517,40 @@ L73:
         ; call occurs [#__IQ10div] ; |224| 
         MOVB      XAR0,#32              ; |224| 
         MOVL      *+XAR1[AR0],ACC       ; |224| 
+        BF        L74,UNC               ; |224| 
+        ; branch occurs ; |224| 
+L73:    
+;***	-----------------------g42:
+;*** 221	-----------------------    (*LINE).PositionRatio_IQ10 = _IQ10div(ABS(*((volatile long * const)LINE-6L)-(*LINE).TargetPosition_IQ10), (long)((float)v$3-220.0F)<<10);
+;***	-----------------------g43:
+;***  	-----------------------    return;
+	.dwpsn	"extremerun.c",221,4
+        MOVL      ACC,XAR3              ; |221| 
+        LCR       #UL$$TOFS             ; |221| 
+        ; call occurs [#UL$$TOFS] ; |221| 
+        MOVL      XAR6,ACC              ; |221| 
+        MOV       AL,#0
+        MOV       AH,#17244
+        MOVL      *-SP[2],ACC           ; |221| 
+        MOVL      ACC,XAR6              ; |221| 
+        LCR       #FS$$SUB              ; |221| 
+        ; call occurs [#FS$$SUB] ; |221| 
+        LCR       #FS$$TOL              ; |221| 
+        ; call occurs [#FS$$TOL] ; |221| 
+        MOVL      XAR4,XAR1             ; |221| 
+        LSL       ACC,10                ; |221| 
+        MOVL      *-SP[2],ACC           ; |221| 
+        SUBB      XAR4,#6               ; |221| 
+        MOVB      XAR0,#30              ; |221| 
+        MOVL      ACC,*+XAR4[0]         ; |221| 
+        SUBL      ACC,*+XAR1[AR0]       ; |221| 
+        ABS       ACC                   ; |221| 
+        LCR       #__IQ10div            ; |221| 
+        ; call occurs [#__IQ10div] ; |221| 
+        MOVB      XAR0,#32              ; |221| 
+        MOVL      *+XAR1[AR0],ACC       ; |221| 
 L74:    
-	.dwpsn	"extremerun.c",230,1
+	.dwpsn	"extremerun.c",227,1
         SUBB      SP,#16
 	.dwcfa	0x1d, -8
         MOVL      XAR3,*--SP
@@ -2569,7 +2565,7 @@ L74:
         LRETR
         ; return occurs
 	.dwattr DW$121, DW_AT_end_file("extremerun.c")
-	.dwattr DW$121, DW_AT_end_line(0xe6)
+	.dwattr DW$121, DW_AT_end_line(0xe3)
 	.dwattr DW$121, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$121
@@ -2580,9 +2576,9 @@ DW$144	.dwtag  DW_TAG_subprogram, DW_AT_name("xTURN_DIVISION"), DW_AT_symbol_nam
 	.dwattr DW$144, DW_AT_low_pc(_xTURN_DIVISION$0)
 	.dwattr DW$144, DW_AT_high_pc(0x00)
 	.dwattr DW$144, DW_AT_begin_file("extremerun.c")
-	.dwattr DW$144, DW_AT_begin_line(0x1ad)
+	.dwattr DW$144, DW_AT_begin_line(0x1aa)
 	.dwattr DW$144, DW_AT_begin_column(0x0d)
-	.dwpsn	"extremerun.c",430,1
+	.dwpsn	"extremerun.c",427,1
 
 	.dwfde DW$CIE
 
@@ -2602,8 +2598,8 @@ DW$144	.dwtag  DW_TAG_subprogram, DW_AT_name("xTURN_DIVISION"), DW_AT_symbol_nam
 ;*                                                             *
 ;***************************************************************
 _xTURN_DIVISION$0:
-;*** 431	-----------------------    C$1 = (*LINE).TurnDir_U32;
-;*** 431	-----------------------    if ( !(int)((unsigned long)((unsigned)C$1^0xffffu)&1uL) ) goto g7;
+;*** 428	-----------------------    C$1 = (*LINE).TurnDir_U32;
+;*** 428	-----------------------    if ( !(int)((unsigned long)((unsigned)C$1^0xffffu)&1uL) ) goto g7;
 	.dwcfa	0x1d, -2
 	.dwcfa	0x1c, 26, 0
 	.dwcfa	0x09, 40, 26
@@ -2638,186 +2634,186 @@ DW$150	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
 DW$151	.dwtag  DW_TAG_variable, DW_AT_name("v$1"), DW_AT_symbol_name("v$1")
 	.dwattr DW$151, DW_AT_type(*DW$T$12)
 	.dwattr DW$151, DW_AT_location[DW_OP_reg16]
-        MOVL      XAR1,XAR4             ; |430| 
-        MOVZ      AR6,AL                ; |430| 
-	.dwpsn	"extremerun.c",431,2
-        MOVB      XAR0,#8               ; |431| 
-        MOVL      P,*+XAR1[AR0]         ; |431| 
-        MOVZ      AR7,PL                ; |431| 
-        XOR       AR7,#0xffff           ; |431| 
+        MOVL      XAR1,XAR4             ; |427| 
+        MOVZ      AR6,AL                ; |427| 
+	.dwpsn	"extremerun.c",428,2
+        MOVB      XAR0,#8               ; |428| 
+        MOVL      P,*+XAR1[AR0]         ; |428| 
+        MOVZ      AR7,PL                ; |428| 
+        XOR       AR7,#0xffff           ; |428| 
         MOVB      ACC,#1
-        AND       ACC,AR7               ; |431| 
-        BF        L77,EQ                ; |431| 
-        ; branchcc occurs ; |431| 
-;*** 432	-----------------------    if ( C$1&0x10uL ) goto g6;
-	.dwpsn	"extremerun.c",432,7
-        MOVL      ACC,P                 ; |432| 
-        ANDB      AL,#0x10              ; |432| 
+        AND       ACC,AR7               ; |428| 
+        BF        L77,EQ                ; |428| 
+        ; branchcc occurs ; |428| 
+;*** 429	-----------------------    if ( C$1&0x10uL ) goto g6;
+	.dwpsn	"extremerun.c",429,7
+        MOVL      ACC,P                 ; |429| 
+        ANDB      AL,#0x10              ; |429| 
         MOVB      AH,#0
-        TEST      ACC                   ; |432| 
-        BF        L76,NEQ               ; |432| 
-        ; branchcc occurs ; |432| 
-;*** 436	-----------------------    if ( !(C$1&0x80uL && C$1&0xe00uL && (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) == 0) ) goto g5;
-	.dwpsn	"extremerun.c",436,7
-        MOVL      ACC,P                 ; |436| 
-        ANDB      AL,#0x80              ; |436| 
+        TEST      ACC                   ; |429| 
+        BF        L76,NEQ               ; |429| 
+        ; branchcc occurs ; |429| 
+;*** 433	-----------------------    if ( !(C$1&0x80uL && C$1&0xe00uL && (int)((unsigned long)~(unsigned)*((unsigned long * const)LINE+44L)&1uL) == 0) ) goto g5;
+	.dwpsn	"extremerun.c",433,7
+        MOVL      ACC,P                 ; |433| 
+        ANDB      AL,#0x80              ; |433| 
         MOVB      AH,#0
-        TEST      ACC                   ; |436| 
-        BF        L75,EQ                ; |436| 
-        ; branchcc occurs ; |436| 
-        MOV       ACC,#3584             ; |436| 
-        AND       AL,PL                 ; |436| 
-        AND       AH,PH                 ; |436| 
-        TEST      ACC                   ; |436| 
-        BF        L75,EQ                ; |436| 
-        ; branchcc occurs ; |436| 
-        MOVB      XAR0,#44              ; |436| 
-        MOV       AL,*+XAR1[AR0]        ; |436| 
-        NOT       AL                    ; |436| 
-        MOVZ      AR6,AL                ; |436| 
+        TEST      ACC                   ; |433| 
+        BF        L75,EQ                ; |433| 
+        ; branchcc occurs ; |433| 
+        MOV       ACC,#3584             ; |433| 
+        AND       AL,PL                 ; |433| 
+        AND       AH,PH                 ; |433| 
+        TEST      ACC                   ; |433| 
+        BF        L75,EQ                ; |433| 
+        ; branchcc occurs ; |433| 
+        MOVB      XAR0,#44              ; |433| 
+        MOV       AL,*+XAR1[AR0]        ; |433| 
+        NOT       AL                    ; |433| 
+        MOVZ      AR6,AL                ; |433| 
         MOVB      ACC,#1
-        AND       ACC,AR6               ; |436| 
-        BF        L75,NEQ               ; |436| 
-        ; branchcc occurs ; |436| 
-;*** 438	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
-;*** 440	-----------------------    (*LINE).VeloIn_IQ17 = (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = v$1 = xS4S_SPEED_U32<<17;
-;*** 441	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
-;*** 443	-----------------------    (*LINE).Decel_IQ14 = 1048576000L-__IQmpy(145959L, v$1, 17)>>3;
-;*** 444	-----------------------    goto g8;
-	.dwpsn	"extremerun.c",438,3
+        AND       ACC,AR6               ; |433| 
+        BF        L75,NEQ               ; |433| 
+        ; branchcc occurs ; |433| 
+;*** 435	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
+;*** 437	-----------------------    (*LINE).VeloIn_IQ17 = (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = v$1 = xS4S_SPEED_U32<<17;
+;*** 438	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
+;*** 440	-----------------------    (*LINE).Decel_IQ14 = 1048576000L-__IQmpy(145959L, v$1, 17)>>3;
+;*** 441	-----------------------    goto g8;
+	.dwpsn	"extremerun.c",435,3
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |438| 
-        MOVL      XAR4,#1310            ; |438| 
-        MOVL      ACC,@_PID_Kp_U32      ; |438| 
-        MOVB      XAR0,#28              ; |438| 
-        LSLL      ACC,T                 ; |438| 
-        MOVL      XT,XAR4               ; |438| 
-        IMPYL     P,XT,ACC              ; |438| 
-        QMPYL     ACC,XT,ACC            ; |438| 
-        LSL64     ACC:P,#15             ; |438| 
+        MOV       T,#17                 ; |435| 
+        MOVL      XAR4,#1310            ; |435| 
+        MOVL      ACC,@_PID_Kp_U32      ; |435| 
+        MOVB      XAR0,#28              ; |435| 
+        LSLL      ACC,T                 ; |435| 
+        MOVL      XT,XAR4               ; |435| 
+        IMPYL     P,XT,ACC              ; |435| 
+        QMPYL     ACC,XT,ACC            ; |435| 
+        LSL64     ACC:P,#15             ; |435| 
+        MOVL      *+XAR1[AR0],ACC       ; |435| 
+	.dwpsn	"extremerun.c",437,3
+        MOVW      DP,#_xS4S_SPEED_U32
+        MOV       T,#17                 ; |437| 
+        MOVL      ACC,@_xS4S_SPEED_U32  ; |437| 
+        MOVB      XAR0,#18              ; |437| 
+        LSLL      ACC,T                 ; |437| 
+        MOVL      *+XAR1[AR0],ACC       ; |437| 
+        MOVB      XAR0,#14              ; |437| 
+        MOVL      *+XAR1[AR0],ACC       ; |437| 
+        MOVB      XAR0,#16              ; |437| 
+        MOVL      *+XAR1[AR0],ACC       ; |437| 
+        MOVL      XAR6,ACC              ; |437| 
+	.dwpsn	"extremerun.c",438,3
+        MOVW      DP,#_JERK_U32
+        MOVL      ACC,@_JERK_U32        ; |438| 
+        MOVB      XAR0,#24              ; |438| 
+        LSL       ACC,14                ; |438| 
         MOVL      *+XAR1[AR0],ACC       ; |438| 
 	.dwpsn	"extremerun.c",440,3
-        MOVW      DP,#_xS4S_SPEED_U32
-        MOV       T,#17                 ; |440| 
-        MOVL      ACC,@_xS4S_SPEED_U32  ; |440| 
-        MOVB      XAR0,#18              ; |440| 
-        LSLL      ACC,T                 ; |440| 
-        MOVL      *+XAR1[AR0],ACC       ; |440| 
-        MOVB      XAR0,#14              ; |440| 
-        MOVL      *+XAR1[AR0],ACC       ; |440| 
-        MOVB      XAR0,#16              ; |440| 
-        MOVL      *+XAR1[AR0],ACC       ; |440| 
+        MOVL      XAR4,#145959          ; |440| 
+        MOVL      XT,XAR4               ; |440| 
+        IMPYL     P,XT,XAR6             ; |440| 
+        QMPYL     ACC,XT,XAR6           ; |440| 
+        LSL64     ACC:P,#15             ; |440| 
         MOVL      XAR6,ACC              ; |440| 
-	.dwpsn	"extremerun.c",441,3
-        MOVW      DP,#_JERK_U32
-        MOVL      ACC,@_JERK_U32        ; |441| 
-        MOVB      XAR0,#24              ; |441| 
-        LSL       ACC,14                ; |441| 
-        MOVL      *+XAR1[AR0],ACC       ; |441| 
-	.dwpsn	"extremerun.c",443,3
-        MOVL      XAR4,#145959          ; |443| 
-        MOVL      XT,XAR4               ; |443| 
-        IMPYL     P,XT,XAR6             ; |443| 
-        QMPYL     ACC,XT,XAR6           ; |443| 
-        LSL64     ACC:P,#15             ; |443| 
-        MOVL      XAR6,ACC              ; |443| 
         MOV       ACC,#32000 << 15
         SETC      SXM
         SUBL      ACC,XAR6
-        MOVB      XAR0,#26              ; |443| 
-        SFR       ACC,3                 ; |443| 
-        MOVL      *+XAR1[AR0],ACC       ; |443| 
-	.dwpsn	"extremerun.c",444,2
-        BF        L78,UNC               ; |444| 
-        ; branch occurs ; |444| 
+        MOVB      XAR0,#26              ; |440| 
+        SFR       ACC,3                 ; |440| 
+        MOVL      *+XAR1[AR0],ACC       ; |440| 
+	.dwpsn	"extremerun.c",441,2
+        BF        L78,UNC               ; |441| 
+        ; branch occurs ; |441| 
 L75:    
 ;***	-----------------------g5:
-;*** 447	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
-;*** 449	-----------------------    (*LINE).VeloIn_IQ17 = (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = v$1 = MOTOR_SPEED_U32<<17;
-;*** 450	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
-;*** 452	-----------------------    (*LINE).Decel_IQ14 = 1048576000L-__IQmpy(145959L, v$1, 17)>>3;
-;*** 452	-----------------------    goto g8;
-	.dwpsn	"extremerun.c",447,3
+;*** 444	-----------------------    (*LINE).Kp_UpDown_IQ17 = __IQmpy(1310L, PID_Kp_U32<<17, 17);
+;*** 446	-----------------------    (*LINE).VeloIn_IQ17 = (*LINE).Velo_IQ17 = (*LINE).VeloOut_IQ17 = v$1 = MOTOR_SPEED_U32<<17;
+;*** 447	-----------------------    (*LINE).Jerk_IQ14 = JERK_U32<<14;
+;*** 449	-----------------------    (*LINE).Decel_IQ14 = 1048576000L-__IQmpy(145959L, v$1, 17)>>3;
+;*** 449	-----------------------    goto g8;
+	.dwpsn	"extremerun.c",444,3
         MOVW      DP,#_PID_Kp_U32
-        MOV       T,#17                 ; |447| 
-        MOVL      XAR4,#1310            ; |447| 
-        MOVL      ACC,@_PID_Kp_U32      ; |447| 
-        MOVB      XAR0,#28              ; |447| 
-        LSLL      ACC,T                 ; |447| 
-        MOVL      XT,XAR4               ; |447| 
-        IMPYL     P,XT,ACC              ; |447| 
-        QMPYL     ACC,XT,ACC            ; |447| 
-        LSL64     ACC:P,#15             ; |447| 
+        MOV       T,#17                 ; |444| 
+        MOVL      XAR4,#1310            ; |444| 
+        MOVL      ACC,@_PID_Kp_U32      ; |444| 
+        MOVB      XAR0,#28              ; |444| 
+        LSLL      ACC,T                 ; |444| 
+        MOVL      XT,XAR4               ; |444| 
+        IMPYL     P,XT,ACC              ; |444| 
+        QMPYL     ACC,XT,ACC            ; |444| 
+        LSL64     ACC:P,#15             ; |444| 
+        MOVL      *+XAR1[AR0],ACC       ; |444| 
+	.dwpsn	"extremerun.c",446,3
+        MOVW      DP,#_MOTOR_SPEED_U32
+        MOV       T,#17                 ; |446| 
+        MOVL      ACC,@_MOTOR_SPEED_U32 ; |446| 
+        MOVB      XAR0,#18              ; |446| 
+        LSLL      ACC,T                 ; |446| 
+        MOVL      *+XAR1[AR0],ACC       ; |446| 
+        MOVB      XAR0,#14              ; |446| 
+        MOVL      *+XAR1[AR0],ACC       ; |446| 
+        MOVB      XAR0,#16              ; |446| 
+        MOVL      *+XAR1[AR0],ACC       ; |446| 
+        MOVL      XAR6,ACC              ; |446| 
+	.dwpsn	"extremerun.c",447,3
+        MOVW      DP,#_JERK_U32
+        MOVL      ACC,@_JERK_U32        ; |447| 
+        MOVB      XAR0,#24              ; |447| 
+        LSL       ACC,14                ; |447| 
         MOVL      *+XAR1[AR0],ACC       ; |447| 
 	.dwpsn	"extremerun.c",449,3
-        MOVW      DP,#_MOTOR_SPEED_U32
-        MOV       T,#17                 ; |449| 
-        MOVL      ACC,@_MOTOR_SPEED_U32 ; |449| 
-        MOVB      XAR0,#18              ; |449| 
-        LSLL      ACC,T                 ; |449| 
-        MOVL      *+XAR1[AR0],ACC       ; |449| 
-        MOVB      XAR0,#14              ; |449| 
-        MOVL      *+XAR1[AR0],ACC       ; |449| 
-        MOVB      XAR0,#16              ; |449| 
-        MOVL      *+XAR1[AR0],ACC       ; |449| 
+        MOVL      XAR4,#145959          ; |449| 
+        MOVL      XT,XAR4               ; |449| 
+        IMPYL     P,XT,XAR6             ; |449| 
+        QMPYL     ACC,XT,XAR6           ; |449| 
+        LSL64     ACC:P,#15             ; |449| 
         MOVL      XAR6,ACC              ; |449| 
-	.dwpsn	"extremerun.c",450,3
-        MOVW      DP,#_JERK_U32
-        MOVL      ACC,@_JERK_U32        ; |450| 
-        MOVB      XAR0,#24              ; |450| 
-        LSL       ACC,14                ; |450| 
-        MOVL      *+XAR1[AR0],ACC       ; |450| 
-	.dwpsn	"extremerun.c",452,3
-        MOVL      XAR4,#145959          ; |452| 
-        MOVL      XT,XAR4               ; |452| 
-        IMPYL     P,XT,XAR6             ; |452| 
-        QMPYL     ACC,XT,XAR6           ; |452| 
-        LSL64     ACC:P,#15             ; |452| 
-        MOVL      XAR6,ACC              ; |452| 
         MOV       ACC,#32000 << 15
         SETC      SXM
         SUBL      ACC,XAR6
-        MOVB      XAR0,#26              ; |452| 
-        SFR       ACC,3                 ; |452| 
-        MOVL      *+XAR1[AR0],ACC       ; |452| 
-        BF        L78,UNC               ; |452| 
-        ; branch occurs ; |452| 
+        MOVB      XAR0,#26              ; |449| 
+        SFR       ACC,3                 ; |449| 
+        MOVL      *+XAR1[AR0],ACC       ; |449| 
+        BF        L78,UNC               ; |449| 
+        ; branch occurs ; |449| 
 L76:    
 ;***	-----------------------g6:
-;*** 432	-----------------------    x45_TURN_DIVISION(LINE, cnt);
-;*** 432	-----------------------    goto g8;
-	.dwpsn	"extremerun.c",432,43
-        MOVL      XAR4,XAR1             ; |432| 
-        MOV       AL,AR6                ; |432| 
-        LCR       #_x45_TURN_DIVISION$0 ; |432| 
-        ; call occurs [#_x45_TURN_DIVISION$0] ; |432| 
-        BF        L78,UNC               ; |432| 
-        ; branch occurs ; |432| 
+;*** 429	-----------------------    x45_TURN_DIVISION(LINE, cnt);
+;*** 429	-----------------------    goto g8;
+	.dwpsn	"extremerun.c",429,43
+        MOVL      XAR4,XAR1             ; |429| 
+        MOV       AL,AR6                ; |429| 
+        LCR       #_x45_TURN_DIVISION$0 ; |429| 
+        ; call occurs [#_x45_TURN_DIVISION$0] ; |429| 
+        BF        L78,UNC               ; |429| 
+        ; branch occurs ; |429| 
 L77:    
 ;***	-----------------------g7:
-;*** 431	-----------------------    xSTR_DIVISION(LINE, cnt);
-	.dwpsn	"extremerun.c",431,37
-        MOVL      XAR4,XAR1             ; |431| 
-        MOV       AL,AR6                ; |431| 
-        LCR       #_xSTR_DIVISION$0     ; |431| 
-        ; call occurs [#_xSTR_DIVISION$0] ; |431| 
+;*** 428	-----------------------    xSTR_DIVISION(LINE, cnt);
+	.dwpsn	"extremerun.c",428,37
+        MOVL      XAR4,XAR1             ; |428| 
+        MOV       AL,AR6                ; |428| 
+        LCR       #_xSTR_DIVISION$0     ; |428| 
+        ; call occurs [#_xSTR_DIVISION$0] ; |428| 
 L78:    
 ;***	-----------------------g8:
-;*** 455	-----------------------    if ( (*LINE).PositionRatio_IQ10 >= 1024L ) goto g10;
-	.dwpsn	"extremerun.c",455,2
-        MOVL      XAR4,#1024            ; |455| 
-        MOVL      ACC,XAR4              ; |455| 
-        MOVB      XAR0,#32              ; |455| 
-        CMPL      ACC,*+XAR1[AR0]       ; |455| 
-        BF        L79,LEQ               ; |455| 
-        ; branchcc occurs ; |455| 
-;*** 456	-----------------------    (*LINE).PositionRatio_IQ10 = 1024L;
+;*** 452	-----------------------    if ( (*LINE).PositionRatio_IQ10 >= 1024L ) goto g10;
+	.dwpsn	"extremerun.c",452,2
+        MOVL      XAR4,#1024            ; |452| 
+        MOVL      ACC,XAR4              ; |452| 
+        MOVB      XAR0,#32              ; |452| 
+        CMPL      ACC,*+XAR1[AR0]       ; |452| 
+        BF        L79,LEQ               ; |452| 
+        ; branchcc occurs ; |452| 
+;*** 453	-----------------------    (*LINE).PositionRatio_IQ10 = 1024L;
 ;***	-----------------------g10:
 ;***  	-----------------------    return;
-	.dwpsn	"extremerun.c",456,3
-        MOVL      *+XAR1[AR0],XAR4      ; |456| 
+	.dwpsn	"extremerun.c",453,3
+        MOVL      *+XAR1[AR0],XAR4      ; |453| 
 L79:    
-	.dwpsn	"extremerun.c",457,1
+	.dwpsn	"extremerun.c",454,1
 	.dwcfa	0x1d, -4
         MOVL      XAR1,*--SP
 	.dwcfa	0x1d, -2
@@ -2825,7 +2821,7 @@ L79:
         LRETR
         ; return occurs
 	.dwattr DW$144, DW_AT_end_file("extremerun.c")
-	.dwattr DW$144, DW_AT_end_line(0x1c9)
+	.dwattr DW$144, DW_AT_end_line(0x1c6)
 	.dwattr DW$144, DW_AT_end_column(0x01)
 	.dwendentry
 	.dwendtag DW$144
@@ -2989,7 +2985,7 @@ DW$L$_xTURN_DIVISION_FUNC$9$B:
 ;*** 55	-----------------------    S$4 = &K$4[(long)cnt];
 ;*** 55	-----------------------    S$5 = &K$4[(long)cnt];
 ;*** 55	-----------------------    S$6 = &K$4[(long)cnt];
-;*** 55	-----------------------    TxPrintf("CNT: %3u  DIR: %2c  VEL_IN: %4ld  VEL: %4ld  VEL_OUT: %4ld  DEC: %4ld  DIST: %4lu  DECEL_DIST: %4ld  MOTOR_DIST: %4ld  DF: %u  s44s: %u  Kp: %.3lf  bld: %u\n", cnt, S$3, (K$4[(long)cnt]).VeloIn_IQ17>>17, (K$4[(long)cnt]).Velo_IQ17>>17, (K$4[(long)cnt]).VeloOut_IQ17>>17, (K$4[(long)cnt]).Decel_IQ14>>14, (K$4[(long)cnt]).Distance_U32, (K$4[(long)cnt]).DecelDistance_IQ17>>17, (K$4[(long)cnt]).MotorDistance_IQ17>>17, *((volatile unsigned *)S$4+34)&1u, *((volatile unsigned *)S$5+34)>>1&1, _IQ17toF((K$4[(long)cnt]).Kp_UpDown_IQ17), *((volatile unsigned *)S$6+34)>>2&1);
+;*** 55	-----------------------    TxPrintf("CNT: %3u  DIR: %2c  VEL_IN: %4ld  VEL: %4ld  VEL_OUT: %4ld  DEC: %5ld  DIST: %4lu  DECEL_DIST: %4ld  MOTOR_DIST: %4ld  DF: %u  s44s: %u  Kp: %.3lf  bld: %u\n", cnt, S$3, (K$4[(long)cnt]).VeloIn_IQ17>>17, (K$4[(long)cnt]).Velo_IQ17>>17, (K$4[(long)cnt]).VeloOut_IQ17>>17, (K$4[(long)cnt]).Decel_IQ14>>14, (K$4[(long)cnt]).Distance_U32, (K$4[(long)cnt]).DecelDistance_IQ17>>17, (K$4[(long)cnt]).MotorDistance_IQ17>>17, *((volatile unsigned *)S$4+34)&1u, *((volatile unsigned *)S$5+34)>>1&1, _IQ17toF((K$4[(long)cnt]).Kp_UpDown_IQ17), *((volatile unsigned *)S$6+34)>>2&1);
         MOV       T,#36                 ; |55| 
         MOVL      ACC,XAR3              ; |55| 
         MPYXU     P,T,*-SP[24]          ; |55| 
@@ -3247,7 +3243,7 @@ L91:
         ; return occurs
 
 DW$162	.dwtag  DW_TAG_loop
-	.dwattr DW$162, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\extremerun.asm:L86:1:1692104484")
+	.dwattr DW$162, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\extremerun.asm:L86:1:1692388962")
 	.dwattr DW$162, DW_AT_begin_file("extremerun.c")
 	.dwattr DW$162, DW_AT_begin_line(0x40)
 	.dwattr DW$162, DW_AT_end_line(0x46)
@@ -3279,7 +3275,7 @@ DW$170	.dwtag  DW_TAG_loop_range
 
 
 DW$171	.dwtag  DW_TAG_loop
-	.dwattr DW$171, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\extremerun.asm:L80:1:1692104484")
+	.dwattr DW$171, DW_AT_name("C:\Users\노호진\Desktop\2809_STEPTRACER\2809_가라_17\main\extremerun.asm:L80:1:1692388962")
 	.dwattr DW$171, DW_AT_begin_file("extremerun.c")
 	.dwattr DW$171, DW_AT_begin_line(0x31)
 	.dwattr DW$171, DW_AT_end_line(0x3e)
@@ -3569,7 +3565,7 @@ DW$201	.dwtag  DW_TAG_variable, DW_AT_name("dist"), DW_AT_symbol_name("_dist")
 ;*** 81	-----------------------    K$6 = &Search[0];
 ;*** 81	-----------------------    C$4 = (long)C$5*36L;
 ;*** 81	-----------------------    dist = *(C$4+K$6-32L)<<15;
-;*** 83	-----------------------    if ( dist+8192000L >= XRUN_DIST_IQ15 ) goto g7;
+;*** 83	-----------------------    if ( dist+7208960L >= XRUN_DIST_IQ15 ) goto g7;
 	.dwpsn	"extremerun.c",81,3
         MOVL      XAR4,#_Search         ; |81| 
         MOVL      XAR5,XAR4             ; |81| 
@@ -3583,7 +3579,7 @@ DW$201	.dwtag  DW_TAG_variable, DW_AT_name("dist"), DW_AT_symbol_name("_dist")
         MOVL      *-SP[12],ACC          ; |81| 
 	.dwpsn	"extremerun.c",83,3
         MOVL      ACC,*-SP[12]          ; |83| 
-        ADD       ACC,#250 << 15        ; |83| 
+        ADD       ACC,#220 << 15        ; |83| 
         MOVW      DP,#_XRUN_DIST_IQ15
         CMPL      ACC,@_XRUN_DIST_IQ15  ; |83| 
         BF        L96,GEQ               ; |83| 
@@ -3798,7 +3794,7 @@ L98:
 	.sect	".econst"
 	.align	2
 FSL1:	.string	"CNT: %3u  DIR: %2c  VEL_IN: %4ld  VEL: %4ld  VEL_OUT: %4ld "
-	.string	" DEC: %4ld  DIST: %4lu  DECEL_DIST: %4ld  MOTOR_DIST: %4ld "
+	.string	" DEC: %5ld  DIST: %4lu  DECEL_DIST: %4ld  MOTOR_DIST: %4ld "
 	.string	" DF: %u  s44s: %u  Kp: %.3lf  bld: %u",10,0
 	.align	2
 FSL2:	.string	"CNT: %3u  DIR: %2c  bld: %u  tarpos: %6ld  pos_r: %lf",10,0

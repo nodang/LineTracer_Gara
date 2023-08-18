@@ -110,15 +110,15 @@ void Init_RUN()
 	JERK_MIDDLE_U32 = 25000;
 	JERK_SHORT_U32 = 30000;
 	
-	ACCEL_COEF_I32 = 144;
-	DECEL_COEF_I32 = 285;
+	ACCEL_COEF_I32 = 144; 121
+	DECEL_COEF_I32 = 285; 282
 	
 	D_RATIO_I32 = 24;
 	U_RATIO_I32 = 24;
 	
 	Down_Kp_U32 = 5;
 	SHARP_KP_U32 = 30;
-	S44S_KP_U32 = 72;
+	S44S_KP_U32 = 72; 27
 	
 	PID_Kp_U32 = 100;
 	PID_Kd_U32 = 0;
@@ -175,11 +175,11 @@ void RUN(Uint16 number)
 	VFDPrintf((char *)table[number]);
 	DELAY_US(1000000);
 	VFDPrintf("        ");
+
+	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 	
  	Flag.Sensor_U16 = ON;
 	Flag.Motor_U16 = ON;
-
-	GpioDataRegs.GPASET.all = MOTOR_ResetEnable;
 	
 	MOVE_TO_MOVE( _IQ17(500.0), _IQ17(0.0),((long)MOTOR_SPEED_U32) << 17, ((long)MOTOR_SPEED_U32) << 17, ((long)JERK_U32) << 14, MIN_ACC_IQ14 );
 

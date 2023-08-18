@@ -54,7 +54,7 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM, volatile struct EPWM_REGS *pEPWM)
 		if(pM->NextVelocity_IQ17 >= pM->TargetVel_IQ17)
 			pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;
 
-		pM->AccelLimit_IQ14 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 3;
+		pM->AccelLimit_IQ14 = MAX_ACC_IQ14 - (_IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17) >> 3);
 		
 		pM->NextAccel_IQ14 += _IQ14mpy(pM->Jerk_IQ14, pM->PwmTBPRDdiv10000_IQ17 >> 3);
 
@@ -70,7 +70,7 @@ inline void MOTOR_MOTION_VALUE(MOTORCTRL *pM, volatile struct EPWM_REGS *pEPWM)
 		if(pM->NextVelocity_IQ17 <= pM->TargetVel_IQ17)
 			pM->NextVelocity_IQ17 = pM->TargetVel_IQ17;		
 
-		pM->AccelLimit_IQ14 = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17)) >> 3;
+		pM->AccelLimit_IQ14 = MAX_ACC_IQ14 - (_IQ17mpy(ACC_GRADIENT_IQ17, pM->NextVelocity_IQ17) >> 3);
 
 		if(pM->NextAccel_IQ14 > _IQ14(0.0))
 			pM->NextAccel_IQ14 = _IQ14(0.0);
@@ -135,8 +135,7 @@ void MOVE_TO_MOVE(_iq17 distance, _iq17 decel_distance, _iq17 target_velocity, _
 	START_PWM_ISR();
 }
 
-#define LIMIT_DEC	15000.0
-#define MIN_DEC		2000.0
+#define LIMIT_STOP_ACC	15000
 
 void MOVE_TO_END(_iq17 distance)
 {
@@ -155,11 +154,11 @@ void MOVE_TO_END(_iq17 distance)
 
 	// 2000 일때 최대 정지 가속도
 	RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = STOP_ACC_IQ14((RMotor.NextVelocity_IQ17 >> 1) + (LMotor.NextVelocity_IQ17 >> 1));
-	
-	if(RMotor.DecelAccel_IQ14 < _IQ14(MIN_DEC) || (LMotor.DecelAccel_IQ14 < _IQ14(MIN_DEC)))
-		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(MIN_DEC);
-	else if((RMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)) || (LMotor.DecelAccel_IQ14 > _IQ14(LIMIT_DEC)))
-		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(LIMIT_DEC);
+
+	if((RMotor.DecelAccel_IQ14 > _IQ14(LIMIT_STOP_ACC)) || (LMotor.DecelAccel_IQ14 > _IQ14(LIMIT_STOP_ACC)))
+		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(LIMIT_STOP_ACC);
+	else if((RMotor.DecelAccel_IQ14 < _IQ14(MIN_ACC)) || (LMotor.DecelAccel_IQ14 < _IQ14(MIN_ACC)))
+		RMotor.DecelAccel_IQ14 = LMotor.DecelAccel_IQ14 = _IQ14(MIN_ACC);
 
 	RMotor.DecelAccel_IQ14 = _IQ14div(RMotor.DecelAccel_IQ14, _IQ14(TEN_THOUSAND));
 	LMotor.DecelAccel_IQ14 = _IQ14div(LMotor.DecelAccel_IQ14, _IQ14(TEN_THOUSAND));
@@ -250,8 +249,6 @@ interrupt void CONTROL_ISR()
 			SenAdc.PositionShift_IQ10 = Search[cnt].TargetPosition_IQ10;
 	}
 
-	HANDLE();
-
 	// second and third's accel & decel
 	if(Flag.Motor_U16 && (Flag.Fast_U16 || Flag.Extrem_U16))
 	{
@@ -313,22 +310,6 @@ Uint16 END_STOP()
 				}
 			}
 		}
-		else if(Flag.Fast_U16) {
-			while(CpuTimer0Regs.TCR.bit.TSS == 1) {
-				VFDPrintf("M%3u|C%2lu", SECOND_MARK_U16_CNT - 1, CROSS_PLUS_SEARCH_U32);
-
-				if(!SW_U)
-					break;
-			}
-		}
-		else if(Flag.Extrem_U16) {
-			while(CpuTimer0Regs.TCR.bit.TSS == 1) {
-				VFDPrintf("M%3u|C%2lu", THIRD_MARK_U16_CNT - 1, CROSS_PLUS_SEARCH_U32);
-
-				if(!SW_U)
-					break;
-			}
-		}
 		DELAY_US(SW_DELAY);
 		VFDPrintf("T %3lf", ((float32)TIME_INDEX_U32) * (CONTROL_TIMER_RPD));
 		
@@ -370,7 +351,7 @@ void START_END_LINE()
 		else if(Flag.Extrem_U16)
 			LINE_THIRD(&Search[THIRD_MARK_U16_CNT]);
 	}
-	// 1 seconds / 0.0005 s => 40000
+	// 1 seconds / 0.0005 s => 2000
 	else if((Flag.MoveState_U16) && (TIME_INDEX_U32 > (2000)))	{		
 		Flag.MoveState_U16 = OFF;
 		Flag.STOP = ON;
@@ -396,25 +377,25 @@ void SHUTDOWN()
 	else if(Flag.STOP)
 		MOVE_TO_END(_IQ17(0.0));
 
+	STOP_TIME_INDEX_U32 = 0;
 	while(1) 
 	{
-		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17))
-		{	
+		if((LMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (RMotor.NextVelocity_IQ17 < MIN_VELO_IQ17) && (STOP_TIME_INDEX_U32 < 500))
+		{
 			Flag.Sensor_U16 = OFF;
 			GpioDataRegs.GPACLEAR.all = SENall;
-
-			STOP_PWM_ISR();
-
-			Flag.Motor_U16 = OFF;
-			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
-			STOP_TIME_INDEX_U32 = 0;
 			
-			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 1000));		
-			// 0.5 / 0.0005 = 1000
+			STOP_PWM_ISR();
+		
+			Flag.Motor_U16 = OFF;		
+			EPwm1Regs.CMPA.half.CMPA = EPwm3Regs.CMPA.half.CMPA = 0;
 
+			STOP_TIME_INDEX_U32 = 0;
+			while((LINE_OUT_U16 < LINE_OUT) && (STOP_TIME_INDEX_U32 < 500));	// 0.25 / 0.0005 = 500
+			
 			StopCpuTimer2();
 			StopCpuTimer0();
-
+			
 			GpioDataRegs.GPACLEAR.all = MOTOR_ResetEnable;
 			
 			LED_R_OFF;

@@ -150,8 +150,15 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define MAX_VELO_IQ17		_IQ17(MAX_VELO)
 #define MIN_VELO_IQ17		_IQ17(MIN_VELO)	//_IQ17(100.0)
 
-#define MAX_ACC		8000.0
-#define MIN_ACC		3000.0
+#define MAX_ACC		8000.0	//13000.0	//26000.0	//8000.0
+// holding torque = 236 mNm -> 여유롭게 400 mNm 이라 봄 -> 40.788648519117 kgf mm
+// 무게를 1.5kg이라 하면 27192 mm/s^2 가능
+#define MIN_ACC		3000.0	//6000.0	//12000.0	//3000.0		
+// 4500 mm/s -> 1653 r/min -> 대략 100 mNm 인데 전류와 전압이 2배이므로 200 mNm 이라 봄 
+//	-> 20.394324259559 kgf mm / 26 mm -> 784 * 2(모터는 2개) g 부하 가능
+//	무게를 1.5kg이라 하면 13596 mm/s^2 가능
+
+// 계산은 맞는데 왜 안되는가
 
 #define MAX_ACC_IQ17		_IQ17(MAX_ACC)	// _IQ17(6000.0)
 //#define MIN_ACC_IQ17		_IQ17(MIN_ACC)	//_IQ17(4000.0)	//_IQ17(3000.0)
@@ -159,7 +166,7 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 #define MAX_ACC_IQ14		_IQ14(MAX_ACC)
 #define MIN_ACC_IQ14		_IQ14(MIN_ACC)
 
-#define ACC_GRADIENT		1.113585746102449888641425389755	//((MAX_ACC - MIN_ACC)/(MAX_VELO - MIN_VELO))
+#define ACC_GRADIENT		1.113585746102449888641425389755	//1.5555555555555555555555555555556	//3.1111111111111111111111111111111	//1.113585746102449888641425389755	//((MAX_ACC - MIN_ACC)/(MAX_VELO - MIN_VELO))
 #define ACC_GRADIENT_IQ17	_IQ17(ACC_GRADIENT)					//_IQ17div(MAX_ACC_IQ17 - MIN_ACC_IQ17, MAX_VELO_IQ17 - MIN_VELO_IQ17)
 
 #define	TEN_THOUSAND		10000.0
@@ -181,10 +188,10 @@ __VARIABLE_EXT__ HANDLEPID	HanPID;
 //#define	STEP_10000D_IQ17	_IQ17(8246.680715)
 //#define	STEP_10000D_IQ15	_IQ15(8246.680715)
 
-#define	HEIGHT_ME			260.0	//270.0	//		208.0	//292.7		//300.0		// 약 255mm
-#define HEIGHT_SEEN			250.0	//250.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 
+#define	HEIGHT_ME			250.0	//270.0	//		208.0	//292.7		//300.0		// 약 255mm
+#define HEIGHT_SEEN			220.0	//250.0	//250.0 	//- 60.0	//225.0	//191.0	//251.0		6센치 랑 뒤에서부터 모터축 차이 30
 // sensor between motor weight center
-#define HEIGHT_2SEEN		500.0	//500.0
+#define HEIGHT_2SEEN		440.0	//500.0
 #define	HEIGHT_REARdiv2		74.3	//148.63	//80.0
 
 #define CLK_DIVISION_CONSTANT		7	// 4 // 2

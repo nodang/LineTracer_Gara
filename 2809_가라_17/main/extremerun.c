@@ -52,7 +52,7 @@ void xTURN_DIVISION_FUNC()
 
 		if(Flag.TxFlag_U16)
 		{
-			TxPrintf("CNT: %3u  DIR: %2c  VEL_IN: %4ld  VEL: %4ld  VEL_OUT: %4ld  DEC: %4ld  DIST: %4lu  DECEL_DIST: %4ld  MOTOR_DIST: %4ld  DF: %u  s44s: %u  Kp: %.3lf  bld: %u\n", 
+			TxPrintf("CNT: %3u  DIR: %2c  VEL_IN: %4ld  VEL: %4ld  VEL_OUT: %4ld  DEC: %5ld  DIST: %4lu  DECEL_DIST: %4ld  MOTOR_DIST: %4ld  DF: %u  s44s: %u  Kp: %.3lf  bld: %u\n", 
 					 cnt, Search[cnt].TurnDir_U32 & STRAIGHT ? 'S' : (Search[cnt].TurnDir_U32 & RIGHT_TURN ? 'R' : 'L'), 
 					 Search[cnt].VeloIn_IQ17 >> 17, Search[cnt].Velo_IQ17 >> 17, Search[cnt].VeloOut_IQ17 >> 17, 
 					 Search[cnt].Decel_IQ14 >> 14, Search[cnt].Distance_U32, Search[cnt].DecelDistance_IQ17 >> 17, 
@@ -172,10 +172,7 @@ static void xSTR_DIVISION(TRACKINFO *LINE, Uint16 cnt)
 	}
 	else 
 	{
-		dist = dist >> 1;
-
-		VEL_COMPUTE(dist, LINE->MotorDistance_IQ17 >> 1, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
-		
+		VEL_COMPUTE(dist >> 1, LINE->MotorDistance_IQ17 >> 1, high_vel, LINE->Jerk_IQ14, &LINE->Velo_IQ17);
 		DECEL_DIST_COMPUTE(LINE->Velo_IQ17, LINE->VeloOut_IQ17, &LINE->DecelDistance_IQ17, &LINE->Decel_IQ14);
 	}
 

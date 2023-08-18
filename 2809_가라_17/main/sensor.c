@@ -370,7 +370,7 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 	}
 	else		Flag.line_out_flag = ON;
 
-	//HANDLE();
+	HANDLE();
 }
 
 /* position PID */
@@ -381,10 +381,12 @@ void POSITION_COMPUTE(SENSORADC *pS, int32 *pA, volatile Uint16 *state, volatile
 #define	PID_Kb						0.2008486426648		//(W_cut *  F_dt) / (2.0 + W_cut * F_dt)
 #define	PID_Ka						-0.598302714670		//(W_cut *  F_dt - 2.0) / (2.0 + W_cut * F_dt)
 
-#define PI_HANDLE					47.123889803846
+#define POS_LIMIT		3.95
+//3.950 2100 400 280~295 36.6~37.2
 
 void HANDLE()
 {
+/*
 	// IIR Filter
 	static _iq10	IIR_puted	= _IQ10(0.0),
 					IIR_puting	= _IQ10(0.0);
@@ -399,6 +401,8 @@ void HANDLE()
 	HanPID.Pos_Err_IQ10[0] = HanPID.Pos_Err_IQ10[1] - HanPID.Pos_Err_IQ10[2];
 
 	HanPID.Pos_P_IQ17 = _IQ17mpy(HanPID.Kp_val_IQ17, HanPID.Pos_Err_IQ10[1]);
+*/
+	HanPID.Pos_P_IQ17 = _IQ17mpyIQX(HanPID.Kp_val_IQ17, 17, SenAdc.PositionTemporary_IQ10 + SenAdc.PositionShift_IQ10, 10);
 	//HanPID.Pos_D_IQ17 = _IQ17mpy(HanPID.Kd_val_IQ17, HanPID.Pos_Err_IQ10[0]);
 
 	HanPID.Pos_PID_IQ17 = _IQ17mpy(HanPID.Pos_P_IQ17, _IQ17(0.001));
@@ -410,7 +414,7 @@ void HANDLE()
 	{
 		RMotor.TargetHandle_IQ17 = _IQ17(1.0) + _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_DECmpy1000_IQ17);
 		LMotor.TargetHandle_IQ17 = _IQ17(1.0) - _IQ17mpy(HanPID.Pos_PID_IQ17, HANDLE_ACCmpy1000_IQ17);
-
+		
 		if(LMotor.TargetHandle_IQ17 < _IQ17(0.0))
 			LMotor.TargetHandle_IQ17 = _IQ17(0.0);
 	}
@@ -424,7 +428,7 @@ void HANDLE()
 	}
 	else											// Straight
 	{
-		RMotor.TargetHandle_IQ17 = _IQ17(1.0);	
+		RMotor.TargetHandle_IQ17 = _IQ17(1.0);
 		LMotor.TargetHandle_IQ17 = _IQ17(1.0);
 	}
 }

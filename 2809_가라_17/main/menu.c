@@ -125,54 +125,17 @@ static void senVAL()
 static void VEL()
 {
 	Uint16 m_sw_cnt = 0;
-	
+	Uint32 *p_speed[] = { &MOTOR_SPEED_U32, &END_SPEED_U32, &SECOND_MAX_SPEED_U32, &x45_SPEED_U32, &xS4S_SPEED_U32, &xS44S_SPEED_U32, &x90_SPEED_U32 };
+	const char *vfd_char[] = { "1ST|", "END|", "MAX|", "x45|", "s4s|", "s44s", "x90|" };
+
 	while(SW_U)
 	{
-		switch(m_sw_cnt)
-		{
-		case 0:
-			VFDPrintf("1ST|%4lu", MOTOR_SPEED_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	MOTOR_SPEED_U32 += 50; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	MOTOR_SPEED_U32 -= 50; }
-			break;
-		case 1:
-			VFDPrintf("END|%4lu", END_SPEED_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	END_SPEED_U32 += 25; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	END_SPEED_U32 -= 25; }
-			break;
-		case 2:
-			VFDPrintf("MAX|%4lu", SECOND_MAX_SPEED_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	SECOND_MAX_SPEED_U32 += 100; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	SECOND_MAX_SPEED_U32 -= 100; }
-			break;
-		case 3:
-			VFDPrintf("x45|%4lu", x45_SPEED_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	x45_SPEED_U32 += 50; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	x45_SPEED_U32 -= 50; }
-			break;
-		case 4:
-			VFDPrintf("s4s|%4lu", xS4S_SPEED_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	xS4S_SPEED_U32 += 50; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	xS4S_SPEED_U32 -= 50; }
-			break;
-		case 5:
-			VFDPrintf("s44s%4lu", xS44S_SPEED_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	xS44S_SPEED_U32 += 50; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	xS44S_SPEED_U32 -= 50; }
-			break;
-		case 6:
-			VFDPrintf("x90|%4lu", x90_SPEED_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	x90_SPEED_U32 += 50; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	x90_SPEED_U32 -= 50; }
-			break;
-
-		}
-		if(!SW_D)	
-		{ 
-			DELAY_US(SW_DELAY);	
-			if(m_sw_cnt < 6)	m_sw_cnt++;
-			else				m_sw_cnt = 0; 	
-		}
+		VFDPrintf("%c%c%c%c%4lu", vfd_char[m_sw_cnt][0], vfd_char[m_sw_cnt][1], vfd_char[m_sw_cnt][2], vfd_char[m_sw_cnt][3], *p_speed[m_sw_cnt]);
+		
+		if(!SW_R)		{ DELAY_US(SW_DELAY);	*p_speed[m_sw_cnt] += 50; }
+		else if(!SW_L)	{ DELAY_US(SW_DELAY);	*p_speed[m_sw_cnt] -= 50; }
+		else if(!SW_D)	{ DELAY_US(SW_DELAY);	if(m_sw_cnt < 6)	m_sw_cnt++;
+												else				m_sw_cnt = 0; }
 	}
 	save_velocity_rom();
 	DELAY_US(SW_DELAY);
@@ -180,46 +143,17 @@ static void VEL()
 static void ACC()
 {
 	Uint16 m_sw_cnt = 0;
+	Uint32 *p_acc[] = { &JERK_U32, &JERK_LONG_U32, &JERK_MIDDLE_U32, &JERK_SHORT_U32, };
+	const char *vfd_char[] = { "JRK", "J_L", "J_M", "J_S" };
 
 	while(SW_U)
 	{
-		switch(m_sw_cnt)
-		{
-		case 0:
-			VFDPrintf("JRK%5lu", (Uint32)JERK_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	JERK_U32 += 100; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	JERK_U32 -= 100; }
-			break;
-		case 1:
-			VFDPrintf("J_L%5lu", (Uint32)JERK_LONG_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	JERK_LONG_U32 += 100; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	JERK_LONG_U32 -= 100; }
-			break;
-		case 2:
-			VFDPrintf("J_M%5lu", (Uint32)JERK_MIDDLE_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	JERK_MIDDLE_U32 += 100; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	JERK_MIDDLE_U32 -= 100; }
-			break;
-		case 3:
-			VFDPrintf("J_S%5lu", (Uint32)JERK_SHORT_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	JERK_SHORT_U32 += 100; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	JERK_SHORT_U32 -= 100; }
-			break;
-/*
-		case 4:
-			VFDPrintf("D A%5lu", (Uint32)HANDLE_ACCEL_U32);
-			if(!SW_R)	{ DELAY_US(SW_DELAY);	HANDLE_ACCEL_U32 += 500; }
-			else if(!SW_L)	{ DELAY_US(SW_DELAY);	HANDLE_ACCEL_U32 -= 500; }
-			break;
-*/
-		}
-		if(!SW_D)	
-		{ 
-			DELAY_US(SW_DELAY);	
-			//if(m_sw_cnt < 4)	m_sw_cnt++;
-			if(m_sw_cnt < 3)	m_sw_cnt++;
-			else				m_sw_cnt = 0; 	
-		}
+		VFDPrintf("%c%c%c%5lu", vfd_char[m_sw_cnt][0], vfd_char[m_sw_cnt][1], vfd_char[m_sw_cnt][2], *p_acc[m_sw_cnt]);
+		
+		if(!SW_R)		{ DELAY_US(SW_DELAY);	*p_acc[m_sw_cnt] += 50; }
+		else if(!SW_L)	{ DELAY_US(SW_DELAY);	*p_acc[m_sw_cnt] -= 50; }
+		else if(!SW_D)	{ DELAY_US(SW_DELAY);	if(m_sw_cnt < 3)	m_sw_cnt++;
+												else				m_sw_cnt = 0; }
 	}
 	//JERK_U32 = HANDLE_ACCEL_U32 = 0;
 	//JERK_LONG_U32 = JERK_MIDDLE_U32 = JERK_SHORT_U32 = HANDLE_ACCEL_U32 = 0;
@@ -229,7 +163,7 @@ static void ACC()
 static void HAN()
 {
 	Uint16 m_sw_cnt = 0;
-
+	
 	while(SW_U)
 	{
 		switch(m_sw_cnt)

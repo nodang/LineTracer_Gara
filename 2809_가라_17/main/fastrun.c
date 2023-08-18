@@ -61,7 +61,7 @@ void TURN_DIVISION_FUNC()
 
 		if(Flag.TxFlag_U16)
 		{
-			TxPrintf("CNT: %3u  DIR: %2c   VEL_IN: %4ld    VEL: %4ld    VEL_OUT: %4ld    DEC: %4ld    DIST: %4lu    DECEL_DIST: %4ld    MOTOR_DIST: %4ld\n", 
+			TxPrintf("CNT: %3u  DIR: %2c   VEL_IN: %4ld    VEL: %4ld    VEL_OUT: %4ld    DEC: %5ld    DIST: %4lu    DECEL_DIST: %4ld    MOTOR_DIST: %4ld\n", 
 					 cnt, Search[cnt].TurnDir_U32 & STRAIGHT ? 'S' : (Search[cnt].TurnDir_U32 & RIGHT_TURN ? 'R' : 'L'), 
 					 Search[cnt].VeloIn_IQ17 >> 17, Search[cnt].Velo_IQ17 >> 17, Search[cnt].VeloOut_IQ17 >> 17, Search[cnt].Decel_IQ14 >> 14, 
 					 Search[cnt].Distance_U32, Search[cnt].DecelDistance_IQ17 >> 17, Search[cnt].MotorDistance_IQ17 >> 17);
@@ -79,8 +79,8 @@ void DECEL_DIST_COMPUTE(volatile _iq17 curVEL, volatile _iq17 tarVEL, volatile _
 	volatile _iq17 decelACC;
 	volatile _iq14 curACC, tarACC;
 
-	curACC = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, curVEL)) >> 3;
-	tarACC = (MAX_ACC_IQ17 - _IQ17mpy(ACC_GRADIENT_IQ17, tarVEL)) >> 3;
+	curACC = MAX_ACC_IQ14 - (_IQ17mpy(ACC_GRADIENT_IQ17, curVEL) >> 3);
+	tarACC = MAX_ACC_IQ14 - (_IQ17mpy(ACC_GRADIENT_IQ17, tarVEL) >> 3);
 
 	*decel = (tarACC >> 1) + (curACC >> 1);
 
@@ -104,6 +104,8 @@ void VEL_COMPUTE(volatile _iq17 dist, volatile _iq17 minus_dist, volatile _iq17 
 	cur_acc = _IQ17div(MAX_ACC_IQ17, _IQ17(1000.0)) - _IQ17mpy(ACC_GRADIENT_IQ17, cur_vel);
 	
 	tar_vel = _IQ17sqrt(_IQ17mpy(cur_vel, cur_vel) + (_IQ17mpy(dist, cur_acc) << 1));
+	if(tar_vel > _IQ17(4.5))	tar_vel = _IQ17(4.5);
+	
 	tar_acc = _IQ17div(MAX_ACC_IQ17, _IQ17(1000.0)) - _IQ17mpy(ACC_GRADIENT_IQ17, tar_vel);
 	tar_acc = (cur_acc >> 1) + (tar_acc >> 1); 
 	
